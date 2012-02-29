@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/yvan/dragonfly/abundance/data'
+let g:netrw_dirhist_2='/home/yvan/dragonfly/abundance/data/grooming'
+let g:netrw_dirhist_3='/home/yvan/dragonfly/batching-2010/report/data-summary'
+let g:netrw_dirhist_4='/home/yvan/dragonfly/abundance/plots/basemap'
+let g:netrw_dirhist_5='/home/yvan/dragonfly/dragonflyweb/www/bibliography'
+let g:netrw_dirhist_6='/home/yvan/.emacs.d'

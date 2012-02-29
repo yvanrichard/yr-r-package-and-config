@@ -6,10 +6,17 @@ yrpkg_1.0.tar.gz: myfunctions.r \
 
 
 r:
-	cp .Rprofile ~
+	cp customisations/.Rprofile ~
 
 y:
-	cp .Rprofile ~
-	cp .emacs ~
-	cp .vimrc ~
-	cp .screenrc ~
+	cd customisations; cp * ~/ -r
+
+updatepkg:
+	cp ~/.emacs.d ~/dragonfly/yvan-r-pkg/customisations/ -r
+	cp ~/.emacs ~/dragonfly/yvan-r-pkg/customisations/
+	cp ~/.vim ~/dragonfly/yvan-r-pkg/customisations/ -r
+	cp ~/.viminfo ~/dragonfly/yvan-r-pkg/customisations/
+	cp ~/.vimrc ~/dragonfly/yvan-r-pkg/customisations/
+	cp ~/.screenrc ~/dragonfly/yvan-r-pkg/customisations/
+	cp ~/.bashrc ~/dragonfly/yvan-r-pkg/customisations/
+	cp ~/.Rprofile ~/dragonfly/yvan-r-pkg/customisations/
