@@ -557,13 +557,15 @@ compprocsumm <- function(comps=c('robin','leon','titi','tieke','frank','jeremy')
     cp=comps[1]
     for (cp in comps)
       {
-        r <- system(sprintf('ssh -A %s@%s "ps -eo comm,%%cpu,time,pmem,user --no-heading"',
-                            user, cp), intern=T)
+        cmd <- sprintf('ssh -A %s@%s \"ps -eo \\\"%%c|%%C|%%x|%%z|%%U\\\" --no-heading | column -t\"', user, cp)
+        r <- system(cmd, intern=T)
         if (length(r))
           {
-            r <- as.data.frame(do.call('rbind',strsplit(gsub(' +', ' ', r), ' ')), stringsAsFactors=F)
+            l <- strsplit(gsub(' +', '', r), '\\|')
+            r <- as.data.frame(do.call('rbind',l), stringsAsFactors=F)
             names(r) <- c('command','%cpu','time','%mem','user')
             r$computer <- cp
+            r <- r[,c('computer','command','%cpu','time','%mem')]
             res <- rbind(res, r)
           }
       }
