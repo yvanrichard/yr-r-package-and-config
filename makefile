@@ -9,7 +9,7 @@ r:
 	cp customisations/.Rprofile ~
 
 y:
-	cp customisations/* ~ -r
+	cp -a customisations/. ~
 
 updatepkg:
 	cp ~/.emacs.d ~/dragonfly/yvan-r-pkg/customisations/ -r
