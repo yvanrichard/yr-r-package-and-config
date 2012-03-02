@@ -565,7 +565,7 @@ compprocsumm <- function(comps=c('robin','leon','titi','tieke','frank','jeremy')
             r <- as.data.frame(do.call('rbind',l), stringsAsFactors=F)
             names(r) <- c('command','%cpu','time','%mem','user')
             r$computer <- cp
-            r <- r[,c('computer','command','%cpu','time','%mem')]
+            r <- r[,c('computer','command','%cpu','time','%mem','user')]
             res <- rbind(res, r)
           }
       }
@@ -584,5 +584,31 @@ compprocsumm <- function(comps=c('robin','leon','titi','tieke','frank','jeremy')
     cat('\n\n\n***************  All processes sorted by cpu time  (first 10)  ***************\n\n')
     print(head( res[order(res$'time', decreasing=T),] , 10))
 
+    if (getres) return(res)
+  } 
+
+
+## Check for process (R by default) in all dragonfly computers
+proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank','jeremy'), user='yvan', getres=F)
+  {
+    res <- NULL
+    cp=comps[1]
+    for (cp in comps)
+      {
+        cmd <- sprintf('ssh -A %s@%s \"ps -C %s -o \\\"%%c|%%C|%%x|%%z|%%U\\\" --no-heading | column -t\"', user, cp, comm)
+        r <- system(cmd, intern=T)
+        if (length(r))
+          {
+            l <- strsplit(gsub(' +', '', r), '\\|')
+            r <- as.data.frame(do.call('rbind',l), stringsAsFactors=F)
+            names(r) <- c('command','%cpu','time','mem(Mb)','user')
+            r$computer <- cp
+            r <- r[,c('computer','command','%cpu','time','mem(Mb)','user')]
+            res <- rbind(res, r)
+          }
+      }
+
+    res$'mem(Mb)' <- round(as.numeric(res$'mem(Mb)')/1024, 2)
+    print(res)
     if (getres) return(res)
   } 
