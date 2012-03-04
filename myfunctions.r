@@ -439,7 +439,7 @@ tab <- function(x)
 makeuniquefilename <- function(x)  # x='a1'
   {
     if (length(x)>1) stop('Function takes only one file name')
-    x2 <- strsplit(x,'\\.')[[1]]
+    x2 <- strsplit(x,'.',fixed=T)[[1]]
     x_1 <- paste(x2[1:(length(x2)-1)], collapse='.')
     ext <- ifelse(length(x2)>1, sprintf('.%s',x2[length(x2)]), '')
     fs <- grep(sprintf('^%s.*%s$', x_1, ext), dir(), value=T)
