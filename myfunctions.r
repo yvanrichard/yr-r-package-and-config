@@ -436,18 +436,30 @@ tab <- function(x)
     }
     
 
+makeuniquefilename <- function(x)  # x='a1'
+  {
+    if (length(x)>1) stop('Function takes only one file name')
+    x2 <- strsplit(x,'\\.')[[1]]
+    x_1 <- paste(x2[1:(length(x2)-1)], collapse='.')
+    ext <- ifelse(length(x2)>1, sprintf('.%s',x2[length(x2)]), '')
+    fs <- grep(sprintf('^%s.*%s$', x_1, ext), dir(), value=T)
+    fs1 <- sub(sprintf('%s',ext),'', fs)
+    return(sprintf('%s%s', tail(make.names(c(fs1, x_1), unique=T), 1), ext))
+  }
+
 ## Open data frame in oocalc
-localc <- function(df, newl.at=100)
+localc <- function(df, row.names=T, newl.at=100)
     {
-    if (!is.na(newl.at))
-	{## insert return line when field is too long
-	nch = apply(df,2,function(x) max(nchar(as.character(x))))
-	toolongcols = names(nch[nch>newl.at])
-	for (c in toolongcols) # c=toolongcols[1]
+      f <- makeuniquefilename('temp.csv')
+      if (!is.na(newl.at))
+	{ ## insert return line when field is too long
+          nch = apply(df,2,function(x) max(nchar(as.character(x))))
+          toolongcols = names(nch[nch>newl.at])
+          for (c in toolongcols)        # c=toolongcols[1]
 	    {
-	    df[,c] <- as.character(df[,c])
-	    toolongvals = nchar(df[[c]]) > newl.at
-	    df[toolongvals,c] <- sapply(df[toolongvals, c], function(x) {
+              df[,c] <- as.character(df[,c])
+              toolongvals = nchar(df[[c]]) > newl.at
+              df[toolongvals,c] <- sapply(df[toolongvals, c], function(x) {
 		s = strsplit(x,'')[[1]]
 		s1 = grep('[[:blank:]]',s)
 		s0 = c(seq(1, nchar(x), newl.at), nchar(x))
@@ -455,12 +467,12 @@ localc <- function(df, newl.at=100)
 		s2 = s1[ (i[-length(i)]-i[-1]) == -1]
 		s[s2] <- '\n'
 		return(paste(s, collapse=''))
-		})
+              })
 	    }
 	}
-    write.csv(as.data.frame(df), 'temp.csv', row.names=F)
-    res <- system(sprintf('localc temp.csv 2>&1'))
-    system(sprintf('rm temp.csv', getwd()))
+      write.csv(as.data.frame(df), f, row.names=row.names)
+      res <- system(sprintf('localc %s', f), wait=F)
+      system(sprintf('sleep 10; rm %s', f), wait=F)
     }
 
 
