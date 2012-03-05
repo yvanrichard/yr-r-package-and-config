@@ -421,7 +421,7 @@ optimise_y <- function(f, target, lims, incr=0.01, tol=0.00001, ...)
     ci <- lims
     yi <- f(xi, ...)
     #yi <- f(xi, pbrx, spx)
-    slope <- sign(f(ci[2], pbrx, spx) - f(ci[1], pbrx, spx))
+    slope <- sign(f(ci[2], ...) - f(ci[1], ...))
     dir = ifelse(sign(yi-target)==slope, -1, 1)
     samedir = 0
     steps = 0
