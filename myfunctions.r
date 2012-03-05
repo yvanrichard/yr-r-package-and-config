@@ -411,6 +411,85 @@ invlogit <- function(x)
     }
 
 
+# My own function to estimate x to get a given y
+# Limits are not strict, just to give an idea of the slope and where to start (lims[1])
+optimise_y <- function(f, target, lims, incr=0.01, tol=0.00001, ...) 
+  {
+    ## target=0.05; lims=c(0,3); incr=0.01; tol=0.00001
+    xys <- NULL
+    xi <- lims[1]
+    ci <- lims
+    yi <- f(xi, ...)
+    #yi <- f(xi, pbrx, spx)
+    slope <- sign(f(ci[2], pbrx, spx) - f(ci[1], pbrx, spx))
+    dir = ifelse(sign(yi-target)==slope, -1, 1)
+    samedir = 0
+    steps = 0
+    stillhunt = T
+    first <- T
+    ## 1- Hunt: start anywhere then move with increasing step until limit is passed
+    while (stillhunt)
+      {
+        steps = steps + 1
+        if (!first)
+          {
+            yi <-  f(xi, ...)
+            #yi <- f(xi, pbrx, spx)
+          } else first <- F
+        xys = rbind(xys, c(xi, yi, dir, incr))
+        if (dir < 0 & yi < target)
+          {
+            ci[1] = xi
+            stillhunt = F
+          }
+        if (dir > 0 & yi > target)
+          {
+            ci[2] = xi
+            stillhunt = F
+          }
+        if (dir > 0 & yi < target)
+          {
+            ci[1] = xi
+          }
+        if (dir < 0 & yi > target)
+          {
+            ci[2] = xi
+          }
+        if (stillhunt) 
+          {
+            incr = incr * (sqrt(5)+1)/2
+            xi = xi + dir * incr
+          } else
+        {
+          incr = incr * (sqrt(5)-1)/2
+          dir = -1 * dir
+          xi = xi + dir * incr
+        }
+      }
+
+    ## 2- Bisection: halve the step
+    while (abs(yi - target) > tol  &  incr > 1e-6  &  incr != tol & steps<666)
+      {
+        steps = steps + 1
+        yi <- f(xi, ...)
+        #yi <- f(xi, pbrx, spx)
+        xys <- rbind(xys, c(xi, yi, dir, incr))
+        incr <- incr * (sqrt(5)-1)/2
+        dir = -sign(yi-target)
+        ci[ifelse(dir > 0, 1, 2)] <- xi
+        xi = xi + dir * incr
+      }
+	
+    xys = cbind(xys, xys[,2]-target)
+    colnames(xys) <- c('x','y','dir','incr','dist')
+
+    if (xys[steps,'dist'] > tol)
+      warning('Final accuracy greater than specified tolerance')
+    
+    return(list(x=xys[steps,'x'], acc=xys[steps,'dist'], step=xys))
+  }
+
+
 ###############################################################################
 ###  DIAGNOSE
 ###############################################################################
