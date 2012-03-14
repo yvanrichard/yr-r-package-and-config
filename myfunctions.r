@@ -275,11 +275,13 @@ col3d <- function(x, y, z, space='rgb')
 
 
 ## Calculate density of y for each x, and plot them on same plot
+# col='red'; alph=0.5; col.border=NULL; xmin=NULL; at=NULL; ylevels=NULL; ylab=NA; cap1st=T
 plotdensapply <- function(y, by, col='red', alph=0.5, col.border=NULL, xmin=NULL, at=NULL,
-                          ylevels=NULL, ylab=NA, ...)
+                          ylevels=NULL, ylab=NA, cap1st=T, ...)
   {
     if (!is.factor(by))
-      by <- factor(by, levels=rev(unique(by)))
+      by <- factor(by, levels=sort(unique(by)))
+    by <- factor(by, levels=rev(levels(by)))
     spp <- levels(by)
     nspp <- nlevels(by)
     dd <- tapply(y, by, density)
@@ -303,6 +305,7 @@ plotdensapply <- function(y, by, col='red', alph=0.5, col.border=NULL, xmin=NULL
     if (is.null(ylevels)) ylevels <- spp
     z <- sapply(tapply(ylevels, at, unique), function(x) paste(x, collapse=','))
     ylev2 <- z; at2 <- as.numeric(names(z))
+    if (cap1st) ylev2 <- capwords(ylev2)
     mtext(ylev2, 2, at=at2, las=1, line=0.5)
   }
 
@@ -703,3 +706,7 @@ proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank'
     print(res)
     if (getres) return(res)
   } 
+
+
+rndfactor <- function(n=15, nlev=4)
+  return(factor(sample(LETTERS[1:nlev], n, replace=T)))
