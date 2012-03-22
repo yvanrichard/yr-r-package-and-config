@@ -179,7 +179,7 @@ colorfrom <- function(var, colors=c('black','red','gold','darkgreen'), ncolors=1
     library(RColorBrewer)
     if (is.factor(var) | is.character(var))
       {
-        var <- factor(var, levels=unique(var))
+        if (!is.factor(var))  var <- factor(var, levels=unique(var))
         colors <- rep(brewer.pal(12, 'Set3'), length.out=nlevels(var))
         names(colors) <- levels(var)
         Cols <- colors[match(var, names(colors))]
@@ -277,7 +277,8 @@ col3d <- function(x, y, z, space='rgb')
 ## Calculate density of y for each x, and plot them on same plot
 # col='red'; alph=0.5; col.border=NULL; xmin=NULL; at=NULL; ylevels=NULL; ylab=NA; cap1st=T
 plotdensapply <- function(y, by, col='red', alph=0.5, col.border=NULL, xmin=NULL, at=NULL,
-                          ylevels=NULL, ylab=NA, cap1st=T, ...)
+                          ylevels=NULL, ylab=NA, cap1st=T, gridx=0, gridy=0,
+                          gridcol=grey(0.8), ...)
   {
     if (!is.factor(by))
       by <- factor(by, levels=sort(unique(by)))
@@ -291,6 +292,7 @@ plotdensapply <- function(y, by, col='red', alph=0.5, col.border=NULL, xmin=NULL
     ## plot(NA, xlim=c(ifelse(is.null(xmin), minx*0.1, xmin), maxx*1.02), ylim=c(0,nspp+1), ylab=NA, yaxs='i', xaxs='i', yaxt='n')
     plot(NA, xlim=switch(is.null(xmin)+1, c(xmin, rngx[2]), rngx), ylim=c(0,nspp+1),
          ylab=ylab, yaxs='i', xaxs='i', yaxt='n', ...)
+    grid(gridx, gridy, gridcol)
     if (is.null(at))   at <- 1:nspp
     if (length(at) != nspp) stop('Length of "at" does not match that of levels of "by"')
     if (length(col)==1)  col <- rep(col, nspp)
@@ -308,6 +310,33 @@ plotdensapply <- function(y, by, col='red', alph=0.5, col.border=NULL, xmin=NULL
     if (cap1st) ylev2 <- capwords(ylev2)
     mtext(ylev2, 2, at=at2, las=1, line=0.5)
   }
+
+
+
+lighten <- function(col, c=.5)
+  {
+    rgbs <- col2rgb(col)
+    r <- rgbs['red',]/255
+    g <- rgbs['green',]/255
+    b <- rgbs['blue',]/255
+    rd <- r + c*(1-r)
+    gd <- g + c*(1-g)
+    bd <- b + c*(1-b)
+    return(rgb(rd,gd,bd))
+  }
+
+darken <- function(col, c=.3)
+  {
+    rgbs <- col2rgb(col)
+    r <- rgbs['red',]/255
+    g <- rgbs['green',]/255
+    b <- rgbs['blue',]/255
+    rd <- r * (1-c)
+    gd <- g * (1-c)
+    bd <- b * (1-c)
+    return(rgb(rd,gd,bd))
+  }
+
 
 
 ###############################################################################

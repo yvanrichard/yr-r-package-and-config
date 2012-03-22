@@ -72,6 +72,6 @@ if (!length(grep('ERROR',out)))
 
 if (!length(grep('ERROR',out)))
     {
-    system('sudo R CMD INSTALL yrpkg 2>&1', intern=T)
+    system('sudo R CMD INSTALL yrpkg --byte-compile 2>&1', intern=T)
     print(out)
     }
