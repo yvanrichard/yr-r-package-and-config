@@ -297,6 +297,8 @@ plotdensapply <- function(y, by, col='red', alph=0.5, col.border=NULL, xmin=NULL
     if (length(at) != nspp) stop('Length of "at" does not match that of levels of "by"')
     if (length(col)==1)  col <- rep(col, nspp)
     if (is.null(col.border))  col.border <- col
+    col <- rev(col)
+    col.border <- rev(col.border)
     for (di in 1:nspp)  # di=nspp
       {
         d1 <- dd[[di]]
