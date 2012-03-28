@@ -309,7 +309,7 @@ plotdensapply <- function(y, by, col='red', alph=0.5, col.border=NULL, xmin=NULL
     if (is.null(ylevels)) ylevels <- spp
     z <- sapply(tapply(ylevels, at, unique), function(x) paste(x, collapse=','))
     ylev2 <- z; at2 <- as.numeric(names(z))
-    if (cap1st) ylev2 <- capwords(ylev2)
+    if (cap1st) ylev2 <- upper1st(ylev2)
     mtext(ylev2, 2, at=at2, las=1, line=0.5)
   }
 
