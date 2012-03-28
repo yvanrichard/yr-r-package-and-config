@@ -739,5 +739,20 @@ proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank'
   } 
 
 
+## return random factor for testing
 rndfactor <- function(n=15, nlev=4)
   return(factor(sample(LETTERS[1:nlev], n, replace=T)))
+
+
+## return string to be copied in script to setwd to current dir and copy string to clipboard
+setwdhere <- function()
+  {
+    home <- Sys.getenv('HOME')
+    here <- getwd()
+    txt <- sprintf('setwd(\'%s\')',sub(home, '~', here))
+    cat(sprintf('\n%s\n\n',txt))
+    #system(sprintf('echo \"%s\" | xclip', txt))
+    File = pipe("xclip -i", "w")
+    cat(txt, file=File)
+    close(File)
+  }
