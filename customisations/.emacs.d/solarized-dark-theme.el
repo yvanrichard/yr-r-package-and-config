@@ -1,3 +1,5 @@
+;; demo of a pull request
+
 ;;; solarized-dark-theme.el --- Custom face theme for Emacs
 
 ;; Copyright (C) 2010 ad.
