@@ -20,3 +20,9 @@ updatepkg:
 	cp ~/.screenrc ~/dragonfly/yvan-r-pkg/customisations/
 	cp ~/.bashrc ~/dragonfly/yvan-r-pkg/customisations/
 	cp ~/.Rprofile ~/dragonfly/yvan-r-pkg/customisations/
+
+getpackagelist:
+	Rscript -e 'libs<-sort(library()$$results[,"Package"]); save(libs, file="r-packages_libs.rdata")'
+
+installpackagelist:
+	sudo Rscript -e 'load("r-packages_libs.rdata"); libs<-libs[!(libs %in% library()$$results[,"Package"])]; if (length(libs)) install.packages(libs) else cat("No packages needed to be installed\n")'

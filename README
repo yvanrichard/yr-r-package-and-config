@@ -1,6 +1,11 @@
 This repo contains Yvan Richard's R package, and customisation files for R, emacs, screen, bash, and vim.
 
-make 	  	: convert functions in myfunctions.r into package yrpkg, and install package
-make r		: copy .Rprofile in customisation folder to ~
-make y		: copy all customisation files to ~
-make updatepkg  : copy customisation files from ~ to ./customisations
+make 	  	        : convert functions in myfunctions.r into package yrpkg, 
+		      	  and install package
+make r		        : copy .Rprofile in customisation folder to ~
+make y		        : copy all customisation files to ~
+make updatepkg          : copy customisation files from ~ to ./customisations
+make getpackagelist     : get list of installed R packages and update 
+     			  list in repo
+make installpackagelist : install list of R packages from repo that are 
+     			  not locally installed
