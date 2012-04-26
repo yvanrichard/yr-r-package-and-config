@@ -339,6 +339,20 @@ darken <- function(col, c=.3)
     return(rgb(rd,gd,bd))
   }
 
+placeleg <- function(X, Y, ...)
+  {
+    poss <- c('topleft','top','topright','left','center','right','bottomleft','bottom','bottomright')
+    d <- NULL
+    pos <- poss[1]
+    for (pos in poss)
+      {
+        l <- legend(pos, ..., plot=F)
+        d <- c(d, sum(X >= l$rect$left & X <= (l$rect$left + l$rect$w) &
+                      Y >= (l$rect$top - l$rect$h) & Y <= l$rect$top))
+      }
+    pos <- poss[which.min(d)]
+    legend(pos, ...)    
+  }
 
 
 ###############################################################################
@@ -561,7 +575,7 @@ makeuniquefilename <- function(x)  # x='a1'
   }
 
 ## Open data frame in oocalc
-localc <- function(df, row.names=T, newl.at=100)
+localc <- function(df, row.names=T, newl.at=100, ...)
     {
       f <- makeuniquefilename('temp.csv')
       if (!is.na(newl.at))
@@ -583,7 +597,7 @@ localc <- function(df, row.names=T, newl.at=100)
               })
 	    }
 	}
-      write.csv(as.data.frame(df), f, row.names=row.names)
+      write.csv(as.data.frame(df), f, row.names=row.names, ...)
       res <- system(sprintf('localc %s', f), wait=F)
       system(sprintf('sleep 10; rm %s', f), wait=F)
     }
