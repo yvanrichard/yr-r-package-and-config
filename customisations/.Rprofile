@@ -31,7 +31,7 @@ local({
 old <- getOption("defaultPackages")
 r <- getOption("repos")
 r["CRAN"] <- "http://cran.stat.auckland.ac.nz"
-options(defaultPackages = c(old, "yrpkg"), repos = r)
+options(defaultPackages = c(old, "yrpkg"), repos = r, Ncpus=5)
 })
 
 

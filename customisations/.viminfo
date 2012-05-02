@@ -212,18 +212,19 @@ $samples\/all-results\/all
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  8  58  ~/dragonfly/sra-foundations/.git/config
-'1  1  0  ~/.ssh/id_dsa.pub
-'2  1  0  ~/dragonfly/sra-foundations/report/notes/id_dsa.pub
-'3  1  0  ~/Downloads/AdbeRdr9.4.7-1_i486linux_enu.bin
-'4  14  5  ~/dragonfly/abundance/data/get_from_db/trips.csv
-'5  23  0  ~/dragonfly/sra-foundations/modelling/bh-dens-dep/parallel-pars.r
-'6  1  0  ~/Downloads/install_flash_player_11_linux.x86_64/libflashplayer.so
-'7  47  16  ~/Downloads/recruitmentphilippsstufffornextwednesdaysinterview/Dirichlet_Process_mixtures_for_geochemistry/split_merge_sampler_fix.m
-'8  919  2  ~/Downloads/recruitmentphilippsstufffornextwednesdaysinterview/Dirichlet_Process_mixtures_for_geochemistry/plotmod.m
-'9  427  0  ~/Downloads/recruitmentphilippsstufffornextwednesdaysinterview/Dirichlet_Process_mixtures_for_geochemistry/Toy data creator.m
+'0  1  0  ~/dragonfly/vic-seminar-apr-2012/.gitignore
+'1  8  58  ~/dragonfly/sra-foundations/.git/config
+'2  1  0  ~/.ssh/id_dsa.pub
+'3  1  0  ~/dragonfly/sra-foundations/report/notes/id_dsa.pub
+'4  1  0  ~/Downloads/AdbeRdr9.4.7-1_i486linux_enu.bin
+'5  14  5  ~/dragonfly/abundance/data/get_from_db/trips.csv
+'6  23  0  ~/dragonfly/sra-foundations/modelling/bh-dens-dep/parallel-pars.r
+'7  1  0  ~/Downloads/install_flash_player_11_linux.x86_64/libflashplayer.so
+'8  47  16  ~/Downloads/recruitmentphilippsstufffornextwednesdaysinterview/Dirichlet_Process_mixtures_for_geochemistry/split_merge_sampler_fix.m
+'9  919  2  ~/Downloads/recruitmentphilippsstufffornextwednesdaysinterview/Dirichlet_Process_mixtures_for_geochemistry/plotmod.m
 
 # Jumplist (newest first):
+-'  1  0  ~/dragonfly/vic-seminar-apr-2012/.gitignore
 -'  8  58  ~/dragonfly/sra-foundations/.git/config
 -'  1  0  ~/dragonfly/sra-foundations/.git/config
 -'  1  0  ~/.ssh/id_dsa.pub
@@ -322,10 +323,20 @@ $samples\/all-results\/all
 -'  26  0  ~/.emacs
 -'  182  2  ~/.emacs
 -'  179  2  ~/.emacs
--'  150  3  ~/.emacs
--'  146  3  ~/.emacs
 
 # History of marks within files (newest to oldest):
+
+> ~/dragonfly/vic-seminar-apr-2012/.gitignore
+	"	1	0
+	^	1	0
+	.	1	0
+	+	3	2
+	+	4	5
+	+	5	4
+	+	1	0
+
+> ~/robin-project/tute/model_data.txt
+	"	23	0
 
 > ~/dragonfly/sra-foundations/.git/config
 	"	8	58
@@ -945,9 +956,3 @@ $samples\/all-results\/all
 
 > ~/dragonfly/sra-foundations/publication/ecological_modelling/mark/matrix_sim.r
 	"	19	0
-
-> ~/dragonfly/sra-foundations/publication/ecological_modelling/mark/mark-matrix-sim.r
-	"	37	0
-
-> ~/dragonfly/sra-foundations/publication/ecological_modelling/models/test.r
-	"	13	0

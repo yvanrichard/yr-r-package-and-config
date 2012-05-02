@@ -339,6 +339,7 @@ darken <- function(col, c=.3)
     return(rgb(rd,gd,bd))
   }
 
+
 placeleg <- function(X, Y, ...)
   {
     poss <- c('topleft','top','topright','left','center','right','bottomleft','bottom','bottomright')
