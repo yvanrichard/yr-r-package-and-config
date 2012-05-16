@@ -5,27 +5,27 @@
 ###  VECTOR/MATRIX MANIPULATION
 ###############################################################################
 
-## replace values in a vector by corresponding ones using a lookup table
-# ex: lookup <- c(
-# oldval1, newval1,
-# oldval2, newval2)
 myreplace <- function(what, lookup, verbose=T, warn=T)
+{
+  ## replace values in a vector by corresponding ones using a lookup table
+  ## ex: lookup <- c(
+  ## oldval1, newval1,
+  ## oldval2, newval2) 
+  w = what
+  lkup = matrix(lookup, ncol=2, byrow=T)
+  c = w %in% lkup[,1]
+  if (warn)
     {
-    w = what
-    lkup = matrix(lookup, ncol=2, byrow=T)
-    c = w %in% lkup[,1]
-    if (warn)
-	{
-	cond = !(lkup[,1] %in% what)
-	if (sum(cond))
-	    warning(sum(cond),' value(s) in lookup vector not in original data')
-	}
-    w[c] = lkup[match(w[c], lkup[,1]), 2]
-    s = sum(w!=what)
-    if (verbose)
-	cat('\nReplaced ', s, ' values out of ', length(w), ' (', round(100*s/length(w),2), '%).\n', sep='')
-    return(w)
+      cond = !(lkup[,1] %in% what)
+      if (sum(cond))
+        warning(sum(cond),' value(s) in lookup vector not in original data')
     }
+  w[c] = lkup[match(w[c], lkup[,1]), 2]
+  s = sum(w!=what)
+  if (verbose)
+    cat('\nReplaced ', s, ' values out of ', length(w), ' (', round(100*s/length(w),2), '%).\n', sep='')
+  return(w)
+}
 
 
 sample_df <- function(df, n=10)
