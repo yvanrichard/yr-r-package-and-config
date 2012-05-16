@@ -87,6 +87,18 @@ Pprint <- function(x, use.quotes=T) {
   cat(paste(sprintf('%s', x), collapse=','),'\n')
 }
 
+## Function to return a number in scientific notation
+sn <- function(x,digits)
+{
+  if (x==0) return("0")
+  ord <- floor(log(abs(x),10))
+  x <- x / 10^ord
+  if (!missing(digits)) x <- format(x,digits=digits)
+  if (ord==0) return(as.character(x))
+  if (x==1)
+    return(sprintf("$10^{%s}$", ord)) else 
+  return(sprintf("$%s\\\\times 10^{%s}$", x, ord))
+}
 
 ###############################################################################
 ###  PLOTS
