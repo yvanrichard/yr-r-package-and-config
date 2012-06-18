@@ -783,3 +783,54 @@ setwdhere <- function()
     cat(txt, file=File)
     close(File)
   }
+
+
+
+makeseq <- function(x)        # x='2,10-15,103'  #x=integer(0)
+  {
+    if (class(x) != 'character') return(NA)
+    x <- unlist(strsplit(x, ','))
+    areranges <- grepl('-',x)
+    return(sort(unique(c(as.numeric( x[!areranges]), unlist(sapply(x[areranges],
+          function(x) {
+          x <- as.numeric(unlist(strsplit(x, '-')))
+          return(seq(x[1],x[2]))
+          }))))))
+  }
+
+
+collapseseq <- function(x, with.attr=F)  # x=c(2,4,6,7,9,10,11,12,16)
+  {
+    if (!(class(x) %in% c('numeric','integer')))  return(NA)
+    if (length(x)>1)
+      {
+        x <- sort(unique(x))            # just in case
+        n <- length(x)
+        d <- x[2:n]-x[1:(n-1)]
+        d2 <- c(2,d)
+        s <- cumsum(d2-1)
+        r <- split(x, s)
+        rs <- sapply(r, function(x)
+                     {
+                       nx <- length(x)
+                       if (nx > 1)
+                         return(sprintf('%s-%s', x[1], x[nx])) else
+                       return(x)
+                     }, simplify=T)
+        ns <- sapply(r, length)
+        txt <- paste(rs, collapse=',')
+        if (with.attr) {
+          attr(txt,'elements') <- rs
+          attr(txt,'ns') <- ns
+        }
+        return(txt)
+      } else
+          {
+            txt <- as.character(x)
+            if (with.attr) {
+              attr(txt,'elements') <- as.character(x)
+              attr(txt,'ns') <- 1
+            }
+            return(txt)
+          }
+  }
