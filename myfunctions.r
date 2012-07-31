@@ -40,7 +40,24 @@ sample_in <- function(x, n=100, ...)
       stop('Not a vector') else
     return(x[sample(1:length(x), n, ...)])
   }
-    
+
+
+movecolumns <- function(df, cols, where=1)
+  {
+    colids <- match(cols, colnames(df))
+    others <- which(!(colnames(df) %in% cols))
+    if (where==1)
+      return(df[,c(colids, others)]) else {
+        if (where==ncol(df))
+          return(df[,c(others, colids)])  else {
+            return(df[,c(others[others < where],
+                         colids,
+                         others[others >= where])])
+          }
+      }
+  }
+
+
 ###############################################################################
 ###  TEXT MANIPULATION
 ###############################################################################
@@ -81,10 +98,10 @@ capwords <- function(s, strict = FALSE)
     }
 
 ## Returns string of comma-separated values, with quotes (or not)
-Pprint <- function(x, use.quotes=T) {
+Pprint <- function(x, sep=',', use.quotes=T) {
   if (use.quotes)
-    cat(paste(sprintf('\'%s\'', x), collapse=','),'\n') else
-  cat(paste(sprintf('%s', x), collapse=','),'\n')
+    cat(paste(sprintf('\'%s\'', x), collapse=sep),'\n') else
+  cat(paste(sprintf('%s', x), collapse=sep),'\n')
 }
 
 ## Function to return a number in scientific notation
@@ -590,7 +607,7 @@ makeuniquefilename <- function(x)  # x='a1'
 ## Open data frame in oocalc
 localc <- function(df, row.names=T, newl.at=100, ...)
     {
-      f <- makeuniquefilename('temp.csv')
+      f <- makeuniquefilename('/tmp/temp.csv')
       if (!is.na(newl.at))
 	{ ## insert return line when field is too long
           nch = apply(df,2,function(x) max(nchar(as.character(x))))
@@ -612,7 +629,7 @@ localc <- function(df, row.names=T, newl.at=100, ...)
 	}
       write.csv(as.data.frame(df), f, row.names=row.names, ...)
       res <- system(sprintf('localc %s', f), wait=F)
-      system(sprintf('sleep 10; rm %s', f), wait=F)
+      #system(sprintf('sleep 10; rm %s', f), wait=F)
     }
 
 
@@ -833,4 +850,60 @@ collapseseq <- function(x, with.attr=F)  # x=c(2,4,6,7,9,10,11,12,16)
             }
             return(txt)
           }
+  }
+
+# fold <- getwd()
+get_in_out_from_scripts <- function(fold='.')
+  {
+    fls <- dir(fold, pattern='*.r$')
+    f=fls[1]
+    for (f in fls)
+      {
+        cat('\n')
+        cat(f,':\n')
+        cat(paste(rep('-', nchar(f)), collapse=''),'\n')
+        sc <- readLines(f)
+        sc <- sc[!grepl('^ *#', sc) & sc!=''] #
+        ## INPUTS
+        ins <- NULL
+        rcsv <- grep('read.csv', sc)
+        if (length(rcsv))
+          {
+            withsq <- grepl("\'.*\'", rcsv)
+            ins <- c(ins, gsub(".*\'(.*)\'.*", '\\1', rcsv[withsq]))
+            withdq <- grepl("\".*\"", rcsv)
+            ins <- c(ins, gsub(".*\"(.*)\".*", '\\1', rcsv[withdq]))
+          }
+        lds <- grep('load', sc, value=T)
+        if (length(lds))
+          {
+            withsq <- grepl("\'.*\'", lds)
+            ins <- c(ins, gsub(".*\'(.*)\'.*", '\\1', lds[withsq]))
+            withdq <- grepl("\".*\"", lds)
+            ins <- c(ins, gsub(".*\"(.*)\".*", '\\1', lds[withdq]))
+          }
+        cat('INPUTS:\n')
+        print(ins)
+        ## OUTPUTS
+        outs <- NULL
+        rcsv <- grep('write.csv', sc)
+        if (length(rcsv))
+          {
+            withsq <- grepl("\'.*\'", rcsv)
+            outs <- c(outs, gsub(".*\'(.*)\'.*", '\\1', rcsv[withsq]))
+            withdq <- grepl("\".*\"", rcsv)
+            outs <- c(outs, gsub(".*\"(.*)\".*", '\\1', rcsv[withdq]))
+          }
+        lds <- grep('save', sc, value=T)
+        if (length(lds))
+          {
+            withsq <- grepl("\'.*\'", lds)
+            outs <- c(outs, gsub(".*\'(.*)\'.*", '\\1', lds[withsq]))
+            withdq <- grepl("\".*\"", lds)
+            outs <- c(outs, gsub(".*\"(.*)\".*", '\\1', lds[withdq]))
+          }
+        cat('OUTPUTS:\n')
+        print(outs)
+        ## cat('\n')
+      }
   }

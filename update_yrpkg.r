@@ -1,5 +1,5 @@
 rm(list=ls())
-basedir <- '~/dragonfly/yvan-r-pkg'
+basedir <- '~/dragonfly/yr-r-package-and-config'
 setwd(basedir)
 
 source('myfunctions.r')
