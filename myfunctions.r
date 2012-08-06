@@ -907,3 +907,45 @@ get_in_out_from_scripts <- function(fold='.')
         ## cat('\n')
       }
   }
+
+
+## "%nin%" <- function(x,y) !(x %in% y)
+
+## Check labels in LaTeX report that are not cited in text
+check_cited_labels <- function(reportfile, ignore=c('sec','eq'))
+  {
+    if (!grepl('^/|^~', reportfile))  reportfile <- sprintf('%s/%s',getwd(),reportfile)
+    txt <- readLines(reportfile)
+    comments <- grepl('^ *%', txt)
+    txt <- txt[!comments]
+    inputs <- grep('\\\\input\\{', txt, value=T)
+    inputs <- gsub('^ *\\\\input\\{(.*)\\}', '\\1', inputs)
+    f=inputs[4]
+    for (f in inputs)
+      {
+        file <- f
+        if (!grepl('^/|^~', file))  file <- sprintf('%s/%s',getwd(), file)
+        file <- sprintf('%s.tex', file)
+        cat(sprintf('\n---  %s  ---\n', file))
+        txt <- readLines(file)
+        comments <- grepl('^ *%', txt) | txt==''
+        txt <- txt[!comments]
+        labels0 <- grep('\\\\label\\{',txt)
+        labels <- gsub('^ *\\\\label\\{(.*)\\}', '\\1', txt[labels0])
+        c <- sapply(strsplit(labels,':'), function(x) x[1]) %in% ignore
+        labels <- labels[!c]
+        i=1
+        if (length(labels))
+          {
+            for (i in 1:length(labels))
+              {
+                l <- labels[i]
+                l0 <- labels0[i]
+                gs <- grep(l, txt, fixed=T)
+                g <- gs[!(gs %in% l0)]
+                if (!length(g))
+                  cat(sprintf('Not cited in text:  %s\n', l))
+              }
+          }
+      }
+  }

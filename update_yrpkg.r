@@ -49,17 +49,21 @@ if (file.exists('yrpkg'))
 	## fill-up help files
 	setwd('man')
 	rds <- dir('.',pattern='*.Rd')
-	for (d in rds)  # d=rds[11]  # d="compprocsumm.Rd"
+	for (d in rds)  # d=rds[53]  # d="compprocsumm.Rd"
 	    {
 	    D <- readLines(d)
 	    D[which(D == '\\title{')+1] <- sub('.Rd$', '', d)
-	    torep <- grep('^~~|^%%',D)
-	    D <- D[-torep]
+            ## if (d == 'z%nin%.Rd')
+            ##   {
+            ##     D <- gsub('\\\\%', '%', D)
+            ##   } else{
+            torep <- grep('^~~|^%%',D)
+            D <- D[-torep]
             D <- gsub('\\\\\\|','\\\\\\\\\\|', D)
-# 	    D[torep] <- 'blah'
-	    writeLines(D, d)
-	    }
-	}
+              ## }
+            writeLines(D, d)
+          }
+      }
 	
 setwd(basedir)
 out <- system('R CMD build yrpkg 2>&1', intern=T)
