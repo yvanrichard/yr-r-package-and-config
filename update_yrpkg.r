@@ -49,10 +49,14 @@ if (file.exists('yrpkg'))
 	## fill-up help files
 	setwd('man')
 	rds <- dir('.',pattern='*.Rd')
-	for (d in rds)  # d=rds[53]  # d="compprocsumm.Rd"
+	for (d in rds)  # d=rds[53]  # d="check_cited_labels.Rd"
 	    {
 	    D <- readLines(d)
 	    D[which(D == '\\title{')+1] <- sub('.Rd$', '', d)
+            w1 <- which(D == '## The function is currently defined as')+1
+            w2 <- min(which(D == '}')[which(D == '}') > w1])
+            c <- 1:length(D) >= w1 & 1:length(D) <= w2
+            D[c] <- sprintf('## %s', D[c])
             ## if (d == 'z%nin%.Rd')
             ##   {
             ##     D <- gsub('\\\\%', '%', D)

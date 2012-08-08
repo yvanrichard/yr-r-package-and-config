@@ -913,7 +913,7 @@ get_in_out_from_scripts <- function(fold='.')
 
 ## Check labels in LaTeX report that are not cited in text
 ## reportfile='~/dragonfly/sra-foundations/report/notes/report.tex'
-check_cited_labels <- function(reportfile, ignore=c('sec','eq'))
+check_cited_labels <- function(reportfile, ignore=c('sec','eq','app'))
   {
     if (!grepl('^/|^~', reportfile))  reportfile <- sprintf('%s/%s',getwd(),reportfile)
     txt <- readLines(reportfile)
