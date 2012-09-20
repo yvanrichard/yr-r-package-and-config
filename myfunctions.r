@@ -117,6 +117,14 @@ sn <- function(x,digits)
   return(sprintf("$%s\\\\times 10^{%s}$", x, ord))
 }
 
+trim <- function(x)
+  {
+    x2 <- sapply(x, function(y) gsub('^ *','', y), USE.NAMES=F)
+    x3 <- sapply(x2, function(y) gsub(' *$','', y), USE.NAMES=F)
+    return(x3)
+  }
+
+
 ###############################################################################
 ###  PLOTS
 ###############################################################################
@@ -758,7 +766,7 @@ compprocsumm <- function(comps=c('robin','leon','titi','tieke','frank','jeremy')
 
 
 ## Check for process (R by default) in all dragonfly computers
-proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank','jeremy'), user='yvan', getres=F)
+proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank','jeremy','taiko'), user='yvan', getres=F)
   {
     res <- NULL
     cp=comps[1]
