@@ -790,6 +790,33 @@ proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank'
     if (getres) return(res)
   } 
 
+## Check log of screen in all dragonfly computers
+check_screen_in_dfly <- function(fold, comps=c('robin','leon','titi','tieke','frank','jeremy','taiko'), user='yvan')
+  {
+    cp <- comps[1]
+
+    for (cp in comps)
+      {
+        cat('*****', cp,'\n')
+        cmd <- sprintf('ssh -A %s@%s "cd %s; tail screenlog.0"', user, cp, fold)
+        cat(cmd,'\n')
+        system(cmd, wait=T)
+        cat('\n\n')
+      }
+  }
+
+dfly_cmd <- function(cmd, comps=c('robin','leon','titi','tieke','frank','jeremy','taiko'), user='yvan', wait=T)
+  {
+    cp=comps[1]
+    for (cp in comps)
+      {
+        cat('*****', cp, '\n')
+        cmd2 <- sprintf('ssh -A %s@%s "%s"', user, cp, cmd)
+        cat(cmd2,'\n\n')
+        system(cmd2, wait=wait)
+        cat('\n\n')
+      }
+  }
 
 ## return random factor for testing
 rndfactor <- function(n=15, nlev=4)
@@ -861,20 +888,33 @@ collapseseq <- function(x, with.attr=F)  # x=c(2,4,6,7,9,10,11,12,16)
   }
 
 # fold <- getwd()
-get_in_out_from_scripts <- function(fold='.')
+get_in_out_from_scripts <- function(fold='.', returnlist=F)
   {
     fls <- dir(fold, pattern='*.r$')
+
+    ## filter only text files
+    istxt <- NULL
+    for (i in 1:length(fls))
+      {
+        a <- system(sprintf('file %s/%s', fold, fls[i]), intern=T)
+        istxt <- c(istxt, ifelse(length(grep('text', a)), T, F))
+      }
+    fls <- fls[istxt]
+    
     f=fls[1]
+    outlist <- NULL
     for (f in fls)
       {
-        cat('\n')
-        cat(f,':\n')
-        cat(paste(rep('-', nchar(f)), collapse=''),'\n')
+        if (!returnlist) {
+          cat('\n')
+          cat(f,':\n')
+          cat(paste(rep('-', nchar(f)), collapse=''),'\n')
+        }
         sc <- readLines(f)
-        sc <- sc[!grepl('^ *#', sc) & sc!=''] #
+        sc <- sc[!grepl('^ *#', sc) & sc!='']
         ## INPUTS
         ins <- NULL
-        rcsv <- grep('read.csv', sc)
+        rcsv <- grep('read.csv', sc, val=T)
         if (length(rcsv))
           {
             withsq <- grepl("\'.*\'", rcsv)
@@ -882,7 +922,7 @@ get_in_out_from_scripts <- function(fold='.')
             withdq <- grepl("\".*\"", rcsv)
             ins <- c(ins, gsub(".*\"(.*)\".*", '\\1', rcsv[withdq]))
           }
-        lds <- grep('load', sc, value=T)
+        lds <- grep('load\\(', sc, value=T)
         if (length(lds))
           {
             withsq <- grepl("\'.*\'", lds)
@@ -890,11 +930,9 @@ get_in_out_from_scripts <- function(fold='.')
             withdq <- grepl("\".*\"", lds)
             ins <- c(ins, gsub(".*\"(.*)\".*", '\\1', lds[withdq]))
           }
-        cat('INPUTS:\n')
-        print(ins)
         ## OUTPUTS
         outs <- NULL
-        rcsv <- grep('write.csv', sc)
+        rcsv <- grep('write.csv', sc, val=T)
         if (length(rcsv))
           {
             withsq <- grepl("\'.*\'", rcsv)
@@ -902,7 +940,7 @@ get_in_out_from_scripts <- function(fold='.')
             withdq <- grepl("\".*\"", rcsv)
             outs <- c(outs, gsub(".*\"(.*)\".*", '\\1', rcsv[withdq]))
           }
-        lds <- grep('save', sc, value=T)
+        lds <- grep('save\\(', sc, value=T)
         if (length(lds))
           {
             withsq <- grepl("\'.*\'", lds)
@@ -910,10 +948,73 @@ get_in_out_from_scripts <- function(fold='.')
             withdq <- grepl("\".*\"", lds)
             outs <- c(outs, gsub(".*\"(.*)\".*", '\\1', lds[withdq]))
           }
-        cat('OUTPUTS:\n')
-        print(outs)
         ## cat('\n')
+        ## if (length(c(ins, outs)))
+        outlist[[f]] <- list(ins=ins, outs=outs)
+        if (!returnlist & length(c(ins, outs)))
+          {
+            cat('INPUTS:\n')
+            print(ins)
+            cat('OUTPUTS:\n')
+            print(outs)
+          } 
       }
+    if (returnlist)
+      return(outlist)
+  }
+
+graph_r_scripts <- function(fold='.')
+  {
+    fold <- sub('^\\.', getwd(), fold)
+    fold <- path.expand(fold)
+
+    opt <- options("useFancyQuotes")
+    options(useFancyQuotes = FALSE)
+
+    inout <- get_in_out_from_scripts(fold, returnlist=T)
+
+    scripts <- names(inout)
+    ins <- sapply(inout, function(x) x$ins)
+    outs <- sapply(inout, function(x) x$outs)
+    
+    ## Create dot file
+    nodes <- dQuote(na.omit(c(unlist(ins), unlist(outs))))
+    rnodes <- dQuote(scripts)
+
+##     gf <- 'digraph G {
+## rankdir=BT; nodesep=1; ranksep=1; ratio="compress"; size="1000,100"; spline=true;
+## '
+    gf <- 'digraph G {
+nodesep=1; ranksep=1; ratio="compress"; size="1000,100"; spline=true; 
+'
+    gf <- c(gf,
+            sprintf('node [fontsize=16, height=.3, style=filled, fillcolor=grey, shape=rectangle] %s;',
+                    paste(nodes,collapse=' ')))
+    gf <- c(gf,
+            sprintf('node [fontsize=16, height=.3, style=filled, fillcolor=yellow, shape=rectangle] %s;',
+                    paste(rnodes,collapse=' ')))
+
+    i=2
+    for (i in 1:length(inout))
+      {
+        op <- inout[[i]]
+        if (!is.null(op$ins))
+          gf <- c(gf, sprintf('{%s} -> %s;', paste(dQuote(op$ins),collapse='; '),
+                              dQuote(names(inout[i])),collapse='\\n'))
+        if (!is.null(op$outs))
+          gf <- c(gf, sprintf('%s -> {%s};', dQuote(names(inout[i])),
+                              paste(dQuote(op$outs),collapse='; ')))
+      }
+    gf <- c(gf, '}')
+
+    dotfile <- sprintf('%s/graph-r-scripts.dot', fold)
+    pdffile <- sub('\\.dot', '.pdf', dotfile)
+    cat(gf, sep='\n', file=dotfile)
+    options(useFancyQuotes = opt)
+    uffile <- sub('\\.dot', '_uf.dot', dotfile)
+    system(sprintf('unflatten %s -o %s', dotfile, uffile))
+    system(sprintf('neato -Tpdf %s -o %s', uffile, pdffile))
+    system(sprintf('xdg-open %s', pdffile), wait=F)
   }
 
 
@@ -985,4 +1086,160 @@ check_cited_labels <- function(reportfile, ignore=c('sec','eq','app'))
     ##           }
     ##       }
     ##   }
+  }
+
+
+##makefile <- '~/dragonfly/sra-foundations/modelling/bh-dd-k50/makefile'
+## makefile <- '~/dragonfly/sra-foundations/report/notes/makefile'
+graph_makefile <- function(makefile='makefile')
+  {
+    opt <- options("useFancyQuotes")
+    options(useFancyQuotes = FALSE)
+
+    ## Create dependency graph from makefile
+    ##
+    ## Assumptions:
+    ## - no tabs in dependencies or actions names
+    mdir <- dirname(makefile)
+    mk <- readLines(makefile, warn=F)
+    mk <- gsub('^ *','', mk)
+    mk <- mk[!grepl('=', mk)]
+    mk <- mk[!grepl('^#', mk)]  # remove comments
+    mk <- mk[mk!='']
+    ## mk <- mk[!grepl('=', mk, fixed=F)]
+    mk2 <- paste(mk, collapse='|')
+
+    ## remove consecutive blank lines
+    mk3 <- gsub('\\|\\|*','|',mk2)
+    ## get rid of \\ to identify continuations of lines
+    mk4 <- gsub('\\\\\\| *\t*','',mk3)
+    ## identify action
+    mk5 <- gsub('\\|\t', '\t', mk4)
+    ## replace :: used sometimes in R with *
+    mk5 <- gsub('::+', '**', mk5)
+    ## split operations
+    m <- strsplit(mk5,'\\|')[[1]]
+    ## identify target
+    withaction <- grepl('\t', m)
+    ## m[!withaction]
+
+    notarget <- !grepl(':',m)
+    if (any(notarget))
+      {
+        print(m[notarget])
+        stop('Some targets missing')
+      }
+
+    sm <- strsplit(m, ':')
+
+    # x=sm[[1]]
+    all <- sapply(sm, function(x) {
+      targs <- x[1]
+      other <- sapply(x[-1], function(y) strsplit(y, '\t')[[1]], USE.NAMES=F, simplify=F)[[1]]
+      if (!grepl('^ *$', other[1]))                 # with deps
+        {
+          deps <- trim(other[1])
+          deps <- strsplit(deps, ' ')[[1]]
+          acts <- other[-1]
+          if (!length(acts))
+            acts <- NA
+        } else  {
+          deps <- NA
+          acts <- other[-1]
+        }
+      return(list(targs=trim(targs), deps=trim(deps), acts=trim(acts)))
+    }, simplify=F)
+
+    all <- rapply(all, function(x) gsub('\'|\"', '', x), how='replace')
+    
+    ## Create dot file
+    nodes <- dQuote(na.omit(unlist(sapply(all, function(x) x[!(names(x) %in% 'acts')]))))
+    anodes <- dQuote(na.omit(unlist(sapply(all, function(x) {
+      y <- x[names(x) %in% 'acts'][[1]]
+      y <- gsub('\"', '', y)
+      if (!any(is.na(y)))
+        paste(y, collapse='\\n')
+      }))))
+
+
+    gf <- 'digraph G {
+rankdir=BT; nodesep=1; ranksep=0.4;
+'
+    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style=filled, fillcolor=grey, shape=rectangle] %s;',
+                        paste(nodes,collapse=' ')))
+    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style=filled, fillcolor=yellow, shape=rectangle] %s;',
+                        paste(anodes,collapse=' ')))
+
+    ## for (i in 1:length(nodes))
+    ##   {
+    ##    ## gf <- c(gf, sprintf('node [shape=plaintext, fontsize=16, height=.3] "%s"', nodes[i]))
+    ##    gf <- c(gf, sprintf('node [fontsize=16, height=.3] "%s"', nodes[i]))
+    ##   }
+    i=2
+    for (i in 1:length(all))
+      {
+        ## cat('\ni=',i)
+        op <- all[i][[1]]
+        if (all(!is.na(op$acts)))
+          {
+            if (all(!is.na(op$deps)))
+              {
+                gf <- c(gf, sprintf('{"%s"} -> "%s";', paste(op$deps,collapse='"; "'),
+                                    paste(op$acts,collapse='\\n')))
+              }
+            gf <- c(gf, sprintf('"%s" -> "%s";', paste(op$acts,collapse='\\n'), op$targs))
+          }  else {
+            gf <- c(gf, sprintf('{"%s"} -> "%s";', paste(op$deps,collapse='"; "'), op$targs))
+          }
+          ## for (j in 1:length(op$deps))
+          ##   {
+          ##     ## cat('\nj=',j)
+          ##     gf <- c(gf, sprintf('"%s" -> "%s";', op$deps[j], paste(op$acts,collapse='\n')))
+          ##     gf <- c(gf, sprintf('"%s" -> "%s";', op$deps[j], op$targs))
+          ##   }
+      }
+    gf <- c(gf, '}')
+
+    dotfile <- sprintf('%s/graph-makefile.dot', mdir)
+    pdffile <- sub('.dot', '.pdf', dotfile, fixed=T)
+    cat(gf, sep='\n', file=dotfile)
+    options(useFancyQuotes = opt)
+    system(sprintf('dot -Tpdf %s -o %s', dotfile, pdffile))
+    system(sprintf('xdg-open %s', pdffile), wait=F)
+
+  }
+
+
+killallr <- function(user='yvan', comps=c('jeremy','tieke','frank','taiko','leon','robin'), proc='R')
+  {
+    ## Kill all R processes of specified user in all computers (current computer should specified last for obvious reasons
+    for (cp in comps)
+      {
+        cat('*****', cp,'\n')
+        cmd <- sprintf('ssh -A %1$s@%2$s "killall %3$s -u %1$s"', user, cp, proc)
+        cat(cmd,'\n')
+        system(cmd, wait=T)
+        cat('\n\n')
+      }
+
+    cat('Done.\n\n')
+  }
+
+
+## Source makefile containing environment variables
+includemk <- function(mk='vars.mk')
+  {
+    op <- options('useFancyQuotes')
+    options('useFancyQuotes'=F)
+    mk <- readLines(mk)
+    mk <- mk[grep('=', mk)]
+    r <- rapply(strsplit(mk, '='), trim, how='replace')
+    txt <- sapply(r, function(x) {
+      var <- x[1]
+      val <- type.convert(x[2], as.is=T) 
+      if (typeof(val)=='character') val <- sQuote(x[2])
+      return(paste(var, val, sep='='))
+    })
+    eval(parse(text=txt), envir=globalenv())
+    options('useFancyQuotes'=op)
   }
