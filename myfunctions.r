@@ -1102,10 +1102,30 @@ graph_makefile <- function(makefile='makefile')
     ## - no tabs in dependencies or actions names
     mdir <- dirname(makefile)
     mk <- readLines(makefile, warn=F)
+
     mk <- gsub('^ *','', mk)
-    mk <- mk[!grepl('=', mk)]
+    mk <- mk[!grepl('=', mk) | grepl('=[\']', mk)]
+    mk <- mk[!(grepl('^include', mk))]
+    
+    parts <- mk[(!grepl('#+.*:', mk) & grepl(':', mk)) | grepl('<!.*!>', mk)]
+    ispart <- grepl('<!.*!>', parts)
+    if (any(ispart))
+      {
+        partlabs <- ifelse(grepl('<!.*!>', parts), trim(gsub('.*<!(.*)!>.*','\\1',parts)), NA)
+        ts <- cumsum(is.na(partlabs))
+        ps <- list()
+        wh <- which(!is.na(partlabs))
+        for (i in 1:length(wh))
+          ps[[partlabs[wh[i]]]] <- ts[(wh[i]+1):ifelse(i!=length(wh), wh[i+1]-1, length(ts))]
+        nps <- ts[is.na(partlabs) & !(ts %in% unlist(ps))]
+        withclusters <- T
+      } else withclusters <- F
+    
     mk <- mk[!grepl('^#', mk)]  # remove comments
     mk <- mk[mk!='']
+    c <- grep(':', mk)
+    mk[c] <- gsub('\t', ' ', mk[c])
+
     ## mk <- mk[!grepl('=', mk, fixed=F)]
     mk2 <- paste(mk, collapse='|')
 
@@ -1122,7 +1142,7 @@ graph_makefile <- function(makefile='makefile')
     ## identify target
     withaction <- grepl('\t', m)
     ## m[!withaction]
-
+                  
     notarget <- !grepl(':',m)
     if (any(notarget))
       {
@@ -1132,16 +1152,15 @@ graph_makefile <- function(makefile='makefile')
 
     sm <- strsplit(m, ':')
 
-    # x=sm[[1]]
     all <- sapply(sm, function(x) {
       targs <- x[1]
       other <- sapply(x[-1], function(y) strsplit(y, '\t')[[1]], USE.NAMES=F, simplify=F)[[1]]
-      if (!grepl('^ *$', other[1]))                 # with deps
-        {
-          deps <- trim(other[1])
+      if (!grepl('^ *$', other[1]))
+        { # with deps
+          deps <- gsub('  +', ' ', trim(other[1]))
           deps <- strsplit(deps, ' ')[[1]]
           acts <- other[-1]
-          if (!length(acts))
+          if (!length(other[-1]))
             acts <- NA
         } else  {
           deps <- NA
@@ -1149,26 +1168,76 @@ graph_makefile <- function(makefile='makefile')
         }
       return(list(targs=trim(targs), deps=trim(deps), acts=trim(acts)))
     }, simplify=F)
-
     all <- rapply(all, function(x) gsub('\'|\"', '', x), how='replace')
-    
-    ## Create dot file
-    nodes <- dQuote(na.omit(unlist(sapply(all, function(x) x[!(names(x) %in% 'acts')]))))
-    anodes <- dQuote(na.omit(unlist(sapply(all, function(x) {
-      y <- x[names(x) %in% 'acts'][[1]]
+
+    if (withclusters)
+      clusters <- sapply(ps, function(x) sapply(all[x], function(y) y$targs), simplify=F)
+
+    ## Create dot file ##
+
+    all2 <- all
+    ## Turn actions into single nodes
+    all2 <- sapply(all2, function(x) {
+      y <- x$acts
       y <- gsub('\"', '', y)
+      y <- unlist(strsplit(y, ' *&& *'))
       if (!any(is.na(y)))
-        paste(y, collapse='\\n')
-      }))))
-
-
+        y <- paste(y, collapse='\\n')
+      x$acts <- y
+      return(x)
+    }, simplify=F)
+    all2 <- rapply(all2, function(x) return(ifelse(is.na(x), NA, dQuote(x))), how='replace')
+    
     gf <- 'digraph G {
 rankdir=BT; nodesep=1; ranksep=0.4;
 '
-    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style=filled, fillcolor=grey, shape=rectangle] %s;',
-                        paste(nodes,collapse=' ')))
-    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style=filled, fillcolor=yellow, shape=rectangle] %s;',
-                        paste(anodes,collapse=' ')))
+    ## Clusters
+    if (withclusters)
+      {
+        for (i in 1:length(ps))
+          {
+            a <- all2[ps[[i]]]
+            gf <- c(gf, sprintf('subgraph cluster%i {
+label=%s; style="rounded,filled"; color=gray50; fillcolor=gray97; fontcolor=blue; fontsize=20;
+node [fontsize=16, height=.3, style="rounded,filled", fillcolor=gray85, shape=rectangle] %s;
+node [fontsize=16, height=.3, style="rounded,filled", fillcolor=yellow, shape=rectangle] %s;
+}', i, dQuote(names(ps)[i]), paste(unique(unlist(sapply(a, function(x)
+                                                return(na.omit(c(x$targs, x$deps)))))),
+                           collapse=' '),
+                                paste(unique(unlist(sapply(a, function(x)
+                                                           return(na.omit(x$acts))))),
+                                      collapse=' ')))
+          }
+      }
+    
+    ## Nodes not inside clusters
+    if (withclusters)
+      {
+        nodesinclust <- na.omit(unlist(all2[unlist(ps)]))
+        a <- all2[nps]
+      } else {
+        a <- all2
+        nodesinclust <- NULL
+      }
+    
+    targsdeps <- unique(unlist(sapply(a, function(x) return(na.omit(c(x$targs, x$deps))))))
+    targsdeps <- targsdeps[!(targsdeps %in% nodesinclust)]
+    acts <- unique(unlist(sapply(a, function(x) return(na.omit(x$acts)))))
+    acts <- acts[!(acts %in% nodesinclust)]
+    if (length(targsdeps))
+      gf <- c(gf, sprintf('
+node [fontsize=16, height=.3, style="rounded,filled", fillcolor=gray85, shape=rectangle] %s;',
+                          paste(targsdeps, collapse=' ')))
+    if (length(acts))
+      gf <- c(gf, sprintf('
+node [fontsize=16, height=.3, style="rounded,filled", fillcolor=yellow, shape=rectangle] %s;',
+                          paste(acts, collapse=' ')))
+
+
+    ## gf <- c(gf, sprintf('node [fontsize=16, height=.3, style=filled, fillcolor=grey, shape=rectangle] %s;',
+    ##                     paste(nodes,collapse=' ')))
+    ## gf <- c(gf, sprintf('node [fontsize=16, height=.3, style=filled, fillcolor=yellow, shape=rectangle] %s;',
+    ##                     paste(anodes,collapse=' ')))
 
     ## for (i in 1:length(nodes))
     ##   {
@@ -1178,25 +1247,21 @@ rankdir=BT; nodesep=1; ranksep=0.4;
     i=2
     for (i in 1:length(all))
       {
-        ## cat('\ni=',i)
-        op <- all[i][[1]]
-        if (all(!is.na(op$acts)))
+        op <- all2[[i]]
+        if (!is.na(op$acts))
           {
+            ## Deps -> Acts
             if (all(!is.na(op$deps)))
               {
-                gf <- c(gf, sprintf('{"%s"} -> "%s";', paste(op$deps,collapse='"; "'),
+                gf <- c(gf, sprintf('{%s} -> %s;', paste(op$deps,collapse='; '),
                                     paste(op$acts,collapse='\\n')))
               }
-            gf <- c(gf, sprintf('"%s" -> "%s";', paste(op$acts,collapse='\\n'), op$targs))
+            ## Acts -> Targs
+            gf <- c(gf, sprintf('%s -> %s;', paste(op$acts,collapse='\\n'), op$targs))
           }  else {
-            gf <- c(gf, sprintf('{"%s"} -> "%s";', paste(op$deps,collapse='"; "'), op$targs))
+            ## Deps -> Targs
+            gf <- c(gf, sprintf('{%s} -> %s;', paste(op$deps,collapse='; '), op$targs))
           }
-          ## for (j in 1:length(op$deps))
-          ##   {
-          ##     ## cat('\nj=',j)
-          ##     gf <- c(gf, sprintf('"%s" -> "%s";', op$deps[j], paste(op$acts,collapse='\n')))
-          ##     gf <- c(gf, sprintf('"%s" -> "%s";', op$deps[j], op$targs))
-          ##   }
       }
     gf <- c(gf, '}')
 
