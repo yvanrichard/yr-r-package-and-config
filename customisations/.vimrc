@@ -2,6 +2,7 @@ version 6.0
 if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
+set t_Co=256
 map! <S-Insert> <MiddleMouse>
 nmap gx <Plug>NetrwBrowseX
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
@@ -25,8 +26,20 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 set expandtab
-color symfony
+"set t_AB=^[[48;5;%dm
+"set t_AF=^[[38;5;%dm
+colorscheme desert256
+"symfony
 "source $VIMRUNTIME/mswin.vim
-set spell
+set nospell
 set syntax=on
+set showmatch
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
+highlight clear SpellCap
+highlight SpellCap term=underline cterm=underline
+highlight clear SpellRare
+highlight SpellRare term=underline cterm=underline
+highlight clear SpellLocal
+highlight SpellLocal term=underline cterm=underline
 " vim: set ft=vim :

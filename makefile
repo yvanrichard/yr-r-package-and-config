@@ -1,8 +1,8 @@
-all: yrpkg_1.0.tar.gz
+all: .yrpkg
 
-yrpkg_1.0.tar.gz: myfunctions.r \
+.yrpkg: myfunctions.r \
 		update_yrpkg.r
-	Rscript update_yrpkg.r
+	Rscript update_yrpkg.r && touch .yrpkg
 
 
 r:
@@ -12,14 +12,14 @@ y:
 	cp -a customisations/. ~
 
 updatepkg:
-	cp ~/.emacs.d ~/dragonfly/yvan-r-pkg/customisations/ -r
-	cp ~/.emacs ~/dragonfly/yvan-r-pkg/customisations/
-	cp ~/.vim ~/dragonfly/yvan-r-pkg/customisations/ -r
-	cp ~/.viminfo ~/dragonfly/yvan-r-pkg/customisations/
-	cp ~/.vimrc ~/dragonfly/yvan-r-pkg/customisations/
-	cp ~/.screenrc ~/dragonfly/yvan-r-pkg/customisations/
-	cp ~/.bashrc ~/dragonfly/yvan-r-pkg/customisations/
-	cp ~/.Rprofile ~/dragonfly/yvan-r-pkg/customisations/
+	cp ~/.emacs.d customisations/ -r
+	cp ~/.emacs customisations/
+	cp ~/.vim customisations/ -r
+	cp ~/.viminfo customisations/
+	cp ~/.vimrc customisations/
+	cp ~/.screenrc customisations/
+	cp ~/.bashrc customisations/
+	cp ~/.Rprofile customisations/
 
 getpackagelist:
 	Rscript -e 'libs<-sort(library()$$results[,"Package"]); save(libs, file="r-packages_libs.rdata")'

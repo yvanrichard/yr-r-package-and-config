@@ -2,17 +2,17 @@
     "~/.emacs.d/plugins")
 
 ;;; yasnippet
-(add-to-list 'load-path
-    "~/.emacs.d/plugins/yasnippet-fdf7582")
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/plugins/yasnippet-fdf7582/snippets")
+;; (add-to-list 'load-path
+;;     "~/.emacs.d/plugins/yasnippet-fdf7582")
+;; (require 'yasnippet)
+;; (yas/initialize)
+;; (yas/load-directory "~/.emacs.d/plugins/yasnippet-fdf7582/snippets")
 
 (require 'r-autoyas)
 ;(require 'ac-R)
 
 ;; key to switch between windows
-(global-set-key [C-tab] 'other-window)
+(global-set-key (kbd "s-`") 'other-window)
 
 ;;; icicles
 (add-to-list 'load-path
@@ -20,18 +20,22 @@
 (require 'icicles)
 
 (require 'color-theme)
-;;     (color-theme-jsc-dark)
+(load-file "~/.emacs.d/my-color-theme.el")
+(my-color-theme)
+;(color-theme-tango)
+;;(add-hook 'after-init-hook 'color-theme-tango)
+;;(color-theme-jsc-dark)
 
 (autoload 'tex-math-preview "tex-math-preview" nil t)
-(add-hook 'texinfo-mode-hook
-     (lambda ()
-       (define-key texinfo-mode-map [f8] 'tex-math-preview)))
+;; (add-hook 'texinfo-mode-hook
+;;      (lambda ()
+;;        (define-key texinfo-mode-map [f8] 'tex-math-preview)))
 
 ;; Window position
-(set-face-attribute 'default (selected-frame) :height 100)
-(add-to-list 'default-frame-alist '(width . 100))
+(set-face-attribute 'default (selected-frame) :height 110)
+(add-to-list 'default-frame-alist '(width . 210))
 (add-to-list 'default-frame-alist '(height . 50))
-(add-to-list 'default-frame-alist '(left . 500))
+(add-to-list 'default-frame-alist '(left . 100))
 (add-to-list 'default-frame-alist '(top . 50))
 
 (setq ispell-program-name "aspell") ; could be ispell as well, depending on your preferences
@@ -65,7 +69,7 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; Use auctex
-(require 'tex-site)
+;; (require 'tex-site)
 
 ;; use reftex
   ; with AUCTeX LaTeX mode
@@ -94,20 +98,27 @@
 ;(set-background-color "black")
 (set-scroll-bar-mode 'right)
 
-(load-file "~/.emacs.d/my-color-theme.el")
-(my-color-theme)
+;; (load-file "~/.emacs.d/my-color-theme.el")
+;; (my-color-theme)
+
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(TeX-PDF-mode t)
  '(inhibit-startup-screen t))
+
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(font-latex-sectioning-2-face ((t (:inherit font-latex-sectioning-3-face :height 1.05))))
+ '(font-latex-sectioning-3-face ((t (:inherit font-latex-sectioning-4-face :weight extra-bold :height 1.05))))
+ '(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-5-face :weight normal))))
+ '(font-latex-sectioning-5-face ((t (:inherit variable-pitch :foreground "yellow" :weight bold :foundry "sans" :family "mono"))))
+ '(font-lock-type-face ((t (:foreground "navajowhite" :weight normal :height 1.0 :family "DejaVu Sans Mono")))))
  
 ;;; ESS
 (setq ess-eval-visibly-p nil) ;otherwise C-c C-r (eval region) takes forever
@@ -154,36 +165,36 @@
 ;  (require 'ess-site)
 
 (setq ess-ask-for-ess-directory nil)
-  (setq ess-local-process-name "R")
-  (setq ansi-color-for-comint-mode 'filter)
-  (setq comint-scroll-to-bottom-on-input t)
-  (setq comint-scroll-to-bottom-on-output t)
-  (setq comint-move-point-for-output t)
-  (defun my-ess-start-R ()
-    (interactive)
-    (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
+(setq ess-local-process-name "R")
+(setq ansi-color-for-comint-mode 'filter)
+(setq comint-scroll-to-bottom-on-input t)
+(setq comint-scroll-to-bottom-on-output t)
+(setq comint-move-point-for-output t)
+(defun my-ess-start-R ()
+  (interactive)
+  (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
       (progn
-    (delete-other-windows)
-    (setq w1 (selected-window))
-    (setq w1name (buffer-name))
-    (setq w2 (split-window w1 nil t))
-    (R)
-    (set-window-buffer w2 "*R*")
-    (set-window-buffer w1 w1name))))
-  (defun my-ess-eval ()
-    (interactive)
-    (my-ess-start-R)
-    (if (and transient-mark-mode mark-active)
-    (call-interactively 'ess-eval-region)
-      (call-interactively 'ess-eval-line-and-step)))
-  (add-hook 'ess-mode-hook
-        '(lambda()
-           (local-set-key [(shift return)] 'my-ess-eval)))
-  (add-hook 'inferior-ess-mode-hook
-        '(lambda()
-           (local-set-key [C-up] 'comint-previous-input)
-           (local-set-key [C-down] 'comint-next-input)))
-  (require 'ess-site)
+	(delete-other-windows)
+	(setq w1 (selected-window))
+	(setq w1name (buffer-name))
+	(setq w2 (split-window w1 nil t))
+	(R)
+	(set-window-buffer w2 "*R*")
+	(set-window-buffer w1 w1name))))
+(defun my-ess-eval ()
+  (interactive)
+  (my-ess-start-R)
+  (if (and transient-mark-mode mark-active)
+      (call-interactively 'ess-eval-region)
+    (call-interactively 'ess-eval-line-and-step)))
+(add-hook 'ess-mode-hook
+	  '(lambda()
+	     (local-set-key [(shift return)] 'my-ess-eval)))
+(add-hook 'inferior-ess-mode-hook
+	  '(lambda()
+	     (local-set-key [C-up] 'comint-previous-input)
+	     (local-set-key [C-down] 'comint-next-input)))
+(require 'ess-site)
 
 
 ;; ess-R-object-tooltip.el
@@ -263,10 +274,9 @@
              (ispell-skip-region (match-string-no-properties 0))
              (< (point) p))
             (t)))))
-
 (put 'latex-mode 'flyspell-mode-predicate 'flyspell-eligible)
 
-(global-set-key "\C-\z" nil)  ;; prevent emacs from being minimized with C-Z
+(global-set-key "\C-z" nil)  ;; prevent emacs from being minimized with C-Z
 
 
 
@@ -285,3 +295,37 @@ Ignores CHAR at point."
 		     (backward-char direction))
 		   (point)))))
 (global-set-key "\M-Z" 'zap-up-to-char)
+
+(server-start)
+(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
+
+
+(add-to-list 'load-path "okular-search.el")
+(require 'okular-search)
+(add-hook 'LaTeX-mode-hook (lambda () (local-set-key "\C-c\C-v" 'okular-jump-to-line)))
+(add-hook 'tex-mode-hook (lambda () (local-set-key "\C-c\C-v" 'okular-jump-to-line)))
+
+;; rebind to use buffer-menu instead of list-buffers to keep everything in same buffer
+(global-set-key "\C-x\C-b" 'buffer-menu)
+
+
+;; (add-hook 'inferior-ess-mode-hook 
+;; 	  '(lambda nil 
+;; 	     (define-key inferior-ess-mode-map [\C-up] 
+;; 	       'comint-previous-matching-input-from-input) 
+;; 	     (define-key inferior-ess-mode-map [\C-down] 
+;; 	       'comint-next-matching-input-from-input) 
+;; 	     (define-key inferior-ess-mode-map [\C-x \t] 
+;; 	       'comint-dynamic-complete-filename) 
+;; 	     ) 
+;; 	  )
+(defun kill-other-window ()
+  "Kill the buffer in the other pane."
+  (interactive)
+  (other-window 1)
+  (kill-this-buffer)
+  (other-window -1)
+  )
+(global-set-key "\C-c\C-w" 'kill-other-window)
+
+(global-set-key [C-tab] 'comint-dynamic-complete)

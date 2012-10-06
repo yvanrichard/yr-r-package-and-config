@@ -17,7 +17,12 @@
 #}
 #
 .First <- function() cat(as.character(Sys.time()),' -- R session started.\n\n',sep='')
-.Last <- function()  cat('\n',as.character(Sys.time()),' -- R session finished.\n\n',sep='')
+.Last <- function()  {
+  w <- warnings()
+  if (length(w))
+    print(w)
+  cat('\n',as.character(Sys.time()),' -- R session finished.\n\n',sep='')
+}
 
 # ## Example of Rprofile.site
 # local({
@@ -31,7 +36,7 @@ local({
 old <- getOption("defaultPackages")
 r <- getOption("repos")
 r["CRAN"] <- "http://cran.stat.auckland.ac.nz"
-options(defaultPackages = c(old, "yrpkg"), repos = r, Ncpus=5)
+options(defaultPackages = c(old, "yrpkg"), repos = r, Ncpus=5, warn=1, warnPartialMatchDollar=T)
 })
 
 

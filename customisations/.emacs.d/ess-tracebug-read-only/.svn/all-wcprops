@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 23
+/svn/!svn/ver/120/trunk
+END
+test.R
+K 25
+svn:wc:ra_dav:version-url
+V 29
+/svn/!svn/ver/82/trunk/test.R
+END
+error.data.R
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/105/trunk/error.data.R
+END
+ess-tracebug.el
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/120/trunk/ess-tracebug.el
+END
+main.R
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/103/trunk/main.R
+END
+ess-tracebug.R
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/101/trunk/ess-tracebug.R
+END
+RBabelExample.org
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/119/trunk/RBabelExample.org
+END
+todo.org
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/85/trunk/todo.org
+END
