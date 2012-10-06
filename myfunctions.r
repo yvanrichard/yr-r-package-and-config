@@ -1100,14 +1100,41 @@ graph_makefile <- function(makefile='makefile')
     ##
     ## Assumptions:
     ## - no tabs in dependencies or actions names
+    
+    cola <- '"#FFC6AF"'   # colour of actions
+    colp <- '"#FFF8AF"'   # colour of programs
+    cold <- '"#97DDBF"'   # colour of data
+    colg <- '"#B89DDC"'   # colour of graphical output
+    colf <- '"#C2C2C2"'   # colour of flags
+    colu <- '"#E2E2E2"'   # colour of unknown types
+    colc <- 'grey98'      # colour of clusters fills
+
+
+    progtypes <- '\\.r\"|\\.py\"|\\.bug\"|\\.cmd\"|\\.sh\"'
+    datatypes <- '\\.rdata\"|\\.csv\"|\\.Rdata\"'
+    graphtypes <- '\\.pdf\"|\\.png\"'
+    gettype <- function(z)
+      {
+        pp <- grep(progtypes, z, value=T)
+        dd <- grep(datatypes, z, value=T)
+        gg <- grep(graphtypes, z, value=T)
+        ff <- z[!grepl('\\.', z) & !(z %in% c(pp, dd, gg))]
+        uu <- z[!(z %in% c(pp, dd, ff, gg))]
+        return(list(u=paste(uu, collapse=' '),
+                    p=paste(pp, collapse=' '),
+                    g=paste(gg, collapse=' '),
+                    f=paste(ff, collapse=' '),
+                    d=paste(dd, collapse=' ')))
+      }
+    
     mdir <- dirname(makefile)
     mk <- readLines(makefile, warn=F)
 
     mk <- gsub('^ *','', mk)
-    mk <- mk[!grepl('=', mk) | grepl('=[\']', mk)]
+    mk <- mk[grepl('^\t', mk) | !grepl('=', mk) | grepl('=[\']', mk)]  # remove assignments of environmental variables
     mk <- mk[!(grepl('^include', mk))]
     
-    parts <- mk[(!grepl('#+.*:', mk) & grepl(':', mk)) | grepl('<!.*!>', mk)]
+    parts <- mk[(!grepl('#+.*:', mk) & grepl(':', mk) & !grepl('^\t', mk)) | grepl('<!.*!>', mk)]
     ispart <- grepl('<!.*!>', parts)
     if (any(ispart))
       {
@@ -1123,10 +1150,9 @@ graph_makefile <- function(makefile='makefile')
     
     mk <- mk[!grepl('^#', mk)]  # remove comments
     mk <- mk[mk!='']
-    c <- grep(':', mk)
+    c <- grepl(':', mk) & !grepl('^\t', mk) & !grepl('#.*:', mk)
     mk[c] <- gsub('\t', ' ', mk[c])
 
-    ## mk <- mk[!grepl('=', mk, fixed=F)]
     mk2 <- paste(mk, collapse='|')
 
     ## remove consecutive blank lines
@@ -1141,7 +1167,6 @@ graph_makefile <- function(makefile='makefile')
     m <- strsplit(mk5,'\\|')[[1]]
     ## identify target
     withaction <- grepl('\t', m)
-    ## m[!withaction]
                   
     notarget <- !grepl(':',m)
     if (any(notarget))
@@ -1173,7 +1198,7 @@ graph_makefile <- function(makefile='makefile')
     if (withclusters)
       clusters <- sapply(ps, function(x) sapply(all[x], function(y) y$targs), simplify=F)
 
-    ## Create dot file ##
+    ##=== Create dot file ===##
 
     all2 <- all
     ## Turn actions into single nodes
@@ -1189,24 +1214,29 @@ graph_makefile <- function(makefile='makefile')
     all2 <- rapply(all2, function(x) return(ifelse(is.na(x), NA, dQuote(x))), how='replace')
     
     gf <- 'digraph G {
-rankdir=BT; nodesep=1; ranksep=0.4;
+rankdir=BT; nodesep=0.1; ranksep=0.2; ratio=0.66; margin=1;
 '
+
+    ##--- Nodes ---##
+    
     ## Clusters
     if (withclusters)
       {
         for (i in 1:length(ps))
           {
             a <- all2[ps[[i]]]
-            gf <- c(gf, sprintf('subgraph cluster%i {
-label=%s; style="rounded,filled"; color=gray50; fillcolor=gray97; fontcolor=blue; fontsize=20;
-node [fontsize=16, height=.3, style="rounded,filled", fillcolor=gray85, shape=rectangle] %s;
-node [fontsize=16, height=.3, style="rounded,filled", fillcolor=yellow, shape=rectangle] %s;
-}', i, dQuote(names(ps)[i]), paste(unique(unlist(sapply(a, function(x)
-                                                return(na.omit(c(x$targs, x$deps)))))),
-                           collapse=' '),
-                                paste(unique(unlist(sapply(a, function(x)
-                                                           return(na.omit(x$acts))))),
-                                      collapse=' ')))
+            td <- unique(unlist(sapply(a, function(x) return(na.omit(c(x$targs, x$deps))))))
+            ac <- unique(unlist(sapply(a, function(x) return(na.omit(x$acts)))))
+            els <- gettype(td)
+            gf <- c(gf, sprintf('subgraph cluster%1$i {
+label=%2$s; style="rounded,filled"; color=gray50; fillcolor=%3$s; fontcolor=red; fontsize=20;',
+                                i, dQuote(names(ps)[i]), colc))
+            gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colu, els$u))
+            gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colp, els$p))
+            gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', cold, els$d))
+            gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colg, els$g))
+            gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colf, els$f))
+            gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;}', cola, paste(ac, collapse=' ')))
           }
       }
     
@@ -1222,28 +1252,23 @@ node [fontsize=16, height=.3, style="rounded,filled", fillcolor=yellow, shape=re
     
     targsdeps <- unique(unlist(sapply(a, function(x) return(na.omit(c(x$targs, x$deps))))))
     targsdeps <- targsdeps[!(targsdeps %in% nodesinclust)]
+    
     acts <- unique(unlist(sapply(a, function(x) return(na.omit(x$acts)))))
     acts <- acts[!(acts %in% nodesinclust)]
-    if (length(targsdeps))
-      gf <- c(gf, sprintf('
-node [fontsize=16, height=.3, style="rounded,filled", fillcolor=gray85, shape=rectangle] %s;',
-                          paste(targsdeps, collapse=' ')))
-    if (length(acts))
-      gf <- c(gf, sprintf('
-node [fontsize=16, height=.3, style="rounded,filled", fillcolor=yellow, shape=rectangle] %s;',
-                          paste(acts, collapse=' ')))
 
+    td <- unique(unlist(sapply(a, function(x) return(na.omit(c(x$targs, x$deps))))))
+    ac <- unique(unlist(sapply(a, function(x) return(na.omit(x$acts)))))
+    els <- gettype(td)
+    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colu, els$u))
+    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colp, els$p))
+    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', cold, els$d))
+    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colg, els$g))
+    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colf, els$f))
+    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', cola, paste(ac, collapse=' ')))
 
-    ## gf <- c(gf, sprintf('node [fontsize=16, height=.3, style=filled, fillcolor=grey, shape=rectangle] %s;',
-    ##                     paste(nodes,collapse=' ')))
-    ## gf <- c(gf, sprintf('node [fontsize=16, height=.3, style=filled, fillcolor=yellow, shape=rectangle] %s;',
-    ##                     paste(anodes,collapse=' ')))
+    
+    ##--- Edges ---##
 
-    ## for (i in 1:length(nodes))
-    ##   {
-    ##    ## gf <- c(gf, sprintf('node [shape=plaintext, fontsize=16, height=.3] "%s"', nodes[i]))
-    ##    gf <- c(gf, sprintf('node [fontsize=16, height=.3] "%s"', nodes[i]))
-    ##   }
     i=2
     for (i in 1:length(all))
       {
@@ -1270,8 +1295,8 @@ node [fontsize=16, height=.3, style="rounded,filled", fillcolor=yellow, shape=re
     cat(gf, sep='\n', file=dotfile)
     options(useFancyQuotes = opt)
     system(sprintf('dot -Tpdf %s -o %s', dotfile, pdffile))
-    system(sprintf('xdg-open %s', pdffile), wait=F)
-
+    ## system(sprintf('xdg-open %s', pdffile), wait=F)
+    system(sprintf('xdot %s', dotfile), wait=F)
   }
 
 

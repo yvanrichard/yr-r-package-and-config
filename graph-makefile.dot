@@ -1,0 +1,18 @@
+digraph G {
+rankdir=BT; nodesep=1; ranksep=0.4;
+
+node [fontsize=16, height=.3, style="rounded,filled", fillcolor="#E2E2E2", shape=rectangle] "yrpkg_1.0.tar.gz";
+node [fontsize=16, height=.3, style="rounded,filled", fillcolor="#FFCFB5", shape=rectangle] "myfunctions.r" "update_yrpkg.r";
+node [fontsize=16, height=.3, style="rounded,filled", fillcolor="#8EC7B6", shape=rectangle] ;
+node [fontsize=16, height=.3, style="rounded,filled", fillcolor="#FFFAB5", shape=rectangle] ;
+node [fontsize=16, height=.3, style="rounded,filled", fillcolor="#C2C2C2", shape=rectangle] "all" "r" "y" "updatepkg" "getpackagelist" "installpackagelist";
+node [fontsize=16, height=.3, style="rounded,filled", fillcolor="#AE94CA", shape=rectangle] "Rscript update_yrpkg.r" "cp customisations/.Rprofile ~" "cp -a customisations/. ~" "cp ~/.emacs.d ~/dragonfly/yvan-r-pkg/customisations/ -r\ncp ~/.emacs ~/dragonfly/yvan-r-pkg/customisations/\ncp ~/.vim ~/dragonfly/yvan-r-pkg/customisations/ -r\ncp ~/.viminfo ~/dragonfly/yvan-r-pkg/customisations/\ncp ~/.vimrc ~/dragonfly/yvan-r-pkg/customisations/\ncp ~/.screenrc ~/dragonfly/yvan-r-pkg/customisations/\ncp ~/.bashrc ~/dragonfly/yvan-r-pkg/customisations/\ncp ~/.Rprofile ~/dragonfly/yvan-r-pkg/customisations/" "Rscript -e libs<-sort(library()$$results[,Package]); save(libs, file=r-packages_libs.rdata)" "sudo Rscript -e load(r-packages_libs.rdata); libs<-libs[!(libs %in% library()$$results[,Package])]; if (length(libs)) install.packages(libs) else cat(No packages needed to be installed\n)";
+{"yrpkg_1.0.tar.gz"} -> "all";
+{"myfunctions.r"; "update_yrpkg.r"} -> "Rscript update_yrpkg.r";
+"Rscript update_yrpkg.r" -> "yrpkg_1.0.tar.gz";
+"cp customisations/.Rprofile ~" -> "r";
+"cp -a customisations/. ~" -> "y";
+"cp ~/.emacs.d ~/dragonfly/yvan-r-pkg/customisations/ -r\ncp ~/.emacs ~/dragonfly/yvan-r-pkg/customisations/\ncp ~/.vim ~/dragonfly/yvan-r-pkg/customisations/ -r\ncp ~/.viminfo ~/dragonfly/yvan-r-pkg/customisations/\ncp ~/.vimrc ~/dragonfly/yvan-r-pkg/customisations/\ncp ~/.screenrc ~/dragonfly/yvan-r-pkg/customisations/\ncp ~/.bashrc ~/dragonfly/yvan-r-pkg/customisations/\ncp ~/.Rprofile ~/dragonfly/yvan-r-pkg/customisations/" -> "updatepkg";
+"Rscript -e libs<-sort(library()$$results[,Package]); save(libs, file=r-packages_libs.rdata)" -> "getpackagelist";
+"sudo Rscript -e load(r-packages_libs.rdata); libs<-libs[!(libs %in% library()$$results[,Package])]; if (length(libs)) install.packages(libs) else cat(No packages needed to be installed\n)" -> "installpackagelist";
+}
