@@ -4,6 +4,8 @@ all: .yrpkg
 		update_yrpkg.r
 	Rscript update_yrpkg.r && touch .yrpkg
 
+install:
+    sudo R CMD INSTALL yrpkg --byte-compile
 
 r:
 	cp customisations/.Rprofile ~
