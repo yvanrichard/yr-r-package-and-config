@@ -1327,23 +1327,30 @@ includemk <- function(Mk='vars.mk')
     rr <- list()
     for (i in 1:length(r))
       rr[[r[[i]][1]]] <- r[[i]][2]
-    
-    txt <- sapply(r, function(x) {
-      var <- x[1]
-      val <- type.convert(x[2], as.is=T) 
-      if (typeof(val)=='character') val <- sQuote(x[2])
-      return(paste(var, val, sep='='))
-    })
-
-    tor <- grep('\\$\\(.*\\)', txt)
-    txt[tor] <- sapply(txt[tor], function(x) {
-      w <- gsub('.*\\$\\((.*)\\).*','\\1',x)
-      if (w %in% names(rr))
-        x <- gsub('\\$\\(.*\\)', rr[[w]], x)  else
-      stop('Variable to replace not defined')
-      return(x)
-    })
-
-    eval(parse(text=txt), envir=globalenv())
+    if (any(names(rr) %in% ls(envir=.GlobalEnv)))
+      warning(sprintf('Variables %s overwritten while parsing makefile',
+                      paste(names(rr)[names(rr) %in% ls(envir=.GlobalEnv)],
+                            collapse=', ')))
+    for (i in 1:length(rr))
+      {
+        c <- trim(strsplit(mk[i], '=')[[1]])
+        if (length(c) != 2)
+          stop(sprintf('Problem parsing makefile. Assignment #%i non-standard',i))
+        if (grepl('\\$\\(.*\\)', c[2]))
+          {
+            vars <- c(sapply(
+              regmatches(c[2],gregexpr(sprintf('\\$\\(([^\\)]+)\\)'),c[2])),
+              function(x) gsub('\\$\\((.*)\\)', '\\1', x)))
+            
+            for (j in 1:length(vars))
+              if (vars[j] %in% ls(envir=.GlobalEnv))
+                regmatches(c[2],regexec(sprintf('\\$\\([^\\)]+\\)'),c[2])) <-
+                  get(vars[j], envir=.GlobalEnv)  else
+              stop(sprintf('Problem parsing makefile. Variable %s not declared?',
+                           vars[j]))
+          }
+        val <- type.convert(c[2], as.is=T)
+        assign(c[1], val, envir=.GlobalEnv)
+      }
     options('useFancyQuotes'=op)
   }
