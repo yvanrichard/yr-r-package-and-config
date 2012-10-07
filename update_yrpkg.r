@@ -9,7 +9,7 @@ if (file.exists('yrpkg'))
     d <- readLines('yrpkg/DESCRIPTION')
     d <- d[grep('Version',d)]
     version <- as.numeric(gsub('Version: ([0-9.]*)','\\1',d))
-    version <- version + 0.1
+    version <- version + 0.01
   } else version <- 1
 
 system('rm yrpkg* -fr')
@@ -51,7 +51,7 @@ for (d in rds)  # d=rds[53]  # d="check_cited_labels.Rd"
 # Update version number
 setwd(sprintf('%s/yrpkg', basedir))
 d <- readLines('DESCRIPTION')
-d[grep('^Version', d)] <- sprintf('Version: %0.1f', version)
+d[grep('^Version', d)] <- sprintf('Version: %0.2f', version)
 writeLines(d, 'DESCRIPTION', sep='\n')
 
 

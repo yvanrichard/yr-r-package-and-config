@@ -1317,19 +1317,33 @@ killallr <- function(user='yvan', comps=c('jeremy','tieke','frank','taiko','leon
 
 
 ## Source makefile containing environment variables
-includemk <- function(mk='vars.mk')
+includemk <- function(Mk='vars.mk')
   {
     op <- options('useFancyQuotes')
     options('useFancyQuotes'=F)
-    mk <- readLines(mk)
+    mk <- readLines(Mk)
     mk <- mk[grep('=', mk)]
     r <- rapply(strsplit(mk, '='), trim, how='replace')
+    rr <- list()
+    for (i in 1:length(r))
+      rr[[r[[i]][1]]] <- r[[i]][2]
+    
     txt <- sapply(r, function(x) {
       var <- x[1]
       val <- type.convert(x[2], as.is=T) 
       if (typeof(val)=='character') val <- sQuote(x[2])
       return(paste(var, val, sep='='))
     })
+
+    tor <- grep('\\$\\(.*\\)', txt)
+    txt[tor] <- sapply(txt[tor], function(x) {
+      w <- gsub('.*\\$\\((.*)\\).*','\\1',x)
+      if (w %in% names(rr))
+        x <- gsub('\\$\\(.*\\)', rr[[w]], x)  else
+      stop('Variable to replace not defined')
+      return(x)
+    })
+
     eval(parse(text=txt), envir=globalenv())
     options('useFancyQuotes'=op)
   }
