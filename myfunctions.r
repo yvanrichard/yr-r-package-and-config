@@ -1359,11 +1359,31 @@ includemk <- function(Mk='vars.mk')
 takeout <- function(what, from)
     return(from[!(from %in% what)])
 
+
+## Declare arguments of a function as their default to debug a function
+getdefaultargs <- function(fun)
+  {
+    fls <- formals(fun)
+    sy <- sapply(fls, is.symbol)
+    sy <- names(sy)[sy & names(sy)!='...']
+    if (length(sy))
+      warning(sprintf('Variables not set:  %s', paste(sy, collapse=', ')))
+    for (i in 1:length(fls))
+      {
+        if (!is.symbol(fls[[i]]))
+          {
+            val <- eval(fls[[i]])
+            assign(names(fls)[i], val, envir=.GlobalEnv)
+          }
+      }
+  }
+
+
 ## Function to convert R markdown file into pdf or html
 ## Requires: knitr, markdown, pandoc
-convertRmd <- function(Rmds=file.path(getwd(), dir('.', pattern='Rmd$|rmd$')),
-                       to='pdf', open=T, out=sub('Rmd$|rmd$',to,Rmds), use.markdownToHTML=F,
-                       pandoc.type='', pandoc.extra='', clean.md=T, ...)
+convertRmd <- function(Rmds=file.path(getwd(), dir('.', pattern='\\.Rmd$|\\.rmd$')),
+                       to='pdf', open=TRUE, out=sub('Rmd$|rmd$',to,Rmds), use.markdownToHTML=FALSE,
+                       pandoc.type='', pandoc.extra, clean.md=TRUE, ...)
   { 
     require(knitr)
     require(markdown)
