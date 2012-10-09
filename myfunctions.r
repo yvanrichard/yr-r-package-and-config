@@ -1354,3 +1354,46 @@ includemk <- function(Mk='vars.mk')
       }
     options('useFancyQuotes'=op)
   }
+
+
+takeout <- function(what, from)
+    return(from[!(from %in% what)])
+
+## Rmds='~/dragonfly/mytests/knitr/markdown-ex.Rmd'; to='pdf'
+convertRmd <- function(Rmds=file.path(getwd(), dir('.', pattern='Rmd$|rmd$')),
+                       to='pdf', open=T, out=sub('Rmd$|rmd$',to,Rmds), use.markdownToHTML=F,
+                       pandoc.type='', pandoc.extra='', clean.md=T, ...)
+  { 
+    require(knitr)
+    require(markdown)
+
+    to.poss <- c('pdf','html')
+    if (!(to %in% to.poss))
+      stop(sprintf('Output format not recognised. Possible values are %s',
+                   paste(to.poss, collapse=', ')))
+    i=1
+    for (i in 1:length(Rmds))
+      {
+        Rmd <- Rmds[i]
+        bn <- sub('\\.Rmd|\\.rmd', '', Rmd)
+        fp <- dirname(bn)
+        md <- file.path(fp, knit(Rmd))                 # creates md
+
+        res <- sub('md$', to, md)
+
+        if (!(to == 'html' & use.knit.for.html == T))
+          {
+            cmd <- sprintf('pandoc %s %s %s -o %s %s',
+                           ifelse(pandoc.type!='', sprintf('-t %s', pandoc.type), ''),
+                           ifelse(to=='pdf', '', '-s'),
+                           md, res, pandoc.extra='')
+            system(cmd)
+          } else
+              markdownToHTML(md, res, options=c('use_xhml'))
+            
+        if (interactive() & open)
+          browseURL(res)
+        if (clean.md)
+          file.remove(md)
+      }
+  }
