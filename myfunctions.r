@@ -1359,7 +1359,8 @@ includemk <- function(Mk='vars.mk')
 takeout <- function(what, from)
     return(from[!(from %in% what)])
 
-## Rmds='~/dragonfly/mytests/knitr/markdown-ex.Rmd'; to='pdf'
+## Function to convert R markdown file into pdf or html
+## Requires: knitr, markdown, pandoc
 convertRmd <- function(Rmds=file.path(getwd(), dir('.', pattern='Rmd$|rmd$')),
                        to='pdf', open=T, out=sub('Rmd$|rmd$',to,Rmds), use.markdownToHTML=F,
                        pandoc.type='', pandoc.extra='', clean.md=T, ...)
@@ -1381,7 +1382,7 @@ convertRmd <- function(Rmds=file.path(getwd(), dir('.', pattern='Rmd$|rmd$')),
 
         res <- sub('md$', to, md)
 
-        if (!(to == 'html' & use.knit.for.html == T))
+        if (!(to == 'html' & use.markdownToHTML == T))
           {
             cmd <- sprintf('pandoc %s %s %s -o %s %s',
                            ifelse(pandoc.type!='', sprintf('-t %s', pandoc.type), ''),
