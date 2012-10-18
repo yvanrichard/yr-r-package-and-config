@@ -1412,9 +1412,49 @@ convertRmd <- function(Rmds=file.path(getwd(), dir('.', pattern='\\.Rmd$|\\.rmd$
           } else
               markdownToHTML(md, res, options=c('use_xhml'))
             
-        if (interactive() & open)
+        if (open) # interactive() &
           browseURL(res)
+          ## system(sprintf('xdg-open %s', res), wait=F)
         if (clean.md)
           file.remove(md)
       }
+  }
+
+
+as.mdtable <- function(df, col.names=colnames(df), row.names=rownames(df), signif=4)
+  {
+    res <- NULL
+    numcols <- apply(df, 2, class) %in% 'numeric'
+    df[,numcols] <- apply(df[,numcols], 2, function(x) signif(x, signif))
+    rows <- apply(df, 1, function(x) paste(x, collapse=' | '))
+    res <- c(res, rows)
+    ## add row names
+    if (!is.null(row.names))
+      res <- sprintf('%s | %s', row.names, res)
+    ## add header
+    if (!is.null(col.names))
+      {
+        if (!is.null(row.names))
+          {
+            frst <- paste(c(' ', col.names), collapse=' | ')
+            scnd <- paste(rep('-', max(nchar(res)) + 3 + max(nchar(row.names))), collapse='')
+          } else
+            {
+              frst <- paste(col.names, collapse=' | ')
+              scnd <- paste(rep('-', max(nchar(res))), collapse='')
+            }
+        res <- c(frst, scnd, res)
+      }
+    return(paste(res, collapse='\n'))
+  }
+
+
+insert.column <- function(df, pos, ...)
+  {
+    if (pos <= 1)
+      df <- cbind(..., df) else
+    if (pos >= ncol(df))
+      df <- cbind(df, ...) else
+    df <- cbind(df[,1:(pos-1)], ..., df[,pos:ncol(df)])
+    return(df)
   }
