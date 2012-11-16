@@ -17,17 +17,17 @@
 $dragonfly
 
 # Command Line History (newest to oldest):
+:q
 :wq
+:w
 :'<,'>s/'~/dragonfly/yr-r-package-and-config/'//g
 :'<,'>s/yvan-r-pkg/yr-r-package-and-config/g
 :s/yvan-r-pkg/yr-r-package-and-config/g
-:q
 :Q
 :q!
 :8
 :7
 :9
-:w
 :23
 :help hicolors
 :colorscheme desert256
@@ -127,10 +127,11 @@ $dragonfly
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	          ddcurve = runif(n, 0.15, 0.95) # curvature of density dependence of number of breeding pairs
-	 
-"1	CHAR	0
+""0	LINE	0
+	yrpkg/
+"1	LINE	0
+	yrpkg*
+"2	CHAR	0
 		cp ~/.emacs.d ~/dragonfly/yr-r-package-and-config/customisations/ -r
 		cp ~/.emacs ~/dragonfly/yr-r-package-and-config/customisations/
 		cp ~/.vim ~/dragonfly/yr-r-package-and-config/customisations/ -r
@@ -141,47 +142,55 @@ $dragonfly
 		cp ~/.Rprofile ~/dragonfly/yr-r-package-and-config/customisations/
 	
 	
-"2	LINE	0
-	all: yrpkg_2.0.tar.gz
 "3	LINE	0
+	all: yrpkg_2.0.tar.gz
+"4	LINE	0
 	444
 <|1|f1vBAyFJW4d6YT3PnWIGrhqiigY=|VKsiBZK+hNMMQQrd5FAIsKkKXx8= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAo7cFAi7clzefVeV39TGSAItJqc0CXuc35fzn7e9D4Rc9ul0U0Rj0Gyw7y6bckhHTwcz16fcloGitly1XLOBSP6o/hcQNwDtLl75wZmWqAeNUvzj1wgen2i2HTpfcd/2UmbAwWeBy4A08TuRsVdxDZqm8c7IjMf2YtR4BYkc+Uqlecpj/onxpu31qqT3UH4jKMjRVUrFfGyUi60F3o6TOcXur/ToEJXsHTyY1HKq/7KZ8GI8sDqddSwLQ5egBq5xj+HUw10I6br3pycDk9zINQen0XyV9icxAT58Ww46QsLrpZTfUFSLRd3A9b4CYlqtN5BlPMNZJRvrKf8UNtoPvmw==
-"4	LINE	0
-	|1|NwYVdBQX7ECxdASYP6A932TbaNc=|EMvC9X9AC8b0SiaI6zetqJTr5Zg= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI/leTdhYMW8Tm8UKQtD5YR9YbsUqRJGWs7ieZYyfUxJasIQp7Vc3xFXuvbRUAl1Lh4deN31yJKKtFimeBOl91Y=
 "5	LINE	0
+	|1|NwYVdBQX7ECxdASYP6A932TbaNc=|EMvC9X9AC8b0SiaI6zetqJTr5Zg= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI/leTdhYMW8Tm8UKQtD5YR9YbsUqRJGWs7ieZYyfUxJasIQp7Vc3xFXuvbRUAl1Lh4deN31yJKKtFimeBOl91Y=
+"6	LINE	0
 	444
 <|1|QYdO9nFST6azBzf7JqyJKajAmFQ=|1O2y/WEFmq23LOwrFvWwGO+QyEE= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAszc3H+4vGKc33pqFc3F0tuqOxNU7n/TWljHAva42UTmq9elGiicWqMtxNqpn1NinNjoELPPBB6FOmsnXMlrkYUSVcbFRU2wpFbM4/dc8RmvUC+wZAvyh4V6hbHP/AbzuIZM18qauBF1DCGm/qXLl+BGw3RWrXM+ItiHe/aGBt6ZE3ZXo0jtNVRPQH7T4I8obc3QLiG227aHhPclqME8MzUfHDrR9Mn63YzF9+BqY5+7BwK6QO8jK0q8SLlSa0GW/c4F3lDPsAbgjnBCrbtr+k3A3qk1fHtYkK6w7x0ICb7EFw1pQnMvJBiuZlgOrrfUYOdQHCV46dgRpEah0vjT9Bw==
-"6	LINE	0
-	>>>>>>> 88a2dad5848a66da0cb22059351b8f01777f2a13
 "7	LINE	0
-	*.Rhistory
+	>>>>>>> 88a2dad5848a66da0cb22059351b8f01777f2a13
 "8	LINE	0
-	=======
+	*.Rhistory
 "9	LINE	0
-	
-"q	CHAR	0
-	
+	=======
 "u	CHAR	0
 	lrr
-""-	CHAR	0
+"-	CHAR	0
 	~/dragonfly/yr-r-package-and-config/
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  22  15  ~/dragonfly/yr-r-package-and-config/makefile
-'1  1  15  ~/dragonfly/sra-2012/report/makefile
-'2  2  17  /etc/darkstat/init.cfg
-'3  3  0  /etc/darkstat/init.cfg
-'4  1  210  ~/dragonfly/sra-foundations/.git/COMMIT_EDITMSG
-'5  8  0  ~/.ssh/known_hosts
-'6  7  0  ~/.ssh/known_hosts
-'7  1  17  ~/dragonfly/sra-foundations/report/notes/tables/makefile
-'8  22  17  ~/dragonfly/sra-2012/analysis/model-re-4/makefile
-'9  52  0  /etc/ssh/sshd_config
+'0  127  0  ~/dragonfly/sra-foundations/report/report.tex
+'1  1  0  ~/dragonfly/abundance/.git/config
+'2  21  32  /etc/apparmor.d/abstractions/ubuntu-browsers.d/java
+'3  4  34  ~/test/vars.mk
+'4  9  0  ~/dragonfly/yr-r-package-and-config/makefile
+'5  1  0  ~/dragonfly/yr-r-package-and-config/makefile
+'6  2  5  ~/dragonfly/yr-r-package-and-config/.gitignore
+'7  3  0  ~/dragonfly/yr-r-package-and-config/.gitignore
+'8  1  0  ~/dragonfly/yr-r-package-and-config/.gitignore
+'9  24  15  ~/dragonfly/yr-r-package-and-config/makefile
 
 # Jumplist (newest first):
--'  22  15  ~/dragonfly/yr-r-package-and-config/makefile
--'  15  0  ~/dragonfly/yr-r-package-and-config/makefile
+-'  127  0  ~/dragonfly/sra-foundations/report/report.tex
+-'  1  0  ~/dragonfly/sra-foundations/report/report.tex
+-'  1  0  ~/dragonfly/abundance/.git/config
+-'  21  32  /etc/apparmor.d/abstractions/ubuntu-browsers.d/java
+-'  1  0  /etc/apparmor.d/abstractions/ubuntu-browsers.d/java
+-'  4  34  ~/test/vars.mk
+-'  5  0  ~/test/vars.mk
+-'  9  0  ~/dragonfly/yr-r-package-and-config/makefile
+-'  1  0  ~/dragonfly/yr-r-package-and-config/makefile
+-'  2  5  ~/dragonfly/yr-r-package-and-config/.gitignore
+-'  1  0  ~/dragonfly/yr-r-package-and-config/.gitignore
+-'  3  0  ~/dragonfly/yr-r-package-and-config/.gitignore
+-'  24  15  ~/dragonfly/yr-r-package-and-config/makefile
+-'  17  0  ~/dragonfly/yr-r-package-and-config/makefile
 -'  2  0  ~/dragonfly/yr-r-package-and-config/makefile
 -'  1  15  ~/dragonfly/sra-2012/report/makefile
 -'  2  17  /etc/darkstat/init.cfg
@@ -231,7 +240,6 @@ $dragonfly
 -'  33  0  ~/dragonfly/abundance/.gitignore
 -'  1  0  ~/dragonfly/abundance/.gitignore
 -'  8  14  ~/dragonfly/abundance/.git/config
--'  1  0  ~/dragonfly/abundance/.git/config
 -'  4  4  ~/dragonfly/bibliography/.gitignore
 -'  1  0  ~/dragonfly/bibliography/.gitignore
 -'  8  15  ~/dragonfly/bibliography/.git/config
@@ -269,34 +277,69 @@ $dragonfly
 -'  1  0  /tmp/beauty_of_latex_variants.tex
 -'  10  0  ~/dragonfly/sra-foundations/report/notes/test.org
 -'  1  0  ~/dragonfly/sra-foundations/report/notes/test.org
--'  232  0  ~/.emacs.d/color-theme-tangotango/color-theme-tangotango.el
--'  1  0  ~/.emacs.d/color-theme-tangotango/color-theme-tangotango.el
--'  1  0  ~/dragonfly/sra-foundations/report/notes/sweave/results.tex
--'  1  0  ~/dragonfly/sra-foundations/report/notes/sweave/fig-concordance.tex
--'  1  0  ~/dragonfly/vic-seminar-apr-2012/.gitignore
--'  8  58  ~/dragonfly/sra-foundations/.git/config
--'  1  0  ~/dragonfly/sra-foundations/.git/config
--'  1  0  ~/.ssh/id_dsa.pub
 
 # History of marks within files (newest to oldest):
 
+> ~/dragonfly/sra-foundations/report/report.tex
+	"	127	0
+
+> ~/dragonfly/sra-foundations/report/report.tex.LOCAL.32111.tex
+	"	129	0
+
+> ~/dragonfly/sra-foundations/report/report.tex.BASE.32111.tex
+	"	129	0
+
+> ~/dragonfly/sra-foundations/report/report.tex.REMOTE.32111.tex
+	"	127	0
+
+> ~/dragonfly/abundance/.git/config
+	"	1	0
+	^	8	15
+	.	8	15
+	+	8	15
+
+> /etc/apparmor.d/abstractions/ubuntu-browsers.d/java
+	"	21	32
+	^	14	2
+	.	14	1
+	+	10	0
+	+	11	0
+	+	12	1
+	+	13	2
+	+	12	1
+	+	14	1
+
+> ~/test/vars.mk
+	"	4	34
+	^	4	35
+	.	4	34
+	+	4	34
+
 > ~/dragonfly/yr-r-package-and-config/makefile
-	"	22	15
-	^	22	16
-	.	22	16
+	"	9	0
+	^	9	0
+	.	9	0
 	+	2	0
 	+	1	11
 	+	3	0
 	+	5	38
-	+	15	0
-	+	15	15
-	+	16	13
-	+	17	11
-	+	18	15
-	+	19	13
-	+	20	16
-	+	21	14
+	+	17	0
+	+	17	15
+	+	18	13
+	+	19	11
+	+	20	15
+	+	21	13
 	+	22	16
+	+	23	14
+	+	24	16
+	+	9	0
+
+> ~/dragonfly/yr-r-package-and-config/.gitignore
+	"	2	5
+	^	2	6
+	.	2	6
+	+	1	6
+	+	2	6
 
 > ~/dragonfly/sra-2012/report/makefile
 	"	1	15
@@ -408,12 +451,6 @@ $dragonfly
 	+	32	4
 	+	33	0
 	+	34	0
-
-> ~/dragonfly/abundance/.git/config
-	"	8	14
-	^	8	15
-	.	8	15
-	+	8	15
 
 > ~/dragonfly/bibliography/.gitignore
 	"	4	4
@@ -816,33 +853,3 @@ $dragonfly
 
 > ~/robin-project/--- SEXIBAM ---/Sources/PatchFile.cpp
 	"	700	0
-
-> ~/robin-project/--- SEXIBAM ---/Sources/MainFile.h
-	"	64	0
-
-> ~/robin-project/--- SEXIBAM ---/Sources/MapFile.h
-	"	222	0
-
-> ~/robin-project/--- SEXIBAM ---/Sources/SEXIBAM.cpp
-	"	46	0
-
-> ~/test/test.r
-	"	1	50
-	^	1	51
-	.	1	50
-	+	1	28
-	+	2	14
-	+	1	24
-	+	2	10
-	+	1	32
-	+	2	0
-	+	1	50
-
-> ~/Downloads/v46i03-replication/v46i03.org
-	"	1485	13
-
-> ~/Downloads/v46i03-replication/README.txt
-	"	1	0
-
-> ~/Downloads/v46i03-replication/v46i03.bib
-	"	127	0

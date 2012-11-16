@@ -3,7 +3,7 @@
   (interactive)
   (color-theme-install
    '(my-color-theme
-     ((background-color . "#222222")
+     ((background-color . "#444444")
       (background-mode . dark)
       (border-color . "black")
       (cursor-color . "white")
@@ -18,7 +18,7 @@
       (list-matching-lines-face . bold)
       (view-highlight-face . highlight)
       (widget-mouse-face . highlight))
-     (default ((t (:stipple nil :background "black" :foreground "cornsilk" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+     (default ((t (:stipple nil :background "#222222" :foreground "cornsilk" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
      (Info-title-1-face ((t (:bold t :weight bold :height 1.728 :family "helv"))))
      (Info-title-2-face ((t (:bold t :weight bold :height 1.44 :family "helv"))))
      (Info-title-3-face ((t (:bold t :weight bold :height 1.2 :family "helv"))))

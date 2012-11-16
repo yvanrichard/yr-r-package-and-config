@@ -8,6 +8,22 @@
 ;; (yas/initialize)
 ;; (yas/load-directory "~/.emacs.d/plugins/yasnippet-fdf7582/snippets")
 
+;;Setting Up Org Mode;;
+(require 'org-install)
+(require 'ob-R)
+
+;; I don't want to be prompted on every code block evaluation
+(setq org-confirm-babel-evaluate nil)
+
+;; ;; The following lines are always needed. Choose your own keys.
+;; (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
+;; ;;;orgbabel;;;;
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((R . t)))
+
+
 (require 'r-autoyas)
 ;(require 'ac-R)
 
@@ -22,9 +38,11 @@
 (require 'color-theme)
 (load-file "~/.emacs.d/my-color-theme.el")
 (my-color-theme)
+
 ;(color-theme-tango)
 ;;(add-hook 'after-init-hook 'color-theme-tango)
 ;;(color-theme-jsc-dark)
+
 
 (autoload 'tex-math-preview "tex-math-preview" nil t)
 ;; (add-hook 'texinfo-mode-hook
@@ -40,6 +58,20 @@
 
 (setq ispell-program-name "aspell") ; could be ispell as well, depending on your preferences
 (setq ispell-dictionary "english") ; this can obviously be set to any language your spell-checking program supports
+
+
+;; Prevent spell check of Sweave chunks - from http://stackoverflow.com/questions/8287330/exempt-code-chunks-in-an-sweave-document-from-emacs-spell-check
+(add-to-list 'ispell-skip-region-alist '("^<<.*>>=" . "^@"))
+(defun flyspell-eligible ()
+  (let ((p (point)))
+    (save-excursion
+      (cond ((re-search-backward (ispell-begin-skip-region-regexp) nil t)
+             (ispell-skip-region (match-string-no-properties 0))
+             (< (point) p))
+            (t)))))
+(put 'latex-mode 'flyspell-mode-predicate 'flyspell-eligible)
+(put 'Rnw-mode 'flyspell-mode-predicate 'flyspell-eligible)
+
 
 ;(setq split-height-threshold nil)
 ;(setq split-width-threshold 0)
@@ -107,6 +139,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(TeX-PDF-mode t)
+ '(browse-url-browser-function (quote browse-url-firefox))
  '(inhibit-startup-screen t))
 
 (custom-set-faces
@@ -114,11 +147,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(flyspell-duplicate ((t (:foreground "Gold3" :underline nil :weight bold))))
  '(font-latex-sectioning-2-face ((t (:inherit font-latex-sectioning-3-face :height 1.05))))
  '(font-latex-sectioning-3-face ((t (:inherit font-latex-sectioning-4-face :weight extra-bold :height 1.05))))
  '(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-5-face :weight normal))))
  '(font-latex-sectioning-5-face ((t (:inherit variable-pitch :foreground "yellow" :weight bold :foundry "sans" :family "mono"))))
- '(font-lock-type-face ((t (:foreground "navajowhite" :weight normal :height 1.0 :family "DejaVu Sans Mono")))))
+ '(font-lock-type-face ((t (:foreground "navajowhite")))))
  
 ;;; ESS
 (setq ess-eval-visibly-p nil) ;otherwise C-c C-r (eval region) takes forever
@@ -329,3 +363,33 @@ Ignores CHAR at point."
 (global-set-key "\C-c\C-w" 'kill-other-window)
 
 (global-set-key [C-tab] 'comint-dynamic-complete)
+
+
+(defun comint-interrupt-subjob-other ()
+  "Interrupt process in the other pane."
+  (interactive)
+  (other-window 1)
+  (comint-interrupt-subjob)
+  (other-window -1)
+  )
+(global-set-key "\C-z\C-z" 'comint-interrupt-subjob-other)
+
+
+;; Sweave stuff
+;; (defun Rnw-mode ()
+;;   (require 'ess-noweb)
+;;   (noweb-mode)
+;;   (if (fboundp 'R-mode)
+;;       (setq noweb-default-code-mode 'R-mode)))
+(add-to-list 'auto-mode-alist '("\\.Rnw\\'" . Rnw-mode))
+(add-to-list 'auto-mode-alist '("\\.rnw\\'" . Rnw-mode))
+(add-to-list 'auto-mode-alist '("\\.Snw\\'" . Rnw-mode))
+
+(setq reftex-file-extensions
+      '(("Snw" "Rnw" "nw" "tex" ".tex" ".ltx") ("bib" ".bib")))
+(setq TeX-file-extensions
+      '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
+
+;; (add-to-list 'auto-mode-alist '("\\.Rnw\\'" . Rnw-mode))
+;; (add-to-list 'auto-mode-alist '("\\.rnw\\'" . Rnw-mode))
+
