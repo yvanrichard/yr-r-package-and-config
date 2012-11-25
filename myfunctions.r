@@ -1460,3 +1460,28 @@ insert.column <- function(df, pos, ...)
     df <- cbind(df[,1:(pos-1)], ..., df[,pos:ncol(df)])
     return(df)
   }
+
+
+## Calculate the x locations of grouped items
+## attribute 'midpoints' return the x locations for group names
+seqaxis <- function(mainlvls, sublvls, torem=NA, xsep=1, names=c('sub','main','x'))
+    {
+    d <- data.frame(sub=rep(sublvls, length(mainlvls)),
+		    main=rep(mainlvls, each=length(sublvls)), stringsAsFactors=F)
+    s <- cumsum(d$sub == sublvls[1] & d$main != mainlvls[1])
+    if (!is.na(torem))
+	{
+	torem <- gsub('_sub_','d$sub',torem)
+	torem <- gsub('_main_','d$main',torem)
+	keep <- !eval(parse(text=torem)) 
+	d <- d[keep,]
+	s <- s[keep]
+	}
+    d$x <- 1:nrow(d) + s*(xsep-1)
+    mids <- d$x[ischange(s)]+(tapply(s,s,length)-1)/2
+    names(mids) <- mainlvls
+    attr(d, 'midpoints') <- mids
+    colnames(d) <- names
+    return(d)
+    }
+
