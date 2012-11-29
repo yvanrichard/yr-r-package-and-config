@@ -1,0 +1,271 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Thu Nov 29 14:33:46 2012
+;; Desktop file format version 206
+;; Emacs version 24.3.50.1
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '("funmclapply" "nmclapply" "getobscapts" "datetim" "comp-p" "beta" "xtabl" "reftex" "refte" "shell" "highl"))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("~/dragonfly/sra-2012/analysis/model-re-10/kills/calc-kills-aggl-single-species.r" "~/dragonfly/sra-2012/analysis/model-re-10/kills/merge-and-summ-obs-nonobs-aggl.r" "~/dragonfly/sra-2012/report/report.tex" "~/dragonfly/sra-2012/analysis/model-re-10/kills/calc-kills-aggl.r" "~/dragonfly/sra-2012/analysis/model-re-10/makefile" "~/dragonfly/sra-2012/analysis/model-re-10/kills/merge-and-summ-obs-nonobs-aggl.r" "~/dragonfly/sra-2012/analysis/model-re-10/kills/kills_cm_nocm.r" "~/dragonfly/sra-2012/analysis/model-re-10/kills/summarise-kills.r" "~/dragonfly/sra-2012/analysis/model-re-10/kills/calc-kills-aggl-single-species.r" "~/dragonfly/yr-r-package-and-config/myfunctions.r" "~/dragonfly/sra-2012/report/appendix.rnw" "~/dragonfly/sra-2012/analysis/model-re-10/tables/kills/kills.r" "~/dragonfly/sra-2012/report/makefile" "~/dragonfly/sra-2012/analysis/model-re-10/minireport/tables-and-figs.rnw" "~/dragonfly/sra-2012/analysis/model-re-10/kills/add-cryptic-mortality-months.r" "~/dragonfly/sra-2012/analysis/model-re-10/makefile" "~/dragonfly/sra-2012/analysis/model-re-10/kills/add-cryptic-mortality.r" "~/dragonfly/sra-2012/report/appendix.rnw" "~/dragonfly/sra-foundations/report/methods.rnw" "~/dragonfly/sra-2012/report/data/get-data.r" "~/dragonfly/sra-2012/report/data/makefile" "~/dragonfly/sra-2012/report/appendix.rnw" "~/dragonfly/abundance/data/get_from_db/makefile" "~/dragonfly/sra-2012/analysis/cryptic-mortality/test.r" "~/dragonfly/sra-2012/report/appendix.rnw" "/home/yvan/dragonfly/sra-2012/report/report.tex" "~/.emacs.bk" "~/dragonfly/sra-2012/report/appendix.rnw" "~/.emacs24" "~/"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/cryptic-mortality/multipliers.r"
+  "multipliers.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  6643
+  '(8061 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/kills/summarise-kills.r"
+  "summarise-kills.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  1979
+  '(1741 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/.emacs.bk"
+  ".emacs.bk"
+  'lisp-mode
+  nil
+  3145
+  '(3105 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/kills/calc-kills-aggl-single-species.r"
+  "calc-kills-aggl-single-species.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  1
+  '(1030 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/kills/calc-kills-aggl.r"
+  "calc-kills-aggl.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  122
+  '(272 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/kills/merge-and-summ-obs-nonobs-aggl.r"
+  "merge-and-summ-obs-nonobs-aggl.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  4574
+  '(3876 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/kills/add-cryptic-mortality.r"
+  "add-cryptic-mortality.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  1312
+  '(1234 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/report/report.tex"
+  "report.tex"
+  'latex-mode
+  '(auto-fill-mode flyspell-mode reftex-mode)
+  2000
+  '(1681 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search) (TeX-master . t)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/makefile"
+  "makefile<2>"
+  'makefile-gmake-mode
+  nil
+  6832
+  '(7937 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/kills/kills_cm_nocm.r"
+  "kills_cm_nocm.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/yr-r-package-and-config/myfunctions.r"
+  "myfunctions.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  47470
+  '(47293 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/tables/kills/kills.r"
+  "kills.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  2331
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/report/makefile"
+  "makefile<3>"
+  'makefile-gmake-mode
+  nil
+  724
+  '(482 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/kills/add-cryptic-mortality-months.r"
+  "add-cryptic-mortality-months.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  1795
+  '(1775 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-foundations/report/methods.rnw"
+  "methods.rnw"
+  'latex-mode
+  '(auto-fill-mode flyspell-mode reftex-mode)
+  8199
+  '(8088 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (TeX-master . "report")))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/report/data/get-data.r"
+  "get-data.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  1187
+  '(740 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/.emacs24"
+  ".emacs24"
+  'lisp-mode
+  nil
+  5794
+  '(5325 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/report/data/makefile"
+  "makefile"
+  'makefile-gmake-mode
+  nil
+  63
+  '(52 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  nil
+  "cryptic-mortality"
+  'dired-mode
+  nil
+  468
+  '(nil nil)
+  t
+  '("/home/yvan/dragonfly/sra-2012/analysis/cryptic-mortality/")
+  nil)
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/cryptic-mortality/plot.r"
+  "plot.r"
+  'ess-mode
+  '(ess-roxy-mode)
+  913
+  '(913 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/bibliography/mfish.bib"
+  "mfish.bib"
+  'bibtex-mode
+  nil
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (TeX-master . t)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/minireport/tables-and-figs.rnw"
+  "tables-and-figs.rnw"
+  'ess-mode
+  nil
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/report/appendix.rnw"
+  "appendix.rnw"
+  'ess-mode
+  '(noweb-font-lock-mode noweb-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+

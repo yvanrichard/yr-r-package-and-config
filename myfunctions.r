@@ -1462,8 +1462,14 @@ insert.column <- function(df, pos, ...)
   }
 
 
+## Indicates changes in value (used in seqaxis())
+ischange <- function(x, first=T)
+    {
+    c(first,!x[1:(length(x)-1)]==x[2:length(x)])
+    }
+
 ## Calculate the x locations of grouped items
-## attribute 'midpoints' return the x locations for group names
+## The attribute 'midpoints' return the x locations for group names
 seqaxis <- function(mainlvls, sublvls, torem=NA, xsep=1, names=c('sub','main','x'))
     {
     d <- data.frame(sub=rep(sublvls, length(mainlvls)),
@@ -1484,4 +1490,8 @@ seqaxis <- function(mainlvls, sublvls, torem=NA, xsep=1, names=c('sub','main','x
     colnames(d) <- names
     return(d)
     }
+
+mean_ci <- function(x) return(c(mean=mean(x),
+                                lcl=quantile(x, 0.025, names=F),
+                                ucl=quantile(x, 0.975, names=F)))
 

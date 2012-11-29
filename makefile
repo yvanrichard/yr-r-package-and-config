@@ -15,7 +15,7 @@ y:
 
 updatepkg:
 	cp ~/.emacs.d customisations/ -r
-	cp ~/.emacs customisations/
+	cp ~/.emacs* customisations/
 	cp ~/.vim customisations/ -r
 	cp ~/.viminfo customisations/
 	cp ~/.vimrc customisations/
