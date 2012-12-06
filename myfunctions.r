@@ -1324,6 +1324,7 @@ includemk <- function(Mk='vars.mk')
     op <- options('useFancyQuotes')
     options('useFancyQuotes'=F)
     mk <- readLines(Mk)
+    mk <- mk[!grepl('^[[:blank:]]*#', mk)]
     mk <- mk[grep('=', mk)]
     r <- rapply(strsplit(mk, '='), trim, how='replace')
     rr <- list()
