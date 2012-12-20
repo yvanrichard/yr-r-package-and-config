@@ -1496,3 +1496,56 @@ mean_ci <- function(x) return(c(mean=mean(x),
                                 lcl=quantile(x, 0.025, names=F),
                                 ucl=quantile(x, 0.975, names=F)))
 
+pickcolor <- function(brewer=F, txt=T)
+  {
+    if (!brewer)
+      {
+        x11(width=15.2, height=8.2)
+        cs <- colors()
+        n <- length(cs)
+        xx <- c(0, (1:n %% 40)[-length(1:n)])
+        yy <- cumsum(xx==0)
+        yy <- (max(yy)+1)-yy
+        d <- data.frame(x=xx, y=yy, col=cs, stringsAsFactors=F)
+        plot(xx, yy, col=darken(cs,.2), bg=cs, pch=22, cex=5, axes=F, xlab='', ylab='',
+             main='Pick your colours', xlim=range(xx), ylim=c(-1, max(yy)))
+        xy <- locator(type='p', pch=4)
+        xy <- sapply(xy, round)
+        cols <- merge(xy, d, all.x=T, all.y=F)$col
+      } else
+    {
+      x11(width=19, height=6.8)
+      library(RColorBrewer)
+      info <- brewer.pal.info
+      np <- nrow(info)
+      info$y <- 1:np
+      d <- NULL
+      for (i in 1:np)
+        {
+          mx <- info[i, 'maxcolors']
+          cs <- brewer.pal(mx, rownames(info)[i])
+          d <- rbind(d, data.frame(x=rep(i, mx),
+                                   y=1:mx,
+                                   col=brewer.pal(mx, rownames(info)[i]),
+                                   stringsAsFactors=F))
+        }
+      plot(NA, xlim=c(min(d$x)-1, max(d$x)+1), ylim=c(min(d$y)-2, max(d$y)+1),
+           main='Pick your colours', axes=F,
+           xlab='', ylab='')
+      points(d$x, d$y, col=darken(d$col, .2), bg=d$col, pch=22, cex=5)
+      text(1:np, rep(c(-.6,0), length.out=np), rownames(info))
+      xy <- locator(type='p', pch=4)
+      xy <- sapply(xy, round)
+      cols <- merge(xy, d, all.x=T, all.y=F)$col
+    }
+    dev.off()
+    if (txt)
+      {
+        op <- options("useFancyQuotes")
+        options("useFancyQuotes"=F)
+        c <- paste(sQuote(cols), collapse=', ')
+        cat('\n', c, '\n\n')
+        options("useFancyQuotes"=op)
+        return(NULL)
+      } else  return(cols)
+  }
