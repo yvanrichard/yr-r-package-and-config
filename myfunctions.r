@@ -316,7 +316,7 @@ col3d <- function(x, y, z, space='rgb')
 # col='red'; alph=0.5; col.border=NULL; xmin=NULL; at=NULL; ylevels=NULL; ylab=NA; cap1st=T
 plotdensapply <- function(y, by, col='red', alph=0.5, col.border=NULL, xmin=NULL, at=NULL,
                           ylevels=NULL, ylab=NA, cap1st=T, gridx=0, gridy=0,
-                          gridcol=grey(0.8), ...)
+                          gridcol=grey(0.8), ltxtcex=1, ...)
   {
     if (!is.factor(by))
       by <- factor(by, levels=sort(unique(by)))
@@ -348,7 +348,7 @@ plotdensapply <- function(y, by, col='red', alph=0.5, col.border=NULL, xmin=NULL
     z <- sapply(tapply(ylevels, at, unique), function(x) paste(x, collapse=','))
     ylev2 <- z; at2 <- as.numeric(names(z))
     if (cap1st) ylev2 <- upper1st(ylev2)
-    mtext(ylev2, 2, at=at2, las=1, line=0.5)
+    mtext(ylev2, 2, at=at2, las=1, line=0.5, cex=ltxtcex)
   }
 
 
@@ -1549,3 +1549,21 @@ pickcolor <- function(brewer=F, txt=T)
         return(NULL)
       } else  return(cols)
   }
+
+
+NAanalyse <- function(df)
+  {
+    sumna <- apply(df, 2, function(x) sum(is.na(x)))
+    ## sort(sumna, decreasing=T)
+    propna <- sort(round(100*sumna/nrow(df), 1), decreasing=T)
+    cat('\n===', sum(propna>0), 'columns with some NAs (out of', ncol(df), ',',
+        round(100*sum(propna>0)/length(propna), 1), '%)\n')
+    cat('\n=== Proportion of NAs:\n')
+    print(propna[propna>0])
+    cat('\n===', sum(propna==0),'columns without NAs:\n')
+    print(names(propna[propna==0]))
+    naom <- na.omit(df)
+    cat('\n===', nrow(naom), 'rows without NAs (out of', nrow(df),',',
+        round(100*nrow(naom)/nrow(df),1), '%)\n\n')
+  }
+
