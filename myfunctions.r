@@ -1551,7 +1551,7 @@ pickcolor <- function(brewer=F, txt=T)
   }
 
 
-NAanalyse <- function(df)
+NAanalyse <- function(df, plotx=NULL, nx=10, ncol=4, mar=c(3,3,1,1))
   {
     sumna <- apply(df, 2, function(x) sum(is.na(x)))
     ## sort(sumna, decreasing=T)
@@ -1565,5 +1565,26 @@ NAanalyse <- function(df)
     naom <- na.omit(df)
     cat('\n===', nrow(naom), 'rows without NAs (out of', nrow(df),',',
         round(100*nrow(naom)/nrow(df),1), '%)\n\n')
+    if (!is.null(plotx))
+      {
+        par(mfrow=c(ceiling(sum(sumna>0)/ncol), ncol), mar=mar)
+        for (v in names(df))
+          {
+            if (any(is.na(df[,v])))
+              {
+                d1 <- unique(data.frame(x=df[,plotx], v=df[,v]))
+                d1 <- d1[order(d1$x),]
+                d2 <- tapply(d1$v, d1$x, function(x) sum(is.na(x)))
+                xx <- myreplace(pretty(1:length(d2), nx), c(0, 1), verbose=F)
+                xx <- xx[xx<length(d2)]
+                xxl <- names(d2)[xx]
+                plot(d2, type='h', col=ifelse(d2>0, 'red', 'black'),
+                     axes=F, xlab=NA, ylab=NA)
+                axis(1, at=xx, labels=xxl)
+                axis(2, at=c(0, max(d2, na.rm=T)), las=1)
+                mtext(v, 3, line=-1.5, cex=0.6)
+              }
+          }
+      }
   }
 
