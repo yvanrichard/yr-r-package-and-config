@@ -1529,14 +1529,17 @@ pickcolor <- function(brewer=F, txt=T)
                                    col=brewer.pal(mx, rownames(info)[i]),
                                    stringsAsFactors=F))
         }
+      d$xy <- paste(d$x, d$y, sep='-')
       plot(NA, xlim=c(min(d$x)-1, max(d$x)+1), ylim=c(min(d$y)-2, max(d$y)+1),
            main='Pick your colours', axes=F,
            xlab='', ylab='')
       points(d$x, d$y, col=darken(d$col, .2), bg=d$col, pch=22, cex=5)
       text(1:np, rep(c(-.6,0), length.out=np), rownames(info))
       xy <- locator(type='p', pch=4)
-      xy <- sapply(xy, round)
-      cols <- merge(xy, d, all.x=T, all.y=F)$col
+      xy <- sapply(xy, round, simplify=F)
+      xy$xy <- paste(xy$x, xy$y, sep='-')
+      xy <- as.data.frame(xy)
+      cols <- merge(xy, d, all.x=T, all.y=F, by.x='xy', by.y='xy')$col
     }
     dev.off()
     if (txt)
@@ -1588,3 +1591,5 @@ NAanalyse <- function(df, plotx=NULL, nx=10, ncol=4, mar=c(3,3,1,1))
       }
   }
 
+maketags <- function(x)
+  rtags(ofile='TAGS', recursive=T)
