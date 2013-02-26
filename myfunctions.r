@@ -603,15 +603,48 @@ tab <- function(x)
     }
     
 
+## Function from raster package
+extension <- function (filename, value = NULL, maxchar = 10)
+  {
+    if (!is.null(value)) {
+      extension(filename) <- value
+      return(filename)
+    }
+    lfn <- nchar(filename)
+    ext <- list()
+    for (f in 1:length(filename)) {
+      extstart <- -1
+      for (i in lfn[f]:2) {
+        if (substr(filename[f], i, i) == ".") {
+          extstart <- i
+          break
+        }
+      }
+      if (extstart > 0) {
+        ext[f] <- substr(filename[f], extstart, lfn[f])
+      }
+      else {
+        ext[f] <- ""
+      }
+    }
+    ext <- unlist(ext)
+    ext[nchar(ext) > maxchar] <- ""
+    return(ext)
+  }
+
 makeuniquefilename <- function(x)  # x='a1'
   {
     if (length(x)>1) stop('Function takes only one file name')
-    x2 <- strsplit(x,'.',fixed=T)[[1]]
-    x_1 <- paste(x2[1:(length(x2)-1)], collapse='.')
-    ext <- ifelse(length(x2)>1, sprintf('.%s',x2[length(x2)]), '')
-    fs <- grep(sprintf('^%s.*%s$', x_1, ext), dir(), value=T)
-    fs1 <- sub(sprintf('%s',ext),'', fs)
-    return(sprintf('%s%s', tail(make.names(c(fs1, x_1), unique=T), 1), ext))
+    ext <- extension(x)
+    basefile <- sub(ext, '', x)
+    f <- x
+    ii <- 0
+    while(file.exists(f))
+      {
+        f <- sprintf('%s%i%s', basefile, ii, ext)
+        ii <- ii+1
+      }
+    return(f)
   }
 
 ## Open data frame in oocalc
@@ -1593,3 +1626,12 @@ NAanalyse <- function(df, plotx=NULL, nx=10, ncol=4, mar=c(3,3,1,1))
 
 maketags <- function(x)
   rtags(ofile='TAGS', recursive=T)
+
+
+modifiedfiles <- function(fold='~/dragonfly', days=7, type='f', extra='-lgo')
+  {
+    out <- system(sprintf('find %s -type %s -mtime -%i |xargs -r ls %s |column -t', fold, type, days, extra), intern=T)
+    out <- out[!grepl('\\.git', out)]
+  }
+
+
