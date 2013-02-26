@@ -1491,7 +1491,7 @@ insert.column <- function(df, pos, ...)
       df <- cbind(..., df) else
     if (pos >= ncol(df))
       df <- cbind(df, ...) else
-    df <- cbind(df[,1:(pos-1)], ..., df[,pos:ncol(df)])
+    df <- cbind(df[,1:(pos-1),drop=F], ..., df[,pos:ncol(df), drop=F])
     return(df)
   }
 
