@@ -648,9 +648,9 @@ makeuniquefilename <- function(x)  # x='a1'
   }
 
 ## Open data frame in oocalc
-localc <- function(df, row.names=T, newl.at=100, ...)
+localc <- function(df, row.names=T, newl.at=100, basename='temp', ...)
     {
-      f <- makeuniquefilename('/tmp/temp.csv')
+      f <- makeuniquefilename(sprintf('/tmp/%s.csv',basename))
       if (!is.na(newl.at))
 	{ ## insert return line when field is too long
           nch = apply(df,2,function(x) max(nchar(as.character(x))))
@@ -1634,4 +1634,71 @@ modifiedfiles <- function(fold='~/dragonfly', days=7, type='f', extra='-lgo')
     out <- out[!grepl('\\.git', out)]
   }
 
+isgittracked <- function(f)
+  {
+    s <- suppressWarnings(system(sprintf('git ls-files %s', f), intern=T, ignore.stderr=T))
+    if (!length(s))
+      return(F) else return(T)
+  }
 
+## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
+latexfiledeps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), only=c('/'))
+  {
+    alldeps <- NULL
+    curdir <- getwd()
+    setwd(fold)
+    ## File dependencies in Sweave files
+    rnw <- dir('.', '*.rnw$|*.Rnw$')
+    r1=rnw[1]
+    for (r1 in rnw)
+      {
+        cat('\n************  ', r1, '  ************\n')
+        r <- readLines(r1)
+        c1 <- grep('\\bload\\(', r, value=T)
+        fs <- sub('load\\(\'(.*)\'\\)$', '\\1', c1)
+        alldeps <- c(alldeps, fs)
+        cat(paste(fs, collapse='\n'))
+        cat('\n')
+        c2 <- grep('\\bread.csv\\(', r, value=T)
+        fs <- sub('read.csv\\(\'(.*)\'\\)$', '\\1', c2)
+        alldeps <- c(alldeps, fs)
+        cat(paste(fs, collapse='\n'))
+        cat('\n')
+      }
+    ## File dependencies in tex files
+    tex <- dir('.', '*.tex$')
+    tex <- tex[!(tex %in% 'aebr.tex')]
+    t=tex[1]
+    for (t in tex)
+      {
+        cat('\n************  ', t, '  ************\n')
+        bt <- sub('\\.tex', '', t)
+        ## system(sprintf('mkjobtexmf --jobname %s --cmd-tex pdflatex', bt))
+        tmp <- readLines(t)
+        if (any(grepl('begin\\{document\\}', tmp)))
+          {
+            s <- system(sprintf('pdflatex -recorder %s', bt), intern=T)
+            fls <- readLines(sprintf('%s.fls', bt))
+            fls <- sapply(strsplit(fls, ' '), function(x) x[2])
+            fls <- sub('^\\./', '', fls)
+            fls <- unique(fls)
+            fls <- fls[!grepl(ignore, fls)]
+            fls <- fls[!grepl(sprintf('^%s', bt), fls)]
+            fls <- fls[!(fls %in% normalizePath(fold))]
+            alldeps <- c(alldeps, fls)
+            cat(paste(fls, collapse='\n'))
+            cat('\n')
+          } else cat('Not a master file. Skip...\n')
+      }
+    cat('\n\n')
+    ## Check if the dependencies are git-tracked
+    s <- sapply(alldeps, isgittracked)
+    nt <- names(s)[!s]
+    if (!is.null(nt))
+      {
+        cat('====  Files not tracked by GIT:\n')
+        cat(paste(nt, collapse='\n'))
+        cat('\n')
+      }
+    setwd(curdir)
+  }
