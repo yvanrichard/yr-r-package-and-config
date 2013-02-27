@@ -1634,7 +1634,7 @@ modifiedfiles <- function(fold='~/dragonfly', days=7, type='f', extra='-lgo')
     out <- out[!grepl('\\.git', out)]
   }
 
-isgittracked <- function(f)
+is.git.tracked <- function(f)
   {
     s <- suppressWarnings(system(sprintf('git ls-files %s', f), intern=T, ignore.stderr=T))
     if (!length(s))
@@ -1642,7 +1642,7 @@ isgittracked <- function(f)
   }
 
 ## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
-latexfiledeps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), only=c('/'))
+latex.file.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), only=c('/'))
   {
     alldeps <- NULL
     curdir <- getwd()
@@ -1692,7 +1692,7 @@ latexfiledeps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), only
       }
     cat('\n\n')
     ## Check if the dependencies are git-tracked
-    s <- sapply(alldeps, isgittracked)
+    s <- sapply(alldeps, is.git.tracked)
     nt <- names(s)[!s]
     if (!is.null(nt))
       {
