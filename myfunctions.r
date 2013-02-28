@@ -1642,13 +1642,13 @@ is.git.tracked <- function(f)
   }
 
 ## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
-latex.file.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), only=c('/'))
+latex.file.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), only=c('/'), recursive=T)
   {
     alldeps <- NULL
-    curdir <- getwd()
+    prevdir <- getwd()
     setwd(fold)
     ## File dependencies in Sweave files
-    rnw <- dir('.', '*.rnw$|*.Rnw$')
+    rnw <- dir('.', '*.rnw$|*.Rnw$', recursive=recursive)
     r1=rnw[1]
     for (r1 in rnw)
       {
@@ -1666,9 +1666,9 @@ latex.file.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), on
         cat('\n')
       }
     ## File dependencies in tex files
-    tex <- dir('.', '*.tex$')
+    tex <- dir('.', '*.tex$', recursive=recursive)
     tex <- tex[!(tex %in% 'aebr.tex')]
-    t=tex[1]
+    t=tex[12]
     for (t in tex)
       {
         cat('\n************  ', t, '  ************\n')
@@ -1677,17 +1677,22 @@ latex.file.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), on
         tmp <- readLines(t)
         if (any(grepl('begin\\{document\\}', tmp)))
           {
-            s <- system(sprintf('pdflatex -recorder %s', bt), intern=T)
-            fls <- readLines(sprintf('%s.fls', bt))
-            fls <- sapply(strsplit(fls, ' '), function(x) x[2])
-            fls <- sub('^\\./', '', fls)
-            fls <- unique(fls)
-            fls <- fls[!grepl(ignore, fls)]
-            fls <- fls[!grepl(sprintf('^%s', bt), fls)]
-            fls <- fls[!(fls %in% normalizePath(fold))]
-            alldeps <- c(alldeps, fls)
-            cat(paste(fls, collapse='\n'))
-            cat('\n')
+            
+            s <- system(sprintf('pdflatex -recorder -interaction=nonstopmode %s', bt), intern=T)
+            f <- sprintf('%s.fls', bt)
+            if (file.exists(f))
+              {
+                fls <- readLines(f)
+                fls <- sapply(strsplit(fls, ' '), function(x) x[2])
+                fls <- sub('^\\./', '', fls)
+                fls <- unique(fls)
+                fls <- fls[!grepl(ignore, fls)]
+                fls <- fls[!grepl(sprintf('^%s', bt), fls)]
+                fls <- fls[!(fls %in% normalizePath(fold))]
+                alldeps <- c(alldeps, fls)
+                cat(paste(fls, collapse='\n'))
+                cat('\n')
+              } else cat('fls file inexistent. There is a problem with this file...\n')
           } else cat('Not a master file. Skip...\n')
       }
     cat('\n\n')
@@ -1696,9 +1701,9 @@ latex.file.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), on
     nt <- names(s)[!s]
     if (!is.null(nt))
       {
-        cat('====  Files not tracked by GIT:\n')
+        cat('************====  Files not tracked by GIT:  ====************\n')
         cat(paste(nt, collapse='\n'))
         cat('\n')
       }
-    setwd(curdir)
+    setwd(prevdir)
   }
