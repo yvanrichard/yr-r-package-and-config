@@ -1359,6 +1359,7 @@ includemk <- function(Mk='vars.mk')
     mk <- readLines(Mk)
     mk <- mk[!grepl('^[[:blank:]]*#', mk)]
     mk <- mk[grep('=', mk)]
+    mk <- gsub('\t*', '', mk)
     r <- rapply(strsplit(mk, '='), trim, how='replace')
     rr <- list()
     for (i in 1:length(r))
