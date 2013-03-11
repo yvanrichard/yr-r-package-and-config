@@ -3,6 +3,9 @@
 ;; (my-color-theme)
 (add-to-list 'load-path
     "~/.emacs.d")
+(add-to-list 'load-path
+    "~/.emacs.d/icicles")
+
 
 (require 'package)
 (package-initialize)
@@ -28,6 +31,15 @@
 ;; colour highlighting
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
+
+;; yassnipped
+(require 'yasnippet)
+(yas--initialize)
+(yas/load-directory "~/.emacs.d/elpa/yasnippet-0.8.0/snippets")
+(require 'r-autoyas)
+(require 'icicles)
+(require 'ess-eldoc) ;to show function arguments while you are typing them
+
 
 ;;; ESS
 (setq ess-eval-visibly-p nil) ;otherwise C-c C-r (eval region) takes forever
@@ -159,16 +171,36 @@ Ignores CHAR at point."
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
-;; (add-to-list 'ispell-skip-region-alist '("^<<.*>>=" . "^@"))
-;; (defun flyspell-eligible ()
-;;   (let ((p (point)))
-;;     (save-excursion
-;;       (cond ((re-search-backward (ispell-begin-skip-region-regexp) nil t)
-;;              (ispell-skip-region (match-string-no-properties 0))
-;;              (< (point) p))
-;;             (t)))))
-;; (put 'latex-mode 'flyspell-mode-predicate 'flyspell-eligible)
-;; (put 'Rnw-mode 'flyspell-mode-predicate 'flyspell-eligible)
+(add-to-list 'ispell-skip-region-alist '("^<<.*>>=" . "^@"))
+;; (add-to-list 'ispell-skip-region-alist '("Sexpr{" . "}"))
+(defun flyspell-eligible ()
+  (let ((p (point)))
+    (save-excursion
+      (cond ((re-search-backward (ispell-begin-skip-region-regexp) nil t)
+             (ispell-skip-region (match-string-no-properties 0))
+             (< (point) p))
+            (t)))))
+(put 'latex-mode 'flyspell-mode-predicate 'flyspell-eligible)
+(put 'LaTeX-mode 'flyspell-mode-predicate 'flyspell-eligible)
+(put 'Rnw-mode 'flyspell-mode-predicate 'flyspell-eligible)
+
+(add-hook 'tex-mode-hook (function (lambda () (setq ispell-parser 'tex))))
+
+;; (defun flyspell-ignore-verbatim ()
+;;   "Function used for `flyspell-generic-check-word-predicate' to ignore {{{ }}} blocks."
+;;   (save-excursion
+;;     (widen)
+;;     (let ((p (point))
+;;           (count 0))
+;;       (not (or (and (re-search-backward "^<<" nil t)
+;;                     (> p (point))
+;;                     ;; If there is no closing }}} then assume we're still in it
+;;                     (or (not (re-search-forward "^@" nil t))
+;;                         (< p (point))))
+;;                (eq 1 (progn (while (re-search-backward "`" (line-beginning-position) t)
+;;                               (setq count (1+ count)))
+;;                             (- count (* 2 (/ count 2))))))))))
+;; (put 'latex-mode 'flyspell-mode-predicate 'flyspell-ignore-verbatim)
 
 
 (load-theme 'wombat)
@@ -186,3 +218,6 @@ Ignores CHAR at point."
 (desktop-save-mode 1)
 (desktop-read)
 ;; (require 'highlight-chars)
+
+;; set sorting column
+(setq Buffer-menu-sort-column 4)

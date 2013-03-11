@@ -1,0 +1,10 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("load"
+ (filename . "~/dragonfly/encounter-kaikoura/presentation/20130220-progress/presentation.rnw")
+ (front-context-string . "<<load>>==\nlibra")
+ (rear-context-string . "gin{document}\n\n\n")
+ (position . 2288))
+)
