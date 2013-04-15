@@ -1352,7 +1352,7 @@ killallr <- function(user='yvan', comps=c('jeremy','tieke','frank','taiko','leon
 
 
 ## Source makefile containing environment variables
-includemk <- function(Mk='vars.mk')
+includemk <- function(Mk='vars.mk', warn=T)
   {
     op <- options('useFancyQuotes')
     options('useFancyQuotes'=F)
@@ -1364,7 +1364,7 @@ includemk <- function(Mk='vars.mk')
     rr <- list()
     for (i in 1:length(r))
       rr[[r[[i]][1]]] <- r[[i]][2]
-    if (any(names(rr) %in% ls(envir=.GlobalEnv)))
+    if (warn & any(names(rr) %in% ls(envir=.GlobalEnv)))
       warning(sprintf('Variables %s overwritten while parsing makefile',
                       paste(names(rr)[names(rr) %in% ls(envir=.GlobalEnv)],
                             collapse=', ')))

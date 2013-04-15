@@ -36,11 +36,11 @@
 (setq font-lock-maximum-decoration t)
 
 ;; yassnipped
-(require 'yasnippet)
-(yas--initialize)
-(yas/load-directory "~/.emacs.d/elpa/yasnippet-0.8.0/snippets")
-(require 'r-autoyas)
-(require 'icicles)
+;; (require 'yasnippet)
+;; (yas--initialize)
+;; (yas/load-directory "~/.emacs.d/elpa/yasnippet-20130218.2229/snippets")
+;; (require 'r-autoyas)
+;; (require 'icicles)
 (require 'ess-eldoc) ;to show function arguments while you are typing them
 
 
@@ -234,35 +234,74 @@ Ignores CHAR at point."
 (global-set-key "\C-c\C-q" 'comint-interrupt-subjob-other)
 
 
-(require 'buffer-timer)
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-; Example list of titles and regexps to group by.  This
-(setq buffer-timer-regexp-master-list
-  '(
-    ("idle" . 
-     (("generic" .			  "^\\*idle\\*")
-      ("generic2" .			  "^\\*idle-2\\*")
-      ("minibuf" .                        "^ \\*Minibuf-.*")))
-    ("customizations" .                   "\\.emacs")
-    ("work" .
-     (("my R pkg" .                       "yr-r-package")
-      ("seabird counts" .
-       (("Main project" .                 "abundance")
-	("Web site" .                     "seabird-counts-website")))
-      ("SRA 2012" .
-       (("analysis" .                     "sra-2012/analysis")
-	("report" .                       "sra-2012/report")))
-      ("Encounter kaikoura" .
-       (("data" .                          "encounter-kaikoura/data")
-	("analysis" .                      "encounter-kaikoura/analysis")
-	("plots" .                         "encounter-kaikoura/plots")
-	("report" .                        "encounter-kaikoura/report")))
-      ("XNR Taiaroa" .
-       (("data" .                          "northern-royal-albatross-taiaroa/data")
-	("analysis" .                      "northern-royal-albatross-taiaroa/analysis")
-	("plots" .                         "northern-royal-albatross-taiaroa/plots")
-	("report" .                        "northern-royal-albatross-taiaroa/report")))
-      ("R terminal" .                     "^\\*R\\*$")
-      ("Dragonfly others" .               "/dragonfly/")))
-    )
-)
+
+(require 'ess-jags-d)
+(autoload 'ess-jags-mode "ess-jags-mode"
+   "Major mode for editing JAGS files" t)
+(add-to-list 'auto-mode-alist '("\\.bug\\'" . ess-jags-mode))
+
+;; (add-to-list 'load-path "~/.emacs.d/predictive/")
+;; (add-to-list 'load-path "~/.emacs.d/predictive/latex/")
+;; (require 'predictive)
+;; ;http://www.emacswiki.org/emacs/PredictiveMode
+;; (autoload 'predictive-mode "predictive" "predictive" t)
+;; (set-default 'predictive-auto-add-to-dict t)
+;; (setq predictive-main-dict 'rpg-dictionary
+;;       predictive-auto-learn t
+;;       predictive-add-to-dict-ask nil
+;;       predictive-use-auto-learn-cache nil
+;;       predictive-which-dict t)
+(require 'auto-complete)
+
+
+(setq max-lisp-eval-depth 10000)
+(require 'pabbrev)
+;; (require 'buffer-timer)
+
+(ido-mode t)
+(setq ido-enable-flex-matching t)
+
+(require 'uniquify) 
+(setq uniquify-buffer-name-style 'post-forward)
+(setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
+(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
+
+
+
+;; ; Example list of titles and regexps to group by.  This
+;; (setq buffer-timer-regexp-master-list
+;;   '(
+;;     ("idle" . 
+;;      (("generic" .			  "^\\*idle\\*")
+;;       ("generic2" .			  "^\\*idle-2\\*")
+;;       ("minibuf" .                        "^ \\*Minibuf-.*")))
+;;     ("customizations" .                   "\\.emacs")
+;;     ("work" .
+;;      (("my R pkg" .                       "yr-r-package")
+;;       ("seabird counts" .
+;;        (("Main project" .                 "abundance")
+;; 	("Web site" .                     "seabird-counts-website")))
+;;       ("SRA 2012" .
+;;        (("analysis" .                     "sra-2012/analysis")
+;; 	("report" .                       "sra-2012/report")))
+;;       ("Encounter kaikoura" .
+;;        (("data" .                          "encounter-kaikoura/data")
+;; 	("analysis" .                      "encounter-kaikoura/analysis")
+;; 	("plots" .                         "encounter-kaikoura/plots")
+;; 	("report" .                        "encounter-kaikoura/report")))
+;;       ("XNR Taiaroa" .
+;;        (("data" .                          "northern-royal-albatross-taiaroa/data")
+;; 	("analysis" .                      "northern-royal-albatross-taiaroa/analysis")
+;; 	("plots" .                         "northern-royal-albatross-taiaroa/plots")
+;; 	("report" .                        "northern-royal-albatross-taiaroa/report")))
+;;       ("R terminal" .                     "^\\*R\\*$")
+;;       ("Dragonfly others" .               "/dragonfly/")))
+;;     )
+;; )
+

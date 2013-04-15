@@ -2,7 +2,7 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Fri Mar  8 18:00:44 2013
+;; Created Wed Apr 10 18:47:59 2013
 ;; Desktop file format version 206
 ;; Emacs version 24.3.50.1
 
@@ -10,226 +10,61 @@
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/TAGS")
 (setq tags-table-list '("/home/yvan/dragonfly/sra-2012/analysis/model-re-10/TAGS"))
-(setq search-ring '("dat" "<" "var" "DATASUMMB" "time0" "date_trip0" "time0" "min(whiche(are" "date row " " Counts" "spl" "spov" "R " "rue" "rue_" "checkl"))
+(setq search-ring '("icic" "ido" "maxa" "age" ":" "s.adult.me" "snip" "auto-com" "includemk" "bug" "thegr	" "toteff" "mauid" "nztm." "eff.col" "eff"))
 (setq regexp-search-ring '("\\bx\\b" "\\bi\\b" "\\bdat\\b" "Sexpr"))
 (setq register-alist (list '(49 "StartPtID EndPtID CHOICE PATHL_CS1 PATHC_C" "      1     110      0   1185.10 1298.3028" "      1     158      0   1139.12 2815.9942" "      1     154      0   1199.01 1570.0761" "      1     111      0   1239.70 4219.3643" "      1     190      0   1276.74 2605.6907" "      1     184      0   1184.09 1185.5289" "      1     155      0   1342.63 2150.2238" "      1     195      0   1236.65 1995.6629" "      1     100      0   1292.39 2536.5828" "      1     146      0   1195.70 1841.2475" "      1     137      1   1235.40 3398.4356" "      2     199      0    357.56 1246.5593" "      2     113      0    440.84 1555.6848" "      2     185      0    403.65 1907.6799" "      2     124      0    386.34  567.3925" "      2     180      0    403.82  690.8650" "      2     158      0    386.40  419.2395" "      2     161      0    384.43  441.4436" "      2     171      0    416.92 1973.9331" "      2     166      0    375.43 1093.7749" "      2     102      0    378.98 1199.0466" "      2     110      1    415.39  726.6544" "      3     151      0   2982.21 3172.6570" "      3     110      0   2952.42 5150.5247" "      3     133      0   3134.16 3470.2058" "      3     163      0   3057.16 4725.3510" "      3     103      0   2937.28 3627.1676" "      3     156      0   3104.61 3908.7920" "      3     196      0   2952.59 3074.5779" "      3     149      0   3041.77 3946.9984" "      3     163      0   3114.03 3160.6140" "      3     113      0   2978.72 4216.6428" "      3     164      1   2863.11 4712.3871") (list 97 '(frame-configuration ("Unprintable entity" ((parent-id . 12631861) (explicit-name) (display . ":0") (visibility . t) (icon-name) (outer-window-id . "67109027") (window-id . "67109034") (top . 50) (left . 100) (buried-buffer-list "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity") (buffer-list "Unprintable entity" "Unprintable entity") (unsplittable) (minibuffer . "Unprintable entity") (modeline . t) (width . 210) (height . 50) (name . "emacs@robin.dragonfly.co.nz") (environment) (sticky) (cursor-color . "#656565") (background-mode . dark) (display-type . color) (horizontal-scroll-bars . t) (window-system . x) (alpha) (scroll-bar-width . 16) (cursor-type . box) (auto-lower) (auto-raise) (icon-type . t) (tool-bar-position . top) (fullscreen) (wait-for-wm . t) (title) (buffer-predicate) (tool-bar-lines . 1) (menu-bar-lines . 1) (scroll-bar-background . "grey75") (scroll-bar-foreground) (right-fringe . 8) (left-fringe . 8) (line-spacing) (screen-gamma) (border-color . "black") (mouse-color . "black") (background-color . "#242424") (foreground-color . "#f6f3e8") (vertical-scroll-bars . right) (internal-border-width . 0) (border-width . 0) (font-parameter) (font . "-unknown-Ubuntu Mono-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1") (font-backend xft x)) "Unprintable entity")) (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk))))
-(setq file-name-history '("~/dragonfly/encounter-kaikoura/makefile" "~/dragonfly/encounter-kaikoura/plots/model-pred-obs/" "~/dragonfly/encounter-kaikoura/plots/model-pred-obs/model-pred-obs.r" "~/dragonfly/encounter-kaikoura/publication/data/data-summary.r" "~/dragonfly/encounter-kaikoura/publication/makefile" "~/dragonfly/sra-2012/report/results-sra.rnw" "~/dragonfly/encounter-kaikoura/publication/tables/inla-trend/inla-trend.r" "~/dragonfly/yr-r-package-and-config/myfunctions.r" "~/dragonfly/encounter-kaikoura/plots/dom-sp-month/dom-sp-month.r" "~/dragonfly/encounter-kaikoura/data/trunc-data.r" "~/dragonfly/encounter-kaikoura/publication/tables/inla-trend/" "~/dragonfly/encounter-kaikoura/publication/tables/inla-trend/inla-trend.r" "~/dragonfly/encounter-kaikoura/data/data-summary-boots.r" "~/dragonfly/encounter-kaikoura/data/data-summary.r" "~/dragonfly/encounter-kaikoura/data/get-time-components.r" "~/dragonfly/encounter-kaikoura/data/more-grooming.r" "~/dragonfly/encounter-kaikoura/data/merge-csvs.r" "~/dragonfly/encounter-kaikoura/data/get-all-csvs.r" "~/dragonfly/encounter-kaikoura/makefile" "~/dragonfly/encounter-kaikoura/data/batch-convert.r" "~/dragonfly/encounter-kaikoura/data/clean-files.r" "~/dragonfly/encounter-kaikoura/makefile" "~/dragonfly/encounter-kaikoura/publication/makefile" "~/dragonfly/encounter-kaikoura/plots/dom-sp-month/" "~/dragonfly/encounter-kaikoura/plots/dom-sp-month/dom-sp-month.r" "~/dragonfly/encounter-kaikoura/plots/nb-birds-month/" "~/dragonfly/encounter-kaikoura/plots/nb-birds-month/boot.r" "~/dragonfly/encounter-kaikoura/plots/nb-birds-season/" "~/dragonfly/encounter-kaikoura/plots/nb-birds-season/boot.r" "~/dragonfly/encounter-kaikoura/publication/makefile"))
+(setq file-name-history '("/home/yvan/dragonfly/sra-2012/report/makefile" "/home/yvan/dragonfly/maui-may-2012/report/makefile" "/home/yvan/dragonfly/sra-2012/report/graph-makefile.dot" "/home/yvan/dragonfly/maui-may-2012/report/makefile" "/home/yvan/.emacs" "~/dragonfly/maui-may-2012/appendix/maps/make-maui-distribution-iwc.r" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/model.bug" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/jags.cmd" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/prepare.r" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/diagnose.r" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/makefile" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/prepare.r" "~/dragonfly/maui-may-2012/appendix/maps/seismic-lines-buffer.r" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/model.bug" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/prepare.r" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/makefile" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/makefile" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/makefile" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/prepare.r" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/vars1.mk" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/model.bug" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/notes.md" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/model.bug" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/notes.md" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/model.bug" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-7/diagnose.r" "~/dragonfly/northern-royal-albatross-taiaroa/functions.r" "~/dragonfly/yr-r-package-and-config/myfunctions.r" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-6/diagnose.r" "~/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-6/prepare.r"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/makefile"
+  "/home/yvan/dragonfly/maui-may-2012/report/makefile"
   "makefile"
   'makefile-gmake-mode
-  '(yas-minor-mode)
-  5051
-  '(4976 nil)
   nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . utf-8-emacs-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/plots/model-pred-obs/model-pred-obs.r"
-  "model-pred-obs.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  1
-  '(6214 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (overwrite-mode)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/diagnose-dst-season-yr.r"
-  "diagnose-dst-season-yr.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  1
-  '(5765 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/diagnose-dst-season-yr-coeffs.r"
-  "diagnose-dst-season-yr-coeffs.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  3272
-  '(5013 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/results.rnw"
-  "results.rnw"
-  'latex-mode
-  '(noweb-font-lock-mode noweb-mode auto-fill-mode yas-minor-mode flyspell-mode reftex-mode)
-  6038
-  '(6038 t)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/sra-2012/report/results-sra.rnw"
-  "results-sra.rnw"
-  'latex-mode
-  '(auto-fill-mode yas-minor-mode flyspell-mode reftex-mode)
-  6960
-  '(6956 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search) (TeX-master . "../report.tex")))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/data/data-summary.r"
-  "data-summary.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  4045
-  '(2399 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/makefile"
-  "makefile<8>"
-  'makefile-gmake-mode
-  '(yas-minor-mode)
-  829
-  '(600 nil)
+  380
+  '(380 nil)
   nil
   nil
   '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/tables/inla-trend/inla-trend.r"
-  "inla-trend.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  691
-  '(495 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/model-dst-season-yr.r"
-  "model-dst-season-yr.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  3201
-  '(2805 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/yr-r-package-and-config/myfunctions.r"
-  "myfunctions.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  44010
-  '(42434 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/vars.mk"
-  "vars.mk"
+  "/home/yvan/dragonfly/sra-2012/report/makefile"
+  "makefile"
   'makefile-gmake-mode
-  '(yas-minor-mode)
-  1439
-  '(2026 nil)
+  nil
+  1
+  '(nil nil)
   nil
   nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix) (case-fold-search . t)))
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/trunc-data.r"
-  "trunc-data.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  571
-  '(460 nil)
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/makefile"
+  "makefile"
+  'makefile-gmake-mode
+  nil
+  1
+  '(nil nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/plots/dom-sp-month/dom-sp-month.r"
-  "dom-sp-month.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  107
-  '(116 nil)
+  "/home/yvan/.emacs"
+  ".emacs"
+  'emacs-lisp-mode
+  nil
+  9028
+  '(1 nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (overwrite-mode)))
+  '((buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/data-summary-boots.r"
-  "data-summary-boots.r"
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/functions.r"
+  "functions.r"
   'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  1105
-  '(251 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/data-summary.r"
-  "data-summary.r<2>"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  908
-  '(226 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/more-grooming.r"
-  "more-grooming.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  1821
-  '(1820 t)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (overwrite-mode)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/get-time-components.r"
-  "get-time-components.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  4270
-  '(4980 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/merge-csvs.r"
-  "merge-csvs.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  42477
-  '(36537 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/get-all-csvs.r"
-  "get-all-csvs.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
+  '(eldoc-mode)
   1
   '(nil nil)
   nil
@@ -237,34 +72,111 @@
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/clean-files.r"
-  "clean-files.r"
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/prepare.r"
+  "prepare.r"
   'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  2710
-  '(2563 nil)
+  '(eldoc-mode)
+  921
+  '(2215 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/batch-convert.r"
-  "batch-convert.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  531
-  '(361 nil)
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/jags.cmd"
+  "jags.cmd"
+  'fundamental-mode
+  nil
+  425
+  '(478 nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+  '((buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/get-env-pp.r"
-  "get-env-pp.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  227
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/model.bug"
+  "model.bug"
+  'fundamental-mode
+  nil
+  1
   '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/maui-may-2012/appendix/maps/make-maui-distribution-iwc.r"
+  "make-maui-distribution-iwc.r"
+  'ess-mode
+  '(eldoc-mode)
+  1633
+  '(1633 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/diagnose.r"
+  "diagnose.r"
+  'ess-mode
+  '(eldoc-mode)
+  3324
+  '(3516 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/maui-may-2012/appendix/maps/seismic-lines-buffer.r"
+  "seismic-lines-buffer.r"
+  'ess-mode
+  '(eldoc-mode)
+  2053
+  '(1869 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/compare-models.r"
+  "compare-models.r"
+  'ess-mode
+  '(eldoc-mode yas-minor-mode auto-complete-mode)
+  932
+  '(15 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/vars1.mk"
+  "vars1.mk"
+  'makefile-gmake-mode
+  nil
+  20
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/analysis/jags/model-9/notes.md"
+  "notes.md"
+  'fundamental-mode
+  '(auto-fill-mode)
+  221
+  '(nil nil)
+  nil
+  nil
+  '((tab-width . 4) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/yr-r-package-and-config/myfunctions.r"
+  "myfunctions.r"
+  'ess-mode
+  '(eldoc-mode yas-minor-mode)
+  44026
+  '(42434 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
@@ -274,372 +186,75 @@
   "mfish.bib"
   'bibtex-mode
   '(yas-minor-mode)
-  119803
-  '(132476 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix) (case-fold-search . t) (TeX-master . t)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/plots/nb-birds-month/boot.r"
-  "boot.r<2>"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  1040
-  '(1150 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/plots/div-seasonality/boot.r"
-  "boot.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  1
-  '(2766 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/methods.rnw"
-  "methods.rnw"
-  'latex-mode
-  '(auto-fill-mode yas-minor-mode flyspell-mode reftex-mode)
-  4372
-  '(4372 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search) (TeX-master . "report")))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/report.tex"
-  "report.tex"
-  'latex-mode
-  '(auto-fill-mode yas-minor-mode flyspell-mode reftex-mode)
-  2371
-  '(2308 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search) (TeX-master . t)))
-
-(desktop-create-buffer 206
-  "/home/yvan/.Rprofile"
-  ".Rprofile"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  1367
-  '(1280 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/season-div-boots.r"
-  "season-div-boots.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  784
-  '(178 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/plots/seasonality/season.r"
-  "season.r<2>"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  17005
-  '(17050 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/aggregate.r"
-  "aggregate.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  780
-  '(326 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/introduction.rnw"
-  "introduction.rnw"
-  'latex-mode
-  '(noweb-font-lock-mode noweb-mode auto-fill-mode yas-minor-mode flyspell-mode reftex-mode)
-  2240
-  '(2236 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (case-fold-search) (TeX-master . "report")))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/bib.bib"
-  "bib.bib"
-  'bibtex-mode
-  '(yas-minor-mode)
-  9763
-  '(9366 nil)
+  121015
+  '(120990 nil)
   nil
   nil
   '((buffer-file-coding-system . utf-8-unix) (TeX-master . t)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/calc-niwa-anomalies.r"
-  "calc-niwa-anomalies.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  4280
-  '(4583 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/get-env-ppan.r"
-  "get-env-ppan.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  1405
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/get-env-chla.r"
-  "get-env-chla.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  3251
-  '(3220 t)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/get-env-enso.r"
-  "get-env-enso.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  54
-  '(9 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/.gitignore"
-  ".gitignore<2>"
-  'fundamental-mode
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/vars.mk"
+  "vars.mk"
+  'makefile-gmake-mode
   '(yas-minor-mode)
-  149
-  '(1 nil)
+  575
+  '(512 nil)
   nil
   nil
-  '((buffer-file-coding-system . undecided-unix)))
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/acknowledgements.tex"
-  "acknowledgements.tex"
-  'latex-mode
-  '(auto-fill-mode yas-minor-mode flyspell-mode reftex-mode)
-  121
-  '(48 nil)
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/data/complete-and-summarise-sightings.r"
+  "complete-and-summarise-sightings.r"
+  'ess-mode
+  '(eldoc-mode yas-minor-mode)
+  420
+  '(3214 nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (TeX-master . "report")))
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/discussion.rnw"
-  "discussion.rnw"
-  'latex-mode
-  '(noweb-font-lock-mode noweb-mode auto-fill-mode yas-minor-mode flyspell-mode reftex-mode)
-  344
-  '(1 nil)
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/data/history-from-3-sheets.r"
+  "history-from-3-sheets.r"
+  'ess-mode
+  '(eldoc-mode yas-minor-mode)
+  901
+  '(901 t)
   nil
   nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (case-fold-search) (TeX-master . "report")))
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/buffertimer-20130304.txt"
-  "buffertimer-20130304.txt"
-  'text-mode
-  '(auto-fill-mode yas-minor-mode)
-  4124
-  '(4124 nil)
+  "/home/yvan/dragonfly/northern-royal-albatross-taiaroa/data/create-inp-files-for-mark.r"
+  "create-inp-files-for-mark.r"
+  'ess-mode
+  '(eldoc-mode yas-minor-mode)
+  1453
+  '(101 nil)
   nil
   nil
-  '((buffer-file-coding-system . utf-8-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/.emacs"
-  ".emacs"
-  'emacs-lisp-mode
-  '(yas-minor-mode)
-  9347
-  '(7890 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix)))
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
   "/home/yvan/.buffer-timer-log"
   ".buffer-timer-log"
   'fundamental-mode
   '(yas-minor-mode)
-  161238
+  390901
   '(nil nil)
   nil
   nil
   '((buffer-file-coding-system . utf-8-emacs-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/functions.r"
-  "functions.r"
+  "/home/yvan/dragonfly/mytests/logit.r"
+  "logit.r"
   'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  277
-  '(277 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/plots/trend-time/trend.r"
-  "trend.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  267
-  '(303 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  nil
-  "data"
-  'dired-mode
-  '(yas-minor-mode)
-  609
-  '(nil nil)
-  t
-  '("/home/yvan/dragonfly/northern-royal-albatross-taiaroa/data/")
-  nil)
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/get-env-sst-poes-an.r"
-  "get-env-sst-poes-an.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  2478
-  '(3579 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/get-env-ssh.r"
-  "get-env-ssh.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  14510
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/merge-env-data.r"
-  "merge-env-data.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  3871
-  '(3709 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/get-env-niwa.r"
-  "get-env-niwa.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  5655
-  '(1774 nil)
+  '(eldoc-mode yas-minor-mode)
+  471
+  '(313 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/get-env-means.r"
-  "get-env-means.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  207
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/get-env-temp.r"
-  "get-env-temp.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  860
-  '(102 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/mytests/inla.r"
-  "inla.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  1
-  '(4479 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/data/hod-effect.r"
-  "hod-effect.r"
-  'ess-mode
-  '(yas-minor-mode eldoc-mode ess-roxy-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/.buffer-timer.el"
-  ".buffer-timer.el"
-  'emacs-lisp-mode
-  '(yas-minor-mode)
-  5833
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-emacs-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/.buffer-timer"
-  ".buffer-timer"
-  'fundamental-mode
-  '(yas-minor-mode)
-  5027
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-emacs-unix)))
 
