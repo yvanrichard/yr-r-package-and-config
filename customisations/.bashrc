@@ -68,7 +68,7 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='ls -l --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -102,4 +102,7 @@ fi
 export LESS="-R"
 export EDITOR=vim
 export VISUAL=vim
+
+# define color to additional file types
+export LS_COLORS=$LS_COLORS:"di=0;94;40":"*.r=00;93":"*tex=0;93":"*.pdf=00;32":"*makefile=00;91":"*~=0;90":"*csv=0;94":"*rdata=0;94":"*.xls=00;32":"*dbf=0;94":"*.rnw=0;93":"*.py=0;93":"*.png=00;32":"*.jpg=00;32":"*.mp4=00;32":"*.flv=00;32":"*.tif=00;32":"*.tiff=00;32"
 

@@ -79,7 +79,7 @@
 	     (local-set-key [C-up] 'comint-previous-input)
 	     (local-set-key [C-down] 'comint-next-input)))
 ;; (require 'ess-site)
-(load "~/.emacs.d/ess-12.09-2/lisp/ess-site")
+(load "~/.emacs.d/elpa/ess-20130521.1613/lisp/ess-site") ;;ess-12.09-2/lisp/ess-site")
 
 (ess-toggle-underscore nil)
 (setq ess-S-assign-key [?\C-=])
@@ -121,6 +121,15 @@ Ignores CHAR at point."
   )
 (global-set-key "\C-c\C-w" 'kill-other-window)
 
+(defun interupt-job-other-window ()
+  "Interupt job in other pane."
+  (interactive)
+  (other-window 1)
+  (comint-interrupt-subjob)
+  (other-window -1)
+  )
+(global-set-key "\C-c\C-a" 'interupt-job-other-window)
+
 (global-set-key [C-tab] 'comint-dynamic-complete)
 
 
@@ -130,18 +139,33 @@ Ignores CHAR at point."
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(flyspell-duplicate ((t (:foreground "Gold3" :underline nil :weight bold))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "darksalmon"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "LightGoldenrod4"))))
+ '(font-lock-string-face ((t (:foreground "DarkSeaGreen2"))))
+ '(font-lock-builtin-face ((t (:foreground "PeachPuff"))))
  '(font-latex-sectioning-2-face ((t (:inherit font-latex-sectioning-3-face :height 1.05))))
  '(font-latex-sectioning-3-face ((t (:inherit font-latex-sectioning-4-face :weight extra-bold :height 1.05))))
  '(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-5-face :weight normal))))
  '(font-latex-sectioning-5-face ((t (:inherit variable-pitch :foreground "yellow" :weight bold :foundry "sans" :family "mono"))))
- '(font-lock-type-face ((t (:foreground "navajowhite")))))
+ '(font-lock-type-face ((t (:foreground "CadetBlue1")))))
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t))
-
+ '(inhibit-startup-screen t)
+ '(ess-R-font-lock-keywords
+   '((ess-R-fl-keyword:modifiers . t)
+     (ess-R-fl-keyword:fun-defs . t)
+     (ess-R-fl-keyword:keywords . t)
+     (ess-R-fl-keyword:assign-ops . t)
+     (ess-R-fl-keyword:constants . t)
+     (ess-fl-keyword:fun-calls . t)
+     (ess-fl-keyword:numbers . t)
+     (ess-fl-keyword:operators . t)
+     (ess-fl-keyword:delimiters . t)
+     (ess-fl-keyword:= . t)
+     (ess-R-fl-keyword:F&T . t))))
 
 ;; (add-to-list 'auto-mode-alist '("\\.Rnw\\'" . Rnw-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.rnw\\'" . Rnw-mode))
@@ -161,7 +185,7 @@ Ignores CHAR at point."
 ;; (setq TeX-file-extensions
 ;;       '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
 
-(setq ispell-program-name "aspell") ; could be ispell as well, depending on your preferences
+;; (setq ispell-program-name "ispell") ; could be ispell as well, depending on your preferences
 (setq ispell-dictionary "english") ; this can obviously be set to any language your spell-checking program supports
 
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
@@ -179,6 +203,7 @@ Ignores CHAR at point."
 (put 'latex-mode 'flyspell-mode-predicate 'flyspell-eligible)
 (put 'LaTeX-mode 'flyspell-mode-predicate 'flyspell-eligible)
 (put 'Rnw-mode 'flyspell-mode-predicate 'flyspell-eligible)
+(put 'ess-mode 'flyspell-mode-predicate 'flyspell-eligible)
 
 (add-hook 'tex-mode-hook (function (lambda () (setq ispell-parser 'tex))))
 
@@ -204,8 +229,8 @@ Ignores CHAR at point."
 
 (global-set-key "\C-z" nil)  ;; prevent emacs from being minimized with C-Z
 
-(global-set-key [C-prior] 'previous-buffer)                                  
-(global-set-key [C-next] 'next-buffer)                                 
+(global-set-key (kbd "C-<") 'previous-buffer)                                  
+(global-set-key (kbd "C->") 'next-buffer)                                 
 (global-set-key "\C-a" 'back-to-indentation)
 
 ;; use autofill on text modes
@@ -261,6 +286,7 @@ Ignores CHAR at point."
 
 
 (setq max-lisp-eval-depth 10000)
+
 (require 'pabbrev)
 ;; (require 'buffer-timer)
 
@@ -272,6 +298,126 @@ Ignores CHAR at point."
 (setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
 
+
+;; Helper functions to find non-ascii characters
+(defun find-first-non-ascii-char ()
+  "Find the first non-ascii character from point onwards."
+  (interactive)
+  (let (point)
+    (save-excursion
+      (setq point
+            (catch 'non-ascii
+              (while (not (eobp))
+                (or (eq (char-charset (following-char))
+                        'ascii)
+                    (throw 'non-ascii (point)))
+                (forward-char 1)))))
+    (if point
+        (goto-char point)
+        (message "No non-ascii characters."))))
+
+(defun find-next-unsafe-char (&optional coding-system)
+  "Find the next character in the buffer that cannot be encoded by
+coding-system. If coding-system is unspecified, default to the coding
+system that would be used to save this buffer. With prefix argument,
+prompt the user for a coding system."
+  (interactive "Zcoding-system: ")
+  (if (stringp coding-system) (setq coding-system (intern coding-system)))
+  (if coding-system nil
+    (setq coding-system
+          (or save-buffer-coding-system buffer-file-coding-system)))
+  (let ((found nil) (char nil) (csets nil) (safe nil))
+    (setq safe (coding-system-get coding-system 'safe-chars))
+    ;; some systems merely specify the charsets as ones they can encode:
+    (setq csets (coding-system-get coding-system 'safe-charsets))
+    (save-excursion
+      ;;(message "zoom to <")
+      (let ((end  (point-max))
+            (here (point    ))
+            (char  nil))
+        (while (and (< here end) (not found))
+          (setq char (char-after here))
+          (if (or (eq safe t)
+                  (< char ?\177)
+                  (and safe  (aref safe char))
+                  (and csets (memq (char-charset char) csets)))
+              nil ;; safe char, noop
+            (setq found (cons here char)))
+          (setq here (1+ here))) ))
+    (and found (goto-char (1+ (car found))))
+    found))
+
+(defun occur-non-ascii ()
+  "Find any non-ascii characters in the current buffer."
+  (interactive)
+  (occur "[^[:ascii:]]"))
+
+
+(setq ibuffer-saved-filter-groups
+      '(("home"
+	 ("Kaikoura" (filename . "kaikoura"))
+	 ("MMRA" (filename . "mmra-2013"))
+	 ("Mammals 2013" (filename . "mammals-may"))
+	 ("Northern royals" (filename . "northern-royal"))
+	 ("emacs-config" (or (filename . ".emacs.d")
+			     (filename . "emacs-config")
+			     (filename . ".emacs"))))))
+(add-hook 'ibuffer-mode-hook 
+	  '(lambda ()
+	     (ibuffer-switch-to-saved-filter-groups "home")))
+(setq ibuffer-show-empty-filter-groups nil)
+(add-hook 'ibuffer-mode-hook 
+	  '(lambda ()
+	     (ibuffer-auto-mode 1)
+	     (ibuffer-switch-to-saved-filter-groups "home")))
+
+
+
+(setq buffer-menu-buffer-font-lock-keywords 
+      '(("^....[*]Man .*Man.*" . font-lock-variable-name-face) ;Man page 
+	(".*Dired.*" . font-lock-comment-face) ; Dired 
+	("^....[*]shell.*" . font-lock-preprocessor-face) ; shell buff 
+	(".*[*]scratch[*].*" . font-lock-function-name-face) ; scratch buffer 
+	("^....[*].*" . font-lock-string-face) ; "*" named buffers 
+	("^..[*].*" . font-lock-constant-face) ; Modified 
+	("^.[%].*" . font-lock-keyword-face))) ; Read only
+
+(defun buffer-menu-custom-font-lock  ()
+  (let ((font-lock-unfontify-region-function
+	 (lambda (start end)
+	   (remove-text-properties start end '(font-lock-face nil)))))
+    (font-lock-unfontify-buffer)
+    (set (make-local-variable 'font-lock-defaults)
+	 '(buffer-menu-buffer-font-lock-keywords t))
+    (font-lock-fontify-buffer)))
+
+(add-hook 'ibuffer-menu-mode-hook 'buffer-menu-custom-font-lock)
+
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
+
+;; Highlight region between parentheses
+(require 'paren)
+(set-face-background 'show-paren-match-face "#696969")
+(set-face-foreground 'show-paren-match-face "#def")
+(set-face-attribute 'show-paren-match-face nil :weight 'extra-bold)
+(setq show-paren-delay 0)
+(show-paren-mode 1)
+
+(require 'highlight-indentation)
+(add-hook 'ess-mode-hook 'highlight-indentation-mode) 
+(add-hook 'lisp-mode-hook 'highlight-indentation-mode)
+
+(defun aj-toggle-fold () 
+  "Toggle fold all lines larger than indentation on current line" 
+  (interactive) 
+  (let ((col 1)) 
+    (save-excursion 
+      (back-to-indentation) 
+      (setq col (+ 1 (current-column))) 
+      (set-selective-display 
+       (if selective-display nil (or col 1))))))
+(global-set-key (kbd "M-C-i") 'aj-toggle-fold)
 
 
 ;; ; Example list of titles and regexps to group by.  This

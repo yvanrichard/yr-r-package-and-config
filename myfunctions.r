@@ -1486,15 +1486,16 @@ as.mdtable <- function(df, col.names=colnames(df), row.names=rownames(df), signi
   }
 
 
-insert.column <- function(df, pos, ...)
-  {
-    if (pos <= 1)
-      df <- cbind(..., df) else
-    if (pos >= ncol(df))
-      df <- cbind(df, ...) else
-    df <- cbind(df[,1:(pos-1),drop=F], ..., df[,pos:ncol(df), drop=F])
+insert.column <- function (df, pos, stringsAsFactors=F, ...) 
+{
+    if (pos <= 1) 
+        df <- cbind(..., df, stringsAsFactors=stringsAsFactors)
+    else if (pos >= ncol(df)) 
+        df <- cbind(df, stringsAsFactors=stringsAsFactors, ...)
+    else df <- cbind(df[, 1:(pos - 1), drop = F], ..., df[, pos:ncol(df), 
+        drop = F], stringsAsFactors=stringsAsFactors)
     return(df)
-  }
+}
 
 
 ## Indicates changes in value (used in seqaxis())

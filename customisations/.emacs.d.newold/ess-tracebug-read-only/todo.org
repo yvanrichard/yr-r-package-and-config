@@ -1,0 +1,22 @@
+* DONE conditional breakpoints
+  CLOSED: [2011-02-10 Thu 16:50]
+* DONE ess-show-traceback should update the input-ring
+  CLOSED: [2011-02-13 Sun 22:36]
+* DONE watch window
+  CLOSED: [2011-02-10 Thu 16:50]
+* TODO make ess-eval-region insert the source
+* DONE debug/undebug at point
+  CLOSED: [2011-02-10 Thu 16:50]
+* TODO persistent breakpoints (i.e. activate the display on file load)
+* DONE Make go to last input functionality a ring
+  CLOSED: [2010-11-11 Thu 13:54]
+* TODO popup the R buffer on  _errors_ and/or on _debug at_
+* TODO make ess-eval-region2 and remove advising
+* DONE make runoning prompt and remove useless Finished evaluation message as
+  CLOSED: [2011-07-21 Thu 17:31]
+  :LOGBOOK:
+  - State "DONE"       from "TODO"       [2011-07-21 Thu 17:31]
+  :END:
+  suggested here https://stat.ethz.ch/pipermail/ess-help/2011-May/006893.html
+
+* TODO make a lazy installer as here: https://github.com/dimitri/el-get/  :)

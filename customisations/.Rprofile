@@ -16,13 +16,18 @@
 #source('/home/yvan/dragonfly/mytests/myfunctions.r')
 #}
 #
-.First <- function() cat(as.character(Sys.time()),' -- R session started.\n\n',sep='')
+.First <- function() {
+  cat(as.character(Sys.time()),' -- R session started.\n\n',sep='')
+  MarkViewer <- "gvim"
+}
 .Last <- function()  {
   w <- warnings()
   if (length(w))
     print(w)
   cat('\n',as.character(Sys.time()),' -- R session finished.\n\n',sep='')
 }
+
+"%nin%" <- function(x, y) return(!(x %in% y))
 
 # ## Example of Rprofile.site
 # local({
@@ -36,7 +41,13 @@ local({
 old <- getOption("defaultPackages")
 r <- getOption("repos")
 r["CRAN"] <- "http://cran.stat.auckland.ac.nz"
-options(defaultPackages = c(old, "yrpkg"), repos = r, Ncpus=5, warn=1, warnPartialMatchDollar=T)
+options(defaultPackages = c(old, "yrpkg"),
+        repos = r,
+        Ncpus=5,
+        warn=1,
+        warnPartialMatchDollar=T,
+        scipen=1,
+        error=NULL)
 })
 
 
