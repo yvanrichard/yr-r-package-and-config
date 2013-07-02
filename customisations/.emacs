@@ -1,13 +1,13 @@
-;; (require 'color-theme)
-;; (load-file "~/.emacs.d/my-color-theme.el")
-;; (my-color-theme)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Load
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (add-to-list 'load-path
     "~/.emacs.d")
 (add-to-list 'load-path
     "~/.emacs.d/icicles")
 (add-to-list 'load-path
     "~/.emacs.d/elisp-buffer-timer")
-
 
 (require 'package)
 (package-initialize)
@@ -17,9 +17,6 @@
    ("melpa" . "http://melpa.milkbox.net/packages/")
    ("marmalade" . "http://marmalade-repo.org/packages/")))
 
-;; key to switch between windows
-(global-set-key (kbd "s-`") 'other-window)
-
 ;; Window position
 (set-face-attribute 'default (selected-frame) :height 110)
 (add-to-list 'default-frame-alist '(width . 210))
@@ -27,67 +24,13 @@
 (add-to-list 'default-frame-alist '(left . 100))
 (add-to-list 'default-frame-alist '(top . 50))
 
-;; highlight brackets
-(require 'paren)
-(show-paren-mode 1)
-
-;; colour highlighting
-(global-font-lock-mode t)
-(setq font-lock-maximum-decoration t)
-
-;; yassnipped
-;; (require 'yasnippet)
-;; (yas--initialize)
-;; (yas/load-directory "~/.emacs.d/elpa/yasnippet-20130218.2229/snippets")
-;; (require 'r-autoyas)
-;; (require 'icicles)
-(require 'ess-eldoc) ;to show function arguments while you are typing them
 
 
-;;; ESS
-(setq ess-eval-visibly-p nil) ;otherwise C-c C-r (eval region) takes forever
-(setq ess-ask-for-ess-directory nil) ;otherwise you are prompted each time you start
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Global
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq ess-ask-for-ess-directory nil)
-(setq ess-local-process-name "R")
-(setq ansi-color-for-comint-mode 'filter)
-(setq comint-scroll-to-bottom-on-input t)
-(setq comint-scroll-to-bottom-on-output t)
-(setq comint-move-point-for-output t)
-(defun my-ess-start-R ()
-  (interactive)
-  (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
-      (progn
-	(delete-other-windows)
-	(setq w1 (selected-window))
-	(setq w1name (buffer-name))
-	(setq w2 (split-window w1 nil t))
-	(R)
-	(set-window-buffer w2 "*R*")
-	(set-window-buffer w1 w1name))))
-(defun my-ess-eval ()
-  (interactive)
-  (my-ess-start-R)
-  (if (and transient-mark-mode mark-active)
-      (call-interactively 'ess-eval-region)
-    (call-interactively 'ess-eval-line-and-step)))
-(add-hook 'ess-mode-hook
-	  '(lambda()
-	     (local-set-key [(shift return)] 'my-ess-eval)))
-(add-hook 'inferior-ess-mode-hook
-	  '(lambda()
-	     (local-set-key [C-up] 'comint-previous-input)
-	     (local-set-key [C-down] 'comint-next-input)))
-;; (require 'ess-site)
-(load "~/.emacs.d/elpa/ess-20130521.1613/lisp/ess-site") ;;ess-12.09-2/lisp/ess-site")
-
-(ess-toggle-underscore nil)
-(setq ess-S-assign-key [?\C-=])
-(ess-toggle-S-assign-key t)
-;; (ess-auto-newline t)
-
-
-
+(global-set-key [C-tab] 'comint-dynamic-complete)
 
 (defun zap-up-to-char (arg char)
   "Kill up to, but not including ARGth occurrence of CHAR.
@@ -105,13 +48,6 @@ Ignores CHAR at point."
 		   (point)))))
 (global-set-key "\M-Z" 'zap-up-to-char)
 
-
-;; rebind to use buffer-menu instead of list-buffers 
-;; to keep everything in same buffer
-(global-set-key "\C-x\C-b" 'ibuffer)
-(setq ibuffer-default-sorting-mode 'filename/process)
-
-
 (defun kill-other-window ()
   "Kill the buffer in the other pane."
   (interactive)
@@ -121,17 +57,54 @@ Ignores CHAR at point."
   )
 (global-set-key "\C-c\C-w" 'kill-other-window)
 
-(defun interupt-job-other-window ()
-  "Interupt job in other pane."
-  (interactive)
-  (other-window 1)
-  (comint-interrupt-subjob)
-  (other-window -1)
-  )
-(global-set-key "\C-c\C-a" 'interupt-job-other-window)
+;; key to switch between windows
+(global-set-key (kbd "s-`") 'other-window)
 
-(global-set-key [C-tab] 'comint-dynamic-complete)
+;; highlight brackets
+(require 'paren)
+(show-paren-mode 1)
 
+;; colour highlighting
+(global-font-lock-mode t)
+(setq font-lock-maximum-decoration t)
+
+(global-set-key "\C-z" nil)  ;; prevent emacs from being minimized with C-Z
+
+(global-set-key (kbd "C-<") 'previous-buffer)                                  
+(global-set-key (kbd "C->") 'next-buffer)                                 
+(global-set-key "\C-a" 'back-to-indentation)
+
+;; use autofill on text modes
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;; (require 'save-visited-files)
+;; (turn-on-save-visited-files-mode)
+
+;; (add-to-list 'load-path "~/.emacs.d/predictive/")
+;; (add-to-list 'load-path "~/.emacs.d/predictive/latex/")
+;; (require 'predictive)
+;; ;http://www.emacswiki.org/emacs/PredictiveMode
+;; (autoload 'predictive-mode "predictive" "predictive" t)
+;; (set-default 'predictive-auto-add-to-dict t)
+;; (setq predictive-main-dict 'rpg-dictionary
+;;       predictive-auto-learn t
+;;       predictive-add-to-dict-ask nil
+;;       predictive-use-auto-learn-cache nil
+;;       predictive-which-dict t)
+(require 'auto-complete)
+
+(setq max-lisp-eval-depth 10000)
+
+(require 'pabbrev)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Colours
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load-theme 'wombat)
+;; (load-theme 'tango-dark)
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -147,12 +120,9 @@ Ignores CHAR at point."
  '(font-latex-sectioning-3-face ((t (:inherit font-latex-sectioning-4-face :weight extra-bold :height 1.05))))
  '(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-5-face :weight normal))))
  '(font-latex-sectioning-5-face ((t (:inherit variable-pitch :foreground "yellow" :weight bold :foundry "sans" :family "mono"))))
- '(font-lock-type-face ((t (:foreground "CadetBlue1")))))
+ '(font-lock-type-face ((t (:foreground "CadetBlue1"))))
+ '(org-level-4 ((t (:foreground "khaki1" :inherit (outline-4))))))
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
  '(ess-R-font-lock-keywords
    '((ess-R-fl-keyword:modifiers . t)
@@ -170,6 +140,12 @@ Ignores CHAR at point."
 ;; (add-to-list 'auto-mode-alist '("\\.Rnw\\'" . Rnw-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.rnw\\'" . Rnw-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.Snw\\'" . Rnw-mode))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Latex, Sweave, etc.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; use reftex
   ; with AUCTeX LaTeX mode
@@ -224,40 +200,20 @@ Ignores CHAR at point."
 ;; (put 'latex-mode 'flyspell-mode-predicate 'flyspell-ignore-verbatim)
 
 
-(load-theme 'wombat)
-;; (load-theme 'tango-dark)
 
-(global-set-key "\C-z" nil)  ;; prevent emacs from being minimized with C-Z
-
-(global-set-key (kbd "C-<") 'previous-buffer)                                  
-(global-set-key (kbd "C->") 'next-buffer)                                 
-(global-set-key "\C-a" 'back-to-indentation)
-
-;; use autofill on text modes
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-
-;; (require 'save-visited-files)
-;; (turn-on-save-visited-files-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Desktop
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (require 'desktop)
 (desktop-save-mode 1)
 (desktop-read)
-;; (require 'highlight-chars)
-
-;; set sorting column
-(setq Buffer-menu-sort-column 4)
 
 
 
-(defun comint-interrupt-subjob-other ()
-  "Interrupt process in the other pane."
-  (interactive)
-  (other-window 1)
-  (comint-interrupt-subjob)
-  (other-window -1)
-  )
-(global-set-key "\C-c\C-q" 'comint-interrupt-subjob-other)
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    markdown
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
@@ -266,38 +222,30 @@ Ignores CHAR at point."
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 
-(require 'ess-jags-d)
-(autoload 'ess-jags-mode "ess-jags-mode"
-   "Major mode for editing JAGS files" t)
-(add-to-list 'auto-mode-alist '("\\.bug\\'" . ess-jags-mode))
 
-;; (add-to-list 'load-path "~/.emacs.d/predictive/")
-;; (add-to-list 'load-path "~/.emacs.d/predictive/latex/")
-;; (require 'predictive)
-;; ;http://www.emacswiki.org/emacs/PredictiveMode
-;; (autoload 'predictive-mode "predictive" "predictive" t)
-;; (set-default 'predictive-auto-add-to-dict t)
-;; (setq predictive-main-dict 'rpg-dictionary
-;;       predictive-auto-learn t
-;;       predictive-add-to-dict-ask nil
-;;       predictive-use-auto-learn-cache nil
-;;       predictive-which-dict t)
-(require 'auto-complete)
-
-
-(setq max-lisp-eval-depth 10000)
-
-(require 'pabbrev)
-;; (require 'buffer-timer)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    ido-mode (autocompletion)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (ido-mode t)
 (setq ido-enable-flex-matching t)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    uniquify (change file<2> to file/fold)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'uniquify) 
 (setq uniquify-buffer-name-style 'post-forward)
 (setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    utils for finding non-ascii characters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Helper functions to find non-ascii characters
 (defun find-first-non-ascii-char ()
@@ -353,6 +301,31 @@ prompt the user for a coding system."
   (occur "[^[:ascii:]]"))
 
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    i-buffer
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; rebind to use buffer-menu instead of list-buffers 
+;; to keep everything in same buffer
+(global-set-key "\C-x\C-b" 'ibuffer)
+(setq ibuffer-default-sorting-mode 'filename/process)
+
+;; set sorting column
+(setq Buffer-menu-sort-column 4)
+
+(setq ibuffer-formats
+      '((mark modified read-only " "
+	      (name 30 30 :left :elide)
+	      " "
+	      (size 6 -1 :right)
+	      " "
+	      (mode 10 10 :left :elide)
+	      " " filename-and-process)
+	(mark " "
+	      (name 16 -1)
+	      " " filename)))
+
 (setq ibuffer-saved-filter-groups
       '(("home"
 	 ("Kaikoura" (filename . "kaikoura"))
@@ -370,8 +343,6 @@ prompt the user for a coding system."
 	  '(lambda ()
 	     (ibuffer-auto-mode 1)
 	     (ibuffer-switch-to-saved-filter-groups "home")))
-
-
 
 (setq buffer-menu-buffer-font-lock-keywords 
       '(("^....[*]Man .*Man.*" . font-lock-variable-name-face) ;Man page 
@@ -393,16 +364,22 @@ prompt the user for a coding system."
 
 (add-hook 'ibuffer-menu-mode-hook 'buffer-menu-custom-font-lock)
 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Code folding & indentation & formatting
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
 
 ;; Highlight region between parentheses
-(require 'paren)
-(set-face-background 'show-paren-match-face "#696969")
-(set-face-foreground 'show-paren-match-face "#def")
-(set-face-attribute 'show-paren-match-face nil :weight 'extra-bold)
-(setq show-paren-delay 0)
-(show-paren-mode 1)
+;; (require 'paren)
+;; (set-face-background 'show-paren-match-face "#696969")
+;; (set-face-foreground 'show-paren-match-face "#def")
+;; (set-face-attribute 'show-paren-match-face nil :weight 'extra-bold)
+;; (setq show-paren-delay 0)
+;; (show-paren-mode 1)
 
 (require 'highlight-indentation)
 (add-hook 'ess-mode-hook 'highlight-indentation-mode) 
@@ -419,6 +396,95 @@ prompt the user for a coding system."
        (if selective-display nil (or col 1))))))
 (global-set-key (kbd "M-C-i") 'aj-toggle-fold)
 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    ESS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'ess-jags-d)
+(autoload 'ess-jags-mode "ess-jags-mode"
+   "Major mode for editing JAGS files" t)
+(add-to-list 'auto-mode-alist '("\\.bug\\'" . ess-jags-mode))
+
+(require 'ess-eldoc) ;to show function arguments while you are typing them
+
+(setq ess-eval-visibly-p nil) ;otherwise C-c C-r (eval region) takes forever
+(setq ess-ask-for-ess-directory nil) ;otherwise you are prompted each time you start
+
+(setq ess-ask-for-ess-directory nil)
+(setq ess-local-process-name "R")
+(setq ansi-color-for-comint-mode 'filter)
+(setq comint-scroll-to-bottom-on-input t)
+(setq comint-scroll-to-bottom-on-output t)
+(setq comint-move-point-for-output t)
+(defun my-ess-start-R ()
+  (interactive)
+  (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
+      (progn
+	(delete-other-windows)
+	(setq w1 (selected-window))
+	(setq w1name (buffer-name))
+	(setq w2 (split-window w1 nil t))
+	(R)
+	(set-window-buffer w2 "*R*")
+	(set-window-buffer w1 w1name))))
+(defun my-ess-eval ()
+  (interactive)
+  (my-ess-start-R)
+  (if (and transient-mark-mode mark-active)
+      (call-interactively 'ess-eval-region)
+    (call-interactively 'ess-eval-line-and-step)))
+(add-hook 'ess-mode-hook
+	  '(lambda()
+	     (local-set-key [(shift return)] 'my-ess-eval)))
+(add-hook 'inferior-ess-mode-hook
+	  '(lambda()
+	     (local-set-key [C-up] 'comint-previous-input)
+	     (local-set-key [C-down] 'comint-next-input)))
+;; (require 'ess-site)
+(load "~/.emacs.d/elpa/ess-20130521.1613/lisp/ess-site") ;;ess-12.09-2/lisp/ess-site")
+
+(ess-toggle-underscore nil)
+(setq ess-S-assign-key [?\C-=])
+(ess-toggle-S-assign-key t)
+;; (ess-auto-newline t)
+
+(defun comint-interrupt-subjob-other ()
+  "Interrupt process in the other pane."
+  (interactive)
+  (other-window 1)
+  (comint-interrupt-subjob)
+  (other-window -1)
+  )
+(global-set-key "\C-c\C-q" 'comint-interrupt-subjob-other)
+
+(defun interupt-job-other-window ()
+  "Interupt job in other pane."
+  (interactive)
+  (other-window 1)
+  (comint-interrupt-subjob)
+  (other-window -1)
+  )
+(global-set-key "\C-c\C-a" 'interupt-job-other-window)
+
+(setq ess-indent-level 4)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    org-mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq org-src-fontify-natively t)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    buffer-timer
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; (require 'buffer-timer)
 
 ;; ; Example list of titles and regexps to group by.  This
 ;; (setq buffer-timer-regexp-master-list

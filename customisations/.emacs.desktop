@@ -2,7 +2,7 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Fri May 24 13:53:54 2013
+;; Created Tue May 28 14:12:58 2013
 ;; Desktop file format version 206
 ;; Emacs version 24.3.50.1
 
@@ -10,10 +10,10 @@
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name "/home/yvan/dragonfly/mammals-may-13/models/furseals/TAGS")
 (setq tags-table-list '("/home/yvan/dragonfly/mammals-may-13/models/furseals/TAGS"))
-(setq search-ring '("mode-hoo" "2010" "sealion" "2010" "2011" "--11" "tw" "2010" "sw" "sealio" "table" "11" "sealions_all" "2011" "2010" "2002"))
+(setq search-ring '("ibu" "ess" "mark" "elide" "2" "4" "indent" "indents" "4" "indent" "inser" "repl" "kbd" "mode-hoo" "2010" "sealion"))
 (setq regexp-search-ring '("^ess" "\\bx\\b" "\\bi\\b" "\\bdat\\b" "Sexpr"))
 (setq register-alist (list '(49 "StartPtID EndPtID CHOICE PATHL_CS1 PATHC_C" "      1     110      0   1185.10 1298.3028" "      1     158      0   1139.12 2815.9942" "      1     154      0   1199.01 1570.0761" "      1     111      0   1239.70 4219.3643" "      1     190      0   1276.74 2605.6907" "      1     184      0   1184.09 1185.5289" "      1     155      0   1342.63 2150.2238" "      1     195      0   1236.65 1995.6629" "      1     100      0   1292.39 2536.5828" "      1     146      0   1195.70 1841.2475" "      1     137      1   1235.40 3398.4356" "      2     199      0    357.56 1246.5593" "      2     113      0    440.84 1555.6848" "      2     185      0    403.65 1907.6799" "      2     124      0    386.34  567.3925" "      2     180      0    403.82  690.8650" "      2     158      0    386.40  419.2395" "      2     161      0    384.43  441.4436" "      2     171      0    416.92 1973.9331" "      2     166      0    375.43 1093.7749" "      2     102      0    378.98 1199.0466" "      2     110      1    415.39  726.6544" "      3     151      0   2982.21 3172.6570" "      3     110      0   2952.42 5150.5247" "      3     133      0   3134.16 3470.2058" "      3     163      0   3057.16 4725.3510" "      3     103      0   2937.28 3627.1676" "      3     156      0   3104.61 3908.7920" "      3     196      0   2952.59 3074.5779" "      3     149      0   3041.77 3946.9984" "      3     163      0   3114.03 3160.6140" "      3     113      0   2978.72 4216.6428" "      3     164      1   2863.11 4712.3871") (list 97 '(frame-configuration ("Unprintable entity" ((parent-id . 12631861) (explicit-name) (display . ":0") (visibility . t) (icon-name) (outer-window-id . "67109027") (window-id . "67109034") (top . 50) (left . 100) (buried-buffer-list "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity" "Unprintable entity") (buffer-list "Unprintable entity" "Unprintable entity") (unsplittable) (minibuffer . "Unprintable entity") (modeline . t) (width . 210) (height . 50) (name . "emacs@robin.dragonfly.co.nz") (environment) (sticky) (cursor-color . "#656565") (background-mode . dark) (display-type . color) (horizontal-scroll-bars . t) (window-system . x) (alpha) (scroll-bar-width . 16) (cursor-type . box) (auto-lower) (auto-raise) (icon-type . t) (tool-bar-position . top) (fullscreen) (wait-for-wm . t) (title) (buffer-predicate) (tool-bar-lines . 1) (menu-bar-lines . 1) (scroll-bar-background . "grey75") (scroll-bar-foreground) (right-fringe . 8) (left-fringe . 8) (line-spacing) (screen-gamma) (border-color . "black") (mouse-color . "black") (background-color . "#242424") (foreground-color . "#f6f3e8") (vertical-scroll-bars . right) (internal-border-width . 0) (border-width . 0) (font-parameter) (font . "-unknown-Ubuntu Mono-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1") (font-backend xft x)) "Unprintable entity")) (let ((mk (make-marker))) (add-hook 'desktop-delay-hook (list 'lambda '() (list 'set-marker mk nil (get-buffer " *temp*")))) mk))))
-(setq file-name-history '("/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/summarise-merged-samples.r" "~/dragonfly/encounter-kaikoura/analysis/inla/" "/home/yvan/dragonfly/encounter-kaikoura/publication/tables/model-coefs/model-coefs.r" "/home/yvan/dragonfly/encounter-kaikoura/publication/tables/model-coefs/makefile" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_sci_predictions.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_sci_predictions.tex" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_page_predictions.tex" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/report.tex" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/makefile" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_squak_split_predictions.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_table_attributed.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/discussion.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_squak_split_predictions.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/results.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_table_total_2012.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_other_predictions.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_stew_predictions.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_sci_predictions.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_sbw_predictions.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions-sbw-effort.rdata" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_squak_combined_predictions.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_table_parameters.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_all_predictions.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_table_total_2011.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/results.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/models/sealions/lib/make_rdata_files.r" "/home/yvan/dragonfly/mammals-may-13/models/furseals/lib/make_rdata_files.r" "/home/yvan/dragonfly/mammals-may-13/models/furseals/selected/makefile" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/models/sealions/lib/parameters.r"))
+(setq file-name-history '("~/r-par.png" "~/Dropbox/dragonfly-notes/r-graphics-symbols.png" "~/Dropbox/dragonfly-notes/../Photos/DSC04466-small.jpg" "/home/yvan/Dropbox/dragonfly-notes/dragonfly-notes.org" "~/Dropbox/ERA 2012/species_list_RA-20120705.csv" "~/Dropbox/Photos/DSC04466-small.jpg" "~/Dropbox/Dave Watts and Cathie Plowman-Where to See Wildlife in Tasmania.pdf" "/home/yvan/Dropbox/dragonfly-notes.org" "/home/yvan/dragonfly/sra-2012/analysis/maps/convert-dom-maps-to-raster.r" "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/model-dst-season-yr.r" "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/auto-correlation.r" "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/model-dst-season-yr.r" "~/.emacs.d/" "~/.emacs.d/highlight-indentation.el" "/home/yvan/dragonfly/yr-r-package-and-config/myfunctions.r" "/home/yvan/.emacs.d/elpa/ess-20130521.1613/lisp/ess-custom.el" "~/.emacs.d/elisp-buffer-timer/buffer-timer.el" "~/.emacs.d/highlight-chars.el" "~/.emacs.d/markdown-mode.el" "~/.emacs.d/pabbrev.el" "~/.emacs.d/highlight-indentation.el" "/home/yvan/.emacs.d/highlight-indentation.el" "/home/yvan/dragonfly/yr-r-package-and-config/makefile" "/home/yvan/dragonfly/encounter-kaikoura/functions.r" "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/summarise-merged-samples.r" "~/dragonfly/encounter-kaikoura/analysis/inla/" "/home/yvan/dragonfly/encounter-kaikoura/publication/tables/model-coefs/model-coefs.r" "/home/yvan/dragonfly/encounter-kaikoura/publication/tables/model-coefs/makefile" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_sci_predictions.rnw" "/scpc:yvan@haast:/home/joel/dragonfly/mammals-may-13/report/sweave/sealions_sci_predictions.tex"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
 (desktop-create-buffer 206
@@ -21,19 +21,173 @@
   ".emacs"
   'emacs-lisp-mode
   '(rainbow-delimiters-mode)
-  14521
-  '(14538 nil)
+  13871
+  '(13615 nil)
   nil
   nil
   '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/auto-correlation.r"
+  "auto-correlation.r"
+  'ess-mode
+  '(eldoc-mode rainbow-delimiters-mode)
+  2423
+  '(2462 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (overwrite-mode)))
+
+(desktop-create-buffer 206
+  "/home/yvan/Dropbox/dragonfly-notes/dragonfly-notes.org"
+  "dragonfly-notes.org"
+  'org-mode
+  '(auto-fill-mode org-indent-mode rainbow-delimiters-mode)
+  5040
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/analysis/maps/convert-dom-maps-to-raster.r"
+  "convert-dom-maps-to-raster.r"
+  'ess-mode
+  '(eldoc-mode rainbow-delimiters-mode)
+  4142
+  '(4142 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/model-dst-season-yr.r"
+  "model-dst-season-yr.r"
+  'ess-mode
+  '(eldoc-mode rainbow-delimiters-mode)
+  146
+  '(133 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/encounter-kaikoura/plots/diversity-yr/boot.r"
+  "boot.r"
+  'ess-mode
+  '(eldoc-mode rainbow-delimiters-mode)
+  1
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/encounter-kaikoura/publication/discussion.rnw"
+  "discussion.rnw"
+  'latex-mode
+  '(auto-fill-mode flyspell-mode reftex-mode rainbow-delimiters-mode)
+  11875
+  '(13726 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search) (TeX-master . "report.tex")))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/encounter-kaikoura/publication/introduction.rnw"
+  "introduction.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode flyspell-mode reftex-mode rainbow-delimiters-mode)
+  1432
+  '(1432 t)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/mammals-may-13/models/furseals/makefile"
+  "makefile"
+  'makefile-gmake-mode
+  '(rainbow-delimiters-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/encounter-kaikoura/publication/appendix.rnw"
+  "appendix.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode flyspell-mode reftex-mode rainbow-delimiters-mode)
+  1602
+  '(4339 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search)))
 
 (desktop-create-buffer 206
   "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/summarise-merged-samples.r"
   "summarise-merged-samples.r"
   'ess-mode
   '(eldoc-mode rainbow-delimiters-mode)
-  164
-  '(1 t)
+  1
+  '(4300 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/encounter-kaikoura/makefile"
+  "makefile<2>"
+  'makefile-gmake-mode
+  '(rainbow-delimiters-mode)
+  2347
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/encounter-kaikoura/publication/figures/model-pred-obs/makefile"
+  "makefile<2><2>"
+  'makefile-gmake-mode
+  '(rainbow-delimiters-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/yr-r-package-and-config/myfunctions.r"
+  "myfunctions.r"
+  'ess-mode
+  '(eldoc-mode rainbow-delimiters-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/yr-r-package-and-config/makefile"
+  "makefile<3>"
+  'makefile-gmake-mode
+  '(rainbow-delimiters-mode)
+  891
+  '(160 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/encounter-kaikoura/functions.r"
+  "functions.r"
+  'ess-mode
+  '(eldoc-mode rainbow-delimiters-mode)
+  3593
+  '(3348 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
@@ -73,29 +227,7 @@
 
 (desktop-create-buffer 206
   "/home/yvan/dragonfly/encounter-kaikoura/publication/tables/model-coefs/makefile"
-  "makefile"
-  'makefile-gmake-mode
-  '(rainbow-delimiters-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/discussion.rnw"
-  "discussion.rnw"
-  'latex-mode
-  '(auto-fill-mode flyspell-mode reftex-mode rainbow-delimiters-mode)
-  3625
-  '(13139 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search) (TeX-master . "report.tex")))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/figures/model-pred-obs/makefile"
-  "makefile<2>"
+  "makefile<2><2><2>"
   'makefile-gmake-mode
   '(rainbow-delimiters-mode)
   1
@@ -106,7 +238,7 @@
 
 (desktop-create-buffer 206
   "/home/yvan/dragonfly/encounter-kaikoura/publication/makefile"
-  "makefile<3>"
+  "makefile<3><2>"
   'makefile-gmake-mode
   '(rainbow-delimiters-mode)
   1
@@ -114,39 +246,6 @@
   nil
   nil
   '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/mammals-may-13/report/appendix.tex"
-  "appendix.tex"
-  'latex-mode
-  '(auto-fill-mode flyspell-mode reftex-mode rainbow-delimiters-mode)
-  1301
-  '(2486 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/mammals-may-13/report/discussion.rnw"
-  "discussion.rnw<2>"
-  'fundamental-mode
-  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode flyspell-mode reftex-mode rainbow-delimiters-mode)
-  7952
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/appendix.rnw"
-  "appendix.rnw"
-  'fundamental-mode
-  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode flyspell-mode reftex-mode rainbow-delimiters-mode)
-  714
-  '(714 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search)))
 
 (desktop-create-buffer 206
   "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/calc-seasonality-singleplot.r"
@@ -160,50 +259,6 @@
   '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/ludicio/ludicio/commands.py"
-  "commands.py"
-  'python-mode
-  '(rainbow-delimiters-mode)
-  6094
-  '(6122 nil)
-  nil
-  nil
-  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/ludicio/ludicio/__init__.py"
-  "__init__.py"
-  'python-mode
-  '(rainbow-delimiters-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/ludicio/ludicio/api.py"
-  "api.py"
-  'python-mode
-  '(rainbow-delimiters-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/ludicio/ludicio/models.py"
-  "models.py"
-  'python-mode
-  '(rainbow-delimiters-mode)
-  7297
-  '(1 nil)
-  nil
-  nil
-  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
   "/home/yvan/dragonfly/encounter-kaikoura/data/get-time-components.r"
   "get-time-components.r"
   'ess-mode
@@ -213,28 +268,6 @@
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/model-dst-season-yr.r"
-  "model-dst-season-yr.r"
-  'ess-mode
-  '(eldoc-mode rainbow-delimiters-mode)
-  2812
-  '(2808 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/makefile"
-  "makefile<5>"
-  'makefile-gmake-mode
-  '(rainbow-delimiters-mode)
-  3552
-  '(4170 nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
   "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/plot-obs-pred-trend.r"
@@ -281,17 +314,6 @@
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/.emacs.d/rainbow-delimiters.el"
-  "rainbow-delimiters.el"
-  'emacs-lisp-mode
-  '(rainbow-delimiters-mode)
-  3489
-  '(3456 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix)))
-
-(desktop-create-buffer 206
   "/home/yvan/dragonfly/mammals-may-13/models/furseals/lib/prepare.r"
   "prepare.r"
   'ess-mode
@@ -301,39 +323,6 @@
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/yr-r-package-and-config/myfunctions.r"
-  "myfunctions.r"
-  'ess-mode
-  '(eldoc-mode auto-complete-mode yas-minor-mode rainbow-delimiters-mode)
-  51759
-  '(51758 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/mammals-may-13/models/furseals/makefile"
-  "makefile<3><2>"
-  'makefile-gmake-mode
-  '(rainbow-delimiters-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/sra-2012/analysis/model-re-10/makefile"
-  "makefile<7>"
-  'makefile-gmake-mode
-  '(rainbow-delimiters-mode)
-  787
-  '(1148 nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
   "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/diversity-year/diversity-year.r"
@@ -378,17 +367,6 @@
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/analysis/inla/merge-predictions.r"
-  "merge-predictions.r"
-  'ess-mode
-  '(eldoc-mode rainbow-delimiters-mode)
-  3082
-  '(753 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
 
 (desktop-create-buffer 206
   "/home/yvan/dragonfly/encounter-kaikoura/publication/data/data-summary.r"
@@ -446,17 +424,6 @@
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/plots/diversity-yr/boot.r"
-  "boot.r"
-  'ess-mode
-  '(eldoc-mode rainbow-delimiters-mode)
-  1884
-  '(1856 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
   "/home/yvan/dragonfly/bibliography/mfish.bib"
   "mfish.bib<2>"
   'bibtex-mode
@@ -477,28 +444,6 @@
   nil
   nil
   '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/.emacs.d/elpa/org-20130520/org-loaddefs.el"
-  "org-loaddefs.el"
-  'emacs-lisp-mode
-  '(rainbow-delimiters-mode)
-  79757
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/dragonfly/encounter-kaikoura/publication/introduction.rnw"
-  "introduction.rnw"
-  'fundamental-mode
-  '(ess-noweb-font-lock-mode ess-noweb-mode rainbow-delimiters-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix)))
 
 (desktop-create-buffer 206
   "/home/yvan/dragonfly/encounter-kaikoura/publication/results.rnw"
