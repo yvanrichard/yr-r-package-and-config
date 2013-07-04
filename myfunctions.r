@@ -1165,7 +1165,7 @@ graph_makefile <- function(makefile='makefile')
         mk <- gsub('^ *','', mk)
         mk <- mk[grepl('^\t', mk) | !grepl('=', mk) | grepl('=[\']', mk)]  # remove assignments of environmental variables
         mk <- mk[!(grepl('^include', mk))]
-        
+        mk <- mk[!(grepl('\\.PHONY', mk))]
         parts <- mk[(!grepl('#+.*:', mk) & grepl(':', mk) & !grepl('^\t', mk)) | grepl('<!.*!>', mk)]
         ispart <- grepl('<!.*!>', parts)
         if (any(ispart))
@@ -1185,18 +1185,19 @@ graph_makefile <- function(makefile='makefile')
         c <- grepl(':', mk) & !grepl('^\t', mk) & !grepl('#.*:', mk)
         mk[c] <- gsub('\t', ' ', mk[c])
 
-        mk2 <- paste(mk, collapse='|')
+        mk2 <- paste(mk, collapse='&&&&')
 
         ## remove consecutive blank lines
-        mk3 <- gsub('\\|\\|*','|',mk2)
+        mk3 <- gsub('&&&&&&&&*','&&&&',mk2)
+        ## mk3 <- gsub('\\|\\|*','|',mk2)
         ## get rid of \\ to identify continuations of lines
-        mk4 <- gsub('\\\\\\| *\t*','',mk3)
+        mk4 <- gsub('\\\\&&&&*\t*','',mk3)
         ## identify action
-        mk5 <- gsub('\\|\t', '\t', mk4)
+        mk5 <- gsub('&&&&\t', '\t', mk4)
         ## replace :: used sometimes in R with *
         mk5 <- gsub('::+', '**', mk5)
         ## split operations
-        m <- strsplit(mk5,'\\|')[[1]]
+        m <- strsplit(mk5,'&&&&')[[1]]
         ## identify target
         withaction <- grepl('\t', m)
         
