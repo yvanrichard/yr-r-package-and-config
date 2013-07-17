@@ -1181,6 +1181,8 @@ graph_makefile <- function(makefile='makefile')
             } else withclusters <- F
         
         mk <- mk[!grepl('^#', mk)]  # remove comments
+        mk <- sub('\t$', '', mk)
+        mk <- sub('([^ ])\\\\', '\\1 \\\\', mk)
         mk <- mk[mk!='']
         c <- grepl(':', mk) & !grepl('^\t', mk) & !grepl('#.*:', mk)
         mk[c] <- gsub('\t', ' ', mk[c])
@@ -1724,6 +1726,36 @@ sqlquery <- function(query, db='oreo-2013v1', host='titi', port=5433)
         dbDisconnect(conn); dbUnloadDriver(drv)
         return(dat)   
     }
+
+sql_all_but_geom <- function(tablename='all_captures', compl_txt='', schema='public',
+                             dbname='oreo-2013v1', host='titi', port=5433, verbose=F)
+    {
+        ## Does a SELECT * FROM, but excluding geometry columns
+        ## compl_txt: Extras if needed (for WHERE, ORDER BY, etc.)
+        if (grepl('\\.', tablename)) {
+            schema=strsplit(tablename, '\\.')[[1]][1]
+            tablename1=strsplit(tablename, '\\.')[[1]][2]
+        } else {
+            schema='public'
+            tablename1=tablename
+        }
+        library(RPostgreSQL)
+        drv <- dbDriver("PostgreSQL")
+        conn <- dbConnect(drv, dbname=dbname, host=host, port=port)
+        ## Get column names (removing geometry columns)
+        cols <- rev(unlist(dbGetQuery(conn, sprintf("
+SELECT c.column_name FROM information_schema.columns As c
+            WHERE table_name = '%s' AND table_schema = '%s' AND udt_name <> 'geometry'
+", tablename1, schema)))); names(cols) <- NULL
+        ## SQL statement to select all columns but geometry ones
+        selcols <- paste(cols, collapse=', ')
+        sqlquery <- sprintf("SELECT %s from %s %s", selcols, tablename, compl_txt)
+        if (verbose) cat('\n', sqlquery, '\n')
+        sqlres <- dbGetQuery(conn, sqlquery)
+        dbDisconnect(conn); dbUnloadDriver(drv)
+        return(sqlres)
+    }
+
 
 ## library(rgdal)
 ## sp.object <- readOGR("PG:dbname='oreo-2013v1' host=titi port=5433", "all_captures")
