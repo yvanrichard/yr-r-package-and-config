@@ -8,20 +8,20 @@ install:
 	sudo R CMD INSTALL yrpkg_*.tar.gz --byte-compile
 
 r:
-	cp customisations/.Rprofile ~
+	rsync -avz customisations/.Rprofile ~
 
 y:
-	cp -a customisations/ ~
+	rsync -avz -a customisations/. ~
 
 updatepkg:
-	cp ~/.emacs.d customisations/ -r
-	cp ~/.emacs* customisations/
-	cp ~/.vim customisations/ -r
-	cp ~/.viminfo customisations/
-	cp ~/.vimrc customisations/
-	cp ~/.screenrc customisations/
-	cp ~/.bashrc customisations/
-	cp ~/.Rprofile customisations/
+	rsync -avz ~/.emacs.d customisations/
+	rsync -avz ~/.emacs* customisations/
+	rsync -avz ~/.vim customisations/ -r
+	rsync -avz ~/.viminfo customisations/
+	rsync -avz ~/.vimrc customisations/
+	rsync -avz ~/.screenrc customisations/
+	rsync -avz ~/.bashrc customisations/
+	rsync -avz ~/.Rprofile customisations/
 
 getpackagelist:
 	Rscript -e 'libs<-sort(library()$$results[,"Package"]); save(libs, file="r-packages_libs.rdata")'
