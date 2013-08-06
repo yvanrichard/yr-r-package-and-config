@@ -11,7 +11,7 @@ r:
 	cp customisations/.Rprofile ~
 
 y:
-	cp -a customisations/. ~
+	cp -a customisations/ ~
 
 updatepkg:
 	cp ~/.emacs.d customisations/ -r

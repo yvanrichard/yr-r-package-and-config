@@ -1708,3 +1708,19 @@ latex.file.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), on
       }
     setwd(prevdir)
   }
+
+## x=data.frame(x=sprintf('x%0.2i', 1:23), y=sprintf('y%0.2i', 1:23), z=1:23)
+toclip <- function(x, sel='clip')
+  {
+    if (!is.null(dim(x))) ## more than one dimension
+      {
+        if (class(x)=='data.frame')
+        for (i in 1:ncol(x))
+          x[,i] <- as.character(x[,i])
+        x <- apply(x, 1, function(y) paste(y, collapse='\t'))
+      }
+    File = pipe(sprintf("xclip -i -selection %s", sel), "w")
+    cat(x, file=File, sep='\n')
+    close(File)
+  }
+## toclip(x)
