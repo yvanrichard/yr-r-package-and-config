@@ -97,6 +97,31 @@ Ignores CHAR at point."
 
 (require 'pabbrev)
 
+(global-set-key [f9] 'compile)
+
+(setq scroll-preserve-screen-position t)
+
+(defun duplicate-current-line-or-region (arg)
+  "Duplicates the current line or region ARG times.
+If there's no region, the current line will be duplicated. However, if
+there's a region, all lines that region covers will be duplicated."
+  (interactive "p")
+  (let (beg end (origin (point)))
+    (if (and mark-active (> (point) (mark)))
+        (exchange-point-and-mark))
+    (setq beg (line-beginning-position))
+    (if mark-active
+        (exchange-point-and-mark))
+    (setq end (line-end-position))
+    (let ((region (buffer-substring-no-properties beg end)))
+      (dotimes (i arg)
+        (goto-char end)
+        (newline)
+        (insert region)
+        (setq end (point)))
+      (goto-char (+ origin (* (length region) arg) arg))
+      )))
+(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -137,9 +162,6 @@ Ignores CHAR at point."
      (ess-fl-keyword:= . t)
      (ess-R-fl-keyword:F&T . t))))
 
-;; (add-to-list 'auto-mode-alist '("\\.Rnw\\'" . Rnw-mode))
-;; (add-to-list 'auto-mode-alist '("\\.rnw\\'" . Rnw-mode))
-;; (add-to-list 'auto-mode-alist '("\\.Snw\\'" . Rnw-mode))
 
 
 
@@ -155,6 +177,8 @@ Ignores CHAR at point."
   ; use natural science bibliography style
 (setq reftex-cite-format 'natbib)
 (setq-default TeX-master nil)
+(setq TeX-PDF-mode t)
+(setq latex-run-command "pdflatex")
 
 ;; (setq reftex-file-extensions
 ;;       '(("Snw" "Rnw" "nw" "tex" ".tex" ".ltx") ("bib" ".bib")))
@@ -183,6 +207,8 @@ Ignores CHAR at point."
 
 (add-hook 'tex-mode-hook (function (lambda () (setq ispell-parser 'tex))))
 
+(require 'latex-frame-mode)
+
 ;; (defun flyspell-ignore-verbatim ()
 ;;   "Function used for `flyspell-generic-check-word-predicate' to ignore {{{ }}} blocks."
 ;;   (save-excursion
@@ -198,17 +224,6 @@ Ignores CHAR at point."
 ;;                               (setq count (1+ count)))
 ;;                             (- count (* 2 (/ count 2))))))))))
 ;; (put 'latex-mode 'flyspell-mode-predicate 'flyspell-ignore-verbatim)
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Desktop
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (require 'desktop)
-(desktop-save-mode 1)
-(desktop-read)
-
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -229,17 +244,6 @@ Ignores CHAR at point."
 
 (ido-mode t)
 (setq ido-enable-flex-matching t)
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    uniquify (change file<2> to file/fold)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'uniquify) 
-(setq uniquify-buffer-name-style 'post-forward)
-(setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
-(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
 
 
 
@@ -324,7 +328,7 @@ prompt the user for a coding system."
 	      " " filename-and-process)
 	(mark " "
 	      (name 16 -1)
-	      " " filename)))
+	      " " filename-and-process)))
 
 (setq ibuffer-saved-filter-groups
       '(("home"
@@ -332,6 +336,8 @@ prompt the user for a coding system."
 	 ("MMRA" (filename . "mmra-2013"))
 	 ("Mammals 2013" (filename . "mammals-may"))
 	 ("Northern royals" (filename . "northern-royal"))
+	 ("Oreo" (filename . "oreo"))
+	 ("Seabirds 2013" (filename . "seabirds-2013"))
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")
 			     (filename . ".emacs"))))))
@@ -402,12 +408,16 @@ prompt the user for a coding system."
 ;;    ESS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
 (require 'ess-jags-d)
 (autoload 'ess-jags-mode "ess-jags-mode"
    "Major mode for editing JAGS files" t)
 (add-to-list 'auto-mode-alist '("\\.bug\\'" . ess-jags-mode))
 
 (require 'ess-eldoc) ;to show function arguments while you are typing them
+
+;; (require 'ess-site)
+(load "~/.emacs.d/elpa/ess-20130711.2359/lisp/ess-site") ;;ess-12.09-2/lisp/ess-site")
 
 (setq ess-eval-visibly-p nil) ;otherwise C-c C-r (eval region) takes forever
 (setq ess-ask-for-ess-directory nil) ;otherwise you are prompted each time you start
@@ -442,11 +452,9 @@ prompt the user for a coding system."
 	  '(lambda()
 	     (local-set-key [C-up] 'comint-previous-input)
 	     (local-set-key [C-down] 'comint-next-input)))
-;; (require 'ess-site)
-(load "~/.emacs.d/elpa/ess-20130521.1613/lisp/ess-site") ;;ess-12.09-2/lisp/ess-site")
 
 (ess-toggle-underscore nil)
-(setq ess-S-assign-key [?\C-=])
+(setq ess-S-assign-key (kbd "C-="))
 (ess-toggle-S-assign-key t)
 ;; (ess-auto-newline t)
 
@@ -470,6 +478,9 @@ prompt the user for a coding system."
 
 (setq ess-indent-level 4)
 
+(add-to-list 'auto-mode-alist '("\\.Rnw\\'" . Rnw-mode))
+(add-to-list 'auto-mode-alist '("\\.rnw\\'" . Rnw-mode))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -477,6 +488,31 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq org-src-fontify-natively t)
+(setq org-support-shift-select t)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((R . t)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    uniquify (change file<2> to file/fold)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'uniquify) 
+(setq uniquify-buffer-name-style 'post-forward)
+(setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
+(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Desktop
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; (require 'desktop)
+(desktop-save-mode 1)
+(desktop-read)
+
 
 
 

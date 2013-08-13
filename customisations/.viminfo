@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/===
+~MSle0~/.notebook tab
 
 # Last Substitute Search Pattern:
 ~MSle0&yvan-r-pkg
@@ -69,6 +69,8 @@ $dragonfly
 :e ../filling/models.py
 
 # Search String History (newest to oldest):
+?/.notebook tab
+?/.noteb
 ?/===
 ? yvan-r-pkg
 ? samples\/all
@@ -117,8 +119,6 @@ $dragonfly
 ?/<<
 ?/species
 ? \<load\>
-?/opt
-? ^#
 
 # Expression History (newest to oldest):
 
@@ -130,18 +130,20 @@ $dragonfly
 "0	LINE	0
 	yrpkg/
 "1	LINE	0
-	>>>>>>> 45540f2378431fb726feda0c84d1c562462ce38d
+	SELECT "fishing.year", SUM(events) FROM model.seabirds_trawl GROUP BY "fishing.year"
 "2	LINE	0
-	effective, and longer term trends have been detected \citep<e.g.,>{peron_interdecadal_2010}. However, due to the expense and often opportunitic nature of data
+	>>>>>>> 45540f2378431fb726feda0c84d1c562462ce38d
 "3	LINE	0
-	at-sea counts. For some species (e.g., gulls, \citep{clarke_validating_2003}) this has been considered
+	effective, and longer term trends have been detected \citep<e.g.,>{peron_interdecadal_2010}. However, due to the expense and often opportunitic nature of data
 "4	LINE	0
-	=======
+	at-sea counts. For some species (e.g., gulls, \citep{clarke_validating_2003}) this has been considered
 "5	LINE	0
-	<<<<<<< HEAD
+	=======
 "6	LINE	0
+	<<<<<<< HEAD
+"7	LINE	0
 	yrpkg*
-"7	CHAR	0
+"8	CHAR	0
 		cp ~/.emacs.d ~/dragonfly/yr-r-package-and-config/customisations/ -r
 		cp ~/.emacs ~/dragonfly/yr-r-package-and-config/customisations/
 		cp ~/.vim ~/dragonfly/yr-r-package-and-config/customisations/ -r
@@ -152,11 +154,8 @@ $dragonfly
 		cp ~/.Rprofile ~/dragonfly/yr-r-package-and-config/customisations/
 	
 	
-"8	LINE	0
-	all: yrpkg_2.0.tar.gz
 "9	LINE	0
-	444
-<|1|f1vBAyFJW4d6YT3PnWIGrhqiigY=|VKsiBZK+hNMMQQrd5FAIsKkKXx8= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAo7cFAi7clzefVeV39TGSAItJqc0CXuc35fzn7e9D4Rc9ul0U0Rj0Gyw7y6bckhHTwcz16fcloGitly1XLOBSP6o/hcQNwDtLl75wZmWqAeNUvzj1wgen2i2HTpfcd/2UmbAwWeBy4A08TuRsVdxDZqm8c7IjMf2YtR4BYkc+Uqlecpj/onxpu31qqT3UH4jKMjRVUrFfGyUi60F3o6TOcXur/ToEJXsHTyY1HKq/7KZ8GI8sDqddSwLQ5egBq5xj+HUw10I6br3pycDk9zINQen0XyV9icxAT58Ww46QsLrpZTfUFSLRd3A9b4CYlqtN5BlPMNZJRvrKf8UNtoPvmw==
+	all: yrpkg_2.0.tar.gz
 "u	CHAR	0
 	lrr
 ""-	CHAR	0
@@ -164,18 +163,40 @@ $dragonfly
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  1  15  ~/.profile
-'1  39  0  ~/.bashrc
-'2  120  0  /usr/share/undistract-me/long-running.bash
-'3  12  25  ~/dragonfly/bibliography/mfish.bib
-'4  1  0  ~/dragonfly/bibliography/mfish
-'5  22  3  ~/dragonfly/encounter-kaikoura/.gitignore
-'6  64  0  /etc/apt/sources.list
-'7  66  0  /etc/apt/sources.list
-'8  47  0  ~/dragonfly/encounter-kaikoura/publication/introduction.rnw
-'9  8  55  ~/dragonfly/bibliography/.git/config
+'0  37  35  ~/dragonfly/seabirds-2013/.gitignore
+'1  22  2  ~/dragonfly/seabirds-2013/.gitignore
+'2  1  0  ~/mydeck/index.Rmd
+'3  10  1  /tmp/psql.edit.8530
+'4  4  4  /tmp/psql.edit.8530
+'5  1  0  /tmp/psql.edit.8530
+'6  6  40  /tmp/psql.edit.8530
+'7  1308  0  /usr/share/themes/Ambiance/gtk-3.0/gtk-widgets.css
+'8  4  0  ~/.config/gtk-3.0/gtk.css
+'9  174  6  /usr/share/pgadmin3/plugins.d/plugins.ini
 
 # Jumplist (newest first):
+-'  37  35  ~/dragonfly/seabirds-2013/.gitignore
+-'  1  0  ~/dragonfly/seabirds-2013/.gitignore
+-'  22  2  ~/dragonfly/seabirds-2013/.gitignore
+-'  1  0  ~/mydeck/index.Rmd
+-'  10  1  /tmp/psql.edit.8530
+-'  2  0  /tmp/psql.edit.8530
+-'  1  0  /tmp/psql.edit.8530
+-'  4  4  /tmp/psql.edit.8530
+-'  6  0  /tmp/psql.edit.8530
+-'  1308  0  /usr/share/themes/Ambiance/gtk-3.0/gtk-widgets.css
+-'  245  0  /usr/share/themes/Ambiance/gtk-3.0/gtk-widgets.css
+-'  1  0  /usr/share/themes/Ambiance/gtk-3.0/gtk-widgets.css
+-'  4  0  ~/.config/gtk-3.0/gtk.css
+-'  1  0  ~/.config/gtk-3.0/gtk.css
+-'  174  6  /usr/share/pgadmin3/plugins.d/plugins.ini
+-'  1  0  /usr/share/pgadmin3/plugins.d/plugins.ini
+-'  1  9  /tmp/bash-fc-4064729965
+-'  1  15  /tmp/bash-fc-1371692744
+-'  8  47  ~/dragonfly/oreo/.git/config
+-'  1  0  ~/dragonfly/oreo/.git/config
+-'  223  33  ~/dragonfly/oreo/ci/build.py
+-'  1  0  ~/dragonfly/oreo/ci/build.py
 -'  1  15  ~/.profile
 -'  39  0  ~/.bashrc
 -'  1  0  ~/.bashrc
@@ -253,30 +274,101 @@ $dragonfly
 -'  1  0  /share/mfish/sra-2012/data/model-re-3/vulnerabilities/SLL/data.r
 -'  31  0  /share/mfish/sra-2012/data/model-re-3/vulnerabilities/BLL/data.r
 -'  1  0  /share/mfish/sra-2012/data/model-re-3/vulnerabilities/BLL/data.r
--'  1  0  /share/mfish/sra-2012/data/model-re-3/vulnerabilities/SN/data.r
--'  1  0  ~/dragonfly/sra-2012/analysis/risk/risk-calc.r
--'  8  55  ~/dragonfly/sra-2012/analysis/risk/risk-calc.r
--'  70  25  ~/dragonfly/sra-2012/analysis/risk/risk-calc.r
--'  1  0  ~/dragonfly/sra-2012/analysis/model-re-3/vulnerabilities/jags-re-sn.cmd
--'  1  0  ~/dragonfly/sra-2012/analysis/model-re-3/vulnerabilities/run.r
--'  30  0  ~/dragonfly/sra-2012/.gitignore
--'  29  4  ~/dragonfly/sra-2012/.gitignore
--'  1294  34  ~/dragonfly/abundance/report/data-summary/description.Rnw
--'  1  0  ~/dragonfly/abundance/report/data-summary/description.Rnw
--'  295  0  ~/dragonfly/abundance/report/data-summary/description.Rnw
--'  33  0  ~/dragonfly/abundance/.gitignore
--'  1  0  ~/dragonfly/abundance/.gitignore
--'  8  14  ~/dragonfly/abundance/.git/config
--'  4  4  ~/dragonfly/bibliography/.gitignore
--'  1  0  ~/dragonfly/bibliography/.gitignore
--'  8  14  ~/dragonfly/black-petrel-overlap/.git/config
--'  1  0  ~/dragonfly/black-petrel-overlap/.git/config
--'  1  0  ~/dragonfly/sra/data/analysis-data/species_groups.txt
--'  13  0  /share/mfish/sra-2012/data/maps/2012-06-25/map_hybride/strategie01/map_hybride_PTN_BREEDING_SEASON.dat
--'  1  0  /share/mfish/sra-2012/data/maps/2012-06-25/map_hybride/strategie01/map_hybride_PTN_BREEDING_SEASON.dat
--'  1  0  ~/Downloads/dumps/backbenches
 
 # History of marks within files (newest to oldest):
+
+> ~/dragonfly/seabirds-2013/.gitignore
+	"	37	35
+	^	37	36
+	.	37	35
+	+	37	35
+
+> ~/mydeck/index.Rmd
+	"	1	0
+
+> /tmp/psql.edit.8530
+	"	10	1
+	^	10	0
+	.	2	1
+	+	1	15
+	+	11	0
+	+	2	110
+	+	1	14
+	+	2	1
+	+	2	117
+	+	5	1
+	+	5	114
+	+	6	40
+	+	4	4
+	+	6	41
+	+	2	1
+	+	6	41
+	+	7	9
+	+	8	113
+	+	7	3
+	+	9	5
+	+	2	3
+	+	5	0
+	+	2	1
+	+	5	1
+	+	6	3
+	+	8	0
+	+	9	29
+	+	11	0
+	+	2	1
+
+> /usr/share/themes/Ambiance/gtk-3.0/gtk-widgets.css
+	"	1308	0
+
+> ~/dragonfly/seabirds-2013/.git/COMMIT_EDITMSG
+	"	1	0
+	^	1	0
+
+> ~/.config/gtk-3.0/gtk.css
+	"	4	0
+	^	4	1
+	.	2	0
+	+	1	0
+	+	2	0
+
+> /usr/share/pgadmin3/plugins.d/plugins.ini
+	"	174	6
+	^	174	7
+	.	174	6
+	+	170	0
+	+	182	0
+	+	181	0
+	+	180	0
+	+	179	0
+	+	178	0
+	+	177	0
+	+	176	0
+	+	175	0
+	+	174	0
+	+	173	0
+	+	172	0
+	+	174	6
+
+> /tmp/bash-fc-4064729965
+	"	1	9
+	^	1	10
+	.	1	9
+	+	1	9
+
+> /tmp/bash-fc-1371692744
+	"	1	15
+	^	1	16
+	.	2	0
+	+	2	0
+
+> ~/dragonfly/oreo/.git/config
+	"	8	47
+	^	8	48
+	.	8	48
+	+	8	48
+
+> ~/dragonfly/oreo/ci/build.py
+	"	223	33
 
 > ~/.profile
 	"	1	15
@@ -793,53 +885,3 @@ $dragonfly
 	+	1	6
 	+	3	1
 	+	4	3
-
-> ~/dragonfly/sra-foundations/modelling/bh-dens-dep/screenlog.0
-	"	42	28
-
-> ~/dragonfly/sra-foundations/modelling/bh-dens-dep/run.r
-	"	21	37
-
-> ~/dragonfly/gitosis-admin/gitosis.conf
-	"	24	68
-	^	24	69
-	.	24	68
-	+	24	68
-
-> ~/.screenrc
-	"	2	138
-	^	2	139
-	.	3	0
-	+	3	0
-
-> ~/dragonfly/sra-foundations/modelling/init-samples/hardcopy.0
-	"	16	0
-
-> ~/dragonfly/sra-foundations/modelling/init-samples/run.r
-	"	36	0
-	^	24	37
-	.	24	37
-	+	24	37
-	o	24	20
-
-> ~/dragonfly/abundance/data/species/necropsy_summary.r
-	"	60	0
-
-> ~/dragonfly/sra/report/makefile
-	"	16	0
-
-> ~/dragonfly/sra-foundations/modelling/bh-dens-dep/makefiles/makefile0-robin
-	"	1	0
-
-> ~/dragonfly/sra-foundations/modelling/bh-dens-dep/plots/viability/data.r
-	"	1	0
-	^	11	9
-	.	11	8
-	+	11	8
-
-> ~/dragonfly/sra-foundations/modelling/bh-dens-dep/plots/adjusting-propkilled/data.r
-	"	12	9
-	.	12	9
-	+	12	45
-	+	13	0
-	+	12	9

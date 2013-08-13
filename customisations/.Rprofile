@@ -26,8 +26,8 @@
     print(w)
   cat('\n',as.character(Sys.time()),' -- R session finished.\n\n',sep='')
 }
+options(error = function() traceback(2))
 
-"%nin%" <- function(x, y) return(!(x %in% y))
 
 # ## Example of Rprofile.site
 # local({
@@ -48,6 +48,9 @@ options(defaultPackages = c(old, "yrpkg"),
         warnPartialMatchDollar=T,
         scipen=1,
         error=NULL)
+## options(error = function() traceback(2))
+"%nin%" <- function(x, y) return(!(x %in% y))
+
 })
 
 

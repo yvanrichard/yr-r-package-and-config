@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <13/05/24 10:11:56 /home/yvan/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <13/08/01 11:32:00 /home/yvan/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -36,4 +36,77 @@
   ("gid-integer" 14000)
   ("ls" "/bin/ls --color=never")
   ("uid-integer" 15002)
-  ("ls-dired" t)))
+  ("ls-dired" t))
+ (["scpc"
+   #("yvan" 0 1
+     (fontified t)
+     1 2
+     (fontified t)
+     2 3
+     (fontified t)
+     3 4
+     (fontified t))
+   #("leon" 0 1
+     (fontified t)
+     1 2
+     (fontified t)
+     2 3
+     (fontified t)
+     3 4
+     (fontified t))
+   nil nil]
+  ("uname" "Linux 3.2.0-49-generic")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("file-exists" "test -e")
+  ("readlink" "\\readlink")
+  ("stat" "\\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 14000))
+ (["scpc" nil
+   #("leon" 0 1
+     (fontified t)
+     1 2
+     (fontified t)
+     2 3
+     (fontified t)
+     3 4
+     (fontified t))
+   nil nil]
+  ("uname" "Linux 3.2.0-49-generic")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("~yvan" "/home/yvan")
+  ("file-exists" "test -e")
+  ("readlink" "\\readlink")
+  ("stat" "\\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 14000))
+ (["scpc" "yvan" "tieke" nil nil]
+  ("uname" "Linux 3.2.0-48-generic")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("~" "/home/yvan")
+  ("readlink" "\\readlink")
+  ("stat" "\\stat")
+  ("file-exists" "test -e")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 14000)))

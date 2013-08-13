@@ -106,3 +106,17 @@ export VISUAL=vim
 # define color to additional file types
 export LS_COLORS=$LS_COLORS:"di=0;94;40":"*.r=00;93":"*tex=0;93":"*.pdf=00;32":"*makefile=00;91":"*~=0;90":"*csv=0;94":"*rdata=0;94":"*.xls=00;32":"*dbf=0;94":"*.rnw=0;93":"*.py=0;93":"*.png=00;32":"*.jpg=00;32":"*.mp4=00;32":"*.flv=00;32":"*.tif=00;32":"*.tiff=00;32"
 
+
+# A git aware bash prompt for ubuntu, that shows what branch you are on, and whether you have anything to commit.
+# Add to your .bashrc file.
+# Works with git version 1.7.9.5.
+# Based on http://www.intridea.com/blog/2009/2/2/git-status-in-your-prompt
+function parse_git_dirty {
+[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+function parse_git_branch {
+git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+}
+# export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(parse_git_branch)$ '
+export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)$ '
+
