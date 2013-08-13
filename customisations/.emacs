@@ -417,7 +417,7 @@ prompt the user for a coding system."
 (require 'ess-eldoc) ;to show function arguments while you are typing them
 
 ;; (require 'ess-site)
-(load "~/.emacs.d/elpa/ess-20130711.2359/lisp/ess-site") ;;ess-12.09-2/lisp/ess-site")
+(load "~/.emacs.d/elpa/ess-20130812.959/lisp/ess-site") ;;ess-12.09-2/lisp/ess-site")
 
 (setq ess-eval-visibly-p nil) ;otherwise C-c C-r (eval region) takes forever
 (setq ess-ask-for-ess-directory nil) ;otherwise you are prompted each time you start
