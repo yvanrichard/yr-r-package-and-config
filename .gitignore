@@ -2,3 +2,4 @@ yrpkg/
 yrpkg.Rcheck/
 *~
 *#
+*.lock
