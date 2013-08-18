@@ -1651,7 +1651,8 @@ is.git.tracked <- function(f)
     }
 
 ## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
-latex.file.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), only=c('/'), recursive=T)
+latex.file.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), only=c('/'), recursive=T,
+                            save_untracked=T)
     {
         alldeps <- NULL
         prevdir <- getwd()
@@ -1714,6 +1715,8 @@ latex.file.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), on
                 cat(paste(nt, collapse='\n'))
                 cat('\n')
             }
+        if (save_untracked)
+            write.csv(nt, 'untracked-dependencies.csv', row.names=F)
         setwd(prevdir)
     }
 
