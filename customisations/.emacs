@@ -30,7 +30,8 @@
 ;;    Global
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key [C-tab] 'comint-dynamic-complete)
+(global-set-key [C-tab] 'completion-at-point)
+(global-set-key (kbd "C-\\") 'dabbrev-expand)
 
 (defun zap-up-to-char (arg char)
   "Kill up to, but not including ARGth occurrence of CHAR.
@@ -73,6 +74,15 @@ Ignores CHAR at point."
 (global-set-key (kbd "C-<") 'previous-buffer)                                  
 (global-set-key (kbd "C->") 'next-buffer)                                 
 (global-set-key "\C-a" 'back-to-indentation)
+
+;; For completion in ESS (keybinding conflit with TAB)
+;;(global-set-key (kbd "C-'") 'completion-at-point)
+
+
+;; Search in multiple buffers (first argument is regexp on buffer names)
+(global-set-key "\C-c\M-m" 'multi-occur-in-matching-buffers)
+
+(setq doc-view-continuous t)
 
 ;; use autofill on text modes
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -190,6 +200,12 @@ there's a region, all lines that region covers will be duplicated."
 
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-buffer)
+(add-hook 'LaTeX-mode-hook
+	  '(lambda()
+	     (local-set-key [(tab)] 'dabbrev-expand)))
+(add-hook 'latex-mode-hook
+	  '(lambda()
+	     (local-set-key [(tab)] 'dabbrev-expand)))
 
 (add-to-list 'ispell-skip-region-alist '("^<<.*>>=" . "^@"))
 ;; (add-to-list 'ispell-skip-region-alist '("Sexpr{" . "}"))
@@ -338,6 +354,7 @@ prompt the user for a coding system."
 	 ("Northern royals" (filename . "northern-royal"))
 	 ("Oreo" (filename . "oreo"))
 	 ("Seabirds 2013" (filename . "seabirds-2013"))
+	 ("Bycatch www" (filename . "bycatch.dragonfly"))
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")
 			     (filename . ".emacs"))))))
@@ -416,8 +433,8 @@ prompt the user for a coding system."
 
 (require 'ess-eldoc) ;to show function arguments while you are typing them
 
-;; (require 'ess-site)
-(load "~/.emacs.d/elpa/ess-20130812.959/lisp/ess-site") ;;ess-12.09-2/lisp/ess-site")
+(require 'ess-site)
+;; (load "~/.emacs.d/elpa/ess-20130912.915/lisp/ess-site")
 
 (setq ess-eval-visibly-p nil) ;otherwise C-c C-r (eval region) takes forever
 (setq ess-ask-for-ess-directory nil) ;otherwise you are prompted each time you start
@@ -447,7 +464,8 @@ prompt the user for a coding system."
     (call-interactively 'ess-eval-line-and-step)))
 (add-hook 'ess-mode-hook
 	  '(lambda()
-	     (local-set-key [(shift return)] 'my-ess-eval)))
+	     (local-set-key [(shift return)] 'my-ess-eval)
+	     (local-set-key [(backtab)] 'ess-indent-or-complete)))
 (add-hook 'inferior-ess-mode-hook
 	  '(lambda()
 	     (local-set-key [C-up] 'comint-previous-input)
@@ -481,6 +499,12 @@ prompt the user for a coding system."
 (add-to-list 'auto-mode-alist '("\\.Rnw\\'" . Rnw-mode))
 (add-to-list 'auto-mode-alist '("\\.rnw\\'" . Rnw-mode))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    anything
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; (require 'anything-config)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

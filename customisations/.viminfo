@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/.notebook tab
+~MSle0~/max_print
 
 # Last Substitute Search Pattern:
 ~MSle0&yvan-r-pkg
@@ -17,8 +17,8 @@
 $dragonfly
 
 # Command Line History (newest to oldest):
-:wq
 :q
+:wq
 :w
 :'<,'>s/'~/dragonfly/yr-r-package-and-config/'//g
 :'<,'>s/yvan-r-pkg/yr-r-package-and-config/g
@@ -69,6 +69,8 @@ $dragonfly
 :e ../filling/models.py
 
 # Search String History (newest to oldest):
+?/max_print
+?/part
 ?/.notebook tab
 ?/.noteb
 ?/===
@@ -117,8 +119,6 @@ $dragonfly
 ?/tt.up
 ?/134
 ?/<<
-?/species
-? \<load\>
 
 # Expression History (newest to oldest):
 
@@ -159,22 +159,34 @@ $dragonfly
 "u	CHAR	0
 	lrr
 ""-	CHAR	0
-	 
+	2
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  37  35  ~/dragonfly/seabirds-2013/.gitignore
-'1  22  2  ~/dragonfly/seabirds-2013/.gitignore
-'2  1  0  ~/mydeck/index.Rmd
-'3  10  1  /tmp/psql.edit.8530
-'4  4  4  /tmp/psql.edit.8530
-'5  1  0  /tmp/psql.edit.8530
-'6  6  40  /tmp/psql.edit.8530
-'7  1308  0  /usr/share/themes/Ambiance/gtk-3.0/gtk-widgets.css
-'8  4  0  ~/.config/gtk-3.0/gtk.css
-'9  174  6  /usr/share/pgadmin3/plugins.d/plugins.ini
+'0  722  8  /etc/texmf/texmf.cnf
+'1  1  0  /etc/apt/sources.list
+'2  30  31  ~/dragonfly/seabirds-2013/report/makefile
+'3  1  0  ~/dragonfly/seabirds-2013/.git/COMMIT_EDITMSG
+'4  37  35  ~/dragonfly/seabirds-2013/.gitignore
+'5  22  2  ~/dragonfly/seabirds-2013/.gitignore
+'6  1  0  ~/mydeck/index.Rmd
+'7  10  1  /tmp/psql.edit.8530
+'8  4  4  /tmp/psql.edit.8530
+'9  1  0  /tmp/psql.edit.8530
 
 # Jumplist (newest first):
+-'  722  8  /etc/texmf/texmf.cnf
+-'  726  0  /etc/texmf/texmf.cnf
+-'  188  66  /etc/texmf/texmf.cnf
+-'  555  40  /etc/texmf/texmf.cnf
+-'  494  51  /etc/texmf/texmf.cnf
+-'  324  15  /etc/texmf/texmf.cnf
+-'  185  66  /etc/texmf/texmf.cnf
+-'  1  0  /etc/texmf/texmf.cnf
+-'  1  0  /etc/apt/sources.list
+-'  30  31  ~/dragonfly/seabirds-2013/report/makefile
+-'  1  0  ~/dragonfly/seabirds-2013/report/makefile
+-'  1  0  ~/dragonfly/seabirds-2013/.git/COMMIT_EDITMSG
 -'  37  35  ~/dragonfly/seabirds-2013/.gitignore
 -'  1  0  ~/dragonfly/seabirds-2013/.gitignore
 -'  22  2  ~/dragonfly/seabirds-2013/.gitignore
@@ -208,7 +220,6 @@ $dragonfly
 -'  22  3  ~/dragonfly/encounter-kaikoura/.gitignore
 -'  1  0  ~/dragonfly/encounter-kaikoura/.gitignore
 -'  64  0  /etc/apt/sources.list
--'  1  0  /etc/apt/sources.list
 -'  66  0  /etc/apt/sources.list
 -'  47  0  ~/dragonfly/encounter-kaikoura/publication/introduction.rnw
 -'  1  0  ~/dragonfly/encounter-kaikoura/publication/introduction.rnw
@@ -262,20 +273,23 @@ $dragonfly
 -'  1  0  ~/dragonfly/sra-2012/analysis/model-re-3/kills/add-cryptic-mortality.r
 -'  4  55  ~/dragonfly/sra-2012/analysis/model-re-3/kills/calc-kills-aggl-single-species.r
 -'  1  0  ~/dragonfly/sra-2012/analysis/model-re-3/kills/calc-kills-aggl-single-species.r
--'  9  0  ~/dragonfly/sra-2012/analysis/model-re-3/kills/calc-kills-aggl-single-species.r
--'  1  0  ~/dragonfly/sra-2012/calc-kills-aggl-single-species.r
--'  3  55  ~/dragonfly/sra-2012/analysis/model-re-3/vulnerabilities/prepare-re.r
--'  1  0  ~/dragonfly/sra-2012/analysis/model-re-3/vulnerabilities/prepare-re.r
--'  58  0  ~/dragonfly/sra-2012/analysis/model-re-3/makefile
--'  1  0  ~/dragonfly/sra-2012/analysis/model-re-3/makefile
--'  1  0  /share/mfish/sra-2012/data/model-re-3/vulnerabilities/SN/model-re-sn.bug
--'  35  0  /share/mfish/sra-2012/data/model-re-3/vulnerabilities/Trawl/data.r
--'  1  0  /share/mfish/sra-2012/data/model-re-3/vulnerabilities/Trawl/data.r
--'  1  0  /share/mfish/sra-2012/data/model-re-3/vulnerabilities/SLL/data.r
--'  31  0  /share/mfish/sra-2012/data/model-re-3/vulnerabilities/BLL/data.r
--'  1  0  /share/mfish/sra-2012/data/model-re-3/vulnerabilities/BLL/data.r
 
 # History of marks within files (newest to oldest):
+
+> /etc/texmf/texmf.cnf
+	"	722	8
+
+> /etc/apt/sources.list
+	"	1	0
+
+> ~/dragonfly/seabirds-2013/report/makefile
+	"	30	31
+	.	30	31
+	+	30	31
+
+> ~/dragonfly/seabirds-2013/.git/COMMIT_EDITMSG
+	"	1	0
+	^	1	0
 
 > ~/dragonfly/seabirds-2013/.gitignore
 	"	37	35
@@ -319,10 +333,6 @@ $dragonfly
 
 > /usr/share/themes/Ambiance/gtk-3.0/gtk-widgets.css
 	"	1308	0
-
-> ~/dragonfly/seabirds-2013/.git/COMMIT_EDITMSG
-	"	1	0
-	^	1	0
 
 > ~/.config/gtk-3.0/gtk.css
 	"	4	0
@@ -398,9 +408,6 @@ $dragonfly
 	+	1	0
 	+	18	4
 	+	22	3
-
-> /etc/apt/sources.list
-	"	64	0
 
 > ~/dragonfly/encounter-kaikoura/publication/introduction.rnw
 	"	47	0
@@ -872,16 +879,3 @@ $dragonfly
 
 > ~/Downloads/recruitmentphilippsstufffornextwednesdaysinterview/Dirichlet_Process_mixtures_for_geochemistry/plotmod.m
 	"	919	2
-
-> ~/Downloads/recruitmentphilippsstufffornextwednesdaysinterview/Dirichlet_Process_mixtures_for_geochemistry/Toy data creator.m
-	"	427	0
-
-> ~/testmake/makefile
-	"	4	0
-	^	4	32
-	.	4	3
-	+	1	0
-	+	4	32
-	+	1	6
-	+	3	1
-	+	4	3

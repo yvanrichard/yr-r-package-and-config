@@ -459,6 +459,58 @@ nz <- function(type='contour', corners=list(x=c(162,189), y=c(-54,-30)), pshift=
     }
 
 
+make.raster.grid <- function(from.df, reso=NULL, xcol=NULL, ycol=NULL, projs="+init=epsg:4326")
+    {
+        ## from.df: data frame or SpatialPointsDataFrame object
+        ## reso: resolution of grid, in coordinates unit
+        ## ycol, xcol: name of the columns for latitude and longitude (or northing and easting)
+        ## projs: projection string (WGS84: "+init=epsg:4326", NZTM: "+init=epsg:2193")
+        library(raster)
+        library(rgdal)
+        if (class(from.df) != 'SpatialPointsDataFrame')
+            {   ## Transform from.df to spatial object
+                if (is.null(ycol) | is.null(xcol))
+                    stop('Need a SpatialPointsDataFrame, or ycol & xcol specified')
+                from.df <- from.df[!is.na(from.df[[ycol]]) & !is.na(from.df[[xcol]]), ]
+                coordinates(from.df) <- eval(parse(text=sprintf('~%s+%s', xcol, ycol)))
+                proj4string(from.df) <- CRS(projs)
+            } else projs <- proj4string(from.df)
+        ## Make raster base grid
+        bb <- bbox(from.df)
+        span <- diff(t(bb))
+        if (is.null(reso))  reso <- max(span)/100  ## resolution of grid, in units of coordinates
+        dims <- span/reso
+        cellsize <- c(reso, reso)
+        grid <- SpatialGrid(GridTopology(bb[,1], cellsize, ceiling(dims)))
+        proj4string(grid) <- CRS(projs)
+        return(grid)
+    }
+
+myRasterize <- function(df, valcol, fun, reso=NULL, xcol=NULL, ycol=NULL, projs="+init=epsg:4326", grid=NULL)
+    {
+        ## df: data frame or SpatialPointsDataFrame object to be rasterised
+        ## valcol: column name of the value of interest (used in fun)
+        ## fun: function returning the aggregate quantity of valcol (needs '...' to accept na.rm)
+        ##      e.g. function(x,...) mean(x, ...)
+        ## reso: resolution of grid, in coordinates unit
+        ## ycol, xcol: name of the columns for latitude and longitude (or northing and easting)
+        ## projs: projection string (WGS84: "+init=epsg:4326", NZTM: "+init=epsg:2193")
+        library(raster)
+        library(rgdal)
+        if (!(all(class(df) == 'SpatialPointsDataFrame')))
+            {   ## Transform df to spatial object
+                if (is.null(ycol) | is.null(xcol))
+                    stop('Need a SpatialPointsDataFrame, or ycol & xcol specified')
+                df <- df[!is.na(df[[ycol]]) & !is.na(df[[xcol]]), ]
+                coordinates(df) <- eval(parse(text=sprintf('~%s+%s', xcol, ycol)))
+                proj4string(df) <- CRS(projs)
+            } else projs <- proj4string(df)
+        if (is.null(reso) & !is.null(grid)) reso <- grid@grid@cellsize[1]
+        if (is.null(grid)) grid <- make.raster.grid(df, reso, xcol, ycol, projs)
+        rast <- rasterize(df, raster(grid), valcol, fun=fun)
+        return(rast)
+    }
+
 
 ###############################################################################
 ###  CALCULATIONS
