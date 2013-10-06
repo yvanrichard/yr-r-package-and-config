@@ -467,7 +467,7 @@ make.raster.grid <- function(from.df, reso=NULL, xcol=NULL, ycol=NULL, projs="+i
         ## projs: projection string (WGS84: "+init=epsg:4326", NZTM: "+init=epsg:2193")
         library(raster)
         library(rgdal)
-        if (class(from.df) != 'SpatialPointsDataFrame')
+        if (!(all(class(from.df) == 'SpatialPointsDataFrame')))
             {   ## Transform from.df to spatial object
                 if (is.null(ycol) | is.null(xcol))
                     stop('Need a SpatialPointsDataFrame, or ycol & xcol specified')
@@ -484,6 +484,17 @@ make.raster.grid <- function(from.df, reso=NULL, xcol=NULL, ycol=NULL, projs="+i
         grid <- SpatialGrid(GridTopology(bb[,1], cellsize, ceiling(dims)))
         proj4string(grid) <- CRS(projs)
         return(grid)
+    }
+
+make.spdf <- function(df, xcol=NULL, ycol=NULL, projs="+init=epsg:4326", verbose=F)
+    {
+        c <- is.na(df[[ycol]]) & is.na(df[[xcol]])
+        if (sum(c) & verbose==T)
+            cat('Removed', sum(c), 'rows', 'out of', nrow(df), 'because of NA coordinates\n')
+        df <- df[!c, ]
+        coordinates(df) <- eval(parse(text=sprintf('~%s+%s', xcol, ycol)))
+        proj4string(df) <- CRS(projs)
+        return(df)
     }
 
 myRasterize <- function(df, valcol, fun, reso=NULL, xcol=NULL, ycol=NULL, projs="+init=epsg:4326", grid=NULL)
@@ -511,6 +522,24 @@ myRasterize <- function(df, valcol, fun, reso=NULL, xcol=NULL, ycol=NULL, projs=
         return(rast)
     }
 
+clicks2extent <- function(verbose=T)
+    {
+        xys <- locator(2)
+        xys <- matrix(c(range(xys$x), range(xys$y)), nrow=2, byrow=T)
+        ext <- extent(xys)
+        if (verbose) dput(ext)
+        return(ext)
+    }
+
+
+myZoom <- function(plotfun, verbose=T)
+    {
+        ## x11()
+        plotfun()
+        ext <- clicks2extent(verbose)
+        ## dev.off()
+        plotfun(ext)
+    }
 
 ###############################################################################
 ###  CALCULATIONS
