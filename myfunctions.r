@@ -827,8 +827,9 @@ Dim <- function(dat)
 
 ## Progress bar. Draw first line and return indices when a symbol should be drawn.
 ## ex: if (i %in% ids) cat('.')
-progressbar <- function(n, length=50)  # n=237; length=50
+progressbar <- function(n, length=50)  # n=15; length=50
     {
+        if (length>n) length=n
         cat(sprintf('|%s|\n', paste(rep('-',length-2), collapse='')))
         s <- 1:n
         sp <- s/n * length
@@ -877,7 +878,7 @@ compprocsumm <- function(comps=c('robin','leon','titi','tieke','frank','jeremy')
 
 
 ## Check for process (R by default) in all dragonfly computers
-proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank','jeremy','taiko'), user='yvan', getres=F)
+proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank','haast','tui','moa','jeremy','taiko'), user='yvan', getres=F)
     {
         res <- NULL
         cp=comps[1]
@@ -916,7 +917,7 @@ check_screen_in_dfly <- function(fold, comps=c('robin','leon','titi','tieke','fr
             }
     }
 
-dfly_cmd <- function(cmd, comps=c('robin','leon','titi','tieke','frank','jeremy','taiko'), user='yvan', wait=T)
+dfly_cmd <- function(cmd, comps=c('robin','leon','titi','tieke','frank','taiko','tui'), user='yvan', wait=T)
     {
         cp=comps[1]
         for (cp in comps)
@@ -927,6 +928,19 @@ dfly_cmd <- function(cmd, comps=c('robin','leon','titi','tieke','frank','jeremy'
                 system(cmd2, wait=wait)
                 cat('\n\n')
             }
+    }
+
+runoncluster <- function(f, x, vars2export=NULL, libs2load=NULL,
+                         clust=c(rep('robin',5), rep('leon', 5), rep('frank',3), rep('taiko',3)))
+    {
+        library(snow)
+        cl <- makeSOCKcluster(clust)
+        clusterExport(cl, list(c("f",vars2export)))
+        if (!is.null(libs2load))
+            for (i in length(libs2load))
+                clusterEvalQ(cl, parse(eval(text=sprintf('library(%s)', libs2load[i]))))
+        res <- clusterApply(cl, x, f)
+        stopCluster(cl)
     }
 
 ## return random factor for testing
@@ -1867,4 +1881,92 @@ cbind0 <- function(x, y)
         z <- as.data.frame(cbind(x[row.names, , drop=F], y[row.names, , drop=F]))
         rownames(z) <- row.names
         return(z)
+    }
+
+
+whichseason <- function(d, starts, names)
+    {
+        library(lubridate)
+        np <- length(starts)
+        if (class(d) != 'Date') d <- as.Date(d)
+        if (class(starts) != 'Date') starts <- as.Date(starts)
+
+        startsyday <- c(lubridate::yday(starts), lubridate::yday(starts[1])+366)
+        minyday <- startsyday[1]
+        startsyday0 <- startsyday - minyday
+        startsyday0 <- ifelse(startsyday0<0, startsyday0+366, startsyday0)
+
+        dyday <- lubridate::yday(d)
+        dyday0 <- lubridate::yday(d) - minyday
+        dyday0 <- ifelse(dyday0<0, dyday0+366, dyday0)
+        
+        pers <- cut(dyday0, breaks=startsyday0, right=F, labels=names)
+        return(pers)
+    }
+
+around <- function(x, idx, plusminus=5)
+    {
+        return(x[(idx-plusminus):(idx+plusminus),])
+    }
+
+toqgis <- function(x, plot.nz=T, plot.eez=F)
+    {
+        library(rgdal)
+        p <- proj4string(x)
+        if (class(x)=='SpatialPolygons')
+            {
+                e <- SpatialPolygonsDataFrame(x, data.frame(v=rep(NA, length(x))))
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialPolygonsDataFrame')
+            {
+                e <- x
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialPoints')
+            {
+                e <- SpatialPointsDataFrame(x, data.frame(v=rep(NA, length(x))))
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialPointsDataFrame')
+            {
+                e <- x
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialLines')
+            {
+                e <- SpatialLinesDataFrame(x, data.frame(v=rep(NA, length(x))))
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialLinesDataFrame')
+            {
+                e <- x
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='raster')
+            {
+                e <- as(r, 'SpatialGridDataFrame')
+                writeGDAL(e, '/tmp/x_temp.img', 'HFA')
+            }
+        if (plot.nz | plot.eez)
+            {
+                load('~/share/dragonfly/gis/nz_isl_eez.rdata')
+                if (plot.nz)
+                    {
+                        nz <- spTransform(nz, CRS(p))
+                        writeOGR(nz, '/tmp', 'nz_temp', 'ESRI Shapefile', overwrite_layer=T)
+                    }
+                if (plot.eez)
+                    {
+                        eez <- spTransform(eez, CRS(p))
+                        writeOGR(eez, '/tmp', 'eez_temp', 'ESRI Shapefile', overwrite_layer=T)
+                    }
+            }
+        ext <- bbox(x)
+        cmd <- sprintf("qgis --nologo --noplugins --extent %f,%f,%f,%f /tmp/x_temp.%s %s %s",
+                       ext[1,1], ext[2,1], ext[1,2], ext[2,2], 
+                       ifelse(grepl('^Spatial',class(x)) & !grepl('Gridl',class(x)), 'shp', 'img'),
+                       ifelse(plot.nz,'/tmp/nz_temp.shp',''),
+                       ifelse(plot.eez,'/tmp/eez_temp.shp',''))
+        system(cmd, wait=F)
     }
