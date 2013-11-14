@@ -6,6 +6,7 @@
 ## see help(Startup) for documentation on ~/.Rprofile and Rprofile.site
 
 # ## Example of .Rprofile
+options(width=110)
 # options(width=65, digits=5)
 # options(show.signif.stars=FALSE)
 # setHook(packageEvent("grDevices", "onLoad"),

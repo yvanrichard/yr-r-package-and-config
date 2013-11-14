@@ -459,6 +459,87 @@ nz <- function(type='contour', corners=list(x=c(162,189), y=c(-54,-30)), pshift=
     }
 
 
+make.raster.grid <- function(from.df, reso=NULL, xcol=NULL, ycol=NULL, projs="+init=epsg:4326")
+    {
+        ## from.df: data frame or SpatialPointsDataFrame object
+        ## reso: resolution of grid, in coordinates unit
+        ## ycol, xcol: name of the columns for latitude and longitude (or northing and easting)
+        ## projs: projection string (WGS84: "+init=epsg:4326", NZTM: "+init=epsg:2193")
+        library(raster)
+        library(rgdal)
+        if (!(all(class(from.df) == 'SpatialPointsDataFrame')))
+            {   ## Transform from.df to spatial object
+                if (is.null(ycol) | is.null(xcol))
+                    stop('Need a SpatialPointsDataFrame, or ycol & xcol specified')
+                from.df <- from.df[!is.na(from.df[[ycol]]) & !is.na(from.df[[xcol]]), ]
+                coordinates(from.df) <- eval(parse(text=sprintf('~%s+%s', xcol, ycol)))
+                proj4string(from.df) <- CRS(projs)
+            } else projs <- proj4string(from.df)
+        ## Make raster base grid
+        bb <- bbox(from.df)
+        span <- diff(t(bb))
+        if (is.null(reso))  reso <- max(span)/100  ## resolution of grid, in units of coordinates
+        dims <- span/reso
+        cellsize <- c(reso, reso)
+        grid <- SpatialGrid(GridTopology(bb[,1], cellsize, ceiling(dims)))
+        proj4string(grid) <- CRS(projs)
+        return(grid)
+    }
+
+make.spdf <- function(df, xcol=NULL, ycol=NULL, projs="+init=epsg:4326", verbose=F)
+    {
+        c <- is.na(df[[ycol]]) & is.na(df[[xcol]])
+        if (sum(c) & verbose==T)
+            cat('Removed', sum(c), 'rows', 'out of', nrow(df), 'because of NA coordinates\n')
+        df <- df[!c, ]
+        coordinates(df) <- eval(parse(text=sprintf('~%s+%s', xcol, ycol)))
+        proj4string(df) <- CRS(projs)
+        return(df)
+    }
+
+myRasterize <- function(df, valcol, fun, reso=NULL, xcol=NULL, ycol=NULL, projs="+init=epsg:4326", grid=NULL)
+    {
+        ## df: data frame or SpatialPointsDataFrame object to be rasterised
+        ## valcol: column name of the value of interest (used in fun)
+        ## fun: function returning the aggregate quantity of valcol (needs '...' to accept na.rm)
+        ##      e.g. function(x,...) mean(x, ...)
+        ## reso: resolution of grid, in coordinates unit
+        ## ycol, xcol: name of the columns for latitude and longitude (or northing and easting)
+        ## projs: projection string (WGS84: "+init=epsg:4326", NZTM: "+init=epsg:2193")
+        library(raster)
+        library(rgdal)
+        if (!(all(class(df) == 'SpatialPointsDataFrame')))
+            {   ## Transform df to spatial object
+                if (is.null(ycol) | is.null(xcol))
+                    stop('Need a SpatialPointsDataFrame, or ycol & xcol specified')
+                df <- df[!is.na(df[[ycol]]) & !is.na(df[[xcol]]), ]
+                coordinates(df) <- eval(parse(text=sprintf('~%s+%s', xcol, ycol)))
+                proj4string(df) <- CRS(projs)
+            } else projs <- proj4string(df)
+        if (is.null(reso) & !is.null(grid)) reso <- grid@grid@cellsize[1]
+        if (is.null(grid)) grid <- make.raster.grid(df, reso, xcol, ycol, projs)
+        rast <- rasterize(df, raster(grid), valcol, fun=fun)
+        return(rast)
+    }
+
+clicks2extent <- function(verbose=T)
+    {
+        xys <- locator(2)
+        xys <- matrix(c(range(xys$x), range(xys$y)), nrow=2, byrow=T)
+        ext <- extent(xys)
+        if (verbose) dput(ext)
+        return(ext)
+    }
+
+
+myZoom <- function(plotfun, verbose=T)
+    {
+        ## x11()
+        plotfun()
+        ext <- clicks2extent(verbose)
+        ## dev.off()
+        plotfun(ext)
+    }
 
 ###############################################################################
 ###  CALCULATIONS
@@ -746,8 +827,9 @@ Dim <- function(dat)
 
 ## Progress bar. Draw first line and return indices when a symbol should be drawn.
 ## ex: if (i %in% ids) cat('.')
-progressbar <- function(n, length=50)  # n=237; length=50
+progressbar <- function(n, length=50)  # n=15; length=50
     {
+        if (length>n) length=n
         cat(sprintf('|%s|\n', paste(rep('-',length-2), collapse='')))
         s <- 1:n
         sp <- s/n * length
@@ -796,7 +878,7 @@ compprocsumm <- function(comps=c('robin','leon','titi','tieke','frank','jeremy')
 
 
 ## Check for process (R by default) in all dragonfly computers
-proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank','jeremy','taiko'), user='yvan', getres=F)
+proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank','haast','tui','moa','jeremy','taiko'), user='yvan', getres=F)
     {
         res <- NULL
         cp=comps[1]
@@ -835,7 +917,7 @@ check_screen_in_dfly <- function(fold, comps=c('robin','leon','titi','tieke','fr
             }
     }
 
-dfly_cmd <- function(cmd, comps=c('robin','leon','titi','tieke','frank','jeremy','taiko'), user='yvan', wait=T)
+dfly_cmd <- function(cmd, comps=c('robin','leon','titi','tieke','frank','taiko','tui'), user='yvan', wait=T)
     {
         cp=comps[1]
         for (cp in comps)
@@ -846,6 +928,19 @@ dfly_cmd <- function(cmd, comps=c('robin','leon','titi','tieke','frank','jeremy'
                 system(cmd2, wait=wait)
                 cat('\n\n')
             }
+    }
+
+runoncluster <- function(f, x, vars2export=NULL, libs2load=NULL,
+                         clust=c(rep('robin',5), rep('leon', 5), rep('frank',3), rep('taiko',3)))
+    {
+        library(snow)
+        cl <- makeSOCKcluster(clust)
+        clusterExport(cl, list(c("f",vars2export)))
+        if (!is.null(libs2load))
+            for (i in length(libs2load))
+                clusterEvalQ(cl, parse(eval(text=sprintf('library(%s)', libs2load[i]))))
+        res <- clusterApply(cl, x, f)
+        stopCluster(cl)
     }
 
 ## return random factor for testing
@@ -1826,5 +1921,91 @@ preview_tex <- function(texfile, dir='.')
         ## tex <- paste(tex, collapse='\n')
         writeLines(tex, sprintf('%s/tex_output.tex', dir), sep='\n')
         system(sprintf('cd %s && pdflatex tex_output && xdg-open tex_output.pdf', dir))
+    }
 
+whichseason <- function(d, starts, names)
+    {
+        library(lubridate)
+        np <- length(starts)
+        if (class(d) != 'Date') d <- as.Date(d)
+        if (class(starts) != 'Date') starts <- as.Date(starts)
+
+        startsyday <- c(lubridate::yday(starts), lubridate::yday(starts[1])+366)
+        minyday <- startsyday[1]
+        startsyday0 <- startsyday - minyday
+        startsyday0 <- ifelse(startsyday0<0, startsyday0+366, startsyday0)
+
+        dyday <- lubridate::yday(d)
+        dyday0 <- lubridate::yday(d) - minyday
+        dyday0 <- ifelse(dyday0<0, dyday0+366, dyday0)
+        
+        pers <- cut(dyday0, breaks=startsyday0, right=F, labels=names)
+        return(pers)
+    }
+
+around <- function(x, idx, plusminus=5)
+    {
+        return(x[(idx-plusminus):(idx+plusminus),])
+    }
+
+toqgis <- function(x, plot.nz=T, plot.eez=F)
+    {
+        library(rgdal)
+        p <- proj4string(x)
+        if (class(x)=='SpatialPolygons')
+            {
+                e <- SpatialPolygonsDataFrame(x, data.frame(v=rep(NA, length(x))))
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialPolygonsDataFrame')
+            {
+                e <- x
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialPoints')
+            {
+                e <- SpatialPointsDataFrame(x, data.frame(v=rep(NA, length(x))))
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialPointsDataFrame')
+            {
+                e <- x
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialLines')
+            {
+                e <- SpatialLinesDataFrame(x, data.frame(v=rep(NA, length(x))))
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialLinesDataFrame')
+            {
+                e <- x
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='raster')
+            {
+                e <- as(r, 'SpatialGridDataFrame')
+                writeGDAL(e, '/tmp/x_temp.img', 'HFA')
+            }
+        if (plot.nz | plot.eez)
+            {
+                load('~/share/dragonfly/gis/nz_isl_eez.rdata')
+                if (plot.nz)
+                    {
+                        nz <- spTransform(nz, CRS(p))
+                        writeOGR(nz, '/tmp', 'nz_temp', 'ESRI Shapefile', overwrite_layer=T)
+                    }
+                if (plot.eez)
+                    {
+                        eez <- spTransform(eez, CRS(p))
+                        writeOGR(eez, '/tmp', 'eez_temp', 'ESRI Shapefile', overwrite_layer=T)
+                    }
+            }
+        ext <- bbox(x)
+        cmd <- sprintf("qgis --nologo --noplugins --extent %f,%f,%f,%f /tmp/x_temp.%s %s %s",
+                       ext[1,1], ext[2,1], ext[1,2], ext[2,2], 
+                       ifelse(grepl('^Spatial',class(x)) & !grepl('Gridl',class(x)), 'shp', 'img'),
+                       ifelse(plot.nz,'/tmp/nz_temp.shp',''),
+                       ifelse(plot.eez,'/tmp/eez_temp.shp',''))
+        system(cmd, wait=F)
     }
