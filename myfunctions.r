@@ -1787,3 +1787,44 @@ cbind0 <- function(x, y)
         rownames(z) <- row.names
         return(z)
     }
+
+
+## View TeX document as PDF from a tex file (not self-sufficient)
+preview_tex <- function(texfile, dir='.')
+    {
+
+        if (dir != '.') {dir.create(dir); file.copy(texfile, sprintf('%s/', dir))}
+        tex <- c('
+\\documentclass[a4paper,11pt]{article}
+\\usepackage{amsmath}
+\\usepackage{rotating}
+\\usepackage{Sweave}
+\\usepackage{lineno}
+\\usepackage{setspace}
+\\usepackage{dcolumn}
+\\usepackage{placeins}
+\\usepackage[utf8]{inputenc}
+\\newcolumntype{d}[0]{D{.}{.}{-1}}
+
+\\newcommand{\\plaintitle}{Temp output}
+\\newcommand{\\reporttitle}{Temp output}
+\\newcommand{\\pdftitle}{Temp output}
+\\newcommand{\\pdfauthors}{authors}
+\\newcommand{\\reportno}{??}
+
+\\usepackage{type1cm}
+\\usepackage{eso-pic}
+
+\\input{/dragonfly/latex/mfish/aebr.tex}
+
+\\usepackage[textsize=scriptsize]{todonotes}
+
+\\begin{document}
+',
+                 sprintf('\\input{%s}', sub('.tex', '', texfile)),
+                 '\\end{document}\n')
+        ## tex <- paste(tex, collapse='\n')
+        writeLines(tex, sprintf('%s/tex_output.tex', dir), sep='\n')
+        system(sprintf('cd %s && pdflatex tex_output && xdg-open tex_output.pdf', dir))
+
+    }
