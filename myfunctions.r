@@ -218,7 +218,7 @@ colorfrom <- function(var, colors=c('black','red','gold','darkgreen'), ncolors=1
         if (is.factor(var) | is.character(var))
             {
                 if (!is.factor(var))  var <- factor(var, levels=unique(var))
-                colors <- rep(brewer.pal(12, 'Set3'), length.out=nlevels(var))
+                colors <- rep(colors, length.out=nlevels(var))
                 names(colors) <- levels(var)
                 Cols <- colors[match(var, names(colors))]
             } else
@@ -812,6 +812,14 @@ ls.str.into <- function(rdata)
     {
         e1 <- new.env()
         load(rdata, envir=e1)
+        ls.str(envir=e1)
+    }
+
+## List variables contained in a .r source file, with their structure
+ls.source.into <- function(sourcefile)
+    {
+        e1 <- new.env()
+        source(sourcefile, local=e1)
         ls.str(envir=e1)
     }
 
@@ -1943,9 +1951,9 @@ toqgis <- function(x, plot.nz=T, plot.eez=F)
                 e <- x
                 writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
             }
-        if (class(x)=='raster')
+        if (class(x)=='RasterLayer')
             {
-                e <- as(r, 'SpatialGridDataFrame')
+                e <- as(x, 'SpatialGridDataFrame')
                 writeGDAL(e, '/tmp/x_temp.img', 'HFA')
             }
         if (plot.nz | plot.eez)
@@ -1963,10 +1971,49 @@ toqgis <- function(x, plot.nz=T, plot.eez=F)
                     }
             }
         ext <- bbox(x)
-        cmd <- sprintf("qgis --nologo --noplugins --extent %f,%f,%f,%f /tmp/x_temp.%s %s %s",
+        cmd <- sprintf("qgis --nologo --noplugins --extent %f,%f,%f,%f %s /tmp/x_temp.%s %s",
                        ext[1,1], ext[2,1], ext[1,2], ext[2,2], 
-                       ifelse(grepl('^Spatial',class(x)) & !grepl('Gridl',class(x)), 'shp', 'img'),
                        ifelse(plot.nz,'/tmp/nz_temp.shp',''),
+                       ifelse(grepl('^Spatial',class(x)) & !grepl('Gridl',class(x)), 'shp', 'img'),
                        ifelse(plot.eez,'/tmp/eez_temp.shp',''))
         system(cmd, wait=F)
+    }
+
+quantsmooth <- function(x, y, ndivs=20, ...)
+    {
+        qq <- sort(quantile(x, seq(0, 1, length.out=ndivs+1)))
+        qqmids <- (qq[2:length(qq)] + qq[1:(length(qq)-1)]) / 2
+        varcut <- qqmids[findInterval(x, qq, rightmost.closed=T, all.inside=T)]
+        varcutf <- factor(varcut, levels=qqmids)
+        qqy <- as.numeric(tapply(y, varcutf, mean))
+        df <- data.frame(midpt=qqmids, y=qqy)
+        attr(df, 'n') <- as.numeric(tapply(y, varcut, length))
+        attr(df, 'supsmu') <- supsmu(df$midpt, df$y)
+        return(df)
+    }
+
+pal.ex <- function(cols, cex=1.3)
+    {
+        ncols <- length(cols)
+        par(mfrow=c(2,2), mar=c(2,2,1,1))
+        ## bar plot
+        x <- table(round(runif(100, 0.5, ncols+0.5)))
+        barplot(x, col=cols)
+        ## scatter plot
+        plot(rnorm(1000), rnorm(1000), col=cols, pch=20, cex=cex)
+        ## lines
+        nl <- max(10, ncols)
+        x <- apply(matrix(rnorm(100*nl), nrow=nl), 1, cumsum)
+        matplot(x, type='l', col=cols, lwd=cex)
+        ## gradients
+        ncols <- ncols * 2
+        plot(NA, xlim=c(0,5), ylim=c(1, ncols+1), axes=F, xaxs='i', yaxs='i')
+        cols1 <- rep(cols, each=2)
+        for (i in 1:ncols)
+            rect(0, i, 1, i+1, col=cols1[i], border=NA)
+        for (i in 1:ncols)
+            rect(4, i, 5, i+1, col=rev(cols1)[i], border=NA)
+        cols2 <- c(cols, rev(cols))
+        for (i in 1:ncols)
+            rect(2, i, 3, i+1, col=cols2[i], border=NA)
     }
