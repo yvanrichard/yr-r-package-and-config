@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/max_print
+~MSle0~/main
 
 # Last Substitute Search Pattern:
 ~MSle0&yvan-r-pkg
@@ -17,8 +17,8 @@
 $dragonfly
 
 # Command Line History (newest to oldest):
-:q
 :wq
+:q
 :w
 :'<,'>s/'~/dragonfly/yr-r-package-and-config/'//g
 :'<,'>s/yvan-r-pkg/yr-r-package-and-config/g
@@ -69,6 +69,9 @@ $dragonfly
 :e ../filling/models.py
 
 # Search String History (newest to oldest):
+?/main
+?/300
+?/gis
 ?/max_print
 ?/part
 ?/.notebook tab
@@ -116,9 +119,6 @@ $dragonfly
 ?/$F$
 ?/sensiti
 ?/sigma
-?/tt.up
-?/134
-?/<<
 
 # Expression History (newest to oldest):
 
@@ -127,54 +127,72 @@ $dragonfly
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	LINE	0
-	yrpkg/
+""0	CHAR	0
+	
+	
 "1	LINE	0
-	SELECT "fishing.year", SUM(events) FROM model.seabirds_trawl GROUP BY "fishing.year"
+	   guest ok = yes
 "2	LINE	0
-	>>>>>>> 45540f2378431fb726feda0c84d1c562462ce38d
+	   path = /home/yvan/Music
 "3	LINE	0
-	effective, and longer term trends have been detected \citep<e.g.,>{peron_interdecadal_2010}. However, due to the expense and often opportunitic nature of data
+	   locking = no
 "4	LINE	0
-	at-sea counts. For some species (e.g., gulls, \citep{clarke_validating_2003}) this has been considered
+	   read only = yes
 "5	LINE	0
-	=======
+	   comment = yvan's music
 "6	LINE	0
-	<<<<<<< HEAD
+	[Music]
 "7	LINE	0
-	yrpkg*
-"8	CHAR	0
-		cp ~/.emacs.d ~/dragonfly/yr-r-package-and-config/customisations/ -r
-		cp ~/.emacs ~/dragonfly/yr-r-package-and-config/customisations/
-		cp ~/.vim ~/dragonfly/yr-r-package-and-config/customisations/ -r
-		cp ~/.viminfo ~/dragonfly/yr-r-package-and-config/customisations/
-		cp ~/.vimrc ~/dragonfly/yr-r-package-and-config/customisations/
-		cp ~/.screenrc ~/dragonfly/yr-r-package-and-config/customisations/
-		cp ~/.bashrc ~/dragonfly/yr-r-package-and-config/customisations/
-		cp ~/.Rprofile ~/dragonfly/yr-r-package-and-config/customisations/
-	
-	
+	SELECT "fishing.year", SUM(events) FROM model.seabirds_trawl GROUP BY "fishing.year"
+"8	LINE	0
+	>>>>>>> 45540f2378431fb726feda0c84d1c562462ce38d
 "9	LINE	0
-	all: yrpkg_2.0.tar.gz
+	effective, and longer term trends have been detected \citep<e.g.,>{peron_interdecadal_2010}. However, due to the expense and often opportunitic nature of data
 "u	CHAR	0
 	lrr
-""-	CHAR	0
-	2
+"-	CHAR	0
+	i
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  722  8  /etc/texmf/texmf.cnf
-'1  1  0  /etc/apt/sources.list
-'2  30  31  ~/dragonfly/seabirds-2013/report/makefile
-'3  1  0  ~/dragonfly/seabirds-2013/.git/COMMIT_EDITMSG
-'4  37  35  ~/dragonfly/seabirds-2013/.gitignore
-'5  22  2  ~/dragonfly/seabirds-2013/.gitignore
-'6  1  0  ~/mydeck/index.Rmd
-'7  10  1  /tmp/psql.edit.8530
-'8  4  4  /tmp/psql.edit.8530
-'9  1  0  /tmp/psql.edit.8530
+'0  650  14  /usr/share/texmf/web2c/texmf.cnf
+'1  243  0  /usr/share/texmf/web2c/texmf.cnf
+'2  55  64  /tmp/india-map.tex
+'3  1  57  /tmp/3994.prj
+'4  74  42  /etc/apt/sources.list
+'5  12  0  /etc/fstab
+'6  63  24  /etc/sysctl.conf
+'7  37  0  /etc/security/limits.conf
+'8  1  0  /tmp/54004.prj
+'9  337  0  /etc/samba/smb.conf
 
 # Jumplist (newest first):
+-'  650  14  /usr/share/texmf/web2c/texmf.cnf
+-'  638  2  /usr/share/texmf/web2c/texmf.cnf
+-'  631  2  /usr/share/texmf/web2c/texmf.cnf
+-'  589  7  /usr/share/texmf/web2c/texmf.cnf
+-'  565  21  /usr/share/texmf/web2c/texmf.cnf
+-'  327  44  /usr/share/texmf/web2c/texmf.cnf
+-'  85  48  /usr/share/texmf/web2c/texmf.cnf
+-'  81  6  /usr/share/texmf/web2c/texmf.cnf
+-'  33  0  /usr/share/texmf/web2c/texmf.cnf
+-'  1  0  /usr/share/texmf/web2c/texmf.cnf
+-'  243  0  /usr/share/texmf/web2c/texmf.cnf
+-'  55  64  /tmp/india-map.tex
+-'  1  0  /tmp/india-map.tex
+-'  1  57  /tmp/3994.prj
+-'  74  42  /etc/apt/sources.list
+-'  1  0  /etc/apt/sources.list
+-'  12  0  /etc/fstab
+-'  1  0  /etc/fstab
+-'  63  24  /etc/sysctl.conf
+-'  1  0  /etc/sysctl.conf
+-'  37  0  /etc/security/limits.conf
+-'  1  0  /etc/security/limits.conf
+-'  1  0  /tmp/54004.prj
+-'  337  0  /etc/samba/smb.conf
+-'  1  0  /etc/samba/smb.conf
+-'  338  16  /etc/samba/smb.conf
 -'  722  8  /etc/texmf/texmf.cnf
 -'  726  0  /etc/texmf/texmf.cnf
 -'  188  66  /etc/texmf/texmf.cnf
@@ -183,7 +201,6 @@ $dragonfly
 -'  324  15  /etc/texmf/texmf.cnf
 -'  185  66  /etc/texmf/texmf.cnf
 -'  1  0  /etc/texmf/texmf.cnf
--'  1  0  /etc/apt/sources.list
 -'  30  31  ~/dragonfly/seabirds-2013/report/makefile
 -'  1  0  ~/dragonfly/seabirds-2013/report/makefile
 -'  1  0  ~/dragonfly/seabirds-2013/.git/COMMIT_EDITMSG
@@ -248,39 +265,58 @@ $dragonfly
 -'  9  0  ~/dragonfly/yr-r-package-and-config/makefile
 -'  1  0  ~/dragonfly/yr-r-package-and-config/makefile
 -'  2  5  ~/dragonfly/yr-r-package-and-config/.gitignore
--'  1  0  ~/dragonfly/yr-r-package-and-config/.gitignore
--'  3  0  ~/dragonfly/yr-r-package-and-config/.gitignore
--'  24  15  ~/dragonfly/yr-r-package-and-config/makefile
--'  17  0  ~/dragonfly/yr-r-package-and-config/makefile
--'  2  0  ~/dragonfly/yr-r-package-and-config/makefile
--'  1  15  ~/dragonfly/sra-2012/report/makefile
--'  2  17  /etc/darkstat/init.cfg
--'  1  0  /etc/darkstat/init.cfg
--'  3  0  /etc/darkstat/init.cfg
--'  1  210  ~/dragonfly/sra-foundations/.git/COMMIT_EDITMSG
--'  8  0  ~/.ssh/known_hosts
--'  1  0  ~/.ssh/known_hosts
--'  7  0  ~/.ssh/known_hosts
--'  1  17  ~/dragonfly/sra-foundations/report/notes/tables/makefile
--'  22  17  ~/dragonfly/sra-2012/analysis/model-re-4/makefile
--'  1  0  ~/dragonfly/sra-2012/analysis/model-re-4/makefile
--'  52  0  /etc/ssh/sshd_config
--'  1  0  /etc/ssh/sshd_config
--'  89  8  /etc/ssh/sshd_config
--'  130  0  ~/dragonfly/sra-2012/analysis/model-re-3/kills/summarise-kills.r
--'  1  0  ~/dragonfly/sra-2012/analysis/model-re-3/kills/summarise-kills.r
--'  112  24  ~/dragonfly/sra-2012/analysis/model-re-3/kills/add-cryptic-mortality.r
--'  1  0  ~/dragonfly/sra-2012/analysis/model-re-3/kills/add-cryptic-mortality.r
--'  4  55  ~/dragonfly/sra-2012/analysis/model-re-3/kills/calc-kills-aggl-single-species.r
--'  1  0  ~/dragonfly/sra-2012/analysis/model-re-3/kills/calc-kills-aggl-single-species.r
 
 # History of marks within files (newest to oldest):
 
-> /etc/texmf/texmf.cnf
-	"	722	8
+> /usr/share/texmf/web2c/texmf.cnf
+	"	650	14
+	^	650	15
+	.	650	15
+	+	650	15
+
+> /tmp/india-map.tex
+	"	55	64
+
+> /tmp/3994.prj
+	"	1	57
 
 > /etc/apt/sources.list
+	"	74	42
+	^	74	43
+	.	73	0
+	+	73	0
+
+> /etc/fstab
+	"	12	0
+	^	12	1
+	.	12	0
+	+	12	0
+
+> /etc/sysctl.conf
+	"	63	24
+	^	62	15
+	.	62	0
+	+	63	19
+	+	62	0
+
+> /etc/security/limits.conf
+	"	37	0
+
+> /tmp/54004.prj
 	"	1	0
+
+> /tmp/3395.prj
+	"	1	0
+
+> /etc/samba/smb.conf
+	"	337	0
+	.	338	0
+	+	337	0
+	+	338	20
+	+	338	0
+
+> /etc/texmf/texmf.cnf
+	"	722	8
 
 > ~/dragonfly/seabirds-2013/report/makefile
 	"	30	31
@@ -849,33 +885,3 @@ $dragonfly
 	+	24	1
 	+	27	0
 	+	26	12
-
-> ~/.ssh/id_dsa.pub
-	"	1	0
-
-> ~/dragonfly/sra-foundations/report/notes/id_dsa.pub
-	"	1	0
-
-> ~/Downloads/AdbeRdr9.4.7-1_i486linux_enu.bin
-	"	1	0
-
-> ~/dragonfly/abundance/data/get_from_db/trips.csv
-	"	14	5
-	.	60	0
-	+	1	0
-	+	60	0
-
-> ~/dragonfly/sra-foundations/modelling/bh-dens-dep/parallel-pars.r
-	"	23	0
-
-> ~/Downloads/install_flash_player_11_linux.x86_64/libflashplayer.so
-	"	1	0
-
-> ~/Downloads/recruitmentphilippsstufffornextwednesdaysinterview/Dirichlet_Process_mixtures_for_geochemistry/split_merge_sampler_fix.m
-	"	47	16
-
-> ~/dragonfly/sra-foundations/report/notes/auto/methods.el
-	"	1	0
-
-> ~/Downloads/recruitmentphilippsstufffornextwednesdaysinterview/Dirichlet_Process_mixtures_for_geochemistry/plotmod.m
-	"	919	2

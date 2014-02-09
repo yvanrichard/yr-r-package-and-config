@@ -241,6 +241,9 @@ there's a region, all lines that region covers will be duplicated."
 ;;                             (- count (* 2 (/ count 2))))))))))
 ;; (put 'latex-mode 'flyspell-mode-predicate 'flyspell-ignore-verbatim)
 
+;; (setq safe-local-variable-values ((TeX-master . "report.tex")
+;;  (TeX-master . "report")
+;;  (TeX-master . t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    markdown
@@ -355,6 +358,14 @@ prompt the user for a coding system."
 	 ("Oreo" (filename . "oreo"))
 	 ("Seabirds 2013" (filename . "seabirds-2013"))
 	 ("Bycatch www" (filename . "bycatch.dragonfly"))
+	 ("Seabird counts" (filename . "abundance/"))
+	 ("Maui's dolphins" (filename . "maui"))
+	 ("Seabird counts website" (filename . "seabird-counts-website"))
+	 ("XBP distribution" (filename . "black-petrel-distribution"))
+	 ("MBIE" (or (filename . "eREAR")
+		     (filename . "mbie")))
+	 ("SRA" (filename . "sra"))
+	 ("Ludicio" (filename . "ludicio/"))
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")
 			     (filename . ".emacs"))))))
