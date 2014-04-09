@@ -946,7 +946,7 @@ runoncluster <- function(f, x, vars2export=NULL, libs2load=NULL,
         clusterExport(cl, list(c("f",vars2export)))
         if (!is.null(libs2load))
             for (i in length(libs2load))
-                clusterEvalQ(cl, parse(eval(text=sprintf('library(%s)', libs2load[i]))))
+                clusterEvalQ(cl, eval(parse(text=sprintf('library(%s)', libs2load[i]))))
         res <- clusterApply(cl, x, f)
         stopCluster(cl)
     }
