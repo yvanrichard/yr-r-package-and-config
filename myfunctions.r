@@ -1022,15 +1022,15 @@ collapseseq <- function(x, with.attr=F)  # x=c(2,4,6,7,9,10,11,12,16)
     }
 
 ## fold <- getwd()
-get_in_out_from_scripts <- function(fold='.', returnlist=F)
+get_in_out_from_scripts <- function(fold='.', returnlist=F, recursive=F)
     {
-        fls <- dir(fold, pattern='*.r$')
+        fls <- dir(fold, pattern='*.r$', full.names=T, recursive=recursive)
 
         ## filter only text files
         istxt <- NULL
         for (i in 1:length(fls))
             {
-                a <- system(sprintf('file %s/%s', fold, fls[i]), intern=T)
+                a <- system(sprintf('file %s', fls[i]), intern=T)
                 istxt <- c(istxt, ifelse(length(grep('text', a)), T, F))
             }
         fls <- fls[istxt]
@@ -1097,7 +1097,7 @@ get_in_out_from_scripts <- function(fold='.', returnlist=F)
             return(outlist)
     }
 
-graph_r_scripts <- function(fold='.')
+graph_r_scripts <- function(fold='.', recursive=T)
     {
         fold <- sub('^\\.', getwd(), fold)
         fold <- path.expand(fold)
@@ -1105,7 +1105,7 @@ graph_r_scripts <- function(fold='.')
         opt <- options("useFancyQuotes")
         options(useFancyQuotes = FALSE)
 
-        inout <- get_in_out_from_scripts(fold, returnlist=T)
+        inout <- get_in_out_from_scripts(fold, returnlist=T, recursive=recursive)
 
         scripts <- names(inout)
         ins <- sapply(inout, function(x) x$ins)
@@ -1226,7 +1226,7 @@ check_cited_labels <- function(reportfile, ignore=c('sec','eq','app'))
 
 ##makefile <- '~/dragonfly/sra-foundations/modelling/bh-dd-k50/makefile'
 ## makefile <- '~/dragonfly/sra-foundations/report/notes/makefile'
-graph_makefile <- function(makefile='makefile')
+graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranksep=0.2, ratio=0.66, margin=1)
     {
         opt <- options("useFancyQuotes")
         options(useFancyQuotes = FALSE)
@@ -1351,9 +1351,9 @@ graph_makefile <- function(makefile='makefile')
         }, simplify=F)
         all2 <- rapply(all2, function(x) return(ifelse(is.na(x), NA, dQuote(x))), how='replace')
         
-        gf <- 'digraph G {
-rankdir=BT; nodesep=0.1; ranksep=0.2; ratio=0.66; margin=1;
-'
+        gf <- sprintf('digraph G {
+rankdir=%s; nodesep=%f; ranksep=%f; ratio=%f; margin=%f;
+', rankdir, nodesep, ranksep, ratio, margin)
 
         ##--- Nodes ---##
         
@@ -1461,9 +1461,10 @@ includemk <- function(Mk='vars.mk', warn=T)
         options('useFancyQuotes'=F)
         mk <- readLines(Mk)
         mk <- mk[!grepl('^[[:blank:]]*#', mk)]
-            mk <- mk[grep('=', mk)]
+        mk <- mk[grep('=', mk)]
         mk <- gsub('\t*', '', mk)
         r <- rapply(strsplit(mk, '='), trim, how='replace')
+        if (any(duplicated(sapply(r, '[', 1)))) stop('Duplicated entries in makefile')
         rr <- list()
         for (i in 1:length(r))
             rr[[r[[i]][1]]] <- r[[i]][2]
