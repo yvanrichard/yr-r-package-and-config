@@ -886,7 +886,7 @@ compprocsumm <- function(comps=c('robin','leon','titi','tieke','frank','jeremy')
 
 
 ## Check for process (R by default) in all dragonfly computers
-proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank','haast','tui','moa','jeremy','taiko'), user='yvan', getres=F)
+proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank','haast','tui','jeremy','taiko'), user='yvan', getres=F)
     {
         res <- NULL
         cp=comps[1]
@@ -1226,7 +1226,8 @@ check_cited_labels <- function(reportfile, ignore=c('sec','eq','app'))
 
 ##makefile <- '~/dragonfly/sra-foundations/modelling/bh-dd-k50/makefile'
 ## makefile <- '~/dragonfly/sra-foundations/report/notes/makefile'
-graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranksep=0.2, ratio=0.66, margin=1)
+graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranksep=0.2, ratio=0.66, margin=1,
+                           ignore.clusters=F)
     {
         opt <- options("useFancyQuotes")
         options(useFancyQuotes = FALSE)
@@ -1271,7 +1272,7 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
         mk <- mk[!(grepl('\\.PHONY', mk))]
         parts <- mk[(!grepl('#+.*:', mk) & grepl(':', mk) & !grepl('^\t', mk)) | grepl('<!.*!>', mk)]
         ispart <- grepl('<!.*!>', parts)
-        if (any(ispart))
+        if (any(ispart) & !ignore.clusters)
             {
                 partlabs <- ifelse(grepl('<!.*!>', parts), trim(gsub('.*<!(.*)!>.*','\\1',parts)), NA)
                 ts <- cumsum(is.na(partlabs))
@@ -1279,6 +1280,7 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
                 wh <- which(!is.na(partlabs))
                 for (i in 1:length(wh))
                     ps[[partlabs[wh[i]]]] <- ts[(wh[i]+1):ifelse(i!=length(wh), wh[i+1]-1, length(ts))]
+                ps[which(names(ps)=='')] <- NULL
                 nps <- ts[is.na(partlabs) & !(ts %in% unlist(ps))]
                 withclusters <- T
             } else withclusters <- F
@@ -2057,3 +2059,72 @@ pal.ex <- function(cols, cex=1.3)
         for (i in 1:ncols)
             rect(2, i, 3, i+1, col=cols2[i], border=NA)
     }
+
+
+corr_plot <- function(df, with.diag.lines=F, use.dens.cols=T) {
+
+    library(corrgram)
+
+    ## Customised function to add correlation coefficient
+    panel.tri <- function (x, y, corr = NULL, col.regions, ...) 
+        {
+            if (is.null(corr)) 
+                corr <- cor(x, y, use = "pair")
+            ncol <- 14
+            pal <- col.regions(ncol)
+            col.ind <- as.numeric(cut(corr, breaks = seq(from = -1, to = 1, 
+                                                length = ncol + 1), include.lowest = TRUE))
+            usr <- par("usr")
+            rect(usr[1], usr[3], usr[2], usr[4], col = pal[col.ind], 
+                 border = NA)
+            if (!is.na(corr)) {
+                if (with.diag.lines) 
+                    rect(usr[1], usr[3], usr[2], usr[4], density = 5,
+                         angle = ifelse(corr > 0, 45, 135), col = "white")
+                text(mean(usr[1:2]), mean(usr[3:4]), round(corr,3),
+                     col=ifelse(abs(corr)>0.55, 'white', 'black'))
+            }
+            box(col = "lightgray")
+        }
+
+    panel.diag <- function (x, corr = NULL, ...) 
+        {
+            if (!is.null(corr)) 
+                return()
+            ## From panel.density
+            dd = density(x, na.rm = TRUE)
+            xr = range(dd$x)
+            yr = range(dd$y)
+            par(usr = c(min(xr), max(xr), min(yr), max(yr) * 1.1))
+            plot.xy(xy.coords(dd$x, dd$y), type = "l", col = grey(0.7), ...)
+            box(col = "lightgray")
+            ## Modified from panel.minmax
+            minx <- round(min(x, na.rm = TRUE), 2)
+            maxx <- round(max(x, na.rm = TRUE), 2)
+            usr <- par("usr")
+            text(usr[1], usr[3], minx, cex = 0.8, adj = c(-0.1, -0.1))
+            text(usr[2], usr[4], maxx, cex = 0.8, adj = c(1.1, 1.1))
+        }
+
+    panel.pts <- function (x, y, corr = NULL, col.regions, ...) 
+        {
+            if (!is.null(corr)) 
+                return()
+            if (use.dens.cols)  cols <- densCols(x, y)  else  cols <- '#00000044'
+            plot.xy(xy.coords(x, y), type = "p", col=cols, ...)
+            box(col = "lightgray")
+        }
+
+    corrgram(df, order=FALSE, lower.panel=panel.tri,
+             upper.panel=panel.pts, text.panel=panel.txt,
+             diag.panel=panel.diag, main="", pch='.')
+
+}
+
+
+duplicated_rows <- function(df, cols=names(df)) {
+    id <- apply(df[,cols], 1, paste, collapse='_')
+    isdup <- duplicated(df[,cols])
+    d <- df[id %in% id[isdup], ]
+    return(d[order(id),])
+}
