@@ -2126,5 +2126,6 @@ duplicated_rows <- function(df, cols=names(df)) {
     id <- apply(df[,cols], 1, paste, collapse='_')
     isdup <- duplicated(df[,cols])
     d <- df[id %in% id[isdup], ]
+    id <- apply(d[, cols], 1, paste, collapse = "_")
     return(d[order(id),])
 }
