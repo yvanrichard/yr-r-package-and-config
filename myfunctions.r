@@ -2037,7 +2037,7 @@ pal.ex <- function(cols, cex=1.3)
         par(mfrow=c(2,2), mar=c(2,2,1,1))
         ## bar plot
         x <- table(round(runif(100, 0.5, ncols+0.5)))
-        barplot(x, col=cols)
+        barplot(x, col=cols, border=NA)
         ## scatter plot
         plot(rnorm(1000), rnorm(1000), col=cols, pch=20, cex=cex)
         ## lines
