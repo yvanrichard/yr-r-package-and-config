@@ -59,6 +59,34 @@ movecolumns <- function(df, cols, where=1)
     }
 
 
+duplicated_rows <- function(df, cols=names(df)) {
+    id <- apply(df[,cols], 1, paste, collapse='_')
+    isdup <- duplicated(df[,cols])
+    d <- df[id %in% id[isdup], ]
+    id <- apply(d[, cols], 1, paste, collapse = "_")
+    return(d[order(id),])
+}
+
+## Merge on row names (and get rid of Row.names column created)
+merge0 <- function(x, y, ...)
+    {
+        mrg <- merge(x, y, by=0, ...)
+        rownames(mrg) <- mrg$Row.names
+        mrg$Row.names <- NULL
+        return(mrg)
+    }
+
+## Cbind using row names (even if some rows are missing in x or y)
+cbind0 <- function(x, y)
+    {
+        row.names <- sort(unique(c(rownames(x), rownames(y))))
+        z <- as.data.frame(cbind(x[row.names, , drop=F], y[row.names, , drop=F]))
+        rownames(z) <- row.names
+        return(z)
+    }
+
+
+
 ###############################################################################
 ###  TEXT MANIPULATION
 ###############################################################################
@@ -124,6 +152,11 @@ trim <- function(x)
         x3 <- sapply(x2, function(y) gsub(' *$','', y), USE.NAMES=F)
         return(x3)
     }
+
+clean.string <- function(x) {
+    ## remove heading and trailing spaces, multiple spaces, multiple tabs, and consecutive tabs or spaces
+    return(gsub('[\t ]{2,}', ' ', gsub('\t{2,}', '\t', gsub(' {2,}', ' ', gsub('^ *| *$', '', x)))))
+}
 
 
 ###############################################################################
@@ -392,6 +425,90 @@ placeleg <- function(X, Y, ...)
         legend(pos, ...)    
     }
 
+pal.ex <- function(cols, cex=1.3)
+    {
+        ncols <- length(cols)
+        par(mfrow=c(2,2), mar=c(2,2,1,1))
+        ## bar plot
+        x <- table(round(runif(100, 0.5, ncols+0.5)))
+        barplot(x, col=cols)
+        ## scatter plot
+        plot(rnorm(1000), rnorm(1000), col=cols, pch=20, cex=cex)
+        ## lines
+        nl <- max(10, ncols)
+        x <- apply(matrix(rnorm(100*nl), nrow=nl), 1, cumsum)
+        matplot(x, type='l', col=cols, lwd=cex)
+        ## gradients
+        ncols <- ncols * 2
+        plot(NA, xlim=c(0,5), ylim=c(1, ncols+1), axes=F, xaxs='i', yaxs='i')
+        cols1 <- rep(cols, each=2)
+        for (i in 1:ncols)
+            rect(0, i, 1, i+1, col=cols1[i], border=NA)
+        for (i in 1:ncols)
+            rect(4, i, 5, i+1, col=rev(cols1)[i], border=NA)
+        cols2 <- c(cols, rev(cols))
+        for (i in 1:ncols)
+            rect(2, i, 3, i+1, col=cols2[i], border=NA)
+    }
+
+pickcolor <- function(brewer=F, txt=T)
+    {
+        if (!brewer)
+            {
+                x11(width=15.2, height=8.2)
+                cs <- colors()
+                n <- length(cs)
+                xx <- c(0, (1:n %% 40)[-length(1:n)])
+                yy <- cumsum(xx==0)
+                yy <- (max(yy)+1)-yy
+                d <- data.frame(x=xx, y=yy, col=cs, stringsAsFactors=F)
+                plot(xx, yy, col=darken(cs,.2), bg=cs, pch=22, cex=5, axes=F, xlab='', ylab='',
+                     main='Pick your colours', xlim=range(xx), ylim=c(-1, max(yy)))
+                xy <- locator(type='p', pch=4)
+                xy <- sapply(xy, round)
+                cols <- merge(xy, d, all.x=T, all.y=F)$col
+            } else
+                {
+                    x11(width=19, height=6.8)
+                    library(RColorBrewer)
+                    info <- brewer.pal.info
+                    np <- nrow(info)
+                    info$y <- 1:np
+                    d <- NULL
+                    for (i in 1:np)
+                        {
+                            mx <- info[i, 'maxcolors']
+                            cs <- brewer.pal(mx, rownames(info)[i])
+                            d <- rbind(d, data.frame(x=rep(i, mx),
+                                                     y=1:mx,
+                                                     col=brewer.pal(mx, rownames(info)[i]),
+                                                     stringsAsFactors=F))
+                        }
+                    d$xy <- paste(d$x, d$y, sep='-')
+                    plot(NA, xlim=c(min(d$x)-1, max(d$x)+1), ylim=c(min(d$y)-2, max(d$y)+1),
+                         main='Pick your colours', axes=F,
+                         xlab='', ylab='')
+                    points(d$x, d$y, col=darken(d$col, .2), bg=d$col, pch=22, cex=5)
+                    text(1:np, rep(c(-.6,0), length.out=np), rownames(info))
+                    xy <- locator(type='p', pch=4)
+                    xy <- sapply(xy, round, simplify=F)
+                    xy$xy <- paste(xy$x, xy$y, sep='-')
+                    xy <- as.data.frame(xy)
+                    cols <- merge(xy, d, all.x=T, all.y=F, by.x='xy', by.y='xy')$col
+                }
+        dev.off()
+        if (txt)
+            {
+                op <- options("useFancyQuotes")
+                options("useFancyQuotes"=F)
+                c <- paste(sQuote(cols), collapse=', ')
+                cat('\n', c, '\n\n')
+                options("useFancyQuotes"=op)
+                return(NULL)
+            } else  return(cols)
+    }
+
+
 
 ###############################################################################
 ###  MAPS / GIS
@@ -486,6 +603,8 @@ make.raster.grid <- function(from.df, reso=NULL, xcol=NULL, ycol=NULL, projs="+i
         return(grid)
     }
 
+
+## Convert data frame representing points to SpatialPoints
 make.spdf <- function(df, xcol=NULL, ycol=NULL, projs="+init=epsg:4326", verbose=F)
     {
         c <- is.na(df[[ycol]]) & is.na(df[[xcol]])
@@ -540,6 +659,96 @@ myZoom <- function(plotfun, verbose=T)
         ## dev.off()
         plotfun(ext)
     }
+
+toqgis <- function(x, plot.nz=T, plot.eez=F)
+    {
+        library(rgdal)
+        p <- proj4string(x)
+        if (class(x)=='SpatialPolygons')
+            {
+                e <- SpatialPolygonsDataFrame(x, data.frame(v=rep(NA, length(x))))
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialPolygonsDataFrame')
+            {
+                e <- x
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialPoints')
+            {
+                e <- SpatialPointsDataFrame(x, data.frame(v=rep(NA, length(x))))
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialPointsDataFrame')
+            {
+                e <- x
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialLines')
+            {
+                e <- SpatialLinesDataFrame(x, data.frame(v=rep(NA, length(x))))
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='SpatialLinesDataFrame')
+            {
+                e <- x
+                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
+            }
+        if (class(x)=='RasterLayer')
+            {
+                e <- as(x, 'SpatialGridDataFrame')
+                writeGDAL(e, '/tmp/x_temp.img', 'HFA')
+            }
+        if (plot.nz | plot.eez)
+            {
+                load('~/share/dragonfly/gis/nz_isl_eez.rdata')
+                if (plot.nz)
+                    {
+                        nz <- spTransform(nz, CRS(p))
+                        writeOGR(nz, '/tmp', 'nz_temp', 'ESRI Shapefile', overwrite_layer=T)
+                    }
+                if (plot.eez)
+                    {
+                        eez <- spTransform(eez, CRS(p))
+                        writeOGR(eez, '/tmp', 'eez_temp', 'ESRI Shapefile', overwrite_layer=T)
+                    }
+            }
+        ext <- bbox(x)
+        cmd <- sprintf("qgis --nologo --noplugins --extent %f,%f,%f,%f %s /tmp/x_temp.%s %s",
+                       ext[1,1], ext[2,1], ext[1,2], ext[2,2], 
+                       ifelse(plot.nz,'/tmp/nz_temp.shp',''),
+                       ifelse(grepl('^Spatial',class(x)) & !grepl('Gridl',class(x)), 'shp', 'img'),
+                       ifelse(plot.eez,'/tmp/eez_temp.shp',''))
+        system(cmd, wait=F)
+    }
+
+
+sprect <- function(xmin, xmax, ymin, ymax, p4s="", ids=NULL, aslist=F) {
+    n <- unique(c(length(xmin), length(xmax), length(ymin), length(ymax)))
+    if (length(n) != 1)
+        stop('xmin, xmax, ymin, ymax do not have the same length')
+    if (is.null(ids))  ids <- as.character(1:n)
+    
+    rects <- sapply(1:n, function(i) {
+        SpatialPolygons(list(Polygons(list(
+            Polygon(cbind(x=c(xmin[i], xmin[i], xmax[i], xmax[i], xmin[i]),
+                          y=c(ymin[i], ymax[i], ymax[i], ymin[i], ymin[i])))), ids[i])),
+                        proj4string=CRS(p4s))
+    }, simplify=F)
+
+    r <- rects[[1]]
+    if (!aslist) {
+        if (n > 1) {
+            for (i in 2:n) {
+                library(maptools)
+                r <- spRbind(r, rects[[i]])
+            }
+        }
+        return(r)
+    } else return(rects)
+}
+
+
 
 ###############################################################################
 ###  CALCULATIONS
@@ -651,6 +860,11 @@ optimise_y <- function(f, target, lims, incr=0.01, tol=0.00001, ...)
             warning('Final accuracy greater than specified tolerance')
         
         return(list(x=xys[steps,'x'], acc=xys[steps,'dist'], step=xys))
+    }
+
+around <- function(x, idx, plusminus=5)
+    {
+        return(x[(idx-plusminus):(idx+plusminus),])
     }
 
 
@@ -925,7 +1139,8 @@ check_screen_in_dfly <- function(fold, comps=c('robin','leon','titi','tieke','fr
             }
     }
 
-dfly_cmd <- function(cmd, comps=c('robin','leon','titi','tieke','frank','taiko','tui'), user='yvan', wait=T)
+dfly_cmd <- function(cmd, comps=c('robin','leon','titi','tieke','frank','taiko','tui','kahu'),
+                     user='yvan', wait=T)
     {
         cp=comps[1]
         for (cp in comps)
@@ -1644,63 +1859,6 @@ get_stats <- function(x, na.rm=T)
                  ucl=quantile(x, 0.975, names=F, na.rm=na.rm)))
     }
 
-pickcolor <- function(brewer=F, txt=T)
-    {
-        if (!brewer)
-            {
-                x11(width=15.2, height=8.2)
-                cs <- colors()
-                n <- length(cs)
-                xx <- c(0, (1:n %% 40)[-length(1:n)])
-                yy <- cumsum(xx==0)
-                yy <- (max(yy)+1)-yy
-                d <- data.frame(x=xx, y=yy, col=cs, stringsAsFactors=F)
-                plot(xx, yy, col=darken(cs,.2), bg=cs, pch=22, cex=5, axes=F, xlab='', ylab='',
-                     main='Pick your colours', xlim=range(xx), ylim=c(-1, max(yy)))
-                xy <- locator(type='p', pch=4)
-                xy <- sapply(xy, round)
-                cols <- merge(xy, d, all.x=T, all.y=F)$col
-            } else
-                {
-                    x11(width=19, height=6.8)
-                    library(RColorBrewer)
-                    info <- brewer.pal.info
-                    np <- nrow(info)
-                    info$y <- 1:np
-                    d <- NULL
-                    for (i in 1:np)
-                        {
-                            mx <- info[i, 'maxcolors']
-                            cs <- brewer.pal(mx, rownames(info)[i])
-                            d <- rbind(d, data.frame(x=rep(i, mx),
-                                                     y=1:mx,
-                                                     col=brewer.pal(mx, rownames(info)[i]),
-                                                     stringsAsFactors=F))
-                        }
-                    d$xy <- paste(d$x, d$y, sep='-')
-                    plot(NA, xlim=c(min(d$x)-1, max(d$x)+1), ylim=c(min(d$y)-2, max(d$y)+1),
-                         main='Pick your colours', axes=F,
-                         xlab='', ylab='')
-                    points(d$x, d$y, col=darken(d$col, .2), bg=d$col, pch=22, cex=5)
-                    text(1:np, rep(c(-.6,0), length.out=np), rownames(info))
-                    xy <- locator(type='p', pch=4)
-                    xy <- sapply(xy, round, simplify=F)
-                    xy$xy <- paste(xy$x, xy$y, sep='-')
-                    xy <- as.data.frame(xy)
-                    cols <- merge(xy, d, all.x=T, all.y=F, by.x='xy', by.y='xy')$col
-                }
-        dev.off()
-        if (txt)
-            {
-                op <- options("useFancyQuotes")
-                options("useFancyQuotes"=F)
-                c <- paste(sQuote(cols), collapse=', ')
-                cat('\n', c, '\n\n')
-                options("useFancyQuotes"=op)
-                return(NULL)
-            } else  return(cols)
-    }
-
 
 NAanalyse <- function(df, plotx=NULL, nx=10, ncol=4, mar=c(3,3,1,1))
     {
@@ -1757,74 +1915,78 @@ is.git.tracked <- function(f)
     }
 
 ## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
-latex.file.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex'), only=c('/'), recursive=T,
-                            save_untracked=T)
-    {
-        alldeps <- NULL
-        prevdir <- getwd()
-        setwd(fold)
-        ## File dependencies in Sweave files
-        rnw <- dir('.', '*.rnw$|*.Rnw$', recursive=recursive)
-        r1=rnw[1]
-        for (r1 in rnw)
-            {
-                cat('\n************  ', r1, '  ************\n')
-                r <- readLines(r1)
-                c1 <- grep('\\bload\\(', r, value=T)
-                fs <- sub('load\\(\'(.*)\'\\)$', '\\1', c1)
-                alldeps <- c(alldeps, fs)
-                cat(paste(fs, collapse='\n'))
-                cat('\n')
-                c2 <- grep('\\bread.csv\\(', r, value=T)
-                fs <- sub('read.csv\\(\'(.*)\'\\)$', '\\1', c2)
-                alldeps <- c(alldeps, fs)
-                cat(paste(fs, collapse='\n'))
-                cat('\n')
-            }
-        ## File dependencies in tex files
-        tex <- dir('.', '*.tex$', recursive=recursive)
-        tex <- tex[!(tex %in% 'aebr.tex')]
-        t=tex[12]
-        for (t in tex)
-            {
-                cat('\n************  ', t, '  ************\n')
-                bt <- sub('\\.tex', '', t)
-                ## system(sprintf('mkjobtexmf --jobname %s --cmd-tex pdflatex', bt))
-                tmp <- readLines(t)
-                if (any(grepl('begin\\{document\\}', tmp)))
-                    {
-                        
-                        s <- system(sprintf('pdflatex -recorder -interaction=nonstopmode %s', bt), intern=T)
-                        f <- sprintf('%s.fls', bt)
-                        if (file.exists(f))
-                            {
-                                fls <- readLines(f)
-                                fls <- sapply(strsplit(fls, ' '), function(x) x[2])
-                                fls <- sub('^\\./', '', fls)
-                                fls <- unique(fls)
-                                fls <- fls[!grepl(ignore, fls)]
-                                fls <- fls[!grepl(sprintf('^%s', bt), fls)]
-                                fls <- fls[!(fls %in% normalizePath(fold))]
-                                alldeps <- c(alldeps, fls)
-                                cat(paste(fls, collapse='\n'))
-                                cat('\n')
-                            } else cat('fls file inexistent. There is a problem with this file...\n')
-                    } else cat('Not a master file. Skip...\n')
-            }
-        cat('\n\n')
-        ## Check if the dependencies are git-tracked
-        s <- sapply(alldeps, is.git.tracked)
-        nt <- names(s)[!s]
-        if (!is.null(nt))
-            {
-                cat('************====  Files not tracked by GIT:  ====************\n')
-                cat(paste(nt, collapse='\n'))
-                cat('\n')
-            }
-        if (save_untracked)
-            write.csv(nt, 'untracked-dependencies.csv', row.names=F)
-        setwd(prevdir)
+check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly'), only=c('/'), recursive=T,
+                            save_untracked=T, use.xelatex=T) {
+    alldeps <- NULL
+    prevdir <- getwd()
+    setwd(fold)
+    ## File dependencies in Sweave files
+    rnw <- dir('.', '*.rnw$|*.Rnw$', recursive=recursive)
+    r1=rnw[1]
+    for (r1 in rnw) {
+        cat('\n************  ', r1, '  ************\n')
+        r <- readLines(r1)
+        c1 <- grep('\\bload\\(', r, value=T)
+        fs <- sub('load\\(\'(.*)\'\\)$', '\\1', c1)
+        alldeps <- c(alldeps, fs)
+        cat(paste(fs, collapse='\n'))
+        cat('\n')
+        c2 <- grep('\\bread.csv\\(', r, value=T)
+        fs <- sub('read.csv\\(\'(.*)\'\\)$', '\\1', c2)
+        alldeps <- c(alldeps, fs)
+        cat(paste(fs, collapse='\n'))
+        cat('\n')
     }
+    ## File dependencies in tex files
+    tex <- dir('.', '*.tex$', recursive=recursive)
+    tex <- tex[!(tex %in% 'aebr.tex')]
+    t=tex[3]
+    for (t in tex) {
+        cat('\n************  ', t, '  ************\n')
+        bt <- sub('\\.tex', '', t)
+        ## system(sprintf('mkjobtexmf --jobname %s --cmd-tex pdflatex', bt))
+        tmp <- readLines(t)
+        if (any(grepl('begin\\{document\\}', tmp))) {
+            if (!use.xelatex) {
+                s <- system(sprintf('pdflatex -recorder -interaction=nonstopmode %s', bt), intern=T)
+            } else {
+                s <- system(sprintf('xelatex -recorder -interaction=nonstopmode %s', bt), intern=T)
+            }
+            f <- sprintf('%s.fls', bt)
+            if (file.exists(f)) {
+                fls <- readLines(f)
+                fls <- sapply(strsplit(fls, ' '), function(x) x[2])
+                fls <- sub('^\\./', '', fls)
+                fls <- unique(fls)
+                fls <- fls[!grepl(ignore, fls)]
+                fls <- fls[!grepl(sprintf('^%s', bt), fls)]
+                fls <- fls[!(fls %in% normalizePath(fold))]
+                alldeps <- c(alldeps, fls)
+                cat(paste(fls, collapse='\n'))
+                cat('\n')
+            } else cat('fls file inexistent. There is a problem with this file...\n')
+        } else cat('Not a master file. Skip...\n')
+    }
+    cat('\n\n')
+    ## Check if the dependencies are git-tracked
+    alldeps <- alldeps[!grepl('^[ ]*\\%', alldeps)]
+    c <- grepl('load\\(', alldeps)
+    alldeps[c] <- sub('load\\([\'\"]+(.*)[\'\"]+.*\\).*', '\\1', alldeps[c])
+    alldeps[c] <- sub('save\\([\'\"]+(.*)[\'\"]+.*\\).*', '\\1', alldeps[c])
+    s <- sapply(alldeps, is.git.tracked)
+    nt <- names(s)[!s]
+    if (!is.null(nt)) {
+        cat('************====  Files not tracked by GIT:  ====************\n')
+        cat(paste(nt, collapse='\n'))
+        cat('\n\n')
+        cat(paste(nt, collapse='  '))
+        cat('\n\n')
+    }
+    if (save_untracked)
+        write.csv(nt, 'untracked-dependencies.csv', row.names=F)
+    setwd(prevdir)
+    
+}
 
 sqlquery <- function(query, db='oreo-2013v1', host='titi', port=5433)
     {
@@ -1837,7 +1999,7 @@ sqlquery <- function(query, db='oreo-2013v1', host='titi', port=5433)
     }
 
 sql_all_but_geom <- function(tablename='all_captures', compl_txt='', schema='public',
-                             dbname='oreo-2013v1', host='titi', port=5433, verbose=F)
+                             dbname='oreo-2014v1', host='titi', port=5433, verbose=F)
     {
         ## Does a SELECT * FROM, but excluding geometry columns
         ## compl_txt: Extras if needed (for WHERE, ORDER BY, etc.)
@@ -1876,23 +2038,6 @@ SELECT c.column_name FROM information_schema.columns As c
 ## system(sprintf('pgsql2shp -f /home/yvan/test_pg -h titi -p 5433 oreo-2013v1 "%s"', q))
 
 
-## Merge on row names (and get rid of Row.names column created)
-merge0 <- function(x, y, ...)
-    {
-        mrg <- merge(x, y, by=0, ...)
-        rownames(mrg) <- mrg$Row.names
-        mrg$Row.names <- NULL
-        return(mrg)
-    }
-
-## Cbind using row names (even if some rows are missing in x or y)
-cbind0 <- function(x, y)
-    {
-        row.names <- sort(unique(c(rownames(x), rownames(y))))
-        z <- as.data.frame(cbind(x[row.names, , drop=F], y[row.names, , drop=F]))
-        rownames(z) <- row.names
-        return(z)
-    }
 
 
 ## View TeX document as PDF from a tex file (not self-sufficient)
@@ -1954,72 +2099,7 @@ whichseason <- function(d, starts, names)
         return(pers)
     }
 
-around <- function(x, idx, plusminus=5)
-    {
-        return(x[(idx-plusminus):(idx+plusminus),])
-    }
 
-toqgis <- function(x, plot.nz=T, plot.eez=F)
-    {
-        library(rgdal)
-        p <- proj4string(x)
-        if (class(x)=='SpatialPolygons')
-            {
-                e <- SpatialPolygonsDataFrame(x, data.frame(v=rep(NA, length(x))))
-                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
-            }
-        if (class(x)=='SpatialPolygonsDataFrame')
-            {
-                e <- x
-                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
-            }
-        if (class(x)=='SpatialPoints')
-            {
-                e <- SpatialPointsDataFrame(x, data.frame(v=rep(NA, length(x))))
-                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
-            }
-        if (class(x)=='SpatialPointsDataFrame')
-            {
-                e <- x
-                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
-            }
-        if (class(x)=='SpatialLines')
-            {
-                e <- SpatialLinesDataFrame(x, data.frame(v=rep(NA, length(x))))
-                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
-            }
-        if (class(x)=='SpatialLinesDataFrame')
-            {
-                e <- x
-                writeOGR(e, '/tmp', 'x_temp', 'ESRI Shapefile', overwrite_layer=T)
-            }
-        if (class(x)=='RasterLayer')
-            {
-                e <- as(x, 'SpatialGridDataFrame')
-                writeGDAL(e, '/tmp/x_temp.img', 'HFA')
-            }
-        if (plot.nz | plot.eez)
-            {
-                load('~/share/dragonfly/gis/nz_isl_eez.rdata')
-                if (plot.nz)
-                    {
-                        nz <- spTransform(nz, CRS(p))
-                        writeOGR(nz, '/tmp', 'nz_temp', 'ESRI Shapefile', overwrite_layer=T)
-                    }
-                if (plot.eez)
-                    {
-                        eez <- spTransform(eez, CRS(p))
-                        writeOGR(eez, '/tmp', 'eez_temp', 'ESRI Shapefile', overwrite_layer=T)
-                    }
-            }
-        ext <- bbox(x)
-        cmd <- sprintf("qgis --nologo --noplugins --extent %f,%f,%f,%f %s /tmp/x_temp.%s %s",
-                       ext[1,1], ext[2,1], ext[1,2], ext[2,2], 
-                       ifelse(plot.nz,'/tmp/nz_temp.shp',''),
-                       ifelse(grepl('^Spatial',class(x)) & !grepl('Gridl',class(x)), 'shp', 'img'),
-                       ifelse(plot.eez,'/tmp/eez_temp.shp',''))
-        system(cmd, wait=F)
-    }
 
 quantsmooth <- function(x, y, ndivs=20, ...)
     {
@@ -2034,31 +2114,6 @@ quantsmooth <- function(x, y, ndivs=20, ...)
         return(df)
     }
 
-pal.ex <- function(cols, cex=1.3)
-    {
-        ncols <- length(cols)
-        par(mfrow=c(2,2), mar=c(2,2,1,1))
-        ## bar plot
-        x <- table(round(runif(100, 0.5, ncols+0.5)))
-        barplot(x, col=cols)
-        ## scatter plot
-        plot(rnorm(1000), rnorm(1000), col=cols, pch=20, cex=cex)
-        ## lines
-        nl <- max(10, ncols)
-        x <- apply(matrix(rnorm(100*nl), nrow=nl), 1, cumsum)
-        matplot(x, type='l', col=cols, lwd=cex)
-        ## gradients
-        ncols <- ncols * 2
-        plot(NA, xlim=c(0,5), ylim=c(1, ncols+1), axes=F, xaxs='i', yaxs='i')
-        cols1 <- rep(cols, each=2)
-        for (i in 1:ncols)
-            rect(0, i, 1, i+1, col=cols1[i], border=NA)
-        for (i in 1:ncols)
-            rect(4, i, 5, i+1, col=rev(cols1)[i], border=NA)
-        cols2 <- c(cols, rev(cols))
-        for (i in 1:ncols)
-            rect(2, i, 3, i+1, col=cols2[i], border=NA)
-    }
 
 
 corr_plot <- function(df, with.diag.lines=F, use.dens.cols=T) {
@@ -2122,10 +2177,4 @@ corr_plot <- function(df, with.diag.lines=F, use.dens.cols=T) {
 }
 
 
-duplicated_rows <- function(df, cols=names(df)) {
-    id <- apply(df[,cols], 1, paste, collapse='_')
-    isdup <- duplicated(df[,cols])
-    d <- df[id %in% id[isdup], ]
-    id <- apply(d[, cols], 1, paste, collapse = "_")
-    return(d[order(id),])
-}
+
