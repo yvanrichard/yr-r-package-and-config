@@ -2115,7 +2115,6 @@ quantsmooth <- function(x, y, ndivs=20, ...)
     }
 
 
-
 corr_plot <- function(df, with.diag.lines=F, use.dens.cols=T) {
 
     library(corrgram)
