@@ -1,0 +1,326 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Fri Jul 25 16:04:19 2014
+;; Desktop file format version 206
+;; Emacs version 24.3.1
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '("helm" "densne" "spgrp" "moa" "http:" "label" "richard_ov" "sharp_" "expand-" "2010--" "spp[" "cmmu" "yvan-d" "check" "deps" "latex"))
+(setq regexp-search-ring '("[0-9] [0-9]" "[0-9] [0-9]s"))
+(setq register-alist '((116 . "\\begin{table}[p]\n  \\caption{Sensitivity to large capture events. For black petrel, a\n    fishing trip with 27 observed captures was considered unobserved\n    and the captures were therefore ignored.  Similarly, for Chatham Island\n    albatross, a fishing trip with 12 observed captures was considered\n    unobserved.  For Gibson's albatross, the observed captures of\n    33 unidentified albatross during a single fishing trip were\n    assumed to be of Gibson's albatross.}\n\\label{tab:rr_sens}\n\\begin{center}\n\\hspace*{-0.5cm}\n{\\ssmall\n\\begin{tabular}{lm{0.4cm}r@{--}lm{0.4cm}r@{--}lm{0.4cm}r@{--}lm{0.4cm}r@{--}l}\n& \\multicolumn{3}{r}{Base case} & \\multicolumn{3}{r}{Black petrel} &\n  \\multicolumn{3}{r}{Chatham albatross} & \\multicolumn{3}{r}{Gibson's\n    albatross} \\\\ \\cmidrule(lr){2-4} \\cmidrule(lr){5-7} \\cmidrule(lr){8-10} \\cmidrule(lr){11-13}\n& Median & \\multicolumn{2}{r}{95\\% c.i.} & Median & \\multicolumn{2}{r}{95\\% c.i.} & Median & \\multicolumn{2}{r}{95\\% c.i.} & Median & \\multicolumn{2}{r}{95\\% c.i.} \\\\\n\\addlinespace\n<<rr_sens>>=\nload('tables/progressive-changes/risk-comp_sens.rdata')\nprint(xtable(allrr_f),\n      hline.after=c(), only.contents=T, include.rownames=F, floating=F, include.colnames=F,\n      sanitize.text.function=function(x){x})\n@\n\\end{tabular}\n}\n\\end{center}\n\\end{table}\n")))
+(setq file-name-history '("/home/yvan/dragonfly/sra-2014/report/tables/effort-check/effort-check.r" "/home/yvan/dragonfly/sra-2014/report/tables/effort-check.r" "/home/yvan/dragonfly/sra-2014/report/appendix.rnw" "/home/yvan/dragonfly/sra-2014/report/results-sra.rnw" "/home/yvan/dragonfly/sra-2014/report/report-self.bib" "/home/yvan/dragonfly/sra-2014/report/tables/progressive-changes/prev-vs-new.r" "/home/yvan/dragonfly/sra-2014/report/tables/progressive-changes/old_vs_new.rdata" "/home/yvan/dragonfly/sra-2014/report/tables/makefile" "/home/yvan/dragonfly/sra-2014/report/tables/progressive-changes/prev-vs-new.r" "/home/yvan/dragonfly/sra-2014/report/tables/progressive-changes/progressive-changes.r" "/home/yvan/dragonfly/sra-2014/report/appendix.rnw" "/home/yvan/dragonfly/sra-2014/report/results-sra.rnw" "/home/yvan/dragonfly/sra-2014/report/report-self.bib" "/home/yvan/dragonfly/sra-2014/report/plots/functions.r" "/home/yvan/dragonfly/sra-2014/report/plots/risk/plot-risk-sra.r" "/home/yvan/dragonfly/sra-2014/report/functions0.r" "/home/yvan/dragonfly/sra-2014/report/plots/risk/plot-risk-sra.r" "/home/yvan/dragonfly/sra-2014/report/plots/risk-comp/plot-risk.r" "/home/yvan/dragonfly/sra-2014/report.tex" "/home/yvan/dragonfly/sra-2014/presentation/2014-06-26-aewg/figures/risk/plot-risk.r" "/home/yvan/dragonfly/sra-2014/report/report.tex" "/home/yvan/dragonfly/sra-2014/report/tables/risk-categories/risk-categories.r" "/home/yvan/dragonfly/sra-2014/report/report.tex" "/home/yvan/dragonfly/yr-r-package-and-config/myfunctions.r" "/home/yvan/dragonfly/yvan-r-pkg/myfunctions.r" "/home/yvan/dragonfly/sra-2014/report/tables/pop-mult/pop-mult.r" "/home/yvan/dragonfly/sra-2012/report/tables/pop-mult/pop-mult.r" "~/dragonfly/sra-2014/report/" "/home/yvan/dragonfly/sra-2014/report/sweave/methods.tex" "~/dragonfly/sra-2014/report/report.tex"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/yvan/.emacs"
+  ".emacs"
+  'emacs-lisp-mode
+  '(wakatime-mode flx-ido-mode rainbow-delimiters-mode helm-mode TeX-PDF-mode)
+  10195
+  '(9965 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/tables/effort-check/effort-check.r"
+  "effort-check.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  130
+  '(137 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/methods.rnw"
+  "methods.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode helm-mode TeX-PDF-mode flyspell-mode reftex-mode smartparens-mode)
+  1047
+  '(1031 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/usr/share/dict/words"
+  "words"
+  'fundamental-mode
+  '(wakatime-mode flx-ido-mode rainbow-delimiters-mode helm-mode TeX-PDF-mode view-mode)
+  1
+  '(938588 nil)
+  t
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/maps/updated/creation/nzs-map.r"
+  "nzs-map.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode wrap-region-mode TeX-PDF-mode)
+  3284
+  '(3297 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/results-sra.rnw"
+  "results-sra.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode helm-mode TeX-PDF-mode flyspell-mode reftex-mode)
+  1071
+  '(1077 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/tables/progressive-changes/prev-vs-new.r"
+  "prev-vs-new.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  322
+  '(303 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/report/methods.rnw"
+  "methods.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode helm-mode TeX-PDF-mode flyspell-mode reftex-mode)
+  43164
+  '(43164 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/Dropbox/dragonfly-notes/dragonfly-notes.org"
+  "dragonfly-notes.org"
+  'org-mode
+  '(auto-fill-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode helm-mode TeX-PDF-mode org-indent-mode)
+  14779
+  '(63579 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/tables/makefile"
+  "makefile"
+  'makefile-gmake-mode
+  '(wakatime-mode flx-ido-mode rainbow-delimiters-mode helm-mode TeX-PDF-mode)
+  1066
+  '(1066 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/tables/progressive-changes/progressive-changes.r"
+  "progressive-changes.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  1604
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/plots/risk-comp/plot-risk.r"
+  "plot-risk.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  8620
+  '(8498 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/plots/risk/plot-risk-sra.r"
+  "plot-risk-sra.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  2183
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/plots/functions.r"
+  "functions.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/functions0.r"
+  "functions0.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/presentation/2014-06-26-aewg/figures/risk/plot-risk.r"
+  "plot-risk.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  1
+  '(9337 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/report.tex"
+  "report.tex"
+  'latex-mode
+  '(auto-fill-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode helm-mode TeX-PDF-mode flyspell-mode reftex-mode)
+  365
+  '(928 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (TeX-master . t)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/maps/updated/creation/pfc-map.r"
+  "pfc-map.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  2965
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/maps/updated/creation/xyp-map.r"
+  "xyp-map.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  5186
+  '(4979 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/bibliography/mfish.bib"
+  "mfish.bib"
+  'bibtex-mode
+  '(wakatime-mode flx-ido-mode rainbow-delimiters-mode helm-mode TeX-PDF-mode)
+  289340
+  '(289290 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (TeX-master . t)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/tables/risk-categories/risk-categories.r"
+  "risk-categories.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  1448
+  '(1448 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/yr-r-package-and-config/myfunctions.r"
+  "myfunctions.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  71702
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/tables/pop-mult/pop-mult.r"
+  "pop-mult.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  184
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2012/report/tables/pop-mult/pop-mult.r"
+  "pop-mult.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  1
+  '(317 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/tables/rhos/rhos.r"
+  "rhos.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  436
+  '(120 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/20140614-largecapts-xci/data/effort-captures/add-densities.r"
+  "add-densities.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  2006
+  '(2095 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/maps/updated/creation/xwm-map.r"
+  "xwm-map.r"
+  'ess-mode
+  '(eldoc-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode highlight-indentation-mode helm-mode TeX-PDF-mode)
+  5730
+  '(5730 t)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/yvan/dragonfly/sra-2014/report/appendix.rnw"
+  "appendix.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode wakatime-mode flx-ido-mode rainbow-delimiters-mode helm-mode TeX-PDF-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+

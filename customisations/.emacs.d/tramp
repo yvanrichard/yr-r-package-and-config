@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <13/08/01 11:32:00 /home/yvan/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <14/07/11 14:04:11 /home/yvan/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -19,24 +19,6 @@
   ("perl-cwd-realpath" t)
   ("perl" "\\perl")
   ("ls" "/bin/ls --color=never"))
- (["scpc" "yvan" "haast" nil nil]
-  ("uname" "Linux 3.2.0-43-generic")
-  ("test" "test")
-  ("remote-path"
-   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
-  ("remote-shell" "/bin/sh")
-  ("busybox" nil)
-  ("perl-file-spec" t)
-  ("perl-cwd-realpath" t)
-  ("perl" "\\perl")
-  ("readlink" "\\readlink")
-  ("stat" "\\stat")
-  ("file-exists" "test -e")
-  ("id" "/usr/bin/id")
-  ("gid-integer" 14000)
-  ("ls" "/bin/ls --color=never")
-  ("uid-integer" 15002)
-  ("ls-dired" t))
  (["scpc"
    #("yvan" 0 1
      (fontified t)
@@ -109,4 +91,107 @@
   ("stat" "\\stat")
   ("file-exists" "test -e")
   ("id" "/usr/bin/id")
-  ("gid-integer" 14000)))
+  ("gid-integer" 14000))
+ (["scpc"
+   #("yvan" 0 1
+     (fontified t)
+     1 2
+     (fontified t)
+     2 3
+     (fontified t)
+     3 4
+     (fontified t))
+   #("taiko" 0 1
+     (fontified t)
+     1 2
+     (fontified t)
+     2 3
+     (fontified t)
+     3 4
+     (fontified t)
+     4 5
+     (fontified t))
+   nil nil]
+  ("uname" "Linux 3.2.0-60-generic")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("file-exists" "test -e")
+  ("readlink" "\\readlink")
+  ("stat" "\\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 14000))
+ (["scpc"
+   #("yvan" 0 1
+     (fontified t)
+     1 2
+     (fontified t)
+     2 3
+     (fontified t)
+     3 4
+     (fontified t))
+   #("haast" 0 1
+     (fontified t)
+     1 2
+     (fontified t)
+     2 3
+     (fontified t)
+     3 4
+     (fontified t)
+     4 5
+     (fontified t))
+   nil nil]
+  ("uname" "Linux 3.2.0-61-generic")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("readlink" "\\readlink")
+  ("stat" "\\stat")
+  ("file-exists" "test -e")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 14000))
+ (["scpc"
+   #("yvan" 0 1
+     (fontified t)
+     1 2
+     (fontified t)
+     2 3
+     (fontified t)
+     3 4
+     (fontified t))
+   #("kahu" 0 1
+     (fontified t)
+     1 2
+     (fontified t)
+     2 3
+     (fontified t)
+     3 4
+     (fontified t))
+   nil nil]
+  ("uname" "Linux 3.2.0-63-generic")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("~" "/home/yvan")
+  ("file-exists" "test -e")
+  ("readlink" "\\readlink")
+  ("stat" "\\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 14000)
+  ("ls" "/bin/ls --color=never")
+  ("uid-integer" 15002)))

@@ -70,6 +70,7 @@ Ignores CHAR at point."
 (setq font-lock-maximum-decoration t)
 
 (global-set-key "\C-z" nil)  ;; prevent emacs from being minimized with C-Z
+(global-set-key "\C-x\C-c" nil)  ;; prevent emacs from being killed with C-x C-c
 
 (global-set-key (kbd "C-<") 'previous-buffer)                                  
 (global-set-key (kbd "C->") 'next-buffer)                                 
@@ -142,37 +143,29 @@ there's a region, all lines that region covers will be duplicated."
 ;; (load-theme 'tango-dark)
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(flyspell-duplicate ((t (:foreground "Gold3" :underline nil :weight bold))))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "darksalmon"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "LightGoldenrod4"))))
- '(font-lock-string-face ((t (:foreground "DarkSeaGreen2"))))
  '(font-lock-builtin-face ((t (:foreground "PeachPuff"))))
- '(font-latex-sectioning-2-face ((t (:inherit font-latex-sectioning-3-face :height 1.05))))
- '(font-latex-sectioning-3-face ((t (:inherit font-latex-sectioning-4-face :weight extra-bold :height 1.05))))
- '(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-5-face :weight normal))))
- '(font-latex-sectioning-5-face ((t (:inherit variable-pitch :foreground "yellow" :weight bold :foundry "sans" :family "mono"))))
+ '(font-lock-string-face ((t (:foreground "DarkSeaGreen2"))))
  '(font-lock-type-face ((t (:foreground "CadetBlue1"))))
- '(org-level-4 ((t (:foreground "khaki1" :inherit (outline-4))))))
+ '(org-level-4 ((t (:foreground "khaki1" :inherit (outline-4)))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "darksalmon"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "LightGoldenrod4")))))
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(LaTeX-biblatex-use-Biber t)
+ '(ess-R-font-lock-keywords (quote ((ess-R-fl-keyword:modifiers . t) (ess-R-fl-keyword:fun-defs . t) (ess-R-fl-keyword:keywords . t) (ess-R-fl-keyword:assign-ops . t) (ess-R-fl-keyword:constants . t) (ess-fl-keyword:fun-calls . t) (ess-fl-keyword:numbers . t) (ess-fl-keyword:operators . t) (ess-fl-keyword:delimiters . t) (ess-fl-keyword:= . t) (ess-R-fl-keyword:F&T . t))))
  '(inhibit-startup-screen t)
- '(ess-R-font-lock-keywords
-   '((ess-R-fl-keyword:modifiers . t)
-     (ess-R-fl-keyword:fun-defs . t)
-     (ess-R-fl-keyword:keywords . t)
-     (ess-R-fl-keyword:assign-ops . t)
-     (ess-R-fl-keyword:constants . t)
-     (ess-fl-keyword:fun-calls . t)
-     (ess-fl-keyword:numbers . t)
-     (ess-fl-keyword:operators . t)
-     (ess-fl-keyword:delimiters . t)
-     (ess-fl-keyword:= . t)
-     (ess-R-fl-keyword:F&T . t))))
+ '(wakatime-api-key "7b9228e4-0256-4dfe-a43e-1bfb09f7288c")
+ '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py"))
 
-
+(global-wakatime-mode 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -188,7 +181,7 @@ there's a region, all lines that region covers will be duplicated."
 (setq reftex-cite-format 'natbib)
 (setq-default TeX-master nil)
 (setq TeX-PDF-mode t)
-(setq latex-run-command "pdflatex")
+(setq latex-run-command "xelatex")
 
 ;; (setq reftex-file-extensions
 ;;       '(("Snw" "Rnw" "nw" "tex" ".tex" ".ltx") ("bib" ".bib")))
@@ -197,6 +190,8 @@ there's a region, all lines that region covers will be duplicated."
 
 ;; (setq ispell-program-name "ispell") ; could be ispell as well, depending on your preferences
 (setq ispell-dictionary "english") ; this can obviously be set to any language your spell-checking program supports
+
+;; (global-set-key (kbd "M-Q") 'region-fill-as-paragraph)                                  
 
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-buffer)
@@ -225,25 +220,30 @@ there's a region, all lines that region covers will be duplicated."
 
 (require 'latex-frame-mode)
 
-;; (defun flyspell-ignore-verbatim ()
-;;   "Function used for `flyspell-generic-check-word-predicate' to ignore {{{ }}} blocks."
-;;   (save-excursion
-;;     (widen)
-;;     (let ((p (point))
-;;           (count 0))
-;;       (not (or (and (re-search-backward "^<<" nil t)
-;;                     (> p (point))
-;;                     ;; If there is no closing }}} then assume we're still in it
-;;                     (or (not (re-search-forward "^@" nil t))
-;;                         (< p (point))))
-;;                (eq 1 (progn (while (re-search-backward "`" (line-beginning-position) t)
-;;                               (setq count (1+ count)))
-;;                             (- count (* 2 (/ count 2))))))))))
-;; (put 'latex-mode 'flyspell-mode-predicate 'flyspell-ignore-verbatim)
+
+
+(defun flyspell-ignore-verbatim ()
+  "Function used for `flyspell-generic-check-word-predicate' to ignore {{{ }}} blocks."
+  (save-excursion
+    (widen)
+    (let ((p (point))
+          (count 0))
+      (not (or (and (re-search-backward "^<<" nil t)
+                    (> p (point))
+                    ;; If there is no closing }}} then assume we're still in it
+                    (or (not (re-search-forward "^@" nil t))
+                        (< p (point))))
+               (eq 1 (progn (while (re-search-backward "`" (line-beginning-position) t)
+                              (setq count (1+ count)))
+                            (- count (* 2 (/ count 2))))))))))
+(put 'latex-mode 'flyspell-mode-predicate 'flyspell-ignore-verbatim)
+
+(setq reftex-default-bibliography '("/home/yvan/dragonfly/bibliography/mfish.bib"))
 
 ;; (setq safe-local-variable-values ((TeX-master . "report.tex")
 ;;  (TeX-master . "report")
 ;;  (TeX-master . t)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    markdown
@@ -264,6 +264,28 @@ there's a region, all lines that region covers will be duplicated."
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 
+;; Flex ido
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    helm
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(helm-mode -1)
+(global-set-key (kbd "C-c h") 'helm-mini)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    expand-region
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'expand-region) 
+(global-set-key (kbd "C-'") 'er/expand-region)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -364,7 +386,8 @@ prompt the user for a coding system."
 	 ("XBP distribution" (filename . "black-petrel-distribution"))
 	 ("MBIE" (or (filename . "eREAR")
 		     (filename . "mbie")))
-	 ("SRA" (filename . "sra"))
+	 ("SRA 2012" (filename . "sra-2012"))
+	 ("SRA 2014" (filename . "sra-2014"))
 	 ("Ludicio" (filename . "ludicio/"))
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")
@@ -549,6 +572,27 @@ prompt the user for a coding system."
 (desktop-read)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Copy buffer file path to clipboad
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun my-put-file-name-on-clipboard ()
+  "Put the current file name on the clipboard"
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (with-temp-buffer
+        (insert filename)
+        (clipboard-kill-region (point-min) (point-max)))
+      (message filename))))
+(global-set-key (kbd "C-c p") 'my-put-file-name-on-clipboard)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Wrap region  (https://github.com/rejeep/wrap-region.el)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(wrap-region-mode t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -588,3 +632,4 @@ prompt the user for a coding system."
 ;;     )
 ;; )
 
+(put 'erase-buffer 'disabled nil)

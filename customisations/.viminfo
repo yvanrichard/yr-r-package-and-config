@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/main
+~MSle0~/AUC
 
 # Last Substitute Search Pattern:
 ~MSle0&yvan-r-pkg
@@ -17,8 +17,11 @@
 $dragonfly
 
 # Command Line History (newest to oldest):
-:wq
 :q
+:wq
+:x
+:set noexpandtab
+:set invlist
 :w
 :'<,'>s/'~/dragonfly/yr-r-package-and-config/'//g
 :'<,'>s/yvan-r-pkg/yr-r-package-and-config/g
@@ -49,7 +52,6 @@ $dragonfly
 :set nospel
 :'<,'>set no
 :'<,'>s/^/%
-:set noexpandtab
 :%s//\r/g
 :%s//\n/g
 :w makefile
@@ -65,10 +67,12 @@ $dragonfly
 :ma
 :Mak
 :sw
-::w
-:e ../filling/models.py
 
 # Search String History (newest to oldest):
+?/AUC
+?/auc
+?/gwe
+?/tex
 ?/main
 ?/300
 ?/gis
@@ -115,10 +119,6 @@ $dragonfly
 ?/$S
 ?/$F
 ?/$PF$
-?/$K$
-?/$F$
-?/sensiti
-?/sigma
 
 # Expression History (newest to oldest):
 
@@ -127,46 +127,63 @@ $dragonfly
 # Input Line History (newest to oldest):
 
 # Registers:
-""0	CHAR	0
+"0	CHAR	0
 	
 	
-"1	LINE	0
-	   guest ok = yes
+""1	LINE	0
+	# deb-src https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
 "2	LINE	0
-	   path = /home/yvan/Music
+	# deb https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
 "3	LINE	0
-	   locking = no
+		xelatex report.tex`d
 "4	LINE	0
-	   read only = yes
+	   guest ok = yes
 "5	LINE	0
-	   comment = yvan's music
+	   path = /home/yvan/Music
 "6	LINE	0
-	[Music]
+	   locking = no
 "7	LINE	0
-	SELECT "fishing.year", SUM(events) FROM model.seabirds_trawl GROUP BY "fishing.year"
+	   read only = yes
 "8	LINE	0
-	>>>>>>> 45540f2378431fb726feda0c84d1c562462ce38d
+	   comment = yvan's music
 "9	LINE	0
-	effective, and longer term trends have been detected \citep<e.g.,>{peron_interdecadal_2010}. However, due to the expense and often opportunitic nature of data
+	[Music]
 "u	CHAR	0
 	lrr
 "-	CHAR	0
-	i
+	 
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  650  14  /usr/share/texmf/web2c/texmf.cnf
-'1  243  0  /usr/share/texmf/web2c/texmf.cnf
-'2  55  64  /tmp/india-map.tex
-'3  1  57  /tmp/3994.prj
-'4  74  42  /etc/apt/sources.list
-'5  12  0  /etc/fstab
-'6  63  24  /etc/sysctl.conf
-'7  37  0  /etc/security/limits.conf
-'8  1  0  /tmp/54004.prj
-'9  337  0  /etc/samba/smb.conf
+'0  256  0  ~/.emacs
+'1  69  0  /etc/apt/sources.list
+'2  1  0  /etc/apt/sources.list
+'3  16  0  ~/dragonfly/black-petrel-distribution/report/makefile
+'4  20  0  ~/dragonfly/black-petrel-distribution/report/makefile
+'5  4  37  ~/dragonfly/black-petrel-distribution/report/makefile
+'6  6  24  ~/dragonfly/black-petrel-distribution/report/makefile
+'7  16  21  ~/dragonfly/black-petrel-distribution/report/report.tex
+'8  2  21  ~/dragonfly/black-petrel-distribution/report/report.tex
+'9  8  36  ~/dragonfly/maui-may-2012/.git/config
 
 # Jumplist (newest first):
+-'  256  0  ~/.emacs
+-'  1  0  ~/.emacs
+-'  69  0  /etc/apt/sources.list
+-'  1  0  /etc/apt/sources.list
+-'  16  0  ~/dragonfly/black-petrel-distribution/report/makefile
+-'  18  0  ~/dragonfly/black-petrel-distribution/report/makefile
+-'  1  0  ~/dragonfly/black-petrel-distribution/report/makefile
+-'  20  0  ~/dragonfly/black-petrel-distribution/report/makefile
+-'  4  37  ~/dragonfly/black-petrel-distribution/report/makefile
+-'  6  24  ~/dragonfly/black-petrel-distribution/report/makefile
+-'  16  21  ~/dragonfly/black-petrel-distribution/report/report.tex
+-'  1  0  ~/dragonfly/black-petrel-distribution/report/report.tex
+-'  2  21  ~/dragonfly/black-petrel-distribution/report/report.tex
+-'  8  36  ~/dragonfly/maui-may-2012/.git/config
+-'  1  0  ~/dragonfly/maui-may-2012/.git/config
+-'  1  0  /etc/ld.so.conf
+-'  2  25  /etc/ld.so.conf
 -'  650  14  /usr/share/texmf/web2c/texmf.cnf
 -'  638  2  /usr/share/texmf/web2c/texmf.cnf
 -'  631  2  /usr/share/texmf/web2c/texmf.cnf
@@ -181,8 +198,7 @@ $dragonfly
 -'  55  64  /tmp/india-map.tex
 -'  1  0  /tmp/india-map.tex
 -'  1  57  /tmp/3994.prj
--'  74  42  /etc/apt/sources.list
--'  1  0  /etc/apt/sources.list
+-'  72  42  /etc/apt/sources.list
 -'  12  0  /etc/fstab
 -'  1  0  /etc/fstab
 -'  63  24  /etc/sysctl.conf
@@ -245,28 +261,158 @@ $dragonfly
 -'  18  4  ~/dragonfly/encounter-kaikoura/.gitignore
 -'  34  4  ~/dragonfly/sra-2012/.gitignore
 -'  1  0  ~/dragonfly/sra-2012/.gitignore
--'  1  0  /tmp/main.tex
--'  8  61  ~/dragonfly/seabirds-dragonfly/.git/config
--'  1  0  ~/dragonfly/seabirds-dragonfly/.git/config
--'  7  70  ~/dragonfly/sra-2012/.git/COMMIT_EDITMSG
--'  1  0  ~/dragonfly/sra-2012/.git/COMMIT_EDITMSG
--'  34  0  /tmp/report_summary_summary.tex
--'  1  0  /tmp/report_summary_summary.tex
--'  1  0  /share/encounter-kaikoura/data/xls/Bird_Numbers_2008.xls:Zone.Identifier
--'  1  0  ~/.emacs
--'  1  0  ~/dragonfly/encounter-kaikoura/data/.emacs
--'  127  0  ~/dragonfly/sra-foundations/report/report.tex
--'  1  0  ~/dragonfly/sra-foundations/report/report.tex
--'  1  0  ~/dragonfly/abundance/.git/config
--'  21  32  /etc/apparmor.d/abstractions/ubuntu-browsers.d/java
--'  1  0  /etc/apparmor.d/abstractions/ubuntu-browsers.d/java
--'  4  34  ~/test/vars.mk
--'  5  0  ~/test/vars.mk
--'  9  0  ~/dragonfly/yr-r-package-and-config/makefile
--'  1  0  ~/dragonfly/yr-r-package-and-config/makefile
--'  2  5  ~/dragonfly/yr-r-package-and-config/.gitignore
+-'  69  0  /etc/apt/sources.list
+-'  1  0  /etc/apt/sources.list
+-'  16  0  ~/dragonfly/black-petrel-distribution/report/makefile
+-'  18  0  ~/dragonfly/black-petrel-distribution/report/makefile
+-'  1  0  ~/dragonfly/black-petrel-distribution/report/makefile
 
 # History of marks within files (newest to oldest):
+
+> ~/.emacs
+	"	256	0
+	^	269	23
+	.	269	23
+	+	1	0
+	+	10	0
+	+	10	0
+	+	1	0
+	+	1	30
+	+	1	18
+	+	10	0
+	+	10	0
+	+	10	36
+	+	10	0
+	+	1	24
+	+	10	0
+	+	10	62
+	+	10	30
+	+	10	0
+	+	10	0
+	+	59	0
+	+	10	0
+	+	59	0
+	+	10	0
+	+	2	1
+	+	10	0
+	+	2	21
+	+	1	9
+	+	2	0
+	+	10	0
+	+	2	0
+	+	2	26
+	+	10	0
+	+	2	28
+	+	2	27
+	+	10	18
+	+	44	0
+	+	57	0
+	+	10	57
+	+	11	47
+	+	12	49
+	+	13	0
+	+	16	0
+	+	13	45
+	+	15	43
+	+	13	44
+	+	15	43
+	+	13	44
+	+	15	45
+	+	10	57
+	+	15	44
+	+	13	46
+	+	16	0
+	+	29	0
+	+	23	18
+	+	19	0
+	+	27	0
+	+	30	0
+	+	33	29
+	+	34	0
+	+	35	0
+	+	3	26
+	+	3	0
+	+	5	0
+	+	3	0
+	+	20	0
+	+	5	0
+	+	6	0
+	+	7	2
+	+	20	0
+	+	22	0
+	+	20	0
+	+	21	0
+	+	70	270
+	+	71	0
+	+	72	23
+	+	73	20
+	+	74	28
+	+	9	17
+	+	74	30
+	+	77	0
+	+	79	0
+	+	77	42
+	+	78	15
+	+	1	1
+	+	2	1
+	+	1	1
+	+	74	0
+	+	72	21
+	+	1	0
+	+	20	0
+	+	21	0
+	+	255	31
+	+	257	0
+	+	257	0
+	+	254	0
+	+	255	27
+	+	40	0
+	+	41	0
+	+	12	0
+	+	13	0
+	+	12	0
+	+	259	0
+	+	269	23
+
+> /etc/apt/sources.list
+	"	69	0
+	^	72	43
+	.	69	0
+	+	71	0
+	+	69	0
+
+> ~/dragonfly/black-petrel-distribution/report/makefile
+	"	16	0
+	^	16	1
+	.	17	0
+	+	4	34
+	+	6	25
+	+	4	37
+	+	16	18
+	+	20	0
+	+	16	0
+	+	17	0
+	+	18	0
+	+	19	0
+	+	17	0
+
+> ~/dragonfly/black-petrel-distribution/report/report.tex
+	"	16	21
+	^	16	22
+	.	16	21
+	+	2	21
+	+	16	21
+
+> ~/dragonfly/maui-may-2012/.git/config
+	"	8	36
+	^	8	37
+	.	8	36
+	+	8	36
+
+> /etc/ld.so.conf
+	"	1	0
+	.	2	0
+	+	2	0
 
 > /usr/share/texmf/web2c/texmf.cnf
 	"	650	14
@@ -279,12 +425,6 @@ $dragonfly
 
 > /tmp/3994.prj
 	"	1	57
-
-> /etc/apt/sources.list
-	"	74	42
-	^	74	43
-	.	73	0
-	+	73	0
 
 > /etc/fstab
 	"	12	0
@@ -492,111 +632,6 @@ $dragonfly
 
 > /share/encounter-kaikoura/data/xls/Bird_Numbers_2008.xls:Zone.Identifier
 	"	1	0
-
-> ~/.emacs
-	"	1	0
-	^	269	23
-	.	269	23
-	+	1	0
-	+	10	0
-	+	10	0
-	+	1	0
-	+	1	30
-	+	1	18
-	+	10	0
-	+	10	0
-	+	10	36
-	+	10	0
-	+	1	24
-	+	10	0
-	+	10	62
-	+	10	30
-	+	10	0
-	+	10	0
-	+	59	0
-	+	10	0
-	+	59	0
-	+	10	0
-	+	2	1
-	+	10	0
-	+	2	21
-	+	1	9
-	+	2	0
-	+	10	0
-	+	2	0
-	+	2	26
-	+	10	0
-	+	2	28
-	+	2	27
-	+	10	18
-	+	44	0
-	+	57	0
-	+	10	57
-	+	11	47
-	+	12	49
-	+	13	0
-	+	16	0
-	+	13	45
-	+	15	43
-	+	13	44
-	+	15	43
-	+	13	44
-	+	15	45
-	+	10	57
-	+	15	44
-	+	13	46
-	+	16	0
-	+	29	0
-	+	23	18
-	+	19	0
-	+	27	0
-	+	30	0
-	+	33	29
-	+	34	0
-	+	35	0
-	+	3	26
-	+	3	0
-	+	5	0
-	+	3	0
-	+	20	0
-	+	5	0
-	+	6	0
-	+	7	2
-	+	20	0
-	+	22	0
-	+	20	0
-	+	21	0
-	+	70	270
-	+	71	0
-	+	72	23
-	+	73	20
-	+	74	28
-	+	9	17
-	+	74	30
-	+	77	0
-	+	79	0
-	+	77	42
-	+	78	15
-	+	1	1
-	+	2	1
-	+	1	1
-	+	74	0
-	+	72	21
-	+	1	0
-	+	20	0
-	+	21	0
-	+	255	31
-	+	257	0
-	+	257	0
-	+	254	0
-	+	255	27
-	+	40	0
-	+	41	0
-	+	12	0
-	+	13	0
-	+	12	0
-	+	259	0
-	+	269	23
 
 > ~/dragonfly/encounter-kaikoura/data/.emacs
 	"	1	0
@@ -856,32 +891,3 @@ $dragonfly
 
 > ~/dragonfly/sra-foundations/report/notes/sweave/fig-concordance.tex
 	"	1	0
-
-> ~/dragonfly/vic-seminar-apr-2012/.gitignore
-	"	1	0
-	^	1	0
-	.	1	0
-	+	3	2
-	+	4	5
-	+	5	4
-	+	1	0
-
-> ~/robin-project/tute/model_data.txt
-	"	23	0
-
-> ~/dragonfly/sra-foundations/.git/config
-	"	8	58
-	^	8	53
-	.	8	58
-	+	8	58
-
-> ~/dragonfly/sra-foundations/.gitignore
-	"	27	7
-	^	26	13
-	.	26	12
-	+	23	1
-	+	26	7
-	+	8	3
-	+	24	1
-	+	27	0
-	+	26	12
