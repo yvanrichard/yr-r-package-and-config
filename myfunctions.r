@@ -147,6 +147,34 @@ clean.string <- function(x) {
     return(gsub('[\t ]{2,}', ' ', gsub('\t{2,}', '\t', gsub(' {2,}', ' ', gsub('^ *| *$', '', x)))))
 }
 
+sentence <- function(x) {
+    ## Make a sentence from a vector of characters
+    if (length(x) == 2) {
+        sent <- paste(x, collapse=' and ')
+    } else if (length(x) > 2) {
+        sent <- paste0(paste(x[1:(length(x)-1)], collapse=', '), ', and ', x[length(x)])
+    } else sent <- x
+    return(sent)
+}
+
+
+numlitt <- function(x, cap=F) {
+    ## Turn integers into their english word up to 12 included
+    if (length(x) > 1)   stop('More than one value for numlitt')
+    if (!is.numeric(x))  x <- as.numeric(x)
+    if (!identical(round(x), x))  stop('x is not in a an integer form')
+    if (!is.finite(x))   stop('x not finite')
+    litt <- c('one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+              'ten', 'eleven', 'twelve')
+    if (x == 0) {
+        res <- 'zero'
+    } else if (x <= length(litt)) {
+        res <- litt[x]
+    } else res <- as.character(x)
+    if (cap)  res <- upper1st(res)
+    return(res)
+}
+
 
 ###############################################################################
 ###  PLOTS
