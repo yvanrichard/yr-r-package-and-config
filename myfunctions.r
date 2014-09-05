@@ -157,12 +157,11 @@ sentence <- function(x) {
     return(sent)
 }
 
-
 numlitt <- function(x, cap=F) {
     ## Turn integers into their english word up to 12 included
     if (length(x) > 1)   stop('More than one value for numlitt')
     if (!is.numeric(x))  x <- as.numeric(x)
-    if (!identical(round(x), x))  stop('x is not in a an integer form')
+    if (!identical(round(x), as.numeric(x)))  stop('x is not in an integer form: ', x)
     if (!is.finite(x))   stop('x not finite')
     litt <- c('one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
               'ten', 'eleven', 'twelve')
@@ -174,6 +173,7 @@ numlitt <- function(x, cap=F) {
     if (cap)  res <- upper1st(res)
     return(res)
 }
+
 
 
 ###############################################################################
@@ -1860,6 +1860,55 @@ check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|swea
         write.csv(nt, 'untracked-dependencies.csv', row.names=F)
     setwd(prevdir)
     
+}
+
+## Stangle including also \Sexpr expressions
+mystangle <- function(file, outfile=sub('(\\.[^.]+)$', '_stangled.R', file)) {
+    rnw <- readLines(file)
+
+    get.sexprs <- function(start, end) {
+        poss <- start:end
+        sexprs <- grep('Sexpr\\{', rnw[poss], val=F)
+        if (length(sexprs)) {
+            sxppos <- poss[sexprs]
+            cmds <- sapply(1:length(sxppos), function(i) {
+                rnw1 <- rnw[sxppos[i]]
+                sxpstarts <- gregexpr('Sexpr', rnw1)[[1]]
+                if (length(sxpstarts) == 1) { ## single \Sexpr in line
+                    cmd <- sub('.*Sexpr *\\{([^}]+)\\}.*', '\\1', rnw1)
+                } else { ## multiple \Sexpr in line
+                    cmd <- sapply(1:length(sxpstarts), function(j) {
+                        pos <- sxpstarts[j]
+                        x <- substr(rnw1, pos, ifelse(j==length(sxpstarts), nchar(rnw1), sxpstarts[j+1]))
+                        return(sub('.*Sexpr *\\{([^}]+)\\}.*', '\\1', x))
+                    })
+                }
+                cmd <- paste(c(paste0('## l. ', sxppos[i]), cmd), collapse='\n')
+            })
+            return(c('\n\n#####  Sexpr expressions', cmds, '\n\n'))
+        } else return()
+    }
+
+    all.cmds <- NULL
+    cmd.blocks.pos <- grep('^<<', rnw)
+    end.blocks.pos <- grep('^@', rnw)
+    i=1
+    for (i in 1:length(cmd.blocks.pos)) {
+        start <- cmd.blocks.pos[i]
+        end <- end.blocks.pos[end.blocks.pos > start][1]
+        blockname <- sub('<<(.*)>>=', '\\1', rnw[start])
+        ## Get code blocks
+        all.cmds <- c(all.cmds, '\n\n',
+                      paste0('######  Block "', blockname, '" -- lines ', start, '-', end, '  ######\n'),
+                      rnw[(start+1):(end-1)])
+        ## Add following \Sexpr expressions until next code block (or end of file)
+        all.cmds <- c(all.cmds,
+                      get.sexprs(end, ifelse((i+1) <= length(cmd.blocks.pos),
+                                             cmd.blocks.pos[i+1], length(rnw))))
+    }
+    cat('Results saved to', outfile,'\n')
+    ## Save results
+    writeLines(all.cmds, outfile)
 }
 
 sqlquery <- function(query, db='oreo-2013v1', host='titi', port=5433) {
