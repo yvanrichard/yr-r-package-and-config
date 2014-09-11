@@ -1789,37 +1789,52 @@ is.git.tracked <- function(f) {
 }
 
 ## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
-check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly'), only=c('/'), recursive=T,
-                            save_untracked=T, use.xelatex=T) {
+check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),
+                             only=c('/'), recursive=T, save_untracked=T, use.xelatex=T) {
     alldeps <- NULL
     prevdir <- getwd()
     setwd(fold)
     ## File dependencies in Sweave files
     rnw <- dir('.', '*.rnw$|*.Rnw$', recursive=recursive)
+    basedir <- getwd()
     r1=rnw[1]
     for (r1 in rnw) {
         cat('\n************  ', r1, '  ************\n')
-        r <- readLines(r1)
-        c1 <- grep('\\bload\\(', r, value=T)
-        fs <- sub('load\\(\'(.*)\'\\)$', '\\1', c1)
+        rdir <- dirname(r1)
+        setwd(rdir)
+        r2 <- basename(r1)
+        r <- readLines(r2)
+        c1 <- r[grepl('\\bload\\(', r) & !grepl('^[[:blank:]]*#', r)]
+        fs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', c1)
+        c2 <- r[grepl('\\bread.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
+        fs2 <- sub('read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
+        fs <- c(fs1, fs2)
+        ## Replace global variables in .mk files by their value
+        c <- grepl('load\\([a-zA-Z]+', fs)
+        alldeps1 <- sub('load\\(([a-zA-Z_.0-1]+).*\\)', '\\1', fs[c])
+        s <- unlist(sapply(dir('.', '*.mk.parsed'), function(mk) readLines(mk), simplify=F))
+        s1 <- do.call('rbind', strsplit(s, '[[:blank:]]*=[[:blank:]]*'))
+        s2 <- sapply(alldeps1, function(x) s1[which(s1[,1] %in% x),2], simplify=F)
+        fs[c] <- ifelse(sapply(s2, length), sapply(s2, '[', 1), names(s2))
+        cat(paste(fs, collapse='\n'),'\n')
+        fs <- normalizePath(fs)
         alldeps <- c(alldeps, fs)
-        cat(paste(fs, collapse='\n'))
-        cat('\n')
-        c2 <- grep('\\bread.csv\\(', r, value=T)
-        fs <- sub('read.csv\\(\'(.*)\'\\)$', '\\1', c2)
-        alldeps <- c(alldeps, fs)
-        cat(paste(fs, collapse='\n'))
+        setwd(basedir)
         cat('\n')
     }
     ## File dependencies in tex files
     tex <- dir('.', '*.tex$', recursive=recursive)
     tex <- tex[!(tex %in% 'aebr.tex')]
+    basedir <- getwd()
     t=tex[3]
     for (t in tex) {
         cat('\n************  ', t, '  ************\n')
-        bt <- sub('\\.tex', '', t)
+        tdir <- dirname(t)
+        setwd(tdir)
+        t2 <- basename(t)
+        bt <- sub('\\.tex', '', t2)
         ## system(sprintf('mkjobtexmf --jobname %s --cmd-tex pdflatex', bt))
-        tmp <- readLines(t)
+        tmp <- readLines(t2)
         if (any(grepl('begin\\{document\\}', tmp))) {
             if (!use.xelatex) {
                 s <- system(sprintf('pdflatex -recorder -interaction=nonstopmode %s', bt), intern=T)
@@ -1832,21 +1847,20 @@ check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|swea
                 fls <- sapply(strsplit(fls, ' '), function(x) x[2])
                 fls <- sub('^\\./', '', fls)
                 fls <- unique(fls)
-                fls <- fls[!grepl(ignore, fls)]
                 fls <- fls[!grepl(sprintf('^%s', bt), fls)]
                 fls <- fls[!(fls %in% normalizePath(fold))]
-                alldeps <- c(alldeps, fls)
+                alldeps <- c(alldeps, normalizePath(fls))
                 cat(paste(fls, collapse='\n'))
                 cat('\n')
             } else cat('fls file inexistent. There is a problem with this file...\n')
         } else cat('Not a master file. Skip...\n')
+        setwd(basedir)
     }
     cat('\n\n')
-    ## Check if the dependencies are git-tracked
     alldeps <- alldeps[!grepl('^[ ]*\\%', alldeps)]
-    c <- grepl('load\\(', alldeps)
-    alldeps[c] <- sub('load\\([\'\"]+(.*)[\'\"]+.*\\).*', '\\1', alldeps[c])
-    alldeps[c] <- sub('save\\([\'\"]+(.*)[\'\"]+.*\\).*', '\\1', alldeps[c])
+    alldeps <- unique(alldeps)
+    alldeps <- alldeps[!grepl(ignore, alldeps)]
+    ## Check if the dependencies are git-tracked
     s <- sapply(alldeps, is.git.tracked)
     nt <- names(s)[!s]
     if (!is.null(nt)) {
