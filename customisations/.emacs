@@ -17,8 +17,8 @@
 (setq package-archives
 '(("ELPA" . "http://tromey.com/elpa/")
    ("gnu" . "http://elpa.gnu.org/packages/")
-   ("melpa" . "http://melpa.milkbox.net/packages/")
-   ("marmalade" . "http://marmalade-repo.org/packages/")))
+   ("melpa" . "http://melpa.milkbox.net/packages/")))
+   ;; ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ;; Window position
 (set-face-attribute 'default (selected-frame) :height 110)
@@ -164,9 +164,12 @@ there's a region, all lines that region covers will be duplicated."
  ;; If there is more than one, they won't work right.
  '(LaTeX-biblatex-use-Biber t)
  '(ess-R-font-lock-keywords (quote ((ess-R-fl-keyword:modifiers . t) (ess-R-fl-keyword:fun-defs . t) (ess-R-fl-keyword:keywords . t) (ess-R-fl-keyword:assign-ops . t) (ess-R-fl-keyword:constants . t) (ess-fl-keyword:fun-calls . t) (ess-fl-keyword:numbers . t) (ess-fl-keyword:operators . t) (ess-fl-keyword:delimiters . t) (ess-fl-keyword:= . t) (ess-R-fl-keyword:F&T . t))))
+ '(hl-sexp-background-color "#251D25")
  '(inhibit-startup-screen t)
+ '(safe-local-variable-values (quote ((require-final-newline))))
  '(wakatime-api-key "7b9228e4-0256-4dfe-a43e-1bfb09f7288c")
- '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py"))
+ '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
+ '(yank-pop-change-selection t))
 
 (global-wakatime-mode 1)
 
@@ -277,18 +280,6 @@ there's a region, all lines that region covers will be duplicated."
 (setq ido-use-faces nil)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    helm
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(helm-mode -1)
-(global-set-key (kbd "C-c h") 'helm-mini)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    expand-region
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'expand-region) 
-(global-set-key (kbd "C-'") 'er/expand-region)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -570,26 +561,30 @@ prompt the user for a coding system."
 ;;    Desktop
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (require 'desktop)
+;; Automatically save and restore sessions
+(setq desktop-dirname             "/home/yvan/.emacs.d/desktop/"
+      desktop-base-file-name      "emacs.desktop"
+      desktop-base-lock-name      "desktoplock"
+      desktop-path                (list desktop-dirname)
+      )
 (desktop-save-mode 1)
 (desktop-read)
 
-
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;    Copy buffer file path to clipboad
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (defun my-put-file-name-on-clipboard ()
-;;   "Put the current file name on the clipboard"
-;;   (interactive)
-;;   (let ((filename (if (equal major-mode 'dired-mode)
-;;                       default-directory
-;;                     (buffer-file-name))))
-;;     (when filename
-;;       (with-temp-buffer
-;;         (insert filename)
-;;         (clipboard-kill-region (point-min) (point-max)))
-;;       (message filename))))
-;; (global-set-key (kbd "C-c p") 'my-put-file-name-on-clipboard)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Copy buffer file path to clipboad
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun my-put-file-name-on-clipboard ()
+  "Put the current file name on the clipboard"
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (with-temp-buffer
+        (insert filename)
+        (clipboard-kill-region (point-min) (point-max)))
+      (message filename))))
+(global-set-key (kbd "C-c P") 'my-put-file-name-on-clipboard)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -604,40 +599,136 @@ prompt the user for a coding system."
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    buffer-timer
+;;    helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(helm-mode -1)
+(global-set-key (kbd "C-c h") 'helm-mini)
 
-;; (require 'buffer-timer)
 
-;; ; Example list of titles and regexps to group by.  This
-;; (setq buffer-timer-regexp-master-list
-;;   '(
-;;     ("idle" . 
-;;      (("generic" .			  "^\\*idle\\*")
-;;       ("generic2" .			  "^\\*idle-2\\*")
-;;       ("minibuf" .                        "^ \\*Minibuf-.*")))
-;;     ("customizations" .                   "\\.emacs")
-;;     ("work" .
-;;      (("my R pkg" .                       "yr-r-package")
-;;       ("seabird counts" .
-;;        (("Main project" .                 "abundance")
-;; 	("Web site" .                     "seabird-counts-website")))
-;;       ("SRA 2012" .
-;;        (("analysis" .                     "sra-2012/analysis")
-;; 	("report" .                       "sra-2012/report")))
-;;       ("Encounter kaikoura" .
-;;        (("data" .                          "encounter-kaikoura/data")
-;; 	("analysis" .                      "encounter-kaikoura/analysis")
-;; 	("plots" .                         "encounter-kaikoura/plots")
-;; 	("report" .                        "encounter-kaikoura/report")))
-;;       ("XNR Taiaroa" .
-;;        (("data" .                          "northern-royal-albatross-taiaroa/data")
-;; 	("analysis" .                      "northern-royal-albatross-taiaroa/analysis")
-;; 	("plots" .                         "northern-royal-albatross-taiaroa/plots")
-;; 	("report" .                        "northern-royal-albatross-taiaroa/report")))
-;;       ("R terminal" .                     "^\\*R\\*$")
-;;       ("Dragonfly others" .               "/dragonfly/")))
-;;     )
-;; )
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    expand-region
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'expand-region) 
+(global-set-key (kbd "C-'") 'er/expand-region)
 
-;; (put 'erase-buffer 'disabled nil)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    yas snippets
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq yas-snippet-dirs
+      '("~/Dropbox/customisations/yas-snippets"))
+(add-to-list 'load-path "~/Dropbox/customisations/yas-snippets")
+(yas-global-mode 1)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Powerline
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'powerline)
+(powerline-default-theme)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Highlight sexp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-highlight-sexp-mode t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Scroll bar
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (global-yascroll-bar-mode 1)
+;; (scroll-bar-mode 0)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Abbreviations
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define-abbrev-table 'global-abbrev-table '(
+
+    ;; normal english words
+    ("0pop" "population")
+    ("0vul" "vulnerability")
+    ("0sp"  "species")
+    ("0xwm" "New Zealand white-capped albatross")
+    ("0xal" "albatross")
+    ("0xan" "Antipodean albatross")
+    ("0xau" "Gibson's albatross")
+    ("0xbm" "southern Buller's albatross")
+    ("0xbp" "black petrel")
+    ("0xci" "Chatham Island albatross")
+    ("0xfs" "flesh-footed shearwater")
+    ("0xnb" "northern Buller's albatross")
+    ("0xnr" "northern royal albatross")
+    ("0xra" "southern royal albatross")
+    ("0xsa" "Salvin's albatross")
+    ("0xsh" "sooty shearwater")
+    ("0xwc" "white-chinned petrel")
+    ("0xyp" "yellow-eyed penguin")
+    ("0pbr" "Potential Biological Removal")
+    ("apf"  "APF")
+    ("0apf" "Annual Potential Fatalities")
+    ("0nz"  "New Zealand")
+    ("0ssp" "subspecies")
+    ("0bll" "bottom longline")
+    ("0sll" "surface longline")
+    ("0sra2t" "\citet{richard_risk_2013}")
+    ("0sra2p" "\citep{richard_risk_2013}")
+    
+    ))
+
+;; stop asking whether to save newly added abbrev when quitting emacs
+(setq save-abbrevs nil)
+
+;; turn on abbrev mode globally
+(setq-default abbrev-mode t)
+
+
+;; ;; Increase quality of viewed pdfs
+;; ;; (defcustom doc-view-ghostscript-options
+;; ;;           '("-dNOPAUSE" "-sDEVICE=png16m" "-dTextAlphaBits=4"
+;; ;;             "-dBATCH" "-dGraphicsAlphaBits=4" "-dQUIET"
+;; ;;             "-r300")
+;; ;;           "A list of options to give to ghostview."
+;; ;;           :type '(sexp)
+;; ;;           :group 'doc-view)
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;    buffer-timer
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; ;; (require 'buffer-timer)
+
+;; ;; ; Example list of titles and regexps to group by.  This
+;; ;; (setq buffer-timer-regexp-master-list
+;; ;;   '(
+;; ;;     ("idle" . 
+;; ;;      (("generic" .			  "^\\*idle\\*")
+;; ;;       ("generic2" .			  "^\\*idle-2\\*")
+;; ;;       ("minibuf" .                        "^ \\*Minibuf-.*")))
+;; ;;     ("customizations" .                   "\\.emacs")
+;; ;;     ("work" .
+;; ;;      (("my R pkg" .                       "yr-r-package")
+;; ;;       ("seabird counts" .
+;; ;;        (("Main project" .                 "abundance")
+;; ;; 	("Web site" .                     "seabird-counts-website")))
+;; ;;       ("SRA 2012" .
+;; ;;        (("analysis" .                     "sra-2012/analysis")
+;; ;; 	("report" .                       "sra-2012/report")))
+;; ;;       ("Encounter kaikoura" .
+;; ;;        (("data" .                          "encounter-kaikoura/data")
+;; ;; 	("analysis" .                      "encounter-kaikoura/analysis")
+;; ;; 	("plots" .                         "encounter-kaikoura/plots")
+;; ;; 	("report" .                        "encounter-kaikoura/report")))
+;; ;;       ("XNR Taiaroa" .
+;; ;;        (("data" .                          "northern-royal-albatross-taiaroa/data")
+;; ;; 	("analysis" .                      "northern-royal-albatross-taiaroa/analysis")
+;; ;; 	("plots" .                         "northern-royal-albatross-taiaroa/plots")
+;; ;; 	("report" .                        "northern-royal-albatross-taiaroa/report")))
+;; ;;       ("R terminal" .                     "^\\*R\\*$")
+;; ;;       ("Dragonfly others" .               "/dragonfly/")))
+;; ;;     )
+;; ;; )
+
+;; ;; (put 'erase-buffer 'disabled nil)
