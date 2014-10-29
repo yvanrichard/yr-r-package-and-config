@@ -1795,39 +1795,41 @@ is.git.tracked <- function(f) {
 
 ## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
 check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),
-                             only=c('/'), recursive=T, save_untracked=T, use.xelatex=T) {
+                             only=c('/'), recursive=T, save_untracked=T, use.xelatex=T, ignore.rnw=F) {
     alldeps <- NULL
     prevdir <- getwd()
     setwd(fold)
     ## File dependencies in Sweave files
-    rnw <- dir('.', '*.rnw$|*.Rnw$', recursive=recursive)
-    basedir <- getwd()
-    r1=rnw[1]
-    for (r1 in rnw) {
-        cat('\n************  ', r1, '  ************\n')
-        rdir <- dirname(r1)
-        setwd(rdir)
-        r2 <- basename(r1)
-        r <- readLines(r2)
-        c1 <- r[grepl('\\bload\\(', r) & !grepl('^[[:blank:]]*#', r)]
-        fs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', c1)
-        c2 <- r[grepl('\\bread.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
-        fs2 <- sub('read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
-        fs <- c(fs1, fs2)
-        ## Replace global variables in .mk files by their value
-        c <- grepl('load\\([a-zA-Z]+', fs)
-        alldeps1 <- sub('load\\(([a-zA-Z_.0-1]+).*\\)', '\\1', fs[c])
-        s <- unlist(sapply(dir('.', '*.mk.parsed'), function(mk) readLines(mk), simplify=F))
-        if (!is.null(s)) {
-            s1 <- do.call('rbind', strsplit(s, '[[:blank:]]*=[[:blank:]]*'))
-            s2 <- sapply(alldeps1, function(x) s1[which(s1[,1] %in% x),2], simplify=F)
-            fs[c] <- ifelse(sapply(s2, length), sapply(s2, '[', 1), names(s2))
+    if (!ignore.rnw) {
+        rnw <- dir('.', '*.rnw$|*.Rnw$', recursive=recursive)
+        basedir <- getwd()
+        r1=rnw[1]
+        for (r1 in rnw) {
+            cat('\n************  ', r1, '  ************\n')
+            rdir <- dirname(r1)
+            setwd(rdir)
+            r2 <- basename(r1)
+            r <- readLines(r2)
+            c1 <- r[grepl('\\bload\\(', r) & !grepl('^[[:blank:]]*#', r)]
+                fs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', c1)
+            c2 <- r[grepl('\\bread.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
+                fs2 <- sub('read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
+            fs <- c(fs1, fs2)
+            ## Replace global variables in .mk files by their value
+            c <- grepl('load\\([a-zA-Z]+', fs)
+            alldeps1 <- sub('load\\(([a-zA-Z_.0-1]+).*\\)', '\\1', fs[c])
+            s <- unlist(sapply(dir('.', '*.mk.parsed'), function(mk) readLines(mk), simplify=F))
+            if (!is.null(s)) {
+                s1 <- do.call('rbind', strsplit(s, '[[:blank:]]*=[[:blank:]]*'))
+                s2 <- sapply(alldeps1, function(x) s1[which(s1[,1] %in% x),2], simplify=F)
+                fs[c] <- ifelse(sapply(s2, length), sapply(s2, '[', 1), names(s2))
+            }
+            cat(paste(fs, collapse='\n'),'\n')
+            fs <- normalizePath(fs)
+            alldeps <- c(alldeps, fs)
+            setwd(basedir)
+            cat('\n')
         }
-        cat(paste(fs, collapse='\n'),'\n')
-        fs <- normalizePath(fs)
-        alldeps <- c(alldeps, fs)
-        setwd(basedir)
-        cat('\n')
     }
     ## File dependencies in tex files
     tex <- dir('.', '*.tex$', recursive=recursive)
