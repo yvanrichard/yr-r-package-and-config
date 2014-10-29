@@ -141,8 +141,13 @@ trim <- function(x) {
     x3 <- sapply(x2, function(y) gsub(' *$','', y), USE.NAMES=F)
     return(x3)
 }
+strtrim <- function(x) {
+    x2 <- gsub('^[[:blank:]]*', '', x)
+    x3 <- gsub('[[:blank:]]*$', '', x2)
+    return(x3)
+}
 
-clean.string <- function(x) {
+strclean <- clean.string <- function(x) {
     ## remove heading and trailing spaces, multiple spaces, multiple tabs, and consecutive tabs or spaces
     return(gsub('[\t ]{2,}', ' ', gsub('\t{2,}', '\t', gsub(' {2,}', ' ', gsub('^ *| *$', '', x)))))
 }
@@ -1566,7 +1571,7 @@ includemk <- function(Mk='vars.mk', warn=T, save.parsed=T) {
     }
     mk <- getsubincl(Mk)
     ## Clean and parse
-    mk <- mk[!grepl('^[[:blank:]]*#', mk)] #
+    mk <- mk[!grepl('^[[:blank:]]*#', mk)]
         mk <- mk[grep('=', mk)]
     mk <- gsub('\t*', '', mk)
     r <- rapply(strsplit(mk, '='), trim, how='replace')
@@ -1813,9 +1818,11 @@ check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|swea
         c <- grepl('load\\([a-zA-Z]+', fs)
         alldeps1 <- sub('load\\(([a-zA-Z_.0-1]+).*\\)', '\\1', fs[c])
         s <- unlist(sapply(dir('.', '*.mk.parsed'), function(mk) readLines(mk), simplify=F))
-        s1 <- do.call('rbind', strsplit(s, '[[:blank:]]*=[[:blank:]]*'))
-        s2 <- sapply(alldeps1, function(x) s1[which(s1[,1] %in% x),2], simplify=F)
-        fs[c] <- ifelse(sapply(s2, length), sapply(s2, '[', 1), names(s2))
+        if (!is.null(s)) {
+            s1 <- do.call('rbind', strsplit(s, '[[:blank:]]*=[[:blank:]]*'))
+            s2 <- sapply(alldeps1, function(x) s1[which(s1[,1] %in% x),2], simplify=F)
+            fs[c] <- ifelse(sapply(s2, length), sapply(s2, '[', 1), names(s2))
+        }
         cat(paste(fs, collapse='\n'),'\n')
         fs <- normalizePath(fs)
         alldeps <- c(alldeps, fs)
@@ -1859,7 +1866,9 @@ check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|swea
     cat('\n\n')
     alldeps <- alldeps[!grepl('^[ ]*\\%', alldeps)]
     alldeps <- unique(alldeps)
-    alldeps <- alldeps[!grepl(ignore, alldeps)]
+    alldeps <- strtrim(alldeps[!grepl(ignore, alldeps)])
+    nonprocessed <- alldeps[grepl('[\\(\\)]+', alldeps)]
+    alldeps <- alldeps[!grepl('[\\(\\)]+', alldeps)]
     ## Check if the dependencies are git-tracked
     s <- sapply(alldeps, is.git.tracked)
     nt <- names(s)[!s]
@@ -1873,7 +1882,10 @@ check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|swea
     if (save_untracked)
         write.csv(nt, 'untracked-dependencies.csv', row.names=F)
     setwd(prevdir)
-    
+    if (length(nonprocessed)) {
+        cat('\n--- Non-processed dependencies:\n')
+        print(nonprocessed)
+    }
 }
 
 ## Stangle including also \Sexpr expressions
@@ -1962,7 +1974,11 @@ SELECT c.column_name FROM information_schema.columns As c
     return(sqlres)
 }
 
-
+## Close all opened connections
+close.db.conn <- function() {
+    library(RPostgreSQL)
+    sapply(dbListConnections(dbDriver("PostgreSQL")), dbDisconnect)
+}
 
 
 ## View TeX document as PDF from a tex file (not self-sufficient)
