@@ -464,7 +464,20 @@ pal.ex <- function(cols, cex=1.3) {
         rect(2, i, 3, i+1, col=cols2[i], border=NA)
 }
 
-pickcolor <- function(brewer=F, txt=T) {
+pickcolor <- function(brewer=T, echo=T) {
+    darken <- function (col, c = 0.3) {
+        rgbs <- col2rgb(col, alpha = T)
+        r <- rgbs["red", ]/255
+        g <- rgbs["green", ]/255
+        b <- rgbs["blue", ]/255
+        a <- rgbs["alpha", ]/255
+        rd <- r * (1 - c)
+        gd <- g * (1 - c)
+        bd <- b * (1 - c)
+        newrgbs <- rgb(rd, gd, bd, a)
+        names(newrgbs) <- names(col)
+        return(newrgbs)
+    }
     if (!brewer) {
         x11(width=15.2, height=8.2)
         cs <- colors()
@@ -506,14 +519,14 @@ pickcolor <- function(brewer=F, txt=T) {
         cols <- merge(xy, d, all.x=T, all.y=F, by.x='xy', by.y='xy')$col
     }
     dev.off()
-    if (txt) {
+    if (echo) {
         op <- options("useFancyQuotes")
         options("useFancyQuotes"=F)
         c <- paste(sQuote(cols), collapse=', ')
         cat('\n', c, '\n\n')
         options("useFancyQuotes"=op)
-        return(NULL)
-    } else  return(cols)
+    }
+    return(cols)
 }
 
 
@@ -1074,7 +1087,7 @@ proc_in_dfly <- function(comm='R', comps=c('robin','leon','titi','tieke','frank'
 } 
 
 ## Check log of screen in all dragonfly computers
-check_screen_in_dfly <- function(fold, comps=c('robin','leon','titi','tieke','frank','jeremy','taiko'), user='yvan') {
+check_screen_in_dfly <- function(fold, comps=c('robin','leon','titi','tieke','frank','jeremy','taiko','haast'), user='yvan') {
     cp <- comps[1]
     for (cp in comps) {
         cat('*****', cp,'\n')
@@ -1085,7 +1098,7 @@ check_screen_in_dfly <- function(fold, comps=c('robin','leon','titi','tieke','fr
     }
 }
 
-dfly_cmd <- function(cmd, comps=c('robin','leon','titi','tieke','frank','taiko','tui','kahu'),
+dfly_cmd <- function(cmd, comps=c('robin','leon','titi','tieke','frank','taiko','tui','kahu','haast'),
                      user='yvan', wait=T) {
     cp=comps[1]
     for (cp in comps) {
@@ -1239,6 +1252,51 @@ get_in_out_from_scripts <- function(fold='.', returnlist=F, recursive=F) {
     if (returnlist)
         return(outlist)
 }
+
+
+num2word <- function(x){ 
+    x <- as.numeric(x)
+    helper <- function(x){ 
+        digits <- rev(strsplit(as.character(x), "")[[1]]) 
+        nDigits <- length(digits) 
+        if (nDigits == 1) as.vector(ones[digits]) 
+        else if (nDigits == 2) 
+            if (x <= 19) as.vector(teens[digits[1]]) 
+                else trim(paste(tens[digits[2]], Recall(as.numeric(digits[1])))) 
+        else if (nDigits == 3) trim(paste(ones[digits[3]], "hundred", 
+            Recall(makeNumber(digits[2:1])))) 
+        else { 
+            nSuffix <- ((nDigits + 2) %/% 3) - 1 
+            if (nSuffix > length(suffixes)) stop(paste(x, "is too large!")) 
+            trim(paste(Recall(makeNumber(digits[ 
+                nDigits:(3*nSuffix + 1)])), 
+                suffixes[nSuffix], 
+                Recall(makeNumber(digits[(3*nSuffix):1])))) 
+            } 
+        } 
+    trim <- function(text){ 
+        gsub("^\ ", "", gsub("\ *$", "", text)) 
+        } 
+    makeNumber <- function(...) as.numeric(paste(..., collapse="")) 
+    opts <- options(scipen=100) 
+    on.exit(options(opts)) 
+    ones <- c("", "one", "two", "three", "four", "five", "six", "seven", 
+        "eight", "nine") 
+    names(ones) <- 0:9 
+    teens <- c("ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", 
+        "sixteen", " seventeen", "eighteen", "nineteen") 
+    names(teens) <- 0:9 
+    tens <- c("twenty", "thirty", "forty", "fifty", "sixty", "seventy", 
+"eighty", 
+        "ninety") 
+    names(tens) <- 2:9 
+    x <- round(x) 
+    suffixes <- c("thousand", "million", "billion", "trillion") 
+    if (length(x) > 1) return(sapply(x, helper)) 
+    helper(x) 
+} 
+
+
 
 graph_r_scripts <- function(fold='.', recursive=T) {
     fold <- sub('^\\.', getwd(), fold)
@@ -1589,6 +1647,7 @@ includemk <- function(Mk='vars.mk', warn=T, save.parsed=T) {
     if (save.parsed)  parsed <- mk
     for (i in 1:length(rr)) {
         c <- trim(strsplit(mk[i], '=')[[1]])
+        c <- gsub(' *#.*$', '', c)
         if (length(c) != 2)
             stop(sprintf('Problem parsing makefile. Assignment #%i non-standard',i)) #
         if (grepl('\\$\\(.*\\)', c[2]))
@@ -1966,7 +2025,7 @@ sql_all_but_geom <- function(tablename='all_captures', compl_txt='', schema='pub
     cols <- rev(unlist(dbGetQuery(conn, sprintf("
 SELECT c.column_name FROM information_schema.columns As c
             WHERE table_name = '%s' AND table_schema = '%s' AND udt_name <> 'geometry'
-", tablename1, schema)))); names(cols) <- NULL
+", gsub('[\"\']', '', tablename1), schema)))); names(cols) <- NULL
     ## SQL statement to select all columns but geometry ones
     selcols <- paste(cols, collapse=', ')
     sqlquery <- sprintf("SELECT %s from %s %s", selcols, tablename, compl_txt)
