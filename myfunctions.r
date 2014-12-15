@@ -309,7 +309,7 @@ getmfrow <- function(n, dim=c(7,9)) {
 
 ## Draw envelope, given the lower and upper limits
 draw.env <- function(x=1:length(lcl), lcl, ucl, fill=gray(0.9), line=gray(0.75)) {
-    x = 1:length(lcl)
+    ## x = 1:length(lcl)
     polygon(c(x,rev(x),x[1]),c(ucl, rev(lcl), ucl[1]), border=NA, col=fill)
     lines(x, ucl, col=line)
     lines(x, lcl, col=line)
@@ -2172,4 +2172,33 @@ corr_plot <- function(df, with.diag.lines=F, use.dens.cols=T) {
 }
 
 
+## Function to extract the references used in report (tex, Rnw, rnw files) from the main bibliography file
+getbibrefs <- function(texdir='.', overwrite=T, outbib='bib.bib',
+                       bibfile='~/dragonfly/bibliography/mfish.bib') {
+    texdir <- normalizePath(texdir)
+    texfiles <- grep('\\.tex$|\\.[Rr]nw$', dir(texdir), val=T)
+    bib <- readLines(bibfile)
+    refstarts <- grep('^[[:blank:]]*@', bib)
+    bibtags <- as.character(sort(unlist(sapply(texfiles, function(tex) {
+        t <- readLines(paste0(texdir, '/', tex))
+        t <- gsub('\\[[^]]*\\]', '', gsub('[[:blank:]]+', ' ', paste(t, collapse=' ')))
+        locs <- gregexpr('\\\\cite[pt]*', t)[[1]]
+        if (!any(locs == -1)) {
+            return(grep('_', sort(unique(gsub(' +', '', unlist(sapply(locs, function(i) {
+                strsplit(sub('\\\\cite[pt]*\\{([^\\}]+)\\}.*', '\\1', substr(t, i, nchar(t))), ',')
+            }, simplify=F))))), val=T))
+        } else return(NULL)
+    }, simplify=F))))
+    cat(length(bibtags), 'references used in total.\n')
+    subbib <- sapply(bibtags, function(tag) {
+        refstart <- grep(sprintf('\\<%s\\>', tag), bib)[1]
+        if (!is.na(refstart)) {
+            return(bib[refstart:(min(refstarts[refstarts > refstart])-1)])
+        } else cat('WARNING!! Could not find ref: ', dQuote(tag), '\n')
+    })
+    if (!file.exists(outbib) | overwrite) {
+        cat(paste(unlist(subbib), collapse='\n'), file='bib.bib')
+        cat('References exported to ', dQuote(outbib), '.\n', sep='')
+    } else cat('File', outbib, 'exists and overwrite=FALSE\n')
+}
 
