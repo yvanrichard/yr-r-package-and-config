@@ -2181,6 +2181,7 @@ getbibrefs <- function(texdir='.', overwrite=T, outbib='bib.bib',
     refstarts <- grep('^[[:blank:]]*@', bib)
     bibtags <- as.character(sort(unlist(sapply(texfiles, function(tex) {
         t <- readLines(paste0(texdir, '/', tex))
+        t <- t[!grepl('^[[:blank:]]*%', t)]  ## remove comments
         t <- gsub('\\[[^]]*\\]', '', gsub('[[:blank:]]+', ' ', paste(t, collapse=' ')))
         locs <- gregexpr('\\\\cite[pt]*', t)[[1]]
         if (!any(locs == -1)) {
