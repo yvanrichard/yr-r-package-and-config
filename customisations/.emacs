@@ -5,12 +5,16 @@
 ;;    Load
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'load-path
-    "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d")
+;; (add-to-list 'load-path
+;;     "~/.emacs.d2")
 ;; (add-to-list 'load-path
 ;;     "~/.emacs.d/icicles")
 ;; (add-to-list 'load-path
 ;;     "~/.emacs.d/elisp-buffer-timer")
+
+;; (load "~/.emacs.d2/ESS/lisp/ess-site")
+;; (load "~/.emacs.d2/ESS/lisp/ess-eldoc")
 
 (require 'package)
 (package-initialize)
@@ -28,6 +32,7 @@
 (add-to-list 'default-frame-alist '(top . 50))
 
 
+(require 'ess-site)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Global
@@ -105,7 +110,6 @@ Ignores CHAR at point."
 ;;       predictive-add-to-dict-ask nil
 ;;       predictive-use-auto-learn-cache nil
 ;;       predictive-which-dict t)
-(require 'auto-complete)
 
 (setq max-lisp-eval-depth 10000)
 
@@ -162,11 +166,14 @@ there's a region, all lines that region covers will be duplicated."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(LaTeX-biblatex-use-Biber t)
+ '(LaTeX-biblatex-use-Biber t t)
+ '(custom-safe-themes (quote ("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(ess-R-font-lock-keywords (quote ((ess-R-fl-keyword:modifiers . t) (ess-R-fl-keyword:fun-defs . t) (ess-R-fl-keyword:keywords . t) (ess-R-fl-keyword:assign-ops . t) (ess-R-fl-keyword:constants . t) (ess-fl-keyword:fun-calls . t) (ess-fl-keyword:numbers . t) (ess-fl-keyword:operators . t) (ess-fl-keyword:delimiters . t) (ess-fl-keyword:= . t) (ess-R-fl-keyword:F&T . t))))
  '(hl-sexp-background-color "#251D25")
  '(inhibit-startup-screen t)
- '(safe-local-variable-values (quote ((require-final-newline))))
+ '(safe-local-variable-values (quote ((TeX-master . report\.tex) (require-final-newline))))
+ '(sml/replacer-regexp-list (quote (("^~/org" ":Org:") ("^~/\\.emacs\\.d/" ":ED:") ("^/sudo:.*:" ":SU:") ("^~/Documents/" ":Doc:") ("^~/Dropbox/" ":DB:") ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:") ("^~/[Gg]it/" ":Git:") ("^~/[Gg]it[Hh]ub/" ":Git:") ("^~/dragonfly/" ":DFLY:") ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
+ '(sml/shorten-directory t)
  '(wakatime-api-key "7b9228e4-0256-4dfe-a43e-1bfb09f7288c")
  '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
  '(yank-pop-change-selection t))
@@ -370,9 +377,13 @@ prompt the user for a coding system."
 	 ("Kaikoura" (filename . "kaikoura"))
 	 ("MMRA" (filename . "mmra-2013"))
 	 ("Mammals 2013" (filename . "mammals-may"))
+	 ("Mammals 2014" (filename . "mammals-2014"))
 	 ("Northern royals" (filename . "northern-royal"))
 	 ("Oreo" (filename . "oreo"))
+	 ("Seabirds 2011" (filename . "seabirds-2011"))
 	 ("Seabirds 2013" (filename . "seabirds-2013"))
+	 ("Seabirds 2014" (filename . "seabirds-2014"))
+	 ("Cryptic mortality" (filename . "doc-cryptic"))
 	 ("Bycatch www" (filename . "bycatch.dragonfly"))
 	 ("Seabird counts" (filename . "abundance/"))
 	 ("Maui's dolphins" (filename . "maui"))
@@ -382,7 +393,10 @@ prompt the user for a coding system."
 		     (filename . "mbie")))
 	 ("SRA 2012" (filename . "sra-2012"))
 	 ("SRA 2014" (filename . "sra-2014"))
+	 ("Estimation 2014" (filename . "estimation-2014"))
 	 ("Ludicio" (filename . "ludicio/"))
+	 ("sra obs cov" (filename . "sra-observer-coverage/"))
+	 ("WHIO benthos" (filename . "whio-benthic-analysis/"))
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")
 			     (filename . ".emacs"))))))
@@ -460,39 +474,37 @@ prompt the user for a coding system."
 (add-to-list 'auto-mode-alist '("\\.bug\\'" . ess-jags-mode))
 
 (require 'ess-eldoc) ;to show function arguments while you are typing them
-
-(require 'ess-site)
-;; (load "~/.emacs.d/elpa/ess-20130912.915/lisp/ess-site")
+(setq ess-use-auto-complete 'script-only)
+;; (require 'ess-site)
 
 (setq ess-eval-visibly-p nil) ;otherwise C-c C-r (eval region) takes forever
 (setq ess-ask-for-ess-directory nil) ;otherwise you are prompted each time you start
 
-(setq ess-ask-for-ess-directory nil)
 (setq ess-local-process-name "R")
 (setq ansi-color-for-comint-mode 'filter)
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
-(defun my-ess-start-R ()
-  (interactive)
-  (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
-      (progn
-	(delete-other-windows)
-	(setq w1 (selected-window))
-	(setq w1name (buffer-name))
-	(setq w2 (split-window w1 nil t))
-	(R)
-	(set-window-buffer w2 "*R*")
-	(set-window-buffer w1 w1name))))
-(defun my-ess-eval ()
-  (interactive)
-  (my-ess-start-R)
-  (if (and transient-mark-mode mark-active)
-      (call-interactively 'ess-eval-region)
-    (call-interactively 'ess-eval-line-and-step)))
+;; (defun my-ess-start-R ()
+;;   (interactive)
+;;   (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
+;;       (progn
+;; 	(delete-other-windows)
+;; 	(setq w1 (selected-window))
+;; 	(setq w1name (buffer-name))
+;; 	(setq w2 (split-window w1))
+;; 	(R)
+;; 	(set-window-buffer w2 "*R*")
+;; 	(set-window-buffer w1 w1name))))
+;; (defun my-ess-eval ()
+;;   (interactive)
+;;   (my-ess-start-R)
+;;   (if (and transient-mark-mode mark-active)
+;;       (call-interactively 'ess-eval-region)
+;;     (call-interactively 'ess-eval-line-and-step)))
 (add-hook 'ess-mode-hook
 	  '(lambda()
-	     (local-set-key [(shift return)] 'my-ess-eval)
+	     ;; (local-set-key [(shift return)] 'my-ess-eval)
 	     (local-set-key [(backtab)] 'ess-indent-or-complete)))
 (add-hook 'inferior-ess-mode-hook
 	  '(lambda()
@@ -562,13 +574,15 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Automatically save and restore sessions
-(setq desktop-dirname             "/home/yvan/.emacs.d/desktop/"
+(setq desktop-dirname             "~/.emacs.d/desktop/"
       desktop-base-file-name      "emacs.desktop"
       desktop-base-lock-name      "desktoplock"
       desktop-path                (list desktop-dirname)
+      desktop-save                t
       )
 (desktop-save-mode 1)
-(desktop-read)
+(add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
+;; (desktop-read)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Copy buffer file path to clipboad
@@ -611,6 +625,26 @@ prompt the user for a coding system."
 (require 'expand-region) 
 (global-set-key (kbd "C-'") 'er/expand-region)
 
+(defun er/mark-r-assignment ()
+  "Mark R assignment such as 'var <- something'."
+  (interactive)
+  (when (or (looking-at "\\(\\s_\\|\\sw\\)* <- ")
+            (er/looking-back-exact "<-"))
+    (search-backward "<-")
+    (back-to-indentation)
+    (set-mark (point))
+    (search-forward "<-")
+    (forward-sexp 1)
+    (exchange-point-and-mark)))
+
+(defun er/add-r-mode-expansions ()
+  "Adds R-specific expansions for buffers in html-mode"
+  (set (make-local-variable 'er/try-expand-list) (append
+                                                  er/try-expand-list
+                                                  '(er/mark-r-assignment))))
+
+(er/enable-mode-expansions 'r-mode 'er/add-r-mode-expansions)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    yas snippets
@@ -624,8 +658,8 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Powerline
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'powerline)
-(powerline-default-theme)
+;; (require 'powerline)
+;; (powerline-default-theme)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -640,7 +674,10 @@ prompt the user for a coding system."
 ;; (global-yascroll-bar-mode 1)
 ;; (scroll-bar-mode 0)
 
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Tramp mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq tramp-default-method "ssh")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Abbreviations
@@ -667,7 +704,6 @@ prompt the user for a coding system."
     ("0xwc" "white-chinned petrel")
     ("0xyp" "yellow-eyed penguin")
     ("0pbr" "Potential Biological Removal")
-    ("apf"  "APF")
     ("0apf" "Annual Potential Fatalities")
     ("0nz"  "New Zealand")
     ("0ssp" "subspecies")
@@ -683,6 +719,43 @@ prompt the user for a coding system."
 
 ;; turn on abbrev mode globally
 (setq-default abbrev-mode t)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Anchored transpose (C-x t on a region, select another region and C-x t again to transpose)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-x t") 'anchored-transpose)
+(autoload 'anchored-transpose "anchored-transpose" nil t)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    google-this
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-x g") 'google-this-mode-submap)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    smart-mode-line (better bottom line)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(sml/setup)
+(sml/apply-theme 'dark)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Company (an auto-complete package)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'after-init-hook 'global-company-mode)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Auto-complete
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (require 'auto-complete)
+;; (require 'auto-complete-config)
+;; (ac-config-default)
+
 
 
 ;; ;; Increase quality of viewed pdfs
@@ -732,3 +805,25 @@ prompt the user for a coding system."
 ;; ;; )
 
 ;; ;; (put 'erase-buffer 'disabled nil)
+
+
+(fset 'reparens
+   "\C-s{\C-b\336\C-f\206\202\221\206\202\C-n")
+
+
+;; Open files
+(defun gnome-open-file (filename)
+  "gnome-opens the specified file."
+  (interactive "fFile to open: ")
+  (let ((process-connection-type nil))
+    (start-process "" nil "/usr/bin/gnome-open" filename)))
+
+(defun dired-gnome-open-file ()
+  "Opens the current file in a Dired buffer."
+  (interactive)
+  (gnome-open-file (dired-get-file-for-visit)))
+
+(add-hook 'dired-mode-hook (lambda () (local-set-key "E" 'dired-gnome-open-file)))
+
+
+

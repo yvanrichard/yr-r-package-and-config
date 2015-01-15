@@ -2179,7 +2179,7 @@ getbibrefs <- function(texdir='.', overwrite=T, outbib='bib.bib',
     texfiles <- grep('\\.tex$|\\.[Rr]nw$', dir(texdir), val=T)
     bib <- readLines(bibfile)
     refstarts <- grep('^[[:blank:]]*@', bib)
-    bibtags <- as.character(sort(unlist(sapply(texfiles, function(tex) {
+    bibtags <- sort(unique(as.character(sort(unlist(sapply(texfiles, function(tex) {
         t <- readLines(paste0(texdir, '/', tex))
         t <- t[!grepl('^[[:blank:]]*%', t)]  ## remove comments
         t <- gsub('\\[[^]]*\\]', '', gsub('[[:blank:]]+', ' ', paste(t, collapse=' ')))
@@ -2189,7 +2189,7 @@ getbibrefs <- function(texdir='.', overwrite=T, outbib='bib.bib',
                 strsplit(sub('\\\\cite[pt]*\\{([^\\}]+)\\}.*', '\\1', substr(t, i, nchar(t))), ',')
             }, simplify=F))))), val=T))
         } else return(NULL)
-    }, simplify=F))))
+    }, simplify=F))))))
     cat(length(bibtags), 'references used in total.\n')
     subbib <- sapply(bibtags, function(tag) {
         refstart <- grep(sprintf('\\<%s\\>', tag), bib)[1]

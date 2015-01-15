@@ -19,6 +19,11 @@ $dragonfly
 # Command Line History (newest to oldest):
 :wq
 :q
+:9
+:1
+:15
+:q!
+:ew
 :x
 :set noexpandtab
 :set invlist
@@ -27,10 +32,8 @@ $dragonfly
 :'<,'>s/yvan-r-pkg/yr-r-package-and-config/g
 :s/yvan-r-pkg/yr-r-package-and-config/g
 :Q
-:q!
 :8
 :7
-:9
 :23
 :help hicolors
 :colorscheme desert256
@@ -64,9 +67,6 @@ $dragonfly
 :Set nospell
 :e 20110711-add-ref-list-title.sql
 :w 20110711-add-ref-list-title.sql
-:ma
-:Mak
-:sw
 
 # Search String History (newest to oldest):
 ?/ubuntugi
@@ -127,24 +127,24 @@ $dragonfly
 # Input Line History (newest to oldest):
 
 # Registers:
-"1	LINE	0
-	# deb-src https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
+""1	LINE	0
+	|1|rHLQUFB4SjIeuWnI1g+0gTgEyTs=|Ln1GUjw9N/9vdLjejT1BHl9lLlg= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL6ejNlQQ2fdMc7wYnhjge4MiJDbaZInnY5R+z1eK0QKmUFkbGGMa4jn/Dxmvr3+8BmkKN0VwzJGK8us8mLKnr4=
 "2	LINE	0
-	# deb https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
+	|1|eueiLcPZ2eZR/R3xqxo+ehzDlCc=|+xkzbE8AiRrQOx/OOfxQm2FuNmI= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPwbZRUMom+4yCsBwinbKYUhosoWOkb43UxBuJQ5sfHo01JgiWMbd6A2pUCaRzl6tssyaZbKJEvSMpbwjFRhJOk=
 "3	LINE	0
-		xelatex report.tex`d
+	|1|FcIJNF2QDzQYgM1huJCJ3WUa3nY=|zR95gt0n7PtWiNwF4wCaHNHSZEY= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKtHXlwH0hK38EH5CnkDvDda0QejqvOBSt16C7bkWqczI8M9WlhXjxG7gyRrxbPMjIuYBvMKEf5PMUDTxx/E3Ws=
 "4	LINE	0
-	   guest ok = yes
+	# deb-src https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
 "5	LINE	0
-	   path = /home/yvan/Music
+	# deb https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
 "6	LINE	0
-	   locking = no
+		xelatex report.tex`d
 "7	LINE	0
-	   read only = yes
+	   guest ok = yes
 "8	LINE	0
-	   comment = yvan's music
+	   path = /home/yvan/Music
 "9	LINE	0
-	[Music]
+	   locking = no
 "u	CHAR	0
 	lrr
 "-	CHAR	0
@@ -152,19 +152,40 @@ $dragonfly
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  1  0  ~/dragonfly/sra-2014/.git/MERGE_MSG
-'1  1  0  ~/dragonfly/ludicio/.git/MERGE_MSG
-'2  1  0  ~/dragonfly/toheroa-2014/.git/MERGE_MSG
-'3  11  1  /etc/fstab
-'4  1  0  /etc/apt/sources.list
-'5  4  0  /etc/mpd.conf
-'6  256  0  ~/.emacs
-'7  69  0  /etc/apt/sources.list
-'8  16  0  ~/dragonfly/black-petrel-distribution/report/makefile
-'9  20  0  ~/dragonfly/black-petrel-distribution/report/makefile
+'0  1  0  ~/dragonfly/estimation-2014/.git/MERGE_MSG
+'1  1  0  ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
+'2  1  0  ~/dragonfly/doc-sll-mitigation-2012/.git/MERGE_MSG
+'3  1  0  ~/dragonfly/bibliography/.git/MERGE_MSG
+'4  1  0  ~/dragonfly/mammals-2014/.git/MERGE_MSG
+'5  23  0  /etc/ssh/sshd_config
+'6  50  0  /etc/ssh/ssh_config
+'7  1  0  ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
+'8  251  57  ~/dragonfly/mammals-2014/report/sweave/r_functions.r
+'9  1  21  /tmp/psql.edit.32535.sql
 
 # Jumplist (newest first):
+-'  1  0  ~/dragonfly/estimation-2014/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/doc-sll-mitigation-2012/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/bibliography/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/mammals-2014/.git/MERGE_MSG
+-'  23  0  /etc/ssh/sshd_config
+-'  1  0  /etc/ssh/sshd_config
+-'  50  0  /etc/ssh/ssh_config
+-'  1  0  /etc/ssh/ssh_config
+-'  1  0  ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
+-'  251  57  ~/dragonfly/mammals-2014/report/sweave/r_functions.r
+-'  1  0  ~/dragonfly/mammals-2014/report/sweave/r_functions.r
+-'  1  21  /tmp/psql.edit.32535.sql
+-'  9  0  ~/.ssh/known_hosts
+-'  1  0  ~/.ssh/known_hosts
+-'  13  0  ~/.ssh/known_hosts
+-'  3  38  /etc/hosts
+-'  1  0  /etc/hosts
+-'  5  0  /etc/hosts
+-'  1  0  ~/dragonfly/mammals-may-13/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/sra-2014/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/encounter-kaikoura/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/ludicio/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/toheroa-2014/.git/MERGE_MSG
 -'  11  1  /etc/fstab
@@ -242,31 +263,87 @@ $dragonfly
 -'  1  9  /tmp/bash-fc-4064729965
 -'  1  15  /tmp/bash-fc-1371692744
 -'  8  47  ~/dragonfly/oreo/.git/config
--'  1  0  ~/dragonfly/oreo/.git/config
--'  223  33  ~/dragonfly/oreo/ci/build.py
--'  1  0  ~/dragonfly/oreo/ci/build.py
--'  1  15  ~/.profile
--'  39  0  ~/.bashrc
--'  1  0  ~/.bashrc
--'  120  0  /usr/share/undistract-me/long-running.bash
--'  1  0  /usr/share/undistract-me/long-running.bash
--'  12  25  ~/dragonfly/bibliography/mfish.bib
--'  1  0  ~/dragonfly/bibliography/mfish.bib
--'  1  0  ~/dragonfly/bibliography/mfish
--'  22  3  ~/dragonfly/encounter-kaikoura/.gitignore
--'  1  0  ~/dragonfly/encounter-kaikoura/.gitignore
--'  64  0  /etc/apt/sources.list
--'  66  0  /etc/apt/sources.list
--'  47  0  ~/dragonfly/encounter-kaikoura/publication/introduction.rnw
--'  1  0  ~/dragonfly/encounter-kaikoura/publication/introduction.rnw
--'  8  55  ~/dragonfly/bibliography/.git/config
--'  1  0  ~/dragonfly/bibliography/.git/config
--'  18  4  ~/dragonfly/encounter-kaikoura/.gitignore
--'  34  4  ~/dragonfly/sra-2012/.gitignore
 
 # History of marks within files (newest to oldest):
 
+> ~/dragonfly/estimation-2014/.git/MERGE_MSG
+	"	1	0
+
+> ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
+	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
+
+> ~/dragonfly/doc-sll-mitigation-2012/.git/MERGE_MSG
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/dragonfly/bibliography/.git/MERGE_MSG
+	"	1	0
+
+> ~/dragonfly/mammals-2014/.git/MERGE_MSG
+	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
+
+> /etc/ssh/sshd_config
+	"	23	0
+	^	89	9
+	.	89	7
+	+	89	7
+
+> /etc/ssh/ssh_config
+	"	50	0
+
+> ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
+	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
+
+> ~/dragonfly/mammals-2014/report/sweave/r_functions.r
+	"	251	57
+
+> /tmp/psql.edit.32535.sql
+	"	1	21
+	^	1	22
+	.	1	21
+	+	6	0
+	+	1	27
+	+	3	0
+	+	1	32
+	+	2	33
+	+	1	21
+
+> ~/.ssh/known_hosts
+	"	9	0
+	.	9	0
+	+	17	0
+	+	6	0
+	+	7	0
+	+	13	0
+	+	1	0
+	+	9	0
+
+> /etc/hosts
+	"	3	38
+	^	3	39
+	.	3	38
+	+	3	38
+
+> ~/dragonfly/mammals-may-13/.git/MERGE_MSG
+	"	1	0
+
 > ~/dragonfly/sra-2014/.git/MERGE_MSG
+	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
+
+> ~/dragonfly/encounter-kaikoura/.git/MERGE_MSG
 	"	1	0
 
 > ~/dragonfly/ludicio/.git/MERGE_MSG
@@ -729,13 +806,6 @@ $dragonfly
 	+	2	0
 	+	1	210
 
-> ~/.ssh/known_hosts
-	"	8	0
-	.	8	0
-	+	20	0
-	+	7	0
-	+	8	0
-
 > ~/dragonfly/sra-foundations/report/notes/tables/makefile
 	"	1	17
 	^	1	18
@@ -747,12 +817,6 @@ $dragonfly
 	^	22	18
 	.	6	18
 	+	6	18
-
-> /etc/ssh/sshd_config
-	"	52	0
-	^	89	9
-	.	89	7
-	+	89	7
 
 > ~/dragonfly/sra-2012/analysis/model-re-3/kills/summarise-kills.r
 	"	130	0
@@ -839,58 +903,3 @@ $dragonfly
 
 > ~/.macromedia/Flash_Player/macromedia.com/support/flashplayer/sys/#www.speedsudoku.com/settings.sol
 	"	1	0
-
-> /share/mfish/mauis-maps/data/to_doc/mauis-distribution/wgs84-maui-distribution-gam-predict.img
-	"	1	0
-
-> ~/Downloads/The Soul Jazz Orchestra  - Rising Sun [2010]/Blak Document.txt
-	"	1	0
-
-> ~/dragonfly/maui-may-2012/.gitignore
-	"	31	0
-	^	31	0
-	.	24	1
-	+	30	5
-	+	24	1
-
-> ~/.local/share/applications/mimeapps.list
-	"	6	40
-	.	6	10
-	+	6	263
-	+	6	10
-
-> /usr/share/applications/defaults.list
-	"	223	0
-
-> ~/.local/share/applications/defaults.list
-	"	1	0
-	^	2	22
-	.	2	22
-	+	2	17
-	+	1	17
-	+	2	0
-	+	2	16
-	+	3	0
-	+	4	0
-	+	2	22
-
-> /share/mfish/mauis-maps/Slooten et al 2006 Biol Cons.pdf
-	"	10	0
-
-> ~/Biblio/Manuals/R/Analysing Spatial Data in R - Accessing spatial data.pdf.lnk
-	"	1	0
-
-> ~/dragonfly/yr-r-package-and-config/myfunctions.r
-	"	440	0
-
-> ~/.vimrc
-	"	32	18
-
-> ~/dragonfly/yvan-r-pkg/.git/config
-	"	8	37
-	^	8	38
-	.	8	38
-	+	8	38
-
-> /tmp/beauty_of_latex_variants.tex
-	"	46	0
