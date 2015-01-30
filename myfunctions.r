@@ -56,11 +56,11 @@ movecolumns <- function(df, cols, where=1) {
 
 
 duplicated_rows <- function(df, cols=names(df)) {
-    id <- apply(df[,cols], 1, paste, collapse='_')
-    isdup <- duplicated(df[,cols])
-    d <- df[id %in% id[isdup], ]
-    id <- apply(d[, cols], 1, paste, collapse = "_")
-    return(d[order(id),])
+    id <- apply(df[,cols,drop=F], 1, paste, collapse='_')
+    isdup <- duplicated(df[,cols,drop=F])
+    d <- df[id %in% id[isdup], , drop=F]
+    id <- apply(d[, cols, drop=F], 1, paste, collapse = "_")
+    return(d[order(id),, drop=F])
 }
 
 ## Merge on row names (and get rid of Row.names column created)
@@ -2057,6 +2057,27 @@ preview_tex <- function(texfile, dir='.') {
 \\usepackage{placeins}
 \\usepackage[utf8]{inputenc}
 \\newcolumntype{d}[0]{D{.}{.}{-1}}
+\\usepackage[margin=2.5cm]{geometry}
+\\usepackage{graphicx}
+\\usepackage{array}
+\\usepackage{multirow}
+\\usepackage{rotating}
+\\usepackage{engord}
+\\usepackage{textcomp}
+\\usepackage[perpage,para,symbol*]{footmisc}
+\\usepackage[T1]{fontenc}
+\\usepackage{times}
+\\usepackage{mathptmx} %% Times maths font
+\\DeclareMathSizes{11}{11}{8}{6}
+\\usepackage{tocloft}
+\\usepackage[usenames, dvipsnames]{color}
+\\usepackage{colortbl}
+\\usepackage{booktabs}
+\\usepackage{longtable}
+\\usepackage{textcomp}
+\\usepackage{hhline}
+
+\\usepackage[bf,sf,pagestyles]{titlesec}
 
 \\newcommand{\\plaintitle}{Temp output}
 \\newcommand{\\reporttitle}{Temp output}
@@ -2067,7 +2088,7 @@ preview_tex <- function(texfile, dir='.') {
 \\usepackage{type1cm}
 \\usepackage{eso-pic}
 
-\\input{/dragonfly/latex/mfish/aebr.tex}
+%%\\input{/dragonfly/latex/mfish/aebr.tex}
 
 \\usepackage[textsize=scriptsize]{todonotes}
 
@@ -2077,7 +2098,7 @@ preview_tex <- function(texfile, dir='.') {
              '\\end{document}\n')
     ## tex <- paste(tex, collapse='\n')
     writeLines(tex, sprintf('%s/tex_output.tex', dir), sep='\n')
-    system(sprintf('cd %s && pdflatex tex_output && xdg-open tex_output.pdf', dir))
+    system(sprintf('cd %s && xelatex tex_output && xdg-open tex_output.pdf', dir))
 }
 
 whichseason <- function(d, starts, names) {
