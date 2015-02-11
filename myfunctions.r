@@ -1356,40 +1356,63 @@ nodesep=1; ranksep=1; ratio="compress"; size="100,100"; spline=true;
 
 ## Check labels in LaTeX report that are not cited in text
 ## reportfile='~/dragonfly/sra-foundations/report/notes/report.tex'
-check_cited_labels <- function(reportfile, ignore=c('sec','eq','app')) {
+check_cited_labels <- function(reportfile='report.tex', ignore=c('sec','subsec','eq','app','page'),
+                               debug=F, save=T) {
     if (!grepl('^/|^~', reportfile))  reportfile <- sprintf('%s/%s',getwd(),reportfile)
-    txt <- readLines(reportfile)
-    comments <- grepl('^ *%', txt)
-    txt <- txt[!comments]
-    inputs <- grep('\\\\input\\{', txt, value=T)
-    inputs <- gsub('^ *\\\\input\\{(.*)\\}', '\\1', inputs)
+    get_inputs <- function(file) {
+        file <- sprintf('%s.tex', gsub('^[[:blank:]]*|[[:blank:]]*$', '', sub('\\.tex$', '', file)))
+        txt <- readLines(file, warn=F)
+        txt <- txt[!grepl('^[[:blank:]]*%', txt)]
+        inputs <- grep('\\\\input\\{', txt, value=T)
+        inputs <- gsub('.*\\\\input\\{([^}]+)\\}.*', '\\1', inputs)
+        subinputs <- sapply(inputs, get_inputs)
+        return(as.vector(c(names(subinputs), unlist(subinputs))))
+    }
+    inputs <- c(reportfile, unique(get_inputs(reportfile)))
     alltext <- NULL
     alllabels <- NULL
-    f=inputs[4]
+    ## f=inputs[1]
+    cat('\nGetting list of labels...\n')
     for (f in inputs) {
+        if (debug) cat(f, '\n')
         file <- f
         if (!grepl('^/|^~', file))  file <- sprintf('%s/%s',getwd(), file)
-        file <- sprintf('%s.tex', file)
-        txt <- readLines(file)
+        file <- sprintf('%s.tex', sub('\\.tex$', '', file))
+        txt <- readLines(file, warn=F)
         comments <- grepl('^ *%', txt) | txt==''
         txt <- txt[!comments]
         alltext[[f]] <- txt
-        labels0 <- grep('\\\\label\\{',txt)
-        labels <- gsub('^ *\\\\label\\{(.*)\\}', '\\1', txt[labels0])
+        labels0 <- grep('\\\\label\\{', txt, val=T)
+        labels <- gsub('.*\\\\label\\{([^}]+)\\}.*', '\\1', labels0)
         c <- sapply(strsplit(labels,':'), function(x) x[1]) %in% ignore
         labels <- labels[!c]
         alllabels[[f]] <- labels
     }
-    l <- unlist(alllabels)[1]
-    for (l in unlist(alllabels)) {
-        wh <- grep(l, unlist(alltext), value=T)
-        c <- grepl('\\\\label\\{', wh)
-        cited <- wh[!c]
-        if (!length(cited))
-            cat(sprintf(
-                sprintf('Not referenced: %%%is  in  %%s\n', max(nchar(unlist(alllabels)))),
-                l, names(alltext[grep(sprintf('\\\\label\\{%s\\}', l), alltext)])))
+    alllabs <- do.call('rbind', sapply(names(alllabels), function(x) {
+        if (length(alllabels[[x]]))
+            data.frame(file=x, label=alllabels[[x]], stringsAsFactors=F)
+    }, simplify=F))
+    rownames(alllabs) <- NULL
+    alltext <- unlist(alltext)
+    cat('\nChecking use of labels...\n')
+    library(parallel)
+    ## l <- alllabels[2]
+    uncited <- mclapply(1:nrow(alllabs), function(i) {
+        l <- alllabs$label[i]
+        if (debug) cat(l, '\n')
+        cited <- grep(sprintf('ref\\{ *%s *\\}', l), alltext, value=T)
+        if (!length(cited)) {
+            return(data.frame(file=alllabs$file[i], label=l))
+        }
+    }, mc.cores=6)
+    uncited <- do.call('rbind', uncited)
+    uncited <- unique(uncited)
+    if (save) {
+        cat('\nSaving results to uncited_labels.csv...\n')
+        write.csv(uncited, 'uncited_labels.csv')
     }
+    cat('\n\n----- Non-cited labels:\n\n')
+    print(uncited)
 }
 
 
@@ -2076,6 +2099,11 @@ preview_tex <- function(texfile, dir='.') {
 \\usepackage{longtable}
 \\usepackage{textcomp}
 \\usepackage{hhline}
+\\usepackage[font={small,bf},captionskip=0pt,
+            nearskip=0pt,farskip=0pt,position=top,
+            justification=justified,singlelinecheck=false]{subfig}
+\\usepackage[perpage,para,symbol*]{footmisc}
+\\usepackage{hyperref}
 
 \\usepackage[bf,sf,pagestyles]{titlesec}
 
