@@ -6,6 +6,8 @@ all: .yrpkg
 
 install:
 	sudo R CMD INSTALL yrpkg_*.tar.gz --byte-compile
+install2:
+	R CMD INSTALL yrpkg_*.tar.gz --byte-compile
 
 r:
 	rsync -avz customisations/.Rprofile ~
