@@ -1434,7 +1434,7 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     colg <- '"#B89DDC"'                 # colour of graphical output
     colf <- '"#C2C2C2"'                 # colour of flags
     colu <- '"#E2E2E2"'                 # colour of unknown types
-    colc <- 'grey98'                    # colour of clusters fills
+    colc <- 'grey95'                    # colour of clusters fills
 
 
     progtypes <- '\\.r\"|\\.py\"|\\.bug\"|\\.cmd\"|\\.sh\"'
@@ -1458,6 +1458,13 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
 
     mk <- gsub('^ *','', mk)
     mk <- mk[grepl('^\t', mk) | !grepl('=', mk) | grepl('=[\']', mk)] # remove assignments of environmental variables
+    ## Remove if statements
+    ifstatements <- grep('\\bifeq\\b', mk)
+    endifs <- grep('\\bendif\\b', mk)
+    for (ifloc in ifstatements) {
+        mk <- mk[-c(ifloc:min(endifs[endifs >= ifloc]))]
+    }
+    
     mk <- mk[!(grepl('^include', mk))]
     mk <- mk[!(grepl('\\.PHONY', mk))]
     parts <- mk[(!grepl('#+.*:', mk) & grepl(':', mk) & !grepl('^\t', mk)) | grepl('<!.*!>', mk)] #
@@ -1620,6 +1627,55 @@ label=%2$s; style="rounded,filled"; color=gray50; fillcolor=%3$s; fontcolor=red;
     system(sprintf('xdot %s', dotfile), wait=F)
 }
 
+
+debug_make <- function(makefile='makefile') {
+
+    dbg0 <- system(sprintf('make -f %s -dn', makefile), intern=T)
+    dbg0 <- dbg0[(min(which(dbg0==''))+2):length(dbg0)]
+
+    ni <- gsub('^[[:blank:]]+|[[:blank:]]+$', '', dbg0)
+
+    ## Remove targets and indentations for more visibility
+    dbg <- gsub("`[^']+'", "'X'", ni)
+    print(tabl(dbg))
+
+    cat('\n--- Non-existent files:\n')
+    g <- gsub(".*`([^']+)'.*", '\\1', grep('File .* does not exist', dbg0, val=T))
+    print(g)
+    
+    cat('\n--- Nothing to be done for:\n')
+    g <- gsub(".*`([^']+)'.*", '\\1', grep('Nothing to be done for', dbg0, val=T))
+    print(g)
+
+    cat('\n--- Must remake targets:\n')
+    g <- gsub(".*`([^']+)'.*", '\\1', grep('Must remake target', dbg0, val=T))
+    print(g)
+
+    cat("\n--- Prerequisite 'X' is older than target 'Y':\n")
+    g <- gsub(".*`([^']+)'.*`([^']+)'.*", "'\\1'\tolder than\t'\\2'",
+              grep('Prerequisite .* is older than target .*', dbg0, val=T))
+    cat(g, sep='\n')
+
+}
+
+
+## Function to display what's around a specific location in a vector or row in a data frame (or matrix)
+neighb <- function(x, at, window=5, add.nas=T) {
+    if (is.null(dim(x))) { # vector
+        if (add.nas) {
+            print(x[c((at-window):(at-1),NA,at,NA,(at+1):(at+window))])
+        } else {
+            print(x[(at-window):(at+window)])
+        }
+    } else { # data frame or matrix (more than 2 dimensions not considered)
+        if (length(dim(x) > 2))  stop('Dimensions of more than 2 not treated')
+        if (add.nas) {
+            print(x[c((at-window):(at-1),NA,at,NA,(at+1):(at+window)),])
+        } else {
+            print(x[(at-window):(at+window), ])
+        }
+    }
+}
 
 killallr <- function(user='yvan', comps=c('jeremy','tieke','frank','taiko','leon','robin'), proc='R') {
     ## Kill all R processes of specified user in all computers (current computer should specified last for obvious reasons
