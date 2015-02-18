@@ -1651,9 +1651,9 @@ debug_make <- function(makefile='makefile') {
     g <- gsub(".*`([^']+)'.*", '\\1', grep('Must remake target', dbg0, val=T))
     print(g)
 
-    cat("\n--- Prerequisite 'X' is older than target 'Y':\n")
-    g <- gsub(".*`([^']+)'.*`([^']+)'.*", "'\\1'\tolder than\t'\\2'",
-              grep('Prerequisite .* is older than target .*', dbg0, val=T))
+    cat("\n--- Prerequisite 'X' is newer than target 'Y':\n")
+    g <- gsub(".*`([^']+)'.*`([^']+)'.*", "'\\1'\tnewer than\t'\\2'",
+              grep('Prerequisite .* is newer than target .*', dbg0, val=T))
     cat(g, sep='\n')
 
 }
