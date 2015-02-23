@@ -21,7 +21,7 @@
 (setq package-archives
 '(("ELPA" . "http://tromey.com/elpa/")
    ("gnu" . "http://elpa.gnu.org/packages/")
-   ("melpa" . "http://melpa.milkbox.net/packages/")))
+   ("melpa" . "http://melpa.org/packages/")))
    ;; ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ;; Window position
@@ -167,14 +167,16 @@ there's a region, all lines that region covers will be duplicated."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(LaTeX-biblatex-use-Biber t t)
- '(custom-safe-themes (quote ("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+ '(custom-safe-themes (quote ("6c9ddb5e2ac58afb32358def7c68b6211f30dec8a92e44d2b9552141f76891b3" "a655f17225ad0a7190c79602593563191b7640ddebbb8c8fbd80c9d82faff1c6" "8d6fb24169d94df45422617a1dfabf15ca42a97d594d28b3584dc6db711e0e0b" "08efabe5a8f3827508634a3ceed33fa06b9daeef9c70a24218b70494acdf7855" "49eea2857afb24808915643b1b5bd093eefb35424c758f502e98a03d0d3df4b1" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(ess-R-font-lock-keywords (quote ((ess-R-fl-keyword:modifiers . t) (ess-R-fl-keyword:fun-defs . t) (ess-R-fl-keyword:keywords . t) (ess-R-fl-keyword:assign-ops . t) (ess-R-fl-keyword:constants . t) (ess-fl-keyword:fun-calls . t) (ess-fl-keyword:numbers . t) (ess-fl-keyword:operators . t) (ess-fl-keyword:delimiters . t) (ess-fl-keyword:= . t) (ess-R-fl-keyword:F&T . t))))
  '(hl-sexp-background-color "#251D25")
  '(inhibit-startup-screen t)
+ '(org-html-use-infojs t)
+ '(org-latex-pdf-process (quote ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
  '(safe-local-variable-values (quote ((TeX-master . report\.tex) (require-final-newline))))
  '(sml/replacer-regexp-list (quote (("^~/org" ":Org:") ("^~/\\.emacs\\.d/" ":ED:") ("^/sudo:.*:" ":SU:") ("^~/Documents/" ":Doc:") ("^~/Dropbox/" ":DB:") ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:") ("^~/[Gg]it/" ":Git:") ("^~/[Gg]it[Hh]ub/" ":Git:") ("^~/dragonfly/" ":DFLY:") ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
  '(sml/shorten-directory t)
- '(wakatime-api-key "7b9228e4-0256-4dfe-a43e-1bfb09f7288c")
+ '(wakatime-api-key "0ff58d48-ac18-40ee-be06-f0e1c5985c86")
  '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
  '(yank-pop-change-selection t))
 
@@ -267,6 +269,10 @@ there's a region, all lines that region covers will be duplicated."
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    r-markdown
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 
@@ -397,6 +403,7 @@ prompt the user for a coding system."
 	 ("Ludicio" (filename . "ludicio/"))
 	 ("sra obs cov" (filename . "sra-observer-coverage/"))
 	 ("WHIO benthos" (filename . "whio-benthic-analysis/"))
+	 ("NPOA obs optimisation" (filename . "npoa-observer-optimisation/"))
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")
 			     (filename . ".emacs"))))))
@@ -804,7 +811,6 @@ prompt the user for a coding system."
 ;; ;;     )
 ;; ;; )
 
-;; ;; (put 'erase-buffer 'disabled nil)
 
 
 (fset 'reparens
@@ -826,4 +832,29 @@ prompt the user for a coding system."
 (add-hook 'dired-mode-hook (lambda () (local-set-key "E" 'dired-gnome-open-file)))
 
 
+;; Erase whole line and move to identation
+(defun smart-kill-whole-line (&optional arg)
+  "A simple wrapper around `kill-whole-line' that respects indentation."
+  (interactive "P")
+  (kill-whole-line arg)
+  (back-to-indentation))
+(global-set-key [remap kill-whole-line] 'smart-kill-whole-line)
 
+
+(put 'erase-buffer 'disabled nil)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Pretty mode - Display symbols as symbols
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-pretty-mode 1)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Wrap region - Select region then " to enclose it
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(wrap-region-global-mode 1)
+
+
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(add-hook 'eshell-mode-hook 'ansi-color-for-comint-mode-on)

@@ -127,24 +127,27 @@ $dragonfly
 # Input Line History (newest to oldest):
 
 # Registers:
+"0	CHAR	0
+	host    all             all             127.0.0.1/32            md5
+	#
 ""1	LINE	0
-	|1|rHLQUFB4SjIeuWnI1g+0gTgEyTs=|Ln1GUjw9N/9vdLjejT1BHl9lLlg= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL6ejNlQQ2fdMc7wYnhjge4MiJDbaZInnY5R+z1eK0QKmUFkbGGMa4jn/Dxmvr3+8BmkKN0VwzJGK8us8mLKnr4=
+	host    all             all             127.0.0.1/32            md5
 "2	LINE	0
-	|1|eueiLcPZ2eZR/R3xqxo+ehzDlCc=|+xkzbE8AiRrQOx/OOfxQm2FuNmI= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPwbZRUMom+4yCsBwinbKYUhosoWOkb43UxBuJQ5sfHo01JgiWMbd6A2pUCaRzl6tssyaZbKJEvSMpbwjFRhJOk=
+	|1|rHLQUFB4SjIeuWnI1g+0gTgEyTs=|Ln1GUjw9N/9vdLjejT1BHl9lLlg= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL6ejNlQQ2fdMc7wYnhjge4MiJDbaZInnY5R+z1eK0QKmUFkbGGMa4jn/Dxmvr3+8BmkKN0VwzJGK8us8mLKnr4=
 "3	LINE	0
-	|1|FcIJNF2QDzQYgM1huJCJ3WUa3nY=|zR95gt0n7PtWiNwF4wCaHNHSZEY= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKtHXlwH0hK38EH5CnkDvDda0QejqvOBSt16C7bkWqczI8M9WlhXjxG7gyRrxbPMjIuYBvMKEf5PMUDTxx/E3Ws=
+	|1|eueiLcPZ2eZR/R3xqxo+ehzDlCc=|+xkzbE8AiRrQOx/OOfxQm2FuNmI= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPwbZRUMom+4yCsBwinbKYUhosoWOkb43UxBuJQ5sfHo01JgiWMbd6A2pUCaRzl6tssyaZbKJEvSMpbwjFRhJOk=
 "4	LINE	0
-	# deb-src https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
+	|1|FcIJNF2QDzQYgM1huJCJ3WUa3nY=|zR95gt0n7PtWiNwF4wCaHNHSZEY= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKtHXlwH0hK38EH5CnkDvDda0QejqvOBSt16C7bkWqczI8M9WlhXjxG7gyRrxbPMjIuYBvMKEf5PMUDTxx/E3Ws=
 "5	LINE	0
-	# deb https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
+	# deb-src https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
 "6	LINE	0
-		xelatex report.tex`d
+	# deb https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
 "7	LINE	0
-	   guest ok = yes
+		xelatex report.tex`d
 "8	LINE	0
-	   path = /home/yvan/Music
+	   guest ok = yes
 "9	LINE	0
-	   locking = no
+	   path = /home/yvan/Music
 "u	CHAR	0
 	lrr
 "-	CHAR	0
@@ -152,18 +155,28 @@ $dragonfly
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  1  0  ~/dragonfly/estimation-2014/.git/MERGE_MSG
-'1  1  0  ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
-'2  1  0  ~/dragonfly/doc-sll-mitigation-2012/.git/MERGE_MSG
-'3  1  0  ~/dragonfly/bibliography/.git/MERGE_MSG
-'4  1  0  ~/dragonfly/mammals-2014/.git/MERGE_MSG
-'5  23  0  /etc/ssh/sshd_config
-'6  50  0  /etc/ssh/ssh_config
-'7  1  0  ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
-'8  251  57  ~/dragonfly/mammals-2014/report/sweave/r_functions.r
-'9  1  21  /tmp/psql.edit.32535.sql
+'0  1  0  ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
+'1  1  0  ~/dragonfly/black-petrel-distribution/.git/MERGE_MSG
+'2  1  0  ~/dragonfly/bycatch.dragonfly.co.nz/.git/MERGE_MSG
+'3  94  50  /etc/postgresql/9.3/main/pg_hba.conf
+'4  59  52  /etc/postgresql/9.3/main/postgresql.conf
+'5  91  1  /etc/postgresql/9.3/main/pg_hba.conf
+'6  50  0  /etc/postgresql/9.3/main/postgresql.conf
+'7  87  0  /etc/postgresql/9.3/main/pg_hba.conf
+'8  1  0  ~/dragonfly/estimation-2014/.git/MERGE_MSG
+'9  1  0  ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
 
 # Jumplist (newest first):
+-'  1  0  ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/black-petrel-distribution/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/bycatch.dragonfly.co.nz/.git/MERGE_MSG
+-'  94  50  /etc/postgresql/9.3/main/pg_hba.conf
+-'  1  0  /etc/postgresql/9.3/main/pg_hba.conf
+-'  59  52  /etc/postgresql/9.3/main/postgresql.conf
+-'  1  0  /etc/postgresql/9.3/main/postgresql.conf
+-'  91  1  /etc/postgresql/9.3/main/pg_hba.conf
+-'  50  0  /etc/postgresql/9.3/main/postgresql.conf
+-'  87  0  /etc/postgresql/9.3/main/pg_hba.conf
 -'  1  0  ~/dragonfly/estimation-2014/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/doc-sll-mitigation-2012/.git/MERGE_MSG
@@ -173,7 +186,6 @@ $dragonfly
 -'  1  0  /etc/ssh/sshd_config
 -'  50  0  /etc/ssh/ssh_config
 -'  1  0  /etc/ssh/ssh_config
--'  1  0  ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
 -'  251  57  ~/dragonfly/mammals-2014/report/sweave/r_functions.r
 -'  1  0  ~/dragonfly/mammals-2014/report/sweave/r_functions.r
 -'  1  21  /tmp/psql.edit.32535.sql
@@ -253,18 +265,37 @@ $dragonfly
 -'  1  0  /tmp/psql.edit.8530
 -'  4  4  /tmp/psql.edit.8530
 -'  6  0  /tmp/psql.edit.8530
--'  1308  0  /usr/share/themes/Ambiance/gtk-3.0/gtk-widgets.css
--'  245  0  /usr/share/themes/Ambiance/gtk-3.0/gtk-widgets.css
--'  1  0  /usr/share/themes/Ambiance/gtk-3.0/gtk-widgets.css
--'  4  0  ~/.config/gtk-3.0/gtk.css
--'  1  0  ~/.config/gtk-3.0/gtk.css
--'  174  6  /usr/share/pgadmin3/plugins.d/plugins.ini
--'  1  0  /usr/share/pgadmin3/plugins.d/plugins.ini
--'  1  9  /tmp/bash-fc-4064729965
--'  1  15  /tmp/bash-fc-1371692744
--'  8  47  ~/dragonfly/oreo/.git/config
 
 # History of marks within files (newest to oldest):
+
+> ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
+	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
+
+> ~/dragonfly/black-petrel-distribution/.git/MERGE_MSG
+	"	1	0
+
+> ~/dragonfly/bycatch.dragonfly.co.nz/.git/MERGE_MSG
+	"	1	0
+
+> /etc/postgresql/9.3/main/pg_hba.conf
+	"	94	50
+	^	94	51
+	.	94	50
+	+	86	69
+	+	91	1
+	+	94	0
+	+	94	0
+	+	93	69
+	+	94	50
+
+> /etc/postgresql/9.3/main/postgresql.conf
+	"	59	52
+	^	59	53
+	.	59	52
+	+	59	52
 
 > ~/dragonfly/estimation-2014/.git/MERGE_MSG
 	"	1	0
@@ -297,12 +328,6 @@ $dragonfly
 
 > /etc/ssh/ssh_config
 	"	50	0
-
-> ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
-	"	1	0
-	^	1	0
-	.	1	0
-	+	1	0
 
 > ~/dragonfly/mammals-2014/report/sweave/r_functions.r
 	"	251	57
@@ -890,16 +915,4 @@ $dragonfly
 	+	8	15
 
 > ~/dragonfly/sra/data/analysis-data/species_groups.txt
-	"	1	0
-
-> /share/mfish/sra-2012/data/maps/2012-06-25/map_hybride/strategie01/map_hybride_PTN_BREEDING_SEASON.dat
-	"	13	0
-
-> ~/Downloads/dumps/backbenches
-	"	1	0
-
-> /proc/2191/fd/2
-	"	118	54
-
-> ~/.macromedia/Flash_Player/macromedia.com/support/flashplayer/sys/#www.speedsudoku.com/settings.sol
 	"	1	0

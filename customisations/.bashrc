@@ -77,6 +77,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+alias emake='env $(find . -name "*.env" | xargs cat) make'
+
 # some more ls aliases
 #alias ll='ls -l'
 #alias la='ls -A'
@@ -118,6 +120,16 @@ function parse_git_branch {
 git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
 }
 # export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(parse_git_branch)$ '
-export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)$ '
 
-# alias R='grep --color=auto'
+if [ $HOSTNAME = "robin" ] ; then 
+    export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)$ ';
+else
+    export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ '
+fi
+
+# export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)$ '
+
+# # alias R='grep --color=auto'
+# export WORKON_HOME=~/virtualenvs
+# source /usr/local/bin/virtualenvwrapper.sh
+# export PIP_VIRTUALENV_BASE=~/virtualenvs

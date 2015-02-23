@@ -55,5 +55,12 @@ options(defaultPackages = c(old, "yrpkg"),
 })
 
 
+local({
+r <- getOption("repos")
+r["CRAN"] <- "http://cran.stat.auckland.ac.nz"
+options(repos = r)
+})
+
+
 
 
