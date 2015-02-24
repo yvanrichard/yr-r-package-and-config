@@ -2308,3 +2308,38 @@ getbibrefs <- function(texdir='.', overwrite=T, outbib='bib.bib',
     } else cat('File', outbib, 'exists and overwrite=FALSE\n')
 }
 
+
+##  Load environment variables contained in *.env files
+setupenv <- function(envs=dir('.', '*.env$')) {
+    ## Function to recursively replace environment variables
+    parseval <- function(x) {
+        done <- any(gregexpr('\\$\\([^\\)]+\\)', x)[[1]] == -1)
+        while (!done) {
+            locs <- gregexpr('\\$\\([^\\)]+\\)', x)[[1]]
+            var <- substr(x, locs[1]+2, locs[1] + attr(locs, 'match.length')[1]-2)
+            repl <- Sys.getenv(var)
+            if (repl == '')  {
+                cat('\n')
+                stop('Environment variable ', var, ' not found in ', x)
+            }
+            x <- sub(sprintf('\\$\\(%s\\)', var), repl, x)
+            done <- any(gregexpr('\\$\\([^\\)]+\\)', x)[[1]] == -1)
+        }
+        return(x)
+    }
+    ## Loop through all envs files
+    for (f in envs) {
+        cat('\n=== Loading ', f, '\n')
+        env <- readLines(f)
+        env <- gsub('[[:blank:]]*=[[:blank:]]*', '=', gsub('[[:blank:]]+', '', gsub('#.*$', '', env)))
+        env <- env[env != '']
+        env <- do.call('rbind', strsplit(env, '='))
+        for (i in 1:nrow(env)) {
+            cat(env[i,1], ' ')
+            if (Sys.getenv(env[i,1]) != '')  cat('\tOverwriting!!!')
+            eval( parse( text = sprintf('Sys.setenv(%s = "%s")', env[i, 1], parseval(env[i, 2]))))
+            cat('\tok\n')
+        }
+        cat('\n')
+    }
+}
