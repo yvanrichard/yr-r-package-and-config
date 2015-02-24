@@ -2336,8 +2336,12 @@ setupenv <- function(envs=dir('.', '*.env$')) {
         env <- do.call('rbind', strsplit(env, '='))
         for (i in 1:nrow(env)) {
             cat(env[i,1], ' ')
-            if (Sys.getenv(env[i,1]) != '')  cat('\tOverwriting!!!')
-            eval( parse( text = sprintf('Sys.setenv(%s = "%s")', env[i, 1], parseval(env[i, 2]))))
+            repl <- parseval(env[i, 2])
+            prev <- Sys.getenv(env[i,1])
+            if (prev != ''  &  prev != repl)
+                cat('\tOverwriting different value !!!\n\tWas:', prev, '\n\tNow:', repl)
+            if (prev != ''  &  prev == repl)  cat('\tOverwriting same value')
+            eval( parse( text = sprintf('Sys.setenv(%s = "%s")', env[i, 1], repl)))
             cat('\tok\n')
         }
         cat('\n')
