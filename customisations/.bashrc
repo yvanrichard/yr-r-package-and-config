@@ -77,7 +77,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-alias emake='env $(find . -name "*.env" | xargs cat) make'
+alias emake='env $(find . -maxdepth 1 -name "*.env" -exec sed -e "/^#/d" -e "s/[[:space:]]\+=[[:space:]]\+/=/g" {} \;) make'
+alias e='env $(find . -maxdepth 1 -name "*.env" -exec sed -e "/^#/d" -e "s/[[:space:]]\+=[[:space:]]\+/=/g" {} \;)'
+
 
 # some more ls aliases
 #alias ll='ls -l'

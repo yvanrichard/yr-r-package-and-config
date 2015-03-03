@@ -2341,7 +2341,7 @@ setupenv <- function(envs=dir('.', '*.env$')) {
             if (prev != ''  &  prev != repl)
                 cat('\tOverwriting different value !!!\n\tWas:', prev, '\n\tNow:', repl)
             if (prev != ''  &  prev == repl)  cat('\tOverwriting same value')
-            eval( parse( text = sprintf('Sys.setenv(%s = "%s")', env[i, 1], repl)))
+            eval( parse( text = sprintf('Sys.setenv(%s = "%s")', env[i, 1], gsub('"', '', repl))))
             cat('\tok\n')
         }
         cat('\n')

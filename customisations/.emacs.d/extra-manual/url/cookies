@@ -1,0 +1,23 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '(("127.0.0.1"
+  [url-cookie "dfs_psc2014v1_session" "jiya63eoqoajkj1m8lmdkzbou7327psp" "30-Jan-2015 21:43:54.00 GMT" "/psc-dev/" "127.0.0.1" nil]
+  [url-cookie "httponly" nil "30-Jan-2015 21:43:54.00 GMT" "/psc-dev/" "127.0.0.1" nil]
+  [url-cookie "Max-Age" "86400" "30-Jan-2015 21:43:54.00 GMT" "/psc-dev/" "127.0.0.1" nil])
+ ("auth.dragonfly.co.nz"
+  [url-cookie "csrftoken" "X9NTFzzkrxf99qXsHpVsR9diPwu9Ajid" "28-Jan-2016 21:37:30.00 GMT" "/" "auth.dragonfly.co.nz" nil]
+  [url-cookie "Max-Age" "31449600" "28-Jan-2016 21:37:30.00 GMT" "/" "auth.dragonfly.co.nz" nil]))
+)
+(setq url-cookie-secure-storage
+ '(("auth.dragonfly.co.nz"
+  [url-cookie "dfs_dfauth_session" "meoshhb4d8u7dg3e54p0vf5j9310m86x" "12-Feb-2015 21:37:30.00 GMT" "/" "auth.dragonfly.co.nz" t]
+  [url-cookie "httponly" nil "12-Feb-2015 21:37:30.00 GMT" "/" "auth.dragonfly.co.nz" t]
+  [url-cookie "Max-Age" "1209600" "12-Feb-2015 21:37:30.00 GMT" "/" "auth.dragonfly.co.nz" t]))
+)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:
