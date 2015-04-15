@@ -1954,7 +1954,7 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
     if (!ignore.rnw) {
         rnw <- dir('.', '*.rnw$|*.Rnw$', recursive=recursive)
         basedir <- getwd()
-        r1=rnw[1]
+        r1=rnw[2]
         for (r1 in rnw) {
             cat('\n************  ', r1, '  ************\n')
             rdir <- dirname(r1)
@@ -1968,7 +1968,7 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
             fs <- c(fs1, fs2)
             ## Replace global variables in .mk files by their value
             c <- grepl('load\\([a-zA-Z]+', fs)
-            alldeps1 <- sub('.*load\\(([a-zA-Z_.0-1]+).*\\)', '\\1', fs[c])
+            alldeps1 <- sub('.*load\\((.*).*\\).*', '\\1', fs[c])
             s <- unlist(sapply(dir('.', '*.mk.parsed'), function(mk) readLines(mk), simplify=F))
             if (!is.null(s)) {
                 s1 <- do.call('rbind', strsplit(s, '[[:blank:]]*=[[:blank:]]*'))
@@ -2030,7 +2030,7 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
                                is.na(alldeps$dep), T, F)
     ## Detect dependencies that are not file names
     alldeps$valid <- NA
-    alldeps$valid[!alldeps$ignored] <- ifelse(grepl('[<"\'\\(\\)]+', alldeps$dep[!alldeps$ignored]), F, T)
+    alldeps$valid[!alldeps$ignored] <- ifelse(grepl('[<%"\'\\(\\) ,=]+', alldeps$dep[!alldeps$ignored]), F, T)
 
     ## Check if the dependencies are git-tracked
     alldeps$git_tracked <- NA
@@ -2050,7 +2050,8 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
     setwd(prevdir)
     if (any(alldeps$valid %in% F, na.rm=T)) {
         cat('\n--- Non-processed dependencies:\n')
-        cat(unique(alldeps$dep[alldeps$valid %in% F]), collapse='\n')
+        cat(paste(unique(alldeps$dep[alldeps$valid %in% F]), collapse='\n'))
+        cat('\n')
     }
 }
 
