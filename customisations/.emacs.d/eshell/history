@@ -1,0 +1,7 @@
+./link-env-files.sh 
+Rscript parse-env-files.r 
+cd ../../analysis/
+ls
+ls -la
+cd ~/Music/
+cd =\ Rock\ -\ pop/

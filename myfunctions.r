@@ -244,6 +244,7 @@ applyalphagrad <- function(colors, grad='exp', curv=15, inv=F, startalpha=0, end
 }
 
 
+
 scaleminmax <- function(in.seq, out.min=0, out.max=1, in.ref.min=NA, in.ref.max=NA) {
     ## in.seq=sort(rnorm(10)); out.min=0.2; out.max=0.8
     if (!is.na(in.ref.min))
@@ -1419,14 +1420,13 @@ check_cited_labels <- function(reportfile='report.tex', ignore=c('sec','subsec',
 ##makefile <- '~/dragonfly/sra-foundations/modelling/bh-dd-k50/makefile'
 ## makefile <- '~/dragonfly/sra-foundations/report/notes/makefile'
 graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranksep=0.2, ratio=0.66, margin=1,
-                           ignore.clusters=F) {
+                           ignore.clusters=F, expand.vars=F) {
     opt <- options("useFancyQuotes")
     options(useFancyQuotes = FALSE)
 
-    ## Create dependency graph from makefile
-    ##
-    ## Assumptions:
-    ## - no tabs in dependencies or actions names
+    ##  Create dependency graph from makefile
+    ##  Assumptions:
+    ##  * no tabs in dependencies or actions names
         
     cola <- '"#FFC6AF"'                 # colour of actions
     colp <- '"#FFF8AF"'                 # colour of programs
@@ -1435,7 +1435,6 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     colf <- '"#C2C2C2"'                 # colour of flags
     colu <- '"#E2E2E2"'                 # colour of unknown types
     colc <- 'grey95'                    # colour of clusters fills
-
 
     progtypes <- '\\.r\"|\\.py\"|\\.bug\"|\\.cmd\"|\\.sh\"'
     datatypes <- '\\.rdata\"|\\.csv\"|\\.Rdata\"'
@@ -1446,11 +1445,11 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
         gg <- grep(graphtypes, z, value=T)
         ff <- z[!grepl('\\.', z) & !(z %in% c(pp, dd, gg))]
         uu <- z[!(z %in% c(pp, dd, ff, gg))]
-        return(list(u=paste(uu, collapse=' '),
-                    p=paste(pp, collapse=' '),
-                    g=paste(gg, collapse=' '),
-                    f=paste(ff, collapse=' '),
-                    d=paste(dd, collapse=' ')))
+        return(list(u = paste(uu, collapse=' '),
+                    p = paste(pp, collapse=' '),
+                    g = paste(gg, collapse=' '),
+                    f = paste(ff, collapse=' '),
+                    d = paste(dd, collapse=' ')))
     }
         
     mdir <- dirname(makefile)
@@ -1467,6 +1466,8 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     
     mk <- mk[!(grepl('^include', mk))]
     mk <- mk[!(grepl('\\.PHONY', mk))]
+
+    ## Get clusters
     parts <- mk[(!grepl('#+.*:', mk) & grepl(':', mk) & !grepl('^\t', mk)) | grepl('<!.*!>', mk)] #
     ispart <- grepl('<!.*!>', parts)
     if (any(ispart) & !ignore.clusters) {
@@ -1481,6 +1482,7 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
         withclusters <- T
     } else withclusters <- F
         
+    ## Remove special characters
     mk <- mk[!grepl('^#', mk)]          # remove comments
     mk <- sub('\t$', '', mk)
     mk <- sub('([^ ])\\\\', '\\1 \\\\', mk)
@@ -1492,7 +1494,6 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
 
     ## remove consecutive blank lines
     mk3 <- gsub('&&&&&&&&*','&&&&',mk2)
-    ## mk3 <- gsub('\\|\\|*','|',mk2)
     ## get rid of \\ to identify continuations of lines
     mk4 <- gsub('\\\\&&&&*\t*','',mk3)
     ## identify action
@@ -1668,7 +1669,7 @@ neighb <- function(x, at, window=5, add.nas=T) {
             print(x[(at-window):(at+window)])
         }
     } else { # data frame or matrix (more than 2 dimensions not considered)
-        if (length(dim(x) > 2))  stop('Dimensions of more than 2 not treated')
+        if (length(dim(x)) > 2)  stop('Dimensions of more than 2 not treated')
         if (add.nas) {
             print(x[c((at-window):(at-1),NA,at,NA,(at+1):(at+window)),])
         } else {
@@ -1931,9 +1932,21 @@ is.git.tracked <- function(f) {
         return(F) else return(T)
 }
 
+
 ## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
-check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),
-                             only=c('/'), recursive=T, save_untracked=T, use.xelatex=T, ignore.rnw=F) {
+check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),
+                     ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
+                                    'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
+                     only=c('/'), recursive=T, save_deps=T, use.xelatex=T, ignore.rnw=F) {
+
+    extension <- function(x) {
+        y <- x
+        c <- grepl('\\.', y)
+        y[c] <- sub('.*\\.([^.]*)$', '\\1', y[c])
+        y[!c & !is.na(y)] <- ''
+        return(y)
+    }
+    
     alldeps <- NULL
     prevdir <- getwd()
     setwd(fold)
@@ -1949,13 +1962,13 @@ check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|swea
             r2 <- basename(r1)
             r <- readLines(r2)
             c1 <- r[grepl('\\bload\\(', r) & !grepl('^[[:blank:]]*#', r)]
-                fs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', c1)
-            c2 <- r[grepl('\\bread.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
-                fs2 <- sub('read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
+              fs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', c1)
+            c2 <- r[grepl('\\bread\\.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
+              fs2 <- sub('.*read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
             fs <- c(fs1, fs2)
             ## Replace global variables in .mk files by their value
             c <- grepl('load\\([a-zA-Z]+', fs)
-            alldeps1 <- sub('load\\(([a-zA-Z_.0-1]+).*\\)', '\\1', fs[c])
+            alldeps1 <- sub('.*load\\(([a-zA-Z_.0-1]+).*\\)', '\\1', fs[c])
             s <- unlist(sapply(dir('.', '*.mk.parsed'), function(mk) readLines(mk), simplify=F))
             if (!is.null(s)) {
                 s1 <- do.call('rbind', strsplit(s, '[[:blank:]]*=[[:blank:]]*'))
@@ -1964,7 +1977,10 @@ check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|swea
             }
             cat(paste(fs, collapse='\n'),'\n')
             fs <- normalizePath(fs)
-            alldeps <- c(alldeps, fs)
+            ## fs <- fs[!(extension(fs) %in% ext.ignore)]
+            if (length(fs)) {
+                alldeps <- rbind(alldeps, data.frame(infile = r1, dep = fs, stringsAsFactors = F))
+            } else alldeps <- rbind(alldeps, data.frame(infile = r1, dep = NA, stringsAsFactors = F))
             setwd(basedir)
             cat('\n')
         }
@@ -1980,7 +1996,6 @@ check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|swea
         setwd(tdir)
         t2 <- basename(t)
         bt <- sub('\\.tex', '', t2)
-        ## system(sprintf('mkjobtexmf --jobname %s --cmd-tex pdflatex', bt))
         tmp <- readLines(t2)
         if (any(grepl('begin\\{document\\}', tmp))) {
             if (!use.xelatex) {
@@ -1996,35 +2011,46 @@ check.latex.deps <- function(fold='.', ignore=c('^/usr/|^/var/lib|^/etc/tex|swea
                 fls <- unique(fls)
                 fls <- fls[!grepl(sprintf('^%s', bt), fls)]
                 fls <- fls[!(fls %in% normalizePath(fold))]
-                alldeps <- c(alldeps, normalizePath(fls))
-                cat(paste(fls, collapse='\n'))
+                fs <- normalizePath(fls)
+                if (length(fs)) {
+                    alldeps <- rbind(alldeps, data.frame(infile = t, dep = fs, stringsAsFactors = F))
+                } else alldeps <- rbind(alldeps, data.frame(infile = t, dep = NA, stringsAsFactors = F))
+                cat(paste(fs[!(extension(fs) %in% ext.ignore) & !grepl(paths.ignore, fs)], collapse='\n'))
                 cat('\n')
             } else cat('fls file inexistent. There is a problem with this file...\n')
         } else cat('Not a master file. Skip...\n')
         setwd(basedir)
     }
+    
     cat('\n\n')
-    alldeps <- alldeps[!grepl('^[ ]*\\%', alldeps)]
-    alldeps <- unique(alldeps)
-    alldeps <- strtrim(alldeps[!grepl(ignore, alldeps)])
-    nonprocessed <- alldeps[grepl('[\\(\\)]+', alldeps)]
-    alldeps <- alldeps[!grepl('[\\(\\)]+', alldeps)]
+    alldeps <- alldeps[!grepl('^[[:blank:]]*\\%', alldeps)]
+    alldeps$dep <- strtrim(alldeps$dep)
+    ## Apply ignore rules
+    alldeps$ignored <- ifelse( extension(alldeps$dep) %in% ext.ignore  | grepl(paths.ignore, alldeps$dep) |
+                               is.na(alldeps$dep), T, F)
+    ## Detect dependencies that are not file names
+    alldeps$valid <- NA
+    alldeps$valid[!alldeps$ignored] <- ifelse(grepl('[<"\'\\(\\)]+', alldeps$dep[!alldeps$ignored]), F, T)
+
     ## Check if the dependencies are git-tracked
-    s <- sapply(alldeps, is.git.tracked)
-    nt <- names(s)[!s]
-    if (!is.null(nt)) {
+    alldeps$git_tracked <- NA
+    if (any(alldeps$valid %in% T))
+        alldeps$git_tracked[alldeps$valid %in% T] <- sapply(alldeps$dep[alldeps$valid %in% T], is.git.tracked)
+
+    if (!is.null(alldeps) & any(alldeps$git_tracked %in% F)) {
         cat('************====  Files not tracked by GIT:  ====************\n')
-        cat(paste(nt, collapse='\n'))
+        uniqdeps <- unique(alldeps$dep[alldeps$git_tracked %in% F])
+        cat(paste(uniqdeps, collapse='\n'))
+        cat('\n\nYou may want to type:\ngit add ')
+        cat(paste(uniqdeps, collapse='  '))
         cat('\n\n')
-        cat(paste(nt, collapse='  '))
-        cat('\n\n')
-    }
-    if (save_untracked)
-        write.csv(nt, 'untracked-dependencies.csv', row.names=F)
+    } else cat('\nNo untracked dependencies\n')
+    if (save_deps)
+        write.csv(alldeps, 'tex-dependencies.csv', row.names=F)
     setwd(prevdir)
-    if (length(nonprocessed)) {
+    if (any(alldeps$valid %in% F, na.rm=T)) {
         cat('\n--- Non-processed dependencies:\n')
-        print(nonprocessed)
+        cat(unique(alldeps$dep[alldeps$valid %in% F]), collapse='\n')
     }
 }
 
@@ -2310,40 +2336,46 @@ getbibrefs <- function(texdir='.', overwrite=T, outbib='bib.bib',
 
 
 ##  Load environment variables contained in *.env files
-setupenv <- function(envs=dir('.', '*.env$')) {
+setupenv <- function(verb = F, envs = sort(dir('.', '*.env$')), warn=T) {
+    if (!length(envs) & warn)  warning('No environment file found')
     ## Function to recursively replace environment variables
     parseval <- function(x) {
-        done <- any(gregexpr('\\$\\([^\\)]+\\)', x)[[1]] == -1)
+        done <- any(gregexpr('\\$\\{[^\\)]+\\}', x)[[1]] == -1)
         while (!done) {
-            locs <- gregexpr('\\$\\([^\\)]+\\)', x)[[1]]
+            locs <- gregexpr('\\$\\{[^\\}]+\\}', x)[[1]]
             var <- substr(x, locs[1]+2, locs[1] + attr(locs, 'match.length')[1]-2)
-            repl <- Sys.getenv(var)
+            repl <- get(var, .GlobalEnv)
             if (repl == '')  {
                 cat('\n')
                 stop('Environment variable ', var, ' not found in ', x)
             }
-            x <- sub(sprintf('\\$\\(%s\\)', var), repl, x)
+            x <- sub(sprintf('\\$\\{%s\\}', var), repl, x)
             done <- any(gregexpr('\\$\\([^\\)]+\\)', x)[[1]] == -1)
         }
         return(x)
     }
     ## Loop through all envs files
     for (f in envs) {
-        cat('\n=== Loading ', f, '\n')
+        if (verb)  cat('\n=== Loading ', f, '\n')
         env <- readLines(f)
         env <- gsub('[[:blank:]]*=[[:blank:]]*', '=', gsub('[[:blank:]]+', '', gsub('#.*$', '', env)))
         env <- env[env != '']
         env <- do.call('rbind', strsplit(env, '='))
+        ## env <- gsub('\\$\\(([^)]+)\\)', '${\\1}', env)
         for (i in 1:nrow(env)) {
-            cat(env[i,1], ' ')
             repl <- parseval(env[i, 2])
-            prev <- Sys.getenv(env[i,1])
-            if (prev != ''  &  prev != repl)
-                cat('\tOverwriting different value !!!\n\tWas:', prev, '\n\tNow:', repl)
-            if (prev != ''  &  prev == repl)  cat('\tOverwriting same value')
-            eval( parse( text = sprintf('Sys.setenv(%s = "%s")', env[i, 1], gsub('"', '', repl))))
-            cat('\tok\n')
+            if (verb) {
+                cat(env[i,1], ' ')
+                if (env[i,1] %in% ls(.GlobalEnv))
+                    prev <- get(env[i,1])
+                if (prev != repl)
+                    cat('\tOverwriting different value !!!\n\tWas:', prev, '\n\tNow:', repl,'\n')
+                if (prev == repl)  cat('\tOverwriting same value')
+            }
+            eval( parse( text = sprintf('%s = "%s"', env[i,1], repl)), envir=.GlobalEnv)
+            if (verb)  cat('\tok\n')
         }
-        cat('\n')
+        if (verb)  cat('\n')
     }
 }
+

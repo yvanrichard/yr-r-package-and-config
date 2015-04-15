@@ -78,7 +78,10 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 alias emake='env $(find . -maxdepth 1 -name "*.env" -exec sed -e "/^#/d" -e "s/[[:space:]]\+=[[:space:]]\+/=/g" {} \;) make'
+alias eremake='env $(find . -maxdepth 1 -name "*.env" -exec sed -e "/^#/d" -e "s/[[:space:]]\+=[[:space:]]\+/=/g" {} \;) remake'
 alias e='env $(find . -maxdepth 1 -name "*.env" -exec sed -e "/^#/d" -e "s/[[:space:]]\+=[[:space:]]\+/=/g" {} \;)'
+
+alias rgm='Rscript -e "graph_makefile()"'
 
 
 # some more ls aliases

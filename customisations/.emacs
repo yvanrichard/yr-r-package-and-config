@@ -25,7 +25,7 @@
    ;; ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ;; Window position
-(set-face-attribute 'default (selected-frame) :height 110)
+;; (set-face-attribute 'default (selected-frame) :height 100)
 (add-to-list 'default-frame-alist '(width . 210))
 (add-to-list 'default-frame-alist '(height . 50))
 (add-to-list 'default-frame-alist '(left . 100))
@@ -145,35 +145,50 @@ there's a region, all lines that region covers will be duplicated."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Colours
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(load-theme 'wombat)
-;;sanityinc-tomorrow-night)
+;; (load-theme 'sanityinc-tomorrow-night)
 ;; (load-theme 'tango-dark)
+
+;; (set-face-attribute 'default nil
+;;                     :family "Source Code Pro"
+;;                     :height 100
+;;                     :weight 'normal
+;;                     :width 'condensed)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#212121" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :family "Source Code Pro"))))
+ '(ess-numbers-face ((t (:inherit font-lock-type-face :foreground "light salmon" :slant normal))))
  '(flyspell-duplicate ((t (:foreground "Gold3" :underline nil :weight bold))))
  '(font-lock-builtin-face ((t (:foreground "PeachPuff"))))
+ '(font-lock-comment-face ((t (:foreground "maroon"))))
+ '(font-lock-constant-face ((t (:foreground "goldenrod1"))))
+ '(font-lock-keyword-face ((t (:foreground "khaki1"))))
  '(font-lock-string-face ((t (:foreground "DarkSeaGreen2"))))
- '(font-lock-type-face ((t (:foreground "CadetBlue1"))))
+ '(font-lock-type-face ((t (:foreground "pale green"))))
+ '(highlight-indentation-face ((t (:inherit fringe :background "gray11"))))
  '(org-level-4 ((t (:foreground "khaki1" :inherit (outline-4)))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "darksalmon"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "LightGoldenrod4")))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "LightGoldenrod4"))))
+ '(region ((t (:background "grey20")))))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(LaTeX-biblatex-use-Biber t t)
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(custom-enabled-themes (quote (smart-mode-line-dark)))
  '(custom-safe-themes
    (quote
-    ("c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "6c9ddb5e2ac58afb32358def7c68b6211f30dec8a92e44d2b9552141f76891b3" "a655f17225ad0a7190c79602593563191b7640ddebbb8c8fbd80c9d82faff1c6" "8d6fb24169d94df45422617a1dfabf15ca42a97d594d28b3584dc6db711e0e0b" "08efabe5a8f3827508634a3ceed33fa06b9daeef9c70a24218b70494acdf7855" "49eea2857afb24808915643b1b5bd093eefb35424c758f502e98a03d0d3df4b1" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "6c9ddb5e2ac58afb32358def7c68b6211f30dec8a92e44d2b9552141f76891b3" "a655f17225ad0a7190c79602593563191b7640ddebbb8c8fbd80c9d82faff1c6" "8d6fb24169d94df45422617a1dfabf15ca42a97d594d28b3584dc6db711e0e0b" "08efabe5a8f3827508634a3ceed33fa06b9daeef9c70a24218b70494acdf7855" "49eea2857afb24808915643b1b5bd093eefb35424c758f502e98a03d0d3df4b1" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+ '(ediff-split-window-function (quote split-window-horizontally))
  '(ess-R-font-lock-keywords
    (quote
     ((ess-R-fl-keyword:modifiers . t)
@@ -187,15 +202,22 @@ there's a region, all lines that region covers will be duplicated."
      (ess-fl-keyword:delimiters . t)
      (ess-fl-keyword:= . t)
      (ess-R-fl-keyword:F&T . t))))
- '(hl-sexp-background-color "#251D25")
+ '(fci-rule-color "#873b81")
+ '(fill-prefix nil)
+ '(hl-sexp-background-color "#201520")
  '(inhibit-startup-screen t)
+ '(markdown-command "pandoc --smart -f markdown -t html")
+ '(markdown-css-path "/home/yvan/Documents/css/github-markdown.css")
  '(org-html-use-infojs t)
  '(org-latex-pdf-process
    (quote
     ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
  '(safe-local-variable-values
    (quote
-    ((TeX-master . "report")
+    ((TeX-master . t)
+     (TeX-master . "report.tex")
+     (whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)
+     (TeX-master . "report")
      (TeX-master . report\.tex)
      (require-final-newline))))
  '(sml/replacer-regexp-list
@@ -214,11 +236,35 @@ there's a region, all lines that region covers will be duplicated."
      ("^~/dragonfly/" ":DFLY:")
      ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
  '(sml/shorten-directory t)
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#cc6666")
+     (40 . "#de935f")
+     (60 . "#f0c674")
+     (80 . "#b5bd68")
+     (100 . "#8abeb7")
+     (120 . "#81a2be")
+     (140 . "#b294bb")
+     (160 . "#cc6666")
+     (180 . "#de935f")
+     (200 . "#f0c674")
+     (220 . "#b5bd68")
+     (240 . "#8abeb7")
+     (260 . "#81a2be")
+     (280 . "#b294bb")
+     (300 . "#cc6666")
+     (320 . "#de935f")
+     (340 . "#f0c674")
+     (360 . "#b5bd68"))))
+ '(vc-annotate-very-old-color nil)
  '(wakatime-api-key "0ff58d48-ac18-40ee-be06-f0e1c5985c86")
  '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
  '(yank-pop-change-selection t))
 
-(global-wakatime-mode 1)
+(load-theme 'mytheme t)
+
+;; (global-wakatime-mode 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -778,7 +824,7 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    google-this
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key (kbd "C-x g") 'google-this-mode-submap)
+(global-set-key (kbd "C-x g") 'google-this)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -851,8 +897,20 @@ prompt the user for a coding system."
 
 
 
+;; Macro to reformat curly brackets (to fix my old style)
 (fset 'reparens
-   "\C-s{\C-b\336\C-f\206\202\221\206\202\C-n")
+   [?\S-\C-\M-s ?^ ?\[ ?\[ ?: ?b ?l ?a ?n ?k ?: ?\] ?\] ?* ?\{ return ?\C-b ?\M-^ ?\C-\M-q ?\C-e])
+
+;; Macro to insert a space on both sides of equal signs
+(fset 'eqspacing
+   [?\C-\M-% ?\\ ?\( ?\[ ?^ ?\[ ?: ?b ?l ?a ?n ?k ?: ?\] ?\] ?+ ?\\ ?\) ?= ?\\ ?\( ?\[ ?^ ?\[ ?: ?b ?l ?a ?n ?k ?: ?\] ?\] S-backspace ?\] ?+ ?\\ ?\) left left left left left left left left left left left left left left left left left left left left left delete right right right right right right right right right right right right right right right right right delete end return ?\\ ?1 ?  ?= ?  ?\\ ?2 return])
+
+(defun eqspacing (arg)
+  "Add space around `=' when there is none"
+  (interactive "p")
+  (beginning-of-buffer)
+  (replace-regexp "\([^[:blank:]=:!]\)=" "\1 =")
+  (replace-regexp "=\([^[:blank:]=:!]\)" "= \2"))
 
 
 ;; Open files
@@ -874,8 +932,8 @@ prompt the user for a coding system."
 (defun smart-kill-whole-line (&optional arg)
   "A simple wrapper around `kill-whole-line' that respects indentation."
   (interactive "P")
-  (kill-whole-line arg)
-  (back-to-indentation))
+  (kill-whole-line arg))
+  ;; (back-to-indentation))
 (global-set-key [remap kill-whole-line] 'smart-kill-whole-line)
 
 
@@ -891,6 +949,7 @@ prompt the user for a coding system."
               (push '("function" . ?ƒ) prettify-symbols-alist)
 	      (push '("sum" . ?Σ) prettify-symbols-alist)
 	      (push '("<=" . ?≤) prettify-symbols-alist)
+	      (push '(">=" . ?≥) prettify-symbols-alist)
 	      (push '("sqrt" . ?√) prettify-symbols-alist)
 	      (push '("..." . ?…) prettify-symbols-alist)
 	      (push '("pi" . ?𝜋) prettify-symbols-alist)
@@ -916,3 +975,96 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "C-c n") 
                 (lambda () (interactive) (find-file "~/Dropbox/dragonfly-notes/dragonfly-notes.org")))
+
+
+(define-key ess-bugs-mode-map (kbd "=") nil)
+
+
+(global-set-key (kbd "C-x m") 'mc/mark-all-like-this-dwim)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Replace open-line (C-o) to keep identation
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun open-previous-line (arg)
+  "Open a new line before the current one. 
+     See also `newline-and-indent'."
+  (interactive "p")
+  (beginning-of-line)
+  (open-line arg)
+  (when newline-and-indent
+    (indent-according-to-mode)))
+(global-set-key (kbd "C-S-o") 'open-previous-line)
+
+(defun open-next-line (arg)
+  "Move to the next line and then opens a line.
+    See also `newline-and-indent'."
+  (interactive "p")
+  (push-mark)
+  (end-of-line)
+  (open-line arg)
+  (next-line 1)
+  (when newline-and-indent
+    (indent-according-to-mode))
+  (exchange-point-and-mark))
+(global-set-key (kbd "C-o") 'open-next-line)
+
+;; Autoindent open-*-lines
+(defvar newline-and-indent t
+  "Modify the behavior of the open-*-line functions to cause them to autoindent.")
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    rtags and visit file
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun rtags (arg)
+  "Execute R rtags function and visit tag file."
+  (interactive "p")
+  (shell-command "Rscript -e \"rtags(ofile='TAGS', recursive=T)\"")
+  (visit-tags-table "TAGS"))
+(add-hook 'ess-mode-hook 
+	  '(lambda ()
+	     (local-set-key (kbd "C-c t") 'rtags)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    evaluate R function arguments
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun ess-eval-function-args (arg)
+  "Evaluate default arguments of R function."
+  (interactive "p")
+  (push-mark)
+  (ess-goto-beginning-of-function-or-para)
+  (search-forward "(")
+  (backward-char)
+  (push-mark)
+  (forward-sexp)
+  (kill-ring-save (region-beginning) (region-end))
+  (with-temp-buffer
+    (setq ess-dialect "R")
+    (yank)
+    (end-of-buffer)
+    (search-backward ")")
+    (delete-char 1)
+    (goto-char 1)
+    (search-forward "(")
+    (backward-char)
+    (delete-char 1)
+    (goto-char 1)
+    (while (search-forward "," nil t) (replace-match "\n" t nil))
+    (goto-char 1)
+    (while (search-forward-regexp "^[:blank:]*[^=]+$" nil t) (replace-match "" nil t))
+    (ess-eval-buffer-and-go nil)
+    (buffer-string)
+    )
+  (pop-global-mark)
+  )
+(add-hook 'ess-mode-hook 
+	  '(lambda ()
+	     (local-set-key (kbd "C-c f") 'ess-eval-function-args)))
+
+
+(add-hook 'ess-mode-hook (lambda () (setq ess-arg-function-offset nil)))
+(add-hook 'ess-mode-hook (lambda () (setq ess-first-continued-statement-offset 2)))
+(add-hook 'ess-mode-hook (lambda () (setq ess-continued-statement-offset 0)))

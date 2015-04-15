@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/ubuntugi
+~MSle0~/all birds
 
 # Last Substitute Search Pattern:
 ~MSle0&yvan-r-pkg
@@ -18,6 +18,16 @@ $dragonfly
 
 # Command Line History (newest to oldest):
 :wq
+:w
+:b3
+:ls
+:b1
+:e summary/explore/latex.py
+:e summary/explore/views.py
+:b2
+:e templates/explore/page.tex
+:set nu
+:set no
 :q
 :9
 :1
@@ -27,7 +37,6 @@ $dragonfly
 :x
 :set noexpandtab
 :set invlist
-:w
 :'<,'>s/'~/dragonfly/yr-r-package-and-config/'//g
 :'<,'>s/yvan-r-pkg/yr-r-package-and-config/g
 :s/yvan-r-pkg/yr-r-package-and-config/g
@@ -58,17 +67,14 @@ $dragonfly
 :%s//\r/g
 :%s//\n/g
 :w makefile
-:mak
-:115
-:makk
-:make -B
-:e model2.bug
-:w model2.bug
-:Set nospell
-:e 20110711-add-ref-list-title.sql
-:w 20110711-add-ref-list-title.sql
 
 # Search String History (newest to oldest):
+?/all birds
+?/page.tex
+?/vessels
+?/small
+? \<pagetitle\>
+?/pagetitle
 ?/ubuntugi
 ?/AUC
 ?/auc
@@ -113,12 +119,6 @@ $dragonfly
 ?/html
 ?/q
 ?/rkward
-?/\$K
-?/\$S\$
-?/\$S
-?/$S$
-?/$S
-?/$F
 
 # Expression History (newest to oldest):
 
@@ -127,10 +127,9 @@ $dragonfly
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	host    all             all             127.0.0.1/32            md5
-	#
-""1	LINE	0
+"0	LINE	0
+	        options['species'].title = 'all bird' if options['species'].title == 'all birds' else options['species'].title
+"1	LINE	0
 	host    all             all             127.0.0.1/32            md5
 "2	LINE	0
 	|1|rHLQUFB4SjIeuWnI1g+0gTgEyTs=|Ln1GUjw9N/9vdLjejT1BHl9lLlg= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL6ejNlQQ2fdMc7wYnhjge4MiJDbaZInnY5R+z1eK0QKmUFkbGGMa4jn/Dxmvr3+8BmkKN0VwzJGK8us8mLKnr4=
@@ -150,23 +149,45 @@ $dragonfly
 	   path = /home/yvan/Music
 "u	CHAR	0
 	lrr
-"-	CHAR	0
-	 
+""-	CHAR	0
+	all
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  1  0  ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
-'1  1  0  ~/dragonfly/black-petrel-distribution/.git/MERGE_MSG
-'2  1  0  ~/dragonfly/bycatch.dragonfly.co.nz/.git/MERGE_MSG
-'3  94  50  /etc/postgresql/9.3/main/pg_hba.conf
-'4  59  52  /etc/postgresql/9.3/main/postgresql.conf
-'5  91  1  /etc/postgresql/9.3/main/pg_hba.conf
-'6  50  0  /etc/postgresql/9.3/main/postgresql.conf
-'7  87  0  /etc/postgresql/9.3/main/pg_hba.conf
-'8  1  0  ~/dragonfly/estimation-2014/.git/MERGE_MSG
-'9  1  0  ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
+'0  1  0  /tmp/bash-fc-915318062537
+'1  1  0  ~/dragonfly/oreo/.git/MERGE_MSG
+'2  1  34  ~/dragonfly/bycatch.dragonfly.co.nz/.git/COMMIT_EDITMSG
+'3  226  84  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+'4  225  31  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+'5  10  0  ~/dragonfly/bycatch.dragonfly.co.nz/summary/templates/explore/page.tex
+'6  1  0  ~/dragonfly/estimation-2014/.git/MERGE_MSG
+'7  1  0  ~/dragonfly/npoa-observer-optimisation/.git/MERGE_MSG
+'8  1  0  ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
+'9  1  0  ~/dragonfly/black-petrel-distribution/.git/MERGE_MSG
 
 # Jumplist (newest first):
+-'  1  0  /tmp/bash-fc-915318062537
+-'  1  0  ~/dragonfly/oreo/.git/MERGE_MSG
+-'  1  34  ~/dragonfly/bycatch.dragonfly.co.nz/.git/COMMIT_EDITMSG
+-'  226  84  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  1  0  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  225  31  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  5  0  ~/dragonfly/bycatch.dragonfly.co.nz/summary/templates/explore/page.tex
+-'  1  0  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/views.py
+-'  209  17  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  1  0  ~/dragonfly/bycatch.dragonfly.co.nz/summary/templates/explore/page.tex
+-'  10  0  ~/dragonfly/bycatch.dragonfly.co.nz/summary/templates/explore/page.tex
+-'  208  12  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  130  25  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  214  42  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  193  38  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  223  8  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  228  31  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  215  58  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  212  14  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  207  12  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+-'  1  0  ~/dragonfly/estimation-2014/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/npoa-observer-optimisation/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/black-petrel-distribution/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/bycatch.dragonfly.co.nz/.git/MERGE_MSG
@@ -177,7 +198,6 @@ $dragonfly
 -'  91  1  /etc/postgresql/9.3/main/pg_hba.conf
 -'  50  0  /etc/postgresql/9.3/main/postgresql.conf
 -'  87  0  /etc/postgresql/9.3/main/pg_hba.conf
--'  1  0  ~/dragonfly/estimation-2014/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/doc-sll-mitigation-2012/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/bibliography/.git/MERGE_MSG
@@ -242,31 +262,48 @@ $dragonfly
 -'  37  0  /etc/security/limits.conf
 -'  1  0  /etc/security/limits.conf
 -'  1  0  /tmp/54004.prj
--'  337  0  /etc/samba/smb.conf
--'  1  0  /etc/samba/smb.conf
--'  338  16  /etc/samba/smb.conf
--'  722  8  /etc/texmf/texmf.cnf
--'  726  0  /etc/texmf/texmf.cnf
--'  188  66  /etc/texmf/texmf.cnf
--'  555  40  /etc/texmf/texmf.cnf
--'  494  51  /etc/texmf/texmf.cnf
--'  324  15  /etc/texmf/texmf.cnf
--'  185  66  /etc/texmf/texmf.cnf
--'  1  0  /etc/texmf/texmf.cnf
--'  30  31  ~/dragonfly/seabirds-2013/report/makefile
--'  1  0  ~/dragonfly/seabirds-2013/report/makefile
--'  1  0  ~/dragonfly/seabirds-2013/.git/COMMIT_EDITMSG
--'  37  35  ~/dragonfly/seabirds-2013/.gitignore
--'  1  0  ~/dragonfly/seabirds-2013/.gitignore
--'  22  2  ~/dragonfly/seabirds-2013/.gitignore
--'  1  0  ~/mydeck/index.Rmd
--'  10  1  /tmp/psql.edit.8530
--'  2  0  /tmp/psql.edit.8530
--'  1  0  /tmp/psql.edit.8530
--'  4  4  /tmp/psql.edit.8530
--'  6  0  /tmp/psql.edit.8530
+-'  5  0  ~/dragonfly/bycatch.dragonfly.co.nz/summary/templates/explore/page.tex
+-'  1  0  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/views.py
+-'  226  84  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
 
 # History of marks within files (newest to oldest):
+
+> /tmp/bash-fc-915318062537
+	"	1	0
+
+> ~/dragonfly/oreo/.git/MERGE_MSG
+	"	1	0
+
+> ~/dragonfly/bycatch.dragonfly.co.nz/.git/COMMIT_EDITMSG
+	"	1	34
+	^	1	35
+	.	1	34
+	+	1	34
+
+> ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
+	"	226	84
+	^	226	85
+	.	226	84
+	+	227	0
+	+	225	31
+	+	226	84
+
+> ~/dragonfly/bycatch.dragonfly.co.nz/summary/templates/explore/page.tex
+	"	5	0
+	.	5	116
+	+	5	116
+
+> ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/views.py
+	"	1	0
+
+> ~/dragonfly/estimation-2014/.git/MERGE_MSG
+	"	1	0
+
+> ~/dragonfly/npoa-observer-optimisation/.git/MERGE_MSG
+	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
 
 > ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
 	"	1	0
@@ -296,9 +333,6 @@ $dragonfly
 	^	59	53
 	.	59	52
 	+	59	52
-
-> ~/dragonfly/estimation-2014/.git/MERGE_MSG
-	"	1	0
 
 > ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
 	"	1	0
@@ -877,42 +911,4 @@ $dragonfly
 	"	1	0
 
 > ~/dragonfly/sra-2012/analysis/risk/risk-calc.r
-	"	1	0
-
-> ~/dragonfly/sra-2012/analysis/model-re-3/vulnerabilities/jags-re-sn.cmd
-	"	1	0
-
-> ~/dragonfly/sra-2012/analysis/model-re-3/vulnerabilities/run.r
-	"	1	0
-
-> ~/dragonfly/abundance/report/data-summary/description.Rnw
-	"	1294	34
-	^	1294	35
-	.	1306	41
-	+	1306	41
-
-> ~/dragonfly/abundance/.gitignore
-	"	33	0
-	^	33	0
-	.	34	0
-	+	5	4
-	+	27	35
-	+	31	4
-	+	32	4
-	+	33	0
-	+	34	0
-
-> ~/dragonfly/bibliography/.gitignore
-	"	4	4
-	^	4	5
-	.	4	4
-	+	4	4
-
-> ~/dragonfly/black-petrel-overlap/.git/config
-	"	8	14
-	^	8	15
-	.	8	15
-	+	8	15
-
-> ~/dragonfly/sra/data/analysis-data/species_groups.txt
 	"	1	0

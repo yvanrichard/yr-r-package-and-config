@@ -3,3 +3,4 @@ yrpkg.Rcheck/
 *~
 *#
 *.lock
+.Rhistory
