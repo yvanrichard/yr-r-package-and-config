@@ -13,12 +13,11 @@ myreplace <- function(what, lookup, verbose=T, warn=T) {
     w <- what
     lkup <- matrix(lookup, ncol=2, byrow=T)
     c <- w %in% lkup[,1]
-    if (warn)
-        {
-            cond <- !(lkup[,1] %in% what)
-            if (sum(cond))
-                warning(sum(cond),' value(s) in lookup vector not in original data')
-        }
+    if (warn) {
+        cond <- !(lkup[,1] %in% what)
+        if (sum(cond))
+            warning(sum(cond),' value(s) in lookup vector not in original data')
+    }
     w[c] <- lkup[match(w[c], lkup[,1]), 2]
     s <- sum(w != what, na.rm=T)
     if (verbose)
@@ -94,26 +93,26 @@ lower1st <- function(x) {
     ##     x <- dat$name
     x1 <- strsplit(x, '')
     x <- sapply(x1, function(x) {
-        x[1] <- tolower(x[1]) 
-        return(paste(x, collapse=''))
-    })
+                   x[1] <- tolower(x[1]) 
+                   return(paste(x, collapse=''))
+               })
     return(x)
 }
 
 upper1st <- function(x) {
     x1 <- strsplit(x, '')
     x <- sapply(x1, function(x) {
-        x[1] <- toupper(x[1]) 
-        return(paste(x, collapse=''))
-    })
+                   x[1] <- toupper(x[1]) 
+                   return(paste(x, collapse=''))
+               })
     return(x)
 }
 
 ## from help of chartr()
 capwords <- function(s, strict = FALSE) {
-    cap <- function(s) paste(toupper(substring(s,1,1)),
-                             {s <- substring(s,2); if(strict) tolower(s) else s},
-                             sep = "", collapse = " " )
+    cap <- function(s) paste(toupper(substring(s,1,1)), {
+                         s <- substring(s,2); if(strict) tolower(s) else s},
+                     sep = "", collapse = " " )
     sapply(strsplit(s, split = " "), cap, USE.NAMES = !is.null(names(s)))
 }
 
@@ -208,16 +207,13 @@ alpha <- function (colour, alpha) {
 
 alphagrad <- function(n, grad='exp', curv=20, inv=F) {
     if (curv<=1) stop('Choose a value above 1')
-    if (grad=='exp')
-        {
-            alphas <- exp(seq(curv,1,length.out=n))
-            alphas <- (alphas-min(alphas))/max(alphas-min(alphas))
-        } else 
-            if (grad=='log')
-                {
-                    alphas <- log(seq(curv,1,length.out=n))
-                    alphas <- (alphas-min(alphas))/max(alphas-min(alphas))
-                } else alphas <- seq(1,0,length.out=n)
+    if (grad=='exp') {
+        alphas <- exp(seq(curv,1,length.out=n))
+        alphas <- (alphas-min(alphas))/max(alphas-min(alphas))
+    } else if (grad=='log') {
+        alphas <- log(seq(curv,1,length.out=n))
+        alphas <- (alphas-min(alphas))/max(alphas-min(alphas))
+    } else alphas <- seq(1,0,length.out=n)
     if (inv)
         cols <- rev(alpha(rep('#FFFFFF',n),alphas)) else #
     cols <- alpha(rep('#FFFFFF',n),alphas)               #
@@ -227,15 +223,12 @@ alphagrad <- function(n, grad='exp', curv=20, inv=F) {
 applyalphagrad <- function(colors, grad='exp', curv=15, inv=F, startalpha=0, endalpha=1) {
     n  = length(colors)
     if (curv<=1) stop('Choose a value above 1')
-    if (grad=='exp')
-        {
-            alphas <- exp(seq(curv,1,length.out=n))
-        } else 
-            if (grad=='log')
-                {
-                    alphas <- log(seq(curv,1,length.out=n))
-                } else 
-                    alphas <- seq(1,0,length.out=n)
+    if (grad=='exp') {
+        alphas <- exp(seq(curv,1,length.out=n))
+    } else if (grad=='log') {
+        alphas <- log(seq(curv,1,length.out=n))
+    } else 
+        alphas <- seq(1,0,length.out=n)
     alphas <- scaleminmax(alphas, startalpha, endalpha)
     if (inv)
         cols <- rev(alpha(colors,alphas)) else
@@ -268,18 +261,16 @@ scaleminmax <- function(in.seq, out.min=0, out.max=1, in.ref.min=NA, in.ref.max=
 
 colorfrom <- function(var, colors=c('black','red','gold','darkgreen'), ncolors=100, alpha=1, rev=F, ...) {
     library(RColorBrewer)
-    if (is.factor(var) | is.character(var))
-        {
-            if (!is.factor(var))  var <- factor(var, levels=unique(var))
-            colors <- rep(colors, length.out=nlevels(var))
-            names(colors) <- levels(var)
-            Cols <- colors[match(var, names(colors))]
-        } else
-            {
-                if (rev) colors <- rev(colors)
-                cols <- colorRampPalette(colors)(ncolors)
-                Cols <- cols[round(scaleminmax(var, out.min=1, out.max=ncolors, ...))]
-            }
+    if (is.factor(var) | is.character(var)) {
+        if (!is.factor(var))  var <- factor(var, levels=unique(var))
+        colors <- rep(colors, length.out=nlevels(var))
+        names(colors) <- levels(var)
+        Cols <- colors[match(var, names(colors))]
+    } else {
+        if (rev) colors <- rev(colors)
+        cols <- colorRampPalette(colors)(ncolors)
+        Cols <- cols[round(scaleminmax(var, out.min=1, out.max=ncolors, ...))]
+    }
     return(alpha(Cols, alpha))
 }
 
@@ -300,9 +291,9 @@ getmfrow <- function(n, dim=c(7,9)) {
     d <- d[,c('x','y')]
     d$z <- d$x*d$y
     d <- do.call('rbind', by(d, d$x, function(x) {
-        x2 <- x[x$z >= n,]
-        return(x2[which.min(x2$y),])
-    }))
+                                x2 <- x[x$z >= n,]
+                                return(x2[which.min(x2$y),])
+                            }))
     d$r <- d$y/d$x
     rr <- d[which.min(abs(d$r-rat)),]
     return(c(rr$x, rr$y))
@@ -338,7 +329,7 @@ tile <- function(n=2,            # number of screens
     W <- (screen.size[1]-smar[1]-lay[1]*dec[1]) / lay[1]
     H <- (screen.size[2]-smar[2]-(lay[2]-1)*dec[2]) / lay[2]
     if (!is.na(ratio))  H <- min(ratio*W, H)
-        
+    
     xposs <- smar[1] +  ((1:lay[1])-1) * W  + ((1:lay[1])-1)*dec[1]
     yposs <- ((1:lay[2])-1) * H + ((1:lay[2])-1)*dec[2]
     ni=0
@@ -361,8 +352,8 @@ col3d <- function(x, y, z, space='rgb') {
 ## Calculate density of y for each x, and plot them on same plot
 ## col='red'; alph=0.5; col.border=NULL; xmin=NULL; at=NULL; ylevels=NULL; ylab=NA; cap1st=T
 plotdensapply <- function(y, by, col='red', alph=0.5, col.border=NULL, xmin=NULL, at=NULL,
-                          ylevels=NULL, ylab=NA, cap1st=T, gridx=0, gridy=0,
-                          gridcol=grey(0.8), ltxtcex=1, ...) {
+                  ylevels=NULL, ylab=NA, cap1st=T, gridx=0, gridy=0,
+                  gridcol=grey(0.8), ltxtcex=1, ...) {
     if (!is.factor(by))
         by <- factor(by, levels=sort(unique(by)))
     by <- factor(by, levels=rev(levels(by)))
@@ -381,13 +372,12 @@ plotdensapply <- function(y, by, col='red', alph=0.5, col.border=NULL, xmin=NULL
     if (is.null(col.border))  col.border <- col
     col <- rev(col)
     col.border <- rev(col.border)
-    for (di in 1:nspp)                  # di=nspp
-        {
-            d1 <- dd[[di]]
-            d1$y2 <- d1$y/max(d1$y)
-            polygon(c(d1$x, rev(d1$x)), .5*c(d1$y2,-rev(d1$y2))+at[di], col=alpha(col[di],alph),
-                    border=col.border[di], lwd=.5)
-        }
+    for (di in 1:nspp) {
+        d1 <- dd[[di]]
+        d1$y2 <- d1$y/max(d1$y)
+        polygon(c(d1$x, rev(d1$x)), .5*c(d1$y2,-rev(d1$y2))+at[di], col=alpha(col[di],alph),
+                border=col.border[di], lwd=.5)
+    }
     if (is.null(ylevels)) ylevels <- spp
     z <- sapply(tapply(ylevels, at, unique), function(x) paste(x, collapse=','))
     ylev2 <- z; at2 <- as.numeric(names(z))
@@ -430,12 +420,11 @@ placeleg <- function(X, Y, ...) {
     poss <- c('topleft','top','topright','left','center','right','bottomleft','bottom','bottomright')
     d <- NULL
     pos <- poss[1]
-    for (pos in poss)
-        {
-            l <- legend(pos, ..., plot=F)
-            d <- c(d, sum(X >= l$rect$left & X <= (l$rect$left + l$rect$w) &
-                          Y >= (l$rect$top - l$rect$h) & Y <= l$rect$top))
-        }
+    for (pos in poss) {
+        l <- legend(pos, ..., plot=F)
+        d <- c(d, sum(X >= l$rect$left & X <= (l$rect$left + l$rect$w) &
+                     Y >= (l$rect$top - l$rect$h) & Y <= l$rect$top))
+    }
     pos <- poss[which.min(d)]
     legend(pos, ...)    
 }
@@ -570,7 +559,7 @@ nz <- function(type='contour', corners=list(x=c(162,189), y=c(-54,-30)), pshift=
     ## Load NZ contour and bathymetry maps
     NZ <- Rgshhs('/dragonfly/gis/gshhs/gshhs_i.b', level=1, 
                  xlim=c(minx,maxx), ylim=c(miny,maxy))
-        
+    
     plot(NA, xlim=c(minx,maxx), ylim=c(miny,maxy), main=title)	
 
     if (!simple) {
@@ -589,7 +578,7 @@ nz <- function(type='contour', corners=list(x=c(162,189), y=c(-54,-30)), pshift=
                     col=gray(log(seq(exp(0.5*5),exp(0.85*5),length.out=5))/5), add=TRUE, labcex=0.2, lwd=0.5, drawlabels=F)
         }
     } else
-            plot(NZ$SP, col=grey(0.7), border=grey(0.68))	
+        plot(NZ$SP, col=grey(0.7), border=grey(0.68))	
 }
 
 
@@ -641,14 +630,13 @@ myRasterize <- function(df, valcol, fun, reso=NULL, xcol=NULL, ycol=NULL, projs=
     ## projs: projection string (WGS84: "+init=epsg:4326", NZTM: "+init=epsg:2193")
     library(raster)
     library(rgdal)
-    if (!(all(class(df) == 'SpatialPointsDataFrame')))
-        { ## Transform df to spatial object
-            if (is.null(ycol) | is.null(xcol))
-                stop('Need a SpatialPointsDataFrame, or ycol & xcol specified')
-            df <- df[!is.na(df[[ycol]]) & !is.na(df[[xcol]]), ]
-            coordinates(df) <- eval(parse(text=sprintf('~%s+%s', xcol, ycol)))
-            proj4string(df) <- CRS(projs)
-        } else projs <- proj4string(df)
+    if (!(all(class(df) == 'SpatialPointsDataFrame'))) { ## Transform df to spatial object
+        if (is.null(ycol) | is.null(xcol))
+            stop('Need a SpatialPointsDataFrame, or ycol & xcol specified')
+        df <- df[!is.na(df[[ycol]]) & !is.na(df[[xcol]]), ]
+        coordinates(df) <- eval(parse(text=sprintf('~%s+%s', xcol, ycol)))
+        proj4string(df) <- CRS(projs)
+    } else projs <- proj4string(df)
     if (is.null(reso) & !is.null(grid)) reso <- grid@grid@cellsize[1]
     if (is.null(grid)) grid <- make.raster.grid(df, reso, xcol, ycol, projs)
     rast <- rasterize(df, raster(grid), valcol, fun=fun)
@@ -731,11 +719,11 @@ sprect <- function(xmin, xmax, ymin, ymax, p4s="", ids=NULL, aslist=F) {
     if (is.null(ids))  ids <- as.character(1:n)
     
     rects <- sapply(1:n, function(i) {
-        SpatialPolygons(list(Polygons(list(
-            Polygon(cbind(x=c(xmin[i], xmin[i], xmax[i], xmax[i], xmin[i]),
-                          y=c(ymin[i], ymax[i], ymax[i], ymin[i], ymin[i])))), ids[i])),
-                        proj4string=CRS(p4s))
-    }, simplify=F)
+                        SpatialPolygons(list(Polygons(list(
+                            Polygon(cbind(x=c(xmin[i], xmin[i], xmax[i], xmax[i], xmin[i]),
+                                          y=c(ymin[i], ymax[i], ymax[i], ymin[i], ymin[i])))), ids[i])),
+                                        proj4string=CRS(p4s))
+                    }, simplify=F)
 
     r <- rects[[1]]
     if (!aslist) {
@@ -840,13 +828,13 @@ optimise_y <- function(f, target, lims, incr=0.01, tol=0.00001, ...) {
         ci[ifelse(dir > 0, 1, 2)] <- xi
         xi = xi + dir * incr
     }
-	
+    
     xys = cbind(xys, xys[,2]-target)
     colnames(xys) <- c('x','y','dir','incr','dist')
 
     if (xys[steps,'dist'] > tol)
         warning('Final accuracy greater than specified tolerance')
-        
+    
     return(list(x=xys[steps,'x'], acc=xys[steps,'dist'], step=xys))
 }
 
@@ -869,7 +857,7 @@ tabl <- function(x, sort=T, include.na=T) {
         rownames(t) <- NULL
         return(t)
     } else
-            stop('x is empty')
+        stop('x is empty')
 }
 
 ## customised table()
@@ -929,14 +917,14 @@ localc <- function(df, row.names=T, newl.at=100, basename='temp', ...) {
             df[,c] <- as.character(df[,c])
             toolongvals = nchar(df[[c]]) > newl.at
             df[toolongvals,c] <- sapply(df[toolongvals, c], function(x) {
-                s = strsplit(x,'')[[1]]
-                s1 = grep('[[:blank:]]',s)
-                s0 = c(seq(1, nchar(x), newl.at), nchar(x))
-                i = findInterval(s1, s0, rightmost.closed=T)
-                s2 = s1[ (i[-length(i)]-i[-1]) == -1]
-                s[s2] <- '\n'
-                return(paste(s, collapse=''))
-            })
+                                            s = strsplit(x,'')[[1]]
+                                            s1 = grep('[[:blank:]]',s)
+                                            s0 = c(seq(1, nchar(x), newl.at), nchar(x))
+                                            i = findInterval(s1, s0, rightmost.closed=T)
+                                            s2 = s1[ (i[-length(i)]-i[-1]) == -1]
+                                            s[s2] <- '\n'
+                                            return(paste(s, collapse=''))
+                                        })
         }
     }
     write.csv(as.data.frame(df), f, row.names=row.names, ...)
@@ -976,12 +964,12 @@ peepinto <- function(rdata, more=F) {
     z$dim <- NULL
     z$length <- NULL
     z$type <- NULL
-for (i in 1:nrow(z)) {
-    o <- get(z$object[i], envir=e1)
-    z$dim[i] <- list(dim(o))
-    z$length[i] <- length(o)
-    z$type[i] <- typeof(o)
-}
+    for (i in 1:nrow(z)) {
+        o <- get(z$object[i], envir=e1)
+        z$dim[i] <- list(dim(o))
+        z$length[i] <- length(o)
+        z$type[i] <- typeof(o)
+    }
     if (more) {
         z$summ <- NULL
         for (i in 1:nrow(z)) {
@@ -1164,11 +1152,11 @@ collapseseq <- function(x, with.attr=F) {
         s <- cumsum(d2-1)
         r <- split(x, s)
         rs <- sapply(r, function(x) {
-            nx <- length(x)
-            if (nx > 1)
-                return(sprintf('%s-%s', x[1], x[nx])) else
-            return(x)
-        }, simplify=T)
+                         nx <- length(x)
+                         if (nx > 1)
+                             return(sprintf('%s-%s', x[1], x[nx])) else
+                         return(x)
+                     }, simplify=T)
         ns <- sapply(r, length)
         txt <- paste(rs, collapse=',')
         if (with.attr) {
@@ -1197,7 +1185,7 @@ get_in_out_from_scripts <- function(fold='.', returnlist=F, recursive=F) {
         istxt <- c(istxt, ifelse(length(grep('text', a)), T, F))
     }
     fls <- fls[istxt]
-        
+    
     f=fls[1]
     outlist <- NULL
     for (f in fls) {
@@ -1208,8 +1196,8 @@ get_in_out_from_scripts <- function(fold='.', returnlist=F, recursive=F) {
         }
         sc <- readLines(f)
         sc <- sc[!grepl('^ *#', sc) & sc!=''] #
-            ## INPUTS
-            ins <- NULL
+          ## INPUTS
+          ins <- NULL
         rcsv <- grep('read.csv', sc, val=T)
         if (length(rcsv)) {
             withsq <- grepl("\'.*\'", rcsv)
@@ -1263,33 +1251,33 @@ num2word <- function(x){
         if (nDigits == 1) as.vector(ones[digits]) 
         else if (nDigits == 2) 
             if (x <= 19) as.vector(teens[digits[1]]) 
-                else trim(paste(tens[digits[2]], Recall(as.numeric(digits[1])))) 
+            else trim(paste(tens[digits[2]], Recall(as.numeric(digits[1])))) 
         else if (nDigits == 3) trim(paste(ones[digits[3]], "hundred", 
-            Recall(makeNumber(digits[2:1])))) 
+                                          Recall(makeNumber(digits[2:1])))) 
         else { 
             nSuffix <- ((nDigits + 2) %/% 3) - 1 
             if (nSuffix > length(suffixes)) stop(paste(x, "is too large!")) 
             trim(paste(Recall(makeNumber(digits[ 
-                nDigits:(3*nSuffix + 1)])), 
-                suffixes[nSuffix], 
-                Recall(makeNumber(digits[(3*nSuffix):1])))) 
-            } 
+                                                nDigits:(3*nSuffix + 1)])), 
+                       suffixes[nSuffix], 
+                       Recall(makeNumber(digits[(3*nSuffix):1])))) 
         } 
+    } 
     trim <- function(text){ 
         gsub("^\ ", "", gsub("\ *$", "", text)) 
-        } 
+    } 
     makeNumber <- function(...) as.numeric(paste(..., collapse="")) 
     opts <- options(scipen=100) 
     on.exit(options(opts)) 
     ones <- c("", "one", "two", "three", "four", "five", "six", "seven", 
-        "eight", "nine") 
+              "eight", "nine") 
     names(ones) <- 0:9 
     teens <- c("ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", 
-        "sixteen", " seventeen", "eighteen", "nineteen") 
+               "sixteen", " seventeen", "eighteen", "nineteen") 
     names(teens) <- 0:9 
     tens <- c("twenty", "thirty", "forty", "fifty", "sixty", "seventy", 
-"eighty", 
-        "ninety") 
+              "eighty", 
+              "ninety") 
     names(tens) <- 2:9 
     x <- round(x) 
     suffixes <- c("thousand", "million", "billion", "trillion") 
@@ -1311,7 +1299,7 @@ graph_r_scripts <- function(fold='.', recursive=T) {
     scripts <- names(inout)
     ins <- sapply(inout, function(x) x$ins)
     outs <- sapply(inout, function(x) x$outs)
-        
+    
     ## Create dot file
     nodes <- dQuote(na.omit(c(unlist(ins), unlist(outs))))
     rnodes <- dQuote(scripts)
@@ -1390,22 +1378,22 @@ check_cited_labels <- function(reportfile='report.tex', ignore=c('sec','subsec',
         alllabels[[f]] <- labels
     }
     alllabs <- do.call('rbind', sapply(names(alllabels), function(x) {
-        if (length(alllabels[[x]]))
-            data.frame(file=x, label=alllabels[[x]], stringsAsFactors=F)
-    }, simplify=F))
+                                           if (length(alllabels[[x]]))
+                                               data.frame(file=x, label=alllabels[[x]], stringsAsFactors=F)
+                                       }, simplify=F))
     rownames(alllabs) <- NULL
     alltext <- unlist(alltext)
     cat('\nChecking use of labels...\n')
     library(parallel)
     ## l <- alllabels[2]
     uncited <- mclapply(1:nrow(alllabs), function(i) {
-        l <- alllabs$label[i]
-        if (debug) cat(l, '\n')
-        cited <- grep(sprintf('ref\\{ *%s *\\}', l), alltext, value=T)
-        if (!length(cited)) {
-            return(data.frame(file=alllabs$file[i], label=l))
-        }
-    }, mc.cores=6)
+                            l <- alllabs$label[i]
+                            if (debug) cat(l, '\n')
+                            cited <- grep(sprintf('ref\\{ *%s *\\}', l), alltext, value=T)
+                            if (!length(cited)) {
+                                return(data.frame(file=alllabs$file[i], label=l))
+                            }
+                        }, mc.cores=6)
     uncited <- do.call('rbind', uncited)
     uncited <- unique(uncited)
     if (save) {
@@ -1427,7 +1415,7 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     ##  Create dependency graph from makefile
     ##  Assumptions:
     ##  * no tabs in dependencies or actions names
-        
+    
     cola <- '"#FFC6AF"'                 # colour of actions
     colp <- '"#FFF8AF"'                 # colour of programs
     cold <- '"#97DDBF"'                 # colour of data
@@ -1451,7 +1439,7 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
                     f = paste(ff, collapse=' '),
                     d = paste(dd, collapse=' ')))
     }
-        
+    
     mdir <- dirname(makefile)
     mk <- readLines(makefile, warn=F)
 
@@ -1481,7 +1469,7 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
         nps <- ts[is.na(partlabs) & !(ts %in% unlist(ps))]
         withclusters <- T
     } else withclusters <- F
-        
+    
     ## Remove special characters
     mk <- mk[!grepl('^#', mk)]          # remove comments
     mk <- sub('\t$', '', mk)
@@ -1504,7 +1492,7 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     m <- strsplit(mk5,'&&&&')[[1]]
     ## identify target
     withaction <- grepl('\t', m)
-        
+    
     notarget <- !grepl(':',m)
     if (any(notarget)) {
         print(m[notarget])
@@ -1514,20 +1502,20 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     sm <- strsplit(m, ':')
 
     all <- sapply(sm, function(x) {
-        targs <- x[1]
-        other <- sapply(x[-1], function(y) strsplit(y, '\t')[[1]], USE.NAMES=F, simplify=F)[[1]]
-        if (!grepl('^ *$', other[1])) {                           # with deps
-            deps <- gsub('  +', ' ', trim(other[1]))
-            deps <- strsplit(deps, ' ')[[1]]
-            acts <- other[-1]
-            if (!length(other[-1]))
-                acts <- NA
-        } else  {
-            deps <- NA
-            acts <- other[-1]
-        }
-        return(list(targs=trim(targs), deps=trim(deps), acts=trim(acts)))
-    }, simplify=F)
+                      targs <- x[1]
+                      other <- sapply(x[-1], function(y) strsplit(y, '\t')[[1]], USE.NAMES=F, simplify=F)[[1]]
+                      if (!grepl('^ *$', other[1])) {                           # with deps
+                          deps <- gsub('  +', ' ', trim(other[1]))
+                          deps <- strsplit(deps, ' ')[[1]]
+                          acts <- other[-1]
+                          if (!length(other[-1]))
+                              acts <- NA
+                      } else  {
+                          deps <- NA
+                          acts <- other[-1]
+                      }
+                      return(list(targs=trim(targs), deps=trim(deps), acts=trim(acts)))
+                  }, simplify=F)
     all <- rapply(all, function(x) gsub('\'|\"', '', x), how='replace')
 
     if (withclusters)
@@ -1538,22 +1526,22 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     all2 <- all
     ## Turn actions into single nodes
     all2 <- sapply(all2, function(x) {
-        y <- x$acts
-        y <- gsub('\"', '', y)
-        y <- unlist(strsplit(y, ' *&& *'))
-        if (!any(is.na(y)))
-            y <- paste(y, collapse='\\n')
-        x$acts <- y
-        return(x)
-    }, simplify=F)
+                       y <- x$acts
+                       y <- gsub('\"', '', y)
+                       y <- unlist(strsplit(y, ' *&& *'))
+                       if (!any(is.na(y)))
+                           y <- paste(y, collapse='\\n')
+                       x$acts <- y
+                       return(x)
+                   }, simplify=F)
     all2 <- rapply(all2, function(x) return(ifelse(is.na(x), NA, dQuote(x))), how='replace')
-        
+    
     gf <- sprintf('digraph G {
 rankdir=%s; nodesep=%f; ranksep=%f; ratio=%f; margin=%f;
 ', rankdir, nodesep, ranksep, ratio, margin)
 
     ##--- Nodes ---##
-        
+    
     ## Clusters
     if (withclusters) {
         for (i in 1:length(ps)) {
@@ -1572,7 +1560,7 @@ label=%2$s; style="rounded,filled"; color=gray50; fillcolor=%3$s; fontcolor=red;
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;}', cola, paste(ac, collapse=' ')))
         }
     }
-        
+    
     ## Nodes not inside clusters
     if (withclusters) {
         nodesinclust <- na.omit(unlist(all2[unlist(ps)]))
@@ -1581,10 +1569,10 @@ label=%2$s; style="rounded,filled"; color=gray50; fillcolor=%3$s; fontcolor=red;
         a <- all2
         nodesinclust <- NULL
     }
-        
+    
     targsdeps <- unique(unlist(sapply(a, function(x) return(na.omit(c(x$targs, x$deps))))))
     targsdeps <- targsdeps[!(targsdeps %in% nodesinclust)]
-        
+    
     acts <- unique(unlist(sapply(a, function(x) return(na.omit(x$acts)))))
     acts <- acts[!(acts %in% nodesinclust)]
 
@@ -1598,7 +1586,7 @@ label=%2$s; style="rounded,filled"; color=gray50; fillcolor=%3$s; fontcolor=red;
     gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colf, els$f))
     gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', cola, paste(ac, collapse=' ')))
 
-        
+    
     ##--- Edges ---##
 
     i=2
@@ -1710,7 +1698,7 @@ includemk <- function(Mk='vars.mk', warn=T, save.parsed=T) {
     mk <- getsubincl(Mk)
     ## Clean and parse
     mk <- mk[!grepl('^[[:blank:]]*#', mk)]
-        mk <- mk[grep('=', mk)]
+      mk <- mk[grep('=', mk)]
     mk <- gsub('\t*', '', mk)
     r <- rapply(strsplit(mk, '='), trim, how='replace')
     if (any(duplicated(sapply(r, '[', 1)))) {
@@ -1728,21 +1716,19 @@ includemk <- function(Mk='vars.mk', warn=T, save.parsed=T) {
     for (i in 1:length(rr)) {
         c <- trim(strsplit(mk[i], '=')[[1]])
         c <- gsub(' *#.*$', '', c)
-        if (length(c) != 2)
-            stop(sprintf('Problem parsing makefile. Assignment #%i non-standard',i)) #
-        if (grepl('\\$\\(.*\\)', c[2]))
-            {
-                vars <- c(sapply(
-                    regmatches(c[2],gregexpr(sprintf('\\$\\(([^\\)]+)\\)'),c[2])),
-                    function(x) gsub('\\$\\((.*)\\)', '\\1', x)))
-                        
-                for (j in 1:length(vars))
-                    if (vars[j] %in% ls(envir=.GlobalEnv))
-                        regmatches(c[2],regexec(sprintf('\\$\\([^\\)]+\\)'),c[2])) <-
-                            get(vars[j], envir=.GlobalEnv)  else
-                stop(sprintf('Problem parsing makefile. Variable %s not declared?',
-                             vars[j]))
+          if (length(c) != 2)
+              stop(sprintf('Problem parsing makefile. Assignment #%i non-standard',i)) #
+        if (grepl('\\$\\(.*\\)', c[2])) {
+            vars <- c(sapply(
+                regmatches(c[2],gregexpr(sprintf('\\$\\(([^\\)]+)\\)'),c[2])),
+                function(x) gsub('\\$\\((.*)\\)', '\\1', x)))
+            
+            for (j in 1:length(vars)) {
+                if (vars[j] %in% ls(envir=.GlobalEnv)) {
+                    regmatches(c[2],regexec(sprintf('\\$\\([^\\)]+\\)'),c[2])) <- get(vars[j], envir=.GlobalEnv)
+                } else stop(sprintf('Problem parsing makefile. Variable %s not declared?', vars[j]))
             }
+        }
         if (save.parsed)  parsed[i] <- paste(c, collapse=' = ')
         val <- type.convert(c[2], as.is=T)
         assign(c[1], val, envir=.GlobalEnv)
@@ -1776,8 +1762,8 @@ getdefaultargs <- function(fun) {
 ## Function to convert R markdown file into pdf or html
 ## Requires: knitr, markdown, pandoc
 convertRmd <- function(Rmds=file.path(getwd(), dir('.', pattern='\\.Rmd$|\\.rmd$')),
-                       to='pdf', open=TRUE, out=sub('Rmd$|rmd$',to,Rmds), use.markdownToHTML=FALSE,
-                       pandoc.type='', pandoc.extra, clean.md=TRUE, ...) { 
+               to='pdf', open=TRUE, out=sub('Rmd$|rmd$',to,Rmds), use.markdownToHTML=FALSE,
+               pandoc.type='', pandoc.extra, clean.md=TRUE, ...) { 
     require(knitr)
     require(markdown)
 
@@ -1801,8 +1787,8 @@ convertRmd <- function(Rmds=file.path(getwd(), dir('.', pattern='\\.Rmd$|\\.rmd$
                            md, res, pandoc.extra='')
             system(cmd)
         } else
-                markdownToHTML(md, res, options=c('use_xhml'))
-                
+            markdownToHTML(md, res, options=c('use_xhml'))
+        
         if (open)                       # interactive() &
             browseURL(res)
         ## system(sprintf('xdg-open %s', res), wait=F)
@@ -1842,7 +1828,7 @@ insert.column <- function (df, pos, stringsAsFactors=F, ...) {
     else if (pos >= ncol(df)) 
         df <- cbind(df, stringsAsFactors=stringsAsFactors, ...)
     else df <- cbind(df[, 1:(pos - 1), drop = F], ..., df[, pos:ncol(df), 
-                                           drop = F], stringsAsFactors=stringsAsFactors)
+                                                          drop = F], stringsAsFactors=stringsAsFactors)
     return(df)
 }
 
@@ -1935,9 +1921,9 @@ is.git.tracked <- function(f) {
 
 ## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
 check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),
-                     ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
-                                    'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
-                     only=c('/'), recursive=T, save_deps=T, use.xelatex=T, ignore.rnw=F) {
+                             ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
+                                            'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
+                             only=c('/'), recursive=T, save_deps=T, use.xelatex=T, ignore.rnw=F) {
 
     extension <- function(x) {
         y <- x
@@ -2023,11 +2009,11 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
     }
     
     cat('\n\n')
-    alldeps <- alldeps[!grepl('^[[:blank:]]*\\%', alldeps)]
+    alldeps <- alldeps[!grepl('^[[:blank:]]*\\%', alldeps$dep), ]
     alldeps$dep <- strtrim(alldeps$dep)
     ## Apply ignore rules
     alldeps$ignored <- ifelse( extension(alldeps$dep) %in% ext.ignore  | grepl(paths.ignore, alldeps$dep) |
-                               is.na(alldeps$dep), T, F)
+                                is.na(alldeps$dep), T, F)
     ## Detect dependencies that are not file names
     alldeps$valid <- NA
     alldeps$valid[!alldeps$ignored] <- ifelse(grepl('[<%"\'\\(\\) ,=]+', alldeps$dep[!alldeps$ignored]), F, T)
@@ -2055,6 +2041,267 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
     }
 }
 
+
+check.latex.sources <- function(fold = normalizePath('.'),
+                        paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),
+                        ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
+                                       'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
+                        only=c('/'), recursive=T, save_deps=T, use.xelatex=T, ignore.rnw=F,
+                        source.types = c('r')) {
+
+    extension <- function(x) {
+        y <- x
+        c <- grepl('\\.', y)
+        y[c] <- sub('.*\\.([^.]*)$', '\\1', y[c])
+        y[!c & !is.na(y)] <- ''
+        return(y)
+    }
+    
+    alldeps <- NULL
+    prevdir <- getwd()
+    setwd(fold)
+    ## File dependencies in Sweave files
+    if (!ignore.rnw) {
+        rnw <- dir('.', '*.rnw$|*.Rnw$', recursive=recursive)
+        basedir <- getwd()
+        r1=rnw[2]
+        for (r1 in rnw) {
+            cat('\n************  ', r1, '  ************\n')
+            rdir <- dirname(r1)
+            setwd(rdir)
+            r2 <- basename(r1)
+            r <- readLines(r2)
+            c1 <- r[grepl('\\bload\\(', r) & !grepl('^[[:blank:]]*#', r)]
+              fs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', c1)
+            c2 <- r[grepl('\\bread\\.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
+              fs2 <- sub('.*read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
+            fs <- c(fs1, fs2)
+            ## Replace global variables in .mk files by their value
+            c <- grepl('load\\([a-zA-Z]+', fs)
+            alldeps1 <- sub('.*load\\((.*).*\\).*', '\\1', fs[c])
+            s <- unlist(sapply(dir('.', '*.mk.parsed'), function(mk) readLines(mk), simplify=F))
+            if (!is.null(s)) {
+                s1 <- do.call('rbind', strsplit(s, '[[:blank:]]*=[[:blank:]]*'))
+                s2 <- sapply(alldeps1, function(x) s1[which(s1[,1] %in% x),2], simplify=F)
+                fs[c] <- ifelse(sapply(s2, length), sapply(s2, '[', 1), names(s2))
+            }
+            cat(paste(fs, collapse='\n'),'\n')
+            fs <- normalizePath(fs)
+            ## fs <- fs[!(extension(fs) %in% ext.ignore)]
+            if (length(fs)) {
+                alldeps <- rbind(alldeps, data.frame(infile = r1, dep = fs, stringsAsFactors = F))
+            } else alldeps <- rbind(alldeps, data.frame(infile = r1, dep = NA, stringsAsFactors = F))
+            setwd(basedir)
+            cat('\n')
+        }
+    }
+    ## File dependencies in tex files
+    tex <- dir('.', '*.tex$', recursive=recursive)
+    tex <- tex[!(tex %in% 'aebr.tex')]
+    basedir <- getwd()
+    t=tex[3]
+    for (t in tex) {
+        cat('\n************  ', t, '  ************\n')
+        tdir <- dirname(t)
+        setwd(tdir)
+        t2 <- basename(t)
+        bt <- sub('\\.tex', '', t2)
+        tmp <- readLines(t2)
+        if (any(grepl('begin\\{document\\}', tmp))) {
+            if (!use.xelatex) {
+                s <- system(sprintf('pdflatex -recorder -interaction=nonstopmode %s', bt), intern=T)
+            } else {
+                s <- system(sprintf('xelatex -recorder -interaction=nonstopmode %s', bt), intern=T)
+            }
+            f <- sprintf('%s.fls', bt)
+            if (file.exists(f)) {
+                fls <- readLines(f)
+                fls <- sapply(strsplit(fls, ' '), function(x) x[2])
+                fls <- sub('^\\./', '', fls)
+                fls <- unique(fls)
+                fls <- fls[!grepl(sprintf('^%s', bt), fls)]
+                fls <- fls[!(fls %in% normalizePath(fold))]
+                fs <- normalizePath(fls)
+                if (length(fs)) {
+                    alldeps <- rbind(alldeps, data.frame(infile = t, dep = fs, stringsAsFactors = F))
+                } else alldeps <- rbind(alldeps, data.frame(infile = t, dep = NA, stringsAsFactors = F))
+                cat(paste(fs[!(extension(fs) %in% ext.ignore) & !grepl(paths.ignore, fs)], collapse='\n'))
+                cat('\n')
+            } else cat('fls file inexistent. There is a problem with this file...\n')
+        } else cat('Not a master file. Skip...\n')
+        setwd(basedir)
+    }
+    
+    cat('\n\n')
+    alldeps <- alldeps[!grepl('^[[:blank:]]*\\%', alldeps$dep), ]
+    alldeps$dep <- strtrim(alldeps$dep)
+    ## Apply ignore rules
+    alldeps$ignored <- ifelse( extension(alldeps$dep) %in% ext.ignore  | grepl(paths.ignore, alldeps$dep) |
+                                is.na(alldeps$dep), T, F)
+    alldeps <- subset(alldeps, ignored == F)
+    sources <- sapply(1:nrow(alldeps), function(i) {
+                          cat(i, '\n')
+                          d <- alldeps[i, ]
+                          f <- basename(d$dep)
+                          match <- system(sprintf('grep -r --include="*.r" %s .', f), intern = T)
+                          if (length(match)) {
+                              m <- do.call('rbind', sapply(strsplit(match, ':'), function(x) {
+                                                               as.data.frame(rbind(x), stringsAsFactors=F)
+                                                           }, simplify=F))
+                              names(m) <- c('source', 'call')
+                              m <- cbind(infile = d$infile, dep = sub(normalizePath(fold), '', d$dep), m)
+                              m$source_mk <- sapply(m$source, function(sc) {
+                                                       fr <- basename(sc)
+                                                       matchr <- system(sprintf('grep -r --include="makefile" %s .', fr),
+                                                                       intern = T)
+                                                       if (length(matchr)) {
+                                                           mr <- paste( unique(sapply(strsplit(matchr, ':'), '[', 1)),
+                                                                      collapse='; ')
+                                                       } else mr <- NA
+                                                       return(mr)
+                                                   })
+                          } else {
+                              m <- cbind(infile = d$infile, dep = sub(normalizePath(fold), '', d$dep), source = NA,
+                                        call = NA, source_mk = NA)
+                          }
+                          return(m)
+                      }, simplify=F)
+    src <- do.call('rbind', sources)
+    rownames(src) <- NULL
+    src$loadsave <- ifelse(is.na(src$source), NA, ifelse(grepl('save\\(', src$call), 'save',
+                                                        ifelse(grepl('load\\(', src$call), 'load', '?')))
+    if (save_deps) {
+        out <- sprintf('%s/latex-deps-in-r-files.csv', fold)
+        cat('Dependencies saved in', out, '\n')
+        write.csv(src, out, row.names=F)
+    }
+    return(src)
+}
+
+
+check.latex.sources.in.makefiles <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),
+                                     ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
+                                                    'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
+                                     only=c('/'), recursive=T, save_deps=T, use.xelatex=T, ignore.rnw=F,
+                                     source.types = c('r')) {
+
+    extension <- function(x) {
+        y <- x
+        c <- grepl('\\.', y)
+        y[c] <- sub('.*\\.([^.]*)$', '\\1', y[c])
+        y[!c & !is.na(y)] <- ''
+        return(y)
+    }
+    
+    alldeps <- NULL
+    prevdir <- getwd()
+    setwd(fold)
+    ## File dependencies in Sweave files
+    if (!ignore.rnw) {
+        rnw <- dir('.', '*.rnw$|*.Rnw$', recursive=recursive)
+        basedir <- getwd()
+        r1=rnw[2]
+        for (r1 in rnw) {
+            cat('\n************  ', r1, '  ************\n')
+            rdir <- dirname(r1)
+            setwd(rdir)
+            r2 <- basename(r1)
+            r <- readLines(r2)
+            c1 <- r[grepl('\\bload\\(', r) & !grepl('^[[:blank:]]*#', r)]
+              fs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', c1)
+            c2 <- r[grepl('\\bread\\.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
+              fs2 <- sub('.*read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
+            fs <- c(fs1, fs2)
+            ## Replace global variables in .mk files by their value
+            c <- grepl('load\\([a-zA-Z]+', fs)
+            alldeps1 <- sub('.*load\\((.*).*\\).*', '\\1', fs[c])
+            s <- unlist(sapply(dir('.', '*.mk.parsed'), function(mk) readLines(mk), simplify=F))
+            if (!is.null(s)) {
+                s1 <- do.call('rbind', strsplit(s, '[[:blank:]]*=[[:blank:]]*'))
+                s2 <- sapply(alldeps1, function(x) s1[which(s1[,1] %in% x),2], simplify=F)
+                fs[c] <- ifelse(sapply(s2, length), sapply(s2, '[', 1), names(s2))
+            }
+            cat(paste(fs, collapse='\n'),'\n')
+            fs <- normalizePath(fs)
+            ## fs <- fs[!(extension(fs) %in% ext.ignore)]
+            if (length(fs)) {
+                alldeps <- rbind(alldeps, data.frame(infile = r1, dep = fs, stringsAsFactors = F))
+            } else alldeps <- rbind(alldeps, data.frame(infile = r1, dep = NA, stringsAsFactors = F))
+            setwd(basedir)
+            cat('\n')
+        }
+    }
+    ## File dependencies in tex files
+    tex <- dir('.', '*.tex$', recursive=recursive)
+    tex <- tex[!(tex %in% 'aebr.tex')]
+    basedir <- getwd()
+    t=tex[3]
+    for (t in tex) {
+        cat('\n************  ', t, '  ************\n')
+        tdir <- dirname(t)
+        setwd(tdir)
+        t2 <- basename(t)
+        bt <- sub('\\.tex', '', t2)
+        tmp <- readLines(t2)
+        if (any(grepl('begin\\{document\\}', tmp))) {
+            if (!use.xelatex) {
+                s <- system(sprintf('pdflatex -recorder -interaction=nonstopmode %s', bt), intern=T)
+            } else {
+                s <- system(sprintf('xelatex -recorder -interaction=nonstopmode %s', bt), intern=T)
+            }
+            f <- sprintf('%s.fls', bt)
+            if (file.exists(f)) {
+                fls <- readLines(f)
+                fls <- sapply(strsplit(fls, ' '), function(x) x[2])
+                fls <- sub('^\\./', '', fls)
+                fls <- unique(fls)
+                fls <- fls[!grepl(sprintf('^%s', bt), fls)]
+                fls <- fls[!(fls %in% normalizePath(fold))]
+                fs <- normalizePath(fls)
+                if (length(fs)) {
+                    alldeps <- rbind(alldeps, data.frame(infile = t, dep = fs, stringsAsFactors = F))
+                } else alldeps <- rbind(alldeps, data.frame(infile = t, dep = NA, stringsAsFactors = F))
+                cat(paste(fs[!(extension(fs) %in% ext.ignore) & !grepl(paths.ignore, fs)], collapse='\n'))
+                cat('\n')
+            } else cat('fls file inexistent. There is a problem with this file...\n')
+        } else cat('Not a master file. Skip...\n')
+        setwd(basedir)
+    }
+    
+    cat('\n\n')
+    alldeps <- alldeps[!grepl('^[[:blank:]]*\\%', alldeps$dep), ]
+    alldeps$dep <- strtrim(alldeps$dep)
+    ## Apply ignore rules
+    alldeps$ignored <- ifelse( extension(alldeps$dep) %in% ext.ignore  | grepl(paths.ignore, alldeps$dep) |
+                                is.na(alldeps$dep), T, F)
+    alldeps <- subset(alldeps, ignored == F)
+    sources <- sapply(1:nrow(alldeps), function(i) {
+                          cat(i, '\n')
+                          d <- alldeps[i, ]
+                          f <- basename(d$dep)
+                          match <- system(sprintf('grep -ri --include="makefile" %s .', f), intern = T)
+                          if (length(match)) {
+                              m <- do.call('rbind', sapply(strsplit(match, ':'), function(x) {
+                                                               as.data.frame(rbind(x), stringsAsFactors=F)
+                                                           }, simplify=F))
+                              names(m) <- c('source', 'call')
+                              m <- cbind(infile = d$infile, dep = sub(normalizePath(fold), '', d$dep), m)
+                          } else {
+                              m <- cbind(infile = d$infile, dep = sub(normalizePath(fold), '', d$dep), source = NA,
+                                         call = NA)
+                          }
+                          return(m)
+                      }, simplify=F)
+    src <- do.call('rbind', sources)
+    rownames(src) <- NULL
+    if (save_deps) {
+        cat('Dependencies saved in latex-deps-in-makefiles.csv\n')
+        write.csv(src, 'latex-deps-in-makefiles.csv', row.names=F)
+    }
+    return(src)
+}
+
+
 ## Stangle including also \Sexpr expressions
 mystangle <- function(file, outfile=sub('(\\.[^.]+)$', '_stangled.R', file)) {
     rnw <- readLines(file)
@@ -2065,19 +2312,19 @@ mystangle <- function(file, outfile=sub('(\\.[^.]+)$', '_stangled.R', file)) {
         if (length(sexprs)) {
             sxppos <- poss[sexprs]
             cmds <- sapply(1:length(sxppos), function(i) {
-                rnw1 <- rnw[sxppos[i]]
-                sxpstarts <- gregexpr('Sexpr', rnw1)[[1]]
-                if (length(sxpstarts) == 1) { ## single \Sexpr in line
-                    cmd <- sub('.*Sexpr *\\{([^}]+)\\}.*', '\\1', rnw1)
-                } else { ## multiple \Sexpr in line
-                    cmd <- sapply(1:length(sxpstarts), function(j) {
-                        pos <- sxpstarts[j]
-                        x <- substr(rnw1, pos, ifelse(j==length(sxpstarts), nchar(rnw1), sxpstarts[j+1]))
-                        return(sub('.*Sexpr *\\{([^}]+)\\}.*', '\\1', x))
-                    })
-                }
-                cmd <- paste(c(paste0('## l. ', sxppos[i]), cmd), collapse='\n')
-            })
+                               rnw1 <- rnw[sxppos[i]]
+                               sxpstarts <- gregexpr('Sexpr', rnw1)[[1]]
+                               if (length(sxpstarts) == 1) { ## single \Sexpr in line
+                                   cmd <- sub('.*Sexpr *\\{([^}]+)\\}.*', '\\1', rnw1)
+                               } else { ## multiple \Sexpr in line
+                                   cmd <- sapply(1:length(sxpstarts), function(j) {
+                                                     pos <- sxpstarts[j]
+                                                     x <- substr(rnw1, pos, ifelse(j==length(sxpstarts), nchar(rnw1), sxpstarts[j+1]))
+                                                     return(sub('.*Sexpr *\\{([^}]+)\\}.*', '\\1', x))
+                                                 })
+                               }
+                               cmd <- paste(c(paste0('## l. ', sxppos[i]), cmd), collapse='\n')
+                           })
             return(c('\n\n#####  Sexpr expressions', cmds, '\n\n'))
         } else return()
     }
@@ -2226,7 +2473,7 @@ whichseason <- function(d, starts, names) {
     dyday <- lubridate::yday(d)
     dyday0 <- lubridate::yday(d) - minyday
     dyday0 <- ifelse(dyday0<0, dyday0+366, dyday0)
-        
+    
     pers <- cut(dyday0, breaks=startsyday0, right=F, labels=names)
     return(pers)
 }
@@ -2257,7 +2504,7 @@ corr_plot <- function(df, with.diag.lines=F, use.dens.cols=T) {
         ncol <- 14
         pal <- col.regions(ncol)
         col.ind <- as.numeric(cut(corr, breaks = seq(from = -1, to = 1, 
-                                            length = ncol + 1), include.lowest = TRUE))
+                                                     length = ncol + 1), include.lowest = TRUE))
         usr <- par("usr")
         rect(usr[1], usr[3], usr[2], usr[4], col = pal[col.ind], 
              border = NA)
@@ -2312,23 +2559,23 @@ getbibrefs <- function(texdir='.', overwrite=T, outbib='bib.bib',
     bib <- readLines(bibfile)
     refstarts <- grep('^[[:blank:]]*@', bib)
     bibtags <- sort(unique(as.character(sort(unlist(sapply(texfiles, function(tex) {
-        t <- readLines(paste0(texdir, '/', tex))
-        t <- t[!grepl('^[[:blank:]]*%', t)]  ## remove comments
-        t <- gsub('\\[[^]]*\\]', '', gsub('[[:blank:]]+', ' ', paste(t, collapse=' ')))
-        locs <- gregexpr('\\\\cite[pt]*', t)[[1]]
-        if (!any(locs == -1)) {
-            return(grep('_', sort(unique(gsub(' +', '', unlist(sapply(locs, function(i) {
-                strsplit(sub('\\\\cite[pt]*\\{([^\\}]+)\\}.*', '\\1', substr(t, i, nchar(t))), ',')
-            }, simplify=F))))), val=T))
-        } else return(NULL)
-    }, simplify=F))))))
+                                                               t <- readLines(paste0(texdir, '/', tex))
+                                                               t <- t[!grepl('^[[:blank:]]*%', t)]  ## remove comments
+                                                               t <- gsub('\\[[^]]*\\]', '', gsub('[[:blank:]]+', ' ', paste(t, collapse=' ')))
+                                                               locs <- gregexpr('\\\\cite[pt]*', t)[[1]]
+                                                               if (!any(locs == -1)) {
+                                                                   return(grep('_', sort(unique(gsub(' +', '', unlist(sapply(locs, function(i) {
+                                                                                                                                 strsplit(sub('\\\\cite[pt]*\\{([^\\}]+)\\}.*', '\\1', substr(t, i, nchar(t))), ',')
+                                                                                                                             }, simplify=F))))), val=T))
+                                                               } else return(NULL)
+                                                           }, simplify=F))))))
     cat(length(bibtags), 'references used in total.\n')
     subbib <- sapply(bibtags, function(tag) {
-        refstart <- grep(sprintf('\\<%s\\>', tag), bib)[1]
-        if (!is.na(refstart)) {
-            return(bib[refstart:(min(refstarts[refstarts > refstart])-1)])
-        } else cat('WARNING!! Could not find ref: ', dQuote(tag), '\n')
-    })
+                         refstart <- grep(sprintf('\\<%s\\>', tag), bib)[1]
+                         if (!is.na(refstart)) {
+                             return(bib[refstart:(min(refstarts[refstarts > refstart])-1)])
+                         } else cat('WARNING!! Could not find ref: ', dQuote(tag), '\n')
+                     })
     if (!file.exists(outbib) | overwrite) {
         cat(paste(unlist(subbib), collapse='\n'), file='bib.bib')
         cat('References exported to ', dQuote(outbib), '.\n', sep='')
@@ -2380,3 +2627,73 @@ setupenv <- function(verb = F, envs = sort(dir('.', '*.env$')), warn=T) {
     }
 }
 
+pgExport <- function(shp, tablename='tmpshp', dbname='mygis', dbuser = 'dba', verb=T) {
+    if (!grepl('^Spatial[PL]', class(shp)))  stop('Object to export is not spatial')
+    if (!is.null(attr(suppressWarnings(system(sprintf("psql -lqt | cut -d \\| -f 1 | grep -w %s", dbname),
+                                              intern=T)), 'status'))) {
+        if (verb)  cat('\nCreating mygis database...\n')
+        system(sprintf('createdb %s', dbname))
+        system(sprintf("psql -c 'create extension postgis' %s -U %s", dbname, dbuser))
+        system(sprintf("psql -c 'create extension postgis_topology' %s -U %s", dbname, dbuser))
+    }
+    library(rgdal)
+    if (verb)  cat(sprintf('\nExporting to %s database...\n', dbname))
+    if (!grepl('DataFrame', class(shp)))  shp <- as(shp, paste0(class(shp), 'DataFrame'))
+    writeOGR(shp, '/tmp', tablename, 'ESRI Shapefile', overwrite_layer = T)
+    system(sprintf("psql %s -U %s -c 'drop table if exists %s'", dbname, dbuser, tablename))
+    system(sprintf('shp2pgsql /tmp/%s.shp | psql %s -U %s', tablename, dbname, dbuser))
+    proj <- proj4string(shp)
+    if (grepl('epsg:[0-9]+ ', proj)) {
+        proj4 <- sub('.*epsg:([0-9]+) .*', '\\1', proj)
+        system(sprintf("psql %s -U %s -c 'update %s set geom = st_setsrid(geom, %s)'",
+                       dbname, dbuser, tablename, proj4))
+    } else warning('No epsg found in input object, projection not set in Postgres')
+}
+
+pgUnion <- function(inname='tmpshp', outname='out_union', incol='geom', outcol='geom', dbname='mygis', dbuser='dba') {
+    system(sprintf("psql %1$s -U %6$s -c 'drop table if exists %2$s;
+                    create table %2$s as select st_multi(st_union(%3$s)) as %4$s from %5$s'",
+                   dbname, outname, incol, outcol, inname, dbuser))
+    return(outname)
+}
+
+pgBuffer <- function(inname, width, outname='out_buffer', incol='geom', outcol='geom', dbname='mygis', dbuser='dba') {
+    system(sprintf("psql %1$s -U %7$s -c 'drop table if exists %2$s;
+                    create table %2$s as select st_buffer(%3$s, %4$s) as %5$s from %6$s'",
+                   dbname, outname, incol, width, outcol, inname, dbuser))
+    return(outname)
+}
+
+pgCmd <- function(from, select, outname, dbname='mygis', dbuser = 'dba') {
+    system(sprintf("psql %1$s -U %5$s -c 'drop table if exists %2$s;
+                    create table %2$s as select %3$s from %4$s'",
+                   dbname, outname, select, from, dbuser))
+    return(outname)
+}
+
+pgReturn <- function(tablename='tmpshp', outfile='out_shp.shp', dbname='mygis', dbuser='dba') {
+    library(rgdal)
+    system(sprintf('ogr2ogr -f "ESRI Shapefile" -overwrite %s PG:"dbname=%s user=%s" -sql "select * from %s"',
+                   outfile, dbname, dbuser, tablename))
+    shp <- readOGR(dirname(outfile), sub('\\..*$', '', basename(outfile)))
+    return(shp)
+}
+
+zoom <- function(plotfun, new=T) {
+    if (new | !length(dev.list())) {
+        x11()
+        plotfun()
+    }
+    xys <- locator(2)
+    plotfun(xlim=c(min(xys$x), max(xys$x)),
+            ylim=c(min(xys$y), max(xys$y)))
+}
+
+zoom1 <- function(spobj, new=T, ...) {
+    x11()
+    plot(spobj, ...)
+    xys <- locator(2)
+    plot(spobj, xlim=c(min(xys$x), max(xys$x)),
+         ylim=c(min(xys$y), max(xys$y)), ...)
+    cat(paste0('xlim=c(', min(xys$x),',',max(xys$x), '), ylim=c(', min(xys$y), ',', max(xys$y), ')\n'))
+}
