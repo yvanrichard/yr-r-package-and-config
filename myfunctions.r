@@ -1872,11 +1872,13 @@ get_stats <- function(x, na.rm=T) {
 
 NAanalyse <- function(df, plotx=NULL, nx=10, ncol=4, mar=c(3,3,1,1)) {
     sumna <- apply(df, 2, function(x) sum(is.na(x)))
-    ## sort(sumna, decreasing=T)
+    sna <- sort(sumna[sumna>0], decreasing=T)
+    cat('\n===', length(sna), 'columns with some NAs (out of', ncol(df), ',',
+        round(100*length(sna)/ncol(df), 1), '%)\n')
+    cat('\n-- Number of records that are NA:\n')
+    print(sna)
+    cat('\n-- Percentage of NAs:\n')
     propna <- sort(round(100*sumna/nrow(df), 1), decreasing=T)
-    cat('\n===', sum(propna>0), 'columns with some NAs (out of', ncol(df), ',',
-        round(100*sum(propna>0)/length(propna), 1), '%)\n')
-    cat('\n=== Proportion of NAs:\n')
     print(propna[propna>0])
     cat('\n===', sum(propna==0),'columns without NAs:\n')
     print(names(propna[propna==0]))
@@ -2696,4 +2698,25 @@ zoom1 <- function(spobj, new=T, ...) {
     plot(spobj, xlim=c(min(xys$x), max(xys$x)),
          ylim=c(min(xys$y), max(xys$y)), ...)
     cat(paste0('xlim=c(', min(xys$x),',',max(xys$x), '), ylim=c(', min(xys$y), ',', max(xys$y), ')\n'))
+}
+
+
+str2org <- function(what) {
+
+    tmpfile <- tempfile('str_output_')
+    orgfile <- paste0(tmpfile, '.org')
+    capture.output(str(what), file=tmpfile)
+    strout <- readLines(tmpfile)
+    while (length(grep('\\.\\. \\.', strout))) {
+        strout <- gsub('[[:blank:]*]*\\.\\.([[:blank:]@$-]*[^.])', '* \\1', strout)
+    }
+    while( length(grep('\\*[[:blank:]]+\\*', strout)) ) {
+        strout <- gsub('\\*[[:blank:]]+\\*', '**', strout)
+    }
+    strout <- c(strout, "* org conf", "#+STARTUP: indent", "#+STARTUP: showstars", "#+STARTUP: showall",
+               "#+INFOJS_OPT: view:info toc:true view:content tdepth:2",
+               "#+SETUPFILE: ~/.emacs.d/github_projects/org-html-themes/setup/theme-readtheorg.setup")
+    writeLines(strout, orgfile, sep = '\n')
+    system(sprintf('emacsclient %s', orgfile), wait = F)
+
 }
