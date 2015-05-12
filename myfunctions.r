@@ -2707,16 +2707,20 @@ str2org <- function(what) {
     orgfile <- paste0(tmpfile, '.org')
     capture.output(str(what), file=tmpfile)
     strout <- readLines(tmpfile)
+    strout <- gsub('^([[:blank:].]*)\\.\\.\\$', '\\1.. .. $', strout)
+    strout <- gsub('^([[:blank:].]*)\\.\\.\\-', '\\1.. .. -', strout)
+    strout <- gsub('^[[:blank:]]*\\$', '.. $', strout)
     while (length(grep('\\.\\. \\.', strout))) {
         strout <- gsub('[[:blank:]*]*\\.\\.([[:blank:]@$-]*[^.])', '* \\1', strout)
     }
     while( length(grep('\\*[[:blank:]]+\\*', strout)) ) {
         strout <- gsub('\\*[[:blank:]]+\\*', '**', strout)
     }
+    strout <- gsub('\\*[[:blank:]]+([$-])', '* \\1', strout)
     strout <- c(strout, "* org conf", "#+STARTUP: indent", "#+STARTUP: showstars", "#+STARTUP: showall",
                "#+INFOJS_OPT: view:info toc:true view:content tdepth:2",
                "#+SETUPFILE: ~/.emacs.d/github_projects/org-html-themes/setup/theme-readtheorg.setup")
     writeLines(strout, orgfile, sep = '\n')
-    system(sprintf('emacsclient %s', orgfile), wait = F)
+    system(sprintf('emacsclient %s', orgfile), wait = T)
 
 }
