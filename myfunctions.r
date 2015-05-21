@@ -1919,7 +1919,7 @@ is.git.tracked <- function(f) {
     if (!length(s))
         return(F) else return(T)
 }
-
+ 
 
 ## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
 check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),
@@ -2702,14 +2702,15 @@ zoom1 <- function(spobj, new=T, ...) {
 
 
 str2org <- function(what) {
-
+## Return the output of str() as an org file (open in emacs) for better visibility and collapsible levels
     tmpfile <- tempfile('str_output_')
     orgfile <- paste0(tmpfile, '.org')
-    capture.output(str(what), file=tmpfile)
+    capture.output(str(what, list.len = 199), file=tmpfile)
     strout <- readLines(tmpfile)
     strout <- gsub('^([[:blank:].]*)\\.\\.\\$', '\\1.. .. $', strout)
     strout <- gsub('^([[:blank:].]*)\\.\\.\\-', '\\1.. .. -', strout)
     strout <- gsub('^[[:blank:]]*\\$', '.. $', strout)
+    strout <- gsub('^([[:blank:].]*)\\[', '\\1.. [', strout)
     while (length(grep('\\.\\. \\.', strout))) {
         strout <- gsub('[[:blank:]*]*\\.\\.([[:blank:]@$-]*[^.])', '* \\1', strout)
     }
@@ -2721,6 +2722,96 @@ str2org <- function(what) {
                "#+INFOJS_OPT: view:info toc:true view:content tdepth:2",
                "#+SETUPFILE: ~/.emacs.d/github_projects/org-html-themes/setup/theme-readtheorg.setup")
     writeLines(strout, orgfile, sep = '\n')
-    system(sprintf('emacsclient %s', orgfile), wait = T)
+    system(sprintf('emacsclient -n %s', orgfile), intern = F, wait = F)
 
+}
+
+files2org <- function(fold = '.', outfile = tempfile('file_list_', fileext = '.org'), remove.base = T, open = T,
+              ignore = c('dead.letter', 'ed_music', 'fin_music', 'Podcasts'),
+              title = 'File list') {
+    library(data.table)
+    fs <- normalizePath(dir(fold, recursive = T, full.names = T, include.dirs = T))
+    finfos <- file.info(fs)
+    infos <- ifelse(finfos$isdir,
+                   sprintf('mod: %s', finfos$mtime),
+                   sprintf('mod: %s - %s bytes', finfos$mtime, finfos$size))
+    if (remove.base)
+        fs <- gsub(normalizePath(fold), '', fs)
+    fs <- gsub('^/', '', fs)
+    s <- strsplit(fs, '/')
+    mx <- max(sapply(s, length))
+    s2 <- do.call('rbind', sapply(s, function(x) c(x, rep('', mx - length(x))), simplify=F))
+    ## Filter
+    c <- s2[, 1] %in% ignore
+    s2 <- s2[!c, ]
+    infos <- infos[!c]
+    finfos <- finfos[!c,]
+    ## Format for org
+    if (mx > 1) {
+        for (i in 1:mx) {
+            c <- c(F, s2[2:nrow(s2), i] == s2[1:(nrow(s2)-1), i])  &  c(F, s2[1:(nrow(s2)-1),i] != '')
+            s2[c, i] <- '*'
+        }
+    }
+    s3 <- cbind('*', s2)
+    s4 <- apply(s3, 1, function(x) paste(x, collapse=''))
+    s5 <- gsub('^([*]*)', '\\1 ', s4)
+    s5 <- ifelse(finfos$isdir, paste0(s5, '/'), s5)
+    s6 <- sprintf('%s \t/%s/', s5, infos)
+    desc <- c(sprintf('Created: %s', Sys.time()),
+             sprintf('Base: %s', sQuote(normalizePath(fold))),
+             sprintf('From computer: %s', sQuote(system('hostname', intern=T))))
+    s6 <- c(paste(desc, collapse='\n\n'), '', s6)
+    strout <- c(s6, "* org conf", "#+STARTUP:\tindent", "#+STARTUP:\tshowstars", "#+STARTUP:\tshowall",
+               "#+INFOJS_OPT:\tview:info toc:true view:content tdepth:2",
+               ## "#+SETUPFILE:\t~/.emacs.d/github_projects/org-html-themes/setup/theme-readtheorg.setup",
+               sprintf("#+TITLE:\t%s", title),
+               sprintf("#+DATE:\t%s", Sys.Date()),
+               sprintf("#+DESCRIPTION:\t%s", paste(desc, collapse = ' - ')))
+    writeLines(strout, outfile, sep = '\n')
+    cat('File list written to', normalizePath(outfile), '\n')
+    if (open)
+        system(sprintf('emacsclient -n %s', outfile), intern = F, wait = F)
+}
+
+
+
+replicateFileStruct <- function(fold = '.', outdir = '~/test', overwrite = F, remove.base = T, 
+                        ignore = c('dead\\.letter', 'ed_music', 'fin_music', 'Podcasts')) {
+###  Replicates a folder stucture (recursively) by creating dummies
+    op <- options('useFancyQuotes')
+    options('useFancyQuotes'=F)
+    library(data.table)
+    if (!file.exists(outdir))
+        dir.create(outdir, recursive = T)
+    ## Fetch file list
+    fs <- normalizePath(dir(fold, recursive = T, full.names = T, include.dirs = T))
+    finfos <- file.info(fs)
+    ## Ignore files
+    toign <- NULL
+    for (ign in ignore) {
+        toign <- c(toign, grep(ign, fs))
+    }
+    fs <- fs[!((1:length(fs)) %in% toign)]
+    finfos <- finfos[!((1:nrow(finfos)) %in% toign), ]
+    if (remove.base) {
+        fs <- gsub(normalizePath(fold), '', fs)
+        fs <- gsub('^/', '', fs)
+    }
+    fs <- paste0(outdir, '/', fs)
+
+    ## Create directories
+    dirs <- fs[finfos$isdir == T]
+    dir=dirs[1]
+    for (dir in dirs) {
+        dir.create(dir, recursive = T, showWarnings = F)
+    }
+    ## Remove folders from file list
+    fs <- fs[!finfos$isdir]
+    ## Create files
+    for (f in fs) {
+        if (!file.exists(f))
+            r <- file.create(f, showWarnings = F)
+    }
+    options('useFancyQuotes'=op)
 }
