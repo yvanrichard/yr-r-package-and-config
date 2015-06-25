@@ -20,8 +20,8 @@
 (package-initialize)
 (setq package-archives
 '(("ELPA" . "http://tromey.com/elpa/")
-   ("gnu" . "http://elpa.gnu.org/packages/")
-   ("melpa" . "http://melpa.org/packages/")))
+  ("gnu" . "http://elpa.gnu.org/packages/")
+  ("melpa" . "http://melpa.org/packages/")))
    ;; ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ;; Window position
@@ -38,8 +38,22 @@
 ;;    Global
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; hippie expand is dabbrev expand on steroids
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev-visible
+					 try-expand-dabbrev
+                                         try-expand-dabbrev-all-buffers
+                                         try-expand-dabbrev-from-kill
+                                         try-complete-file-name-partially
+                                         try-complete-file-name
+                                         try-expand-all-abbrevs
+                                         try-expand-list
+                                         try-expand-line
+                                         try-complete-lisp-symbol-partially
+                                         try-complete-lisp-symbol))
+
+
 (global-set-key [C-tab] 'completion-at-point)
-(global-set-key (kbd "C-\\") 'dabbrev-expand)
+(global-set-key (kbd "C-\\") 'hippie-expand)
 
 (defun zap-up-to-char (arg char)
   "Kill up to, but not including ARGth occurrence of CHAR.
@@ -160,19 +174,53 @@ there's a region, all lines that region covers will be duplicated."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#212121" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :family "Source Code Pro"))))
- '(ess-numbers-face ((t (:inherit font-lock-type-face :foreground "light salmon" :slant normal))))
+ '(comint-highlight-input ((t (:foreground "#66BB66"))))
+ '(comint-highlight-prompt ((t (:inherit minibuffer-prompt :foreground "#009900"))))
+ '(compilation-info ((t (:inherit success :foreground "SpringGreen3"))))
+ '(dired-rainbow-data-face ((t (:foreground "#FFDDAA"))))
+ '(dired-rainbow-image-face ((t (:foreground "#DDAABB"))))
+ '(dired-rainbow-program-face ((t (:foreground "burlywood"))))
+ '(dired-rainbow-r-face ((t (:foreground "#FF8888"))))
+ '(diredp-date-time ((t (:foreground "#DDDDFF"))))
+ '(diredp-dir-priv ((t (:background "#000000" :foreground "#CCCCFF" :weight bold))))
+ '(diredp-file-name ((t (:foreground "white"))))
+ '(diredp-file-suffix ((t (:foreground "#FFFFAA"))))
+ '(diredp-flag-mark-line ((t (:background "#333333" :foreground "#FFFF00"))))
+ '(diredp-ignored-file-name ((t (:foreground "#444444"))))
+ '(diredp-number ((t (:foreground "#FFFFBB"))))
+ '(diredp-other-priv ((t (:background "#333355"))))
+ '(diredp-read-priv ((t (:background "#443333"))))
+ '(diredp-write-priv ((t (:background "#334433"))))
+ '(ess-numbers-face ((t (:foreground "#FFFF88" :weight normal))))
+ '(flx-highlight-face ((t (:inherit font-lock-variable-name-face :underline "#666666" :weight bold))))
  '(flyspell-duplicate ((t (:foreground "Gold3" :underline nil :weight bold))))
+ '(font-latex-sedate-face ((t (:foreground "light coral"))))
+ '(font-latex-warning-face ((t (:inherit bold :foreground "orange red"))))
  '(font-lock-builtin-face ((t (:foreground "PeachPuff"))))
- '(font-lock-comment-face ((t (:foreground "maroon"))))
- '(font-lock-constant-face ((t (:foreground "goldenrod1"))))
- '(font-lock-keyword-face ((t (:foreground "khaki1"))))
+ '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground "#553333"))))
+ '(font-lock-comment-face ((t (:foreground "#AA6677"))))
+ '(font-lock-constant-face ((t (:foreground "#55AA55" :weight semi-bold))))
+ '(font-lock-keyword-face ((t (:foreground "#88DD88"))))
  '(font-lock-string-face ((t (:foreground "DarkSeaGreen2"))))
- '(font-lock-type-face ((t (:foreground "pale green"))))
+ '(font-lock-type-face ((t (:foreground "#FFFF66"))))
+ '(font-lock-warning-face ((t (:inherit error :foreground "#FFFF00"))))
+ '(highlight ((t (:background "#552222"))))
  '(highlight-indentation-face ((t (:inherit fringe :background "gray11"))))
- '(org-level-4 ((t (:foreground "khaki1" :inherit (outline-4)))))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "darksalmon"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "LightGoldenrod4"))))
- '(region ((t (:background "grey20")))))
+ '(italic ((t (:height 0.7))))
+ '(link ((t (:foreground "#CCDDFF" :underline "#110011"))))
+ '(match ((t (:background "#224477"))))
+ '(org-level-1 ((t (:inherit outline-1 :foreground "#FFF7BC"))))
+ '(org-level-2 ((t (:inherit outline-2 :foreground "#FCBBA1"))))
+ '(org-level-3 ((t (:foreground "#C6DBEF"))))
+ '(org-level-4 ((t (:inherit outline-4 :foreground "#CCEBC5"))))
+ '(org-special-keyword ((t (:foreground "#66FFFF"))))
+ '(outline-3 ((t (:foreground "#AAAAFF"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "#77AA77" :weight bold))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "#FF9999" :weight bold))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "#AAAAFF"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "#DDBB00"))))
+ '(region ((t (:background "grey20"))))
+ '(underline ((t (:underline "#666666")))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -180,14 +228,22 @@ there's a region, all lines that region covers will be duplicated."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(LaTeX-biblatex-use-Biber t t)
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(comint-buffer-maximum-size 20000)
+ '(comint-completion-addsuffix t)
+ '(comint-get-old-input (lambda nil "") t)
+ '(comint-input-ignoredups t)
+ '(comint-input-ring-size 5000)
+ '(comint-move-point-for-output nil)
+ '(comint-prompt-read-only nil)
+ '(comint-scroll-show-maximum-output t)
+ '(comint-scroll-to-bottom-on-input t)
+ '(comment-style (quote indent))
  '(custom-enabled-themes (quote (smart-mode-line-dark)))
  '(custom-safe-themes
    (quote
     ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "6c9ddb5e2ac58afb32358def7c68b6211f30dec8a92e44d2b9552141f76891b3" "a655f17225ad0a7190c79602593563191b7640ddebbb8c8fbd80c9d82faff1c6" "8d6fb24169d94df45422617a1dfabf15ca42a97d594d28b3584dc6db711e0e0b" "08efabe5a8f3827508634a3ceed33fa06b9daeef9c70a24218b70494acdf7855" "49eea2857afb24808915643b1b5bd093eefb35424c758f502e98a03d0d3df4b1" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+ '(diredp-hide-details-initially-flag nil)
+ '(doc-view-resolution 200)
  '(ediff-split-window-function (quote split-window-horizontally))
  '(ess-R-font-lock-keywords
    (quote
@@ -202,16 +258,22 @@ there's a region, all lines that region covers will be duplicated."
      (ess-fl-keyword:delimiters . t)
      (ess-fl-keyword:= . t)
      (ess-R-fl-keyword:F&T . t))))
+ '(ess-pdf-viewer-pref "okular")
  '(fci-rule-color "#873b81")
  '(fill-prefix nil)
+ '(flyspell-default-dictionary "en_GB")
+ '(font-latex-fontify-sectioning 1.05)
  '(hl-sexp-background-color "#201520")
+ '(ibuffer-filter-group-name-face (quote compilation-info))
  '(inhibit-startup-screen t)
+ '(ispell-local-dictionary "en_GB")
  '(markdown-command "pandoc --smart -f markdown -t html")
  '(markdown-css-path "/home/yvan/Documents/css/github-markdown.css")
  '(org-html-use-infojs t)
  '(org-latex-pdf-process
    (quote
     ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
+ '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
    (quote
     ((TeX-master . t)
@@ -236,6 +298,7 @@ there's a region, all lines that region covers will be duplicated."
      ("^~/dragonfly/" ":DFLY:")
      ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
  '(sml/shorten-directory t)
+ '(tramp-default-method "ssh")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -264,18 +327,27 @@ there's a region, all lines that region covers will be duplicated."
 
 (load-theme 'mytheme t)
 
-;; (global-wakatime-mode 1)
+(global-wakatime-mode 1)
+
+;;;;;;;;;;;;;;;;
+;;   eshell   ;;
+;;;;;;;;;;;;;;;;
+(setenv "PAGER" "cat")
+(add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Latex, Sweave, etc.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; (load "auctex.el" nil t t)
+;; (load "preview-latex.el" nil t t)
+
 ;; use reftex
   ; with AUCTeX LaTeX mode
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex) 
-  ; with Emacs latex mode
-(add-hook 'latex-mode-hook 'turn-on-reftex)
+;; (add-hook 'LaTeX-mode-hook 'turn-on-reftex) 
+;;   ; with Emacs latex mode
+;; (add-hook 'latex-mode-hook 'turn-on-reftex)
   ; use natural science bibliography style
 (setq reftex-cite-format 'natbib)
 (setq-default TeX-master nil)
@@ -288,18 +360,17 @@ there's a region, all lines that region covers will be duplicated."
 ;;       '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
 
 ;; (setq ispell-program-name "ispell") ; could be ispell as well, depending on your preferences
-(setq ispell-dictionary "english") ; this can obviously be set to any language your spell-checking program supports
+;; (setq ispell-dictionary "english") ; this can obviously be set to any language your spell-checking program supports
 
 ;; (global-set-key (kbd "M-Q") 'region-fill-as-paragraph)                                  
 
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 (add-hook 'LaTeX-mode-hook
 	  '(lambda()
-	     (local-set-key [(tab)] 'dabbrev-expand)))
+	     (local-set-key [(tab)] 'hippie-expand)))
 (add-hook 'latex-mode-hook
 	  '(lambda()
-	     (local-set-key [(tab)] 'dabbrev-expand)))
+	     (local-set-key [(tab)] 'hippie-expand)))
 
 (add-to-list 'ispell-skip-region-alist '("^<<.*>>=" . "^@"))
 ;; (add-to-list 'ispell-skip-region-alist '("Sexpr{" . "}"))
@@ -371,12 +442,16 @@ there's a region, all lines that region covers will be duplicated."
 (require 'flx-ido)
 (ido-mode 1)
 (ido-everywhere 1)
+(ido-ubiquitous-mode 1)
 (flx-ido-mode 1)
 ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
+;; (setq ido-use-faces nil)
+(setq org-completion-use-ido t)
+(require 'ido-ubiquitous)
+(ido-ubiquitous-mode 1)
 
-
+;; (ivy-mode t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -480,14 +555,19 @@ prompt the user for a coding system."
 	 ("Seabird counts website" (filename . "seabird-counts-website"))
 	 ("XBP distribution" (filename . "black-petrel-distribution"))
 	 ("MBIE" (or (filename . "eREAR")
-		     (filename . "mbie")))
+		     (filename . "mbie")
+		     (filename . "rear")))
 	 ("SRA 2012" (filename . "sra-2012"))
 	 ("SRA 2014" (filename . "sra-2014"))
+	 ("SRA foundations" (filename . "sra-foundations"))
 	 ("Estimation 2014" (filename . "estimation-2014"))
 	 ("Ludicio" (filename . "ludicio/"))
 	 ("sra obs cov" (filename . "sra-observer-coverage/"))
 	 ("WHIO benthos" (filename . "whio-benthic-analysis/"))
 	 ("NPOA obs optimisation" (filename . "npoa-observer-optimisation/"))
+	 ("DOC 5-min bird counts" (filename . "doc-bird"))
+	 ("Dropbox" (filename . "Dropbox"))
+	 ("My tests" (filename . "mytests"))
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")
 			     (filename . ".emacs"))))))
@@ -520,6 +600,14 @@ prompt the user for a coding system."
 
 (add-hook 'ibuffer-menu-mode-hook 'buffer-menu-custom-font-lock)
 
+;; Switching to ibuffer puts the cursor on the most recent buffer
+(defadvice ibuffer (around ibuffer-point-to-most-recent) ()
+	   "Open ibuffer with cursor pointed to most recent buffer name"
+	   (let ((recent-buffer-name (buffer-name)))
+	     ad-do-it
+	     (ibuffer-jump-to-buffer recent-buffer-name)))
+(ad-activate 'ibuffer)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -541,16 +629,6 @@ prompt the user for a coding system."
 (add-hook 'ess-mode-hook 'highlight-indentation-mode) 
 (add-hook 'lisp-mode-hook 'highlight-indentation-mode)
 
-(defun aj-toggle-fold () 
-  "Toggle fold all lines larger than indentation on current line" 
-  (interactive) 
-  (let ((col 1)) 
-    (save-excursion 
-      (back-to-indentation) 
-      (setq col (+ 1 (current-column))) 
-      (set-selective-display 
-       (if selective-display nil (or col 1))))))
-(global-set-key (kbd "M-C-i") 'aj-toggle-fold)
 
 
 
@@ -559,12 +637,12 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(require 'ess-jags-d)
-(autoload 'ess-jags-mode "ess-jags-mode"
-   "Major mode for editing JAGS files" t)
-(add-to-list 'auto-mode-alist '("\\.bug\\'" . ess-jags-mode))
+;; ;; (require 'ess-jags-d)
+;; (autoload 'ess-jags-mode "ess-jags-mode"
+;;    "Major mode for editing JAGS files" t)
+;; (add-to-list 'auto-mode-alist '("\\.bug\\'" . ess-jags-mode))
 
-(require 'ess-eldoc) ;to show function arguments while you are typing them
+;; (require 'ess-eldoc) ;to show function arguments while you are typing them
 (setq ess-use-auto-complete 'script-only)
 ;; (require 'ess-site)
 
@@ -627,8 +705,8 @@ prompt the user for a coding system."
 
 (setq ess-indent-level 4)
 
-(add-to-list 'auto-mode-alist '("\\.Rnw\\'" . Rnw-mode))
-(add-to-list 'auto-mode-alist '("\\.rnw\\'" . Rnw-mode))
+(add-to-list 'auto-mode-alist '("\\.Rnw" . Rnw-mode))
+(add-to-list 'auto-mode-alist '("\\.rnw" . Rnw-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -701,13 +779,14 @@ prompt the user for a coding system."
 ;;    Ace jump mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 (define-key global-map (kbd "C-c C-SPC") 'ace-jump-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(helm-mode -1)
-(global-set-key (kbd "C-c h") 'helm-mini)
+;; (helm-mode -1)
+;; (global-set-key (kbd "C-c h") 'helm-mini)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -749,8 +828,8 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Powerline
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (require 'powerline)
-;; (powerline-default-theme)
+(require 'powerline)
+(powerline-default-theme)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -768,7 +847,7 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Tramp mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq tramp-default-method "ssh")
+;; (setq tramp-default-method "ssh")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Abbreviations
@@ -802,7 +881,7 @@ prompt the user for a coding system."
     ("0sll" "surface longline")
     ("0sra2t" "\citet{richard_risk_2013}")
     ("0sra2p" "\citep{richard_risk_2013}")
-    
+    ("0sra" "seabird risk assessment")    
     ))
 
 ;; stop asking whether to save newly added abbrev when quitting emacs
@@ -850,13 +929,14 @@ prompt the user for a coding system."
 
 
 ;; ;; Increase quality of viewed pdfs
-;; ;; (defcustom doc-view-ghostscript-options
-;; ;;           '("-dNOPAUSE" "-sDEVICE=png16m" "-dTextAlphaBits=4"
-;; ;;             "-dBATCH" "-dGraphicsAlphaBits=4" "-dQUIET"
-;; ;;             "-r300")
-;; ;;           "A list of options to give to ghostview."
-;; ;;           :type '(sexp)
-;; ;;           :group 'doc-view)
+;; (defcustom doc-view-ghostscript-options
+;;           '("-dNOPAUSE" "-sDEVICE=png16m" "-dTextAlphaBits=4"
+;;             "-dBATCH" "-dGraphicsAlphaBits=4" "-dQUIET"
+;;             "-r300")
+;;           "A list of options to give to ghostview."
+;;           :type '(sexp)
+;;           :group 'doc-view)
+
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;    buffer-timer
@@ -921,10 +1001,9 @@ prompt the user for a coding system."
     (start-process "" nil "/usr/bin/gnome-open" filename)))
 
 (defun dired-gnome-open-file ()
-  "Opens the current file in a Dired buffer."
+  "Opens externally the current file in a Dired buffer."
   (interactive)
   (gnome-open-file (dired-get-file-for-visit)))
-
 (add-hook 'dired-mode-hook (lambda () (local-set-key "E" 'dired-gnome-open-file)))
 
 
@@ -957,7 +1036,8 @@ prompt the user for a coding system."
 	      (push '("beta" . ?𝛽) prettify-symbols-alist)
 	      (push '("gamma" . ?𝛾) prettify-symbols-alist)
 	      (push '("!=" . ?≠) prettify-symbols-alist)))
-(global-prettify-symbols-mode +1)  ;; only works in >24.4
+(if (>= emacs-minor-version 4)
+    (global-prettify-symbols-mode +1))  ;; only works in >24.4
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Wrap region - Select region then " to enclose it
@@ -977,8 +1057,12 @@ prompt the user for a coding system."
                 (lambda () (interactive) (find-file "~/Dropbox/dragonfly-notes/dragonfly-notes.org")))
 
 
-(define-key ess-bugs-mode-map (kbd "=") nil)
+;; (define-key ess-bugs-mode-map (kbd "=") nil)
 
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Multiple cursors ;;
+;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key (kbd "C-x m") 'mc/mark-all-like-this-dwim)
 
@@ -1064,7 +1148,158 @@ prompt the user for a coding system."
 	  '(lambda ()
 	     (local-set-key (kbd "C-c f") 'ess-eval-function-args)))
 
+(defun ess-for-to-sapply (arg)
+  "Change 'for' structure to 'sapply'."
+  (interactive "p")
+  (push-mark)
+  (search-backward-regexp "^[[:blank:]]*for")
+  (search-forward-regexp "for *" nil t)
+  (replace-match "s <- sapply" nil t)
+  (forward-char 1)
+  (er/expand-region 1)
+  (kill-region (region-beginning) (region-end))
+  (search-forward-regexp " *in *" nil t)
+  (replace-match "" nil t)
+  (backward-char)
+  (forward-sexp)
+  (backward-char)
+  (insert ", function(")
+  (yank)
+  (insert ")")
+  (delete-char 1)
+  (ess-indent-exp)
+  (forward-sexp)
+  (insert ")")
+  (pop-global-mark)
+  )
 
 (add-hook 'ess-mode-hook (lambda () (setq ess-arg-function-offset nil)))
 (add-hook 'ess-mode-hook (lambda () (setq ess-first-continued-statement-offset 2)))
 (add-hook 'ess-mode-hook (lambda () (setq ess-continued-statement-offset 0)))
+
+
+
+(setq magit-last-seen-setup-instructions "1.4.0")
+(setenv "EDITOR" "emacsclient")
+
+;; ;; (make-face 'font-lock-punctuation-face) ;; Create a new face
+;; ;; (set-face-foreground 'font-lock-punctuation-face "red") ;; Set the colour
+;; (defun custom-punc()
+;;   "adds a few special keywords for c and c++ modes"
+;;   (font-lock-add-keywords nil
+;;    '(
+;;      ("\\.;:," . 'font-latex-warning-face )
+;;      )
+;;    )
+;;   )
+;; (add-hook 'LaTeX-mode-hook 'custom-punc)
+;; (add-hook 'latex-mode-hook 'custom-punc)
+;; (add-hook 'tex-mode-hook 'custom-punc)
+;; (add-hook 'Rnw-mode-hook 'custom-punc)
+
+;; (add-to-list 'TeX-symbol-list ";")
+
+(setq compilation-scroll-output "first-error")
+
+;; (add-hook 'LaTeX-mode-hook (lambda ()
+;;   (font-lock-add-keywords nil         
+;;     '((":,.;" 0 font-lock-warning-face)))
+;; ))
+;; (add-hook 'latex-mode-hook (lambda ()
+;;   (font-lock-add-keywords nil         
+;;     '((":,.;" 0 font-lock-warning-face)))
+;; ))
+;; (add-hook 'tex-mode-hook (lambda ()
+;;   (font-lock-add-keywords nil         
+;;     '((":,.;" 0 font-lock-warning-face)))
+;; ))
+
+(global-set-key (kbd "C-c m") 'magit-status)
+
+
+;;;;;;;;;;;;;
+;; Folding ;;
+;;;;;;;;;;;;;
+
+(defun aj-toggle-fold () 
+  "Toggle fold all lines larger than indentation on current line" 
+  (interactive) 
+  (let ((col 1)) 
+    (save-excursion 
+      (back-to-indentation) 
+      (setq col (+ 1 (current-column))) 
+      (set-selective-display 
+       (if selective-display nil (or col 1))))))
+(global-set-key (kbd "M-C-i") 'aj-toggle-fold)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; Dired file colours ;;
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'dired-rainbow)
+(defconst dired-r-files-extensions
+  '("r" "R")
+  "Dired R files extensions")
+(dired-rainbow-define r "#E31A1C" dired-r-files-extensions)
+
+(defconst dired-program-files-extensions
+  '("py" "sql" "sh" "bat" "bug")
+  "Dired program files extensions")
+(dired-rainbow-define program "#D53E4F" dired-program-files-extensions)
+
+(defconst dired-text-files-extensions
+  '("tex" "rnw" "Rnw" "txt" "md" "Rmd" "rmd" "org" "ORG")
+  "Dired text files extensions")
+(dired-rainbow-define text "#FFEDA0" dired-text-files-extensions)
+
+(defconst dired-gis-files-extensions
+  '("dbf" "shp" "qgs" "shx" "prj" "qpj" "kml")
+  "Dired gis files extensions")
+(dired-rainbow-define gis "#7FBC41" dired-gis-files-extensions)
+
+(defconst dired-data-files-extensions
+  '("rdata" "RData" "Rdata" "csv" "CSV" "xls" "xlsx" "XLS" "XLSX" "db")
+  "Dired data files extensions")
+(dired-rainbow-define data "#FFD92F" dired-data-files-extensions)
+
+(defconst dired-image-files-extensions
+  '("png" "pdf" "jpg" "jpeg" "bmp" "PNG" "PDF" "JPG" "JPEG" "BMP" "tif" "tiff" "svg" "SVG")
+  "Dired image files extensions")
+(dired-rainbow-define image "#DF65B0" dired-image-files-extensions)
+
+(defconst dired-tmp-files-extensions
+  '("parsed" "tmp" "test" "r~" "mk~" "log" "R~" "sql~" "old" "rnw~" "tex~" "env~" "bug~")
+  "Dired tmp files extensions")
+(dired-rainbow-define tmp "#444444" dired-tmp-files-extensions)
+
+
+(require 'dired+)
+
+
+(server-start)
+
+(add-to-list 'auto-mode-alist '("\\.env\\'" . makefile-mode))
+(add-to-list 'auto-mode-alist '("\\.env0\\'" . makefile-mode))
+
+
+(make-face 'font-lock-r-df-face) ;; Create a new face
+(set-face-foreground 'font-lock-r-df-face "#BBBB99") ;; Set the colour
+(make-face 'font-lock-r-dollar-face) ;; Create a new face
+(set-face-foreground 'font-lock-r-dollar-face "#666666") ;; Set the colour
+(make-face 'font-lock-r-special-face) ;; Create a new face
+(set-face-foreground 'font-lock-r-special-face "#444444") ;; Set the colour
+(add-hook 'ess-mode-hook (lambda ()
+			   (font-lock-add-keywords nil
+						   '(("\\([a-zA-Z0-9_.]+\\)\\$" 1  'font-lock-r-df-face prepend)
+						     ("\\([a-zA-Z0-9_.]+\\)\\[\\[" 1  'font-lock-r-df-face prepend)
+						     ("\\(\\$\\)" 1  'font-lock-r-dollar-face prepend)
+						     ("\\(,\\)" 1  'font-lock-r-dollar-face prepend)
+						     ;; ("\\(\\[\\[\\)" 1  'font-lock-r-dollar-face prepend)
+						     ("\\(\\[\\)\\[" 1  'font-lock-r-dollar-face prepend)
+						     ("\\[\\(\\[\\)" 1  'font-lock-r-special-face prepend)
+						     ("\\(\\]\\)\\]" 1  'font-lock-r-special-face prepend)
+						     ("\\]\\(\\]\\)" 1  'font-lock-r-dollar-face prepend)
+						     ("\\([0-9.]+e[\\-0-9]+\\)" 1  'ess-numbers-face prepend)))))
+
+

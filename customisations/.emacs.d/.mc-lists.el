@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	forward-sexp
 	keyboard-quit
 	kill-region
 	))

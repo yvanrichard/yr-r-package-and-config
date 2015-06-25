@@ -5,3 +5,28 @@ ls
 ls -la
 cd ~/Music/
 cd =\ Rock\ -\ pop/
+ls
+cd data/
+ls
+ls
+ls -la
+make -n
+cd ..
+make -n
+(cd creators  &&  Rscript model_species_groups.r)
+cd creators/
+(cd creators/  &&  Rscript model_species_groups.r)
+( cd creators/  &&  Rscript model_species_groups.r ) 
+Rscript model_species_groups.r 
+Rscript prepare-main-data.r 
+cd ~/dragonfly/sra-2014/data-versions/global-data/new4dem-newgrps/pbr/
+Rscript prepare_estimates.r 
+make
+git status
+make
+make install
+cd ~/dragonfly/sra-2014/report/
+make -Bn
+make -B
+make -B
+ls

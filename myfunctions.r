@@ -1408,7 +1408,7 @@ check_cited_labels <- function(reportfile='report.tex', ignore=c('sec','subsec',
 ##makefile <- '~/dragonfly/sra-foundations/modelling/bh-dd-k50/makefile'
 ## makefile <- '~/dragonfly/sra-foundations/report/notes/makefile'
 graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranksep=0.2, ratio=0.66, margin=1,
-                           ignore.clusters=F, expand.vars=F) {
+                   ignore.clusters=F, expand.vars=F) {
     opt <- options("useFancyQuotes")
     options(useFancyQuotes = FALSE)
 
@@ -2181,6 +2181,83 @@ check.latex.sources <- function(fold = normalizePath('.'),
 }
 
 
+### Check order of labels and refs in LaTeX
+check.latex.labels.order <- function(texbase = './report.tex', with.inputs = T, ignores = c('sec', 'eq', 'app')) {
+    
+    fold <- normalizePath(dirname(texbase))
+    base <- basename(texbase)
+    get.refs <- function(tex) {
+        reflines <- grep('ref\\{', tex, val=T)
+        r=reflines[1]
+        refs <- as.vector(unlist(sapply(reflines, function(r) {
+            matches <- gregexpr( 'ref\\{', r )[[1]]
+            sapply(matches, function(m) {
+                sub('ref\\{([^\\}]+)\\}.*', '\\1', substr(r, m, nchar(r)))
+            })
+        })))
+        return(refs[!duplicated(refs)])
+    }
+    get.labels <- function(tex) {
+        lablines <- grep('label\\{', tex, val=T)
+        r=lablines[1]
+        labs <- as.vector(unlist(sapply(lablines, function(r) {
+            matches <- gregexpr( 'label\\{', r )[[1]]
+            sapply(matches, function(m) {
+                sub('label\\{([^\\}]+)\\}.*', '\\1', substr(r, m, nchar(r)))
+            })
+        })))
+        return(labs)
+    }
+
+    ## Get inputs
+    tex <- readLines(texbase)
+    inputs <- c(normalizePath(texbase),
+               paste0(fold, '/', gsub('.*\\{(.*)\\}.*', '\\1', grep('\\input\\{', tex, val=T)), '.tex'))
+
+    ## Get refs
+    allrefs <- do.call('rbind', sapply(inputs, function(inp) {
+        tex <- readLines(inp)
+        tex <- tex[!grepl('^[[:blank:]]*%', tex)]
+        refs <- get.refs(tex)
+        if (length(refs)) {
+            return(data.frame(file=sub('\\.tex', '', basename(inp)), ref=refs, stringsAsFactors = F))
+        }
+    }, simplify=F, USE.NAMES = F))
+
+    ## Get labs
+    alllabs <- do.call('rbind', sapply(inputs, function(inp) {
+        tex <- readLines(inp)
+        tex <- tex[!grepl('^[[:blank:]]*%', tex)]
+        labs <- get.labels(tex)
+        if (length(labs)) {
+            return(data.frame(file=sub('\\.tex', '', basename(inp)), lab=labs, stringsAsFactors = F))
+        }
+    }, simplify=F, USE.NAMES = F))
+
+    if (any(duplicated(alllabs$lab))) {
+        warning('Duplicated labels:  ', paste( alllabs$lab[duplicated(alllabs$lab)], collapse =', '))
+    }
+
+    ## Ignore some types
+    for (i in ignores) {
+        alllabs <- alllabs[!grepl(sprintf('^%s:', i), alllabs$lab), ]
+        allrefs <- allrefs[!grepl(sprintf('^%s:', i), allrefs$ref), ]
+        rownames(alllabs) <- NULL
+        rownames(allrefs) <- NULL
+    }
+
+    cat('\n=== Labels not cited:\n')
+    print(setdiff(alllabs$lab, allrefs$ref))
+
+    alllabs$ref.pos <- match(alllabs$lab, allrefs$ref)
+    alllabs$ref.file <- allrefs$file[match(alllabs$lab, allrefs$ref)]
+    allrefs$lab.pos <- match(allrefs$ref, alllabs$lab)
+    allrefs$lab.file <- alllabs$file[match(allrefs$ref, alllabs$lab)]
+
+    return( list( labels = alllabs,  refs = allrefs ) )
+}
+
+
 check.latex.sources.in.makefiles <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),
                                      ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
                                                     'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
@@ -2701,9 +2778,8 @@ zoom1 <- function(spobj, new=T, ...) {
 }
 
 
-str2org <- function(what) {
+str2org <- function(what, tmpfile = tempfile('str_output_'), open = T) {
 ## Return the output of str() as an org file (open in emacs) for better visibility and collapsible levels
-    tmpfile <- tempfile('str_output_')
     orgfile <- paste0(tmpfile, '.org')
     capture.output(str(what, list.len = 199), file=tmpfile)
     strout <- readLines(tmpfile)
@@ -2722,15 +2798,24 @@ str2org <- function(what) {
                "#+INFOJS_OPT: view:info toc:true view:content tdepth:2",
                "#+SETUPFILE: ~/.emacs.d/github_projects/org-html-themes/setup/theme-readtheorg.setup")
     writeLines(strout, orgfile, sep = '\n')
-    system(sprintf('emacsclient -n %s', orgfile), intern = F, wait = F)
-
+    if (open)
+        system(sprintf('emacsclient -n %s', orgfile), intern = F, wait = F)
 }
 
 files2org <- function(fold = '.', outfile = tempfile('file_list_', fileext = '.org'), remove.base = T, open = T,
-              ignore = c('dead.letter', 'ed_music', 'fin_music', 'Podcasts'),
+              details = T,
+              ignore = c('.*~', '.*/\\.git.*'), #c('dead.letter', 'ed_music', 'fin_music', 'Podcasts'),
               title = 'File list') {
     library(data.table)
-    fs <- normalizePath(dir(fold, recursive = T, full.names = T, include.dirs = T))
+    ## fs0 <- dir(fold, recursive = T, full.names = T, include.dirs = T)
+
+    fs1 <- system(sprintf("find -P %s %s",
+                         fold,
+                         paste(sprintf("\\( ! -regex '%s' \\)", ignore), collapse = ' ')),
+                 intern=T)
+    invalidsymlinks <- system(sprintf("find %s -type l -xtype l", fold), intern=T)
+    fs1 <- fs1[ !(fs1 %in% invalidsymlinks) ]
+    fs <- normalizePath(fs1)
     finfos <- file.info(fs)
     infos <- ifelse(finfos$isdir,
                    sprintf('mod: %s', finfos$mtime),
@@ -2740,12 +2825,33 @@ files2org <- function(fold = '.', outfile = tempfile('file_list_', fileext = '.o
     fs <- gsub('^/', '', fs)
     s <- strsplit(fs, '/')
     mx <- max(sapply(s, length))
+    ## Remove dups
+    isdup <- duplicated(s)
+    s <- s[which(!isdup)]
+    infos <- infos[!isdup]
+    finfos <- finfos[!isdup, ]
+    ## Collapse
     s2 <- do.call('rbind', sapply(s, function(x) c(x, rep('', mx - length(x))), simplify=F))
-    ## Filter
-    c <- s2[, 1] %in% ignore
-    s2 <- s2[!c, ]
-    infos <- infos[!c]
-    finfos <- finfos[!c,]
+    ## Sort
+    s[sapply(s, length) == 0] <- ''
+    so <- sapply(1:length(s), function(i) {
+                    x <- s[[i]]
+                    if (finfos$isdir[i]) {
+                        x[length(x)] <- paste0(x[length(x)], '/')
+                    }
+                    return(x)
+                }, simplify=F)
+    so <- do.call('rbind', sapply(so, function(x) c(x, rep('', mx - length(x))), simplify=F))
+    for (i in 1:ncol(so)) {
+        c <- grepl('/$', so[,i])
+        so[c, i] <- paste0('0000', so[c, i])
+        c <- grepl('^\\.', so[,i])
+        so[c, i] <- paste0('00', so[c, i])
+    }
+    ord <- do.call(order, data.frame(so))
+    s2 <- s2[ord, ]
+    infos <- infos[ord]
+    finfos <- finfos[ord, ]
     ## Format for org
     if (mx > 1) {
         for (i in 1:mx) {
@@ -2754,10 +2860,16 @@ files2org <- function(fold = '.', outfile = tempfile('file_list_', fileext = '.o
         }
     }
     s3 <- cbind('*', s2)
-    s4 <- apply(s3, 1, function(x) paste(x, collapse=''))
+    s4 <- apply(s3, 1, function(x) paste(x, collapse='/'))
+    s4 <- gsub('//+', '/', s4)
+    s4 <- gsub('/$', '', s4)
+    s4 <- gsub('\\*/', '*', s4)
     s5 <- gsub('^([*]*)', '\\1 ', s4)
+    ## s5 <- gsub('^\\**[[:blank:]]*$', '', s5)
     s5 <- ifelse(finfos$isdir, paste0(s5, '/'), s5)
-    s6 <- sprintf('%s \t/%s/', s5, infos)
+    if (details) {
+        s6 <- sprintf('%s \t/%s/', s5, infos)
+    } else  s6 <- s5
     desc <- c(sprintf('Created: %s', Sys.time()),
              sprintf('Base: %s', sQuote(normalizePath(fold))),
              sprintf('From computer: %s', sQuote(system('hostname', intern=T))))
@@ -2814,4 +2926,73 @@ replicateFileStruct <- function(fold = '.', outdir = '~/test', overwrite = F, re
             r <- file.create(f, showWarnings = F)
     }
     options('useFancyQuotes'=op)
+}
+
+
+## Display occurrences of a term in a graph (using tags), with tooltip about context in code
+## TODO: open file at correct line using "emacsclient +4 <file>" when clicked on occurrence to open at line 4.
+plottag <- function(word = 'observer_species', tagfile='~/dragonfly/oreo/tags', agent = 'dot', tooltip_len = 10) {
+    op <- options('useFancyQuotes')
+    options('useFancyQuotes'=F)
+    tags <- read.table(tagfile, sep ='\t', as.is=T)
+    names(tags) <- c('tag', 'file', 'pos')
+    t <- tags[tags$tag == word, ]
+    dot <- c('graph {',
+            'ratio=auto;', 'ranksep = 0.2;', 'rankdir = LR;',
+            sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor="#FFAAAA", shape=rectangle] %s', dQuote(word)))
+    conns <- NULL
+    files <- unique(t$file)
+    files2 <- paste0(dirname(tagfile), '/', files)
+    for (fi in 1:length(files)) {
+        cat(fi,'\n')
+        f <- files[fi]
+        t1 <- t[t$file == f,]
+        filecontent <- readLines(files2[fi])
+        fc <- filecontent[!grepl('^[[:blank:]]*--', filecontent)]
+        t1$valid <- !grepl('^[[:blank:]]*--', filecontent[as.numeric(t1$pos)])
+        creations <- which(grepl('\\bcreate.* as', fc, ignore.case = T) &
+                          !grepl('^[[:blank:]]+--', fc, ignore.case = T))
+        creat <- gsub(' +as', '', gsub('^[[:blank:]]*create +', '', fc[creations], ignore.case = T),
+                     ignore.case=T)
+        t1$clocs <- sapply(as.numeric(t1$pos), function(l) {
+            max(creations[creations <= l])
+        }, simplify=T)
+        t1$labs <- sprintf('%s - l.%s',
+                          gsub(' +as', '', gsub('^[[:blank:]]*create +', '', fc[t1$clocs], ignore.case = T),
+                               ignore.case=T), t1$pos)
+        
+        if (any(valid)) {
+
+            dot <- c(dot, 
+                    sprintf('subgraph cluster%1$i {
+label=%2$s; style="rounded,filled"; color=gray50; fillcolor=%3$s; fontcolor=black; fontsize=20;',
+fi, dQuote(f), 'gray90'))
+            
+            t1$tooltip <- NA
+            for (i in which(t1$valid)) {
+                l <- as.numeric(t1$pos[i])
+                t1$tooltip[i] <- gsub('"', '\'',
+                                     paste(gsub('^[[:blank:]]+', '&#9;&#9;&#9;&#9;',
+                                                filecontent[max(1, l-tooltip_len):min(length(filecontent),
+                                                                                      l+tooltip_len)]),
+                                           collapse='&#10;'))
+                conns <- c(conns, sprintf('%s -- %s;', dQuote(word),
+                                         dQuote(t1$labs[i])))
+                dot <- c(dot, sprintf('node [style=filled tooltip="%s" URL="%s"] %s;',
+                                     t1$tooltip[i], files2[fi], dQuote(t1$labs[i])))
+            }
+            dot <- c(dot, '}')
+        }
+    }
+
+    dot <- c(dot, conns, '}')
+    tmpfile <- tempfile(fileext='.dot')
+    outfile <- tempfile(fileext='.svg')
+    writeLines(dot, tmpfile)
+    system(sprintf('%s -Tsvg -o %s %s', agent, outfile, tmpfile))
+    system(sprintf('google-chrome %s', outfile))
+    ## system(sprintf('emacsclient -n %s', tmpfile), wait = F)
+    options('useFancyQuotes'=op)
+
+    
 }
