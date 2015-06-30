@@ -16,14 +16,14 @@ y:
 	rsync -avz -a customisations/. ~
 
 updatepkg:
-	rsync -avz ~/.emacs.d customisations/
-	rsync -avz ~/.emacs* customisations/
-	rsync -avz ~/.vim customisations/ -r
-	rsync -avz ~/.viminfo customisations/
-	rsync -avz ~/.vimrc customisations/
-	rsync -avz ~/.screenrc customisations/
-	rsync -avz ~/.bashrc customisations/
-	rsync -avz ~/.Rprofile customisations/
+	rsync -avz --exclude '.git*' ~/.emacs.d customisations/
+	rsync -avz --exclude '.git*' ~/.emacs* customisations/
+	rsync -avz --exclude '.git*' ~/.vim customisations/ -r
+	rsync -avz --exclude '.git*' ~/.viminfo customisations/
+	rsync -avz --exclude '.git*' ~/.vimrc customisations/
+	rsync -avz --exclude '.git*' ~/.screenrc customisations/
+	rsync -avz --exclude '.git*' ~/.bashrc customisations/
+	rsync -avz --exclude '.git*' ~/.Rprofile customisations/
 
 getpackagelist:
 	Rscript -e 'libs<-sort(library()$$results[,"Package"]); save(libs, file="r-packages_libs.rdata")'

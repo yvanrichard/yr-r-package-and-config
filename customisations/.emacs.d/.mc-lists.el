@@ -6,6 +6,7 @@
 	forward-sexp
 	keyboard-quit
 	kill-region
+	wdired-abort-changes
 	))
 
 (setq mc/cmds-to-run-once
