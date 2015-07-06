@@ -3037,3 +3037,26 @@ ghelp <- function(topic, ext='R', in_cran=ifelse(ext=='R', TRUE, FALSE)) {
   html_print(HTML(for_view))
  
 }
+
+
+webtab <- function(d, rownames = T, fontsize = '10px') {
+    library(DT)
+    headstyle <- '<span style="color:DarkSlateBlue;font-size:small">%s</span>'
+    rowstyle <- '<span style="color:DarkSlateBlue;font-size:small">%s</span>'
+    d <- as.data.frame(d)
+    ## if ('data.table' %in% class(d)) {
+    ##     d <- copy(d)
+    ##     setnames(d, names(d), sprintf(style, names(d)))
+    ## } else
+    names(d) <- sprintf(headstyle, names(d))
+    rownames(d) <- sprintf(rowstyle, rownames(d))
+    datatable(d, escape = F,
+              options = list(autoWidth = FALSE, paging = FALSE,
+                             searching = TRUE, info   = TRUE),
+              rownames = rownames,
+              filter = 'bottom',
+              class = 'stripe order-column hover compact',
+              extensions = c('FixedHeader') # 'TableTools',
+              ) %>% formatStyle(1:ncol(d), `font-size` = fontsize)
+}
+
