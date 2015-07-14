@@ -6,8 +6,9 @@ all: .yrpkg
 
 install:
 	sudo R CMD INSTALL yrpkg_*.tar.gz --byte-compile
+PERSLIB := $(shell Rscript --vanilla -e "cat(Sys.getenv('R_LIBS_USER'))")
 install2:
-	mkdir -f ~/R/perso_libs  &&  R CMD INSTALL yrpkg_*.tar.gz --byte-compile --library=~/R/perso_libs
+	R CMD INSTALL yrpkg_*.tar.gz --byte-compile --library=$(PERSLIB)
 
 r:
 	rsync -avz customisations/.Rprofile ~
@@ -30,3 +31,4 @@ getpackagelist:
 
 installpackagelist:
 	sudo Rscript -e 'load("r-packages_libs.rdata"); libs<-libs[!(libs %in% library()$$results[,"Package"])]; if (length(libs)) install.packages(libs) else cat("No packages needed to be installed\n")'
+
