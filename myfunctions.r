@@ -1919,7 +1919,7 @@ is.git.tracked <- function(f) {
     if (!length(s))
         return(F) else return(T)
 }
- 
+
 
 ## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
 check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),

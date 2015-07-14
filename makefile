@@ -7,7 +7,7 @@ all: .yrpkg
 install:
 	sudo R CMD INSTALL yrpkg_*.tar.gz --byte-compile
 install2:
-	R CMD INSTALL yrpkg_*.tar.gz --byte-compile
+	mkdir -f ~/R/perso_libs  &&  R CMD INSTALL yrpkg_*.tar.gz --byte-compile --library=~/R/perso_libs
 
 r:
 	rsync -avz customisations/.Rprofile ~
