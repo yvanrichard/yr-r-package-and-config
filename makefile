@@ -8,7 +8,7 @@ install:
 	sudo R CMD INSTALL yrpkg_*.tar.gz --byte-compile
 PERSLIB := $(shell Rscript --vanilla -e "cat(Sys.getenv('R_LIBS_USER'))")
 install2:
-	R CMD INSTALL yrpkg_*.tar.gz --byte-compile --library=$(PERSLIB)
+	mkdir -p $(PERSLIB)  &&  R CMD INSTALL yrpkg_*.tar.gz --byte-compile --library=$(PERSLIB)
 
 r:
 	rsync -avz customisations/.Rprofile ~
