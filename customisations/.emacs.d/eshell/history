@@ -30,3 +30,10 @@ make -Bn
 make -B
 make -B
 ls
+cd '/home/yvan/dragonfly/maui-may-2012/gis/'
+cd '/home/yvan/dragonfly/npoa-observer-optimisation_single/output_data/'
+ls
+touch .data
+s
+ls
+ls -la

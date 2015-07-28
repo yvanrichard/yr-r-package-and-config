@@ -173,7 +173,7 @@ there's a region, all lines that region covers will be duplicated."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#212121" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :family "Source Code Pro"))))
+ '(default ((t (:inherit nil :stipple nil :background "#212121" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "unknown" :family "Ubuntu Mono"))))
  '(comint-highlight-input ((t (:foreground "#66BB66"))))
  '(comint-highlight-prompt ((t (:inherit minibuffer-prompt :foreground "#009900"))))
  '(compilation-info ((t (:inherit success :foreground "SpringGreen3"))))
@@ -204,11 +204,14 @@ there's a region, all lines that region covers will be duplicated."
  '(font-lock-string-face ((t (:foreground "DarkSeaGreen2"))))
  '(font-lock-type-face ((t (:foreground "#FFFF66"))))
  '(font-lock-warning-face ((t (:inherit error :foreground "#FFFF00"))))
+ '(helm-ff-directory ((t (:inherit diredp-dir-priv))))
+ '(helm-selection ((t (:background "black" :distant-foreground "black"))))
  '(highlight ((t (:background "#552222"))))
  '(highlight-indentation-face ((t (:inherit fringe :background "gray11"))))
  '(italic ((t (:height 0.7))))
  '(link ((t (:foreground "#CCDDFF" :underline "#110011"))))
  '(match ((t (:background "#224477"))))
+ '(org-date ((t (:foreground "#AACCFF" :underline t))))
  '(org-level-1 ((t (:inherit outline-1 :foreground "#FFF7BC"))))
  '(org-level-2 ((t (:inherit outline-2 :foreground "#FCBBA1"))))
  '(org-level-3 ((t (:foreground "#C6DBEF"))))
@@ -233,7 +236,7 @@ there's a region, all lines that region covers will be duplicated."
  '(comint-get-old-input (lambda nil "") t)
  '(comint-input-ignoredups t)
  '(comint-input-ring-size 5000)
- '(comint-move-point-for-output nil)
+ '(comint-move-point-for-output t)
  '(comint-prompt-read-only nil)
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
@@ -263,6 +266,7 @@ there's a region, all lines that region covers will be duplicated."
  '(fill-prefix nil)
  '(flyspell-default-dictionary "en_GB")
  '(font-latex-fontify-sectioning 1.05)
+ '(helm-mode-fuzzy-match t)
  '(hl-sexp-background-color "#201520")
  '(ibuffer-filter-group-name-face (quote compilation-info))
  '(inhibit-startup-screen t)
@@ -325,7 +329,7 @@ there's a region, all lines that region covers will be duplicated."
  '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
  '(yank-pop-change-selection t))
 
-(load-theme 'mytheme t)
+;; (load-theme 'mytheme t)
 
 (global-wakatime-mode 1)
 
@@ -564,7 +568,8 @@ prompt the user for a coding system."
 	 ("Ludicio" (filename . "ludicio/"))
 	 ("sra obs cov" (filename . "sra-observer-coverage/"))
 	 ("WHIO benthos" (filename . "whio-benthic-analysis/"))
-	 ("NPOA obs optimisation" (filename . "npoa-observer-optimisation/"))
+	 ("NPOA obs optimisation" (filename . "npoa-observer-optimisation"))
+	 ("Seabird threat framework" (filename . "seabird-threat-framework"))
 	 ("DOC 5-min bird counts" (filename . "doc-bird"))
 	 ("Dropbox" (filename . "Dropbox"))
 	 ("My tests" (filename . "mytests"))
@@ -615,7 +620,8 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
+(rainbow-delimiters-mode)
+;; (global-rainbow-delimiters-mode)
 
 ;; Highlight region between parentheses
 ;; (require 'paren)
@@ -782,12 +788,20 @@ prompt the user for a coding system."
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 (define-key global-map (kbd "C-c C-SPC") 'ace-jump-mode)
 
+(global-set-key (kbd "C-;") 'avy-goto-word-or-subword-1)
+(global-set-key (kbd "C-:") 'avy-goto-char)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (helm-mode -1)
 ;; (global-set-key (kbd "C-c h") 'helm-mini)
-
+(global-set-key (kbd "C-c g") 'helm-do-grep)
+;; (eval-after-load 'helm-grep
+;;   '(setq helm-grep-default-command helm-grep-default-recurse-command))
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    expand-region
@@ -1035,9 +1049,15 @@ prompt the user for a coding system."
 	      (push '("alpha" . ?𝛼) prettify-symbols-alist)
 	      (push '("beta" . ?𝛽) prettify-symbols-alist)
 	      (push '("gamma" . ?𝛾) prettify-symbols-alist)
-	      (push '("!=" . ?≠) prettify-symbols-alist)))
+	      (push '("!=" . ?≠) prettify-symbols-alist)
+	      (push '("<-" . ?←) prettify-symbols-alist)
+	      (push '("<<-" . ?⇐) prettify-symbols-alist)))
 (if (>= emacs-minor-version 4)
     (global-prettify-symbols-mode +1))  ;; only works in >24.4
+
+;; specify font for all unicode characters
+;; (when (member "Symbola" (font-family-list))
+(set-fontset-font t 'unicode "Ubuntu Mono" nil 'prepend)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Wrap region - Select region then " to enclose it

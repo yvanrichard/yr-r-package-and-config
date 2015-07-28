@@ -1,0 +1,3 @@
+;; -*- mode: emacs-lisp -*-
+;; History entries used for helm adaptive display.
+(setq helm-adaptive-history (quote (("*helm grep extensions*" ("*.r" ("" . 3) (#("*.r" 0 1 (fontified t) 1 2 (fontified t) 2 3 (fontified t)) . 1))))))

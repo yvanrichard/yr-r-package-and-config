@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <15/06/11 09:36:03 /home/yvan/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <15/07/27 10:11:30 /home/yvan/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -49,4 +49,27 @@
   ("ls-dired" t)
   ("touch-t" t)
   ("touch" "\\touch")
-  ("gvfs-monitor-dir" "/usr/bin/gvfs-monitor-dir")))
+  ("gvfs-monitor-dir" "/usr/bin/gvfs-monitor-dir"))
+ (["ssh" "yvan" "kahu" nil nil]
+  ("uname" "Linux 3.2.0-69-generic")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("~" "/home/yvan")
+  ("file-exists" "test -e")
+  ("stat" "\\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 14000)
+  ("gid-string" "dragonfly")
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("ls" "/bin/ls --color=never")
+  ("ls-dired" t)
+  ("readlink" "\\readlink")
+  ("uid-integer" 15002)
+  ("tmpdir" "/ssh:yvan@kahu:/tmp")
+  ("touch-t" t)
+  ("touch" "\\touch")))

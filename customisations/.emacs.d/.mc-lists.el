@@ -3,6 +3,8 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	ess-smart-comma
+	ess-yank
 	forward-sexp
 	keyboard-quit
 	kill-region
@@ -11,4 +13,6 @@
 
 (setq mc/cmds-to-run-once
       '(
+	previous-buffer
+	smart-kill-whole-line
 	))
