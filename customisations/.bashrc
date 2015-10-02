@@ -108,8 +108,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# added lines for ipython
-export LESS="-R"
+# added lines for ipython (and psql to avoid -S)
+export LESS="-RS"
 export EDITOR=emacsclient
 export VISUAL=emacsclient
 

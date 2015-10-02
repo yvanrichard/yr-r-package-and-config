@@ -18,6 +18,8 @@ $dragonfly
 
 # Command Line History (newest to oldest):
 :wq
+:q!
+:q
 :weq
 :w
 :b3
@@ -29,11 +31,9 @@ $dragonfly
 :e templates/explore/page.tex
 :set nu
 :set no
-:q
 :9
 :1
 :15
-:q!
 :ew
 :x
 :set noexpandtab
@@ -127,45 +127,50 @@ $dragonfly
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	LINE	0
-	        options['species'].title = 'all bird' if options['species'].title == 'all birds' else options['species'].title
+""0	LINE	0
+		rsync -avz --exclude '.git*' ~/.vim customisations/ -r
+		rsync -avz --exclude '.git*' ~/.viminfo customisations/
 "1	LINE	0
-	SELECT s.species_code, s.common_name,
+		rsync -avz --exclude '.git*' ~/.vimrc customisations/
 "2	LINE	0
-	host    all             all             127.0.0.1/32            md5
+	SELECT s.species_code, s.common_name,
 "3	LINE	0
-	|1|rHLQUFB4SjIeuWnI1g+0gTgEyTs=|Ln1GUjw9N/9vdLjejT1BHl9lLlg= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL6ejNlQQ2fdMc7wYnhjge4MiJDbaZInnY5R+z1eK0QKmUFkbGGMa4jn/Dxmvr3+8BmkKN0VwzJGK8us8mLKnr4=
+	host    all             all             127.0.0.1/32            md5
 "4	LINE	0
-	|1|eueiLcPZ2eZR/R3xqxo+ehzDlCc=|+xkzbE8AiRrQOx/OOfxQm2FuNmI= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPwbZRUMom+4yCsBwinbKYUhosoWOkb43UxBuJQ5sfHo01JgiWMbd6A2pUCaRzl6tssyaZbKJEvSMpbwjFRhJOk=
+	|1|rHLQUFB4SjIeuWnI1g+0gTgEyTs=|Ln1GUjw9N/9vdLjejT1BHl9lLlg= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL6ejNlQQ2fdMc7wYnhjge4MiJDbaZInnY5R+z1eK0QKmUFkbGGMa4jn/Dxmvr3+8BmkKN0VwzJGK8us8mLKnr4=
 "5	LINE	0
-	|1|FcIJNF2QDzQYgM1huJCJ3WUa3nY=|zR95gt0n7PtWiNwF4wCaHNHSZEY= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKtHXlwH0hK38EH5CnkDvDda0QejqvOBSt16C7bkWqczI8M9WlhXjxG7gyRrxbPMjIuYBvMKEf5PMUDTxx/E3Ws=
+	|1|eueiLcPZ2eZR/R3xqxo+ehzDlCc=|+xkzbE8AiRrQOx/OOfxQm2FuNmI= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPwbZRUMom+4yCsBwinbKYUhosoWOkb43UxBuJQ5sfHo01JgiWMbd6A2pUCaRzl6tssyaZbKJEvSMpbwjFRhJOk=
 "6	LINE	0
-	# deb-src https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
+	|1|FcIJNF2QDzQYgM1huJCJ3WUa3nY=|zR95gt0n7PtWiNwF4wCaHNHSZEY= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKtHXlwH0hK38EH5CnkDvDda0QejqvOBSt16C7bkWqczI8M9WlhXjxG7gyRrxbPMjIuYBvMKEf5PMUDTxx/E3Ws=
 "7	LINE	0
-	# deb https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
+	# deb-src https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
 "8	LINE	0
-		xelatex report.tex`d
+	# deb https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
 "9	LINE	0
-	   guest ok = yes
+		xelatex report.tex`d
 "u	CHAR	0
 	lrr
-""-	CHAR	0
+"-	CHAR	0
 	cook';
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  1  0  /tmp/psql.edit.27505.sql
-'1  1  0  ~/dragonfly/sra-2014/.git/MERGE_MSG
-'2  1  0  ~/dragonfly/bibliography/.git/COMMIT_EDITMSG
-'3  8  9  ~/~/.local/share/applications/emacs.desktop
-'4  1  0  ~/dragonfly/rear-2015-assets/.git/MERGE_MSG
-'5  1  0  ~/dragonfly/seabirds-2014/.git/MERGE_MSG
-'6  10  55  /tmp/psql.edit.18031.sql
-'7  6  69  ~/dragonfly/sra-2014/.git/MERGE_MSG
-'8  1  0  /tmp/bash-fc-915318062537
-'9  1  0  ~/dragonfly/oreo/.git/MERGE_MSG
+'0  23  57  ~/dragonfly/yr-r-package-and-config/makefile
+'1  25  1  ~/dragonfly/yr-r-package-and-config/makefile
+'2  1  0  /usr/share/applications/emacs24.desktop
+'3  1  0  /tmp/psql.edit.27505.sql
+'4  1  0  ~/dragonfly/sra-2014/.git/MERGE_MSG
+'5  1  0  ~/dragonfly/bibliography/.git/COMMIT_EDITMSG
+'6  8  9  ~/~/.local/share/applications/emacs.desktop
+'7  1  0  ~/dragonfly/rear-2015-assets/.git/MERGE_MSG
+'8  1  0  ~/dragonfly/seabirds-2014/.git/MERGE_MSG
+'9  10  55  /tmp/psql.edit.18031.sql
 
 # Jumplist (newest first):
+-'  23  57  ~/dragonfly/yr-r-package-and-config/makefile
+-'  1  0  ~/dragonfly/yr-r-package-and-config/makefile
+-'  25  1  ~/dragonfly/yr-r-package-and-config/makefile
+-'  1  0  /usr/share/applications/emacs24.desktop
 -'  1  0  /tmp/psql.edit.27505.sql
 -'  1  0  ~/dragonfly/sra-2014/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/bibliography/.git/COMMIT_EDITMSG
@@ -261,12 +266,32 @@ $dragonfly
 -'  33  0  /usr/share/texmf/web2c/texmf.cnf
 -'  1  0  /usr/share/texmf/web2c/texmf.cnf
 -'  243  0  /usr/share/texmf/web2c/texmf.cnf
--'  55  64  /tmp/india-map.tex
--'  1  0  /tmp/india-map.tex
--'  1  57  /tmp/3994.prj
--'  72  42  /etc/apt/sources.list
 
 # History of marks within files (newest to oldest):
+
+> ~/dragonfly/yr-r-package-and-config/makefile
+	"	23	57
+	^	23	58
+	.	23	57
+	+	2	0
+	+	1	11
+	+	3	0
+	+	5	38
+	+	17	0
+	+	17	15
+	+	18	13
+	+	19	11
+	+	20	15
+	+	21	13
+	+	22	16
+	+	24	14
+	+	25	16
+	+	9	0
+	+	25	0
+	+	23	57
+
+> /usr/share/applications/emacs24.desktop
+	"	1	0
 
 > /tmp/psql.edit.27505.sql
 	"	1	0
@@ -849,25 +874,6 @@ $dragonfly
 	.	4	34
 	+	4	34
 
-> ~/dragonfly/yr-r-package-and-config/makefile
-	"	9	0
-	^	9	0
-	.	9	0
-	+	2	0
-	+	1	11
-	+	3	0
-	+	5	38
-	+	17	0
-	+	17	15
-	+	18	13
-	+	19	11
-	+	20	15
-	+	21	13
-	+	22	16
-	+	23	14
-	+	24	16
-	+	9	0
-
 > ~/dragonfly/yr-r-package-and-config/.gitignore
 	"	2	5
 	^	2	6
@@ -918,6 +924,3 @@ $dragonfly
 
 > ~/dragonfly/sra-2012/analysis/model-re-3/vulnerabilities/prepare-re.r
 	"	3	55
-
-> ~/dragonfly/sra-2012/analysis/model-re-3/makefile
-	"	58	0

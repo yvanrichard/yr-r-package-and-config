@@ -24,6 +24,7 @@ updatepkg:
 	rsync -avz --exclude '.git*' ~/.vimrc customisations/
 	rsync -avz --exclude '.git*' ~/.screenrc customisations/
 	rsync -avz --exclude '.git*' ~/.bashrc customisations/
+	rsync -avz --exclude '.git*' ~/.psqlrc customisations/
 	rsync -avz --exclude '.git*' ~/.Rprofile customisations/
 
 getpackagelist:

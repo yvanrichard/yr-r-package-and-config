@@ -13,6 +13,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+	dired-unmark-backward
 	previous-buffer
 	smart-kill-whole-line
 	))

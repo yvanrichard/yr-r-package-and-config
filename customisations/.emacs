@@ -26,10 +26,117 @@
 
 ;; Window position
 ;; (set-face-attribute 'default (selected-frame) :height 100)
-(add-to-list 'default-frame-alist '(width . 210))
-(add-to-list 'default-frame-alist '(height . 50))
-(add-to-list 'default-frame-alist '(left . 100))
-(add-to-list 'default-frame-alist '(top . 50))
+;; (add-to-list 'default-frame-alist '(width . 210))
+;; (add-to-list 'default-frame-alist '(height . 50))
+;; (add-to-list 'default-frame-alist '(left . 100))
+;; (add-to-list 'default-frame-alist '(top . 50))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(LaTeX-biblatex-use-Biber t t)
+ '(avy-timeout-seconds 0.35)
+ '(comint-buffer-maximum-size 20000)
+ '(comint-completion-addsuffix t)
+ '(comint-get-old-input (lambda nil "") t)
+ '(comint-input-ignoredups t)
+ '(comint-input-ring-size 5000)
+ '(comint-move-point-for-output t)
+ '(comint-prompt-read-only nil)
+ '(comint-scroll-show-maximum-output t)
+ '(comint-scroll-to-bottom-on-input t)
+ '(comment-style (quote indent))
+ '(custom-enabled-themes (quote (smart-mode-line-dark)))
+ '(custom-safe-themes
+   (quote
+    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "6c9ddb5e2ac58afb32358def7c68b6211f30dec8a92e44d2b9552141f76891b3" "a655f17225ad0a7190c79602593563191b7640ddebbb8c8fbd80c9d82faff1c6" "8d6fb24169d94df45422617a1dfabf15ca42a97d594d28b3584dc6db711e0e0b" "08efabe5a8f3827508634a3ceed33fa06b9daeef9c70a24218b70494acdf7855" "49eea2857afb24808915643b1b5bd093eefb35424c758f502e98a03d0d3df4b1" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+ '(diredp-hide-details-initially-flag nil)
+ '(doc-view-resolution 200)
+ '(ediff-split-window-function (quote split-window-horizontally))
+ '(ess-R-font-lock-keywords
+   (quote
+    ((ess-R-fl-keyword:modifiers . t)
+     (ess-R-fl-keyword:fun-defs . t)
+     (ess-R-fl-keyword:keywords . t)
+     (ess-R-fl-keyword:assign-ops . t)
+     (ess-R-fl-keyword:constants . t)
+     (ess-fl-keyword:fun-calls . t)
+     (ess-fl-keyword:numbers . t)
+     (ess-fl-keyword:operators . t)
+     (ess-fl-keyword:delimiters . t)
+     (ess-fl-keyword:= . t)
+     (ess-R-fl-keyword:F&T . t))))
+ '(ess-pdf-viewer-pref "okular")
+ '(fci-rule-color "#873b81")
+ '(fill-prefix nil)
+ '(flyspell-default-dictionary "en_GB")
+ '(font-latex-fontify-sectioning 1.05)
+ '(helm-mode-fuzzy-match t)
+ '(hl-sexp-background-color "#201520")
+ '(ibuffer-filter-group-name-face (quote compilation-info))
+ '(inhibit-startup-screen t)
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(ispell-local-dictionary "en_GB")
+ '(magit-repository-directories (quote ("~/dragonfly")))
+ '(markdown-command "pandoc --smart -f markdown -t html")
+ '(markdown-css-path "/home/yvan/Documents/css/github-markdown.css")
+ '(org-html-use-infojs t)
+ '(org-latex-pdf-process
+   (quote
+    ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
+ '(protect-buffer-bury-p nil)
+ '(safe-local-variable-values
+   (quote
+    ((TeX-master . t)
+     (TeX-master . "report.tex")
+     (whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)
+     (TeX-master . "report")
+     (TeX-master . report\.tex)
+     (require-final-newline))))
+ '(search-whitespace-regexp "[ \\t\\r\\n]+")
+ '(sml/replacer-regexp-list
+   (quote
+    (("^~/org" ":Org:")
+     ("^~/\\.emacs\\.d/" ":ED:")
+     ("^/sudo:.*:" ":SU:")
+     ("^~/Documents/" ":Doc:")
+     ("^~/Dropbox/" ":DB:")
+     ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
+     ("^~/[Gg]it/" ":Git:")
+     ("^~/[Gg]it[Hh]ub/" ":Git:")
+     ("^~/dragonfly/yr-r-package-and-config/" ":YRPKG:")
+     ("^~/dragonfly/npoa-observer-optimisation/" ":NPOA:")
+     ("^~/dragonfly/sra-2014/" ":SRA14:")
+     ("^~/dragonfly/" ":DFLY:")
+     ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
+ '(sml/shorten-directory t)
+ '(tramp-default-method "ssh")
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#cc6666")
+     (40 . "#de935f")
+     (60 . "#f0c674")
+     (80 . "#b5bd68")
+     (100 . "#8abeb7")
+     (120 . "#81a2be")
+     (140 . "#b294bb")
+     (160 . "#cc6666")
+     (180 . "#de935f")
+     (200 . "#f0c674")
+     (220 . "#b5bd68")
+     (240 . "#8abeb7")
+     (260 . "#81a2be")
+     (280 . "#b294bb")
+     (300 . "#cc6666")
+     (320 . "#de935f")
+     (340 . "#f0c674")
+     (360 . "#b5bd68"))))
+ '(vc-annotate-very-old-color nil)
+ '(wakatime-api-key "0ff58d48-ac18-40ee-be06-f0e1c5985c86")
+ '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
+ '(yank-pop-change-selection t))
 
 
 (require 'ess-site)
@@ -130,6 +237,7 @@ Ignores CHAR at point."
 (require 'pabbrev)
 
 (global-set-key [f9] 'compile)
+(global-set-key [f8] (lambda () (interactive) (ess-switch-to-ESS "R")))
 
 (setq scroll-preserve-screen-position t)
 
@@ -199,7 +307,7 @@ there's a region, all lines that region covers will be duplicated."
  '(font-lock-builtin-face ((t (:foreground "PeachPuff"))))
  '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground "#553333"))))
  '(font-lock-comment-face ((t (:foreground "#AA6677"))))
- '(font-lock-constant-face ((t (:foreground "#55AA55" :weight semi-bold))))
+ '(font-lock-constant-face ((t (:inherit default :foreground "#55AA55" :weight semi-bold))))
  '(font-lock-keyword-face ((t (:foreground "#88DD88"))))
  '(font-lock-string-face ((t (:foreground "DarkSeaGreen2"))))
  '(font-lock-type-face ((t (:foreground "#FFFF66"))))
@@ -225,109 +333,7 @@ there's a region, all lines that region covers will be duplicated."
  '(region ((t (:background "grey20"))))
  '(underline ((t (:underline "#666666")))))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(LaTeX-biblatex-use-Biber t t)
- '(comint-buffer-maximum-size 20000)
- '(comint-completion-addsuffix t)
- '(comint-get-old-input (lambda nil "") t)
- '(comint-input-ignoredups t)
- '(comint-input-ring-size 5000)
- '(comint-move-point-for-output t)
- '(comint-prompt-read-only nil)
- '(comint-scroll-show-maximum-output t)
- '(comint-scroll-to-bottom-on-input t)
- '(comment-style (quote indent))
- '(custom-enabled-themes (quote (smart-mode-line-dark)))
- '(custom-safe-themes
-   (quote
-    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "6c9ddb5e2ac58afb32358def7c68b6211f30dec8a92e44d2b9552141f76891b3" "a655f17225ad0a7190c79602593563191b7640ddebbb8c8fbd80c9d82faff1c6" "8d6fb24169d94df45422617a1dfabf15ca42a97d594d28b3584dc6db711e0e0b" "08efabe5a8f3827508634a3ceed33fa06b9daeef9c70a24218b70494acdf7855" "49eea2857afb24808915643b1b5bd093eefb35424c758f502e98a03d0d3df4b1" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
- '(diredp-hide-details-initially-flag nil)
- '(doc-view-resolution 200)
- '(ediff-split-window-function (quote split-window-horizontally))
- '(ess-R-font-lock-keywords
-   (quote
-    ((ess-R-fl-keyword:modifiers . t)
-     (ess-R-fl-keyword:fun-defs . t)
-     (ess-R-fl-keyword:keywords . t)
-     (ess-R-fl-keyword:assign-ops . t)
-     (ess-R-fl-keyword:constants . t)
-     (ess-fl-keyword:fun-calls . t)
-     (ess-fl-keyword:numbers . t)
-     (ess-fl-keyword:operators . t)
-     (ess-fl-keyword:delimiters . t)
-     (ess-fl-keyword:= . t)
-     (ess-R-fl-keyword:F&T . t))))
- '(ess-pdf-viewer-pref "okular")
- '(fci-rule-color "#873b81")
- '(fill-prefix nil)
- '(flyspell-default-dictionary "en_GB")
- '(font-latex-fontify-sectioning 1.05)
- '(helm-mode-fuzzy-match t)
- '(hl-sexp-background-color "#201520")
- '(ibuffer-filter-group-name-face (quote compilation-info))
- '(inhibit-startup-screen t)
- '(ispell-local-dictionary "en_GB")
- '(markdown-command "pandoc --smart -f markdown -t html")
- '(markdown-css-path "/home/yvan/Documents/css/github-markdown.css")
- '(org-html-use-infojs t)
- '(org-latex-pdf-process
-   (quote
-    ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
- '(protect-buffer-bury-p nil)
- '(safe-local-variable-values
-   (quote
-    ((TeX-master . t)
-     (TeX-master . "report.tex")
-     (whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)
-     (TeX-master . "report")
-     (TeX-master . report\.tex)
-     (require-final-newline))))
- '(sml/replacer-regexp-list
-   (quote
-    (("^~/org" ":Org:")
-     ("^~/\\.emacs\\.d/" ":ED:")
-     ("^/sudo:.*:" ":SU:")
-     ("^~/Documents/" ":Doc:")
-     ("^~/Dropbox/" ":DB:")
-     ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
-     ("^~/[Gg]it/" ":Git:")
-     ("^~/[Gg]it[Hh]ub/" ":Git:")
-     ("^~/dragonfly/yr-r-package-and-config/" ":YRPKG:")
-     ("^~/dragonfly/npoa-observer-optimisation/" ":NPOA:")
-     ("^~/dragonfly/sra-2014/" ":SRA14:")
-     ("^~/dragonfly/" ":DFLY:")
-     ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
- '(sml/shorten-directory t)
- '(tramp-default-method "ssh")
- '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#cc6666")
-     (40 . "#de935f")
-     (60 . "#f0c674")
-     (80 . "#b5bd68")
-     (100 . "#8abeb7")
-     (120 . "#81a2be")
-     (140 . "#b294bb")
-     (160 . "#cc6666")
-     (180 . "#de935f")
-     (200 . "#f0c674")
-     (220 . "#b5bd68")
-     (240 . "#8abeb7")
-     (260 . "#81a2be")
-     (280 . "#b294bb")
-     (300 . "#cc6666")
-     (320 . "#de935f")
-     (340 . "#f0c674")
-     (360 . "#b5bd68"))))
- '(vc-annotate-very-old-color nil)
- '(wakatime-api-key "0ff58d48-ac18-40ee-be06-f0e1c5985c86")
- '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
- '(yank-pop-change-selection t))
+
 
 ;; (load-theme 'mytheme t)
 
@@ -565,6 +571,7 @@ prompt the user for a coding system."
 	 ("SRA 2014" (filename . "sra-2014"))
 	 ("SRA foundations" (filename . "sra-foundations"))
 	 ("Estimation 2014" (filename . "estimation-2014"))
+	 ("Estimation 2015" (filename . "estimation-2015"))
 	 ("Ludicio" (filename . "ludicio/"))
 	 ("sra obs cov" (filename . "sra-observer-coverage/"))
 	 ("WHIO benthos" (filename . "whio-benthic-analysis/"))
@@ -612,28 +619,6 @@ prompt the user for a coding system."
 	     ad-do-it
 	     (ibuffer-jump-to-buffer recent-buffer-name)))
 (ad-activate 'ibuffer)
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Code folding & indentation & formatting
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'rainbow-delimiters)
-(rainbow-delimiters-mode)
-;; (global-rainbow-delimiters-mode)
-
-;; Highlight region between parentheses
-;; (require 'paren)
-;; (set-face-background 'show-paren-match-face "#696969")
-;; (set-face-foreground 'show-paren-match-face "#def")
-;; (set-face-attribute 'show-paren-match-face nil :weight 'extra-bold)
-;; (setq show-paren-delay 0)
-;; (show-paren-mode 1)
-
-(require 'highlight-indentation)
-(add-hook 'ess-mode-hook 'highlight-indentation-mode) 
-(add-hook 'lisp-mode-hook 'highlight-indentation-mode)
 
 
 
@@ -715,6 +700,7 @@ prompt the user for a coding system."
 (add-to-list 'auto-mode-alist '("\\.rnw" . Rnw-mode))
 
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    anything
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -729,9 +715,9 @@ prompt the user for a coding system."
 (setq org-src-fontify-natively t)
 (setq org-support-shift-select t)
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((R . t)))
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((R . t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    uniquify (change file<2> to file/fold)
@@ -788,20 +774,9 @@ prompt the user for a coding system."
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 (define-key global-map (kbd "C-c C-SPC") 'ace-jump-mode)
 
-(global-set-key (kbd "C-;") 'avy-goto-word-or-subword-1)
+(global-set-key (kbd "C-;") 'avy-goto-char-timer)
 (global-set-key (kbd "C-:") 'avy-goto-char)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    helm
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (helm-mode -1)
-;; (global-set-key (kbd "C-c h") 'helm-mini)
-(global-set-key (kbd "C-c g") 'helm-do-grep)
-;; (eval-after-load 'helm-grep
-;;   '(setq helm-grep-default-command helm-grep-default-recurse-command))
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    expand-region
@@ -843,7 +818,7 @@ prompt the user for a coding system."
 ;;    Powerline
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'powerline)
-(powerline-default-theme)
+;; (powerline-default-theme)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1293,6 +1268,12 @@ prompt the user for a coding system."
   "Dired tmp files extensions")
 (dired-rainbow-define tmp "#444444" dired-tmp-files-extensions)
 
+(defconst dired-dot-files-extensions
+  '"\\..*"
+  "Dired dot files extensions")
+(dired-rainbow-define dot (:inherit default
+				    :italic t
+				    :foreground "#666666") dired-dot-files-extensions)
 
 (require 'dired+)
 
@@ -1323,3 +1304,60 @@ prompt the user for a coding system."
 						     ("\\([0-9.]+e[\\-0-9]+\\)" 1  'ess-numbers-face prepend)))))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Code folding & indentation & formatting
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'ess-mode-hook 'rainbow-delimiters-mode)
+;; (global-rainbow-delimiters-mode)
+
+;; Highlight region between parentheses
+;; (require 'paren)
+;; (set-face-background 'show-paren-match-face "#696969")
+;; (set-face-foreground 'show-paren-match-face "#def")
+;; (set-face-attribute 'show-paren-match-face nil :weight 'extra-bold)
+;; (setq show-paren-delay 0)
+;; (show-paren-mode 1)
+
+(require 'highlight-indentation)
+(add-hook 'ess-mode-hook 'highlight-indentation-mode) 
+(add-hook 'lisp-mode-hook 'highlight-indentation-mode)
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    helm
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (helm-mode -1)
+;; (global-set-key (kbd "C-c h") 'helm-mini)
+(require 'helm)
+(require 'helm-config)
+(global-set-key (kbd "C-c g") 'helm-do-grep)
+;; (eval-after-load 'helm-grep
+;;   '(setq helm-grep-default-command helm-grep-default-recurse-command))
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-z") 'helm-select-action)
+;; (global-set-key (kbd "C-:") 'ac-complete-with-helm)
+;; (define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-helm)
+
+
+;; To search ignoring whitespaces
+(setq isearch-lax-whitespace t)
+(setq isearch-regexp-lax-whitespace t)
+(setq search-whitespace-regexp "[ \t\r\n]+")
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    projectile
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(projectile-global-mode)
+(setq projectile-enable-caching t)

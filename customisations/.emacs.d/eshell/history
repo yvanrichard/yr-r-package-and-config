@@ -37,3 +37,4 @@ touch .data
 s
 ls
 ls -la
+psql oreo-2014v1 -h oi
