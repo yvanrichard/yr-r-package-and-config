@@ -48,10 +48,11 @@ local({
             Ncpus                  = 6,
             warn                   = 1,
             warnPartialMatchDollar = T,
-            scipen                 = 1,
-            error                  = NULL)
+            scipen                 = 100,
+            error                  = NULL,
+            datatable.print.nrows  = 57)
     ## options(error = function() traceback(2))
-    "%nin%" <- function(x, y) return(!(x %in% y))
+    ## "%nin%" <- function(x, y) return(!(x %in% y))
 })
 
 

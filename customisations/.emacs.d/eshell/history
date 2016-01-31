@@ -38,3 +38,7 @@ s
 ls
 ls -la
 psql oreo-2014v1 -h oi
+sudo R --vanilla
+make -n
+make .sra_fishing_group_previous
+make .sra_fishing_group_previous -B

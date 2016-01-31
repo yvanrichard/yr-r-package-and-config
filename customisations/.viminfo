@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/all birds
+~MSle0~/swap
 
 # Last Substitute Search Pattern:
 ~MSle0&yvan-r-pkg
@@ -18,8 +18,8 @@ $dragonfly
 
 # Command Line History (newest to oldest):
 :wq
-:q!
 :q
+:q!
 :weq
 :w
 :b3
@@ -69,6 +69,8 @@ $dragonfly
 :%s//\n/g
 
 # Search String History (newest to oldest):
+?/swap
+?/emacs
 ?/all birds
 ?/page.tex
 ?/vessels
@@ -117,8 +119,6 @@ $dragonfly
 ?/Petroica
 ?/Crypti
 ?/html
-?/q
-?/rkward
 
 # Expression History (newest to oldest):
 
@@ -128,45 +128,75 @@ $dragonfly
 
 # Registers:
 ""0	LINE	0
-		rsync -avz --exclude '.git*' ~/.vim customisations/ -r
-		rsync -avz --exclude '.git*' ~/.viminfo customisations/
+	
 "1	LINE	0
-		rsync -avz --exclude '.git*' ~/.vimrc customisations/
+	MPD_PASSWORD
 "2	LINE	0
-	SELECT s.species_code, s.common_name,
+	MPD_PASSWORD
 "3	LINE	0
-	host    all             all             127.0.0.1/32            md5
+	
 "4	LINE	0
-	|1|rHLQUFB4SjIeuWnI1g+0gTgEyTs=|Ln1GUjw9N/9vdLjejT1BHl9lLlg= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL6ejNlQQ2fdMc7wYnhjge4MiJDbaZInnY5R+z1eK0QKmUFkbGGMa4jn/Dxmvr3+8BmkKN0VwzJGK8us8mLKnr4=
+	=|J8EHc98YY4lX4mF0x+Gq28hrmPs= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLVZZPvyqBG9hrunyT+fXm2ElDhkRcNOONM3icF4jWET5F/hvosKIJ7kTTfmDizl/XHmyJCYLTW45NXoRsWOcXE=
 "5	LINE	0
-	|1|eueiLcPZ2eZR/R3xqxo+ehzDlCc=|+xkzbE8AiRrQOx/OOfxQm2FuNmI= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPwbZRUMom+4yCsBwinbKYUhosoWOkb43UxBuJQ5sfHo01JgiWMbd6A2pUCaRzl6tssyaZbKJEvSMpbwjFRhJOk=
+	
 "6	LINE	0
-	|1|FcIJNF2QDzQYgM1huJCJ3WUa3nY=|zR95gt0n7PtWiNwF4wCaHNHSZEY= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKtHXlwH0hK38EH5CnkDvDda0QejqvOBSt16C7bkWqczI8M9WlhXjxG7gyRrxbPMjIuYBvMKEf5PMUDTxx/E3Ws=
+	dddd6vAUOHOhuxlio8p1lMK2jMfzDEsbled = true
 "7	LINE	0
-	# deb-src https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
+	dddd6vAUOHOhuxlio8p1lMK2jMfzDEs=|J8EHc98YY4lX4mF0x+Gq28hrmPs= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLVZZPvyqBG9hrunyT+fXm2ElDhkRcNOONM3icF4jWET5F/hvosKIJ7kTTfmDizl/XHmyJCYLTW45NXoRsWOcXE=
 "8	LINE	0
-	# deb https://launchpad.net/~gwendal-lebihan-dev/+archive/cinnamon-stable precise main
+	dd6vAUOHOhuxlio8p1lMK2jMfzDEs=|J8EHc98YY4lX4mF0x+Gq28hrmPs= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLVZZPvyqBG9hrunyT+fXm2ElDhkRcNOONM3icF4jWET5F/hvosKIJ7kTTfmDizl/XHmyJCYLTW45NXoRsWOcXE=
 "9	LINE	0
-		xelatex report.tex`d
+	|1|6vAUOHOhuxlio8p1lMK2jMfzDEs=|J8EHc98YY4lX4mF0x+Gq28hrmPs= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLVZZPvyqBG9hrunyT+fXm2ElDhkRcNOONM3icF4jWET5F/hvosKIJ7kTTfmDizl/XHmyJCYLTW45NXoRsWOcXE=
 "u	CHAR	0
 	lrr
 "-	CHAR	0
-	cook';
+	MPD_PASSWORD
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  23  57  ~/dragonfly/yr-r-package-and-config/makefile
-'1  25  1  ~/dragonfly/yr-r-package-and-config/makefile
-'2  1  0  /usr/share/applications/emacs24.desktop
-'3  1  0  /tmp/psql.edit.27505.sql
-'4  1  0  ~/dragonfly/sra-2014/.git/MERGE_MSG
-'5  1  0  ~/dragonfly/bibliography/.git/COMMIT_EDITMSG
-'6  8  9  ~/~/.local/share/applications/emacs.desktop
-'7  1  0  ~/dragonfly/rear-2015-assets/.git/MERGE_MSG
-'8  1  0  ~/dragonfly/seabirds-2014/.git/MERGE_MSG
-'9  10  55  /tmp/psql.edit.18031.sql
+'0  1  0  ~/dragonfly/seabird-threat-framework/.git/MERGE_MSG
+'1  23  0  /etc/pulse/daemon.conf
+'2  4  29  ~/.config/mopidy/settings.py
+'3  29  0  /etc/mopidy/mopidy.conf
+'4  36  0  /etc/mopidy/mopidy.conf
+'5  10  19  /etc/mopidy/mopidy.conf
+'6  24  6  /etc/mopidy/mopidy.conf
+'7  1  0  ~/dragonfly/npoa-observer-optimisation/.git/MERGE_MSG
+'8  42  0  ~/.ssh/known_hosts
+'9  11  25  /etc/fstab
 
 # Jumplist (newest first):
+-'  1  0  ~/dragonfly/seabird-threat-framework/.git/MERGE_MSG
+-'  23  0  /etc/pulse/daemon.conf
+-'  1  0  /etc/pulse/daemon.conf
+-'  4  29  ~/.config/mopidy/settings.py
+-'  5  0  ~/.config/mopidy/settings.py
+-'  29  0  /etc/mopidy/mopidy.conf
+-'  1  0  /etc/mopidy/mopidy.conf
+-'  36  0  /etc/mopidy/mopidy.conf
+-'  10  19  /etc/mopidy/mopidy.conf
+-'  24  6  /etc/mopidy/mopidy.conf
+-'  6  0  /etc/mopidy/mopidy.conf
+-'  1  0  ~/dragonfly/npoa-observer-optimisation/.git/MERGE_MSG
+-'  42  0  ~/.ssh/known_hosts
+-'  1  0  ~/.ssh/known_hosts
+-'  11  25  /etc/fstab
+-'  2  0  /etc/fstab
+-'  1  0  /etc/fstab
+-'  3  0  /etc/cron.hourly/birdoftheyear_votes.sh
+-'  1  0  /etc/cron.hourly/birdoftheyear_votes.sh
+-'  64  0  ~/dragonfly/encounter-kaikoura/analysis/jags/diagnose.r
+-'  1  0  ~/dragonfly/encounter-kaikoura/analysis/jags/diagnose.r
+-'  36  0  ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/bll-small/.screenrc.split7
+-'  1  0  ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/bll-small/.screenrc.split7
+-'  35  19  ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/bll-small/.screenrc.split7
+-'  37  16  ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/bll-small/.screenrc.split7
+-'  1  0  ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/bll-small/makefile
+-'  1  0  ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/makefile
+-'  84  7  ~/.bashrc
+-'  114  16  ~/.bashrc
+-'  88  40  ~/.bashrc
+-'  1  0  ~/.bashrc
 -'  23  57  ~/dragonfly/yr-r-package-and-config/makefile
 -'  1  0  ~/dragonfly/yr-r-package-and-config/makefile
 -'  25  1  ~/dragonfly/yr-r-package-and-config/makefile
@@ -202,7 +232,6 @@ $dragonfly
 -'  212  14  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
 -'  207  12  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
 -'  1  0  ~/dragonfly/estimation-2014/.git/MERGE_MSG
--'  1  0  ~/dragonfly/npoa-observer-optimisation/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/black-petrel-distribution/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/bycatch.dragonfly.co.nz/.git/MERGE_MSG
@@ -225,7 +254,6 @@ $dragonfly
 -'  1  0  ~/dragonfly/mammals-2014/report/sweave/r_functions.r
 -'  1  21  /tmp/psql.edit.32535.sql
 -'  9  0  ~/.ssh/known_hosts
--'  1  0  ~/.ssh/known_hosts
 -'  13  0  ~/.ssh/known_hosts
 -'  3  38  /etc/hosts
 -'  1  0  /etc/hosts
@@ -234,40 +262,107 @@ $dragonfly
 -'  1  0  ~/dragonfly/encounter-kaikoura/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/ludicio/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/toheroa-2014/.git/MERGE_MSG
--'  11  1  /etc/fstab
--'  1  0  /etc/fstab
 -'  1  0  /etc/apt/sources.list
 -'  4  0  /etc/mpd.conf
--'  1  0  /etc/mpd.conf
--'  256  0  ~/.emacs
--'  1  0  ~/.emacs
--'  69  0  /etc/apt/sources.list
--'  16  0  ~/dragonfly/black-petrel-distribution/report/makefile
--'  18  0  ~/dragonfly/black-petrel-distribution/report/makefile
--'  1  0  ~/dragonfly/black-petrel-distribution/report/makefile
--'  20  0  ~/dragonfly/black-petrel-distribution/report/makefile
--'  4  37  ~/dragonfly/black-petrel-distribution/report/makefile
--'  6  24  ~/dragonfly/black-petrel-distribution/report/makefile
--'  16  21  ~/dragonfly/black-petrel-distribution/report/report.tex
--'  1  0  ~/dragonfly/black-petrel-distribution/report/report.tex
--'  2  21  ~/dragonfly/black-petrel-distribution/report/report.tex
--'  8  36  ~/dragonfly/maui-may-2012/.git/config
--'  1  0  ~/dragonfly/maui-may-2012/.git/config
--'  1  0  /etc/ld.so.conf
--'  2  25  /etc/ld.so.conf
--'  650  14  /usr/share/texmf/web2c/texmf.cnf
--'  638  2  /usr/share/texmf/web2c/texmf.cnf
--'  631  2  /usr/share/texmf/web2c/texmf.cnf
--'  589  7  /usr/share/texmf/web2c/texmf.cnf
--'  565  21  /usr/share/texmf/web2c/texmf.cnf
--'  327  44  /usr/share/texmf/web2c/texmf.cnf
--'  85  48  /usr/share/texmf/web2c/texmf.cnf
--'  81  6  /usr/share/texmf/web2c/texmf.cnf
--'  33  0  /usr/share/texmf/web2c/texmf.cnf
--'  1  0  /usr/share/texmf/web2c/texmf.cnf
--'  243  0  /usr/share/texmf/web2c/texmf.cnf
 
 # History of marks within files (newest to oldest):
+
+> ~/dragonfly/seabird-threat-framework/.git/MERGE_MSG
+	"	1	0
+
+> /etc/pulse/daemon.conf
+	"	23	0
+
+> ~/.config/mopidy/settings.py
+	"	4	29
+	^	4	30
+	.	4	29
+	+	5	0
+	+	7	0
+	+	6	0
+	+	1	27
+	+	4	29
+
+> /etc/mopidy/mopidy.conf
+	"	29	0
+	^	29	0
+	.	28	28
+	+	6	0
+	+	1	7
+	+	5	0
+	+	6	0
+	+	2	7
+	+	6	0
+	+	6	42
+	+	15	0
+	+	7	14
+	+	8	0
+	+	6	0
+	+	15	0
+	+	8	15
+	+	10	19
+	+	35	13
+	+	25	13
+	+	27	0
+	+	28	28
+	i	1	0
+
+> ~/dragonfly/npoa-observer-optimisation/.git/MERGE_MSG
+	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
+
+> ~/.ssh/known_hosts
+	"	42	0
+	.	42	0
+	+	17	0
+	+	6	0
+	+	7	0
+	+	13	0
+	+	1	0
+	+	9	0
+	+	42	0
+
+> /etc/fstab
+	"	11	25
+	^	11	2
+	.	11	1
+	+	12	0
+	+	11	1
+
+> /etc/cron.hourly/birdoftheyear_votes.sh
+	"	3	0
+	^	3	0
+	.	3	0
+	+	3	0
+
+> ~/dragonfly/encounter-kaikoura/analysis/jags/diagnose.r
+	"	64	0
+
+> ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/bll-small/.screenrc.split7
+	"	36	0
+	^	36	0
+	.	35	24
+	+	37	16
+	+	35	20
+	+	37	0
+	+	35	24
+
+> ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/bll-small/makefile
+	"	1	0
+
+> ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/makefile
+	"	1	0
+
+> ~/.bashrc
+	"	84	7
+	^	114	2
+	.	114	1
+	+	39	0
+	+	88	1
+	+	113	1
+	+	114	1
 
 > ~/dragonfly/yr-r-package-and-config/makefile
 	"	23	57
@@ -357,12 +452,6 @@ $dragonfly
 > ~/dragonfly/estimation-2014/.git/MERGE_MSG
 	"	1	0
 
-> ~/dragonfly/npoa-observer-optimisation/.git/MERGE_MSG
-	"	1	0
-	^	1	0
-	.	1	0
-	+	1	0
-
 > ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
 	"	1	0
 	^	1	0
@@ -435,16 +524,6 @@ $dragonfly
 	+	2	33
 	+	1	21
 
-> ~/.ssh/known_hosts
-	"	9	0
-	.	9	0
-	+	17	0
-	+	6	0
-	+	7	0
-	+	13	0
-	+	1	0
-	+	9	0
-
 > /etc/hosts
 	"	3	38
 	^	3	39
@@ -462,13 +541,6 @@ $dragonfly
 
 > ~/dragonfly/toheroa-2014/.git/MERGE_MSG
 	"	1	0
-
-> /etc/fstab
-	"	11	1
-	^	11	2
-	.	11	1
-	+	12	0
-	+	11	1
 
 > /etc/apt/sources.list
 	"	1	0
@@ -765,12 +837,6 @@ $dragonfly
 	.	1	15
 	+	1	15
 
-> ~/.bashrc
-	"	39	0
-	^	39	2
-	.	39	0
-	+	39	0
-
 > /usr/share/undistract-me/long-running.bash
 	"	120	0
 
@@ -883,44 +949,3 @@ $dragonfly
 
 > ~/dragonfly/sra-2012/report/makefile
 	"	1	15
-
-> /etc/darkstat/init.cfg
-	"	2	17
-	^	2	18
-	.	2	18
-	+	2	18
-
-> ~/dragonfly/sra-foundations/.git/COMMIT_EDITMSG
-	"	1	210
-	^	1	211
-	.	1	210
-	+	1	0
-	+	2	0
-	+	1	210
-
-> ~/dragonfly/sra-foundations/report/notes/tables/makefile
-	"	1	17
-	^	1	18
-	.	1	18
-	+	1	18
-
-> ~/dragonfly/sra-2012/analysis/model-re-4/makefile
-	"	22	17
-	^	22	18
-	.	6	18
-	+	6	18
-
-> ~/dragonfly/sra-2012/analysis/model-re-3/kills/summarise-kills.r
-	"	130	0
-
-> ~/dragonfly/sra-2012/analysis/model-re-3/kills/add-cryptic-mortality.r
-	"	112	24
-
-> ~/dragonfly/sra-2012/analysis/model-re-3/kills/calc-kills-aggl-single-species.r
-	"	4	55
-
-> ~/dragonfly/sra-2012/calc-kills-aggl-single-species.r
-	"	1	0
-
-> ~/dragonfly/sra-2012/analysis/model-re-3/vulnerabilities/prepare-re.r
-	"	3	55

@@ -3,11 +3,13 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	TeX-insert-backslash
 	ess-smart-comma
 	ess-yank
 	forward-sexp
 	keyboard-quit
 	kill-region
+	next-buffer
 	wdired-abort-changes
 	))
 

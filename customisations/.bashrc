@@ -85,7 +85,7 @@ alias memacs='emacs -q -l ~/.emacs_mini &'
 
 alias rgm='Rscript -e "graph_makefile()"'
 
-alias E="SUDO_EDITOR=\"emacsclient -a emacs\" sudoedit"
+# alias E="SUDO_EDITOR=\"emacsclient -a emacs\" sudoedit"
 
 # some more ls aliases
 #alias ll='ls -l'
@@ -110,8 +110,8 @@ fi
 
 # added lines for ipython (and psql to avoid -S)
 export LESS="-RS"
-export EDITOR=emacsclient
-export VISUAL=emacsclient
+# export EDITOR=emacsclient
+# export VISUAL=emacsclient
 
 # define color to additional file types
 export LS_COLORS=$LS_COLORS:"di=1;36;40":"*.r=00;93":"ln=1;35":"*.mk=5;34":"*tex=0;93":"*.pdf=00;32":"*makefile=00;91":"*~=0;90":"*csv=0;94":"*rdata=0;94":"*.xls=00;32":"*dbf=0;94":"*.rnw=0;93":"*.py=0;93":"*.png=00;32":"*.jpg=00;32":"*.mp4=00;32":"*.flv=00;32":"*.tif=00;32":"*.tiff=00;32"

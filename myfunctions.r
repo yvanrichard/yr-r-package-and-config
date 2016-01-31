@@ -3060,3 +3060,68 @@ webtab <- function(d, rownames = T, fontsize = '10px') {
               ) %>% formatStyle(1:ncol(d), `font-size` = fontsize)
 }
 
+
+## Keep only changing part of a vector of strings
+simplify_str <- function(x) {
+    y <- strsplit(x, '')
+    maxchar <- max(unlist(lapply(y, function(z) length(z))))
+    y <- do.call("rbind", lapply(y, function(z) c(z, rep(NA, maxchar - length(z)))) )
+    keep <- apply(y, 2, function(z) length(unique(z)) > 1)
+    good <- apply(y[, keep, drop=F], 1, function(z) paste(na.omit(z), collapse=''))
+    removed <- unique(apply(y[, !keep, drop=F], 1, function(z) paste(na.omit(z), collapse='')))
+    attr(good, 'removed') <- removed
+    return(good)
+}
+
+
+plotDensity <- function(x, normalise=F, col='#44004444', border='#440044AA', add=F, ...) {
+    d <- density(x)
+    if (normalise)
+        d$y <- d$y / max(d$y)
+    if (add == F) {
+        plot(NA, xlim = range(d$x), ylim = c(0, max(d$y)*1.04), yaxs = 'i', ...)
+    }
+    polygon(x = c(d$x, tail(d$x,1), d$x[1]),
+            y = c(d$y, 0, 0),
+            col = col, border = border)
+}
+
+
+taxonomytree <- function(spp, clean.names = T, verbose = T) {
+    ## Returns a data table with the same number of rows as the length of spp
+    ## with each row showing the tree of the species (e.g. kingdom, class, order, family, species)
+    library(taxize)
+    library(data.table)
+
+    if (clean.names) {
+        sppp <- gsub('_', ' ', as.character(spp))
+        sppp <- sub('\\bsubsp.*$', '', sppp) ## Remove subspecies part
+        sppp <- gsub('[0-9]', '', sppp) ## Remove digits
+        sppp <- gsub('\\(.*\\)', '', sppp) ## Remove things in parentheses (often the authority ref)
+        sppp <- gsub('\\bsp\\.', '', sppp) ## Remove " sp. "
+        sppp <- gsub('\\b[a-zA-Z]\\b', '', sppp) ## Remove single letters
+        sppp <- gsub('^[[:blank:]]+|[[:blank:]]+$', '', sppp)  ## Trim spaces
+    } else sppp <- spp
+    
+    if (verbose)  cat('Getting uids...\n')
+    uid <- get_uid(sppp)
+    if (verbose)  cat('Getting classification...\n')
+    cl <- classification(uid)
+
+    if (verbose)  cat('Re-organising results...\n')
+    l <- lapply(cl, function(x) {
+        print(tail(x,1))
+        if (class(x) == 'data.frame') {
+            y <- x[x$rank != 'no rank',]
+            dt <- as.data.table(t(y$name))
+            setnames(dt, names(dt), y$rank)
+        } else {
+            dt <- data.table(kingdom = NA, order = NA, family = NA, genus = NA, species = NA)
+        }
+        return(dt)
+    })
+    l2 <- rbindlist(l, fill=T)
+    l2 <- l2[, names(l[[which.max(sapply(l, length))]]), with=F]
+    l3 <- data.table(orig_spp = sppp, l2)
+    return(l3)
+}

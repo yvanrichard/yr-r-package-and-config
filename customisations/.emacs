@@ -72,7 +72,13 @@
  '(fill-prefix nil)
  '(flyspell-default-dictionary "en_GB")
  '(font-latex-fontify-sectioning 1.05)
+ '(helm-adaptive-mode t nil (helm-adaptive))
+ '(helm-always-two-windows nil)
+ '(helm-autoresize-mode t)
+ '(helm-ff-skip-boring-files t)
+ '(helm-mode t)
  '(helm-mode-fuzzy-match t)
+ '(helm-split-window-in-side-p t)
  '(hl-sexp-background-color "#201520")
  '(ibuffer-filter-group-name-face (quote compilation-info))
  '(inhibit-startup-screen t)
@@ -80,7 +86,9 @@
  '(ispell-local-dictionary "en_GB")
  '(magit-repository-directories (quote ("~/dragonfly")))
  '(markdown-command "pandoc --smart -f markdown -t html")
- '(markdown-css-path "/home/yvan/Documents/css/github-markdown.css")
+ '(org-babel-R-command "R --vanilla --slave --no-save")
+ '(org-babel-load-languages (quote ((latex . t) (R . t))))
+ '(org-confirm-babel-evaluate nil)
  '(org-html-use-infojs t)
  '(org-latex-pdf-process
    (quote
@@ -203,7 +211,11 @@ Ignores CHAR at point."
 
 (global-set-key (kbd "C-<") 'previous-buffer)                                  
 (global-set-key (kbd "C->") 'next-buffer)                                 
-(global-set-key "\C-a" 'back-to-indentation)
+
+(defun back-to-indentation-or-beginning () (interactive)
+   (if (= (point) (progn (back-to-indentation) (point)))
+       (beginning-of-line)))
+(global-set-key "\C-a" 'back-to-indentation-or-beginning)
 
 ;; For completion in ESS (keybinding conflit with TAB)
 ;;(global-set-key (kbd "C-'") 'completion-at-point)
@@ -290,6 +302,7 @@ there's a region, all lines that region covers will be duplicated."
  '(dired-rainbow-program-face ((t (:foreground "burlywood"))))
  '(dired-rainbow-r-face ((t (:foreground "#FF8888"))))
  '(diredp-date-time ((t (:foreground "#DDDDFF"))))
+ '(diredp-dir-name ((t (:background "#000000" :foreground "red1"))))
  '(diredp-dir-priv ((t (:background "#000000" :foreground "#CCCCFF" :weight bold))))
  '(diredp-file-name ((t (:foreground "white"))))
  '(diredp-file-suffix ((t (:foreground "#FFFFAA"))))
@@ -374,7 +387,7 @@ there's a region, all lines that region covers will be duplicated."
 
 ;; (global-set-key (kbd "M-Q") 'region-fill-as-paragraph)                                  
 
-(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
+;; (add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 (add-hook 'LaTeX-mode-hook
 	  '(lambda()
 	     (local-set-key [(tab)] 'hippie-expand)))
@@ -382,43 +395,76 @@ there's a region, all lines that region covers will be duplicated."
 	  '(lambda()
 	     (local-set-key [(tab)] 'hippie-expand)))
 
-(add-to-list 'ispell-skip-region-alist '("^<<.*>>=" . "^@"))
-;; (add-to-list 'ispell-skip-region-alist '("Sexpr{" . "}"))
-(defun flyspell-eligible ()
-  (let ((p (point)))
-    (save-excursion
-      (cond ((re-search-backward (ispell-begin-skip-region-regexp) nil t)
-             (ispell-skip-region (match-string-no-properties 0))
-             (< (point) p))
-            (t)))))
-(put 'latex-mode 'flyspell-mode-predicate 'flyspell-eligible)
-(put 'LaTeX-mode 'flyspell-mode-predicate 'flyspell-eligible)
-(put 'Rnw-mode 'flyspell-mode-predicate 'flyspell-eligible)
-(put 'ess-mode 'flyspell-mode-predicate 'flyspell-eligible)
 
-(add-hook 'tex-mode-hook (function (lambda () (setq ispell-parser 'tex))))
+;;;;;;;;;;;;;;;;;
+;; Spell check ;;
+;;;;;;;;;;;;;;;;;
+
+;; enable on-the-fly spell checking
+(add-hook 'emacs-startup-hook
+          (lambda()
+            (add-hook 'text-mode-hook
+                      (lambda ()
+                        (flyspell-mode 1)))
+            ;; prevent flyspell from finding mistakes in the code
+            (add-hook 'prog-mode-hook
+                      (lambda ()
+                        ;; `ispell-comments-and-strings'
+                        (flyspell-prog-mode)))))
+
+;; ispell should not check code blocks in org mode
+(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
+(add-to-list 'ispell-skip-region-alist '("#\\+begin_src" . "#\\+end_src"))
+(add-to-list 'ispell-skip-region-alist '("^#\\+begin_example " . "#\\+end_example$"))
+(add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXAMPLE " . "#\\+END_EXAMPLE$"))
+
+
+(add-to-list 'ispell-skip-region-alist '("^<<" . "@$"))
+;; (add-to-list 'ispell-skip-region-alist '("Sexpr{" . "}"))
+;; (defun flyspell-eligible ()
+;;   (let ((p (point)))
+;;     (save-excursion
+;;       (cond ((re-search-backward (ispell-begin-skip-region-regexp) nil t)
+;;              (ispell-skip-region (match-string-no-properties 0))
+;;              (< (point) p))
+;;             (t)))))
+;; (put 'latex-mode 'flyspell-mode-predicate 'flyspell-eligible)
+;; (put 'LaTeX-mode 'flyspell-mode-predicate 'flyspell-eligible)
+;; (put 'Rnw-mode 'flyspell-mode-predicate 'flyspell-eligible)
+;; (put 'ess-mode 'flyspell-mode-predicate 'flyspell-eligible)
+
+;; (add-hook 'tex-mode-hook (function (lambda () (setq ispell-parser 'tex))))
 
 (require 'latex-frame-mode)
 
 
 
-(defun flyspell-ignore-verbatim ()
-  "Function used for `flyspell-generic-check-word-predicate' to ignore {{{ }}} blocks."
-  (save-excursion
-    (widen)
-    (let ((p (point))
-          (count 0))
-      (not (or (and (re-search-backward "^<<" nil t)
-                    (> p (point))
-                    ;; If there is no closing }}} then assume we're still in it
-                    (or (not (re-search-forward "^@" nil t))
-                        (< p (point))))
-               (eq 1 (progn (while (re-search-backward "`" (line-beginning-position) t)
-                              (setq count (1+ count)))
-                            (- count (* 2 (/ count 2))))))))))
-(put 'latex-mode 'flyspell-mode-predicate 'flyspell-ignore-verbatim)
+;; (defun flyspell-ignore-verbatim ()
+;;   "Function used for `flyspell-generic-check-word-predicate' to ignore {{{ }}} blocks."
+;;   (save-excursion
+;;     (widen)
+;;     (let ((p (point))
+;;           (count 0))
+;;       (not (or (and (re-search-backward "^<<" nil t)
+;;                     (> p (point))
+;;                     ;; If there is no closing }}} then assume we're still in it
+;;                     (or (not (re-search-forward "^@" nil t))
+;;                         (< p (point))))
+;;                (eq 1 (progn (while (re-search-backward "`" (line-beginning-position) t)
+;;                               (setq count (1+ count)))
+;;                             (- count (* 2 (/ count 2))))))))))
+;; (put 'latex-mode 'flyspell-mode-predicate 'flyspell-ignore-verbatim)
+
+
 
 (setq reftex-default-bibliography '("/home/yvan/dragonfly/bibliography/mfish.bib"))
+
+
+;; (add-hook 'flyspell-mode-hook 'flyspell-buffer)
+;; (add-hook 'text-mode-hook (lambda ()
+;; 			    (when (not (equal major-mode 'ess-mode))
+;; 			      (flyspell-mode t))))
 
 ;; (setq safe-local-variable-values ((TeX-master . "report.tex")
 ;;  (TeX-master . "report")
@@ -569,6 +615,7 @@ prompt the user for a coding system."
 		     (filename . "rear")))
 	 ("SRA 2012" (filename . "sra-2012"))
 	 ("SRA 2014" (filename . "sra-2014"))
+	 ("SRA 2016" (filename . "sra-2016"))
 	 ("SRA foundations" (filename . "sra-foundations"))
 	 ("Estimation 2014" (filename . "estimation-2014"))
 	 ("Estimation 2015" (filename . "estimation-2015"))
@@ -576,7 +623,7 @@ prompt the user for a coding system."
 	 ("sra obs cov" (filename . "sra-observer-coverage/"))
 	 ("WHIO benthos" (filename . "whio-benthic-analysis/"))
 	 ("NPOA obs optimisation" (filename . "npoa-observer-optimisation"))
-	 ("Seabird threat framework" (filename . "seabird-threat-framework"))
+	 ("Seabird threats" (filename . "seabird-threat"))
 	 ("DOC 5-min bird counts" (filename . "doc-bird"))
 	 ("Dropbox" (filename . "Dropbox"))
 	 ("My tests" (filename . "mytests"))
@@ -699,6 +746,9 @@ prompt the user for a coding system."
 (add-to-list 'auto-mode-alist '("\\.Rnw" . Rnw-mode))
 (add-to-list 'auto-mode-alist '("\\.rnw" . Rnw-mode))
 
+(add-to-list 'auto-mode-alist '("\\.1" . R-mode))
+(add-to-list 'auto-mode-alist '("makefile\\.1" . makefile-mode))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -715,9 +765,16 @@ prompt the user for a coding system."
 (setq org-src-fontify-natively t)
 (setq org-support-shift-select t)
 
+(setq org-ellipsis "⤵")
+
 ;; (org-babel-do-load-languages
 ;;  'org-babel-load-languages
 ;;  '((R . t)))
+
+(require 'org-bullets)
+(setq org-bullets-bullet-list
+      '("◉" "◎" "⚫" "○" "►" "◇"))
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    uniquify (change file<2> to file/fold)
@@ -995,6 +1052,7 @@ prompt the user for a coding system."
   (gnome-open-file (dired-get-file-for-visit)))
 (add-hook 'dired-mode-hook (lambda () (local-set-key "E" 'dired-gnome-open-file)))
 
+(diredp-toggle-find-file-reuse-dir 1)
 
 ;; Erase whole line and move to identation
 (defun smart-kill-whole-line (&optional arg)
@@ -1059,7 +1117,7 @@ prompt the user for a coding system."
 ;; Multiple cursors ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key (kbd "C-x m") 'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "C-x m") 'mc/mark-all-dwim)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1322,7 +1380,7 @@ prompt the user for a coding system."
 ;; (show-paren-mode 1)
 
 (require 'highlight-indentation)
-(add-hook 'ess-mode-hook 'highlight-indentation-mode) 
+;; (add-hook 'ess-mode-hook 'highlight-indentation-mode) 
 (add-hook 'lisp-mode-hook 'highlight-indentation-mode)
 
 
@@ -1341,6 +1399,7 @@ prompt the user for a coding system."
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z") 'helm-select-action)
@@ -1359,5 +1418,27 @@ prompt the user for a coding system."
 ;;    projectile
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(projectile-global-mode)
-(setq projectile-enable-caching t)
+;; (projectile-global-mode)
+;; (setq projectile-enable-caching t)
+
+
+;; (global-set-key (kbd "C-.") 'imenu-anywhere)
+(global-set-key (kbd "C-s") 'helm-occur)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Popping marks faster ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; From: http://endlessparentheses.com/faster-pop-to-mark-command.html
+;; When popping the mark, continue popping until the cursor
+;; actually moves
+(defadvice pop-to-mark-command (around ensure-new-position activate)
+  (let ((p (point)))
+    (dotimes (i 10)
+      (when (= p (point)) ad-do-it))))
+(setq set-mark-command-repeat-pop t)
+
+
+
+(setq visible-bell t)
