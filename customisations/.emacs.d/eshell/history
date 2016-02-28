@@ -42,3 +42,12 @@ sudo R --vanilla
 make -n
 make .sra_fishing_group_previous
 make .sra_fishing_group_previous -B
+ls
+ls "*helm*"
+rm "*helm*"
+rm "*scratch*~"
+ls
+rm "*scratch*"
+ls
+rm *.*~
+ls

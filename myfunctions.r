@@ -3087,7 +3087,7 @@ plotDensity <- function(x, normalise=F, col='#44004444', border='#440044AA', add
 }
 
 
-taxonomytree <- function(spp, clean.names = T, verbose = T) {
+taxonomytree <- function(spp, clean.names = T, verbose = T, debug = F) {
     ## Returns a data table with the same number of rows as the length of spp
     ## with each row showing the tree of the species (e.g. kingdom, class, order, family, species)
     library(taxize)
@@ -3102,26 +3102,47 @@ taxonomytree <- function(spp, clean.names = T, verbose = T) {
         sppp <- gsub('\\b[a-zA-Z]\\b', '', sppp) ## Remove single letters
         sppp <- gsub('^[[:blank:]]+|[[:blank:]]+$', '', sppp)  ## Trim spaces
     } else sppp <- spp
-    
-    if (verbose)  cat('Getting uids...\n')
-    uid <- get_uid(sppp)
+
     if (verbose)  cat('Getting classification...\n')
-    cl <- classification(uid)
+    cl_ncbi <- classification(sppp, db='ncbi')
+
+    if (debug)
+        str(cl_ncbi)
+    
+    ## Complete with ITIS db
+    if (verbose)  cat('Completing with ITIS db...\n')
+    for (c in sppp[sapply(cl_ncbi, class) != 'data.frame']) {
+        cat(c, '\n')
+        cl_ncbi[[c]] <- classification(c, db='itis')[[1]]
+    }
 
     if (verbose)  cat('Re-organising results...\n')
-    l <- lapply(cl, function(x) {
-        print(tail(x,1))
+    l <- lapply(cl_ncbi, function(x) {
         if (class(x) == 'data.frame') {
             y <- x[x$rank != 'no rank',]
             dt <- as.data.table(t(y$name))
-            setnames(dt, names(dt), y$rank)
+            setnames(dt, names(dt), tolower(y$rank))
         } else {
             dt <- data.table(kingdom = NA, order = NA, family = NA, genus = NA, species = NA)
         }
         return(dt)
     })
     l2 <- rbindlist(l, fill=T)
-    l2 <- l2[, names(l[[which.max(sapply(l, length))]]), with=F]
-    l3 <- data.table(orig_spp = sppp, l2)
-    return(l3)
+
+    ## Clean up
+    pnas <- sapply(names(l2), function(x) sum(is.na(l2[[x]])/nrow(l2)))
+    cols2keep <- names(pnas[pnas < 0.2])
+
+    l3 <- l2[, rev(cols2keep), with=F]
+    if (nrow(l3)) {
+        l4 <- data.table(orig_spp = spp, l3)
+
+        if (verbose & any(is.na(l4$class)))
+            warning('Some species may not have any classification: ',
+                    paste(l4$orig_spp[is.na(l4$class)], collapse=', '), '\n')
+
+        return(l4)
+    } else {
+        return(NULL)
+    }
 }

@@ -6,30 +6,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-to-list 'load-path "~/.emacs.d/extra-manual")
-;; (add-to-list 'load-path
-;;     "~/.emacs.d2")
-;; (add-to-list 'load-path
-;;     "~/.emacs.d/icicles")
-;; (add-to-list 'load-path
-;;     "~/.emacs.d/elisp-buffer-timer")
-
-;; (load "~/.emacs.d2/ESS/lisp/ess-site")
-;; (load "~/.emacs.d2/ESS/lisp/ess-eldoc")
 
 (require 'package)
 (package-initialize)
 (setq package-archives
 '(("ELPA" . "http://tromey.com/elpa/")
   ("gnu" . "http://elpa.gnu.org/packages/")
-  ("melpa" . "http://melpa.org/packages/")))
+  ("melpa" . "http://stable.melpa.org/packages/")))
    ;; ("marmalade" . "http://marmalade-repo.org/packages/")))
 
-;; Window position
-;; (set-face-attribute 'default (selected-frame) :height 100)
-;; (add-to-list 'default-frame-alist '(width . 210))
-;; (add-to-list 'default-frame-alist '(height . 50))
-;; (add-to-list 'default-frame-alist '(left . 100))
-;; (add-to-list 'default-frame-alist '(top . 50))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -51,6 +36,7 @@
  '(custom-safe-themes
    (quote
     ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "6c9ddb5e2ac58afb32358def7c68b6211f30dec8a92e44d2b9552141f76891b3" "a655f17225ad0a7190c79602593563191b7640ddebbb8c8fbd80c9d82faff1c6" "8d6fb24169d94df45422617a1dfabf15ca42a97d594d28b3584dc6db711e0e0b" "08efabe5a8f3827508634a3ceed33fa06b9daeef9c70a24218b70494acdf7855" "49eea2857afb24808915643b1b5bd093eefb35424c758f502e98a03d0d3df4b1" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+ '(delete-by-moving-to-trash t)
  '(diredp-hide-details-initially-flag nil)
  '(doc-view-resolution 200)
  '(ediff-split-window-function (quote split-window-horizontally))
@@ -75,8 +61,24 @@
  '(helm-adaptive-mode t nil (helm-adaptive))
  '(helm-always-two-windows nil)
  '(helm-autoresize-mode t)
+ '(helm-completing-read-handlers-alist
+   (quote
+    ((describe-function . helm-completing-read-symbols)
+     (describe-variable . helm-completing-read-symbols)
+     (describe-symbol . helm-completing-read-symbols)
+     (debug-on-entry . helm-completing-read-symbols)
+     (find-function . helm-completing-read-symbols)
+     (disassemble . helm-completing-read-symbols)
+     (trace-function . helm-completing-read-symbols)
+     (trace-function-foreground . helm-completing-read-symbols)
+     (trace-function-background . helm-completing-read-symbols)
+     (find-tag . helm-completing-read-with-cands-in-buffer)
+     (ffap-alternate-file)
+     (tmm-menubar)
+     (find-file)
+     (execute-extended-command))))
  '(helm-ff-skip-boring-files t)
- '(helm-mode t)
+ '(helm-mode nil)
  '(helm-mode-fuzzy-match t)
  '(helm-split-window-in-side-p t)
  '(hl-sexp-background-color "#201520")
@@ -116,6 +118,7 @@
      ("^~/dragonfly/yr-r-package-and-config/" ":YRPKG:")
      ("^~/dragonfly/npoa-observer-optimisation/" ":NPOA:")
      ("^~/dragonfly/sra-2014/" ":SRA14:")
+     ("^~/dragonfly/sra-2016/" ":SRA16:")
      ("^~/dragonfly/" ":DFLY:")
      ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
  '(sml/shorten-directory t)
@@ -143,8 +146,10 @@
      (360 . "#b5bd68"))))
  '(vc-annotate-very-old-color nil)
  '(wakatime-api-key "0ff58d48-ac18-40ee-be06-f0e1c5985c86")
- '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
+ '(wakatime-cli-path "/usr/local/bin/wakatime")
  '(yank-pop-change-selection t))
+
+ ;; '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
 
 
 (require 'ess-site)
@@ -229,26 +234,11 @@ Ignores CHAR at point."
 ;; use autofill on text modes
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; (require 'save-visited-files)
-;; (turn-on-save-visited-files-mode)
-
-;; (add-to-list 'load-path "~/.emacs.d/predictive/")
-;; (add-to-list 'load-path "~/.emacs.d/predictive/latex/")
-;; (require 'predictive)
-;; ;http://www.emacswiki.org/emacs/PredictiveMode
-;; (autoload 'predictive-mode "predictive" "predictive" t)
-;; (set-default 'predictive-auto-add-to-dict t)
-;; (setq predictive-main-dict 'rpg-dictionary
-;;       predictive-auto-learn t
-;;       predictive-add-to-dict-ask nil
-;;       predictive-use-auto-learn-cache nil
-;;       predictive-which-dict t)
-
 (setq max-lisp-eval-depth 10000)
 
-(require 'pabbrev)
+;; (require 'pabbrev)
 
-(global-set-key [f9] 'compile)
+(global-set-key (kbd "<XF86Send>") 'compile)
 (global-set-key [f8] (lambda () (interactive) (ess-switch-to-ESS "R")))
 
 (setq scroll-preserve-screen-position t)
@@ -279,14 +269,6 @@ there's a region, all lines that region covers will be duplicated."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Colours
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (load-theme 'sanityinc-tomorrow-night)
-;; (load-theme 'tango-dark)
-
-;; (set-face-attribute 'default nil
-;;                     :family "Source Code Pro"
-;;                     :height 100
-;;                     :weight 'normal
-;;                     :width 'condensed)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -347,9 +329,6 @@ there's a region, all lines that region covers will be duplicated."
  '(underline ((t (:underline "#666666")))))
 
 
-
-;; (load-theme 'mytheme t)
-
 (global-wakatime-mode 1)
 
 ;;;;;;;;;;;;;;;;
@@ -363,31 +342,11 @@ there's a region, all lines that region covers will be duplicated."
 ;;    Latex, Sweave, etc.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (load "auctex.el" nil t t)
-;; (load "preview-latex.el" nil t t)
-
-;; use reftex
-  ; with AUCTeX LaTeX mode
-;; (add-hook 'LaTeX-mode-hook 'turn-on-reftex) 
-;;   ; with Emacs latex mode
-;; (add-hook 'latex-mode-hook 'turn-on-reftex)
-  ; use natural science bibliography style
 (setq reftex-cite-format 'natbib)
 (setq-default TeX-master nil)
 (setq TeX-PDF-mode t)
 (setq latex-run-command "xelatex")
 
-;; (setq reftex-file-extensions
-;;       '(("Snw" "Rnw" "nw" "tex" ".tex" ".ltx") ("bib" ".bib")))
-;; (setq TeX-file-extensions
-;;       '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
-
-;; (setq ispell-program-name "ispell") ; could be ispell as well, depending on your preferences
-;; (setq ispell-dictionary "english") ; this can obviously be set to any language your spell-checking program supports
-
-;; (global-set-key (kbd "M-Q") 'region-fill-as-paragraph)                                  
-
-;; (add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 (add-hook 'LaTeX-mode-hook
 	  '(lambda()
 	     (local-set-key [(tab)] 'hippie-expand)))
@@ -419,56 +378,13 @@ there's a region, all lines that region covers will be duplicated."
 (add-to-list 'ispell-skip-region-alist '("^#\\+begin_example " . "#\\+end_example$"))
 (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXAMPLE " . "#\\+END_EXAMPLE$"))
 
-
 (add-to-list 'ispell-skip-region-alist '("^<<" . "@$"))
-;; (add-to-list 'ispell-skip-region-alist '("Sexpr{" . "}"))
-;; (defun flyspell-eligible ()
-;;   (let ((p (point)))
-;;     (save-excursion
-;;       (cond ((re-search-backward (ispell-begin-skip-region-regexp) nil t)
-;;              (ispell-skip-region (match-string-no-properties 0))
-;;              (< (point) p))
-;;             (t)))))
-;; (put 'latex-mode 'flyspell-mode-predicate 'flyspell-eligible)
-;; (put 'LaTeX-mode 'flyspell-mode-predicate 'flyspell-eligible)
-;; (put 'Rnw-mode 'flyspell-mode-predicate 'flyspell-eligible)
-;; (put 'ess-mode 'flyspell-mode-predicate 'flyspell-eligible)
 
-;; (add-hook 'tex-mode-hook (function (lambda () (setq ispell-parser 'tex))))
 
 (require 'latex-frame-mode)
 
-
-
-;; (defun flyspell-ignore-verbatim ()
-;;   "Function used for `flyspell-generic-check-word-predicate' to ignore {{{ }}} blocks."
-;;   (save-excursion
-;;     (widen)
-;;     (let ((p (point))
-;;           (count 0))
-;;       (not (or (and (re-search-backward "^<<" nil t)
-;;                     (> p (point))
-;;                     ;; If there is no closing }}} then assume we're still in it
-;;                     (or (not (re-search-forward "^@" nil t))
-;;                         (< p (point))))
-;;                (eq 1 (progn (while (re-search-backward "`" (line-beginning-position) t)
-;;                               (setq count (1+ count)))
-;;                             (- count (* 2 (/ count 2))))))))))
-;; (put 'latex-mode 'flyspell-mode-predicate 'flyspell-ignore-verbatim)
-
-
-
 (setq reftex-default-bibliography '("/home/yvan/dragonfly/bibliography/mfish.bib"))
 
-
-;; (add-hook 'flyspell-mode-hook 'flyspell-buffer)
-;; (add-hook 'text-mode-hook (lambda ()
-;; 			    (when (not (equal major-mode 'ess-mode))
-;; 			      (flyspell-mode t))))
-
-;; (setq safe-local-variable-values ((TeX-master . "report.tex")
-;;  (TeX-master . "report")
-;;  (TeX-master . t)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -491,21 +407,21 @@ there's a region, all lines that region covers will be duplicated."
 ;;    ido-mode (autocompletion)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(ido-mode t)
-(setq ido-enable-flex-matching t)
+;; (ido-mode t)
+;; (setq ido-enable-flex-matching t)
 
-;; Flex ido
-(require 'flx-ido)
-(ido-mode 1)
-(ido-everywhere 1)
-(ido-ubiquitous-mode 1)
-(flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
-(setq ido-enable-flex-matching t)
-;; (setq ido-use-faces nil)
-(setq org-completion-use-ido t)
-(require 'ido-ubiquitous)
-(ido-ubiquitous-mode 1)
+;; ;; Flex ido
+;; (require 'flx-ido)
+;; (ido-mode 1)
+;; (ido-everywhere 1)
+;; (ido-ubiquitous-mode 1)
+;; (flx-ido-mode 1)
+;; ;; disable ido faces to see flx highlights.
+;; (setq ido-enable-flex-matching t)
+;; ;; (setq ido-use-faces nil)
+;; (setq org-completion-use-ido t)
+;; (require 'ido-ubiquitous)
+;; (ido-ubiquitous-mode 1)
 
 ;; (ivy-mode t)
 
@@ -678,7 +594,7 @@ prompt the user for a coding system."
 ;; ;; (require 'ess-jags-d)
 ;; (autoload 'ess-jags-mode "ess-jags-mode"
 ;;    "Major mode for editing JAGS files" t)
-;; (add-to-list 'auto-mode-alist '("\\.bug\\'" . ess-jags-mode))
+(add-to-list 'auto-mode-alist '("\\.bug\\'" . R-mode))
 
 ;; (require 'ess-eldoc) ;to show function arguments while you are typing them
 (setq ess-use-auto-complete 'script-only)
@@ -827,9 +743,9 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Ace jump mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'ace-jump-mode)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(define-key global-map (kbd "C-c C-SPC") 'ace-jump-mode)
+;; (require 'ace-jump-mode)
+;; (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+;; (define-key global-map (kbd "C-c C-SPC") 'ace-jump-mode)
 
 (global-set-key (kbd "C-;") 'avy-goto-char-timer)
 (global-set-key (kbd "C-:") 'avy-goto-char)
@@ -874,9 +790,14 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Powerline
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'powerline)
+;; (require 'powerline)
 ;; (powerline-default-theme)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    smart-mode-line (better bottom line)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(sml/setup)
+(sml/apply-theme 'dark)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;    Highlight sexp
@@ -952,11 +873,6 @@ prompt the user for a coding system."
 (global-set-key (kbd "C-x g") 'google-this)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    smart-mode-line (better bottom line)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(sml/setup)
-(sml/apply-theme 'dark)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1027,9 +943,9 @@ prompt the user for a coding system."
 (fset 'reparens
    [?\S-\C-\M-s ?^ ?\[ ?\[ ?: ?b ?l ?a ?n ?k ?: ?\] ?\] ?* ?\{ return ?\C-b ?\M-^ ?\C-\M-q ?\C-e])
 
-;; Macro to insert a space on both sides of equal signs
-(fset 'eqspacing
-   [?\C-\M-% ?\\ ?\( ?\[ ?^ ?\[ ?: ?b ?l ?a ?n ?k ?: ?\] ?\] ?+ ?\\ ?\) ?= ?\\ ?\( ?\[ ?^ ?\[ ?: ?b ?l ?a ?n ?k ?: ?\] ?\] S-backspace ?\] ?+ ?\\ ?\) left left left left left left left left left left left left left left left left left left left left left delete right right right right right right right right right right right right right right right right right delete end return ?\\ ?1 ?  ?= ?  ?\\ ?2 return])
+;; ;; Macro to insert a space on both sides of equal signs
+;; (fset 'eqspacing
+;;    [?\C-\M-% ?\\ ?\( ?\[ ?^ ?\[ ?: ?b ?l ?a ?n ?k ?: ?\] ?\] ?+ ?\\ ?\) ?= ?\\ ?\( ?\[ ?^ ?\[ ?: ?b ?l ?a ?n ?k ?: ?\] ?\] S-backspace ?\] ?+ ?\\ ?\) left left left left left left left left left left left left left left left left left left left left left delete right right right right right right right right right right right right right right right right right delete end return ?\\ ?1 ?  ?= ?  ?\\ ?2 return])
 
 (defun eqspacing (arg)
   "Add space around `=' when there is none"
@@ -1235,6 +1151,8 @@ prompt the user for a coding system."
 (setq magit-last-seen-setup-instructions "1.4.0")
 (setenv "EDITOR" "emacsclient")
 
+(global-set-key (kbd "C-c m") 'magit-status)
+
 ;; ;; (make-face 'font-lock-punctuation-face) ;; Create a new face
 ;; ;; (set-face-foreground 'font-lock-punctuation-face "red") ;; Set the colour
 ;; (defun custom-punc()
@@ -1266,8 +1184,6 @@ prompt the user for a coding system."
 ;;   (font-lock-add-keywords nil         
 ;;     '((":,.;" 0 font-lock-warning-face)))
 ;; ))
-
-(global-set-key (kbd "C-c m") 'magit-status)
 
 
 ;;;;;;;;;;;;;
@@ -1334,6 +1250,7 @@ prompt the user for a coding system."
 				    :foreground "#666666") dired-dot-files-extensions)
 
 (require 'dired+)
+;; (setq dired-dwim-target t)
 
 
 (server-start)
@@ -1401,7 +1318,7 @@ prompt the user for a coding system."
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "M-x") 'helm-M-x)
 
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+;; (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z") 'helm-select-action)
 ;; (global-set-key (kbd "C-:") 'ac-complete-with-helm)
 ;; (define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-helm)
@@ -1423,7 +1340,8 @@ prompt the user for a coding system."
 
 
 ;; (global-set-key (kbd "C-.") 'imenu-anywhere)
-(global-set-key (kbd "C-s") 'helm-occur)
+(global-set-key (kbd "C-S-s") 'helm-occur)
+(global-set-key (kbd "C-s") 'isearch-forward)
 
 
 
@@ -1442,3 +1360,104 @@ prompt the user for a coding system."
 
 
 (setq visible-bell t)
+
+
+
+
+
+(defun rmarkdown-to-html ()
+  (interactive)
+  "Run knitr::knit2html on the current file"
+  "https://gist.github.com/kohske/9128031"
+  (shell-command
+   (format "Rscript -e \"rmarkdown::render('%s')\""
+	   (shell-quote-argument (buffer-file-name)))))
+ 
+;; do this in R process
+;; library (rmarkdown); render ("file_name.Rmd")
+ 
+(defun ess-rmarkdown ()
+  (interactive)
+  "Compile R markdown (.Rmd). Should work for any output type."
+  "http://roughtheory.com/posts/ess-rmarkdown.html"
+  ; Check if attached R-session
+  (condition-case nil
+      (ess-get-process)
+    (error
+     (ess-switch-process)))
+  (let* ((rmd-buf (current-buffer)))
+    (save-excursion
+      (let* ((sprocess (ess-get-process ess-current-process-name))
+         (sbuffer (process-buffer sprocess))
+         (buf-coding (symbol-name buffer-file-coding-system))
+         (R-cmd
+          (format "library (rmarkdown); rmarkdown::render (\"%s\")"
+              buffer-file-name)))
+    (message "Running rmarkdown on %s" buffer-file-name)
+    (ess-execute R-cmd 'buffer nil nil)
+    (switch-to-buffer rmd-buf)
+    (ess-show-buffer (buffer-name sbuffer) nil)))))
+ 
+;; (define-key polymode-mode-map "\M-ns" 'ess-rmarkdown)
+
+
+(setq elfeed-feeds
+      '("http://avxhome.in/ebooks/science_books/rss.xml"
+	"http://avxhome.in/ebooks/programming_development/rss.xml"
+	"http://avxhome.in/ebooks/software/rss.xml"
+	"http://avxhome.in/ebooks/music/rss.xml"
+	"http://avxhome.in/ebooks/animals/rss.xml"))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Auto-correct with C-x C-i ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; add correction automatically to abbrev list for future automatic correction
+;; From http://endlessparentheses.com/ispell-and-abbrev-the-perfect-auto-correct.html
+
+(define-key ctl-x-map "\C-i"
+  #'endless/ispell-word-then-abbrev)
+
+(defun endless/ispell-word-then-abbrev (p)
+  "Call `ispell-word', then create an abbrev for it.
+With prefix P, create local abbrev. Otherwise it will
+be global.
+If there's nothing wrong with the word at point, keep
+looking for a typo until the beginning of buffer. You can
+skip typos you don't want to fix with `SPC', and you can
+abort completely with `C-g'."
+  (interactive "P")
+  (let (bef aft)
+    (save-excursion
+      (while (if (setq bef (thing-at-point 'word))
+                 ;; Word was corrected or used quit.
+                 (if (ispell-word nil 'quiet)
+                     nil ; End the loop.
+                   ;; Also end if we reach `bob'.
+                   (not (bobp)))
+               ;; If there's no word at point, keep looking
+               ;; until `bob'.
+               (not (bobp)))
+        (backward-word))
+      (setq aft (thing-at-point 'word)))
+    (if (and aft bef (not (equal aft bef)))
+        (let ((aft (downcase aft))
+              (bef (downcase bef)))
+          (define-abbrev
+            (if p local-abbrev-table global-abbrev-table)
+            bef aft)
+          (message "\"%s\" now expands to \"%s\" %sally"
+                   bef aft (if p "loc" "glob")))
+      (user-error "No typo at or before point"))))
+
+(setq save-abbrevs 'silently)
+(setq-default abbrev-mode t)
+
+
+
+(require 'ess-view)
+
+
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq confirm-nonexistent-file-or-buffer nil)

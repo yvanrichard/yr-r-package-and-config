@@ -1,0 +1,36 @@
+ls
+ls -l
+qui
+quit
+\q
+mdsfgfsd
+ls
+mdsfgfsd
+ls
+R
+ls
+make -n
+make
+make
+make
+make
+make
+make -n
+cd ../plots/
+ls
+make -Bn
+make -B
+cd ..
+cd -
+make -n
+cd ..
+make -Bn
+make -B
+make -B
+cd 20150219-large-capts-xbp/
+make -n
+remake --debug=basic -n
+;s
+ls
+cd dragonfly/npoa-observer-optimisation/
+ls

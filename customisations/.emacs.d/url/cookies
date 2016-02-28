@@ -2,14 +2,15 @@
 ;; Automatically generated file!!! DO NOT EDIT!!!
 
 (setq url-cookie-storage
- '((".google.com"
-  [url-cookie "PREF" "ID=1111111111111111:FF=0:TM=1436244695:LM=1436244695:V=1:S=X4G9a_9NtURlz4ed" "06-Jul-2017 04:51:35.00 GMT" "/" ".google.com" nil]
-  [url-cookie "NID" "69=d6IK0kSeLc-9BmsW9NsSSaHMFc2sL-MrHOJHayh0W9zRmA4YrzXsI3gWAsBQt9FTvGOVl8HhrGPD1baoPQP3_cDF7iXVQjVUaQnBEHdCBQAAMmFiYls7yymJDFL8_Zp_" "06-Jan-2016 04:51:35.00 GMT" "/" ".google.com" nil]
-  [url-cookie "HttpOnly" nil "06-Jan-2016 04:51:35.00 GMT" "/" ".google.com" nil])
- ("sortir.telerama.fr"
-  [url-cookie "__musession" "a%3A1%3A%7Bs%3A17%3A%22zone_geographique%22%3Ba%3A2%3A%7Bs%3A2%3A%22id%22%3Bi%3A1%3Bs%3A7%3A%22libelle%22%3Bs%3A5%3A%22Paris%22%3B%7D%7D" "02-Mar-2020 21:50:30.00 GMT" "/" "sortir.telerama.fr" nil]
+ '(("sortir.telerama.fr"
+  [url-cookie "__mutoken" "musession54f4db269a11f4.37177305" "02-Mar-2020 21:50:30.00 GMT" "/" "sortir.telerama.fr" nil]
   [url-cookie "httponly" nil "02-Mar-2020 21:50:30.00 GMT" "/" "sortir.telerama.fr" nil]
-  [url-cookie "__mutoken" "musession54f4db269a11f4.37177305" "02-Mar-2020 21:50:30.00 GMT" "/" "sortir.telerama.fr" nil]))
+  [url-cookie "__musession" "a%3A1%3A%7Bs%3A17%3A%22zone_geographique%22%3Ba%3A2%3A%7Bs%3A2%3A%22id%22%3Bi%3A1%3Bs%3A7%3A%22libelle%22%3Bs%3A5%3A%22Paris%22%3B%7D%7D" "02-Mar-2020 21:50:30.00 GMT" "/" "sortir.telerama.fr" nil])
+ (".feedly.com"
+  [url-cookie "__cfduid" "d0903200ed166cd8d70c4c8454b1f960e1455062570" "09 Feb 17 00:02:50 [GMT]" "/" ".feedly.com" nil]
+  [url-cookie "HttpOnly" nil "09 Feb 17 00:02:50 [GMT]" "/" ".feedly.com" nil])
+ (".google.com"
+  [url-cookie "PREF" "ID=1111111111111111:FF=0:TM=1436244695:LM=1436244695:V=1:S=X4G9a_9NtURlz4ed" "06-Jul-2017 04:51:35.00 GMT" "/" ".google.com" nil]))
 )
 (setq url-cookie-secure-storage
  'nil)
