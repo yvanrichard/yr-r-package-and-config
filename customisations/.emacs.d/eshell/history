@@ -51,3 +51,4 @@ rm "*scratch*"
 ls
 rm *.*~
 ls
+make

@@ -1862,6 +1862,9 @@ seqaxis <- function(mainlvls, sublvls, torem=NA, xsep=1, names=c('sub','main','x
 mean_ci <- function(x) return(c(mean=mean(x),
                                 lcl=quantile(x, 0.025, names=F),
                                 ucl=quantile(x, 0.975, names=F)))
+meanci <- function(x) return(c(mean=mean(x),
+                       lcl=quantile(x, 0.025, names=F),
+                       ucl=quantile(x, 0.975, names=F)))
 
 get_stats <- function(x, na.rm=T) {
     return(c(mean=mean(x, na.rm=na.rm), med=median(x, na.rm=na.rm),
@@ -3145,4 +3148,138 @@ taxonomytree <- function(spp, clean.names = T, verbose = T, debug = F) {
     } else {
         return(NULL)
     }
+}
+
+
+shinyCorr <- function(df, ...) {
+    ## Shiny app for interactive scatterplots of a data frame
+    require(shiny)
+    require(ggplot2)
+    shinyApp(
+        
+        ui = fluidPage(
+                 sidebarLayout(
+                     sidebarPanel(width = 3,
+                                  uiOutput("xvar"),
+                                  uiOutput("xtrans"),
+                                  hr(),
+                                  uiOutput("yvar"),
+                                  uiOutput("ytrans"),
+                                  hr(),
+                                  uiOutput("groupvar"),
+                                  hr(),
+                                  uiOutput("panelvar"),
+                                  uiOutput("panelscale")),
+                     mainPanel(width = 9,
+                               plotOutput("theplot", height = '800px'))
+                 )
+             ), 
+
+        server = function(input, output) {
+
+            output$xvar <- renderUI({
+                selectInput("xvar", label = "X variable", choices = names(df),
+                            selected = names(df)[1])
+            })
+            output$xtrans <- renderUI({
+                selectInput("xtrans", label = "X transformation", choices = c('None', 'log10', 'sqrt'),
+                            selected = 'None')
+            })
+            output$yvar <- renderUI({
+                selectInput("yvar", label = "Y variable", choices = names(df),
+                            selected = names(df)[2])
+            })
+            output$ytrans <- renderUI({
+                selectInput("ytrans", label = "Y transformation", choices = c('None', 'log10', 'sqrt'),
+                            selected = 'None')
+            })
+            output$groupvar <- renderUI({
+                selectInput("groupvar", label = "Group variable", choices = c(names(df), '<None>'),
+                            selected = '<None>')
+            })
+            output$panelvar <- renderUI({
+                selectInput("panelvar", label = "Panel variable", choices = c(names(df), '<None>'),
+                            selected = '<None>')
+            })
+            output$panelscale <- renderUI({
+                selectInput("panelscale", label = "Panel scaling",
+                            choices = c('Free X & Y' = 'free',
+                                        'Same X' = "free_y",
+                                        'Same Y' = "free_x",
+                                        'Same X & Y' = 'fixed'),
+                            selected = 'free')
+            })
+
+            plotdata <- reactive({
+                if (!is.null(input$xvar)) 
+                    df$tmpX <- df[[input$xvar]]
+                if (!is.null(input$yvar))
+                    df$tmpY <- df[[input$yvar]]
+                if (!is.null(input$groupvar))
+                    if (input$groupvar != '<None>')
+                        df$tmpGroup <- df[[input$groupvar]]  else  df$tmpGroup <- NA
+                if (!is.null(input$panelvar))
+                    if (input$panelvar != '<None>')
+                        df$tmpPanel <- df[[input$panelvar]]  else  df$tmpPanel <- NA
+                return(df)
+            })
+            
+            output$theplot <- renderPlot({
+                dat <- plotdata()
+                if ('tmpX' %in% names(dat) & 'tmpY' %in% names(dat) & 'tmpGroup' %in% names(dat) &
+                    'tmpPanel' %in% names(dat)) {
+                    if (input$groupvar != '<None>') {
+                        g <- ggplot(dat, aes(x = tmpX, y = tmpY, group = tmpGroup, colour = tmpGroup))
+                    } else g <- ggplot(dat, aes(x = tmpX, y = tmpY))
+
+                    g <- g + geom_point(alpha = 0.5)
+
+                    if (input$panelvar != '<None>')
+                        g <- g + facet_wrap(~ tmpPanel, scales = input$panelscale)
+
+                    if (input$xtrans == 'log10')
+                        g <- g + scale_x_log10()
+                    if (input$ytrans == 'log10')
+                        g <- g + scale_y_log10()
+
+                    if (input$xtrans == 'sqrt')
+                        g <- g + scale_x_sqrt()
+                    if (input$ytrans == 'sqrt')
+                        g <- g + scale_y_sqrt()
+
+                    if (class(dat[[input$groupvar]]) == 'numeric')
+                        g <- g + scale_colour_gradientn(name = input$groupvar,
+                                                       colours = viridis::magma(50))
+                    
+                    g <- g + labs(x = input$xvar, y = input$yvar)
+                    
+                    return(g)
+                }
+            }
+            )
+        }
+    )
+}
+
+
+rollup <- function(x, j, by, level=FALSE) {
+    ### SQL rollup function for data.table. Useful to add margins.
+    ## x <- data.table(group=sample(letters[1:2],100,replace=TRUE),
+    ##                year=sample(2010:2012,100,replace=TRUE),
+    ##                month=sample(1:12,100,replace=TRUE),
+    ##                v=runif(100))
+    ## r <- rollup(x, .(vmean=mean(v), vsum=sum(v)), by = c("group","year","month"), level=FALSE)
+    ## dcast(melt(r, measure.vars=c('vmean', 'vsum')), group + year ~ month, fun.aggregate=sum)
+    library(data.table)
+    stopifnot(is.data.table(x), is.character(by), length(by) >= 2L, is.logical(level))
+    j = substitute(j)
+    aggrs = rbindlist(c(
+                lapply(1:(length(by)-1L), function(i) x[, eval(j), c(by[1:i])][, (by[-(1:i)]) := NA]), # subtotals
+                list(x[, eval(j), c(by)]), # leafs aggregations
+                list(x[, eval(j)][, c(by) := NA]) # grand total
+            ), use.names = TRUE, fill = FALSE)
+    if(level) aggrs[, c("level") := sum(sapply(.SD, is.na)), 1:nrow(aggrs), .SDcols = by]
+    setcolorder(aggrs, neworder = c(by, names(aggrs)[!names(aggrs) %in% by]))
+    setorderv(aggrs, cols = by, order=1L, na.last=TRUE)
+    return(aggrs[])
 }

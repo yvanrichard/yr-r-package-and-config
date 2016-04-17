@@ -95,6 +95,7 @@
  '(org-latex-pdf-process
    (quote
     ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
+ '(projectile-tags-command "ctags-exuberant -Re -f \"%s\" %s")
  '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
    (quote
@@ -282,9 +283,9 @@ there's a region, all lines that region covers will be duplicated."
  '(dired-rainbow-data-face ((t (:foreground "#FFDDAA"))))
  '(dired-rainbow-image-face ((t (:foreground "#DDAABB"))))
  '(dired-rainbow-program-face ((t (:foreground "burlywood"))))
- '(dired-rainbow-r-face ((t (:foreground "#FF8888"))))
+ '(dired-rainbow-r-face ((t (:foreground "#00FF55" :weight bold))))
  '(diredp-date-time ((t (:foreground "#DDDDFF"))))
- '(diredp-dir-name ((t (:background "#000000" :foreground "red1"))))
+ '(diredp-dir-name ((t (:background "#000000" :foreground "#FF0000" :slant italic :weight bold))))
  '(diredp-dir-priv ((t (:background "#000000" :foreground "#CCCCFF" :weight bold))))
  '(diredp-file-name ((t (:foreground "white"))))
  '(diredp-file-suffix ((t (:foreground "#FFFFAA"))))
@@ -306,9 +307,10 @@ there's a region, all lines that region covers will be duplicated."
  '(font-lock-keyword-face ((t (:foreground "#88DD88"))))
  '(font-lock-string-face ((t (:foreground "DarkSeaGreen2"))))
  '(font-lock-type-face ((t (:foreground "#FFFF66"))))
- '(font-lock-warning-face ((t (:inherit error :foreground "#FFFF00"))))
+ '(font-lock-warning-face ((t (:background "yellow" :foreground "red" :weight semi-bold))))
  '(helm-ff-directory ((t (:inherit diredp-dir-priv))))
  '(helm-selection ((t (:background "black" :distant-foreground "black"))))
+ '(hi-yellow ((t (:background "yellow1" :foreground "red"))))
  '(highlight ((t (:background "#552222"))))
  '(highlight-indentation-face ((t (:inherit fringe :background "gray11"))))
  '(italic ((t (:height 0.7))))
@@ -1335,8 +1337,28 @@ prompt the user for a coding system."
 ;;    projectile
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (projectile-global-mode)
-;; (setq projectile-enable-caching t)
+;; from http://endlessparentheses.com/improving-projectile-with-extra-commands.html
+(projectile-global-mode)
+(setq projectile-keymap-prefix (kbd "C-x p"))
+(setq projectile-switch-project-action
+      #'projectile-commander)
+(def-projectile-commander-method ?s
+  "Open a *shell* buffer for the project."
+  (shell (get-buffer-create
+          (format "*shell %s*"
+                  (projectile-project-name)))))
+
+(def-projectile-commander-method ?c
+  "Run `compile' in the project."
+  (call-interactively #'compile))
+(def-projectile-commander-method ?\C-?
+  "Go back to project selection."
+  (projectile-switch-project))
+
+(setq projectile-enable-caching t)
+(setq projectile-completion-system 'helm)
+;; (helm-projectile-on)
+
 
 
 ;; (global-set-key (kbd "C-.") 'imenu-anywhere)
@@ -1461,3 +1483,16 @@ abort completely with `C-g'."
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq confirm-nonexistent-file-or-buffer nil)
+
+
+;;;;;;;;;;
+;; TAGS ;;
+;;;;;;;;;;
+
+(setq path-to-ctags "/usr/bin/ctags-exuberant")
+(defun create-tags (dir-name)
+  "Create tags file."
+  (interactive "DDirectory: ")
+  (shell-command
+   (format "ctags -f %s -e -R %s" path-to-ctags (directory-file-name dir-name)))
+  )

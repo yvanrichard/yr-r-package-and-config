@@ -154,18 +154,27 @@ $dragonfly
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  1  0  ~/dragonfly/seabird-threat-framework/.git/MERGE_MSG
-'1  23  0  /etc/pulse/daemon.conf
-'2  4  29  ~/.config/mopidy/settings.py
-'3  29  0  /etc/mopidy/mopidy.conf
-'4  36  0  /etc/mopidy/mopidy.conf
-'5  10  19  /etc/mopidy/mopidy.conf
-'6  24  6  /etc/mopidy/mopidy.conf
-'7  1  0  ~/dragonfly/npoa-observer-optimisation/.git/MERGE_MSG
-'8  42  0  ~/.ssh/known_hosts
-'9  11  25  /etc/fstab
+'0  1  0  ~/dragonfly/sra-2016/.git/MERGE_MSG
+'1  1  0  ~/dragonfly/oreo/.git/MERGE_MSG
+'2  1  0  ~/dragonfly/estimation-2015/.git/MERGE_MSG
+'3  1  3  ~/test.txt
+'4  691  63  ~/dragonfly/paua-mp/shiny/app/server.r
+'5  88  0  ~/dragonfly/paua-mp/shiny/app/ui.r
+'6  1  0  ~/dragonfly/paua-mp/.git/MERGE_MSG
+'7  1  0  ~/dragonfly/seabird-threat-framework/.git/MERGE_MSG
+'8  23  0  /etc/pulse/daemon.conf
+'9  4  29  ~/.config/mopidy/settings.py
 
 # Jumplist (newest first):
+-'  1  0  ~/dragonfly/sra-2016/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/oreo/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/estimation-2015/.git/MERGE_MSG
+-'  1  3  ~/test.txt
+-'  691  63  ~/dragonfly/paua-mp/shiny/app/server.r
+-'  1  0  ~/dragonfly/paua-mp/shiny/app/server.r
+-'  88  0  ~/dragonfly/paua-mp/shiny/app/ui.r
+-'  1  0  ~/dragonfly/paua-mp/shiny/app/ui.r
+-'  1  0  ~/dragonfly/paua-mp/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/seabird-threat-framework/.git/MERGE_MSG
 -'  23  0  /etc/pulse/daemon.conf
 -'  1  0  /etc/pulse/daemon.conf
@@ -212,7 +221,6 @@ $dragonfly
 -'  1  0  /tmp/psql.edit.18031.sql
 -'  6  69  ~/dragonfly/sra-2014/.git/MERGE_MSG
 -'  1  0  /tmp/bash-fc-915318062537
--'  1  0  ~/dragonfly/oreo/.git/MERGE_MSG
 -'  1  34  ~/dragonfly/bycatch.dragonfly.co.nz/.git/COMMIT_EDITMSG
 -'  226  84  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
 -'  1  0  ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
@@ -257,15 +265,47 @@ $dragonfly
 -'  13  0  ~/.ssh/known_hosts
 -'  3  38  /etc/hosts
 -'  1  0  /etc/hosts
--'  5  0  /etc/hosts
--'  1  0  ~/dragonfly/mammals-may-13/.git/MERGE_MSG
--'  1  0  ~/dragonfly/encounter-kaikoura/.git/MERGE_MSG
--'  1  0  ~/dragonfly/ludicio/.git/MERGE_MSG
--'  1  0  ~/dragonfly/toheroa-2014/.git/MERGE_MSG
--'  1  0  /etc/apt/sources.list
--'  4  0  /etc/mpd.conf
 
 # History of marks within files (newest to oldest):
+
+> ~/dragonfly/sra-2016/.git/MERGE_MSG
+	"	1	0
+
+> ~/dragonfly/oreo/.git/MERGE_MSG
+	"	1	0
+
+> ~/dragonfly/estimation-2015/.git/MERGE_MSG
+	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
+
+> ~/test.txt
+	"	1	3
+	^	1	4
+	.	1	3
+	+	1	3
+
+> ~/dragonfly/paua-mp/shiny/app/server.r
+	"	691	63
+	^	691	64
+	.	469	63
+	+	12	8
+	+	15	15
+	+	19	20
+	+	20	27
+	+	19	20
+	+	20	27
+	+	21	19
+	+	22	24
+	+	23	20
+	+	469	63
+
+> ~/dragonfly/paua-mp/shiny/app/ui.r
+	"	88	0
+
+> ~/dragonfly/paua-mp/.git/MERGE_MSG
+	"	1	0
 
 > ~/dragonfly/seabird-threat-framework/.git/MERGE_MSG
 	"	1	0
@@ -422,9 +462,6 @@ $dragonfly
 	+	10	55
 
 > /tmp/bash-fc-915318062537
-	"	1	0
-
-> ~/dragonfly/oreo/.git/MERGE_MSG
 	"	1	0
 
 > ~/dragonfly/bycatch.dragonfly.co.nz/.git/COMMIT_EDITMSG
@@ -913,39 +950,3 @@ $dragonfly
 
 > ~/dragonfly/sra-foundations/report/report.tex.BASE.32111.tex
 	"	129	0
-
-> ~/dragonfly/sra-foundations/report/report.tex.REMOTE.32111.tex
-	"	127	0
-
-> ~/dragonfly/abundance/.git/config
-	"	1	0
-	^	8	15
-	.	8	15
-	+	8	15
-
-> /etc/apparmor.d/abstractions/ubuntu-browsers.d/java
-	"	21	32
-	^	14	2
-	.	14	1
-	+	10	0
-	+	11	0
-	+	12	1
-	+	13	2
-	+	12	1
-	+	14	1
-
-> ~/test/vars.mk
-	"	4	34
-	^	4	35
-	.	4	34
-	+	4	34
-
-> ~/dragonfly/yr-r-package-and-config/.gitignore
-	"	2	5
-	^	2	6
-	.	2	6
-	+	1	6
-	+	2	6
-
-> ~/dragonfly/sra-2012/report/makefile
-	"	1	15
