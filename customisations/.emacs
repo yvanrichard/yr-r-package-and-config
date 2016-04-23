@@ -22,6 +22,7 @@
  ;; If there is more than one, they won't work right.
  '(LaTeX-biblatex-use-Biber t t)
  '(avy-timeout-seconds 0.35)
+ '(blink-cursor-blinks 1)
  '(comint-buffer-maximum-size 20000)
  '(comint-completion-addsuffix t)
  '(comint-get-old-input (lambda nil "") t)
@@ -345,16 +346,24 @@ there's a region, all lines that region covers will be duplicated."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq reftex-cite-format 'natbib)
-(setq-default TeX-master nil)
+;; (setq-default TeX-master nil)
 (setq TeX-PDF-mode t)
 (setq latex-run-command "xelatex")
 
-(add-hook 'LaTeX-mode-hook
-	  '(lambda()
-	     (local-set-key [(tab)] 'hippie-expand)))
-(add-hook 'latex-mode-hook
-	  '(lambda()
-	     (local-set-key [(tab)] 'hippie-expand)))
+(autoload 'reftex-mode "reftex" "RefTeX Minor Mode" t)
+(autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
+(autoload 'reftex-citation "reftex-cite" "Make citation" nil)
+(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
+(add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+
+
+;; (add-hook 'LaTeX-mode-hook
+;; 	  '(lambda()
+;; 	     (local-set-key [(tab)] 'hippie-expand)))
+;; (add-hook 'latex-mode-hook
+;; 	  '(lambda()
+;; 	     (local-set-key [(tab)] 'hippie-expand)))
 
 
 ;;;;;;;;;;;;;;;;;

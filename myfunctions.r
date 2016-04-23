@@ -3262,6 +3262,70 @@ shinyCorr <- function(df, ...) {
 }
 
 
+shinyMCMC <- function(mcmc, ...) {
+    ## Shiny app for interactive scatterplots of a data frame
+    require(shiny)
+    require(ggplot2)
+    require(mcmcplots)
+    require(coda)
+    require(DT)
+    require(data.table)
+    shinyApp(
+########
+## UI ##
+########
+        ui = fluidPage(
+                 titlePanel("MCMC diagnostics"),
+                 tabsetPanel(
+                     tabPanel("Predictions",
+                              sidebarLayout(
+                                  sidebarPanel(width = 3,
+                                               uiOutput("par")),
+                                  mainPanel(width = 9,
+                                            plotOutput("theplot", height = '800px'))
+                              )
+                              ),
+                     tabPanel("Correlations",
+                              plotOutput("corrplot", height = '800px')
+                              ),
+                     tabPanel("Posterior summaries",
+                              dataTableOutput("postsumm", width = '100%')
+                              )
+                 )), 
+############
+## Server ##
+############
+        server = function(input, output) {
+
+            output$par <- renderUI({
+                selectInput("par", label = "Parameter", choices = varnames(mcmc),
+                            selected = varnames(mcmc)[1])
+            })
+            
+            output$theplot <- renderPlot({
+                mcmcplot1(mcmc[, input$par, drop=F])
+            })
+            output$corrplot <- renderPlot({
+                autocorr.plot(mcmc)
+            })
+            output$postsumm <- DT::renderDataTable({
+                mcdt <- data.table(do.call('rbind', mcmc))
+                mcdt[, sample := 1:nrow(mcdt)]
+                mcdtn <- melt(mcdt, id.vars = 'sample')
+                mcsumm <- mcdtn[, .(mean=mean(value), med=median(value),
+                                   lcl=quantile(value, 0.025, names=F),
+                                   ucl=quantile(value, 0.975, names=F)), variable]
+                DT::datatable(mcsumm, escape = F,
+                              options = list(autoWidth = FALSE, paging = TRUE,
+                                             searching = TRUE, info   = TRUE,
+                                             pageLength = 30, iDisplayLength = 30),
+                              class = 'stripe nowrap hover compact',
+                              filter = 'top',
+                              rownames = T)
+                })
+            })
+}
+
 rollup <- function(x, j, by, level=FALSE) {
     ### SQL rollup function for data.table. Useful to add margins.
     ## x <- data.table(group=sample(letters[1:2],100,replace=TRUE),
@@ -3282,4 +3346,43 @@ rollup <- function(x, j, by, level=FALSE) {
     setcolorder(aggrs, neworder = c(by, names(aggrs)[!names(aggrs) %in% by]))
     setorderv(aggrs, cols = by, order=1L, na.last=TRUE)
     return(aggrs[])
+}
+
+
+corr <- function(dat, depvar, corrtype = 'spearman') {
+    library(data.table)
+    corrvars <- setdiff(names(dat)[sapply(names(dat), function(v) class(dat[[v]])) == 'numeric'], depvar)
+    corrs <- rbindlist(lapply(corrvars, function(v) {
+        if (sd(dat[[v]]) > 0) {
+            corr <- cor(dat[[depvar]], dat[[v]], method = corrtype)
+        } else corr <- NA
+        data.table(depvar = depvar, corrvar = v, corr = corr, corrtype = corrtype)
+    }))
+    return(corrs[order(-abs(corr))])
+}
+
+corrplot1var <- function(dat, depvar, alpha = 0.3, psample = 1) {
+    library(ggplot2)
+    library(data.table)
+    corrvars <- setdiff(names(dat)[sapply(names(dat), function(v) class(dat[[v]])) == 'numeric'], depvar)
+    nvars <- length(corrvars)
+    c <- rbindlist(lapply(corrvars, function(v) {
+        d <- data.table(depvar = depvar, y = dat[[depvar]], corrvar = v, x = dat[[v]])
+        return(d[sample(1:nrow(d), round(psample * nrow(d)))])
+    }))
+    ggplot(c, aes(x = x, y = y, group = corrvar)) + geom_point(alpha = alpha) +
+      facet_wrap(~ corrvar, scales = 'free')
+}
+
+rmall <- function() {
+     rm(list=ls())
+}
+
+
+estBetaParams <- function(mu, var) {
+    ## Estimate alpha and beta of beta distribution from mean and variance
+    ## from http://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance
+    alpha <- ((1 - mu) / var - 1 / mu) * mu ^ 2
+    beta <- alpha * (1 / mu - 1)
+    return(params = list(alpha = alpha, beta = beta))
 }

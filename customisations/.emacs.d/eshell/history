@@ -52,3 +52,5 @@ ls
 rm *.*~
 ls
 make
+Rscript richard-wells_20160420_albatross-largetrawl.r
+Rscript richard-wells_20160420_albatross-largetrawl.r
