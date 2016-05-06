@@ -3194,7 +3194,7 @@ shinyCorr <- function(df, ...) {
                             selected = 'None')
             })
             output$groupvar <- renderUI({
-                selectInput("groupvar", label = "Group variable", choices = c(names(df), '<None>'),
+                selectInput("groupvar", label = "Colour-by variable", choices = c(names(df), '<None>'),
                             selected = '<None>')
             })
             output$panelvar <- renderUI({
@@ -3249,7 +3249,7 @@ shinyCorr <- function(df, ...) {
 
                     if (class(dat[[input$groupvar]]) == 'numeric')
                         g <- g + scale_colour_gradientn(name = input$groupvar,
-                                                       colours = viridis::magma(50))
+                                                       colours = gplots::rich.colors(50))
                     
                     g <- g + labs(x = input$xvar, y = input$yvar)
                     
@@ -3348,7 +3348,6 @@ rollup <- function(x, j, by, level=FALSE) {
     return(aggrs[])
 }
 
-
 corr <- function(dat, depvar, corrtype = 'spearman') {
     library(data.table)
     corrvars <- setdiff(names(dat)[sapply(names(dat), function(v) class(dat[[v]])) == 'numeric'], depvar)
@@ -3361,17 +3360,20 @@ corr <- function(dat, depvar, corrtype = 'spearman') {
     return(corrs[order(-abs(corr))])
 }
 
-corrplot1var <- function(dat, depvar, alpha = 0.3, psample = 1) {
+corrplot1var <- function(dat, depvar, alpha = 0.3, psample = 1, colby = NULL) {
     library(ggplot2)
     library(data.table)
     corrvars <- setdiff(names(dat)[sapply(names(dat), function(v) class(dat[[v]])) == 'numeric'], depvar)
     nvars <- length(corrvars)
     c <- rbindlist(lapply(corrvars, function(v) {
-        d <- data.table(depvar = depvar, y = dat[[depvar]], corrvar = v, x = dat[[v]])
+        d <- data.table(depvar = depvar, y = dat[[depvar]], corrvar = v, x = dat[[v]], colby = dat[[colby]])
         return(d[sample(1:nrow(d), round(psample * nrow(d)))])
     }))
-    ggplot(c, aes(x = x, y = y, group = corrvar)) + geom_point(alpha = alpha) +
+    g <- ggplot(c, aes(x = x, y = y, group = corrvar)) + 
       facet_wrap(~ corrvar, scales = 'free')
+    if (!is.null(colby))
+        g <- g + geom_point(aes(colour = colby), alpha = alpha)
+    return(g)
 }
 
 rmall <- function() {
