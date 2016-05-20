@@ -12,7 +12,8 @@
 (setq package-archives
 '(("ELPA" . "http://tromey.com/elpa/")
   ("gnu" . "http://elpa.gnu.org/packages/")
-  ("melpa" . "http://stable.melpa.org/packages/")))
+  ("melpa" . "http://melpa.org/packages/")))
+  ;; ("melpa" . "http://stable.melpa.org/packages/")))
    ;; ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 (custom-set-variables
@@ -21,6 +22,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(LaTeX-biblatex-use-Biber t t)
+ '(auto-fill-inhibit-regexp "\\\\Sexpr\\\\{.*\\\\}")
  '(avy-timeout-seconds 0.35)
  '(blink-cursor-blinks 1)
  '(comint-buffer-maximum-size 20000)
@@ -100,7 +102,8 @@
  '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
    (quote
-    ((TeX-master . t)
+    ((TeX-master . \./report\.tex)
+     (TeX-master . t)
      (TeX-master . "report.tex")
      (whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)
      (TeX-master . "report")
@@ -241,6 +244,7 @@ Ignores CHAR at point."
 ;; (require 'pabbrev)
 
 (global-set-key (kbd "<XF86Send>") 'compile)
+(global-set-key (kbd "<XF86HomePage>") 'compile)
 (global-set-key [f8] (lambda () (interactive) (ess-switch-to-ESS "R")))
 
 (setq scroll-preserve-screen-position t)
@@ -356,6 +360,7 @@ there's a region, all lines that region covers will be duplicated."
 (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
 (add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
 
 
 ;; (add-hook 'LaTeX-mode-hook
@@ -837,6 +842,7 @@ prompt the user for a coding system."
     ("0vul" "vulnerability")
     ("0sp"  "species")
     ("0xwm" "New Zealand white-capped albatross")
+    ("0xcm" "Campbell black-browed albatross")
     ("0xal" "albatross")
     ("0xan" "Antipodean albatross")
     ("0xau" "Gibson's albatross")
@@ -1008,7 +1014,10 @@ prompt the user for a coding system."
 	      (push '("pi" . ?𝜋) prettify-symbols-alist)
 	      (push '("alpha" . ?𝛼) prettify-symbols-alist)
 	      (push '("beta" . ?𝛽) prettify-symbols-alist)
-	      (push '("gamma" . ?𝛾) prettify-symbols-alist)
+	      (push '("gamma" . ?ɣ) prettify-symbols-alist)
+	      (push '("mu" . ?μ) prettify-symbols-alist)
+	      (push '("theta" . ?θ) prettify-symbols-alist)
+	      (push '("eps" . ?ε) prettify-symbols-alist)
 	      (push '("!=" . ?≠) prettify-symbols-alist)
 	      (push '("<-" . ?←) prettify-symbols-alist)
 	      (push '("<<-" . ?⇐) prettify-symbols-alist)))
@@ -1505,3 +1514,22 @@ abort completely with `C-g'."
   (shell-command
    (format "ctags -f %s -e -R %s" path-to-ctags (directory-file-name dir-name)))
   )
+
+
+(global-set-key (kbd "C-c l") 'align-regexp)
+
+
+;; ANSI-colors in the compilation buffer output
+;; http://endlessparentheses.com/ansi-colors-in-the-compilation-buffer-output.html
+(require 'ansi-color)
+(defun endless/colorize-compilation ()
+  "Colorize from `compilation-filter-start' to `point'."
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region
+     compilation-filter-start (point))))
+
+(add-hook 'compilation-filter-hook
+	  'endless/colorize-compilation)
+
+(setq x-select-enable-primary t)
+(setq x-select-enable-clipboard nil)

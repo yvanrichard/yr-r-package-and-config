@@ -1,0 +1,155 @@
+;; Object only_taxsmooth/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "only_taxsmooth/"
+  :tables
+  (list
+    (semanticdb-table "makefile"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("vars.mk" include nil nil [1 17])
+            ("all" function (:arguments ("$(MAINDATA)" "$(PBRSAMPLESSUMM)" "$(RR_SUMM)" "$(YEPSAMPLES)" ".tabs")) nil [18 84])
+            ("main" function (:arguments ("$(MAINDATA)")) nil [145 163])
+            ("$(MAINDATA)" function (:arguments ("prepare-main-data.r")) nil [163 225])
+            ("$(PBRSAMPLESSUMM)" function (:arguments ("$(PBRSAMPLES)" "$(PBRPROGDIR)/pbr-summarise.r")) nil [270 388])
+            ("$(PBRSAMPLES)" function (:arguments ("$(DEMSAMPLES)" "$(PBRPROGDIR)/pbr-calc.r")) nil [389 493])
+            ("demsamples" function (:arguments ("$(DEMSAMPLES)")) nil [494 520])
+            ("$(DEMSAMPLES)" function (:arguments ("$(PBRDATDIR)/@estimates_table_final.csv" "$(PBRPROGDIR)/create_samples.r")) nil [520 662])
+            ("$(RR_SUMM)" function (:arguments ("$(RISKPROGDIR)/risk-calc.r" "$(PBRSAMPLES)")) nil [876 977])
+            ("$(YEPSAMPLES)" function (:arguments ("$(RISKPROGDIR)/yep-risk.r" "$(PBRSAMPLES)")) nil [978 1080])
+            (".tabs" function (:arguments ("$(RR_SUMM)" "$(PBRSAMPLESSUMM)" "$(YEPSAMPLES)")) nil [1116 1201]))          
+      :file "makefile"
+      :pointmax 1201
+      :fsize 1200
+      :lastmodtime '(22303 57461 662718 593000)
+      :unmatched-syntax '((shell-command 1168 . 1200) (bol 1167 . 1167) (shell-command 778 . 827) (bol 777 . 777) (symbol 756 . 776) (semantic-list 744 . 756) (punctuation 743 . 744) (semantic-list 725 . 738) (punctuation 724 . 725) (semantic-list 709 . 719) (punctuation 708 . 709) (punctuation 702 . 703) (symbol 677 . 702) (punctuation 676 . 677) (symbol 675 . 676) (semantic-list 664 . 675) (punctuation 663 . 664) (bol 663 . 663)))
+    (semanticdb-table "vars.mk"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("vars0.mk" include nil nil [1 18])
+            ("DEM" variable (:default-value ("new")) nil [19 30])
+            ("GRPS" variable (:default-value ("new")) nil [30 41])
+            ("RMAX" variable (:default-value ("new")) nil [41 52])
+            ("POP" variable (:default-value ("new")) nil [52 63])
+            ("PBRVER" variable (:default-value ("only_taxsmooth")) nil [63 87])
+            ("SPPDEM" variable (:default-value ("~/dragonfly/sra-2016/common-data/estimates_long_groomed_2014.csv")) nil [139 213])
+            ("SPPCHAR" variable (:default-value ("~/dragonfly/sra-2016/common-data/species-characteristics_upd.csv")) nil [213 288])
+            ("FGNAMES" variable (:default-value ("~/dragonfly/sra-2016/common-data/fishing-group-names_upd.csv")) nil [288 359])
+            ("SPGSOURCE" variable (:default-value ("~/dragonfly/sra-2016/common-data/model_species_groups_source_upd.r")) nil [359 438])
+            ("GLOBDATDIR" variable (:default-value ("~/dragonfly/sra-2016/pbr-revision/sra-update")) nil [464 522])
+            ("SRAPROGDIR" variable (:default-value ("$(GLOBDATDIR)/$(PBRVER)")) nil [522 559])
+            ("GDATSHR" variable (:default-value ("~/share/mpi/sra-2016/pbr-revision/sra-update/$(PBRVER)")) nil [559 624])
+            ("MAINDATA" variable (:default-value ("$(GDATSHR)/main.rdata")) nil [640 673])
+            ("RHOVALS_NLG" variable (:default-value ("~/share/mpi/sra-2014/data/from-sra-foundations/rhotab.rdata")) nil [674 748])
+            ("RHOVALS_K" variable (:default-value ("~/dragonfly/sra-foundations/modelling/bh-dd-k50/known-pop/rho-adjustment_rhoadj.rdata")) nil [748 846])
+            ("PBRPROGDIR" variable (:default-value ("$(GLOBDATDIR)/$(PBRVER)/pbr")) nil [857 898])
+            ("PBRCHOSVALS" variable (:default-value ("$(PBRPROGDIR)/pbr_parameter_chosen_values.r")) nil [898 956])
+            ("PBRDATDIR" variable (:default-value ("$(GDATSHR)/pbr")) nil [956 983])
+            ("DEMSAMPLES" variable (:default-value ("$(PBRDATDIR)/demsamples.rdata")) nil [984 1027])
+            ("PBRSAMPLES" variable (:default-value ("$(PBRDATDIR)/pbrs-samples.rdata")) nil [1027 1072])
+            ("PBRSAMPLESSUMM" variable (:default-value ("$(PBRDATDIR)/pbrs-samples-summ.rdata")) nil [1072 1126])
+            ("DEMSAMPLES_PREV" variable (:default-value ("~/share/mpi/sra-2014/data/global-data/new4dem-newgrps/pbr/demsamples.rdata")) nil [1150 1243])
+            ("PBRSAMPLES_PREV" variable (:default-value ("~/share/mpi/sra-2014/data/global-data/new4dem-newgrps/pbr/pbrs-samples.rdata")) nil [1243 1338])
+            ("PBRSAMPLESSUMM_PREV" variable (:default-value ("~/share/mpi/sra-2014/data/global-data/new4dem-newgrps/pbr/pbrs-samples-summ.rdata")) nil [1338 1442])
+            ("KILLSP" variable (:default-value ("~/share/mpi/sra-2014/data/20150423-dist-maps/kills/kills-sp.rdata")) nil [1455 1530])
+            ("KILLSPFG" variable (:default-value ("~/share/mpi/sra-2014/data/20150423-dist-maps/kills/kills-sp-fg.rdata")) nil [1530 1610])
+            ("ALLKILLSSUMMT" variable (:default-value ("~/share/mpi/sra-2014/data/20150423-dist-maps/kills/allkillssummt.rdata")) nil [1610 1697])
+            ("RISKPROGDIR" variable (:default-value ("$(GLOBDATDIR)/$(PBRVER)/risk")) nil [1709 1752])
+            ("RISKDATDIR" variable (:default-value ("$(GDATSHR)/risk")) nil [1752 1781])
+            ("RR_SAMPLES" variable (:default-value ("$(RISKDATDIR)/riskratios-samples.rdata")) nil [1781 1834])
+            ("RR_SUMM" variable (:default-value ("$(RISKDATDIR)/riskratios-summaries.rdata")) nil [1834 1886])
+            ("YEPSAMPLES" variable (:default-value ("$(RISKDATDIR)/yep-pbr-k-RR-samples.rdata")) nil [1887 1941])
+            ("YEPPBRKRR" variable (:default-value ("$(RISKDATDIR)/yepm_rr_pbr.rdata")) nil [1941 1985]))          
+      :file "vars.mk"
+      :pointmax 1987
+      :fsize 1986
+      :lastmodtime '(22303 57384 588660 610000)
+      :unmatched-syntax nil)
+    (semanticdb-table "mvars.mk"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("fvars.mk" include nil nil [1 18])
+            ("MODVER" variable (:default-value ("20150423-dist-maps")) nil [19 47])
+            ("MINYEAR_V" variable (:default-value ("2006/2007")) nil [166 188])
+            ("MAXYEAR_V" variable (:default-value ("2012/2013")) nil [188 210])
+            ("MINYEAR_K" variable (:default-value ("2010/2011")) nil [210 232])
+            ("MAXYEAR_K" variable (:default-value ("2012/2013")) nil [232 254])
+            ("MODDIR" variable (:default-value ("$(PROJDIR)/$(MODVER)")) nil [711 741])
+            ("MODSHR" variable (:default-value ("$(SHAREDATDIR)/$(MODVER)")) nil [741 775])
+            ("MODMPISHR" variable (:default-value ("$(SHAREDATDIR)/for_mpi/$(MODVER)")) nil [775 820])
+            ("ANALDIR" variable (:default-value ("$(MODDIR)/analysis")) nil [1009 1038])
+            ("CRYPTMORTDIR" variable (:default-value ("$(ANALDIR)/cryptic-mortality")) nil [1038 1082])
+            ("FDATMSHR" variable (:default-value ("$(MODSHR)/effort-captures")) nil [1608 1645])
+            ("AGGG_V" variable (:default-value ("$(FDATMSHR)/agglomerate-all-in-1_v_aggl.rdata")) nil [1970 2025])
+            ("AGGG_K" variable (:default-value ("$(FDATMSHR)/agglomerate-all-in-1_k_aggl.rdata")) nil [2025 2080])
+            ("AGGSP_V" variable (:default-value ("$(FDATMSHR)/agglomerate-all-in-1-single-species_v_aggl.rdata")) nil [2151 2222])
+            ("AGGSP_K" variable (:default-value ("$(FDATMSHR)/agglomerate-all-in-1-single-species_k_aggl.rdata")) nil [2222 2293])
+            ("AGGSP_KT" variable (:default-value ("$(FDATMSHR)/agglomerate-all-in-1-single-species_kt_aggl.rdata")) nil [2293 2366])
+            ("AGGSP_KTARG" variable (:default-value ("$(FDATMSHR)/agglomerate-all-in-1-single-species_ktarg_aggl.rdata")) nil [2366 2445])
+            ("AGGSPSA_K" variable (:default-value ("$(FDATMSHR)/agglomerate-all-in-1-stat-area_aggl.rdata")) nil [2445 2511])
+            ("AGGSPFMA_K" variable (:default-value ("$(FDATMSHR)/agglomerate-all-in-1-fma_aggl.rdata")) nil [2511 2572])
+            ("VULPROGDIR" variable (:default-value ("$(ANALDIR)/vulnerabilities")) nil [2687 2727])
+            ("VULDATDIR" variable (:default-value ("$(MODSHR)/vulnerabilities")) nil [2727 2765])
+            ("AGGGR_V" variable (:default-value ("$(FDATMSHR)/agglomerate-all-in-1-relev_v_aggl.rdata")) nil [2825 2887])
+            ("AGGGR_K" variable (:default-value ("$(FDATMSHR)/agglomerate-all-in-1-relev_k_aggl.rdata")) nil [2887 2949])
+            ("VULPARSUMM" variable (:default-value ("$(VULDATDIR)/par-summary_parsumm.rdata")) nil [2949 3001])
+            ("VULSAMPLES" variable (:default-value ("$(VULDATDIR)/allsamples.rdata")) nil [3001 3044])
+            ("VULSUMM" variable (:default-value ("$(VULDATDIR)/vul-summary.rdata")) nil [3044 3085])
+            ("BURNIN" variable (:default-value ("1000000")) nil [3085 3102])
+            ("THINNING" variable (:default-value ("400")) nil [3102 3117])
+            ("CRYPTMULT" variable (:default-value ("$(ANALDIR)/cryptic-mortality/cryptic-multipliers.rdata")) nil [3141 3208])
+            ("KILLDATDIR" variable (:default-value ("$(MODSHR)/kills")) nil [3220 3249])
+            ("KILLPROGDIR" variable (:default-value ("$(ANALDIR)/kills")) nil [3249 3280])
+            ("KILLSP" variable (:default-value ("$(KILLDATDIR)/kills-all-aggl-single-species.rdata")) nil [3280 3339])
+            ("KILLS_SP_T" variable (:default-value ("$(KILLDATDIR)/kills-sp-t.rdata")) nil [3339 3383])
+            ("KILLS_SP_FG_T" variable (:default-value ("$(KILLDATDIR)/kills-sp-fg-t.rdata")) nil [3383 3433])
+            ("KILLS_SP_FG" variable (:default-value ("$(KILLDATDIR)/kills-sp-fg.rdata")) nil [3433 3479])
+            ("KILLS_SP" variable (:default-value ("$(KILLDATDIR)/kills-sp.rdata")) nil [3479 3519])
+            ("KILLS_FG" variable (:default-value ("$(KILLDATDIR)/kills-fg.rdata")) nil [3519 3559])
+            ("KILLS_ALL" variable (:default-value ("$(KILLDATDIR)/kills-all.rdata")) nil [3559 3601])
+            ("KILLS_SP_M" variable (:default-value ("$(KILLDATDIR)/kills-sp-m.rdata")) nil [3601 3645])
+            ("KILLS_M" variable (:default-value ("$(KILLDATDIR)/kills-m.rdata")) nil [3645 3683])
+            ("ALLKILLSSUMM" variable (:default-value ("$(KILLDATDIR)/allkillssumm.rdata")) nil [3683 3731])
+            ("KILLSPT" variable (:default-value ("$(KILLDATDIR)/kills-all-aggl-single-species-targets.rdata")) nil [3753 3837])
+            ("KILLSPTARG" variable (:default-value ("$(KILLDATDIR)/kills-all-aggl-single-species-targetspp.rdata")) nil [3837 3936])
+            ("KILLST_SP_T" variable (:default-value ("$(KILLDATDIR)/killst-sp-t.rdata")) nil [3936 3982])
+            ("KILLST_SP_FG_T" variable (:default-value ("$(KILLDATDIR)/killst-sp-fg-t.rdata")) nil [3982 4034])
+            ("KILLST_SP_FG" variable (:default-value ("$(KILLDATDIR)/killst-sp-fg.rdata")) nil [4034 4082])
+            ("KILLST_SP_TRG" variable (:default-value ("$(KILLDATDIR)/killst-sp-trg.rdata")) nil [4082 4132])
+            ("KILLST_SP" variable (:default-value ("$(KILLDATDIR)/killst-sp.rdata")) nil [4132 4174])
+            ("KILLST_FG" variable (:default-value ("$(KILLDATDIR)/killst-fg.rdata")) nil [4174 4216])
+            ("KILLST_TRG" variable (:default-value ("$(KILLDATDIR)/killst-trg.rdata")) nil [4216 4260])
+            ("KILLST_ALL" variable (:default-value ("$(KILLDATDIR)/killst-all.rdata")) nil [4260 4304])
+            ("KILLST_SP_M" variable (:default-value ("$(KILLDATDIR)/killst-sp-m.rdata")) nil [4304 4350])
+            ("KILLST_M" variable (:default-value ("$(KILLDATDIR)/killst-m.rdata")) nil [4350 4390])
+            ("ALLKILLSSUMMT" variable (:default-value ("$(KILLDATDIR)/allkillssummt.rdata")) nil [4390 4440])
+            ("KILLSSPFGSA" variable (:default-value ("$(KILLDATDIR)/kills-all-aggl-sp-fg-sa.rdata")) nil [4457 4515])
+            ("KILLSSPFGFMA" variable (:default-value ("$(KILLDATDIR)/kills-all-aggl-sp-fg-fma.rdata")) nil [4526 4586])
+            ("RISKPROGDIR" variable (:default-value ("$(ANALDIR)/risk")) nil [4597 4627])
+            ("RISKDATDIR" variable (:default-value ("$(MODSHR)/risk")) nil [4627 4655])
+            ("RR_SAMPLES" variable (:default-value ("$(RISKDATDIR)/riskratios-samples.rdata")) nil [4655 4707])
+            ("RR_SUMM" variable (:default-value ("$(RISKDATDIR)/riskratios-summaries.rdata")) nil [4707 4758])
+            ("YEPSAMPLES" variable (:default-value ("$(RISKDATDIR)/yep-pbr-k-rr-samples.rdata")) nil [4758 4812])
+            ("YEPPBRKRR" variable (:default-value ("$(RISKDATDIR)/yepm_rr_pbr.rdata")) nil [4812 4856])
+            ("KILLSPCMFIXED" variable (:default-value ("$(KILLDATDIR)/kills-all-aggl-single-species-cmfixed.rdata")) nil [4876 4950])
+            ("KILLSMFIXED" variable (:default-value ("$(KILLDATDIR)/allkills-meth-fixed.rdata")) nil [4950 5004])
+            ("PBRPFIXED" variable (:default-value ("$(PBRDATDIR)/pbrs-p-fixed_pbrs.rdata")) nil [5004 5053])
+            ("RRFIXED" variable (:default-value ("$(RISKDATDIR)/riskratios-pars-fixed_rrfixed.rdata")) nil [5053 5113])
+            ("RRSENS" variable (:default-value ("$(RISKDATDIR)/risk-sensitivity_sens.rdata")) nil [5113 5164])
+            ("KILLSCMFIXED" variable (:default-value ("$(KILLDATDIR)/allkills-cm-fixed.rdata")) nil [5164 5217])
+            ("OBSNONOBS" variable (:default-value ("$(FDATMSHR)/effort-obs-nonobs_obsnonobs.rdata")) nil [5763 5821]))          
+      :file "mvars.mk"
+      :pointmax 5823
+      :fsize 5822
+      :lastmodtime '(22112 46856 910884 0)
+      :unmatched-syntax nil)
+    (semanticdb-table "vars0.mk"
+      :file "vars0.mk"
+      :fsize 834
+      :lastmodtime '(22218 16230 873926 0))
+    (semanticdb-table "fvars.mk"
+      :file "fvars.mk"
+      :fsize 1077
+      :lastmodtime '(21473 45343 0 0)))
+  :file "!home!yvan!dragonfly!sra-2016!pbr-revision!sra-update!only_taxsmooth!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

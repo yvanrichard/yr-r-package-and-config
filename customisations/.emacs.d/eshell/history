@@ -54,3 +54,13 @@ ls
 make
 Rscript richard-wells_20160420_albatross-largetrawl.r
 Rscript richard-wells_20160420_albatross-largetrawl.r
+./configure
+make
+make install
+sudo make install
+global --version
+ls
+ls -la
+ln -s ../data-versions/global-data/new4dem-newgrps/pbr/functions.r .
+ls
+ls -la

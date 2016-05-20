@@ -1,0 +1,49 @@
+;; Object new4dem-newgrps/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "new4dem-newgrps/"
+  :tables
+  (list
+    (semanticdb-table "vars.mk"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("vars0.mk" include nil nil [1 18])
+            ("DEM" variable (:default-value ("new4")) nil [19 31])
+            ("GRPS" variable (:default-value ("new")) nil [31 42])
+            ("DATVERSDIR" variable (:default-value ("~/dragonfly/sra-2014/data-versions")) nil [43 91])
+            ("SPPDEM" variable (:default-value ("$(DATVERSDIR)/estimates_long_groomed_upd.csv")) nil [92 146])
+            ("SPPCHAR" variable (:default-value ("$(DATVERSDIR)/species-characteristics_upd.csv")) nil [146 202])
+            ("FGNAMES" variable (:default-value ("$(DATVERSDIR)/fishing-group-names_upd.csv")) nil [203 255])
+            ("FGSOURCE" variable (:default-value ("$(DATVERSDIR)/global-data/model_species_groups_source_upd.r")) nil [255 326])
+            ("GDATVER" variable (:default-value ("$(DEM)dem-$(GRPS)grps")) nil [327 359])
+            ("GLOBDATDIR" variable (:default-value ("$(DATVERSDIR)/global-data/$(GDATVER)")) nil [408 458])
+            ("GDATSHR" variable (:default-value ("~/share/mpi/$(SRAVER)/data/global-data/$(GDATVER)")) nil [458 518])
+            ("MAINDATA" variable (:default-value ("$(GLOBDATDIR)/main.rdata")) nil [534 570])
+            ("PBRCHOSVALS" variable (:default-value ("$(DATVERSDIR)/pbr_parameter_chosen_values.r")) nil [580 638])
+            ("PBRPROGDIR" variable (:default-value ("$(GLOBDATDIR)/pbr")) nil [638 669])
+            ("PBRDATDIR" variable (:default-value ("$(GDATSHR)/pbr")) nil [669 696])
+            ("DEMSAMPLES" variable (:default-value ("$(PBRDATDIR)/demsamples.rdata")) nil [696 739])
+            ("PBRSAMPLES" variable (:default-value ("$(PBRDATDIR)/pbrs-samples.rdata")) nil [739 784])
+            ("PBRSAMPLESSUMM" variable (:default-value ("$(PBRDATDIR)/pbrs-samples-summ.rdata")) nil [784 838]))          
+      :file "vars.mk"
+      :pointmax 838
+      :fsize 837
+      :lastmodtime '(21816 22619 147825 780000)
+      :unmatched-syntax nil)
+    (semanticdb-table "makefile"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("vars.mk" include nil nil [1 17])
+            ("all" function (:arguments ("$(PBRSAMPLESSUMM)")) nil [18 41])
+            ("$(PBRSAMPLESSUMM)" function (:arguments ("$(PBRSAMPLES)" "$(PBRPROGDIR)/pbr-summarise.r")) nil [121 239])
+            ("$(PBRSAMPLES)" function (:arguments ("$(DEMSAMPLES)" "$(PBRPROGDIR)/pbr-calc.r")) nil [240 344])
+            ("$(DEMSAMPLES)" function (:arguments ("$(PBRDATDIR)/@estimates_table_final.csv" "$(PBRPROGDIR)/create_samples.r")) nil [345 487])
+            ("$(MAINDATA)" function (:arguments ("creators/species-groups_spgroups.rdata" "creators/prepare-main-data.r")) nil [739 870])
+            ("creators/species-groups_spgroups.rdata" function (:arguments ("vars.mk" "$(SPPDEM)" "$(SPPCHAR)" "$(FGNAMES)" "creators/model_species_groups.r")) nil [871 1048]))          
+      :file "makefile"
+      :pointmax 1050
+      :fsize 1049
+      :lastmodtime '(21472 27080 0 0)
+      :unmatched-syntax '((shell-command 603 . 652) (bol 602 . 602) (symbol 581 . 601) (semantic-list 569 . 581) (punctuation 568 . 569) (semantic-list 550 . 563) (punctuation 549 . 550) (semantic-list 534 . 544) (punctuation 533 . 534) (punctuation 527 . 528) (symbol 502 . 527) (punctuation 501 . 502) (symbol 500 . 501) (semantic-list 489 . 500) (punctuation 488 . 489) (bol 488 . 488))))
+  :file "!home!yvan!dragonfly!sra-2014!data-versions!global-data!new4dem-newgrps!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

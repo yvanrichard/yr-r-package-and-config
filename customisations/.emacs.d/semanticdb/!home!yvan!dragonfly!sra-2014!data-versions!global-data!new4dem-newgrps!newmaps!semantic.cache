@@ -1,0 +1,22 @@
+;; Object newmaps/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "newmaps/"
+  :tables
+  (list
+    (semanticdb-table "mapvars.mk"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("vars.mk" include nil nil [1 17])
+            ("MAPS" variable (:default-value ("new")) nil [18 29])
+            ("IDMAPS" variable (:default-value ("$(MAPS)maps")) nil [49 70])
+            ("MAPOUTDIR" variable (:default-value ("$(GDATSHR)/maps/$(IDMAPS)")) nil [168 206])
+            ("NEWMAPSDIR" variable (:default-value ("$(MAPOUTDIR)/new-additions")) nil [206 246])
+            ("MAPIMDIR" variable (:default-value ("$(MAPOUTDIR)/images")) nil [247 278]))          
+      :file "mapvars.mk"
+      :pointmax 280
+      :fsize 279
+      :lastmodtime '(21481 15982 0 0)
+      :unmatched-syntax nil))
+  :file "!home!yvan!dragonfly!sra-2014!data-versions!global-data!new4dem-newgrps!newmaps!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

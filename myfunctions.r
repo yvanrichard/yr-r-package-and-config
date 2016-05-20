@@ -908,15 +908,15 @@ makeuniquefilename <- function(x) {
 }
 
 ## Open data frame in oocalc
-localc <- function(df, row.names=T, newl.at=100, basename='temp', ...) {
-    f <- makeuniquefilename(sprintf('/tmp/%s.csv',basename))
+localc <- function(df, row.names=T, newl.at=100, ...) {
+    f <- tempfile(fileext = '.csv')
     if (!is.na(newl.at)) { ## insert return line when field is too long
-        nch = apply(df,2,function(x) max(nchar(as.character(x))))
+        nch = lapply(df, function(x) max(na.omit(nchar(as.character(x)))))
         toolongcols = names(nch[nch>newl.at])
         for (c in toolongcols) {
-            df[,c] <- as.character(df[,c])
+            df[[c]] <- as.character(df[[c]])
             toolongvals = nchar(df[[c]]) > newl.at
-            df[toolongvals,c] <- sapply(df[toolongvals, c], function(x) {
+            df[[c]][toolongvals] <- sapply(df[[c]][toolongvals], function(x) {
                                             s = strsplit(x,'')[[1]]
                                             s1 = grep('[[:blank:]]',s)
                                             s0 = c(seq(1, nchar(x), newl.at), nchar(x))
@@ -3363,16 +3363,26 @@ corr <- function(dat, depvar, corrtype = 'spearman') {
 corrplot1var <- function(dat, depvar, alpha = 0.3, psample = 1, colby = NULL) {
     library(ggplot2)
     library(data.table)
-    corrvars <- setdiff(names(dat)[sapply(names(dat), function(v) class(dat[[v]])) == 'numeric'], depvar)
+    corrvars <- setdiff(names(dat)[sapply(names(dat), function(v) class(dat[[v]])) %in% c('numeric','integer')], depvar)
     nvars <- length(corrvars)
-    c <- rbindlist(lapply(corrvars, function(v) {
-        d <- data.table(depvar = depvar, y = dat[[depvar]], corrvar = v, x = dat[[v]], colby = dat[[colby]])
-        return(d[sample(1:nrow(d), round(psample * nrow(d)))])
-    }))
-    g <- ggplot(c, aes(x = x, y = y, group = corrvar)) + 
-      facet_wrap(~ corrvar, scales = 'free')
-    if (!is.null(colby))
-        g <- g + geom_point(aes(colour = colby), alpha = alpha)
+    if (!is.null(colby)) {
+        c <- rbindlist(lapply(corrvars, function(v) {
+            d <- data.table(depvar = depvar, y = dat[[depvar]], corrvar = v, x = dat[[v]], colby = dat[[colby]])
+            return(d[sample(1:nrow(d), round(psample * nrow(d)))])
+        }))
+        g <- ggplot(c, aes(x = x, y = y, group = corrvar)) + 
+          facet_wrap(~ corrvar, scales = 'free')
+        if (!is.null(colby))
+            g <- g + geom_point(aes(colour = colby), alpha = alpha)
+    } else {
+        c <- rbindlist(lapply(corrvars, function(v) {
+            d <- data.table(depvar = depvar, y = dat[[depvar]], corrvar = v, x = dat[[v]])
+            return(d[sample(1:nrow(d), round(psample * nrow(d)))])
+        }))
+        g <- ggplot(c, aes(x = x, y = y, group = corrvar)) + 
+          facet_wrap(~ corrvar, scales = 'free') +
+          geom_point(alpha = alpha)
+    }
     return(g)
 }
 
@@ -3387,4 +3397,21 @@ estBetaParams <- function(mu, var) {
     alpha <- ((1 - mu) / var - 1 / mu) * mu ^ 2
     beta <- alpha * (1 / mu - 1)
     return(params = list(alpha = alpha, beta = beta))
+}
+
+
+checkgitprojects <- function() {
+    dirs <- system('ls -d ~/dragonfly/*/', intern=T)
+    base <- getwd() #'~/dragonfly'
+    d=dirs[1]
+    for (d in dirs) {
+        cat('\n######################################################################\n')
+        cat('#### ', d, '\n')
+        cat('######################################################################\n')
+        setwd(d)
+        status <- system('git status', intern=T)
+        cat(status, sep='\n')
+        cat('\n')
+    }
+    setwd(base)
 }

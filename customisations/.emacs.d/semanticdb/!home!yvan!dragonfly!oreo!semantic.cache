@@ -1,0 +1,24 @@
+;; Object oreo/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "oreo/"
+  :tables
+  (list
+    (semanticdb-table "fabfile.py"
+      :major-mode 'python-mode
+      :tags 
+        '( ("os" include nil nil [1 10])
+            ("fabric.api" include nil nil [11 35])
+            ("env" variable nil nil [37 58])
+            ("_newdb" function (:arguments 
+              ( ("branch" variable nil (reparse-symbol function_parameters) [71 77]))              ) nil [60 251])
+            ("build" function nil nil [252 745])
+            ("test" function nil nil [746 893])
+            ("rename" function nil nil [894 1816]))          
+      :file "fabfile.py"
+      :pointmax 2012
+      :fsize 2011
+      :lastmodtime '(22275 16536 101373 306000)
+      :unmatched-syntax nil))
+  :file "!home!yvan!dragonfly!oreo!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

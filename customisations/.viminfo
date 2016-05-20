@@ -155,20 +155,21 @@ $dragonfly
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
 '0  1  0  ~/dragonfly/sra-2016/.git/MERGE_MSG
-'1  1  0  ~/dragonfly/oreo/.git/MERGE_MSG
+'1  1  0  ~/dragonfly/bibliography/.git/MERGE_MSG
 '2  1  0  ~/dragonfly/estimation-2015/.git/MERGE_MSG
-'3  1  3  ~/test.txt
-'4  691  63  ~/dragonfly/paua-mp/shiny/app/server.r
-'5  88  0  ~/dragonfly/paua-mp/shiny/app/ui.r
-'6  1  0  ~/dragonfly/paua-mp/.git/MERGE_MSG
-'7  1  0  ~/dragonfly/seabird-threat-framework/.git/MERGE_MSG
-'8  23  0  /etc/pulse/daemon.conf
-'9  4  29  ~/.config/mopidy/settings.py
+'3  1  0  ~/dragonfly/oreo/.git/MERGE_MSG
+'4  1  3  ~/test.txt
+'5  691  63  ~/dragonfly/paua-mp/shiny/app/server.r
+'6  88  0  ~/dragonfly/paua-mp/shiny/app/ui.r
+'7  1  0  ~/dragonfly/paua-mp/.git/MERGE_MSG
+'8  1  0  ~/dragonfly/seabird-threat-framework/.git/MERGE_MSG
+'9  23  0  /etc/pulse/daemon.conf
 
 # Jumplist (newest first):
 -'  1  0  ~/dragonfly/sra-2016/.git/MERGE_MSG
--'  1  0  ~/dragonfly/oreo/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/bibliography/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/estimation-2015/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/oreo/.git/MERGE_MSG
 -'  1  3  ~/test.txt
 -'  691  63  ~/dragonfly/paua-mp/shiny/app/server.r
 -'  1  0  ~/dragonfly/paua-mp/shiny/app/server.r
@@ -252,7 +253,6 @@ $dragonfly
 -'  87  0  /etc/postgresql/9.3/main/pg_hba.conf
 -'  1  0  ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/doc-sll-mitigation-2012/.git/MERGE_MSG
--'  1  0  ~/dragonfly/bibliography/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/mammals-2014/.git/MERGE_MSG
 -'  23  0  /etc/ssh/sshd_config
 -'  1  0  /etc/ssh/sshd_config
@@ -264,14 +264,16 @@ $dragonfly
 -'  9  0  ~/.ssh/known_hosts
 -'  13  0  ~/.ssh/known_hosts
 -'  3  38  /etc/hosts
--'  1  0  /etc/hosts
 
 # History of marks within files (newest to oldest):
 
 > ~/dragonfly/sra-2016/.git/MERGE_MSG
 	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
 
-> ~/dragonfly/oreo/.git/MERGE_MSG
+> ~/dragonfly/bibliography/.git/MERGE_MSG
 	"	1	0
 
 > ~/dragonfly/estimation-2015/.git/MERGE_MSG
@@ -279,6 +281,9 @@ $dragonfly
 	^	1	0
 	.	1	0
 	+	1	0
+
+> ~/dragonfly/oreo/.git/MERGE_MSG
+	"	1	0
 
 > ~/test.txt
 	"	1	3
@@ -528,9 +533,6 @@ $dragonfly
 	"	1	0
 	.	1	0
 	+	1	0
-
-> ~/dragonfly/bibliography/.git/MERGE_MSG
-	"	1	0
 
 > ~/dragonfly/mammals-2014/.git/MERGE_MSG
 	"	1	0

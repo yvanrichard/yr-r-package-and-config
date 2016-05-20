@@ -1,0 +1,21 @@
+;; Object plots/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "plots/"
+  :tables
+  (list
+    (semanticdb-table "makefile"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("vars.mk" include nil nil [1 17])
+            ("all" function (:arguments (".plots")) nil [18 30])
+            (".plots" function (:arguments ("risk-comp/.riskcomp")) nil [32 74])
+            ("risk-comp/.riskcomp" function (:arguments ("../functions0.r" "risk-comp/risk-data.rdata" "risk-comp/plot-risk.r")) nil [76 229])
+            ("risk-comp/risk-data.rdata" function (:arguments ("risk-comp/get-risk-samples.r" "~/share/mpi/sra-2014/data/20150423-dist-maps/risk/riskratios-samples.rdata" "~/share/mpi/sra-2016/pbr-revision/sra-update/rerun/risk/riskratios-samples.rdata" "~/share/mpi/sra-2016/pbr-revision/sra-update/only_ntot/risk/riskratios-samples.rdata" "~/share/mpi/sra-2016/pbr-revision/sra-update/only_taxsmooth/risk/riskratios-samples.rdata" "~/share/mpi/sra-2016/pbr-revision/sra-update/only_newrhocorrections/risk/riskratios-samples.rdata" "~/share/mpi/sra-2016/pbr-revision/sra-update/three_pbr_updates/risk/riskratios-samples.rdata" "~/share/mpi/sra-2014/data/20160420-vul-constraint-allspecies/interval/risk/riskratios-samples.rdata")) nil [230 982]))          
+      :file "makefile"
+      :pointmax 1185
+      :fsize 1184
+      :lastmodtime '(22304 21661 656427 485000)
+      :unmatched-syntax nil))
+  :file "!home!yvan!dragonfly!sra-2016!pbr-revision!report!plots!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

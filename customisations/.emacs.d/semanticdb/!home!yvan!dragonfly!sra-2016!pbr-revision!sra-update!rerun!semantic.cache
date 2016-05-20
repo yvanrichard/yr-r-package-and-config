@@ -1,0 +1,54 @@
+;; Object rerun/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "rerun/"
+  :tables
+  (list
+    (semanticdb-table "vars.mk"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("vars0.mk" include nil nil [1 18])
+            ("DEM" variable (:default-value ("new")) nil [19 30])
+            ("GRPS" variable (:default-value ("new")) nil [30 41])
+            ("RMAX" variable (:default-value ("old")) nil [41 52])
+            ("POP" variable (:default-value ("old")) nil [52 63])
+            ("PBRVER" variable (:default-value ("rerun")) nil [63 78])
+            ("SPPDEM" variable (:default-value ("~/dragonfly/sra-2016/common-data/estimates_long_groomed_2014.csv")) nil [130 204])
+            ("SPPCHAR" variable (:default-value ("~/dragonfly/sra-2016/common-data/species-characteristics_upd.csv")) nil [204 279])
+            ("FGNAMES" variable (:default-value ("~/dragonfly/sra-2016/common-data/fishing-group-names_upd.csv")) nil [281 352])
+            ("SPGSOURCE" variable (:default-value ("~/dragonfly/sra-2016/common-data/model_species_groups_source_upd.r")) nil [352 431])
+            ("GDATVER" variable (:default-value ("$(DEM)dem-$(GRPS)grps")) nil [432 464])
+            ("GLOBDATDIR" variable (:default-value ("~/dragonfly/sra-2016/pbr-revision/sra-update")) nil [490 548])
+            ("GDATSHR" variable (:default-value ("~/share/mpi/sra-2016/pbr-revision/sra-update/$(PBRVER)")) nil [548 613])
+            ("MAINDATA" variable (:default-value ("$(GDATSHR)/main.rdata")) nil [629 662])
+            ("RHOVALS_NLG" variable (:default-value ("~/share/mpi/sra-2014/data/from-sra-foundations/rhotab.rdata")) nil [663 737])
+            ("RHOVALS_K" variable (:default-value ("~/dragonfly/sra-foundations/modelling/bh-dd-k50/known-pop/rho-adjustment_rhoadj.rdata")) nil [737 835])
+            ("PBRPROGDIR" variable (:default-value ("$(GLOBDATDIR)/$(PBRVER)/pbr")) nil [846 887])
+            ("PBRCHOSVALS" variable (:default-value ("$(PBRPROGDIR)/pbr_parameter_chosen_values.r")) nil [887 945])
+            ("PBRDATDIR" variable (:default-value ("$(GDATSHR)/pbr")) nil [945 972])
+            ("DEMSAMPLES" variable (:default-value ("$(PBRDATDIR)/demsamples.rdata")) nil [973 1016])
+            ("PBRSAMPLES" variable (:default-value ("$(PBRDATDIR)/pbrs-samples.rdata")) nil [1016 1061])
+            ("PBRSAMPLESSUMM" variable (:default-value ("$(PBRDATDIR)/pbrs-samples-summ.rdata")) nil [1061 1115])
+            ("DEMSAMPLES_PREV" variable (:default-value ("~/share/mpi/sra-2014/data/global-data/new4dem-newgrps/pbr/demsamples.rdata")) nil [1139 1232])
+            ("PBRSAMPLES_PREV" variable (:default-value ("~/share/mpi/sra-2014/data/global-data/new4dem-newgrps/pbr/pbrs-samples.rdata")) nil [1232 1327])
+            ("PBRSAMPLESSUMM_PREV" variable (:default-value ("~/share/mpi/sra-2014/data/global-data/new4dem-newgrps/pbr/pbrs-samples-summ.rdata")) nil [1327 1431])
+            ("KILLSP" variable (:default-value ("~/share/mpi/sra-2014/data/20150423-dist-maps/kills/kills-sp.rdata")) nil [1444 1519])
+            ("KILLSPFG" variable (:default-value ("~/share/mpi/sra-2014/data/20150423-dist-maps/kills/kills-sp-fg.rdata")) nil [1519 1599])
+            ("ALLKILLSSUMMT" variable (:default-value ("~/share/mpi/sra-2014/data/20150423-dist-maps/kills/allkillssummt.rdata")) nil [1599 1686])
+            ("RISKPROGDIR" variable (:default-value ("$(GLOBDATDIR)/$(PBRVER)/risk")) nil [1698 1741])
+            ("RISKDATDIR" variable (:default-value ("$(GDATSHR)/risk")) nil [1741 1770])
+            ("RR_SAMPLES" variable (:default-value ("$(RISKDATDIR)/riskratios-samples.rdata")) nil [1770 1823])
+            ("RR_SUMM" variable (:default-value ("$(RISKDATDIR)/riskratios-summaries.rdata")) nil [1823 1875])
+            ("YEPSAMPLES" variable (:default-value ("$(RISKDATDIR)/yep-pbr-k-RR-samples.rdata")) nil [1876 1930])
+            ("YEPPBRKRR" variable (:default-value ("$(RISKDATDIR)/yepm_rr_pbr.rdata")) nil [1930 1974]))          
+      :file "vars.mk"
+      :pointmax 1976
+      :fsize 1975
+      :lastmodtime '(22303 61612 45615 149000)
+      :unmatched-syntax nil)
+    (semanticdb-table "vars0.mk"
+      :file "vars0.mk"
+      :fsize 834
+      :lastmodtime '(22218 16230 873926 607000)))
+  :file "!home!yvan!dragonfly!sra-2016!pbr-revision!sra-update!rerun!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

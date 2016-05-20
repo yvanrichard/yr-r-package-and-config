@@ -1,0 +1,27 @@
+;; Object contract_requirements/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "contract_requirements/"
+  :tables
+  (list
+    (semanticdb-table "README.html"
+      :major-mode 'html-mode
+      :tags 
+        '( ("README.html" section nil nil [205 242])
+            ("This folder contains tables of estimated annual observable captures and potential fatalities of seabirds in commercial trawl, longline, and set-net fisheries. They complement the data presented in:" section (:members 
+              ( ("#Estimated annual observable captures by species and fishery group" section nil nil [751 1479])
+                ("Description of the fields:" section nil nil [1479 2674])
+                ("#Estimated annual potential fatalities by species and fishery group" section nil nil [2674 3623])
+                ("Description of the fields:" section nil nil [3623 4768])
+                ("#Merged tables presented in Richard &amp; Abraham (2015)" section nil nil [4768 5172])
+                ("Description of the fields:" section nil nil [5172 8006])
+                ("Estimated annual observable captures for each species, fishery group," section (:members 
+                  ( ("and fisheries statistical area" section nil nil [8158 8661]))                  ) nil [8006 8661])
+                ("References" section nil nil [8661 9372]))              ) nil [242 9372]))          
+      :file "README.html"
+      :pointmax 9372
+      :fsize 9383
+      :lastmodtime '(22221 9029 395877 800000)
+      :unmatched-syntax nil))
+  :file "!home!yvan!share!mpi!sra-2014!client!data!contract_requirements!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

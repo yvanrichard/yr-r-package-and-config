@@ -1,0 +1,28 @@
+;; Object tables/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "tables/"
+  :tables
+  (list
+    (semanticdb-table "makefile"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("vars.mk" include nil nil [1 17])
+            ("all" function (:arguments (".tabs")) nil [18 29])
+            (".tabs" function (:arguments ("comparison_s_a/comparison_s_a.rdata" "comparisons/comptables.rds" "taxonomic-model-parameters/taxonomic-model-parameters.rdata" "progressive-changes/risk-comp_progression.rdata" "progressive-changes/old_vs_new.rdata")) nil [31 275])
+            ("comparison_s_a/comparison_s_a.rdata" function (:arguments ("../../functions.r" "$(SRAPROGDIR)/functions0.r" "$(DEMSAMPLES)" "~/share/mpi/sra-2014/data/global-data/new4dem-newgrps/pbr/pbrs-samples.rdata" "$(PBRSAMPLES)" "comparison_s_a/comparison_s_a.r")) nil [278 566])
+            ("comparisons/comptables.rds" function (:arguments ("comparisons/comparisons_tables-and-plots.r" "comparisons/pbr_rmax_n_rrcm.rdata")) nil [568 737])
+            ("comparisons/pbr_rmax_n_rrcm.rdata" function (:arguments ("comparisons/comparisons-data.r")) nil [738 1564])
+            ("taxonomic-model-parameters/taxonomic-model-parameters.rdata" function (:arguments ("taxonomic-model-parameters/taxonomic-model-parameters.r" "../../phylogeny-analysis-2/$(TAXMODVER)/posterior-summary_afr.csv" "../../phylogeny-analysis-2/$(TAXMODVER)/posterior-summary_surv.csv")) nil [1615 1950])
+            ("progressive-changes/risk-comp_progression.rdata" function (:arguments ("$(MAINDATA)" "~/dragonfly/sra-2016/pbr-revision/sra-update/pbr_upddem/functions0.r" "../../functions.r" "riskcats_functions.r" "~/share/mpi/sra-2016/pbr-revision/sra-update/pbr_upddem/risk/riskratios-summaries.rdata" "~/share/mpi/sra-2016/pbr-revision/sra-update/pbr_upddem_ntot/risk/riskratios-summaries.rdata" "~/share/mpi/sra-2016/pbr-revision/sra-update/pbr_orderspecies_pred-wo-sp_prevrho/risk/riskratios-summaries.rdata" "~/share/mpi/sra-2016/pbr-revision/sra-update/pbr_orderspecies_pred-wo-sp/risk/riskratios-summaries.rdata" "progressive-changes/progressive-changes.r")) nil [1952 2653])
+            ("progressive-changes/old_vs_new.rdata" function (:arguments ("progressive-changes/risk-comp_progression.rdata" "progressive-changes/prev-vs-new.r")) nil [2655 2830])
+            ("model-comparison/models-comparison_rmax_with-corr.pdf" function (:arguments ("model-comparison/rmax.r" "../../phylogeny-analysis-2/$(TAXMODVER)/rmax.rdata")) nil [3408 3583])
+            ("corrections-effect/pbr-correction.pdf" function (:arguments ("corrections-effect/corrections-effect.r" "~/share/mpi/sra-2016/pbr-revision/sra-update/pbr_upddem_ntot/pbr/pbrs-samples.rdata" "~/share/mpi/sra-2016/pbr-revision/sra-update/pbr_broadtax/pbr/pbrs-samples.rdata")) nil [3585 3894])
+            ("corrections-effect/pbr-correction_diffcorr.pdf" function (:arguments ("corrections-effect/corrections-effect.r" "~/share/mpi/sra-2016/pbr-revision/sra-update/pbr_upddem_ntot/pbr/pbrs-samples.rdata" "~/share/mpi/sra-2016/pbr-revision/sra-update/pbr_broadtax/pbr/pbrs-samples.rdata" "~/share/mpi/sra-2016/pbr-revision/sra-update/pbr_broadtax_diffcorr/pbr/pbrs-samples.rdata")) nil [3895 4312]))          
+      :file "makefile"
+      :pointmax 4587
+      :fsize 4586
+      :lastmodtime '(22310 44676 951421 467000)
+      :unmatched-syntax nil))
+  :file "!home!yvan!dragonfly!sra-2016!pbr-revision!report!tables!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

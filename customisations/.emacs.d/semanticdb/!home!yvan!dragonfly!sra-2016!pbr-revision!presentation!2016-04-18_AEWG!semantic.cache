@@ -1,0 +1,25 @@
+;; Object 2016-04-18_AEWG/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "2016-04-18_AEWG/"
+  :tables
+  (list
+    (semanticdb-table "makefile"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("REPORT" variable (:default-value ("2016-04-18_aewg")) nil [1 26])
+            ("all" function (:arguments ("$(REPORT).pdf")) nil [27 47])
+            ("CODE" variable (:default-value ("$(addsuffix .pyg, $(basename $(shell ls code/*.bug)))")) nil [49 111])
+            ("$(REPORT)" function (:arguments ("$(REPORT).tex" "$(CODE)")) nil [112 173])
+            ("clean" function nil nil [174 321])
+            ("PHONY" function (:arguments ("data")) nil [323 335])
+            ("data" function (:arguments ("data/correctionfactors.rdata" "data/rho_95_summ.csv")) nil [335 394])
+            ("data/correctionfactors.rdata" function (:arguments ("~/dragonfly/sra-foundations/modelling/bh-dd-k50/known-pop/correctionfactors.rdata")) nil [395 599])
+            ("data/rho_95_summ.csv" function (:arguments ("~/dragonfly/sra-foundations/modelling/bh-dd-k50/known-pop/rho_95_summ.csv")) nil [600 780]))          
+      :file "makefile"
+      :pointmax 780
+      :fsize 779
+      :lastmodtime '(22291 65531 768191 129000)
+      :unmatched-syntax '((shell-command 697 . 779) (bol 696 . 696))))
+  :file "!home!yvan!dragonfly!sra-2016!pbr-revision!presentation!2016-04-18_AEWG!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

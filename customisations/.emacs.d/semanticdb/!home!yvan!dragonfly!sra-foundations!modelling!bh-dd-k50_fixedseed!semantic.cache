@@ -1,0 +1,41 @@
+;; Object bh-dd-k50_fixedseed/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "bh-dd-k50_fixedseed/"
+  :tables
+  (list
+    (semanticdb-table "makefile"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("all" function (:arguments ("postsims" "theplots")) nil [1 27])
+            ("theplots" function (:arguments ("postsims")) nil [106 147])
+            ("postsims" function (:arguments ("all-results/results-pbr-fadj_res.rdata" "all-results/results-pbr-sample_res1.rdata" "all-results/sra1-pbrtaus.r" "all-results/f-adjust-pars_Fs.rdata" "all-results/basic-data.rdata" "all-results/rho_ssd_antipodean_albatross.pdf")) nil [199 441])
+            ("all-results/basic-data.rdata" function (:arguments ("all-results/results-pbr_res.rdata" "basic-data.r")) nil [477 581])
+            ("all-results/sra1-pbrtaus.r" function (:arguments ("../../../sra/analysis/pbr/output/parameter_samples/ANA_samples_pool3.csv" "compare-with-sra1.r" "all-results/results-pbr-fadj_res.rdata")) nil [629 828])
+            ("all-results/f-adjust-pars_Fs.rdata" function (:arguments ("all-results/results-pbr-rhoadj_res.rdata" "../demog-parameters/demog-params.csv" "adjust-f-pars.r")) nil [873 1036])
+            ("all-results/results-pbr-sample_res1.rdata" function (:arguments ("sampling_results.r" "all-results/results-pbr-fadj_res.rdata")) nil [1062 1196])
+            ("all-results/results-pbr-fadj_res.rdata" function (:arguments ("all-results/results-pbr-rhoadj_res.rdata" "adjust-f.r")) nil [1318 1435])
+            ("all-results/results-pbr-rhoadj_res.rdata" function (:arguments ("adjust-rho.r" "all-results/results-pbr_res.rdata")) nil [1539 1655])
+            ("all-results/rho_ssd_antipodean_albatross.pdf" function (:arguments ("fcrit_pbr0.r" "all-results/results-pbr_res.rdata")) nil [1696 1816])
+            ("all-results/results-pbr_res.rdata" function (:arguments ("all-results/results-pbr-freecv_res.rdata" "all-results/nsumm_res.rdata")) nil [1848 1980])
+            ("all-results/nsumm_res.rdata" function (:arguments ("get-final-pop-cv.r" "get-final-pop-cv-run.r" "get-final-pop-cv-harvest.r")) nil [1995 2174])
+            ("all-results/results-pbr-freecv_res.rdata" function (:arguments ("pbr.r" "all-results/results_res.rdata")) nil [2225 2323])
+            ("all-results/results_res.rdata" function (:arguments ("gather-results.r")) nil [2379 2453])
+            ("preparesims" function nil nil [2980 3022])
+            ("park" function nil nil [3097 3124])
+            ("gitsync" function nil nil [3184 3212])
+            ("runallsims" function nil nil [3295 3331])
+            ("killscreens" function nil nil [3444 3485])
+            ("killr" function nil nil [3571 3600])
+            ("checkruns" function nil nil [3602 3667])
+            ("tags" function nil nil [3731 3784])
+            ("clean" function nil nil [3785 3807])
+            ("cleantmp" function nil nil [3808 3826])
+            ("comp" function (:arguments ("functions.r" "functions-model.r")) nil [3827 3893]))          
+      :file "makefile"
+      :pointmax 3894
+      :fsize 3893
+      :lastmodtime '(20590 18472 0 0)
+      :unmatched-syntax nil))
+  :file "!home!yvan!dragonfly!sra-foundations!modelling!bh-dd-k50_fixedseed!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

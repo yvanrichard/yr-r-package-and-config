@@ -6,6 +6,7 @@ all: .yrpkg
 
 install:
 	sudo R CMD INSTALL yrpkg_*.tar.gz --byte-compile
+
 PERSLIB := $(shell Rscript --vanilla -e "cat(Sys.getenv('R_LIBS_USER'))")
 install2:
 	mkdir -p $(PERSLIB)  &&  R CMD INSTALL yrpkg_*.tar.gz --byte-compile --library=$(PERSLIB)
@@ -14,11 +15,13 @@ r:
 	rsync -avz customisations/.Rprofile ~
 
 y:
+	rm ~/.emacs.d -fr
 	rsync -avz -a customisations/. ~
 
 updatepkg:
+	rm customisations/.emacs.d -fr
 	rsync -avz --exclude '.git*' ~/.emacs.d customisations/
-	rsync -avz --exclude '.git*' ~/.emacs* customisations/
+	cp ~/.emacs customisations/
 	rsync -avz --exclude '.git*' ~/.vim customisations/ -r
 	rsync -avz --exclude '.git*' ~/.viminfo customisations/
 	rsync -avz --exclude '.git*' ~/.vimrc customisations/

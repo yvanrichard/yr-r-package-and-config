@@ -1,0 +1,27 @@
+;; Object sraonly_tax_orderspecies_pred-wo-sp/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "sraonly_tax_orderspecies_pred-wo-sp/"
+  :tables
+  (list
+    (semanticdb-table "makefile"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("all" function (:arguments ("afr_diagnostics.pdf" "surv_diagnostics.pdf" "rmax.rdata")) nil [1 58])
+            ("afr" function (:arguments ("afr_diagnostics.pdf")) nil [59 84])
+            ("surv" function (:arguments ("surv_diagnostics.pdf")) nil [84 111])
+            ("mods" function (:arguments ("fittedmodel_afr.rdata" "fittedmodel_surv.rdata")) nil [111 162])
+            ("rmax.rdata" function (:arguments ("rmax.r" "afr_diagnostics.pdf" "surv_diagnostics.pdf")) nil [177 263])
+            ("afr_diagnostics.pdf" function (:arguments ("fittedmodel_afr.rdata" "results_afr.r")) nil [277 362])
+            ("fittedmodel_afr.rdata" function (:arguments ("model-data.rdata" "run_afr.r" "source.r")) nil [363 451])
+            ("surv_diagnostics.pdf" function (:arguments ("fittedmodel_surv.rdata" "results_surv.r")) nil [466 555])
+            ("fittedmodel_surv.rdata" function (:arguments ("model-data.rdata" "run_surv.r" "source.r")) nil [556 647])
+            ("model-data.rdata" function (:arguments ("prepare.r" "../sra-model-data.rdata")) nil [663 739])
+            ("clean" function nil nil [743 784]))          
+      :file "makefile"
+      :pointmax 784
+      :fsize 783
+      :lastmodtime '(22275 8945 626783 710000)
+      :unmatched-syntax '((shell-command 751 . 783) (bol 750 . 750))))
+  :file "!home!yvan!dragonfly!sra-2016!pbr-revision!phylogeny-analysis-2!sraonly_tax_orderspecies_pred-wo-sp!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

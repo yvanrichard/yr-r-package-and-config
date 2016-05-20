@@ -1,0 +1,28 @@
+;; Object report/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "report/"
+  :tables
+  (list
+    (semanticdb-table "makefile"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("all" function (:arguments ("report.pdf")) nil nil)
+            ("small" function nil nil nil)
+            ("report.pdf" function (:arguments ("report-data/.files" "report.tex" "cover.tex" "sweave/methods.tex" "sweave/results.tex" "sweave/discussion.tex" "appendix.tex" "acknowledgments.tex" "model-pages.tex" "sweave/introduction.tex")) nil nil)
+            ("sweave/introduction.tex" function (:arguments ("introduction.rnw")) nil nil)
+            ("sweave/methods.tex" function (:arguments ("methods.rnw" "report-data/dolphins_all_captures.tex")) nil nil)
+            ("sweave/results.tex" function (:arguments ("results.rnw" "functions.r")) nil nil)
+            ("sweave/results_trawl.tex" function (:arguments ("results_trawl.rnw" "functions.r")) nil nil)
+            ("sweave/results_bll.tex" function (:arguments ("results_bll.rnw" "functions.r")) nil nil)
+            ("sweave/results_sll.tex" function (:arguments ("results_sll.rnw" "functions.r")) nil nil)
+            ("sweave/discussion.tex" function (:arguments ("discussion.rnw" "functions.r")) nil nil)
+            ("cleanproject" function nil nil nil)
+            ("cleanreport" function nil nil nil))          
+      :file "makefile"
+      :pointmax 2723
+      :fsize 2722
+      :lastmodtime '(22030 4399 892338 538000)
+      :unmatched-syntax '((shell-command 2707 . 2722) (bol 2706 . 2706) (shell-command 482 . 496) (bol 481 . 481) (shell-command 466 . 480) (bol 465 . 465) (shell-command 452 . 464) (bol 451 . 451) (shell-command 436 . 450) (bol 435 . 435))))
+  :file "!home!yvan!dragonfly!estimation-2014!report!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

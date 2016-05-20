@@ -1,0 +1,18 @@
+;; Object known-pop/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "known-pop/"
+  :tables
+  (list
+    (semanticdb-table "makefile"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("all" function (:arguments ("rhos_rmax_gen.rdata")) nil [1 26])
+            ("rhos_rmax_gen.rdata" function (:arguments ("../all-results/results-pbr_res.rdata" "../functions_cmp.r" "../functions-model_cmp.r" "adjust-rho.r")) nil [27 182]))          
+      :file "makefile"
+      :pointmax 185
+      :fsize 184
+      :lastmodtime '(22229 65385 409013 398000)
+      :unmatched-syntax nil))
+  :file "!home!yvan!dragonfly!sra-foundations!modelling!bh-dd-k50!known-pop!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

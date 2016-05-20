@@ -1,0 +1,29 @@
+;; Object report/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "report/"
+  :tables
+  (list
+    (semanticdb-table "makefile"
+      :major-mode 'makefile-gmake-mode
+      :tags 
+        '( ("vars.mk" include nil nil [1 17])
+            ("all" function (:arguments ("report.pdf" "aebr.pdf")) nil [18 43])
+            ("report.pdf" function (:arguments ("report.tex" "sweave/introduction.tex" "sweave/methods.tex" "sweave/results-sra.tex" "sweave/discussion.tex" "sweave/appendix.tex" "acknowledgements.tex" "cover.tex")) nil [44 286])
+            ("aebr.pdf" function (:arguments ("aebr.tex" "sweave/introduction.tex" "sweave/methods.tex" "sweave/results-sra.tex" "sweave/discussion.tex" "sweave/appendix.tex" "acknowledgements.tex" "cover.tex")) nil [287 569])
+            ("full" function (:arguments ("all")) nil [570 664])
+            ("sweave/%.tex" function (:arguments ("%.rnw")) nil [666 744])
+            ("clean" function nil nil [745 887])
+            ("summary" function nil nil [889 977])
+            ("data" function nil nil [978 1072]))          
+      :file "makefile"
+      :pointmax 1072
+      :fsize 1071
+      :lastmodtime '(20807 54053 0 0)
+      :unmatched-syntax '((shell-command 1042 . 1071) (bol 1041 . 1041)))
+    (semanticdb-table "vars.mk"
+      :file "vars.mk"
+      :fsize 2886
+      :lastmodtime '(20677 1317 0 0)))
+  :file "!home!yvan!dragonfly!sra-2012!report!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")
