@@ -3403,14 +3403,15 @@ estBetaParams <- function(mu, var) {
 checkgitprojects <- function() {
     dirs <- system('ls -d ~/dragonfly/*/', intern=T)
     base <- getwd() #'~/dragonfly'
-    d=dirs[1]
+    d=dirs[40]
     for (d in dirs) {
         cat('\n######################################################################\n')
         cat('#### ', d, '\n')
         cat('######################################################################\n')
         setwd(d)
         status <- system('git status', intern=T)
-        cat(status, sep='\n')
+        if (!any(grepl('nothing to commit', status)))
+            cat(status, sep='\n')
         cat('\n')
     }
     setwd(base)
