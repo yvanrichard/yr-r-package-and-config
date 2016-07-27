@@ -1874,7 +1874,10 @@ get_stats <- function(x, na.rm=T) {
 
 
 NAanalyse <- function(df, plotx=NULL, nx=10, ncol=4, mar=c(3,3,1,1)) {
-    sumna <- apply(df, 2, function(x) sum(is.na(x)))
+    library(data.table)
+    if (!'data.table' %in% class(df))
+        df <- data.table(df)
+    sumna <- unlist(df[, lapply(.SD, function(x) sum(is.na(x)))])
     sna <- sort(sumna[sumna>0], decreasing=T)
     cat('\n===', length(sna), 'columns with some NAs (out of', ncol(df), ',',
         round(100*length(sna)/ncol(df), 1), '%)\n')
@@ -1888,14 +1891,15 @@ NAanalyse <- function(df, plotx=NULL, nx=10, ncol=4, mar=c(3,3,1,1)) {
     naom <- na.omit(df)
     cat('\n===', nrow(naom), 'rows without NAs (out of', nrow(df),',',
         round(100*nrow(naom)/nrow(df),1), '%)\n\n')
+
     if (!is.null(plotx)) {
         par(mfrow=c(ceiling(sum(sumna>0)/ncol), ncol), mar=mar)
         for (v in names(df)) {
-            if (any(is.na(df[,v]))) {
-                d1 <- unique(data.frame(x=df[,plotx], v=df[,v]))
+            if (any(is.na(df[[v]]))) {
+                d1 <- unique(data.table(x=df[[plotx]], v=df[[v]]))
                 d1 <- d1[order(d1$x),]
-                d2 <- tapply(d1$v, d1$x, function(x) sum(is.na(x)))
-                xx <- myreplace(pretty(1:length(d2), nx), c(0, 1), verbose=F)
+                d2 <- d1[, .(nas=sum(is.na(x))), v]
+                xx <- myreplace(pretty(1:nrow(d2), nx), c(0, 1), verbose=F)
                 xx <- xx[xx<length(d2)]
                 xxl <- names(d2)[xx]
                 plot(d2, type='h', col=ifelse(d2>0, 'red', 'black'),
@@ -3151,7 +3155,7 @@ taxonomytree <- function(spp, clean.names = T, verbose = T, debug = F) {
 }
 
 
-shinyCorr <- function(df, ...) {
+shinyCorr <- function(df, alpha = 0.5, gradient.cols = gplots::rich.colors(50), ...) {
     ## Shiny app for interactive scatterplots of a data frame
     require(shiny)
     require(ggplot2)
@@ -3232,7 +3236,7 @@ shinyCorr <- function(df, ...) {
                         g <- ggplot(dat, aes(x = tmpX, y = tmpY, group = tmpGroup, colour = tmpGroup))
                     } else g <- ggplot(dat, aes(x = tmpX, y = tmpY))
 
-                    g <- g + geom_point(alpha = 0.5)
+                    g <- g + geom_point(alpha = alpha)
 
                     if (input$panelvar != '<None>')
                         g <- g + facet_wrap(~ tmpPanel, scales = input$panelscale)
@@ -3247,9 +3251,9 @@ shinyCorr <- function(df, ...) {
                     if (input$ytrans == 'sqrt')
                         g <- g + scale_y_sqrt()
 
-                    if (class(dat[[input$groupvar]]) == 'numeric')
+                    if (class(dat[[input$groupvar]]) %in% c('numeric', 'integer'))
                         g <- g + scale_colour_gradientn(name = input$groupvar,
-                                                       colours = gplots::rich.colors(50))
+                                                       colours = gradient.cols)
                     
                     g <- g + labs(x = input$xvar, y = input$yvar)
                     
@@ -3403,16 +3407,96 @@ estBetaParams <- function(mu, var) {
 checkgitprojects <- function() {
     dirs <- system('ls -d ~/dragonfly/*/', intern=T)
     base <- getwd() #'~/dragonfly'
-    d=dirs[40]
+    ## d=dirs[40]
     for (d in dirs) {
-        cat('\n######################################################################\n')
-        cat('#### ', d, '\n')
-        cat('######################################################################\n')
         setwd(d)
-        status <- system('git status', intern=T)
-        if (!any(grepl('nothing to commit', status)))
+        status <- suppressWarnings(system('git status', intern=T, ignore.stderr = T))
+        if (!length(attr(status, 'status')) & !length(c(grep('nothing to commit', status), grep('Not a git repository', status)))) {
+            cat('\n######################################################################\n')
+            cat('#### ', d, '\n')
+            cat('######################################################################\n')
             cat(status, sep='\n')
-        cat('\n')
+            cat('\n')
+        }
     }
     setwd(base)
+}
+
+
+
+get_fishing_group <- function(method=NA, fishery=NA, target=NA, vessel=NA, class=NA, start_date=NA) {
+    ifelse(fishery == 'FLAT', 20,     ## Flatfish trawl
+    ifelse(fishery == 'INST' | (fishery %in% c('LINT', 'MIDT', 'HAKT', 'HOKT') & class == 'S'), 1, ## Inshore trawl
+    ifelse(class == 'S' & fishery == 'BNSB', 4, ## Small vessel bluenose bottom longline
+    ifelse(class == 'S' & fishery %in% c('HAPB', 'MINB'), 5, ## Small vessel bottom longline targetting hapuka and minor species
+    ifelse(class == 'S' & fishery %in% c('LINB'), 23,    ## Small vessel bottom longline targetting ling
+    ifelse(class == 'S' & fishery %in% c('SNAB'), 6, ## Small vessel snapper
+    ifelse(class == 'L' & method == 'BLL', 9, ## Autoline
+    ifelse((class == 'L' | (is.na(class) & fishery == 'STNS')) & method == 'SLL', 10, ## Large vessel surface longline
+    ifelse(class == 'S' & method == 'SLL' & fishery != 'SWOS', 11, ## Small vessel surface longline targetting tuna and other minor species
+    ifelse(class == 'S' & method == 'SLL' & fishery == 'SWOS', 22, ## Small vessel surface longline targetting swordfish
+    ifelse(class == 'L' & fishery %in% c('LINT', 'MIDT', 'HAKT', 'HOKT') & (vessel %in% c(15169,12487,12906,12903,15289,20687,6620,11036,15042,15398,13006,6061,15585,11644,8591,20876,5995,6610,15014,15500,6618,6138,15039,13313,5530,5933,6154,21482) | (vessel == 12368 & as.Date(start_date) >= as.Date('2001-01-01'))), 12, ## Meal capable middle-depths trawl
+    ifelse(class == 'L' & fishery %in% c('LINT', 'MIDT', 'HAKT', 'HOKT') & (vessel %in% c(3725, 15532, 8609,8601,333,6129,11138,5250,1193,1195,8800,327,13106,360,3763,9259,12600,11338,5262,5247,8700,20809,359,804) | (vessel == 6096 & as.Date(start_date) < as.Date('2007-01-01'))), 13, ## Fresher middle depths
+    ifelse(class == 'L' & fishery %in% c('LINT', 'MIDT', 'HAKT', 'HOKT') & (vessel %in% c(3704, 5558, 8040, 21356, 20610,20884,20864,6984,5663,13521,6944,5458,6473,6645,5981,8804,5906,5921,5803,13009,1356,12599,6730,6489,3351,20766,5605,1282,15256,9921) | (vessel == 12368 & as.Date(start_date) < as.Date('2001-01-01')) | (vessel == 6096 & as.Date(start_date) >= as.Date('2007-01-01'))), 2, ## Freezer middle depths
+    ifelse((is.na(class) | class == 'L') & fishery %in% c('LINT', 'MIDT', 'HAKT', 'HOKT'), 3, ## Unclassified middle-depths
+    ifelse(fishery == 'SBWT', 15, ## Southern blue whiting
+    ifelse(fishery == 'SCIT', 16, ## Scampi
+    ifelse(fishery == 'MACT', 17, ## Mackerel
+    ifelse(fishery == 'SQUT', 18, ## Squid
+    ifelse(fishery == 'DPWT', 19, ## Deepwater
+    ifelse(method == 'SN', 21, ## Set net
+    0))))))))))))))))))))
+}
+
+
+## angle <- data$angle
+## step <- data$step
+## by.bins <- depth
+## transformation = function(x) log(x + 1)
+angle_step_dens <- function(angle, step, angle_bins=12, step_bins=20, range_step = range(step),
+                    transformation = I, col.trans = function(x) log(x + 0.05), by.bins=NULL) {
+   
+    nbins <- length(unique(by.bins))
+    nw <- ceiling(sqrt(nbins))
+    nr <- ceiling(nbins / nw)
+    
+    if (!is.null(by.bins) & length(unique(by.bins)) > 30)  stop('Too many `by.bins` values. Try with less bins')
+    
+    angle <- angle + pi/2  ## rotate to have zero angle on top
+
+    xy <- function(step, angle) {
+        cbind(step * Re(exp((0+1i) * angle)), step * Im(exp((0+1i) * angle)))
+    }
+
+    allxy <- xy(transformation(step), angle)
+    lims <- apply(allxy, 2, range)
+
+    plt <- function(angle1, step1, main='') {
+        smoothScatter(xy(transformation(step1), angle1),
+                      colramp=function(n) rev(terrain.colors(n)), transformation = function(x) col.trans(x),
+                      axes=F, postPlotHook=NULL, xlab='', ylab='', asp=1,
+                      xlim = lims[,1], ylim = lims[,2])
+        axis(2, transformation(seq(0, range_step[2], length.out=10)))
+        text(mean(par('usr')[1:2]), par('usr')[3], expression(pi), pos=3)
+        text(mean(par('usr')[1:2]), par('usr')[4], expression(0), pos=1)
+        text(par('usr')[2], mean(par('usr')[3:4]), expression(-pi/2), pos=2)
+        text(par('usr')[1], mean(par('usr')[3:4]), expression(pi/2), pos=4)
+        points(0, 0, pch = '+')
+        text(mean(par('usr')[1:2]), par('usr')[4], main, adj=c(0.5, 1.5))
+    }
+
+    oldpar <- par()
+    if (!is.null(by.bins)) {
+        par(mfrow = c(nr, nw), mar=c(0,0,0,0))
+        for (i in 1:nbins) {
+            c <- by.bins %in% unique(by.bins)[i]
+            angle1 <- angle[c]
+            step1 <- step[c]
+            plt(angle1, step1, main = unique(by.bins)[i])
+        }
+    } else {
+        par(mar=c(0,0,0,0))
+        plt(angle, step)
+    }
+    ## suppressWarnings(par(oldpar))
 }
