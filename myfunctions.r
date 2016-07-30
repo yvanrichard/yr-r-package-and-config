@@ -3151,7 +3151,7 @@ taxonomytree <- function(spp, clean.names = T, verbose = T, debug = F) {
 }
 
 
-shinyCorr <- function(df, ...) {
+shinyCorr <- function(df, alpha = 0.5, gradient.cols = gplots::rich.colors(50), ...) {
     ## Shiny app for interactive scatterplots of a data frame
     require(shiny)
     require(ggplot2)
@@ -3232,7 +3232,7 @@ shinyCorr <- function(df, ...) {
                         g <- ggplot(dat, aes(x = tmpX, y = tmpY, group = tmpGroup, colour = tmpGroup))
                     } else g <- ggplot(dat, aes(x = tmpX, y = tmpY))
 
-                    g <- g + geom_point(alpha = 0.5)
+                    g <- g + geom_point(alpha = alpha)
 
                     if (input$panelvar != '<None>')
                         g <- g + facet_wrap(~ tmpPanel, scales = input$panelscale)
@@ -3247,9 +3247,9 @@ shinyCorr <- function(df, ...) {
                     if (input$ytrans == 'sqrt')
                         g <- g + scale_y_sqrt()
 
-                    if (class(dat[[input$groupvar]]) == 'numeric')
+                    if (class(dat[[input$groupvar]]) %in% c('numeric', 'integer'))
                         g <- g + scale_colour_gradientn(name = input$groupvar,
-                                                       colours = gplots::rich.colors(50))
+                                                       colours = gradient.cols)
                     
                     g <- g + labs(x = input$xvar, y = input$yvar)
                     
