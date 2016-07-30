@@ -541,14 +541,17 @@ prompt the user for a coding system."
 	 ("Seabird counts" (filename . "abundance/"))
 	 ("Maui's dolphins" (filename . "maui"))
 	 ("Seabird counts website" (filename . "seabird-counts-website"))
+	 ("XBP distribution 2016" (filename . "black-petrel-distribution-2016"))
 	 ("XBP distribution" (filename . "black-petrel-distribution"))
 	 ("MBIE" (or (filename . "eREAR")
 		     (filename . "mbie")
 		     (filename . "rear")))
+	 ("Overseer" (filename . "nutrient-budget"))
 	 ("SRA 2012" (filename . "sra-2012"))
 	 ("SRA 2014" (filename . "sra-2014"))
 	 ("SRA 2016" (filename . "sra-2016"))
 	 ("SRA foundations" (filename . "sra-foundations"))
+	 ("Estimation 2014-15" (filename . "estimation-2014-15"))
 	 ("Estimation 2014" (filename . "estimation-2014"))
 	 ("Estimation 2015" (filename . "estimation-2015"))
 	 ("Ludicio" (filename . "ludicio/"))
@@ -1338,7 +1341,7 @@ prompt the user for a coding system."
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "M-x") 'helm-M-x)
 
-;; (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z") 'helm-select-action)
 ;; (global-set-key (kbd "C-:") 'ac-complete-with-helm)
 ;; (define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-helm)
@@ -1531,5 +1534,71 @@ abort completely with `C-g'."
 (add-hook 'compilation-filter-hook
 	  'endless/colorize-compilation)
 
-(setq x-select-enable-primary t)
-(setq x-select-enable-clipboard nil)
+;; (setq x-select-enable-primary nil)
+;; (setq x-select-enable-clipboard t)
+
+(setq x-selection-timeout 10)
+
+
+(defun endless/fill-or-unfill ()
+  "Like `fill-paragraph', but unfill if used twice."
+  (interactive)
+  (let ((fill-column
+	 (if (eq last-command 'endless/fill-or-unfill)
+	     (progn (setq this-command nil)
+		    (point-max))
+	   fill-column)))
+    (call-interactively #'fill-paragraph)))
+(global-set-key [remap fill-paragraph]
+		#'endless/fill-or-unfill)
+
+
+;;; Sending input to compilation buffer
+;; http://endlessparentheses.com/provide-input-to-the-compilation-buffer.html
+
+(defun endless/send-input (input &optional nl)
+  "Send INPUT to the current process.
+Interactively also sends a terminating newline."
+  (interactive "MInput: \nd")
+  (let ((string (concat input (if nl "\n"))))
+    ;; This is just for visual feedback.
+    (let ((inhibit-read-only t))
+      (insert-before-markers string))
+    ;; This is the important part.
+    (process-send-string
+     (get-buffer-process (current-buffer))
+     string)))
+
+(defun endless/send-self ()
+  "Send the pressed key to the current process."
+  (interactive)
+  (endless/send-input
+   (apply #'string
+          (append (this-command-keys-vector) nil))))
+
+(define-key compilation-mode-map (kbd "C-c i")
+  #'endless/send-input)
+
+(dolist (key '("\C-d" "\C-j" "y" "n"))
+  (define-key compilation-mode-map key
+    #'endless/send-self))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Polymode for RMarkdown ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+
+;;; Markdown mode
+(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+(setq auto-mode-alist (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.ronn?" . markdown-mode) auto-mode-alist))
+
+;;; Polymode
+(setq load-path (append '("/home/sbonner/.emacs.d/polymode/" "/home/sbonner/.emacs.d/polymode/modes") load-path))
+
+(require 'poly-R)
+(require 'poly-markdown)
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
