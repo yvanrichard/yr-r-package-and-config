@@ -1,5 +1,15 @@
-This package does two things.  First, it extends Magit's UI with
-assorted GitHub-related functionality, similar to the github-gem
-tool (http://github.com/defunkt/github-gem).  Second, it uses
-Magit's excellent Git library to build an Elisp library for
-interfacing with GitHub's API.
+Magithub is an interface to GitHub using the `hub' utility [1].
+
+Integrated into Magit workflows, Magithub allows very easy, very
+basic GitHub repository management.  Supported actions include:
+
+ - pushing brand-new local repositories up to GitHub
+ - creating forks of existing repositories
+ - submitting pull requests upstream
+ - creating issues
+
+Press `H' in the status buffer to get started -- happy hacking!
+
+[1]: https://hub.github.com
+
+Requires hub 2.2.8

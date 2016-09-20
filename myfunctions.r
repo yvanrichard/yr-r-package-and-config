@@ -3500,3 +3500,17 @@ angle_step_dens <- function(angle, step, angle_bins=12, step_bins=20, range_step
     }
     ## suppressWarnings(par(oldpar))
 }
+
+pchs <- function() {
+    pch <- 1:25
+    x <- (pch-1) %% 5 + 1
+    y <- cumsum(x == 1)
+    y <- max(y) - y + 1
+    x11(width = 4, height = 4, xpos = 700, ypos = 300)
+    par(mar = c(0,0,0,1))
+    plot(x, y, pch = pch, col="#1F78B4", bg="#99D8C9", cex = 2, bty = 'n')
+    text(x, y, pch, col='black', cex = 0.9, pos = 4, offset = 0.8, xpd=T)
+    xy <- locator(type='p', pch=4, col = 'red')
+    dev.off()
+    return()
+}

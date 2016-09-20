@@ -2,7 +2,17 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("org-capture-last-stored"
+(("scrape-fb.r2"
+ (filename . "~/dragonfly/mytests/chrisyeabsley/scrape-fb.r")
+ (front-context-string . "0701, 947\n201607")
+ (rear-context-string . "160630, 949\n2016")
+ (position . 305))
+("scrape-fb.r"
+ (filename . "~/dragonfly/mytests/chrisyeabsley/scrape-fb.r")
+ (front-context-string . "\n\n\nf <- function")
+ (rear-context-string . "0815, 915')\ndat,")
+ (position . 489))
+("org-capture-last-stored"
  (filename . "~/.notes")
  (front-context-string . "** TODO Re-run n")
  (rear-context-string)

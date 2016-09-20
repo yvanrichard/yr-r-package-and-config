@@ -320,6 +320,7 @@ there's a region, all lines that region covers will be duplicated."
  '(highlight-indentation-face ((t (:inherit fringe :background "gray11"))))
  '(italic ((t (:height 0.7))))
  '(link ((t (:foreground "#CCDDFF" :underline "#110011"))))
+ '(markdown-header-face-2 ((t (:inherit markdown-header-face :foreground "spring green" :height 1.0))))
  '(match ((t (:background "#224477"))))
  '(org-date ((t (:foreground "#AACCFF" :underline t))))
  '(org-level-1 ((t (:inherit outline-1 :foreground "#FFF7BC"))))
@@ -333,7 +334,8 @@ there's a region, all lines that region covers will be duplicated."
  '(rainbow-delimiters-depth-3-face ((t (:foreground "#AAAAFF"))))
  '(rainbow-delimiters-depth-4-face ((t (:foreground "#DDBB00"))))
  '(region ((t (:background "grey20"))))
- '(underline ((t (:underline "#666666")))))
+ '(underline ((t (:underline "#666666"))))
+ '(widget-button ((t (:foreground "deep sky blue" :weight bold)))))
 
 
 (global-wakatime-mode 1)
@@ -555,6 +557,9 @@ prompt the user for a coding system."
 	 ("Estimation 2014" (filename . "estimation-2014"))
 	 ("Estimation 2015" (filename . "estimation-2015"))
 	 ("Ludicio" (filename . "ludicio/"))
+	 ("NMS - MfE" (filename . "NMS/"))
+	 ("FIF - MfE" (or (filename . "mfe-water-quality")
+			  (filename . "freshwater-triage")))
 	 ("sra obs cov" (filename . "sra-observer-coverage/"))
 	 ("WHIO benthos" (filename . "whio-benthic-analysis/"))
 	 ("NPOA obs optimisation" (filename . "npoa-observer-optimisation"))
@@ -1056,7 +1061,7 @@ prompt the user for a coding system."
 ;; Multiple cursors ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key (kbd "C-x m") 'mc/mark-all-dwim)
+(global-set-key (kbd "C-x m") 'mc/mark-all-in-region-regexp)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1208,21 +1213,6 @@ prompt the user for a coding system."
 ;;     '((":,.;" 0 font-lock-warning-face)))
 ;; ))
 
-
-;;;;;;;;;;;;;
-;; Folding ;;
-;;;;;;;;;;;;;
-
-(defun aj-toggle-fold () 
-  "Toggle fold all lines larger than indentation on current line" 
-  (interactive) 
-  (let ((col 1)) 
-    (save-excursion 
-      (back-to-indentation) 
-      (setq col (+ 1 (current-column))) 
-      (set-selective-display 
-       (if selective-display nil (or col 1))))))
-(global-set-key (kbd "M-C-i") 'aj-toggle-fold)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1597,8 +1587,52 @@ Interactively also sends a terminating newline."
 (setq auto-mode-alist (cons '("\\.ronn?" . markdown-mode) auto-mode-alist))
 
 ;;; Polymode
-(setq load-path (append '("/home/sbonner/.emacs.d/polymode/" "/home/sbonner/.emacs.d/polymode/modes") load-path))
+;; (setq load-path (append '("/home/sbonner/.emacs.d/polymode/" "/home/sbonner/.emacs.d/polymode/modes") load-path))
 
 (require 'poly-R)
 (require 'poly-markdown)
 (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+(add-to-list 'auto-mode-alist '("\\.rmd" . poly-markdown+r-mode))
+
+
+;; Insert date, time, or both
+(defun jcs-datetime (arg)
+  "Without argument: insert date as yyyy-mm-dd
+With C-u: insert time
+With C-u C-u: insert date and time"
+  (interactive "P")
+  (cond ((equal arg '(4)) (insert (format-time-string "%T")))
+        ((equal arg '(16)) (insert (format-time-string "%Y-%m-%d %T")))
+        (t (insert (format-time-string "%Y-%m-%d")))))
+
+(global-set-key (kbd "C-c D") 'jcs-datetime)
+
+
+
+
+(defun my/dired-untracked (dir)
+  (interactive "DUntracked in directory: ")
+  (cd dir)
+  (switch-to-buffer (get-buffer-create "*untracked*"))
+  (shell-command "git ls-files --others --exclude-standard | xargs ls -l" (current-buffer))
+  (dired-mode dir)
+  (set (make-local-variable 'dired-subdir-alist)
+       (list (cons default-directory (point-min-marker)))))
+(put 'narrow-to-region 'disabled nil)
+
+
+;;;;;;;;;;;;;
+;; Folding ;;
+;;;;;;;;;;;;;
+
+(defun aj-toggle-fold () 
+  "Toggle fold all lines larger than indentation on current line" 
+  (interactive) 
+  (let ((col 1)) 
+    (save-excursion 
+      (back-to-indentation) 
+      (setq col (+ 1 (current-column))) 
+      (set-selective-display 
+       (if selective-display nil (or col 1))))))
+(global-set-key (kbd "M-C-i") 'aj-toggle-fold)
+

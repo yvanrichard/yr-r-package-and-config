@@ -4,9 +4,11 @@
 (setq mc/cmds-to-run-for-all
       '(
 	TeX-insert-backslash
+	back-to-indentation-or-beginning
 	ess-smart-comma
 	ess-yank
 	forward-sexp
+	helm-M-x
 	keyboard-quit
 	kill-region
 	next-buffer
