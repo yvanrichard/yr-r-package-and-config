@@ -29,6 +29,7 @@ updatepkg:
 	rsync -avz --exclude '.git*' ~/.bashrc customisations/
 	rsync -avz --exclude '.git*' ~/.psqlrc customisations/
 	rsync -avz --exclude '.git*' ~/.Rprofile customisations/
+	rsync -avz --exclude '.git*' ~/.tmux.conf customisations/
 
 getpackagelist:
 	Rscript -e 'libs<-sort(library()$$results[,"Package"]); save(libs, file="r-packages_libs.rdata")'

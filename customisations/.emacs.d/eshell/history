@@ -67,3 +67,4 @@ ls -la
 ls
 ls -la
 top
+ssh taiko -A

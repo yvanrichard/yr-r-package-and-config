@@ -65,3 +65,4 @@ local({
 
 
 
+options(RDocs.override = TRUE)

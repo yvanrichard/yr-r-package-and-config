@@ -12,9 +12,9 @@
 (setq package-archives
 '(("ELPA" . "http://tromey.com/elpa/")
   ("gnu" . "http://elpa.gnu.org/packages/")
-  ("melpa" . "http://melpa.org/packages/")))
-  ;; ("melpa" . "http://stable.melpa.org/packages/")))
-   ;; ("marmalade" . "http://marmalade-repo.org/packages/")))
+  ("melpa" . "http://melpa.org/packages/")
+  ("marmalade" . "http://marmalade-repo.org/packages/")))
+;; ("melpa" . "http://stable.melpa.org/packages/")))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -98,6 +98,9 @@
  '(org-latex-pdf-process
    (quote
     ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
+ '(package-selected-packages
+   (quote
+    (wakatime-mode expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode simplenote2 rainbow-delimiters r-autoyas python-django powerline polymode pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag helm-R haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine ggtags flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
  '(projectile-tags-command "ctags-exuberant -Re -f \"%s\" %s")
  '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
@@ -300,7 +303,13 @@ there's a region, all lines that region covers will be duplicated."
  '(diredp-other-priv ((t (:background "#333355"))))
  '(diredp-read-priv ((t (:background "#443333"))))
  '(diredp-write-priv ((t (:background "#334433"))))
+ '(ediff-even-diff-A ((t (:background "tomato4"))))
+ '(ediff-even-diff-B ((t (:background "tomato4"))))
+ '(ediff-odd-diff-A ((t (:background "sienna4"))))
+ '(ediff-odd-diff-B ((t (:background "sienna"))))
  '(ess-numbers-face ((t (:foreground "#FFFF88" :weight normal))))
+ '(eww-form-submit ((t (:background "#444444" :foreground "#EEEEEE" :box (:line-width 2 :style released-button)))))
+ '(eww-form-textarea ((t (:background "#C0C0C0" :foreground "black" :box 1))))
  '(flx-highlight-face ((t (:inherit font-lock-variable-name-face :underline "#666666" :weight bold))))
  '(flyspell-duplicate ((t (:foreground "Gold3" :underline nil :weight bold))))
  '(font-latex-sedate-face ((t (:foreground "light coral"))))
@@ -329,16 +338,16 @@ there's a region, all lines that region covers will be duplicated."
  '(org-level-4 ((t (:inherit outline-4 :foreground "#CCEBC5"))))
  '(org-special-keyword ((t (:foreground "#66FFFF"))))
  '(outline-3 ((t (:foreground "#AAAAFF"))))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "#77AA77" :weight bold))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "#FF9999" :weight bold))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "#AAAAFF"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "#DDBB00"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "#ff7777"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "#e69333"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "#ffff88"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "#66ff66"))))
  '(region ((t (:background "grey20"))))
  '(underline ((t (:underline "#666666"))))
  '(widget-button ((t (:foreground "deep sky blue" :weight bold)))))
 
 
-(global-wakatime-mode 1)
+(global-wakatime-mode)
 
 ;;;;;;;;;;;;;;;;
 ;;   eshell   ;;
@@ -658,10 +667,13 @@ prompt the user for a coding system."
 	     (local-set-key [C-up] 'comint-previous-input)
 	     (local-set-key [C-down] 'comint-next-input)))
 
-(ess-toggle-underscore nil)
-(setq ess-S-assign-key (kbd "C-="))
-(ess-toggle-S-assign-key t)
+;; (ess-toggle-underscore nil)
+;; (setq ess-S-assign-key (kbd "C-="))
+;; (ess-toggle-S-assign-key t)
 ;; (ess-auto-newline t)
+(setq ess-smart-S-assign-key ":")
+(ess-toggle-S-assign nil)
+(ess-toggle-S-assign nil)
 
 (defun comint-interrupt-subjob-other ()
   "Interrupt process in the other pane."
@@ -1029,8 +1041,8 @@ prompt the user for a coding system."
 	      (push '("!=" . ?≠) prettify-symbols-alist)
 	      (push '("<-" . ?←) prettify-symbols-alist)
 	      (push '("<<-" . ?⇐) prettify-symbols-alist)))
-(if (>= emacs-minor-version 4)
-    (global-prettify-symbols-mode +1))  ;; only works in >24.4
+
+(global-prettify-symbols-mode +1)  ;; only works in >24.4
 
 ;; specify font for all unicode characters
 ;; (when (member "Symbola" (font-family-list))
@@ -1578,8 +1590,6 @@ Interactively also sends a terminating newline."
 ;; Polymode for RMarkdown ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
-
 ;;; Markdown mode
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
 (setq auto-mode-alist (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
@@ -1636,3 +1646,11 @@ With C-u C-u: insert date and time"
        (if selective-display nil (or col 1))))))
 (global-set-key (kbd "M-C-i") 'aj-toggle-fold)
 
+;; No confirmation on buffer kill
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
+
+
+;; Save whatever’s in the current (system) clipboard before
+;; replacing it with the Emacs’ text.
+;; https://github.com/dakrone/eos/blob/master/eos.org
+(setq save-interprogram-paste-before-kill t)

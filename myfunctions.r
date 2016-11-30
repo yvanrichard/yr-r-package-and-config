@@ -1407,7 +1407,7 @@ check_cited_labels <- function(reportfile='report.tex', ignore=c('sec','subsec',
 
 ##makefile <- '~/dragonfly/sra-foundations/modelling/bh-dd-k50/makefile'
 ## makefile <- '~/dragonfly/sra-foundations/report/notes/makefile'
-graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranksep=0.2, ratio=0.66, margin=1,
+graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranksep=0.2, ratio=0.8, margin=1,
                    ignore.clusters=F, expand.vars=F) {
     opt <- options("useFancyQuotes")
     options(useFancyQuotes = FALSE)
@@ -1443,6 +1443,13 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     mdir <- dirname(makefile)
     mk <- readLines(makefile, warn=F)
 
+    if (any(grepl('^ifndef', mk))) {
+        s <- grep('^ifndef', mk)
+        e <- grep('^endif', mk)
+        e <- e[e>s][1]
+        mk <- mk[-(s:e)]
+    }
+    
     mk <- gsub('^ *','', mk)
     mk <- mk[grepl('^\t', mk) | !grepl('=', mk) | grepl('=[\']', mk)] # remove assignments of environmental variables
     ## Remove if statements
@@ -1516,8 +1523,22 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
                       }
                       return(list(targs=trim(targs), deps=trim(deps), acts=trim(acts)))
                   }, simplify=F)
-    all <- rapply(all, function(x) gsub('\'|\"', '', x), how='replace')
 
+    all <- rapply(all, function(x) {
+        x <- gsub('\'|\"', '', x)
+        z <- sapply(x, function(k) {
+            if (!is.na(k))
+                paste(sapply(strsplit(k, '\\\\n'), function(y) {
+                    if (!all(is.na(y)))
+                        return(paste(strwrap(y, width=100, exdent=4), collapse='\\l')) else return(y)
+                }), collapse='\\\\n') else return(k)
+        }, USE.NAMES = F)
+        ## if (!all(is.na(z))) return(paste(z, collapse = '\\\\n')) else return(z)
+        return(z)
+    }, how='replace')
+
+    ## all <- rapply(all, function(x) gsub('\'|\"', '', x), '\\\\n', how='replace')
+    
     if (withclusters)
         clusters <- sapply(ps, function(x) sapply(all[x], function(y) y$targs), simplify=F)
 
@@ -1548,16 +1569,22 @@ rankdir=%s; nodesep=%f; ranksep=%f; ratio=%f; margin=%f;
             a <- all2[ps[[i]]]
             td <- unique(unlist(sapply(a, function(x) return(na.omit(c(x$targs, x$deps))))))
             ac <- unique(unlist(sapply(a, function(x) return(na.omit(x$acts)))))
+            ## nch <- nchar(ac)
+            ## ac[nch>80] <- sapply(ac[nch>80], function(x) {
+            ##     paste(sapply(strsplit(x, '\\\\n')[[1]], function(y)
+            ##         paste(strwrap(y, width=50, exdent=4), collapse='\\n')),
+            ##         collapse = '\\n')
+            ## })
             els <- gettype(td)
             gf <- c(gf, sprintf('subgraph cluster%1$i {
-label=%2$s; style="rounded,filled"; color=gray50; fillcolor=%3$s; fontcolor=red; fontsize=20;',
+label=%2$s; style="rounded,filled"; color=gray50; fillcolor=%3$s; fontcolor=red; fontsize=20; nojustify=true;',
                                 i, dQuote(names(ps)[i]), colc))
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colu, els$u))
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colp, els$p))
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', cold, els$d))
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colg, els$g))
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colf, els$f))
-            gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;}', cola, paste(ac, collapse=' ')))
+            gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;\n}\n', cola, paste(ac, collapse=' ')))
         }
     }
     

@@ -154,22 +154,32 @@ $dragonfly
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-'0  10  47  ~/dragonfly/NMS/makefile
-'1  1  0  ~/dragonfly/NMS/makefile
-'2  1  0  ~/dragonfly/freshwater-triage/.git/MERGE_MSG
-'3  1  0  ~/dragonfly/mmra-2013/.git/MERGE_MSG
-'4  1  0  ~/dragonfly/estimation-2014-15/.git/MERGE_MSG
-'5  1  0  ~/dragonfly/estimation-2014-15/.gitmodules
-'6  11  1  ~/dragonfly/estimation-2014-15/.git/config
-'7  1  0  ~/dragonfly/sra-2016/.git/MERGE_MSG
-'8  1  0  ~/dragonfly/bibliography/.git/MERGE_MSG
-'9  1  0  ~/dragonfly/estimation-2015/.git/MERGE_MSG
+'0  1  0  ~/dragonfly/spc-delphi-turtles/.git/MERGE_MSG
+'1  1  0  ~/dragonfly/NMS/.git/MERGE_MSG
+'2  1  0  ~/dragonfly/mmra-2013/.git/MERGE_MSG
+'3  3  52  ~/dragonfly/NMS/makefile
+'4  1  43  ~/dragonfly/NMS/gorbachev.yaml
+'5  10  20  ~/dragonfly/NMS/r_requirements.r
+'6  1  0  ~/dragonfly/NMS/make
+'7  9  20  ~/dragonfly/NMS/r_requirements.r
+'8  1  0  ~/dragonfly/NMS/build.sh
+'9  1  0  ~/dragonfly/yr-r-package-and-config/.git/MERGE_MSG
 
 # Jumplist (newest first):
--'  10  47  ~/dragonfly/NMS/makefile
--'  1  0  ~/dragonfly/NMS/makefile
--'  1  0  ~/dragonfly/freshwater-triage/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/spc-delphi-turtles/.git/MERGE_MSG
+-'  1  0  ~/dragonfly/NMS/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/mmra-2013/.git/MERGE_MSG
+-'  3  52  ~/dragonfly/NMS/makefile
+-'  1  0  ~/dragonfly/NMS/makefile
+-'  1  43  ~/dragonfly/NMS/gorbachev.yaml
+-'  10  20  ~/dragonfly/NMS/r_requirements.r
+-'  1  0  ~/dragonfly/NMS/r_requirements.r
+-'  1  0  ~/dragonfly/NMS/make
+-'  9  20  ~/dragonfly/NMS/r_requirements.r
+-'  1  0  ~/dragonfly/NMS/build.sh
+-'  1  0  ~/dragonfly/yr-r-package-and-config/.git/MERGE_MSG
+-'  10  47  ~/dragonfly/NMS/makefile
+-'  1  0  ~/dragonfly/freshwater-triage/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/estimation-2014-15/.git/MERGE_MSG
 -'  1  0  ~/dragonfly/estimation-2014-15/.gitmodules
 -'  11  1  ~/dragonfly/estimation-2014-15/.git/config
@@ -255,20 +265,28 @@ $dragonfly
 -'  94  50  /etc/postgresql/9.3/main/pg_hba.conf
 -'  1  0  /etc/postgresql/9.3/main/pg_hba.conf
 -'  59  52  /etc/postgresql/9.3/main/postgresql.conf
--'  1  0  /etc/postgresql/9.3/main/postgresql.conf
--'  91  1  /etc/postgresql/9.3/main/pg_hba.conf
--'  50  0  /etc/postgresql/9.3/main/postgresql.conf
--'  87  0  /etc/postgresql/9.3/main/pg_hba.conf
--'  1  0  ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
--'  1  0  ~/dragonfly/doc-sll-mitigation-2012/.git/MERGE_MSG
--'  1  0  ~/dragonfly/mammals-2014/.git/MERGE_MSG
 
 # History of marks within files (newest to oldest):
 
+> ~/dragonfly/spc-delphi-turtles/.git/MERGE_MSG
+	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
+
+> ~/dragonfly/NMS/.git/MERGE_MSG
+	"	1	0
+
+> ~/dragonfly/mmra-2013/.git/MERGE_MSG
+	"	1	0
+	^	1	0
+	.	1	0
+	+	1	0
+
 > ~/dragonfly/NMS/makefile
-	"	10	47
-	^	10	48
-	.	10	48
+	"	3	52
+	^	3	53
+	.	3	53
 	+	10	43
 	+	10	82
 	+	10	43
@@ -278,11 +296,31 @@ $dragonfly
 	+	11	0
 	+	10	159
 	+	10	48
+	+	3	53
 
-> ~/dragonfly/freshwater-triage/.git/MERGE_MSG
+> ~/dragonfly/NMS/gorbachev.yaml
+	"	1	43
+	^	1	44
+	.	1	44
+	+	1	44
+
+> ~/dragonfly/NMS/r_requirements.r
+	"	10	20
+	^	10	21
+	.	10	20
+	+	9	22
+	+	10	20
+
+> ~/dragonfly/NMS/make
 	"	1	0
 
-> ~/dragonfly/mmra-2013/.git/MERGE_MSG
+> ~/dragonfly/NMS/build.sh
+	"	1	0
+
+> ~/dragonfly/yr-r-package-and-config/.git/MERGE_MSG
+	"	1	0
+
+> ~/dragonfly/freshwater-triage/.git/MERGE_MSG
 	"	1	0
 
 > ~/dragonfly/estimation-2014-15/.git/MERGE_MSG
@@ -927,39 +965,3 @@ $dragonfly
 	.	47	0
 	+	44	0
 	+	47	0
-
-> ~/dragonfly/bibliography/.git/config
-	"	8	55
-	^	8	56
-	.	8	56
-	+	8	56
-
-> ~/dragonfly/sra-2012/.gitignore
-	"	34	4
-	^	34	5
-	.	34	4
-	+	29	5
-	+	30	0
-	+	34	4
-
-> /tmp/main.tex
-	"	1	0
-
-> ~/dragonfly/seabirds-dragonfly/.git/config
-	"	8	61
-	^	8	62
-	.	8	61
-	+	8	61
-
-> ~/dragonfly/sra-2012/.git/COMMIT_EDITMSG
-	"	7	70
-	^	7	71
-	.	2	0
-	+	1	28
-	+	2	0
-
-> /tmp/report_summary_summary.tex
-	"	34	0
-
-> /tmp/report_summary_cover.tex
-	"	19	0

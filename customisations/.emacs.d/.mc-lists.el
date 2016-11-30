@@ -5,12 +5,14 @@
       '(
 	TeX-insert-backslash
 	back-to-indentation-or-beginning
+	electric-newline-and-maybe-indent
 	ess-smart-comma
 	ess-yank
 	forward-sexp
 	helm-M-x
 	keyboard-quit
 	kill-region
+	mc/mark-all-in-region-regexp
 	next-buffer
 	wdired-abort-changes
 	))
