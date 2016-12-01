@@ -108,6 +108,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+dflymnt () { mkdir -p /home/yvan/dragonfly/$1; sshfs yvan@robin:/home/yvan/dragonfly/$1 /home/yvan/dragonfly/$1 ;}
+
 # added lines for ipython (and psql to avoid -S)
 export LESS="-RS"
 # export EDITOR=emacsclient
