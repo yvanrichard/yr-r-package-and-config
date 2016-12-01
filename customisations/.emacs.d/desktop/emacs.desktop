@@ -2,12 +2,12 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Thu Dec  1 13:51:46 2016
+;; Created Thu Dec  1 13:54:51 2016
 ;; Desktop file format version 206
 ;; Emacs version 25.1.3
 
 ;; Global section:
-(setq desktop-saved-frameset [frameset 1 (22591 29730 723328 655000) (desktop . "208") "yvan@robin" nil nil ((((font-backend xft x) (font . "-unknown-Ubuntu Mono-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1") (font-parameter) (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars) (foreground-color . "#f6f3e8") (background-color . "#212121") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 1) (tool-bar-lines . 1) (title) (wait-for-wm . t) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 14) (scroll-bar-height . 0) (alpha) (fullscreen . maximized) (display-type . color) (background-mode . dark) (cursor-color . "white") (sticky) (environment) (frameset--id . "EE1C-F803-3DE2-6AFF") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (icon-name) (display . ":0") (explicit-name) (visibility . t) (height . 59) (width . 236) (left . 0) (top . 25)) ((min-height . 4) (min-width . 20) (min-height-ignore . 2) (min-width-ignore . 12) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 64) (min-pixel-width . 160) (min-pixel-height-ignore . 32) (min-pixel-width-ignore . 96) (min-pixel-height-safe . 16) (min-pixel-width-safe . 32)) hc (pixel-width . 1920) (pixel-height . 928) (total-width . 240) (total-height . 58) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 960) (pixel-height . 928) (total-width . 120) (total-height . 58) (normal-height . 1.0) (normal-width . 0.5) (buffer ".bashrc" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 2 t nil 0 t) (vscroll . 0) (dedicated) (point . 3824) (start . 2269))) (leaf (last . t) (pixel-width . 960) (pixel-height . 928) (total-width . 120) (total-height . 58) (normal-height . 1.0) (normal-width . 0.5) (buffer "calculate-overlaps.r|20161201-upd-chg28-disag" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 2 t nil 0 t) (vscroll . 0) (dedicated) (point . 1302) (start . 1)))))])
+(setq desktop-saved-frameset [frameset 1 (22591 29915 664015 425000) (desktop . "208") "yvan@robin" nil nil ((((font-backend xft x) (font . "-unknown-Ubuntu Mono-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1") (font-parameter) (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars) (foreground-color . "#f6f3e8") (background-color . "#212121") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 1) (tool-bar-lines . 1) (title) (wait-for-wm . t) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 14) (scroll-bar-height . 0) (alpha) (fullscreen . maximized) (display-type . color) (background-mode . dark) (cursor-color . "white") (sticky) (environment) (frameset--id . "EE1C-F803-3DE2-6AFF") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (icon-name) (display . ":0") (explicit-name) (visibility . t) (height . 59) (width . 236) (left . 0) (top . 25)) ((min-height . 4) (min-width . 20) (min-height-ignore . 2) (min-width-ignore . 12) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 64) (min-pixel-width . 160) (min-pixel-height-ignore . 32) (min-pixel-width-ignore . 96) (min-pixel-height-safe . 16) (min-pixel-width-safe . 32)) hc (pixel-width . 1920) (pixel-height . 928) (total-width . 240) (total-height . 58) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 960) (pixel-height . 928) (total-width . 120) (total-height . 58) (normal-height . 1.0) (normal-width . 0.5) (buffer "dragonfly-notes.org" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 2 t nil 0 t) (vscroll . 0) (dedicated) (point . 10557) (start . 8640))) (leaf (last . t) (pixel-width . 960) (pixel-height . 928) (total-width . 120) (total-height . 58) (normal-height . 1.0) (normal-width . 0.5) (buffer "calculate-overlaps.r|20161201-upd-chg28-disag" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 2 t nil 0 t) (vscroll . 0) (dedicated) (point . 1302) (start . 1)))))])
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name "/home/yvan/dragonfly/doc-bird-counts-exploration/TAGS")
 (setq tags-table-list '("/home/yvan/dragonfly/doc-bird-counts-exploration/TAGS" "/home/yvan/dragonfly/mytests/chrisyeabsley/TAGS" "/home/yvan/.local/share/Trash/files/TAGS" "/home/yvan/dragonfly/sra-2014/TAGS" "/home/yvan/dragonfly/sra-2016/TAGS"))
@@ -18,11 +18,22 @@
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
 (desktop-create-buffer 206
+  "/home/yvan/Dropbox/dragonfly-notes/dragonfly-notes.org"
+  "dragonfly-notes.org"
+  'org-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode flx-ido-mode flyspell-mode org-indent-mode)
+  10557
+  '(70647 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
+
+(desktop-create-buffer 206
   "/home/yvan/.bashrc"
   ".bashrc"
   'sh-mode
   '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode flx-ido-mode flyspell-mode)
-  3824
+  3724
   '(3711 nil)
   nil
   nil
@@ -38,17 +49,6 @@
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/home/yvan/Dropbox/dragonfly-notes/dragonfly-notes.org"
-  "dragonfly-notes.org"
-  'org-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode flx-ido-mode flyspell-mode org-indent-mode)
-  24753
-  '(70647 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t)))
 
 (desktop-create-buffer 206
   "/home/yvan/dragonfly/sra-2016/re-run/20161201-upd-chg28-disag/makefile"
