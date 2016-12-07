@@ -131,7 +131,7 @@ git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse
 }
 # export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(parse_git_branch)$ '
 
-if [ $HOSTNAME = "robin" ] ; then 
+if [ $HOSTNAME = "huia" ] ; then 
     export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)$ ';
 else
     export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ '
@@ -144,3 +144,11 @@ fi
 # source /usr/local/bin/virtualenvwrapper.sh
 # export PIP_VIRTUALENV_BASE=~/virtualenvs
 export EDC_HOME=/home/yvan/EDC
+
+
+# BASE16_SHELL=$HOME/.config/base16-shell/
+# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+if [[ $TERMINIX_ID ]]; then
+        source /etc/profile.d/vte.sh
+fi
