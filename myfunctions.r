@@ -100,11 +100,13 @@ lower1st <- function(x) {
 }
 
 upper1st <- function(x) {
-    x1 <- strsplit(x, '')
-    x <- sapply(x1, function(x) {
-                   x[1] <- toupper(x[1]) 
-                   return(paste(x, collapse=''))
-               })
+    if (is.factor(x))
+        x0 <- levels(x) else x0 <- as.character(x)
+    nc <- nchar(x0)
+    x0[nc > 1] <- sprintf('%s%s', toupper(substr(x0[nc > 1], 1, 1)), substr(x0[nc > 1], 2, nchar(x0[nc > 1])))
+    x0[nc == 1] <- toupper(x0[nc == 1])
+    if (is.factor(x))
+        levels(x) <- x0 else x <- x0
     return(x)
 }
 
@@ -1955,12 +1957,12 @@ is.git.tracked <- function(f) {
 }
 
 
-## fold='~/dragonfly/sra-2012/report'; ignore=c('^/usr/|^/var/lib|^/etc/tex'); only=c('/')
+## fold='~/dragonfly/sra-2016/re-run/report'
 check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),
                              ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
                                             'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
                              only=c('/'), recursive=T, save_deps=T, use.xelatex=T, ignore.rnw=F) {
-
+    library(data.table)
     extension <- function(x) {
         y <- x
         c <- grepl('\\.', y)
@@ -1982,7 +1984,7 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
             rdir <- dirname(r1)
             setwd(rdir)
             r2 <- basename(r1)
-            r <- readLines(r2)
+            r <- readLines(r2, warn=F)
             c1 <- r[grepl('\\bload\\(', r) & !grepl('^[[:blank:]]*#', r)]
               fs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', c1)
             c2 <- r[grepl('\\bread\\.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
@@ -2018,7 +2020,7 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
         setwd(tdir)
         t2 <- basename(t)
         bt <- sub('\\.tex', '', t2)
-        tmp <- readLines(t2)
+        tmp <- readLines(t2, warn=F)
         if (any(grepl('begin\\{document\\}', tmp))) {
             if (!use.xelatex) {
                 s <- system(sprintf('pdflatex -recorder -interaction=nonstopmode %s', bt), intern=T)
@@ -2035,8 +2037,8 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
                 fls <- fls[!(fls %in% normalizePath(fold))]
                 fs <- normalizePath(fls)
                 if (length(fs)) {
-                    alldeps <- rbind(alldeps, data.frame(infile = t, dep = fs, stringsAsFactors = F))
-                } else alldeps <- rbind(alldeps, data.frame(infile = t, dep = NA, stringsAsFactors = F))
+                    alldeps <- rbind(alldeps, data.table(infile = t, dep = fs))
+                } else alldeps <- rbind(alldeps, data.table(infile = t, dep = NA))
                 cat(paste(fs[!(extension(fs) %in% ext.ignore) & !grepl(paths.ignore, fs)], collapse='\n'))
                 cat('\n')
             } else cat('fls file inexistent. There is a problem with this file...\n')
@@ -2045,23 +2047,22 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
     }
     
     cat('\n\n')
-    alldeps <- alldeps[!grepl('^[[:blank:]]*\\%', alldeps$dep), ]
-    alldeps$dep <- strtrim(alldeps$dep)
+    alldeps <- alldeps[!grepl('^[[:blank:]]*\\%', dep)]
+    alldeps[, dep := strtrim(dep)]
     ## Apply ignore rules
-    alldeps$ignored <- ifelse( extension(alldeps$dep) %in% ext.ignore  | grepl(paths.ignore, alldeps$dep) |
-                                is.na(alldeps$dep), T, F)
+    alldeps[, ignored := ifelse( extension(dep) %in% ext.ignore  | grepl(paths.ignore, dep) | is.na(dep), T, F)]
     ## Detect dependencies that are not file names
-    alldeps$valid <- NA
-    alldeps$valid[!alldeps$ignored] <- ifelse(grepl('[<%"\'\\(\\) ,=]+', alldeps$dep[!alldeps$ignored]), F, T)
+    alldeps[, valid := NA]
+    alldeps[ignored == FALSE, valid := ifelse(grepl('[<%"\'\\(\\) ,=]+', dep), F, T)]
 
     ## Check if the dependencies are git-tracked
-    alldeps$git_tracked <- NA
+    alldeps[, git_tracked := NA]
     if (any(alldeps$valid %in% T))
-        alldeps$git_tracked[alldeps$valid %in% T] <- sapply(alldeps$dep[alldeps$valid %in% T], is.git.tracked)
+        alldeps[valid %in% T, git_tracked := sapply(dep, is.git.tracked)]
 
     if (!is.null(alldeps) & any(alldeps$git_tracked %in% F)) {
         cat('************====  Files not tracked by GIT:  ====************\n')
-        uniqdeps <- unique(alldeps$dep[alldeps$git_tracked %in% F])
+        uniqdeps <- unique(alldeps[git_tracked %in% F, dep])
         cat(paste(uniqdeps, collapse='\n'))
         cat('\n\nYou may want to type:\ngit add ')
         cat(paste(uniqdeps, collapse='  '))
@@ -3540,4 +3541,35 @@ pchs <- function() {
     xy <- locator(type='p', pch=4, col = 'red')
     dev.off()
     return()
+}
+
+
+read.mcmc.dt <- function(fold) {
+### Read MCMC results with data.table without using coda, in normalised form
+    library(data.table)
+    chain.files <- sort(dir(fold, 'CODAchain', full.names=T))
+    ## MC chains
+    mc <- rbindlist(lapply(1:length(chain.files), function(i) {
+        cat('Reading chain', i, '\n')
+        v <- fread(chain.files[i])
+        cbind(ch=i, idx=1:nrow(v), v)
+    }))
+    if (!length(index.file))  stop('Index file not found')
+    ## Get index
+    index.file <- sort(dir(fold, 'CODAindex', full.names=T))
+    index <- fread(index.file)
+    index[, variable := sub('\\[[0-9]+\\]', '', V1)]
+    index[, variable := factor(variable, levels=unique(variable))]
+    index[, V1 := factor(V1, levels = unique(V1))]
+    inds <- tstrsplit(index[, ifelse(grepl('\\[', V1), sub('.*\\[(.*)\\].*', '\\1', V1), NA)], ',', type.convert=T, names=F)
+    names(inds) <- paste0('ind', 1:length(inds))
+    index <- cbind(index, as.data.table(inds))
+    setkey(index, variable, V1)
+    ind <- index[, .(idx = V2:V3), keyby=.(variable, V1)][index]
+    setnames(ind, 'V1', 'par')
+    mc <- merge(mc, ind[, -c('V2', 'V3'), with=F], by = 'idx', sort=F, all.x=T)
+    setnames(mc, c('V1', 'V2'), c('iter', 'value'))    
+    setorder(mc, variable, par, ch, idx)
+    mc[, sample := 1:.N, par]
+    return(mc)
 }
