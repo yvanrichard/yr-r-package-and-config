@@ -2,10 +2,10 @@
 ;; (setq debug-on-error t)    ; now you should get a backtrace
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Load
+;; * Load
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'load-path "~/.emacs.d/extra-manual")
+;; (add-to-list 'load-path "~/.emacs.d/extra-manual")
 
 (require 'package)
 (package-initialize)
@@ -42,6 +42,9 @@
  '(delete-by-moving-to-trash t)
  '(diredp-hide-details-initially-flag nil)
  '(doc-view-resolution 200)
+ '(dumb-jump-mode t)
+ '(dumb-jump-prefer-searcher (quote ag))
+ '(dumb-jump-selector (quote helm))
  '(ediff-split-window-function (quote split-window-horizontally))
  '(ess-R-font-lock-keywords
    (quote
@@ -62,6 +65,7 @@
  '(flyspell-default-dictionary "en_GB")
  '(font-latex-fontify-sectioning 1.05)
  '(helm-adaptive-mode t nil (helm-adaptive))
+ '(helm-ag-use-grep-ignore-list t)
  '(helm-always-two-windows nil)
  '(helm-autoresize-mode t)
  '(helm-completing-read-handlers-alist
@@ -100,7 +104,7 @@
     ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
  '(package-selected-packages
    (quote
-    (wakatime-mode expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode simplenote2 rainbow-delimiters r-autoyas python-django powerline polymode pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag helm-R haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine ggtags flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
+    (dumb-jump helm-navi navi-mode stan-mode stan-snippets dired-quick-sort ztree wakatime-mode expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode simplenote2 rainbow-delimiters r-autoyas python-django powerline polymode pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag helm-R haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine ggtags flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
  '(projectile-tags-command "ctags-exuberant -Re -f \"%s\" %s")
  '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
@@ -158,12 +162,13 @@
  '(yank-pop-change-selection t))
 
  ;; '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
+(defvar outline-minor-mode-prefix "\M-#")
 
 
 (require 'ess-site)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Global
+;; * Global
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; hippie expand is dabbrev expand on steroids
@@ -178,7 +183,6 @@
                                          try-expand-line
                                          try-complete-lisp-symbol-partially
                                          try-complete-lisp-symbol))
-
 
 (global-set-key [C-tab] 'completion-at-point)
 (global-set-key (kbd "C-\\") 'hippie-expand)
@@ -276,7 +280,7 @@ there's a region, all lines that region covers will be duplicated."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Colours
+;; * Colours
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (custom-set-faces
@@ -312,15 +316,19 @@ there's a region, all lines that region covers will be duplicated."
  '(eww-form-textarea ((t (:background "#C0C0C0" :foreground "black" :box 1))))
  '(flx-highlight-face ((t (:inherit font-lock-variable-name-face :underline "#666666" :weight bold))))
  '(flyspell-duplicate ((t (:foreground "Gold3" :underline nil :weight bold))))
+ '(font-latex-sectioning-2-face ((t (:foreground "yellow" :weight bold :height 1.3 :family "ubuntu-mono"))))
+ '(font-latex-sectioning-3-face ((t (:foreground "gold" :weight bold :height 1.1 :width condensed :family "DejaVu Sans"))))
+ '(font-latex-sectioning-4-face ((t (:foreground "LightGoldenrod1" :weight bold :width condensed :family "DejaVu Sans"))))
  '(font-latex-sedate-face ((t (:foreground "light coral"))))
  '(font-latex-warning-face ((t (:inherit bold :foreground "orange red"))))
  '(font-lock-builtin-face ((t (:foreground "PeachPuff"))))
- '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground "#553333"))))
- '(font-lock-comment-face ((t (:foreground "#AA6677"))))
+ '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
+ '(font-lock-comment-face ((t (:foreground "#666666"))))
  '(font-lock-constant-face ((t (:inherit default :foreground "#55AA55" :weight semi-bold))))
+ '(font-lock-function-name-face ((t (:foreground "light blue"))))
  '(font-lock-keyword-face ((t (:foreground "#88DD88"))))
  '(font-lock-string-face ((t (:foreground "DarkSeaGreen2"))))
- '(font-lock-type-face ((t (:foreground "#FFFF66"))))
+ '(font-lock-type-face ((t (:foreground "yellow green"))))
  '(font-lock-warning-face ((t (:background "yellow" :foreground "red" :weight semi-bold))))
  '(helm-ff-directory ((t (:inherit diredp-dir-priv))))
  '(helm-selection ((t (:background "black" :distant-foreground "black"))))
@@ -331,13 +339,18 @@ there's a region, all lines that region covers will be duplicated."
  '(link ((t (:foreground "#CCDDFF" :underline "#110011"))))
  '(markdown-header-face-2 ((t (:inherit markdown-header-face :foreground "spring green" :height 1.0))))
  '(match ((t (:background "#224477"))))
+ '(org-block ((t (:inherit shadow :foreground "#AAFFAA"))))
+ '(org-code ((t (:inherit shadow :foreground "#AAFFAA"))))
  '(org-date ((t (:foreground "#AACCFF" :underline t))))
  '(org-level-1 ((t (:inherit outline-1 :foreground "#FFF7BC"))))
  '(org-level-2 ((t (:inherit outline-2 :foreground "#FCBBA1"))))
  '(org-level-3 ((t (:foreground "#C6DBEF"))))
  '(org-level-4 ((t (:inherit outline-4 :foreground "#CCEBC5"))))
  '(org-special-keyword ((t (:foreground "#66FFFF"))))
- '(outline-3 ((t (:foreground "#AAAAFF"))))
+ '(outline-1 ((t (:background "#151515" :foreground "tomato" :slant italic :weight bold))))
+ '(outline-2 ((t (:background "#191919" :foreground "IndianRed1" :slant italic))))
+ '(outline-3 ((t (:background "#191919" :foreground "salmon" :slant italic))))
+ '(outline-4 ((t (:inherit font-lock-comment-face :background "#191919" :foreground "RosyBrown1" :slant italic))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#ff7777"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "#e69333"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "#ffff88"))))
@@ -350,14 +363,14 @@ there's a region, all lines that region covers will be duplicated."
 (global-wakatime-mode)
 
 ;;;;;;;;;;;;;;;;
-;;   eshell   ;;
+;; * eshell   ;;
 ;;;;;;;;;;;;;;;;
 (setenv "PAGER" "cat")
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Latex, Sweave, etc.
+;; * Latex, Sweave, etc.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq reftex-cite-format 'natbib)
@@ -382,9 +395,9 @@ there's a region, all lines that region covers will be duplicated."
 ;; 	     (local-set-key [(tab)] 'hippie-expand)))
 
 
-;;;;;;;;;;;;;;;;;
-;; Spell check ;;
-;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;
+;; * Spell check ;;
+;;;;;;;;;;;;;;;;;;;
 
 ;; enable on-the-fly spell checking
 (add-hook 'emacs-startup-hook
@@ -408,14 +421,14 @@ there's a region, all lines that region covers will be duplicated."
 (add-to-list 'ispell-skip-region-alist '("^<<" . "@$"))
 
 
-(require 'latex-frame-mode)
+;; (require 'latex-frame-mode)
 
 (setq reftex-default-bibliography '("/home/yvan/dragonfly/bibliography/mfish.bib"))
 
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    markdown
+;; * markdown
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (autoload 'markdown-mode "markdown-mode"
@@ -425,13 +438,13 @@ there's a region, all lines that region covers will be duplicated."
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    r-markdown
+;; * r-markdown
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    ido-mode (autocompletion)
+;; * ido-mode (autocompletion)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (ido-mode t)
@@ -454,7 +467,7 @@ there's a region, all lines that region covers will be duplicated."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    utils for finding non-ascii characters
+;; * utils for finding non-ascii characters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Helper functions to find non-ascii characters
@@ -513,7 +526,7 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    i-buffer
+;; * i-buffer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; rebind to use buffer-menu instead of list-buffers 
@@ -575,6 +588,8 @@ prompt the user for a coding system."
 	 ("Seabird threats" (filename . "seabird-threat"))
 	 ("DOC 5-min bird counts" (filename . "doc-bird"))
 	 ("Dropbox" (filename . "Dropbox"))
+	 ("Moana paua" (or (filename . "moana")
+			   (filename . "BlueAbs")))
 	 ("My tests" (filename . "mytests"))
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")
@@ -620,14 +635,14 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    ESS
+;; * ESS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;; ;; (require 'ess-jags-d)
 ;; (autoload 'ess-jags-mode "ess-jags-mode"
 ;;    "Major mode for editing JAGS files" t)
-(add-to-list 'auto-mode-alist '("\\.bug\\'" . R-mode))
+;; (add-to-list 'auto-mode-alist '("\\.bug\\'" . R-mode))
 
 ;; (require 'ess-eldoc) ;to show function arguments while you are typing them
 (setq ess-use-auto-complete 'script-only)
@@ -636,11 +651,12 @@ prompt the user for a coding system."
 (setq ess-eval-visibly-p nil) ;otherwise C-c C-r (eval region) takes forever
 (setq ess-ask-for-ess-directory nil) ;otherwise you are prompted each time you start
 
-(setq ess-local-process-name "R")
+;; (setq ess-local-process-name "R")
 (setq ansi-color-for-comint-mode 'filter)
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
+
 ;; (defun my-ess-start-R ()
 ;;   (interactive)
 ;;   (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
@@ -675,6 +691,7 @@ prompt the user for a coding system."
 (ess-toggle-S-assign nil)
 (ess-toggle-S-assign nil)
 
+
 (defun comint-interrupt-subjob-other ()
   "Interrupt process in the other pane."
   (interactive)
@@ -695,23 +712,23 @@ prompt the user for a coding system."
 
 (setq ess-indent-level 4)
 
-(add-to-list 'auto-mode-alist '("\\.Rnw" . Rnw-mode))
-(add-to-list 'auto-mode-alist '("\\.rnw" . Rnw-mode))
+;; (add-to-list 'auto-mode-alist '("\\.Rnw" . Rnw-mode))
+;; (add-to-list 'auto-mode-alist '("\\.rnw" . Rnw-mode))
 
-(add-to-list 'auto-mode-alist '("\\.1" . R-mode))
-(add-to-list 'auto-mode-alist '("makefile\\.1" . makefile-mode))
+;; (add-to-list 'auto-mode-alist '("\\.1" . R-mode))
+;; (add-to-list 'auto-mode-alist '("makefile\\.1" . makefile-mode))
 
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    anything
+;; * anything
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (require 'anything-config)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    org-mode
+;; * org-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq org-src-fontify-natively t)
@@ -723,13 +740,14 @@ prompt the user for a coding system."
 ;;  'org-babel-load-languages
 ;;  '((R . t)))
 
-(require 'org-bullets)
-(setq org-bullets-bullet-list
-      '("◉" "◎" "⚫" "○" "►" "◇"))
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;; (require 'org-bullets)
+;; (setq org-bullets-bullet-list
+;;       '("◉" "◎" "⚫" "○" "►" "◇"))
+;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    uniquify (change file<2> to file/fold)
+;; * uniquify (change file<2> to file/fold)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'uniquify) 
@@ -740,7 +758,7 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Desktop
+;; * Desktop
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Automatically save and restore sessions
@@ -755,7 +773,7 @@ prompt the user for a coding system."
 ;; (desktop-read)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Copy buffer file path to clipboad
+;; * Copy buffer file path to clipboad
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun my-put-file-name-on-clipboard ()
   "Put the current file name on the clipboard"
@@ -772,12 +790,12 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Wrap region  (https://github.com/rejeep/wrap-region.el)
+;; * Wrap region  (https://github.com/rejeep/wrap-region.el)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (wrap-region-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Ace jump mode
+;; * Ace jump mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (require 'ace-jump-mode)
 ;; (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
@@ -785,10 +803,11 @@ prompt the user for a coding system."
 
 (global-set-key (kbd "C-;") 'avy-goto-char-timer)
 (global-set-key (kbd "C-:") 'avy-goto-char)
-
+(global-set-key (kbd "C-M-;") 'avy-goto-char-2)
+(global-set-key (kbd "M-g M-g") 'avy-goto-line)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    expand-region
+;; * expand-region
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'expand-region) 
 (global-set-key (kbd "C-'") 'er/expand-region)
@@ -815,45 +834,46 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    yas snippets
+;; * yas snippets
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq yas-snippet-dirs
-      '("~/Dropbox/customisations/yas-snippets"))
-(add-to-list 'load-path "~/Dropbox/customisations/yas-snippets")
+      '("/home/yvan/Dropbox/customisations/yas-snippets"))
+(add-to-list 'load-path "/home/yvan/Dropbox/customisations/yas-snippets")
+
 (yas-global-mode 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Powerline
+;; * Powerline
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (require 'powerline)
 ;; (powerline-default-theme)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    smart-mode-line (better bottom line)
+;; * smart-mode-line (better bottom line)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (sml/setup)
 (sml/apply-theme 'dark)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Highlight sexp
+;; * Highlight sexp
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-highlight-sexp-mode t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Scroll bar
+;; * Scroll bar
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (global-yascroll-bar-mode 1)
 ;; (scroll-bar-mode 0)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Tramp mode
+;; * Tramp mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (setq tramp-default-method "ssh")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Abbreviations
+;; * Abbreviations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define-abbrev-table 'global-abbrev-table '(
 
@@ -897,7 +917,7 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Anchored transpose (C-x t on a region, select another region and C-x t again to transpose)
+;; * Anchored transpose (C-x t on a region, select another region and C-x t again to transpose)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "C-x t") 'anchored-transpose)
 (autoload 'anchored-transpose "anchored-transpose" nil t)
@@ -905,7 +925,7 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    google-this
+;; * google-this
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "C-x g") 'google-this)
 
@@ -913,13 +933,13 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Company (an auto-complete package)
+;; * Company (an auto-complete package)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'after-init-hook 'global-company-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Auto-complete
+;; * Auto-complete
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (require 'auto-complete)
 ;; (require 'auto-complete-config)
@@ -997,7 +1017,7 @@ prompt the user for a coding system."
   "gnome-opens the specified file."
   (interactive "fFile to open: ")
   (let ((process-connection-type nil))
-    (start-process "" nil "/usr/bin/gnome-open" filename)))
+    (start-process "" nil "/usr/bin/xdg-open" filename)))
 
 (defun dired-gnome-open-file ()
   "Opens externally the current file in a Dired buffer."
@@ -1011,8 +1031,8 @@ prompt the user for a coding system."
 (defun smart-kill-whole-line (&optional arg)
   "A simple wrapper around `kill-whole-line' that respects indentation."
   (interactive "P")
-  (kill-whole-line arg))
-  ;; (back-to-indentation))
+  (kill-whole-line arg)
+  (back-to-indentation))
 (global-set-key [remap kill-whole-line] 'smart-kill-whole-line)
 
 
@@ -1020,7 +1040,7 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Pretty mode - Display symbols as symbols
+;; * Pretty mode - Display symbols as symbols
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (global-pretty-mode 1)
 (add-hook 'ess-mode-hook
@@ -1039,7 +1059,7 @@ prompt the user for a coding system."
 	      (push '("theta" . ?θ) prettify-symbols-alist)
 	      (push '("eps" . ?ε) prettify-symbols-alist)
 	      (push '("!=" . ?≠) prettify-symbols-alist)
-	      (push '("<-" . ?←) prettify-symbols-alist)
+	      (push '("<-" . ?⇽) prettify-symbols-alist)
 	      (push '("<<-" . ?⇐) prettify-symbols-alist)))
 
 (global-prettify-symbols-mode +1)  ;; only works in >24.4
@@ -1049,7 +1069,7 @@ prompt the user for a coding system."
 (set-fontset-font t 'unicode "Ubuntu Mono" nil 'prepend)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Wrap region - Select region then " to enclose it
+;; * Wrap region - Select region then " to enclose it
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (wrap-region-global-mode 1)
 
@@ -1060,24 +1080,22 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Shortcut to go to my org dragonfly notes
+;; * Shortcut to go to my org dragonfly notes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "C-c n") 
                 (lambda () (interactive) (find-file "~/Dropbox/dragonfly-notes/dragonfly-notes.org")))
 
 
-;; (define-key ess-bugs-mode-map (kbd "=") nil)
 
-
-;;;;;;;;;;;;;;;;;;;;;;
-;; Multiple cursors ;;
-;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;
+;; * Multiple cursors ;;
+;;;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key (kbd "C-x m") 'mc/mark-all-in-region-regexp)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Replace open-line (C-o) to keep identation
+;; * Replace open-line (C-o) to keep identation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun open-previous-line (arg)
   "Open a new line before the current one. 
@@ -1109,19 +1127,19 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    rtags and visit file
+;; * rtags and visit file
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun rtags (arg)
   "Execute R rtags function and visit tag file."
   (interactive "p")
   (shell-command "Rscript -e \"rtags(ofile='TAGS', recursive=T)\"")
   (visit-tags-table "TAGS"))
-(add-hook 'ess-mode-hook 
-	  '(lambda ()
-	     (local-set-key (kbd "C-c t") 'rtags)))
+;; (add-hook 'ess-mode-hook 
+;; 	  '(lambda ()
+;; 	     (local-set-key (kbd "C-c t") 'rtags)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    evaluate R function arguments
+;; * evaluate R function arguments
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun ess-eval-function-args (arg)
@@ -1182,10 +1200,20 @@ prompt the user for a coding system."
   (pop-global-mark)
   )
 
-(add-hook 'ess-mode-hook (lambda () (setq ess-arg-function-offset nil)))
-(add-hook 'ess-mode-hook (lambda () (setq ess-first-continued-statement-offset 2)))
-(add-hook 'ess-mode-hook (lambda () (setq ess-continued-statement-offset 0)))
+;; (add-hook 'ess-mode-hook (lambda () (setq ess-arg-function-offset nil)))
+;; (add-hook 'ess-mode-hook (lambda () (setq ess-first-continued-statement-offset 2)))
+;; (add-hook 'ess-mode-hook (lambda () (setq ess-continued-statement-offset 0)))
 
+(defun quote-words (arg)
+  "Quote all words"
+  (interactive "p")
+  (query-replace-regexp "\\(\\<[a-zA-Z0-9._-]+\\>\\)" "\"\\1\"" nil
+			(if (use-region-p) (region-beginning))
+			(if (use-region-p) (region-end)) nil nil)
+  )
+(add-hook 'ess-mode-hook 
+	  '(lambda ()
+	     (local-set-key (kbd "C-c q") 'quote-words)))
 
 
 (setq magit-last-seen-setup-instructions "1.4.0")
@@ -1227,9 +1255,9 @@ prompt the user for a coding system."
 
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;
-;; Dired file colours ;;
-;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; * Dired file colours ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'dired-rainbow)
 (defconst dired-r-files-extensions
@@ -1282,6 +1310,8 @@ prompt the user for a coding system."
 
 (add-to-list 'auto-mode-alist '("\\.env\\'" . makefile-mode))
 (add-to-list 'auto-mode-alist '("\\.env0\\'" . makefile-mode))
+(add-to-list 'auto-mode-alist '("makefile\\'" . makefile-mode))
+(add-to-list 'auto-mode-alist '("png\\'" . image-mode))
 
 
 (make-face 'font-lock-r-df-face) ;; Create a new face
@@ -1305,7 +1335,7 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    Code folding & indentation & formatting
+;; * Code folding & indentation & formatting
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'rainbow-delimiters)
@@ -1329,12 +1359,12 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    helm
+;; * helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (helm-mode -1)
 ;; (global-set-key (kbd "C-c h") 'helm-mini)
 (require 'helm)
 (require 'helm-config)
+(helm-mode 1)
 (global-set-key (kbd "C-c g") 'helm-do-grep)
 ;; (eval-after-load 'helm-grep
 ;;   '(setq helm-grep-default-command helm-grep-default-recurse-command))
@@ -1357,7 +1387,7 @@ prompt the user for a coding system."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;    projectile
+;; * projectile
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; from http://endlessparentheses.com/improving-projectile-with-extra-commands.html
@@ -1390,9 +1420,9 @@ prompt the user for a coding system."
 
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Popping marks faster ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; * Popping marks faster ;;
+;;;;;;;==;;;;;;;;;;;;;;;;;;;
 ;; From: http://endlessparentheses.com/faster-pop-to-mark-command.html
 ;; When popping the mark, continue popping until the cursor
 ;; actually moves
@@ -1455,9 +1485,9 @@ prompt the user for a coding system."
 
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Auto-correct with C-x C-i ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; * Auto-correct with C-x C-i ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; add correction automatically to abbrev list for future automatic correction
 ;; From http://endlessparentheses.com/ispell-and-abbrev-the-perfect-auto-correct.html
 
@@ -1501,16 +1531,16 @@ abort completely with `C-g'."
 
 
 
-(require 'ess-view)
+;; (require 'ess-view)
 
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq confirm-nonexistent-file-or-buffer nil)
 
 
-;;;;;;;;;;
-;; TAGS ;;
-;;;;;;;;;;
+;;;;;;;;;;;;
+;; * TAGS ;;
+;;;;;;;;;;;;
 
 (setq path-to-ctags "/usr/bin/ctags-exuberant")
 (defun create-tags (dir-name)
@@ -1586,9 +1616,9 @@ Interactively also sends a terminating newline."
     #'endless/send-self))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Polymode for RMarkdown ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; * Polymode for RMarkdown ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Markdown mode
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
@@ -1631,9 +1661,9 @@ With C-u C-u: insert date and time"
 (put 'narrow-to-region 'disabled nil)
 
 
-;;;;;;;;;;;;;
-;; Folding ;;
-;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+;; * Folding ;;
+;;;;;;;;;;;;;;;
 
 (defun aj-toggle-fold () 
   "Toggle fold all lines larger than indentation on current line" 
@@ -1654,3 +1684,56 @@ With C-u C-u: insert date and time"
 ;; replacing it with the Emacs’ text.
 ;; https://github.com/dakrone/eos/blob/master/eos.org
 (setq save-interprogram-paste-before-kill t)
+
+
+;; ZTREE: compare folders
+(push (substitute-in-file-name "path-to-ztree-directory") load-path)
+(require 'ztree)
+
+
+;;; Reclaim digits for shortcut keys
+;;;  (http://pragmaticemacs.com/emacs/use-your-digits-and-a-personal-key-map-for-super-shortcuts/)
+;; unset C- and M- digit keys
+(dotimes (n 10)
+  (global-unset-key (kbd (format "C-%d" n)))
+  (global-unset-key (kbd (format "M-%d" n)))
+  )
+;; ;; set up my own map
+;; (define-prefix-command 'bjm-map)
+;; (global-set-key (kbd "C-1") 'bjm-map)
+;; (define-key bjm-map (kbd "m") 'mu4e)
+(global-set-key (kbd "C-1") 'avy-goto-char-timer)
+
+
+;;; dired quick sort - press S in dired for sorting options
+(require 'dired-quick-sort)
+(dired-quick-sort-setup)
+
+;;; Easy navigation
+(require 'outshine)
+  (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+(require 'navi-mode)
+(add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
+(add-hook 'ess-mode-hook 'outline-minor-mode)
+(add-hook 'LaTeX-mode-hook 'outline-minor-mode)
+(add-hook 'message-mode-hook 'outline-minor-mode)
+
+;; (dumb-jump-mode)
+;; (setq dumb-jump-selector 'helm)
+
+
+(use-package dumb-jump
+  :ensure t
+  :bind (("M-g o" . dumb-jump-go-other-window)
+	 ("M-g j" . dumb-jump-go)
+	 ("M-g b" . dumb-jump-back)
+	 ("M-g q" . dumb-jump-quick-look)
+	 ("M-g x" . dumb-jump-go-prefer-external)
+	 ("M-g z" . dumb-jump-go-prefer-external-other-window))
+  :config (setq dumb-jump-selector 'helm)
+  )
+;; :config 
+;; :init
+;; (dumb-jump-mode)
+;; :ensure
+;; )

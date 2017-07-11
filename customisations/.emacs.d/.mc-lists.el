@@ -19,6 +19,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+	LaTeX-babel-insert-hyphen
 	dired-unmark-backward
 	previous-buffer
 	smart-kill-whole-line

@@ -3,10 +3,8 @@
 
 (setq url-cookie-storage
  '((".google.com"
-  [url-cookie "PREF" "ID=1111111111111111:FF=0:TM=1436244695:LM=1436244695:V=1:S=X4G9a_9NtURlz4ed" "06-Jul-2017 04:51:35.00 GMT" "/" ".google.com" nil])
- (".feedly.com"
-  [url-cookie "HttpOnly" nil "09 Feb 17 00:02:50 [GMT]" "/" ".feedly.com" nil]
-  [url-cookie "__cfduid" "d0903200ed166cd8d70c4c8454b1f960e1455062570" "09 Feb 17 00:02:50 [GMT]" "/" ".feedly.com" nil])
+  [url-cookie "HttpOnly" nil "22-Aug-2017 03:20:39.00 GMT" "/" ".google.com" nil]
+  [url-cookie "NID" "97=KLWZYE7ck3smZ_fNsRGdlg1ae86Bt4Lo9xus5IQtL0Dgs2tcGEJEqYE_4WSJ2H67OIdSIKILouPGkilcdVpRp8JfUG5HgscGsEzSDvbNBcYcGnht7jPCqNsDJITXIIWV" "22-Aug-2017 03:20:39.00 GMT" "/" ".google.com" nil])
  (".google.co.nz"
   [url-cookie "NID" "88=m0N-p2-W6jv09u8ZEfm1YkmW4h11cchAL4q0DocTpvC3SndZyQYDRkti2Mfmh29zXXJnkiZ5B5kf7pFEM4rAC6yumFqlM8N5VP5iX0Hl49t-RbfjJSfs6TyCKj5dgY3v" "15-Apr-2017 00:52:48.00 GMT" "/" ".google.co.nz" nil]
   [url-cookie "HttpOnly" nil "15-Apr-2017 00:52:48.00 GMT" "/" ".google.co.nz" nil])
@@ -16,7 +14,14 @@
   [url-cookie "__mutoken" "musession54f4db269a11f4.37177305" "02-Mar-2020 21:50:30.00 GMT" "/" "sortir.telerama.fr" nil]))
 )
 (setq url-cookie-secure-storage
- 'nil)
+ '((".docs.google.com"
+  [url-cookie "HttpOnly" nil "20-Feb-2017 05:42:56.00 GMT" "/a/dragonfly.co.nz/document/d/1VJfjs8duC0UqhT5wu4yUHrN7bWc31E61S-f4ZRBEHho" ".docs.google.com" t]
+  [url-cookie "S" "documents=-Ruo9Yy6cDEn2flyQCfdJF-G9RjMoa95" "20-Feb-2017 05:42:56.00 GMT" "/a/dragonfly.co.nz/document/d/1VJfjs8duC0UqhT5wu4yUHrN7bWc31E61S-f4ZRBEHho" ".docs.google.com" t])
+ ("www.google.com"
+  [url-cookie "Priority" "HIGH" "20-Feb-2019 04:42:56.00 GMT" "/a" "www.google.com" t]
+  [url-cookie "HttpOnly" nil "20-Feb-2019 04:42:56.00 GMT" "/a" "www.google.com" t]
+  [url-cookie "GAPS" "1:AYeTZy7tK5jDcsWTfgqTbCHMzL2HXA:M1IwS78mjt41R1t-" "20-Feb-2019 04:42:56.00 GMT" "/a" "www.google.com" t]))
+)
 
 ;; Local Variables:
 ;; version-control: never

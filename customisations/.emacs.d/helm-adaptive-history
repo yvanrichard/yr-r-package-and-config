@@ -1,3 +1,3 @@
 ;; -*- mode: emacs-lisp -*-
 ;; History entries used for helm adaptive display.
-(setq helm-adaptive-history (quote (("*helm grep extensions*" ("*.r" ("" . 3) (#("*.r" 0 1 (fontified t) 1 2 (fontified t) 2 3 (fontified t)) . 1))))))
+(setq helm-adaptive-history (quote (("Helm Completions" ("--r" ("" . 3) (timestamp . 1498614775.05841) ("r" . 1))) ("*helm grep extensions*" ("*.r" ("" . 9) (timestamp . 1499650724.5390208) (#("*.r" 0 1 (fontified t) 1 2 (fontified t) 2 3 (fontified t)) . 4)) ("*.mk" ("*.mk$" . 1) ("*.mk" . 1)) ("20161202-upd-chg28-upddem" ("20161202-upd-chg28-upddem" . 1)) ("*.sql" ("*.sql" . 2)) ("capture_method" ("capture_method" . 1)) ("r$" ("r$" . 2)) ("*.r$" ("*.r$" . 1))))))

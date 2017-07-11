@@ -68,3 +68,8 @@ ls
 ls -la
 top
 ssh taiko -A
+make install
+make install
+make install
+make install
+make install
