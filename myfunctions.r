@@ -508,7 +508,7 @@ pickcolor <- function(brewer=T, echo=T) {
         xy <- sapply(xy, round, simplify=F)
         xy$xy <- paste(xy$x, xy$y, sep='-')
         xy <- as.data.frame(xy)
-        cols <- merge(xy, d, all.x=T, all.y=F, by.x='xy', by.y='xy')$col
+        cols <- merge(xy, d, all.x=T, all.y=F, by.x='xy', by.y='xy', sort=F)$col
     }
     dev.off()
     if (echo) {
@@ -3395,6 +3395,7 @@ corr <- function(dat, depvar, corrtype = 'spearman') {
 corrplot1var <- function(dat, depvar, alpha = 0.3, psample = 1, colby = NULL) {
     library(ggplot2)
     library(data.table)
+    dat <- as.data.table(dat)
     corrvars <- setdiff(names(dat)[sapply(names(dat), function(v) class(dat[[v]])) %in% c('numeric','integer')], depvar)
     nvars <- length(corrvars)
     if (!is.null(colby)) {
@@ -3407,11 +3408,12 @@ corrplot1var <- function(dat, depvar, alpha = 0.3, psample = 1, colby = NULL) {
         if (!is.null(colby))
             g <- g + geom_point(aes(colour = colby), alpha = alpha)
     } else {
-        c <- rbindlist(lapply(corrvars, function(v) {
+        cc <- rbindlist(lapply(corrvars, function(v) {
             d <- data.table(depvar = depvar, y = dat[[depvar]], corrvar = v, x = dat[[v]])
             return(d[sample(1:nrow(d), round(psample * nrow(d)))])
         }))
-        g <- ggplot(c, aes(x = x, y = y, group = corrvar)) + 
+        g <- ggplot(cc, aes(x = x, y = y, group = corrvar)) +
+            geom_smooth() +
           facet_wrap(~ corrvar, scales = 'free') +
           geom_point(alpha = alpha)
     }
@@ -3572,4 +3574,40 @@ read.mcmc.dt <- function(fold) {
     setorder(mc, variable, par, ch, idx)
     mc[, sample := 1:.N, par]
     return(mc)
+}
+
+
+
+find_common_seq <- function(v1, v2, size) {
+    ## Find all sequences of size `size` common between vectors v1 and v2
+    library(data.table)
+    res <- NULL
+    for (i in 1:(length(v1)-size)) {
+        x1 <- v1[i:(i+size-1)]
+        for (j in 1:(length(v2)-size)) {
+            x2 <- v2[j:(j+size-1)]
+            if (identical(x1, x2)) {
+                res <- rbind(res, data.table(seq = paste(x1, collapse = ','), i = i, j = j))
+            }
+        }
+    }
+    return(res)
+}
+
+find_common_seq1 <- function(v, size) {
+    ## Find all repeated sequences of size `size` within vector v
+    library(data.table)
+    res <- NULL
+    for (i in 1:(length(v)-size)) {
+        x1 <- v[i:(i+size-1)]
+        for (j in (i+1):(length(v)-size)) {
+            if (j != i) {
+                x2 <- v[j:(j+size-1)]
+                if (identical(x1, x2)) {
+                    res <- rbind(res, data.table(seq = paste(x1, collapse = ','), i = i, j = j))
+                }
+            }
+        }
+    }
+    return(res)
 }
