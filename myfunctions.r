@@ -3578,36 +3578,61 @@ read.mcmc.dt <- function(fold) {
 
 
 
-find_common_seq <- function(v1, v2, size) {
+find_common_seq <- function(v1, v2, size, na.rm=T, cores=6) {
     ## Find all sequences of size `size` common between vectors v1 and v2
     library(data.table)
-    res <- NULL
-    for (i in 1:(length(v1)-size)) {
+    library(parallel)
+    if (!identical(class(v1), class(v2)))
+        stop('v1 and v2 are of different class')
+    ids1 <- data.table(v = v1, id_ori = 1:length(v1))
+    if (na.rm == T)
+        ids1 <- na.omit(ids1)
+    ids1[, id_new := 1:.N]
+    ids2 <- data.table(v = v2, id_ori = 1:length(v2))
+    if (na.rm == T)
+        ids2 <- na.omit(ids2)
+    ids2[, id_new := 1:.N]
+    ## res <- NULL
+    v1 <- ids1[, v]
+    v2 <- ids2[, v]
+    seqs <- mclapply(1:(length(v1)-size), function(i) {
+    ## for (i in 1:(length(v1)-size)) {
         x1 <- v1[i:(i+size-1)]
-        for (j in 1:(length(v2)-size)) {
+        seqs1 <- lapply(1:(length(v2)-size), function(j) {
+        ## for (j in 1:(length(v2)-size)) {
             x2 <- v2[j:(j+size-1)]
             if (identical(x1, x2)) {
-                res <- rbind(res, data.table(seq = paste(x1, collapse = ','), i = i, j = j))
-            }
-        }
-    }
-    return(res)
+                return(data.table(seq = paste(x1, collapse = ','),
+                                  i = ids1[id_new == i, id_ori],
+                                  j = ids2[id_new == j, id_ori]))
+            } else return(NULL)
+        })
+        return(rbindlist(seqs1))
+    }, mc.cores=cores)
+    return(rbindlist(seqs))
 }
 
-find_common_seq1 <- function(v, size) {
+find_common_seq1 <- function(v, size, na.rm=T, cores=6) {
     ## Find all repeated sequences of size `size` within vector v
     library(data.table)
-    res <- NULL
-    for (i in 1:(length(v)-size)) {
+    ids <- data.table(v = v, id_ori = 1:length(v))
+    if (na.rm == T)
+        ids <- na.omit(ids)
+    ids[, id_new := 1:.N]
+    v <- ids[, v]
+    seqs <- mclapply(1:(length(v)-size), function(i) {
         x1 <- v[i:(i+size-1)]
-        for (j in (i+1):(length(v)-size)) {
+        seqs1 <- lapply((i+1):(length(v)-size), function(j) {
             if (j != i) {
                 x2 <- v[j:(j+size-1)]
                 if (identical(x1, x2)) {
-                    res <- rbind(res, data.table(seq = paste(x1, collapse = ','), i = i, j = j))
-                }
-            }
-        }
-    }
-    return(res)
+                    return(data.table(seq = paste(x1, collapse = ','),
+                                      i = ids[id_new == i, id_ori],
+                                      j = ids[id_new == j, id_ori]))
+                } else return(NULL)
+            } else return(NULL)
+        })
+        return(rbindlist(seqs1))
+    }, mc.cores=cores)
+    return(rbindlist(seqs))
 }
