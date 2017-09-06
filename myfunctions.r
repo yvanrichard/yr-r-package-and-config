@@ -3592,24 +3592,19 @@ find_common_seq <- function(v1, v2, size, na.rm=T, cores=6) {
     if (na.rm == T)
         ids2 <- na.omit(ids2)
     ids2[, id_new := 1:.N]
-    ## res <- NULL
     v1 <- ids1[, v]
     v2 <- ids2[, v]
-    seqs <- mclapply(1:(length(v1)-size), function(i) {
-    ## for (i in 1:(length(v1)-size)) {
+    rbindlist(mclapply(1:(length(v1)-size), function(i) {
         x1 <- v1[i:(i+size-1)]
-        seqs1 <- lapply(1:(length(v2)-size), function(j) {
-        ## for (j in 1:(length(v2)-size)) {
+        rbindlist(lapply(1:(length(v2)-size+1), function(j) {
             x2 <- v2[j:(j+size-1)]
             if (identical(x1, x2)) {
                 return(data.table(seq = paste(x1, collapse = ','),
                                   i = ids1[id_new == i, id_ori],
                                   j = ids2[id_new == j, id_ori]))
-            } else return(NULL)
-        })
-        return(rbindlist(seqs1))
-    }, mc.cores=cores)
-    return(rbindlist(seqs))
+            }
+        }))
+    }, mc.cores=cores))
 }
 
 find_common_seq1 <- function(v, size, na.rm=T, cores=6) {
@@ -3620,19 +3615,17 @@ find_common_seq1 <- function(v, size, na.rm=T, cores=6) {
         ids <- na.omit(ids)
     ids[, id_new := 1:.N]
     v <- ids[, v]
-    seqs <- mclapply(1:(length(v)-size), function(i) {
+    rbindlist(mclapply(1:(length(v)-size), function(i) {
         x1 <- v[i:(i+size-1)]
-        seqs1 <- lapply((i+1):(length(v)-size), function(j) {
+        rbindlist(lapply((i+1):(length(v)-size+1), function(j) {
             if (j != i) {
                 x2 <- v[j:(j+size-1)]
                 if (identical(x1, x2)) {
                     return(data.table(seq = paste(x1, collapse = ','),
                                       i = ids[id_new == i, id_ori],
                                       j = ids[id_new == j, id_ori]))
-                } else return(NULL)
-            } else return(NULL)
-        })
-        return(rbindlist(seqs1))
-    }, mc.cores=cores)
-    return(rbindlist(seqs))
+                }
+            }
+        }))
+    }, mc.cores=cores))
 }
