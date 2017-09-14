@@ -3629,3 +3629,183 @@ find_common_seq1 <- function(v, size, na.rm=T, cores=6) {
         }))
     }, mc.cores=cores))
 }
+
+
+shinypal <- function(...) {
+    ## Shiny app to choose colours
+    require(shiny)
+    require(ggplot2)
+    require(data.table)
+    bezierCurve <- function(x, y, n=10) {
+        bez <- function(x, y, t) {
+            outx <- 0
+            outy <- 0
+            n <- length(x)-1
+            for (i in 0:n) {
+                outx <- outx + choose(n, i)*((1-t)^(n-i))*t^i*x[i+1]
+                outy <- outy + choose(n, i)*((1-t)^(n-i))*t^i*y[i+1]
+            }
+            return (list(x=outx, y=outy))
+        }
+        outx <- NULL
+        outy <- NULL
+        i <- 1
+        for (t in seq(0, 1, length.out=n)) {
+            b <- bez(x, y, t)
+            outx[i] <- b$x
+            outy[i] <- b$y
+            i <- i+1
+        }
+        return (data.table(x=outx, y=outy))
+    }
+
+    shinyApp(
+########
+## UI ##
+########
+        ui = fluidPage(
+                 sidebarLayout(
+                     sidebarPanel(width = 3
+                                  ,sliderInput("luminance", label = "Luminance",
+                                              min = 0, max = 100, value = 75, step = 1)
+                                  ,sliderInput("chroma", label = "Chroma factor",
+                                              min = 0, max = 150, value = 100, step = 1)
+                                  ,checkboxInput('fixup', 'Fixup', value=F)
+                                  ,sliderInput("n_cols", label = "No. colours",
+                                              min = 1, max = 20, value = 5, step = 1)
+                                  ,selectInput('mode', 'Click action', choices = c("Pick individual colours" = "choose_colors",
+                                                                                  "Draw Bezier curve" = "beziers"))
+                                  ,actionButton("clear_pal", "Clear palette")
+                                  ,verbatimTextOutput('pal_string')
+                                 ## ,verbatimTextOutput('test')
+                                  ),
+                     mainPanel(width = 9,
+                               fluidRow(column(10,
+                                               plotOutput("theplot", click = "plot_click")),
+                                        column(2,
+                                               plotOutput("palette"))
+                                        )
+                               )
+                 )
+             ), 
+############
+## Server ##
+############
+        server = function(input, output) {
+
+            reacvals <- reactiveValues(xys = NULL,
+                                      palette = NULL,
+                                      bezierpoints = NULL,
+                                      gradient = NULL)
+
+            observeEvent(input$plot_click, {
+                if (input$mode == "choose_colors") {
+                    reacvals$xys <<- c(reacvals$xys, list(input$plot_click[c('x', 'y')]))
+                    whc <- wheel_colors()
+                    pal <- rbindlist(reacvals$xys)
+                    pal[, col := sapply(1:nrow(pal), function(i) {
+                        whc[whc[, which.min((x - pal[i, x])^2 + abs(y - pal[i, y])^2)], z]
+                    })]
+                    reacvals$palette <<- pal
+                } else {
+                    reacvals$bezierpoints <- c(reacvals$bezierpoints, list(input$plot_click[c('x', 'y')]))
+                }
+            })
+
+            observe({
+                if (input$mode != "choose_colors") {
+                    if (!is.null(reacvals$bezierpoints) & !is.null(input$n_cols)) {
+                        whc <- wheel_colors()
+                        xys <- rbindlist(reacvals$bezierpoints)
+                        bxys <- xys[, bezierCurve(x, y, input$n_cols)]
+                        bxys[, col := sapply(1:nrow(bxys), function(i) {
+                            whc[whc[, which.min((x - bxys[i, x])^2 + abs(y - bxys[i, y])^2)], z]
+                        })]
+                        reacvals$gradient <<- bxys
+                    }
+                }
+            })
+            
+            observeEvent(input$clear_pal, {
+                reacvals$bezierpoints <<- NULL
+                reacvals$gradient <<- NULL
+                reacvals$xys <<- NULL
+                reacvals$palette <<- NULL
+            })
+
+            observeEvent(input$mode, {
+                reacvals$bezierpoints <<- NULL
+                reacvals$gradient <<- NULL
+                reacvals$xys <<- NULL
+                reacvals$palette <<- NULL
+            })
+            
+            output$theplot <- renderPlot({
+                wheel <- wheel_colors()
+                if (!is.null(wheel)) {
+                    wheel[, plot(x, y, col = z, pch = 19, bty = 'n', axes = F, xlab = NA, ylab = NA)]
+                    if (!is.null(reacvals$bezierpoints) & !is.null(reacvals$gradient)) {
+                        rbindlist(reacvals$bezierpoints)[, points(x, y, col = 'black')]
+                        reacvals$gradient[, points(x, y, col = 'black', type = 'l', lwd = 1.5)]
+                    }
+                }
+            }, width = 700, height = 700)
+
+            output$palette <- renderPlot({
+                if (input$mode == 'choose_colors') {
+                    pal <- reacvals$palette
+                } else {
+                    pal <- reacvals$gradient
+                }
+                if (!is.null(pal)) {
+                    pal[, colr := factor(col, levels = unique(col))]
+                    cols <- as.character(pal$colr)
+                    names(cols) <- as.character(pal$colr)
+                    ggplot(pal, aes(xmin = -10, xmax = 10, ymin = -10, ymax = 10, fill = colr)) +
+                        geom_rect() +
+                        geom_text(x = 0, y = 0, aes(label = colr)) +
+                        scale_x_continuous(expand = c(0,0)) +
+                        scale_y_continuous(expand = c(0,0)) +
+                        scale_fill_manual(values = cols) +
+                        facet_wrap(~ colr, ncol=1) +
+                        theme_void() +
+                        theme(legend.position='none',
+                              panel.spacing = unit(0, 'mm'),
+                              strip.text = element_blank(),
+                              plot.margin=unit(c(0,0,-1,-1), 'mm'))
+                }
+            })
+            
+            wheel_colors <- reactive({
+                r  <- seq(0,1,length=201)
+                th <- seq(0,2*pi, length=201)
+                gg  <- data.table(expand.grid(r=r,th=th))
+                gg[, `:=`(x = r*sin(th),
+                          y = r*cos(th),
+                          z = hcl(h=360*th/(2*pi), c=input$chroma*r, l=input$luminance, fixup=input$fixup))]
+                return(gg)
+            })
+
+            output$pal_string <- renderText({
+                if (input$mode == 'choose_colors') {
+                    if (!is.null(reacvals$palette)) {
+                        sprintf('"%s"', paste(reacvals$palette$col, collapse="\",\""))
+                    }
+                } else {
+                    if (!is.null(reacvals$gradient)) {
+                        sprintf('"%s"', paste(reacvals$gradient$col, collapse="\",\""))
+                    }
+                }
+            })
+
+            output$test <- renderPrint({
+                if (input$mode == 'choose_colors') {
+                    print(reacvals$palette)
+                } else {
+                    print(reacvals$gradient)
+                }
+            })
+            
+            })
+}
+
