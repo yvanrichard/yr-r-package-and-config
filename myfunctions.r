@@ -3630,12 +3630,14 @@ find_common_seq1 <- function(v, size, na.rm=T, cores=6) {
     }, mc.cores=cores))
 }
 
-
 shinypal <- function(...) {
     ## Shiny app to choose colours
     require(shiny)
-    require(ggplot2)
+    library(ggplot2)
     require(data.table)
+    require(shinyjs)
+    ## require(rclipboard)
+    require(clipr)
     bezierCurve <- function(x, y, n=10) {
         bez <- function(x, y, t) {
             outx <- 0
@@ -3658,39 +3660,40 @@ shinypal <- function(...) {
         }
         return (data.table(x=outx, y=outy))
     }
-
     shinyApp(
-########
-## UI ##
-########
+
+        ## * UI
         ui = fluidPage(
-                 sidebarLayout(
-                     sidebarPanel(width = 3
-                                  ,sliderInput("luminance", label = "Luminance",
-                                              min = 0, max = 100, value = 75, step = 1)
-                                  ,sliderInput("chroma", label = "Chroma factor",
-                                              min = 0, max = 150, value = 100, step = 1)
-                                  ,checkboxInput('fixup', 'Fixup', value=F)
-                                  ,sliderInput("n_cols", label = "No. colours",
-                                              min = 1, max = 20, value = 5, step = 1)
-                                  ,selectInput('mode', 'Click action', choices = c("Pick individual colours" = "choose_colors",
-                                                                                  "Draw Bezier curve" = "beziers"))
-                                  ,actionButton("clear_pal", "Clear palette")
-                                  ,verbatimTextOutput('pal_string')
-                                 ## ,verbatimTextOutput('test')
-                                  ),
-                     mainPanel(width = 9,
-                               fluidRow(column(10,
-                                               plotOutput("theplot", click = "plot_click")),
-                                        column(2,
-                                               plotOutput("palette"))
-                                        )
-                               )
-                 )
-             ), 
-############
-## Server ##
-############
+            useShinyjs(),
+            ## rclipboardSetup(),
+            sidebarLayout(
+                sidebarPanel(width = 2
+                            ,sliderInput("luminance", label = "Luminance",
+                                         min = 0, max = 100, value = 75, step = 1)
+                            ,sliderInput("chroma", label = "Chroma factor",
+                                         min = 0, max = 150, value = 100, step = 1)
+                            ,checkboxInput('fixup', 'Fixup colours', value=F)
+                            ,radioButtons('mode', 'Click action', choices = c("Pick individual colours" = "choose_colors",
+                                                                              "Draw Bezier curve" = "beziers"))
+                            ,sliderInput("n_cols", label = "No. colours",
+                                         min = 1, max = 20, value = 5, step = 1)
+                            ,verbatimTextOutput('pal_string_rgb')
+                            ,verbatimTextOutput('pal_string_hcl')
+                            ## ,uiOutput("clip")
+                            ,actionButton("clip", "Copy")
+                            ,actionButton("clear_pal", "Clear palette")
+                             ,verbatimTextOutput('test')
+                             ),
+                mainPanel(width = 10,
+                          fluidRow(column(8, plotOutput("theplot", click = "plot_click", height = '700px')),
+                                   column(2, plotOutput("palette")),
+                                   column(2, plotOutput("explot")))
+                          )
+            )
+        ),
+        ## input <- list(chroma = 100, luminance = 75, fixup = F, mode = 'choose_colors')
+
+        ## * Server
         server = function(input, output) {
 
             reacvals <- reactiveValues(xys = NULL,
@@ -3734,6 +3737,10 @@ shinypal <- function(...) {
             })
 
             observeEvent(input$mode, {
+                if (input$mode != 'choose_colors') {
+                    show('n_cols')
+                } else hide('n_cols')
+
                 reacvals$bezierpoints <<- NULL
                 reacvals$gradient <<- NULL
                 reacvals$xys <<- NULL
@@ -3743,13 +3750,17 @@ shinypal <- function(...) {
             output$theplot <- renderPlot({
                 wheel <- wheel_colors()
                 if (!is.null(wheel)) {
-                    wheel[, plot(x, y, col = z, pch = 19, bty = 'n', axes = F, xlab = NA, ylab = NA)]
+                    par(mar = c(0,0,0,0))
+                    wheel[, plot(x, y, col = z, pch = 19, bty = 'n', axes = F, xlab = NA, ylab = NA, asp=1)]
                     if (!is.null(reacvals$bezierpoints) & !is.null(reacvals$gradient)) {
-                        rbindlist(reacvals$bezierpoints)[, points(x, y, col = 'black')]
+                        rbindlist(reacvals$bezierpoints)[, text(x, y, col = 'black')]
                         reacvals$gradient[, points(x, y, col = 'black', type = 'l', lwd = 1.5)]
                     }
+                    if (!is.null(reacvals$palette)) {
+                        reacvals$palette[, text(x, y, col = 'black')]
+                    }                    
                 }
-            }, width = 700, height = 700)
+            }) #, width = 700, height = 700)
 
             output$palette <- renderPlot({
                 if (input$mode == 'choose_colors') {
@@ -3775,29 +3786,77 @@ shinypal <- function(...) {
                               plot.margin=unit(c(0,0,-1,-1), 'mm'))
                 }
             })
+
+            output$explot <- renderPlot({
+                if (input$mode == 'choose_colors') {
+                    pal <- reacvals$palette
+                } else {
+                    pal <- reacvals$gradient
+                }
+                if (!is.null(pal)) {
+                    d1 <- data.table(x = rnorm(100), y = rnorm(100), z = sample(1:nrow(pal), 100, replace=T))
+                    d2 <- data.table(x = unlist(sapply(1:nrow(pal), function(i) runif(1, 5, 100))))
+                    d3 <- data.table(x = apply(matrix(rnorm(100 * nrow(pal)), nrow = nrow(pal)), 1, cumsum))
+                    par(mfrow=c(3, 1), mar = c(0,0,0,0), bty='n')
+                    d1[, plot(x, y, col = pal$col[z], pch = 19, bty='n', axes=F)]
+                    d2[, barplot(x, col = pal$col, bty='n', axes=F)]
+                    matplot(d3, type = "l", col = pal$col, lwd = 1.7, axes=F, bty='n', xlab=NA, ylab=NA)
+                }
+            })
             
             wheel_colors <- reactive({
-                r  <- seq(0,1,length=201)
-                th <- seq(0,2*pi, length=201)
-                gg  <- data.table(expand.grid(r=r,th=th))
-                gg[, `:=`(x = r*sin(th),
-                          y = r*cos(th),
-                          z = hcl(h=360*th/(2*pi), c=input$chroma*r, l=input$luminance, fixup=input$fixup))]
-                return(gg)
-            })
-
-            output$pal_string <- renderText({
-                if (input$mode == 'choose_colors') {
-                    if (!is.null(reacvals$palette)) {
-                        sprintf('"%s"', paste(reacvals$palette$col, collapse="\",\""))
-                    }
-                } else {
-                    if (!is.null(reacvals$gradient)) {
-                        sprintf('"%s"', paste(reacvals$gradient$col, collapse="\",\""))
-                    }
+                if (!is.null(input$chroma) & !is.null(input$luminance) & !is.null(input$fixup)) {
+                    r  <- seq(0,1,length=201)
+                    th <- seq(0,2*pi, length=201)
+                    gg  <- data.table(expand.grid(r=r,th=th))
+                    gg[, `:=`(x = r*sin(th),
+                              y = r*cos(th),
+                              h = 360*th/(2*pi),
+                              c = input$chroma*r,
+                              l = input$luminance)]
+                    gg[, z := hcl(h, c, l, fixup=input$fixup)]
+                    return(gg)
                 }
             })
 
+            output$pal_string_rgb <- renderText({
+                txt <- NULL
+                if (input$mode == 'choose_colors') {
+                    if (!is.null(reacvals$palette)) {
+                        txt <- sprintf('"%s"', paste(reacvals$palette$col, collapse="\",\""))
+                    }
+                } else {
+                    if (!is.null(reacvals$gradient)) {
+                        txt <- sprintf('"%s"', paste(reacvals$gradient$col, collapse="\",\""))
+                    }
+                }
+                ## clipr::write_clip(txt)
+                return(txt)
+            })
+            output$pal_string_hcl <- renderText({
+                txt <- NULL
+                if (input$mode == 'choose_colors') {
+                    if (!is.null(reacvals$palette)) {
+                        txt <- sprintf('"%s"', paste(reacvals$palette[, sprintf('%s,%s,%s', h,c,l)], collapse="\",\""))
+                    }
+                } else {
+                    if (!is.null(reacvals$gradient)) {
+                        txt <- sprintf('"%s"', paste(reacvals$gradient[, sprintf('%s,%s,%s', h,c,l)], collapse="\",\""))
+                    }
+                }
+                ## clipr::write_clip(txt)
+                return(txt)
+            })            
+
+            ## ## Add clipboard buttons
+            ## output$clip <- renderUI({
+            ##     rclipButton("clipbtn", "Copy", input$pal_string, icon("clipboard"))
+            ## })
+            ## Workaround for execution within RStudio
+            observeEvent(input$clip,
+                         clipr::write_clip(as.character(input$pal_string), object_type='character')
+                         )
+            
             output$test <- renderPrint({
                 if (input$mode == 'choose_colors') {
                     print(reacvals$palette)
@@ -3806,6 +3865,6 @@ shinypal <- function(...) {
                 }
             })
             
-            })
+        })
 }
 
