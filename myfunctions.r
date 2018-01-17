@@ -1410,7 +1410,7 @@ check_cited_labels <- function(reportfile='report.tex', ignore=c('sec','subsec',
 ##makefile <- '~/dragonfly/sra-foundations/modelling/bh-dd-k50/makefile'
 ## makefile <- '~/dragonfly/sra-foundations/report/notes/makefile'
 graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranksep=0.2, ratio=0.8, margin=1,
-                   ignore.clusters=F, expand.vars=F) {
+                   ignore.clusters=F, ignore.utils=F, expand.vars=F, filter='dot') {
     opt <- options("useFancyQuotes")
     options(useFancyQuotes = FALSE)
 
@@ -1454,6 +1454,7 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     
     mk <- gsub('^ *','', mk)
     mk <- mk[grepl('^\t', mk) | !grepl('=', mk) | grepl('=[\']', mk)] # remove assignments of environmental variables
+    mk <- mk[!grepl('^export ', mk)]
     ## Remove if statements
     ifstatements <- grep('\\bifeq\\b', mk)
     endifs <- grep('\\bendif\\b', mk)
@@ -1544,6 +1545,13 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     if (withclusters)
         clusters <- sapply(ps, function(x) sapply(all[x], function(y) y$targs), simplify=F)
 
+    ## Remove utils
+    if (ignore.utils == T) {
+        utilclust <- tail(clusters[grep('^util', names(clusters), ignore.case=T)], 1)
+        clusters <- clusters[-which(names(clusters) == names(utilclust))]
+        ps <- ps[-which(names(ps) == names(utilclust))]
+        all <- all[-which(sapply(all, '[[', 'targs') %in% utilclust[[1]])]
+    }
     ##=== Create dot file ===##
 
     all2 <- all
@@ -1640,9 +1648,9 @@ label=%2$s; style="rounded,filled"; color=gray50; fillcolor=%3$s; fontcolor=red;
     pdffile <- sub('.dot', '.pdf', dotfile, fixed=T)
     cat(gf, sep='\n', file=dotfile)
     options(useFancyQuotes = opt)
-    system(sprintf('dot -Tpdf %s -o %s', dotfile, pdffile))
+    system(sprintf('%s -Tpdf %s -o %s', filter, dotfile, pdffile))
     ## system(sprintf('xdg-open %s', pdffile), wait=F)
-    system(sprintf('xdot %s', dotfile), wait=F)
+    system(sprintf('xdot %s --filter %s', dotfile, filter), wait=F)
 }
 
 
@@ -1957,12 +1965,13 @@ is.git.tracked <- function(f) {
 }
 
 
-## fold='~/dragonfly/sra-2016/re-run/report'
-check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/'),
-                             ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
-                                            'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
-                             only=c('/'), recursive=T, save_deps=T, use.xelatex=T, ignore.rnw=F) {
+check.latex.deps <- function(report_path = './report.tex',
+                     paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/|submitted/|/dev/'),
+                     ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
+                                    'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
+                     only=c('/'), recursive=F, save_deps=T, use.xelatex=T, ignore.rnw=F) {
     library(data.table)
+    
     extension <- function(x) {
         y <- x
         c <- grepl('\\.', y)
@@ -1973,10 +1982,16 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
     
     alldeps <- NULL
     prevdir <- getwd()
+    fold <- normalizePath(dirname(report_path))
     setwd(fold)
-    ## File dependencies in Sweave files
+
+    ## ** Flatten report
+    system(sprintf('latexpand %s > the_flattened_report.tex', basename(report_path)))
+
+    ## ** File dependencies in Sweave files
     if (!ignore.rnw) {
         rnw <- dir('.', '*.rnw$|*.Rnw$', recursive=recursive)
+        rnw <- rnw[!grepl(paths.ignore, rnw)]
         basedir <- getwd()
         r1=rnw[2]
         for (r1 in rnw) {
@@ -2010,41 +2025,35 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
         }
     }
     ## File dependencies in tex files
-    tex <- dir('.', '*.tex$', recursive=recursive)
-    tex <- tex[!(tex %in% 'aebr.tex')]
     basedir <- getwd()
-    t=tex[3]
-    for (t in tex) {
-        cat('\n************  ', t, '  ************\n')
-        tdir <- dirname(t)
-        setwd(tdir)
-        t2 <- basename(t)
-        bt <- sub('\\.tex', '', t2)
-        tmp <- readLines(t2, warn=F)
-        if (any(grepl('begin\\{document\\}', tmp))) {
-            if (!use.xelatex) {
-                s <- system(sprintf('pdflatex -recorder -interaction=nonstopmode %s', bt), intern=T)
-            } else {
-                s <- system(sprintf('xelatex -recorder -interaction=nonstopmode %s', bt), intern=T)
-            }
-            f <- sprintf('%s.fls', bt)
-            if (file.exists(f)) {
-                fls <- readLines(f)
-                fls <- sapply(strsplit(fls, ' '), function(x) x[2])
-                fls <- sub('^\\./', '', fls)
-                fls <- unique(fls)
-                fls <- fls[!grepl(sprintf('^%s', bt), fls)]
-                fls <- fls[!(fls %in% normalizePath(fold))]
-                fs <- normalizePath(fls)
-                if (length(fs)) {
-                    alldeps <- rbind(alldeps, data.table(infile = t, dep = fs))
-                } else alldeps <- rbind(alldeps, data.table(infile = t, dep = NA))
-                cat(paste(fs[!(extension(fs) %in% ext.ignore) & !grepl(paths.ignore, fs)], collapse='\n'))
-                cat('\n')
-            } else cat('fls file inexistent. There is a problem with this file...\n')
-        } else cat('Not a master file. Skip...\n')
-        setwd(basedir)
-    }
+    tex <- 'the_flattened_report.tex'
+    cat('\n************  ', tex, '  ************\n')
+    t2 <- basename(tex)
+    bt <- sub('\\.tex', '', t2)
+    tmp <- readLines(t2, warn=F)
+    if (any(grepl('begin\\{document\\}', tmp))) {
+        if (!use.xelatex) {
+            s <- system(sprintf('pdflatex -recorder -interaction=nonstopmode %s', bt), intern=T)
+        } else {
+            s <- system(sprintf('xelatex -recorder -interaction=nonstopmode %s', bt), intern=T)
+        }
+        f <- sprintf('%s.fls', bt)
+        if (file.exists(f)) {
+            fls <- readLines(f)
+            fls <- sapply(strsplit(fls, ' '), function(x) x[2])
+            fls <- sub('^\\./', '', fls)
+            fls <- unique(fls)
+            fls <- fls[!grepl(sprintf('^%s', bt), fls)]
+            fls <- fls[!(fls %in% normalizePath(fold))]
+            fs <- normalizePath(fls)
+            if (length(fs)) {
+                alldeps <- rbind(alldeps, data.table(infile = tex, dep = fs))
+            } else alldeps <- rbind(alldeps, data.table(infile = tex, dep = NA))
+            cat(paste(fs[!(extension(fs) %in% ext.ignore) & !grepl(paths.ignore, fs)], collapse='\n'))
+            cat('\n')
+        } else cat('fls file inexistent. There is a problem with this file...\n')
+    } else cat('Not a master file. Skip...\n')
+    setwd(basedir)
     
     cat('\n\n')
     alldeps <- alldeps[!grepl('^[[:blank:]]*\\%', dep)]
@@ -2059,6 +2068,8 @@ check.latex.deps <- function(fold='.', paths.ignore=c('^/usr/|^/var/lib|^/etc/te
     alldeps[, git_tracked := NA]
     if (any(alldeps$valid %in% T))
         alldeps[valid %in% T, git_tracked := sapply(dep, is.git.tracked)]
+
+    print(alldeps)
 
     if (!is.null(alldeps) & any(alldeps$git_tracked %in% F)) {
         cat('************====  Files not tracked by GIT:  ====************\n')
@@ -3682,7 +3693,7 @@ shinypal <- function(...) {
                             ## ,uiOutput("clip")
                             ,actionButton("clip", "Copy")
                             ,actionButton("clear_pal", "Clear palette")
-                             ,verbatimTextOutput('test')
+                             ## ,verbatimTextOutput('test')
                              ),
                 mainPanel(width = 10,
                           fluidRow(column(8, plotOutput("theplot", click = "plot_click", height = '700px')),
@@ -3697,40 +3708,49 @@ shinypal <- function(...) {
         server = function(input, output) {
 
             reacvals <- reactiveValues(xys = NULL,
+                                      points = NULL,
                                       palette = NULL,
                                       bezierpoints = NULL,
                                       gradient = NULL)
 
             observeEvent(input$plot_click, {
-                if (input$mode == "choose_colors") {
                     reacvals$xys <<- c(reacvals$xys, list(input$plot_click[c('x', 'y')]))
                     whc <- wheel_colors()
                     pal <- rbindlist(reacvals$xys)
                     pal[, col := sapply(1:nrow(pal), function(i) {
                         whc[whc[, which.min((x - pal[i, x])^2 + abs(y - pal[i, y])^2)], z]
                     })]
-                    reacvals$palette <<- pal
-                } else {
-                    reacvals$bezierpoints <- c(reacvals$bezierpoints, list(input$plot_click[c('x', 'y')]))
-                }
+                    reacvals$points <<- pal
+                ## } else {
+                ##     reacvals$bezierpoints <- c(reacvals$bezierpoints, list(input$plot_click[c('x', 'y')]))
+                ## }
             })
 
             observe({
                 if (input$mode != "choose_colors") {
-                    if (!is.null(reacvals$bezierpoints) & !is.null(input$n_cols)) {
+                    if (!is.null(reacvals$points) & !is.null(input$n_cols)) {
+                        bxys <- reacvals$points[, bezierCurve(x, y, input$n_cols)]
                         whc <- wheel_colors()
-                        xys <- rbindlist(reacvals$bezierpoints)
-                        bxys <- xys[, bezierCurve(x, y, input$n_cols)]
-                        bxys[, col := sapply(1:nrow(bxys), function(i) {
-                            whc[whc[, which.min((x - bxys[i, x])^2 + abs(y - bxys[i, y])^2)], z]
-                        })]
+                        ## whc <- cbind(whc, whc[whc[, which.min((x - bxys[i, x])^2 + abs(y - bxys[i, y])^2)],
+                        ##                      .(h,c,l,z)])
+                        bxys <- rbindlist(lapply(1:nrow(bxys), function(i) {
+                            whc[whc[, which.min((x - bxys[i, x])^2 + abs(y - bxys[i, y])^2)]]
+                        }))
+                        bxys[, col := z]
+                        ## bxys[, col := sapply(1:nrow(bxys), function(i) {
+                        ##     whc[whc[, which.min((x - bxys[i, x])^2 + abs(y - bxys[i, y])^2)], z]
+                        ## })]
                         reacvals$gradient <<- bxys
+                    }
+                } else {
+                    if (!is.null(reacvals$points)) {
+                        reacvals$palette <<- reacvals$points
                     }
                 }
             })
             
             observeEvent(input$clear_pal, {
-                reacvals$bezierpoints <<- NULL
+                reacvals$points <<- NULL
                 reacvals$gradient <<- NULL
                 reacvals$xys <<- NULL
                 reacvals$palette <<- NULL
@@ -3741,7 +3761,7 @@ shinypal <- function(...) {
                     show('n_cols')
                 } else hide('n_cols')
 
-                reacvals$bezierpoints <<- NULL
+                reacvals$points <<- NULL
                 reacvals$gradient <<- NULL
                 reacvals$xys <<- NULL
                 reacvals$palette <<- NULL
@@ -3752,13 +3772,12 @@ shinypal <- function(...) {
                 if (!is.null(wheel)) {
                     par(mar = c(0,0,0,0))
                     wheel[, plot(x, y, col = z, pch = 19, bty = 'n', axes = F, xlab = NA, ylab = NA, asp=1)]
-                    if (!is.null(reacvals$bezierpoints) & !is.null(reacvals$gradient)) {
-                        rbindlist(reacvals$bezierpoints)[, text(x, y, col = 'black')]
+                    if (!is.null(reacvals$points)) {
+                        reacvals$points[, text(x, y, col = 'black')]
+                    }
+                    if (!is.null(reacvals$gradient)) {
                         reacvals$gradient[, points(x, y, col = 'black', type = 'l', lwd = 1.5)]
                     }
-                    if (!is.null(reacvals$palette)) {
-                        reacvals$palette[, text(x, y, col = 'black')]
-                    }                    
                 }
             }) #, width = 700, height = 700)
 
@@ -3841,7 +3860,7 @@ shinypal <- function(...) {
                     }
                 } else {
                     if (!is.null(reacvals$gradient)) {
-                        txt <- sprintf('"%s"', paste(reacvals$gradient[, sprintf('%s,%s,%s', h,c,l)], collapse="\",\""))
+                        txt <- sprintf('"%s"', paste(reacvals$gradient[, sprintf('hcl(h=%s,c=%s,l=%s)', h,c,l)], collapse=","))
                     }
                 }
                 ## clipr::write_clip(txt)
@@ -3868,3 +3887,34 @@ shinypal <- function(...) {
         })
 }
 
+
+find_root_folder <- function (from = getwd()) {
+    fold <- from
+    atroot <- file.exists(sprintf("%s/.git", fold))
+    while (!atroot & fold != "/") {
+        fold <- dirname(fold)
+        atroot <- file.exists(sprintf("%s/.git", fold))
+    }
+    if (atroot) {
+        return(fold)
+    } else return(character(0))
+}
+
+settoroot <- function() {
+    root <- find_root_folder()
+    if (length(root)) {
+        setwd(root)
+        cat('Working directory is now', root, '\n')
+    } else {
+        warning('Project root not found')
+    }
+}
+
+
+replace_nas <- function(DT) {
+    ## ** Replace NAs in numeric columns of a data.table with 0 
+    for (j in seq_len(ncol(DT))) {
+        if (is.numeric(DT[[j]]))
+            set(DT, which(is.na(DT[[j]])), j, 0)
+    }
+}
