@@ -2056,6 +2056,7 @@ check.latex.deps <- function(report_path = './report.tex',
     setwd(basedir)
     
     cat('\n\n')
+
     alldeps <- alldeps[!grepl('^[[:blank:]]*\\%', dep)]
     alldeps[, dep := strtrim(dep)]
     ## Apply ignore rules

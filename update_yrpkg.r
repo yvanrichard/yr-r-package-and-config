@@ -52,6 +52,7 @@ for (d in rds)  # d=rds[53]  # d="check_cited_labels.Rd"
 setwd(sprintf('%s/yrpkg', basedir))
 d <- readLines('DESCRIPTION')
 d[grep('^Version', d)] <- sprintf('Version: %0.2f', version)
+d <- c(d, 'Depends: data.table')
 writeLines(d, 'DESCRIPTION', sep='\n')
 
 
