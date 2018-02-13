@@ -86,6 +86,7 @@ alias memacs='emacs -q -l ~/.emacs_mini &'
 alias rgm='Rscript -e "graph_makefile()"'
 alias tmux='tmux -2 '
 alias emacs='GDK_NATIVE_WINDOWS=1 emacs '
+alias upg='sudo apt update && sudo apt upgrade'
 
 # alias E="SUDO_EDITOR=\"emacsclient -a emacs\" sudoedit"
 shrinkpdf () { gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$1-smaller.pdf $1.pdf ;}

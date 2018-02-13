@@ -35,6 +35,9 @@
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
  '(comment-style (quote indent))
+ '(completion-ignored-extensions
+   (quote
+    (".hi" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".lof" ".glo" ".idx" ".lot" ".svn/" ".hg/" ".git/" ".bzr/" "CVS/" "_darcs/" "_MTN/" ".fmt" ".tfm" ".class" ".fas" ".lib" ".mem" ".x86f" ".sparcf" ".dfsl" ".pfsl" ".d64fsl" ".p64fsl" ".lx64fsl" ".lx32fsl" ".dx64fsl" ".dx32fsl" ".fx64fsl" ".fx32fsl" ".sx64fsl" ".sx32fsl" ".wx64fsl" ".wx32fsl" ".fasl" ".ufsl" ".fsl" ".dxl" ".lo" ".la" ".gmo" ".mo" ".toc" ".aux" ".cp" ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs" ".tps" ".vrs" ".pyc" ".pyo" ".r~")))
  '(custom-enabled-themes (quote (smart-mode-line-dark)))
  '(custom-safe-themes
    (quote
@@ -87,7 +90,8 @@
  '(helm-ff-skip-boring-files t)
  '(helm-mode nil)
  '(helm-mode-fuzzy-match t)
- '(helm-split-window-in-side-p t)
+ '(helm-split-window-inside-p t)
+ '(helm-swoop-speed-or-color t)
  '(hl-sexp-background-color "#201520")
  '(ibuffer-filter-group-name-face (quote compilation-info))
  '(inhibit-startup-screen t)
@@ -96,7 +100,7 @@
  '(magit-repository-directories (quote ("~/dragonfly")))
  '(markdown-command "pandoc --smart -f markdown -t html")
  '(org-babel-R-command "R --vanilla --slave --no-save")
- '(org-babel-load-languages (quote ((latex . t) (R . t))))
+ '(org-babel-load-languages (quote ((latex . t) (R . t) (dot . t) (lisp . t))))
  '(org-confirm-babel-evaluate nil)
  '(org-html-use-infojs t)
  '(org-latex-pdf-process
@@ -104,7 +108,7 @@
     ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
  '(package-selected-packages
    (quote
-    (dumb-jump helm-navi navi-mode stan-mode stan-snippets dired-quick-sort ztree wakatime-mode expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode simplenote2 rainbow-delimiters r-autoyas python-django powerline polymode pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag helm-R haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine ggtags flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
+    (eacl help-fns+ helm-projectile docker dockerfile-mode dumb-jump helm-navi navi-mode stan-mode stan-snippets dired-quick-sort ztree wakatime-mode expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode simplenote2 rainbow-delimiters r-autoyas python-django powerline polymode pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag helm-R haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine ggtags flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
  '(projectile-tags-command "ctags-exuberant -Re -f \"%s\" %s")
  '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
@@ -239,7 +243,8 @@ Ignores CHAR at point."
 
 
 ;; Search in multiple buffers (first argument is regexp on buffer names)
-(global-set-key "\C-c\M-m" 'multi-occur-in-matching-buffers)
+;; (global-set-key "\C-c\M-m" 'multi-occur-in-matching-buffers)
+(global-set-key "\C-c\M-m" 'helm-ag-buffers)
 
 (setq doc-view-continuous t)
 
@@ -288,7 +293,7 @@ there's a region, all lines that region covers will be duplicated."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#212121" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "unknown" :family "Ubuntu Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "#151515" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "SRC" :family "Hack"))))
  '(comint-highlight-input ((t (:foreground "#66BB66"))))
  '(comint-highlight-prompt ((t (:inherit minibuffer-prompt :foreground "#009900"))))
  '(compilation-info ((t (:inherit success :foreground "SpringGreen3"))))
@@ -315,23 +320,25 @@ there's a region, all lines that region covers will be duplicated."
  '(eww-form-submit ((t (:background "#444444" :foreground "#EEEEEE" :box (:line-width 2 :style released-button)))))
  '(eww-form-textarea ((t (:background "#C0C0C0" :foreground "black" :box 1))))
  '(flx-highlight-face ((t (:inherit font-lock-variable-name-face :underline "#666666" :weight bold))))
- '(flyspell-duplicate ((t (:foreground "Gold3" :underline nil :weight bold))))
+ '(flyspell-duplicate ((t (:foreground "indian red" :underline nil))))
  '(font-latex-sectioning-2-face ((t (:foreground "yellow" :weight bold :height 1.3 :family "ubuntu-mono"))))
  '(font-latex-sectioning-3-face ((t (:foreground "gold" :weight bold :height 1.1 :width condensed :family "DejaVu Sans"))))
  '(font-latex-sectioning-4-face ((t (:foreground "LightGoldenrod1" :weight bold :width condensed :family "DejaVu Sans"))))
  '(font-latex-sedate-face ((t (:foreground "light coral"))))
- '(font-latex-warning-face ((t (:inherit bold :foreground "orange red"))))
+ '(font-latex-warning-face ((t (:foreground "orange red"))))
  '(font-lock-builtin-face ((t (:foreground "PeachPuff"))))
  '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
  '(font-lock-comment-face ((t (:foreground "#666666"))))
- '(font-lock-constant-face ((t (:inherit default :foreground "#55AA55" :weight semi-bold))))
+ '(font-lock-constant-face ((t (:inherit default :foreground "#55AA55"))))
  '(font-lock-function-name-face ((t (:foreground "light blue"))))
  '(font-lock-keyword-face ((t (:foreground "#88DD88"))))
  '(font-lock-string-face ((t (:foreground "DarkSeaGreen2"))))
  '(font-lock-type-face ((t (:foreground "yellow green"))))
  '(font-lock-warning-face ((t (:background "yellow" :foreground "red" :weight semi-bold))))
+ '(helm-buffer-file ((t nil)))
  '(helm-ff-directory ((t (:inherit diredp-dir-priv))))
- '(helm-selection ((t (:background "black" :distant-foreground "black"))))
+ '(helm-selection ((t (:background "#550000" :distant-foreground "black" :weight bold))))
+ '(helm-swoop-target-line-face ((t (:background "#000000"))))
  '(hi-yellow ((t (:background "yellow1" :foreground "red"))))
  '(highlight ((t (:background "#552222"))))
  '(highlight-indentation-face ((t (:inherit fringe :background "gray11"))))
@@ -342,15 +349,17 @@ there's a region, all lines that region covers will be duplicated."
  '(org-block ((t (:inherit shadow :foreground "#AAFFAA"))))
  '(org-code ((t (:inherit shadow :foreground "#AAFFAA"))))
  '(org-date ((t (:foreground "#AACCFF" :underline t))))
- '(org-level-1 ((t (:inherit outline-1 :foreground "#FFF7BC"))))
- '(org-level-2 ((t (:inherit outline-2 :foreground "#FCBBA1"))))
+ '(org-level-1 ((t (:foreground "#FFF7BC"))))
+ '(org-level-2 ((t (:foreground "#FCBBA1"))))
  '(org-level-3 ((t (:foreground "#C6DBEF"))))
- '(org-level-4 ((t (:inherit outline-4 :foreground "#CCEBC5"))))
+ '(org-level-4 ((t (:foreground "#CCEBC5"))))
  '(org-special-keyword ((t (:foreground "#66FFFF"))))
- '(outline-1 ((t (:background "#151515" :foreground "tomato" :slant italic :weight bold))))
- '(outline-2 ((t (:background "#191919" :foreground "IndianRed1" :slant italic))))
- '(outline-3 ((t (:background "#191919" :foreground "salmon" :slant italic))))
+ '(outline-1 ((t (:background "#151515" :foreground "#FF2A17" :box (:line-width 1 :color "grey35") :slant italic :weight normal))))
+ '(outline-2 ((t (:background "#191919" :foreground "#FF794A" :box (:line-width 1 :color "grey30") :slant italic))))
+ '(outline-3 ((t (:background "#191919" :foreground "#FFB67D" :box (:line-width 1 :color "grey20") :slant italic))))
  '(outline-4 ((t (:inherit font-lock-comment-face :background "#191919" :foreground "RosyBrown1" :slant italic))))
+ '(outline-5 ((t (:background "#191919" :foreground "#FFF1CC" :slant italic))))
+ '(popup-scroll-bar-foreground-face ((t (:background "red"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#ff7777"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "#e69333"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "#ffff88"))))
@@ -579,7 +588,9 @@ prompt the user for a coding system."
 	 ("Estimation 2014" (filename . "estimation-2014"))
 	 ("Estimation 2015" (filename . "estimation-2015"))
 	 ("Ludicio" (filename . "ludicio/"))
-	 ("NMS - MfE" (filename . "NMS/"))
+	 ("NMS - MfE" (or (filename . "NMS")
+			  (filename . "NMS-QC")
+			  (filename . "NMS-notes")))
 	 ("FIF - MfE" (or (filename . "mfe-water-quality")
 			  (filename . "freshwater-triage")))
 	 ("sra obs cov" (filename . "sra-observer-coverage/"))
@@ -590,10 +601,17 @@ prompt the user for a coding system."
 	 ("Dropbox" (filename . "Dropbox"))
 	 ("Moana paua" (or (filename . "moana")
 			   (filename . "BlueAbs")))
+	 ("Cadmium" (filename . "cadmium"))
 	 ("My tests" (filename . "mytests"))
+	 ("NZ elections" (filename . "nz-elections"))
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")
-			     (filename . ".emacs"))))))
+			     (filename . ".emacs")))
+      	 ("SRA global" (or (filename . "sra-southern-hemisphere")
+			   (filename . "seabird-risk-assessment")
+			   (filename . "sra-example-creation")
+			   (filename . "wanderers-at-sea-distribution")))
+)))
 (add-hook 'ibuffer-mode-hook 
 	  '(lambda ()
 	     (ibuffer-switch-to-saved-filter-groups "home")))
@@ -639,10 +657,10 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;; ;; (require 'ess-jags-d)
+;; (require 'ess-jags-d)
 ;; (autoload 'ess-jags-mode "ess-jags-mode"
 ;;    "Major mode for editing JAGS files" t)
-;; (add-to-list 'auto-mode-alist '("\\.bug\\'" . R-mode))
+(add-to-list 'auto-mode-alist '("\\.jags\\'" . ess-jags-mode))
 
 ;; (require 'ess-eldoc) ;to show function arguments while you are typing them
 (setq ess-use-auto-complete 'script-only)
@@ -1038,6 +1056,9 @@ prompt the user for a coding system."
 
 (put 'erase-buffer 'disabled nil)
 
+;; Change order of positions with recentering cursor with C+l
+(setq recenter-positions '(top middle bottom))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * Pretty mode - Display symbols as symbols
@@ -1384,6 +1405,8 @@ prompt the user for a coding system."
 (setq isearch-regexp-lax-whitespace t)
 (setq search-whitespace-regexp "[ \t\r\n]+")
 
+;; Do not use word at point by default for helm-swoop
+(setq helm-swoop-pre-input-function (lambda () ""))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1531,7 +1554,7 @@ abort completely with `C-g'."
 
 
 
-;; (require 'ess-view)
+(require 'ess-view)
 
 
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -1674,7 +1697,7 @@ With C-u C-u: insert date and time"
       (setq col (+ 1 (current-column))) 
       (set-selective-display 
        (if selective-display nil (or col 1))))))
-(global-set-key (kbd "M-C-i") 'aj-toggle-fold)
+(global-set-key (kbd "C-x M-f") 'aj-toggle-fold)
 
 ;; No confirmation on buffer kill
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
@@ -1710,30 +1733,69 @@ With C-u C-u: insert date and time"
 (dired-quick-sort-setup)
 
 ;;; Easy navigation
-(require 'outshine)
-  (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+;; (require 'outshine)
+(add-hook 'outline-minor-mode-hook 'outshine-hook-function)
 (require 'navi-mode)
 (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
 (add-hook 'ess-mode-hook 'outline-minor-mode)
 (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
 (add-hook 'message-mode-hook 'outline-minor-mode)
+(defvar outline-minor-mode-prefix "\M-#")
 
-;; (dumb-jump-mode)
-;; (setq dumb-jump-selector 'helm)
+;; (use-package dumb-jump
+;;   :ensure t
+;;   :bind (("M-g o" . dumb-jump-go-other-window)
+;; 	 ("M-g j" . dumb-jump-go)
+;; 	 ("M-g b" . dumb-jump-back)
+;; 	 ("M-g q" . dumb-jump-quick-look)
+;; 	 ("M-g x" . dumb-jump-go-prefer-external)
+;; 	 ("M-g z" . dumb-jump-go-prefer-external-other-window))
+;;   :config (setq dumb-jump-selector 'helm)
+;;   )
+(define-key dumb-jump-mode-map (kbd "C-M-q") nil)
+(define-key dumb-jump-mode-map (kbd "C-M-j") 'dumb-jump-quick-look)
+
+;; (global-set-key (kbd "C-s") 'helm-swoop)
+(global-set-key (kbd "C-s") 'helm-occur)
 
 
-(use-package dumb-jump
-  :ensure t
-  :bind (("M-g o" . dumb-jump-go-other-window)
-	 ("M-g j" . dumb-jump-go)
-	 ("M-g b" . dumb-jump-back)
-	 ("M-g q" . dumb-jump-quick-look)
-	 ("M-g x" . dumb-jump-go-prefer-external)
-	 ("M-g z" . dumb-jump-go-prefer-external-other-window))
-  :config (setq dumb-jump-selector 'helm)
-  )
-;; :config 
-;; :init
-;; (dumb-jump-mode)
-;; :ensure
-;; )
+(when (window-system)
+  (set-default-font "Ubuntu Mono"))
+
+(add-hook 'makefile-mode-hook 'turn-off-flyspell t)
+(add-hook 'emacs-lisp-mode-hook 'turn-off-flyspell t)
+
+
+(global-set-key (kbd "C-x M-a") 'helm-do-ag)
+
+
+;; for graphviz in org
+(defun my/fix-inline-images ()
+  (when org-inline-image-overlays
+    (org-redisplay-inline-images)))
+(add-hook 'org-babel-after-execute-hook 'my/fix-inline-images)
+
+(load "~/.emacs.d/org-mind-map.el")
+
+
+(require 'helm-projectile)
+(helm-projectile-on)
+
+
+
+;; Change colors for printing with ps-print-*
+(ps-extend-face '(default "#000000" nil) 'MERGE)
+(ps-extend-face '(font-lock-variable-name-face "#984EA3" nil) 'MERGE)
+(ps-extend-face '(font-lock-function-name-face "#084081" nil) 'MERGE)
+(ps-extend-face '(rainbow-delimiters-depth-3-face "#FF7F00" nil) 'MERGE)
+
+
+
+(defun highlight-selected-window ()
+  "Highlight selected window with a different background color."
+  (walk-windows (lambda (w)
+                  (unless (eq w (selected-window))
+                    (with-current-buffer (window-buffer w)
+                      (buffer-face-set '(:background "#212121"))))))
+  (buffer-face-set 'default))
+(add-hook 'buffer-list-update-hook 'highlight-selected-window)

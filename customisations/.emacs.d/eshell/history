@@ -73,3 +73,16 @@ make install
 make install
 make install
 make install
+make interact
+make interact
+pip list --outdated
+pip freeze --local | grep -v '^\-e' | grep 'Mopidy' | cut -d = -f 1 | xargs -n1 sudo -H pip install -U
+tmux
+make
+rgm
+rgm
+rgm
+cd ..
+make -B
+sudo apt list --installed
+update-alternatives --get-selections

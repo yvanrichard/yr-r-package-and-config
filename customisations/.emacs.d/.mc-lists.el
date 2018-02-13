@@ -5,15 +5,20 @@
       '(
 	TeX-insert-backslash
 	back-to-indentation-or-beginning
+	backward-sexp
 	electric-newline-and-maybe-indent
+	end-of-buffer
 	ess-smart-comma
 	ess-yank
 	forward-sexp
 	helm-M-x
+	indent-for-tab-command
 	keyboard-quit
 	kill-region
 	mc/mark-all-in-region-regexp
 	next-buffer
+	outshine-self-insert-command
+	query-replace
 	wdired-abort-changes
 	))
 
@@ -21,6 +26,8 @@
       '(
 	LaTeX-babel-insert-hyphen
 	dired-unmark-backward
+	magit-status
+	mouse-set-region
 	previous-buffer
 	smart-kill-whole-line
 	))

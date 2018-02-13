@@ -1965,7 +1965,7 @@ is.git.tracked <- function(f) {
 }
 
 
-check.latex.deps <- function(report_path = './report.tex',
+check.latex.deps.flat <- function(report_path = './report.tex',
                      paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/|submitted/|/dev/'),
                      ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
                                     'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
@@ -2089,6 +2089,129 @@ check.latex.deps <- function(report_path = './report.tex',
         cat('\n')
     }
 }
+
+
+check.latex.deps <- function(fold='.',
+                     paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/|submitted/|/dev/'),
+                     ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
+                                    'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
+                     only=c('/'), recursive=T, save_deps=T, use.xelatex=T, ignore.rnw=F) {
+    library(data.table)
+    extension <- function(x) {
+        y <- x
+        c <- grepl('\\.', y)
+        y[c] <- sub('.*\\.([^.]*)$', '\\1', y[c])
+        y[!c & !is.na(y)] <- ''
+        return(y)
+    }
+    
+    alldeps <- NULL
+    prevdir <- getwd()
+    setwd(fold)
+    ## File dependencies in Sweave files
+    if (!ignore.rnw) {
+        rnw <- dir('.', '*.rnw$|*.Rnw$', recursive=recursive)
+        basedir <- getwd()
+        r1=rnw[2]
+        for (r1 in rnw) {
+            cat('\n************  ', r1, '  ************\n')
+            rdir <- dirname(r1)
+            setwd(rdir)
+            r2 <- basename(r1)
+            r <- readLines(r2, warn=F)
+            c1 <- r[grepl('\\bload\\(', r) & !grepl('^[[:blank:]]*#', r)]
+              fs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', c1)
+            c2 <- r[grepl('\\bread\\.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
+              fs2 <- sub('.*read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
+            fs <- c(fs1, fs2)
+            ## Replace global variables in .mk files by their value
+            c <- grepl('load\\([a-zA-Z]+', fs)
+            alldeps1 <- sub('.*load\\((.*).*\\).*', '\\1', fs[c])
+            s <- unlist(sapply(dir('.', '*.mk.parsed'), function(mk) readLines(mk), simplify=F))
+            if (!is.null(s)) {
+                s1 <- do.call('rbind', strsplit(s, '[[:blank:]]*=[[:blank:]]*'))
+                s2 <- sapply(alldeps1, function(x) s1[which(s1[,1] %in% x),2], simplify=F)
+                fs[c] <- ifelse(sapply(s2, length), sapply(s2, '[', 1), names(s2))
+            }
+            cat(paste(fs, collapse='\n'),'\n')
+            fs <- normalizePath(fs)
+            ## fs <- fs[!(extension(fs) %in% ext.ignore)]
+            if (length(fs)) {
+                alldeps <- rbind(alldeps, data.frame(infile = r1, dep = fs, stringsAsFactors = F))
+            } else alldeps <- rbind(alldeps, data.frame(infile = r1, dep = NA, stringsAsFactors = F))
+            setwd(basedir)
+            cat('\n')
+        }
+    }
+    ## File dependencies in tex files
+    tex <- dir('.', '*.tex$', recursive=recursive)
+    tex <- tex[!(tex %in% 'aebr.tex')]
+    basedir <- getwd()
+    t=tex[3]
+    for (t in tex) {
+        cat('\n************  ', t, '  ************\n')
+        tdir <- dirname(t)
+        setwd(tdir)
+        t2 <- basename(t)
+        bt <- sub('\\.tex', '', t2)
+        tmp <- readLines(t2, warn=F)
+        if (any(grepl('begin\\{document\\}', tmp))) {
+            if (!use.xelatex) {
+                s <- system(sprintf('pdflatex -recorder -interaction=nonstopmode %s', bt), intern=T)
+            } else {
+                s <- system(sprintf('xelatex -recorder -interaction=nonstopmode %s', bt), intern=T)
+            }
+            f <- sprintf('%s.fls', bt)
+            if (file.exists(f)) {
+                fls <- readLines(f)
+                fls <- sapply(strsplit(fls, ' '), function(x) x[2])
+                fls <- sub('^\\./', '', fls)
+                fls <- unique(fls)
+                fls <- fls[!grepl(sprintf('^%s', bt), fls)]
+                fls <- fls[!(fls %in% normalizePath(fold))]
+                fs <- normalizePath(fls)
+                if (length(fs)) {
+                    alldeps <- rbind(alldeps, data.table(infile = t, dep = fs))
+                } else alldeps <- rbind(alldeps, data.table(infile = t, dep = NA))
+                cat(paste(fs[!(extension(fs) %in% ext.ignore) & !grepl(paths.ignore, fs)], collapse='\n'))
+                cat('\n')
+            } else cat('fls file inexistent. There is a problem with this file...\n')
+        } else cat('Not a master file. Skip...\n')
+        setwd(basedir)
+    }
+    
+    cat('\n\n')
+    alldeps <- alldeps[!grepl('^[[:blank:]]*\\%', dep)]
+    alldeps[, dep := strtrim(dep)]
+    ## Apply ignore rules
+    alldeps[, ignored := ifelse( extension(dep) %in% ext.ignore  | grepl(paths.ignore, dep) | is.na(dep), T, F)]
+    ## Detect dependencies that are not file names
+    alldeps[, valid := NA]
+    alldeps[ignored == FALSE, valid := ifelse(grepl('[<%"\'\\(\\) ,=]+', dep), F, T)]
+
+    ## Check if the dependencies are git-tracked
+    alldeps[, git_tracked := NA]
+    if (any(alldeps$valid %in% T))
+        alldeps[valid %in% T, git_tracked := sapply(dep, is.git.tracked)]
+
+    if (!is.null(alldeps) & any(alldeps$git_tracked %in% F)) {
+        cat('************====  Files not tracked by GIT:  ====************\n')
+        uniqdeps <- unique(alldeps[git_tracked %in% F, dep])
+        cat(paste(uniqdeps, collapse='\n'))
+        cat('\n\nYou may want to type:\ngit add ')
+        cat(paste(uniqdeps, collapse='  '))
+        cat('\n\n')
+    } else cat('\nNo untracked dependencies\n')
+    if (save_deps)
+        write.csv(alldeps, 'tex-dependencies.csv', row.names=F)
+    setwd(prevdir)
+    if (any(alldeps$valid %in% F, na.rm=T)) {
+        cat('\n--- Non-processed dependencies:\n')
+        cat(paste(unique(alldeps$dep[alldeps$valid %in% F]), collapse='\n'))
+        cat('\n')
+    }
+}
+
 
 
 check.latex.sources <- function(fold = normalizePath('.'),

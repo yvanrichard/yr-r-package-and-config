@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <17/07/11 10:10:42 /home/yvan/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <18/02/07 15:23:47 /home/yvan/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -125,7 +125,7 @@
   ("git" "\\git")
   ("trash" nil))
  (["sudo" "root" "huia" nil nil]
-  ("uname" "Linux 4.4.0-83-generic")
+  ("uname" "Linux 4.4.0-112-generic")
   ("locale" "LC_ALL=en_US.utf8")
   ("test" "test")
   ("remote-path"
@@ -143,8 +143,9 @@
   ("readlink" "\\readlink")
   ("uid-integer" 0)
   ("git" "\\git")
-  ("ls" "/bin/ls --color=never")
-  ("ls-dired" t))
+  ("tmpdir" "/tmp")
+  ("touch-t" t)
+  ("touch" "\\touch"))
  (["ssh" "admin" "moa" nil nil]
   ("uname" "Linux 3.10.35")
   ("locale" "LC_ALL=en_US.utf8")
@@ -220,4 +221,24 @@
   ("gid-integer" 14000)
   ("gid-string" "dragonfly")
   ("readlink" "\\readlink")
-  ("git" "\\git")))
+  ("git" "\\git"))
+ (["ssh" nil "tieke" nil nil]
+  ("uname" "Linux 4.4.0-67-generic")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("~" "/home/yvan")
+  ("file-exists" "test -e")
+  ("stat" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 14000)
+  ("gid-string" "dragonfly")
+  ("readlink" "\\readlink")
+  ("git" "\\git")
+  ("ls" "/bin/ls --color=never")
+  ("ls-dired" t)))

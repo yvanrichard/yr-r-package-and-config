@@ -2,134 +2,158 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Tue Jul 11 18:01:29 2017
+;; Created Tue Feb 13 18:56:23 2018
 ;; Desktop file format version 208
-;; Emacs version 25.2.2
+;; Emacs version 25.3.2
 
 ;; Global section:
-(setq desktop-saved-frameset [frameset 1 (22884 27065 941891 361000) (desktop . "208") "yvan@huia" nil nil ((((font-backend xft x) (font . "-DAMA-Ubuntu Mono-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1") (font-parameter . "-DAMA-Ubuntu Mono-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars . t) (foreground-color . "#f6f3e8") (background-color . "#212121") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 10) (right-fringe . 11) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 1) (tool-bar-lines . 1) (title) (wait-for-wm . t) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 10) (scroll-bar-height . 10) (alpha) (fullscreen . maximized) (display-type . color) (background-mode . dark) (cursor-color . "white") (sticky) (environment) (frameset--id . "679E-8304-F5D7-B893") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (icon-name) (display . ":0") (explicit-name) (user-size . t) (visibility . t) (height . 71) (width . 263) (left . 47) (top . 24)) ((min-height . 4) (min-width . 20) (min-height-ignore . 3) (min-width-ignore . 14) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 56) (min-pixel-width . 140) (min-pixel-height-ignore . 42) (min-pixel-width-ignore . 98) (min-pixel-height-safe . 14) (min-pixel-width-safe . 28)) hc (pixel-width . 1873) (pixel-height . 994) (total-width . 268) (total-height . 71) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 935) (pixel-height . 994) (total-width . 134) (total-height . 71) (normal-height . 1.0) (normal-width . 0.5) (buffer "methods.rnw" (selected . t) (hscroll . 0) (fringes 10 11 nil) (margins nil) (scroll-bars nil 2 t nil 1 t) (vscroll . 0) (dedicated) (point . 16186) (start . 13975))) (leaf (last . t) (pixel-width . 938) (pixel-height . 994) (total-width . 134) (total-height . 71) (normal-height . 1.0) (normal-width . 0.5) (buffer "*magit: mmra-2013" (selected) (hscroll . 0) (fringes 10 11 nil) (margins nil) (scroll-bars nil 2 t nil 1 t) (vscroll . 0) (dedicated) (point . 1) (start . 1)))))])
+(setq desktop-saved-frameset [frameset 1 (23170 32263 801464 927000) (desktop . "208") "yvan@huia" nil nil ((((font-backend xft x) (font . "-SRC-Hack-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1") (font-parameter) (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars . t) (foreground-color . "#f6f3e8") (background-color . "#151515") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 10) (right-fringe . 11) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 1) (tool-bar-lines . 1) (title) (wait-for-wm . t) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 10) (scroll-bar-height . 10) (alpha) (fullscreen . maximized) (display-type . color) (background-mode . dark) (cursor-color . "white") (sticky) (environment) (frameset--id . "679E-8304-F5D7-B893") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (icon-name) (display . ":0") (explicit-name) (user-size . t) (visibility . t) (height . 66) (width . 263) (left . 47) (top . 24)) ((min-height . 4) (min-width . 20) (min-height-ignore . 3) (min-width-ignore . 14) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 60) (min-pixel-width . 140) (min-pixel-height-ignore . 45) (min-pixel-width-ignore . 98) (min-pixel-height-safe . 15) (min-pixel-width-safe . 28)) hc (pixel-width . 1873) (pixel-height . 993) (total-width . 268) (total-height . 66) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 935) (pixel-height . 993) (total-width . 134) (total-height . 66) (normal-height . 1.0) (normal-width . 0.5) (buffer "smooth-work-patterns.r" (selected . t) (hscroll . 0) (fringes 10 11 nil) (margins nil) (scroll-bars nil 2 t nil 1 t) (vscroll . 0) (dedicated) (point . 1244) (start . 381))) (leaf (last . t) (pixel-width . 938) (pixel-height . 993) (total-width . 134) (total-height . 66) (normal-height . 1.0) (normal-width . 0.5) (buffer "*R:3:sentio-leave-calculation*" (selected) (hscroll . 0) (fringes 10 11 nil) (margins nil) (scroll-bars nil 2 t nil 1 t) (vscroll . 0) (dedicated) (point . 894161) (start . 888451)))))])
 (setq desktop-missing-file-warning nil)
-(setq tags-file-name "/slow/yvan/dragonfly/doc-bird-counts-exploration/TAGS")
-(setq tags-table-list '("/slow/yvan/dragonfly/doc-bird-counts-exploration/TAGS" "/slow/yvan/dragonfly/sra-2014/TAGS" "/slow/yvan/dragonfly/sra-2014/TAGS" "/slow/yvan/dragonfly/sra-2014/TAGS" "/slow/yvan/dragonfly/sra-2014/TAGS" "/slow/yvan/dragonfly/sra-2014/TAGS"))
-(setq search-ring '("allinputs" "Scen" "dumb" "capt" "docker" "file" "use-" "inter" "avy-" "dumb" "2," "url" "big-" "10000" "load" "stan"))
-(setq regexp-search-ring '("\\bvars" "\\bn\\b" "pdf" "breeders" ";$" "read." "\\byear\\b" "\\bstan\\b" "sql$" "~$" "^\\." " \\\\." "\\bdep\\b" "r$" "\\bess" "\\bN\\b"))
+(setq tags-file-name "/slow/yvan/dragonfly/sra-2014/TAGS")
+(setq tags-table-list '("/slow/yvan/dragonfly/sra-2014/TAGS" "/home/yvan/dragonfly/sra-southern-hemisphere/TAGS"))
+(setq search-ring '("Medi" "fgnames" "fgroups" "t" "cycle" "xlsx_data" "spp" "live_captures_o" "agg_pred" "swoop" "sense_checking.sequential_dates.date_public_notice_further_submissions_close" "jag" "n_species" "mp" "tot :=" "test_strata"))
+(setq regexp-search-ring '("s" "setw" "[^\\\\]\\\\emph" "[0-9]\\{4,\\}" "\\[0-9\\]{4,}" "\\[0-9\\]\\{4,\\}" "[0-9]{4,}" "\\blon\\b" "[013456789][0-9]\\{3,\\}" "\\[013456789\\]\\[0-9]" "i <- " "grey" "clo" "lo" "clos" "goodsh"))
 (setq register-alist '((7 file-query "/usr/share/emacs/25.1/etc/COPYING" 1)))
-(setq file-name-history '("/slow/yvan/dragonfly/mmra-2013/report/methods.rnw" "~/dragonfly/CA2.11-BlueAbs/report/Makefile" "~/dragonfly/CA2.11-BlueAbs/report/results-sim.rnw" "~/dragonfly/CA2.11-BlueAbs/report/tex-dependencies.csv" "~/dragonfly/CA2.11-BlueAbs/report/methods-sim.rnw" "/sudo:root@huia:/etc/apt/sources.list" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/prepare.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/makefile.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/makefile" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/model.stan.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/run-model.r.1" "~/dragonfly/sra-2016/re-run/report/report.pdf" "~/.emacs" "~/share/mpi/estimation-2015-16/seabirds/models_20170622/_model-20170706-stan/dfwca/summarise.r" "/slow/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/pages/get-pages.r" "~/dragonfly/estimation-2014-15/seabirds/report/pages/psc-login.r" "/slow/yvan/dragonfly/estimation-2014/report/psc-pages/psc-login-and-functions.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/makefile.0" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/globmod-source.mk" "~/dragonfly/estimation-2015-16/.gitignore" "/ssh:yvan@titi:/home/yvan/.emacs" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/traceplots.r.1" "/slow/yvan/dragonfly/ludicio/ludicio/models.py" "/slow/yvan/dragonfly/ludicio/ludicio/commands.py" "~/dragonfly/CA2.11-BlueAbs/report/report.tex" "~/dragonfly/CA2.11-BlueAbs/growth-analysis/model-stan-densdep-ts-k-ind-temp-comb-rob-full/run-model.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/get-results.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170623/predict-on-bigextract.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170706-stan/predict-on-bigextract.r.1" "/slow/yvan/dragonfly/ludicio/makefile" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/globmod-source.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170706-stan/push_predictions_to_ludicio.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170706-stan/makefile.0" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170706-stan/makefile.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170706-stan/makefile" "~/dragonfly/ludicio/ludicio/models.py" "~/dragonfly/ludicio/ludicio/commands.py" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/push_extract_to_ludicio.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/push_predictions_to_ludicio.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/makefile" "~/dragonfly/estimation-2014-15/seabirds/models_20160614/push_predictions_to_ludicio.r" "/usr/local/bin/ludicio" "/slow/yvan/dragonfly/ludicio/settings.py" "/sharelocal/mpi/estimation-2015-16/seabirds/models_20170622/model-20170706-stan/dfwca/makefile" "/slow/yvan/dragonfly/auckland-bivalves-2016/report/makefile" "/sharelocal/mpi/estimation-2015-16/seabirds/models_20170622/model-20170706-stan/makefile" "/sharelocal/mpi/estimation-2015-16/seabirds/models_20170622/model-20170706-stan/dfwca/predict-on-bigextract.r" "~/dragonfly/CA2.11-BlueAbs/growth-analysis/model-stan-densdep-ts-k-ind-temp-comb-rob-full/ts.stan" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170706-stan/run-model.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170706-stan/traceplots.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/aggregate.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170706-stan/model.stan.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170706-stan/summarise.r.1" "~/dragonfly/estimation-2015-16/negative-binomial/makefile" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170706-stan/diagnostics.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/makefile" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/prepare.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/.test" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/plot-time-series.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/summarise.r.1" "~/dragonfly/mytests/stan.r" "~/dragonfly/mytests/negbin.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170623/model.bug.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170630-nimble/model.bug.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/makefile.1" "~/git_projects/fotowall/README.markdown" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/get-results.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170630-nimble/prepare.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/model.stan.1" "/sudo:root@huia:/tmp/user/15002/RtmpDQYlRO/file39005ab31390" "/sudo:root@huia:/tmp/user/15002/.bamficonLZ3S2Y" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/run-model.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/summarise-by-strata.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/mod-source.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/diagnostics.pdf" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170705-stan/get-results.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170703-stan/model.stan.1" "~/dragonfly/mytests/negative-binom-stage-durations.r" "~/share/mpi/estimation-2015-16/seabirds/models_20170622/model-20170703-stan/dfsal/model.stan" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170703-stan/estimates.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170703-stan/get-results.r" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170703-stan/run-model.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170630-nimble/run-model.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170703-stan/makefile" "~/dragonfly/mytests/#world.r#" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170630-stan/run-model.r.1" "~/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170630-stan/get-results.r" "~/dragonfly/estimation-2014-15/.gitmodules" "~/dragonfly/sra-2016/.gitmodules" "~/dragonfly/sra-2016/re-run/report/report.tex" "~/dragonfly/sra-2016/re-run/report/makefile" "~/dragonfly/sra-2016/re-run/report/build.sh" "~/dragonfly/estimation-2014-15/seabirds/report/gorbachev.yaml" "~/dragonfly/sra-2016/re-run/functions.r" "~/dragonfly/sra-2016/re-run/data-versions/global-data/new2dem-newgrps/newmaps/export-for-mpi.r" "~/dragonfly/sra-2016/re-run/data-versions/global-data/new2dem-newgrps/newmaps/creation/gba-map2.r" "~/dragonfly/sra-2016/re-run/data-versions/global-data/new2dem-newgrps/newmaps/creation/xyp-map.r" "~/dragonfly/sra-2016/re-run/data-versions/global-data/new2dem-newgrps/newmaps/creation/pcw-map.r" "~/dragonfly/sra-2016/re-run/data-versions/global-data/new2dem-newgrps/newmaps/creation/xwm-map.r"))
+(setq file-name-history '("~/dragonfly/sentio-leave-calculation/functions.r" "/slow/yvan/dragonfly/eREAR-mockup/plots/helper-functions.r" "/slow/yvan/dragonfly/eREAR-mockup/plots/imports-exports-with-symbols-styled/imports-exports.r" "~/dragonfly/sra-2016/common-data/fishing_group_functions.r" "~/dragonfly/sra-2016/extra-work/bll-autoline-threshold/small-bll_vessel-size-target.pdf" "~/dragonfly/sra-2016/re-run/data-versions/global-data/new2dem-newgrps/vars.mk" "~/dragonfly/sra-2016/re-run/data-versions/global-data/new2dem-newgrps/newmaps/fishing_data/normal/add-fishing-group.r" "~/dragonfly/sra-2016/re-run/functions.r" "~/dragonfly/sra-2016/re-run/data-versions/global-data/new2dem-newgrps/prepare-main-data.r" "~/dragonfly/sra-2016/functions.r" "~/dragonfly/sra-2016/extra-work/bll-autoline-threshold/new-fishery-groups.r" "~/dragonfly/sra-2016/extra-work/bll-autoline-threshold/new-fishery-groups.rmd" "~/dragonfly/sra-2016/extra-work/bll-autoline-threshold/makefile" "~/dragonfly/sra-2016/common-data/playing-with-groups/data.r" "~/dragonfly/sra-2016/common-data/playing-with-groups/makefile" "~/dragonfly/sentio-leave-calculation/notes.org" "~/dragonfly/sentio-leave-calculation/exploration/makefile" "~/dragonfly/sentio-leave-calculation/data/complete-time-series.r" "~/dragonfly/sentio-leave-calculation/exploration/assets/shift-durations_sched.pdf" "~/dragonfly/sentio-leave-calculation/exploration/functions.r" "~/dragonfly/sentio-leave-calculation/exploration/calendarHeat.r" "~/dragonfly/sentio-leave-calculation/exploration/report.rnw" "~/dragonfly/sentio-leave-calculation/exploration/report.tex" "~/dragonfly/southern-hemisphere-sra/model-data/prepare-model-data.r" "~/dragonfly/seabird-risk-assessment/make-gridded-distribution.r" "~/dragonfly/seabird-risk-assessment/model/prepare-model-data.r" "~/dragonfly/sra-example-creation/vulnerabilities/simulate-vulnerabilities.r" "~/dragonfly/sra-example-creation/overlap-captures/overlap-calculation.r" "~/dragonfly/seabird-risk-assessment/Makefile" "~/dragonfly/seabird-risk-assessment/model/stan/assets/observed-vs-predicted-vulnerabilities.csv" "~/dragonfly/seabird-risk-assessment/model/stan/get-results.r" "~/dragonfly/seabird-risk-assessment/model/stan/model.stan" "/sudo:root@huia:/etc/mopidy/mopidy.conf" "/etc/mopidy/mopidy.conf" "~/dragonfly/sra-example-creation/bird-distributions/prepare-bird-distributions.r" "~/dragonfly/wanderers-at-sea-distribution/prepare-data/make-grids.r" "~/dragonfly/seabird-risk-assessment/maps/species-maps.r" "~/dragonfly/sra-example-creation/get-data.r" "~/dragonfly/sra-southern-hemisphere/data/grid/grid.sql" "~/dragonfly/sra-southern-hemisphere/data/makefile" "~/dragonfly/sra-example-creation/derived-data/gridded-distribution-by-species.csv" "~/dragonfly/sra-example-creation/makefile" "~/dragonfly/sra-southern-hemisphere/data/distribution/get-shapefiles.r" "~/dragonfly/sra-example-creation/fishing-effort/prepare-effort.r" "~/dragonfly/sra-southern-hemisphere/data/observer/mpi-species-lookup.csv" "~/dragonfly/sra-southern-hemisphere/data/overlap/overlap.sql" "~/dragonfly/sra-southern-hemisphere/data/distribution/distribution.sql" "~/dragonfly/sra-southern-hemisphere/data/abc-birds/abc_birds.sql" "~/dragonfly/seabird-risk-assessment/functions.r" "~/dragonfly/seabird-risk-assessment/model/model-report.Rmd" "~/dragonfly/wanderers-at-sea-distribution/makefile" "/sudo:root@huia:/etc/apt/sources.list" "~/dragonfly/seabird-risk-assessment/Dockerfile" "~/dragonfly/seabird-risk-assessment/parameters.r" "~/dragonfly/seabird-risk-assessment/maps/effort-maps.r" "~/dragonfly/seabird-risk-assessment/maps/#effort-maps.r#" "~/dragonfly/wanderers-at-sea-distribution/prepare-data/make-spatial.r" "~/dragonfly/wanderers-at-sea-distribution/prepare-data/resample-tracks.r" "~/dragonfly/wanderers-at-sea-distribution/prepare-data/groom-pts.r" "~/dragonfly/wanderers-at-sea-distribution/prepare-data/get-data.r" "~/dragonfly/seabird-risk-assessment/input-data/gridded-distribution-by-species-and-quarter.csv" "~/dragonfly/wanderers-at-sea-distribution/report/maps.r" "~/dragonfly/NMS/src/create/make_consents.r" "~/dragonfly/NMS/src/fields.r" "~/dragonfly/NMS/src/create/make_statement_review.r" "~/dragonfly/NMS-notes/xlsx.r" "~/dragonfly/NMS-notes/makefile" "/slow/yvan/dragonfly/CA2.11-BlueAbs/shiny/app-sims-lim-staging/www/custom.css" "~/dragonfly/seabird-risk-assessment/model/stan/run-model.r" "~/dragonfly/seabird-risk-assessment/model/stan/assets/comparison-with-actual_probabilities.png" "~/dragonfly/seabird-risk-assessment/model/observed-vs-predicted.r" "~/dragonfly/seabird-risk-assessment-bk2/model/model-report.Rmd" "~/dragonfly/seabird-risk-assessment-bk2/model/stan/mcmc-results.rdata" "~/dragonfly/seabird-risk-assessment/test-data/parameters.r" "~/dragonfly/seabird-risk-assessment/.git/config" "~/dragonfly/seabird-risk-assessment/model/stan/assets/traces_vulnerabilities.png" "~/dragonfly/NMS/src/create/sense_check_enforcement.r" "~/dragonfly/NMS/src/create/sense_check_reviews.R" "~/dragonfly/NMS/makefile" "~/dragonfly/NMS/src/create/sense_check.r" "~/dragonfly/NMS/src/create/make_certificates.r" "~/dragonfly/seabird-risk-assessment/model/stan/assets/observed-vs-predicted-captures.png" "~/dragonfly/seabird-risk-assessment/model/diagnostics.r" "~/dragonfly/seabird-risk-assessment/model/stan/diag.txt" "~/dragonfly/seabird-risk-assessment/labs.r" "~/dragonfly/seabird-risk-assessment/model/stan/view-results.r" "~/dragonfly/seabird-risk-assessment/model/jags/get-results.r" "~/dragonfly/seabird-risk-assessment/graph-makefile.pdf" "~/dragonfly/seabird-risk-assessment/model/jags/run-model.r" "~/dragonfly/seabird-risk-assessment/model/jags/model.jags" "/slow/yvan/github_repos/seabird-risk-assessment/model/jags/run-model.r" "~/dragonfly/NMS/src/create/sense_check_planning.r" "/slow/yvan/github_repos/seabird-risk-assessment/model/prepare-model-data.r" "~/.emacs" "~/dragonfly/seabird-risk-assessment/model/apf-summaries.r" "~/dragonfly/seabird-risk-assessment/.gitignore" "~/dragonfly/seabird-risk-assessment/get-data.r" "~/dragonfly/sra-example-creation/raw-data/gridded-distribution-by-species-and-quarter.csv" "~/dragonfly/sra-example-creation/overlap-captures/prepare-captures.r" "~/dragonfly/wanderers-at-sea-distribution/demographic-parameters/prepare-estimates.r"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
 (desktop-create-buffer 208
-  "/slow/yvan/dragonfly/mmra-2013/report/methods.rnw"
-  "methods.rnw"
-  'latex-mode
-  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode reftex-mode)
-  16186
-  '(16100 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (16100 16185))))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/mmra-2013/report/sweave/methods.tex"
-  "methods.tex"
-  'latex-mode
-  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode reftex-mode)
-  18395
-  '(18395 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  nil
-  "report"
-  'dired-mode
-  '(abbrev-mode helm-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  257
-  '(nil nil)
-  t
-  '("/slow/yvan/dragonfly/mmra-2013/report/")
-  nil
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/CA2.11-BlueAbs/report/methods-sim.rnw"
-  "methods-sim.rnw"
-  'latex-mode
-  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode reftex-mode)
-  1859
-  '(6441 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (6391 6353 6155 1383 1300 1270 940 1449 767 1270 682 1261 1189 1098 1016 1859))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/.git/config"
-  "config"
-  'conf-unix-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  281
-  '(118 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring (118 173 118 118 119 173 118 281 281))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/CA2.11-BlueAbs/report/results-sim.rnw"
-  "results-sim.rnw"
+  "/home/yvan/dragonfly/sentio-leave-calculation/data/smooth-work-patterns.r"
+  "smooth-work-patterns.r"
   'ess-mode
-  '(ess-noweb-font-lock-mode ess-noweb-mode abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  21
-  '(nil nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  1244
+  '(2441 nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (419 101 1 1873 1662 2147 2072 2053 1917 1871 1850 1806 1782 2154 2727 1244))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/CA2.11-BlueAbs/report/Makefile"
-  "Makefile"
-  'makefile-gmake-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  1523
-  '(1503 nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1442 1875))))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/moana-shiny-sim/app-sims-lim/gather-results.r"
-  "gather-results.r"
+  "/home/yvan/dragonfly/sentio-leave-calculation/exploration/calendar.r"
+  "calendar.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  5545
-  '(5535 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  9937
+  '(7492 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (7450 7325 1 8227 8954 9013 7483 7496 7884 7307 7955 10123 7487 7335 7339 8076))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/data/work-patterns.r"
+  "work-patterns.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1670
+  '(7112 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (5482 5257 5210 5168 5181 5482 5168 5024 5482 5257 595 5257 5023 4635 722 4635))))
+  '((mark-ring (7064 7040 189 9362 6796 7835 7576 7575 17015 16819 16492 16486 16689 9013 17076 1670))))
 
 (desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/functions.r"
+  "functions.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1977
+  '(1959 nil)
   nil
-  "app-sims-lim"
-  'dired-mode
-  '(abbrev-mode helm-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  23648
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (2631 2073 155 1 1373 1933 1802 1462 1810 1873 1923 1541 1581 1798 1457 1682))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/eREAR-mockup/plots/imports-exports-with-symbols-styled/imports-exports.r"
+  "imports-exports.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  6259
+  '(5579 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (191 6352 5667))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/eREAR-mockup/plots/helper-functions.r"
+  "helper-functions.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  9874
   '(1 nil)
-  t
-  '("/slow/yvan/dragonfly/moana-shiny-sim/app-sims-lim/")
   nil
-  '((mark-ring (1 23648))))
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1))))
 
 (desktop-create-buffer 208
-  "/slow/yvan/dragonfly/moana-shiny-sim/app-sims-lim/makefile"
-  "makefile"
-  'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
+  "/home/yvan/Dropbox/dragonfly-notes/dragonfly-notes.org"
+  "dragonfly-notes.org"
+  'org-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode flyspell-mode org-indent-mode TeX-PDF-mode buffer-face-mode)
+  46233
+  '(58105 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
+  '((mark-ring (63658 63653 31305 113574 47045 47280 110785 55832 54633 95305 111171 95433 48609 26752 29247 46810))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/report/plots/maps/maps.r"
+  "maps.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  6564
+  '(12918 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (933 12661 973 973 932 5651 6569))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-2016/common-data/fishing_group_functions.r"
+  "fishing_group_functions.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  5473
+  '(4816 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (5952))))
+
+(desktop-create-buffer 208
+  nil
+  "bll-autoline-threshold"
+  'dired-mode
+  '(abbrev-mode helm-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  648
+  '(nil nil)
+  t
+  '("/home/yvan/dragonfly/sra-2016/extra-work/bll-autoline-threshold/")
+  nil
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-2016/common-data/playing-with-groups/data.r"
+  "data.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  148
+  '(149 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-2016/re-run/data-versions/global-data/new2dem-newgrps/vars.mk"
+  "vars.mk"
+  'makefile-gmake-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
   1
   '(nil nil)
   nil
@@ -138,22 +162,466 @@
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-2016/re-run/data-versions/global-data/new2dem-newgrps/prepare-main-data.r"
+  "prepare-main-data.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  87
+  '(3452 nil)
   nil
-  "report"
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (5284 5285))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-2016/re-run/data-versions/global-data/new2dem-newgrps/newmaps/fishing_data/normal/add-fishing-group.r"
+  "add-fishing-group.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  234
+  '(223 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-2016/re-run/functions.r"
+  "functions.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-2016/functions.r"
+  "functions.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  14899
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-2016/common-data/playing-with-groups/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/.emacs"
+  ".emacs"
+  'emacs-lisp-mode
+  '(abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  63406
+  '(12504 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (12504 65895 66821 66795 66746 66466 66459 66426 66219 66386 66356 66316 66286 1))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/notes.org"
+  "notes.org"
+  'org-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode flyspell-mode org-indent-mode TeX-PDF-mode buffer-face-mode)
+  290
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (truncate-lines . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/exploration/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  759
+  '(759 t)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (30 759 355 330 284 322 130 393 504 560 512 435 101 404 78 129))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/data/complete-time-series.r"
+  "complete-time-series.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1179
+  '(48 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1180 472 910 621 961 500 677 591 471 160 122 1 208 1695 997 1179))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/yr-r-package-and-config/myfunctions.r"
+  "myfunctions.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  148867
+  '(159665 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (71289 76136 76047 70696 74681 74670 73506 71538 71084 71039 71023 71011 70998 70985 70808 70656))))
+
+(desktop-create-buffer 208
+  nil
+  "yr-r-package-and-config"
   'dired-mode
-  '(abbrev-mode helm-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  1088
+  '(abbrev-mode helm-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  896
   '(nil nil)
   t
-  '("/home/yvan/dragonfly/CA2.11-BlueAbs/report/")
+  '("/home/yvan/dragonfly/yr-r-package-and-config/")
   nil
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/CA2.11-BlueAbs/report/tex-dependencies.csv"
-  "tex-dependencies.csv"
+  "/home/yvan/dragonfly/sentio-leave-calculation/exploration/report.rnw"
+  "report.rnw"
+  'latex-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  6133
+  '(7296 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (2797 6388 6091 4162 7297 6025 6370 6388 6388 6134 4148 140 5088 140 140 6133))))
+
+(desktop-create-buffer 208
+  nil
+  "exploration"
+  'dired-mode
+  '(abbrev-mode helm-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  219
+  '(nil nil)
+  t
+  '("/home/yvan/dragonfly/sentio-leave-calculation/exploration/")
+  nil
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/exploration/timelines/timeline-20436.png"
+  "timeline-20436.png"
+  'image-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . no-conversion) (truncate-lines . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  nil
+  "timelines"
+  'dired-mode
+  '(abbrev-mode helm-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  276
+  '(nil nil)
+  t
+  '("/home/yvan/dragonfly/sentio-leave-calculation/exploration/timelines/")
+  nil
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/docker.dragonfly.co.nz/dragonverse/Dockerfile"
+  "Dockerfile"
+  'dockerfile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  355
+  '(28 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (355 345 88 52 2722 678 436 371 52 355))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/Dockerfile"
+  "Dockerfile"
+  'dockerfile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1008
+  '(12 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (145 873 833 2986 1 1008 1706 108 109 144 1515 131 1687 1637 159 1008))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/data/holidays.rdata"
+  "holidays.rdata"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . no-conversion))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  nil
+  "data"
+  'dired-mode
+  '(abbrev-mode helm-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  624
+  '(691 t)
+  t
+  '("/home/yvan/dragonfly/sentio-leave-calculation/data/")
+  nil
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/data/groom-holidays.r"
+  "groom-holidays.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1160
+  '(1110 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1048 869 864 815 68 984 955 753 951 656 575 770 96 541 115 476))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/data/anniversaries-original.csv"
+  "anniversaries-original.csv"
   'csv-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/exploration/calendarHeat.r"
+  "calendarHeat.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  3216
+  '(1392 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (10038 1 3216))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/exploration/report.tex"
+  "report.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1082
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (TeX-master . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/southern-hemisphere-sra/model-data/prepare-model-data.r"
+  "prepare-model-data.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  6436
+  '(6586 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (6606 6594 3103 835 834 580 625 4076 3846 3835 3791 3774 3754 3401 6415 6436))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/model/stan/model.stan"
+  "model.stan"
+  'stan-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  5273
+  '(4453 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (222 1940 3999 3994 3981 4828 5273))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/model/prepare-model-data.r"
+  "prepare-model-data.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  4208
+  '(2972 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (3307 2973 6356 2900 2892 2005 2000 1971 1376 1117 1060 901 829 290 2951 4208))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/southern-hemisphere-sra/data/parameters.r"
+  "parameters.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  90
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/parameters.r"
+  "parameters.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  90
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (83 109 91 1))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/model/model-report.Rmd"
+  "model-report.Rmd[poly-head-tail][poly-head-tail][poly-head-tail][poly-head-tail]"
+  'markdown-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode poly-markdown+r-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  5054
+  '(4620 nil)
+  nil
+  nil
+  '((tab-width . 4) (buffer-file-coding-system . undecided-unix) (overwrite-mode) (truncate-lines))
+  '((mark-ring (5054))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/report.tex"
+  "report.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (TeX-master . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/create/make_certificates.r"
+  "make_certificates.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  3233
+  '(3212 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1847 1511 1037 407 191 1))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/prepare-data/make-spatial.r"
+  "make-spatial.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  3395
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1 4404 4164 1464 1231 1424 1418 1463 4403 2069 1801 1646 1580 1660 582 1598))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/model/stan/get-results.r"
+  "get-results.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1239
+  '(450 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (446 160 1455 1384 1307 917 1239))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/overlap-captures/prepare-captures.r"
+  "prepare-captures.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1790
+  '(1798 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1790 176 1945 1937 1864 1798 1579 104 3689 3370 3362 2994 4125 3772 2993 3728))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/make-gridded-distribution.r"
+  "make-gridded-distribution.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  383
+  '(374 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (374 430 421 412 142 105 233 127 214 191 34 176 525 1))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/overlap-captures/overlap-calculation.r"
+  "overlap-calculation.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  681
+  '(623 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1 1618 682 845 623 382 330 986 1039 1215 1210 1167 987 738 61 636))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/vulnerabilities/simulate-vulnerabilities.r"
+  "simulate-vulnerabilities.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  39
+  '(1213 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (880 780 492 633 474 379 1210 1204 39 1124 783 1149 1140 1131 1212 42))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/Makefile"
+  "Makefile"
+  'makefile-gmake-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2563
+  '(310 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1811 1841 1699 1517 332 1241 1 680 632 537 563 446 389 347 632 2563))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/model/stan/assets/observed-vs-predicted-vulnerabilities.csv"
+  "observed-vs-predicted-vulnerabilities.csv"
+  'csv-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
   1
   '(nil nil)
   nil
@@ -162,538 +630,766 @@
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/CA2.11-BlueAbs/report/report.tex"
-  "report.tex"
-  'latex-mode
-  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode reftex-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/prepare.r"
-  "prepare.r"
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/prepare-data/make-grids.r"
+  "make-grids.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  5275
-  '(50 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  14967
+  '(15346 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (2148 4588 4662 1 5654 1 5449))))
+  '((mark-ring (9877 15411 14513 14261 14199 13819 13553 13522 13266 11731 11718 11718 11667 11703 11670 14967))))
 
 (desktop-create-buffer 208
-  "/home/yvan/.emacs"
-  ".emacs"
-  'emacs-lisp-mode
-  '(abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  63905
-  '(63612 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (63902 3291 314 1 1 63960 63902 63527 63584 29478 61332 7737 11680 17020 17229 18067))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/bank/banking.r"
-  "banking.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  1593
-  '(1806 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1405 1805 1671 1406 1805 1961 1832 1405 1877 1805 1805 1685 1384 1392 1805 1672))))
-
-(desktop-create-buffer 208
-  "/home/yvan/Dropbox/dragonfly-notes/dragonfly-notes.org"
-  "dragonfly-notes.org"
-  'org-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode org-indent-mode TeX-PDF-mode)
-  119624
-  '(2616 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t))
-  '((mark-ring (2700 60359 62009 45985 45986 74625 63429 87866 58794 58762 58795 12443 26794 87029 86934 86934))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/makefile.1"
-  "makefile.1"
-  'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  142
-  '(60 nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (143 1 1))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/makefile"
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/makefile"
   "makefile"
   'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  92
-  '(2474 nil)
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  3631
+  '(3631 nil)
   nil
   nil
   '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (2474 1218 1246 1540 1220 1453 1220 1453 1729 1622 281 2561 187 1359 2474 1))))
+  '((mark-ring (3541 3463 3350 2470 2420 2471 1170 1 2382 804 3338 226 835 805 330 3631))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/makefile.0"
-  "makefile.0"
-  'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  523
-  '(523 nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (82))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/model.stan.1"
-  "model.stan.1"
-  'stan-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  2003
-  '(1938 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1112 1112 3045 3021 3001 955 925 924 890 956 955 926 902 870 837 798))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/run-model.r.1"
-  "run-model.r.1"
+  "/home/yvan/dragonfly/mytests/nz-cars.r"
+  "nz-cars.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  830
-  '(830 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  nil
-  ".git"
-  'dired-mode
-  '(abbrev-mode helm-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  628
-  '(nil nil)
-  t
-  '("/home/yvan/dragonfly/estimation-2015-16/.git/")
-  nil
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/Dropbox/customisations/yas-snippets/latex-mode/nz"
-  "nz"
-  'fundamental-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  nil
-  "birdoftheyear"
-  'dired-mode
-  '(abbrev-mode helm-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  817
-  '(nil nil)
-  t
-  '("/home/yvan/dragonfly/mytests/birdoftheyear/")
-  nil
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/traceplots.r.1"
-  "traceplots.r.1"
-  'nroff-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/sf.r"
-  "sf.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  1440
-  '(1640 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (1545 1545 1464 1464 1464 1464 1404 1404 1280 1404 1404 1406 1404 1280 1280 834))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/globmod-source.mk"
-  "globmod-source.mk"
-  'makefile-gmake-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  504
-  '(504 t)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (204 204 204 165 1 1 463 165 165 459 503 464 464 464 464 459))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/bibliography/mfish.bib"
-  "mfish.bib"
-  'bibtex-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  730
-  '(2 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix) (TeX-master . t))
-  '((mark-ring (2 2 2 2 2 2 2 2 2 2 2 2 1 2 2 730))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/mpi-pubs/mpi-pubs.r"
-  "mpi-pubs.r"
-  'fundamental-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/get-results.r.1"
-  "get-results.r.1"
-  'nroff-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/.gitignore"
-  ".gitignore"
-  'fundamental-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  338
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  100
   '(1 nil)
   nil
   nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (28 53 100))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/maps/species-maps.r"
+  "species-maps.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2503
+  '(2394 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1 1051 696 193 124 2408 876 581 2503 2442 2418 2399 884 2265 1241 2365))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/get-data.r"
+  "get-data.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  277
+  '(277 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (172 96 93 1 16 275 110 189 244 277))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/grid/grid.sql"
+  "grid.sql"
+  'sql-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1791
+  '(1791 nil)
+  nil
+  nil
   '((buffer-file-coding-system . undecided-unix))
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/fisherfunds.r"
-  "fisherfunds.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  62
-  '(62 nil)
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/distribution/distribution.sql"
+  "distribution.sql"
+  'sql-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1217
+  '(1836 nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (62 62 62 62 62 62 62 62 62 62 1 62))))
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1836 1 136 2255 1514 690 1582 813 758 690 661 428 189 429 483 1437))))
 
 (desktop-create-buffer 208
-  "/slow/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/pages/get-pages.r"
-  "get-pages.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  1641
-  '(1 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/pages/psc-login.r"
-  "psc-login.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  2291
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/estimation-2014/report/psc-pages/psc-login-and-functions.r"
-  "psc-login-and-functions.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  3063
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/estimation-2014/report/psc-pages/get-psc-assets.r"
-  "get-psc-assets.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  32
-  '(2411 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (571 1 571 571 1272))))
-
-(desktop-create-buffer 208
-  nil
-  "mytests"
-  'dired-mode
-  '(abbrev-mode helm-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  3120
-  '(3120 nil)
-  t
-  '("/home/yvan/dragonfly/mytests/")
-  nil
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/birdoftheyear/scrape-birdoftheyear.r"
-  "scrape-birdoftheyear.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  1
-  '(665 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1))))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/ludicio/ludicio/commands.py"
-  "commands.py"
-  'python-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  7024
-  '(3305 nil)
-  nil
-  nil
-  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (4581 4548 1277 6237 7325 1208 545 1221 1317 1154 1208 1835 4654 4450 4548 4561))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/CA2.11-BlueAbs/report/methods-data.rnw"
-  "methods-data.rnw"
-  'fundamental-mode
-  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode reftex-mode)
-  1272
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/ludicio/ludicio/models.py"
-  "models.py"
-  'python-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  6167
-  '(4112 nil)
-  nil
-  nil
-  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (422 383 1707 1278 1704 1707 1707 1707 1708 1708 383 390 383 422 449 421))))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/ludicio/makefile"
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/makefile"
   "makefile"
   'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  96
-  '(86 nil)
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1966
+  '(3547 nil)
   nil
   nil
   '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (2958 1837 1109 1108 1680 1393 1892 1108 1108 1108 1212 1089 915 1212 1747 1966))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/distribution/get-shapefiles.r"
+  "get-shapefiles.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  900
+  '(900 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1 644 538 502 740 541 423 895 879 748 748 744 748 549 537 900))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1117
+  '(1079 t)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1174 260 681 637 1919 148 1668 1 973 144 79 339 2721 2656 2218 2217))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/README.md"
+  "README.md"
+  'markdown-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1036
+  '(330 nil)
+  nil
+  nil
+  '((tab-width . 4) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (477 1043 1026 673 1043 1027 463 1043 909 1026 1025 1025 1026 1025 1026 1036))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/fishing-effort/prepare-effort.r"
+  "prepare-effort.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  392
+  '(398 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (392 865 831 760 796 738 506 506 561 714 996 927 927 874))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/model/prepare-prev.r"
+  "prepare-prev.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  2372
+  '(8608 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (4983 4286 4253 4234 4225 4224 4186 4138 3250 3187 2925 2263 1989 2018 1362 2372))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/prepare-data/resample-tracks.r"
+  "resample-tracks.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2466
+  '(2025 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (2025 1 96 456 1846 3241 1758 566))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/import/consents.r"
+  "consents.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  3905
+  '(5037 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (4881 4913 4468 4861 4833 4770 4742 4611 4583 4609 4863 4642 4485 3792 3742 3813))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/prepare-data/groom-pts.r"
+  "groom-pts.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(2417 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (2395 41 2482 2533 2704 2385 2419 3434 271 3432 2956 2955 2956 2956 1849 2042))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/abc-birds/load_species.sql"
+  "load_species.sql"
+  'sql-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  3606
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/CA2.11-BlueAbs/growth-analysis/model-stan-densdep-ts-k-ind-temp-comb-rob-full/run-model.r"
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/species/species.sql"
+  "species.sql"
+  'sql-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(905 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1025))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/observer/mpi-species-lookup.csv"
+  "mpi-species-lookup.csv"
+  'csv-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  222
+  '(222 t)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix) (truncate-lines . t))
+  '((mark-ring (222))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/overlap/overlap.sql"
+  "overlap.sql"
+  'sql-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  251
+  '(1498 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (571 658 1498 1498 774 280))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/functions.r"
+  "functions.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS-notes/xlsx.r"
+  "xlsx.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  6079
+  '(5866 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (7219 7207 13373 13369 13410 13381 13323 13234 13218 13067 12680 12697 12683 12521 12309 6079))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/github_repos/seabird-risk-assessment/model/jags/run-model.r"
   "run-model.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  5249
-  '(5198 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1032
+  '(606 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (5248))))
+  '((mark-ring (53 1))))
 
 (desktop-create-buffer 208
-  "/slow/yvan/dragonfly/ludicio/scripts/ludicio"
-  "ludicio"
-  'python-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  779
-  '(397 nil)
-  nil
-  nil
-  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (612 730 763 779))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/globmod-source.r"
-  "globmod-source.r"
+  "/home/yvan/dragonfly/southern-hemisphere-sra/look-at-data.r"
+  "look-at-data.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  438
-  '(382 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  1327
+  '(1327 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1325 345 328 299 218 439 335 189 172 89 74 36 962 828 960 1327))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/README.md"
+  "README.md"
+  'markdown-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  984
+  '(922 nil)
+  nil
+  nil
+  '((tab-width . 4) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (879 976 878 877 984 690 568 644 867 375 409 840 796 778 252 984))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/southern-hemisphere-sra/.gitmodules"
+  ".gitmodules"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  105
+  '(105 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (105))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/model/observed-vs-predicted.r"
+  "observed-vs-predicted.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  6105
+  '(6101 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1 1286 1276 1276 480 1731 1728 1241 1728 947 869 947 869 877 877 877))))
+  '((mark-ring (2335 1 10669 11052 11043 9300 10951 10942 9440 9066 9309 9449 9423 9124 8996 10312))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/maps/effort-maps.r"
+  "effort-maps.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  169
+  '(210 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (172 3192 2517 3023 1150 1460 2841 2826 2813 2666 1315 3010 2932 2857 2628 971))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/parameters.r"
+  "parameters.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  47
+  '(31 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/prepare-data/get-data.r"
+  "get-data.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1502
+  '(1502 t)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1501 617 604 155 1 2548 773 2544 2513 293 187 2546 1611 2286 2287 1502))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/prepare-data/southern-royals.r"
+  "southern-royals.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  2032
+  '(3219 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (2947 2872 2690 2448 2032 1954 1788 2029 910 858 827 635 4619 3220 3218 2032))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/CA2.11-BlueAbs/shiny/app-sims-lim-staging/www/custom.css"
+  "custom.css"
+  'css-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  996
+  '(963 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (3957))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS-notes/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2272
+  '(1275 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1275 391 1651 1817 2336 1861 397 1423 1439 1554 1920))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/oreo/species_imputation/species_codes.sql"
+  "species_codes.sql"
+  'sql-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  780
+  '(780 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/model/test.r"
+  "test.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  1640
+  '(1628 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1508 1242 1132 194 1 1689 1129 1144 1640))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  4054
+  '(580 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (580))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/report/maps.r"
+  "maps.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(6158 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1082 873 313 195 6158 2471 4198 4605 1358 6141 1237 557 533 524 454 337))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/report/report.tex"
+  "report.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  712
+  '(660 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search . t) (TeX-master . t))
+  '((mark-ring (642 742 712 699 619 1249 1148 1250 1249 1261 712))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/create/make_statement_review.r"
+  "make_statement_review.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  3441
+  '(3537 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (3467 3442 3253 3346 3318 3275 3191 1242 972 211 1262 1300 2161 2164 1835))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/create/make_consents.r"
+  "make_consents.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  9230
+  '(8971 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1857 7444 7420 7226 7192 4960 1859 987 439 1 4959))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/fields.r"
+  "fields.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  7674
+  '(7588 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (72837 48872 46979 46864 46741 46621 1 46238 48832 48935 48869 48871 48887 72267 72868))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/create/sense_check_planning.r"
+  "sense_check_planning.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  44430
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1024 721 1024 1024 1024 1024))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/model/stan/run-model.r"
+  "run-model.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  787
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/test-data/parameters.r"
+  "parameters.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/create/sense_check.r"
+  "sense_check.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  605
+  '(421 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/create/sense_check_enforcement.r"
+  "sense_check_enforcement.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  7357
+  '(7434 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (7357 7434 7331 7320 6742 5993 5237 4537 3866 3187 2564 1866 1147 485))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/create/sense_check_reviews.R"
+  "sense_check_reviews.R"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  5370
+  '(530 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (530 530 530 530 530 530 530 530 530 530 530 530 530 530 530))))
 
 (desktop-create-buffer 208
   "/slow/yvan/dragonfly/ludicio/settings.py"
   "settings.py"
   'python-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  320
-  '(287 nil)
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  316
+  '(1 nil)
   nil
   nil
   '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (236 236 320))))
+  '((mark-ring (1 1 1))))
 
 (desktop-create-buffer 208
-  "/slow/yvan/dragonfly/ludicio/patches/20120127-001-initialise.sql"
-  "20120127-001-initialise.sql"
-  'sql-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  7
-  '(nil nil)
+  "/slow/yvan/dragonfly/ludicio/ludicio/models.py"
+  "models.py"
+  'python-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  6169
+  '(6160 nil)
   nil
   nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
+  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (3401 614 816 6167 4112 422 383 1707 1278 1704 1707 1707 1707 1708 1708 383))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/push_extract_to_ludicio.r"
-  "push_extract_to_ludicio.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  1
-  '(856 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1 856 856 856 856 856))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/push_predictions_to_ludicio.r"
-  "push_predictions_to_ludicio.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  44
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/makefile"
+  "/home/yvan/dragonfly/sra-southern-hemisphere/model/makefile"
   "makefile"
   'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  310
-  '(284 nil)
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  825
+  '(537 nil)
   nil
   nil
   '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (507 247 187 250 470 125 115 69))))
+  '((mark-ring (535))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/push_predictions_to_ludicio.r"
-  "push_predictions_to_ludicio.r"
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/demographic-parameters/prepare-estimates.r"
+  "prepare-estimates.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  1
-  '(1971 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  76
+  '(39 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1910))))
+  '((mark-ring (618 343 1 227 10722 657))))
 
 (desktop-create-buffer 208
-  "/sharelocal/mpi/estimation-2015-16/seabirds/models_20170622/model-20170706-stan/dfwca/predict-on-bigextract.r"
-  "predict-on-bigextract.r"
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/demographic-parameters/create-samples.r"
+  "create-samples.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  3895
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  4948
+  '(4633 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (4557 4204 4023 3974 3338 3358 3318 3915 3462 3958 3280 3155 587 22 3430 591))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/functions.r"
+  "functions.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1700
+  '(3219 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (2653 1443 1521 1887 1733 1789 1143 1154 1074 2243 2011 2057 1684 1395 1289 1738))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/input-data/species-list.csv"
+  "species-list.csv"
+  'csv-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  137
+  '(901 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix) (truncate-lines . t))
+  '((mark-ring (901))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/demographic-parameters/pbr_parameter_chosen_values.r"
+  "pbr_parameter_chosen_values.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/demographic-parameters/population-sizes.r"
+  "population-sizes.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2050
   '(1 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (3895 3102 3151 3882 3845 3230 3230 3103 3152 2963 2877 2411 2345 1899 1605 1))))
+  '((mark-ring (2208 2173 2124 1880 1531 1405 998 814 681 452 291 242 167 205 372))))
 
 (desktop-create-buffer 208
-  "/sharelocal/mpi/estimation-2015-16/seabirds/models_20170622/model-20170706-stan/dfwca/makefile"
-  "makefile"
-  'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  418
-  '(396 nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (142))))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/auckland-bivalves-2016/report/makefile"
-  "makefile"
-  'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  2107
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/sharelocal/mpi/estimation-2015-16/seabirds/models_20170622/model-20170706-stan/makefile"
-  "makefile"
-  'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
+  "/home/yvan/dragonfly/sra-example-creation/raw-data/species-list.csv"
+  "species-list.csv"
+  'csv-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
   1
   '(nil nil)
   nil
   nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((buffer-file-coding-system . undecided-unix) (truncate-lines . t))
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/CA2.11-BlueAbs/growth-analysis/model-stan-densdep-ts-k-ind-temp-comb-rob-full/ts.stan"
-  "ts.stan"
-  'stan-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/colony/clean-colonies-sheet.r"
+  "clean-colonies-sheet.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  4340
+  '(4809 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (5029 4486 1 4987 4274 4417 4772 4763 4529 1015 767 759 264 166 373 4487))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/prepare-data/roy.r"
+  "roy.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  8189
+  '(4476 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1000 6872 4929 4708 4805 4477 4808 6198 6241 6510 6382 5107 5372 6624 5014 4959))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/prepare-data/remove-pts-by-colonies.r"
+  "remove-pts-by-colonies.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2682
+  '(2465 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (2630 2683 2682 2464 2287 2231 2284 1 427 422 405 413 394 2286 1109 1073))))
+
+(desktop-create-buffer 208
+  "/home/yvan/.Rprofile"
+  ".Rprofile"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  255
+  '(237 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (544 1151 821 1131 1369 236 255))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/report.tex"
+  "report.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1022
+  '(328 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (case-fold-search . t) (TeX-master . t))
+  '((mark-ring (1067 1022))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/methods.rnw"
+  "methods.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS-notes/filenotes-consents.Rnw"
+  "filenotes-consents.Rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
   1
   '(nil nil)
   nil
@@ -702,10 +1398,610 @@
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/functions.r"
-  "functions.r"
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/current-report.tex"
+  "current-report.tex"
+  'plain-tex-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/create/sense_check_consents.r"
+  "sense_check_consents.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  89988
+  '(91847 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1624 92556 2252 89198 1732 92440 92358 89862))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/utilities.r"
+  "utilities.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  7287
+  '(6900 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (7287))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/model-pages/get-model-pages.r"
+  "get-model-pages.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2297
+  '(1055 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1055 2168 2803 2807 2313 990 451 258 250 2933 447 246 1992 2309 2298 222))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/tables/estimated-captures/make-tables.r"
+  "make-tables.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1318
+  '(1311 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (918 157 873 880))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/results.rnw"
+  "results.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  11086
+  '(10954 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (10961 10954 10947))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/model-pages/dfwca/species-page-prod-2.tex"
+  "species-page-prod-2.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  4672
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1637))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/model-pages/model-page-prod.tex"
+  "model-page-prod.tex"
+  'plain-tex-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/appendix.tex"
+  "appendix.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  713
+  '(673 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (TeX-master . t))
+  '((mark-ring (1223 1218 1162 1106 1050 994 938))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1929
+  '(1985 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1489 1462 1579 1943 1941 1932 1430 1649 110 1278 53 101 101 101 101 1929))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/model-pages/dfssh/species-page-prod-2.tex"
+  "species-page-prod-2.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/import/read-csv-files.r"
+  "read-csv-files.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  5512
+  '(5494 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (5487 4149 3989 3912 3241 181 6914))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/model-pages/dfffs/species-page-prod-2.tex"
+  "species-page-prod-2.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  5830
+  '(5032 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (11914 1))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/estimation-2014-15/seabirds/report/model-pages/dfssh/species-page-prod.tex"
+  "species-page-prod.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/model/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1819
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/share/mpi/estimation-2014-15/seabirds/models_20160614/model-2016-07-20/dfssh/species-page-prod.tex"
+  "species-page-prod.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/model/predict-on-bigextract.r.1"
+  "predict-on-bigextract.r.1"
+  'nroff-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  728
+  '(7235 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (727 728 728))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/globmod-source.mk"
+  "globmod-source.mk"
+  'makefile-gmake-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  473
+  '(473 t)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (473))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/push_predictions_to_ludicio.r"
+  "push_predictions_to_ludicio.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1971
+  '(1278 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1049 1145 742 150 82 1253 1971))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  337
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/share/mpi/estimation-2014-15/seabirds/models_20160614/model-2016-07-20/model-page-prod.tex"
+  "model-page-prod.tex"
+  'plain-tex-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS-notes/filenotes.Rnw"
+  "filenotes.Rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  387
+  '(321 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/pages/seabirds-pages4.tex"
+  "seabirds-pages4.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1248
+  '(1248 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1291 1247 1248))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/pages/psc-pages/birds/bottom-longline/small-vessels/eez/2014-15/page4.tex"
+  "page4.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/re-hack-pages.r"
+  "re-hack-pages.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  220
+  '(37 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (37 6402 1 6275 6214 6181 6176 37 37 37 37 37 37 37 37 37))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/estimation-2014-15/seabirds/models_20160614/pages/psc-pages/salvins-albatross/bottom-longline/small-vessels/eez/2014-15/page3.tex"
+  "page3.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/hack-pages.r"
+  "hack-pages.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  3015
+  '(3020 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (5261 2024 1105 1032 749 717 669 608 330 220 118 2392 2083))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/build.sh"
+  "build.sh"
+  'sh-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  321
+  '(321 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (235 21 321))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/tracking/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  766
+  '(96 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (712 703 823 766 703 83 599 587 665 655 587 454 243 495 454 41))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/tracking/make-grids.r"
+  "make-grids.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  5803
+  '(222 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (177 867 158 546 559 824 457 438 4750 4717 6102 6547 5859 5810 4730 6059))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-2016/re-run/report/supplement/seasonal-maps.tex"
+  "seasonal-maps.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1203
+  '(1204 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (559 1204))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-2016/re-run/report/report.tex"
+  "report.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1566
+  '(1581 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (TeX-master . t))
+  '((mark-ring (1566))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/.gitignore"
+  ".gitignore"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1076
+  '(1 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/report/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  727
+  '(726 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (716 1174 999 1059 1173 996 1114 1102 1172 877 921 868 888 855 957 1172))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/report/data/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  78
+  '(111 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (78 74 55 51 6))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/report/report.tex"
+  "report.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  2116
+  '(2058 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (case-fold-search . t) (TeX-master . t))
+  '((mark-ring (2057))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/report/methods.rnw"
+  "methods.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  566
+  '(114 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (822 189 675 667 894 807 532 156 488 566))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2014-15/seabirds/report/introduction.rnw"
+  "introduction.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  6365
+  '(3879 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/NMS/src/create/make_annual_summary.r"
+  "make_annual_summary.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  5798
+  '(5822 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (5977 4994 5412 5385 5147 5194 5105 5735 5661 5389 5386 5526 5510 5465 5593 5798))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/report/ebird.r"
+  "ebird.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  813
+  '(813 t)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (195 813 695 810 762 727 686 675 674 741 732 732 673 813))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/report/results.rnw"
+  "results.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  374
+  '(1138 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (225 159 209 3446 3439 3054 3043 303 3277 3031 3419 1159 1139 903 411 374))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/wanderers-at-sea-distribution/report/introduction.rnw"
+  "introduction.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1799
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/Downloads/modified/ui.r"
+  "ui.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  53
+  '(65 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-dos))
+  '((mark-ring (53 51 55 67 65))))
+
+(desktop-create-buffer 208
+  "/home/yvan/Downloads/original/ui.r"
+  "ui.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  67
+  '(51 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-dos))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/Downloads/modified/server.r"
+  "server.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  769
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-dos))
+  '((mark-ring (459 410 1014 494 818))))
+
+(desktop-create-buffer 208
+  "/home/yvan/Downloads/original/server.r"
+  "server.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  5417
+  '(410 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-dos))
+  '((mark-ring (807))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/tas-interrai/shiny/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  384
+  '(384 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/abundance/data/species/species.r"
+  "species.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  587
+  '(585 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (834 587 585 785 4921))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/report/model-pages/model-page.rnw"
+  "model-page.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/report/methods.rnw"
+  "methods.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/report/context.r"
+  "context.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
   1
   '(nil nil)
   nil
@@ -717,92 +2013,32 @@
   "/home/yvan/dragonfly/estimation-2015-16/seabirds/vars-source.r"
   "vars-source.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  1695
-  '(1097 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (2061 1472 20 525 2061 252 2061 1097))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/aggregate.r"
-  "aggregate.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  2541
-  '(1283 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (3605 2056 1275 1285 806 524 363 363 363 363 350 292 292 292 76 2080))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/negative-binomial/makefile"
-  "makefile"
-  'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  212
-  '(1 nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/stan.r"
-  "stan.r"
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/report/tables/captures-released-alive/captures-released-alive.r"
+  "captures-released-alive.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  989
-  '(1242 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  98
+  '(55 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1121 1163 991 1096 847 1277 1618 1619 1337 1539 1539 1268 1407 991 1337 1357))))
+  '((mark-ring (1960 1951 1156 1147 99 114 98 55 1077 723 1 395 293))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/jess10.r"
-  "jess10.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  256
-  '(256 t)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (185 200 170 119 103 78 128 78 55 78 256))))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/abundance/data/species/species.r"
+  "/home/yvan/dragonfly/species/species/species.r"
   "species.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  587
-  '(585 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (834 587 585 785 4921))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/negbin.r"
-  "negbin.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  341
-  '(341 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (341 411 300 300 190 282 171 140 140 175 282 196 67 21 21 21))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/negative-binom-stage-durations.r"
-  "negative-binom-stage-durations.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  1
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  1550
   '(nil nil)
   nil
   nil
@@ -810,335 +2046,263 @@
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/slow/yvan/Dropbox/house-insurance.txt"
-  "house-insurance.txt"
-  'text-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  307
-  '(1 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (299 307))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/colour-gradient.r"
-  "colour-gradient.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  959
-  '(549 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (967 549 658 549 549 549 573 500 500 18 644 658 658 645 645 644))))
-
-(desktop-create-buffer 208
-  "/home/yvan/Dropbox/customisations/yas-snippets/ess-mode/rbok"
-  "rbok"
-  'snippet-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  300
-  '(300 t)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (55 300))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/kable/makefile"
-  "makefile"
-  'makefile-gmake-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  443
-  '(363 nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (362 121 154 308 122 7 308 69 67 19 19 1 308 443))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/trump-cabinet.r"
-  "trump-cabinet.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  63
-  '(62 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (315 315 487 404 316 513 315 315 388 315 388 315 315 249 251 292))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/data.table.r"
-  "data.table.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  5021
-  '(4887 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (4907 4977 4959 4939 4887 1 4884 4880 4852 4887 4852 4694 4599 4852 4852 4758))))
-
-(desktop-create-buffer 208
-  "/home/yvan/.bashrc"
-  ".bashrc"
-  'sh-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  3318
-  '(1 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring (4067 3921 3188 3187 3115 3173 3115 3173 3921 3981 3115 1 3114 3072 3072 3072))))
-
-(desktop-create-buffer 208
-  "/home/yvan/.bash_logout"
-  ".bash_logout"
-  'sh-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/Dropbox/customisations/yas-snippets/latex-mode/fb"
-  "fb"
-  'snippet-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  45
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/Dropbox/customisations/yas-snippets/latex-mode/table"
-  "table"
-  'snippet-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  691
-  '(326 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring (614 691 691))))
-
-(desktop-create-buffer 208
-  "/home/yvan/git_projects/cmdstan/examples/bernoulli/bernoulli.data.R"
-  "bernoulli.data.R"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/git_projects/cmdstan/makefile"
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/report/tables/makefile"
   "makefile"
   'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
   1
-  '(4636 nil)
+  '(nil nil)
   nil
   nil
   '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1))))
-
-(desktop-create-buffer 208
-  "/home/yvan/Dropbox/customisations/yas-snippets/latex-mode/gbi"
-  "gbi"
-  'snippet-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  47
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix))
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/docker.tridentsystems.co.nz/ubuntu/jags-stan/r_requirements.r"
-  "r_requirements.r"
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170725-stan/predictions_ludicio_push_results.rdata"
+  "predictions_ludicio_push_results.rdata"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . no-conversion))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170725-stan/push_predictions_to_ludicio.r"
+  "push_predictions_to_ludicio.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  223
-  '(390 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2103
+  '(2141 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (390 237 225 225 225 207 186 162 390 390 390 390))))
+  '((mark-ring (2103 2142 2141 2114 2009 1508 1987 1885 1852 1454 1640 1476 1401 1304 1293 1134))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/gmap.r"
-  "gmap.r"
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/update-modelversion.r"
+  "update-modelversion.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  79
-  '(17 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (79))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/data/make-rdata.r"
-  "make-rdata.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  507
-  '(283 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2682
+  '(1747 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (331 331 316 316 304 304 331 331 304 331 304 263 283 31 340 507))))
+  '((mark-ring (1688 1628 1571 1523 1543 1299 1298 1218 968 658 522 302 188 2682 2681 2682))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/libraries.r"
-  "libraries.r"
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/model-20170710-stan/push_predictions_to_ludicio.r"
+  "push_predictions_to_ludicio.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  325
-  '(220 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  539
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/report/model-pages/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/report/model-pages/mcmc-to-latex.r"
+  "mcmc-to-latex.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  3373
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/push_predictions_to_ludicio.r"
+  "push_predictions_to_ludicio.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  16
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/globmod-source.mk"
+  "globmod-source.mk"
+  'makefile-gmake-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/species/acap-species-list.csv"
+  "acap-species-list.csv"
+  'csv-mode
+  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix) (truncate-lines . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/exploration/assets/actual-scheduled.r"
+  "actual-scheduled.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1856
+  '(892 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (261 220 325 527 468 261 220 325 325 325 325 325 528 325 335 325))))
+  '((mark-ring (892 2223 855 2221 524 865 849 788 892 892 892 892 892 892 892 892))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/libraries.txt"
-  "libraries.txt"
-  'text-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  886166
-  '(1 nil)
+  "/home/yvan/dragonfly/sentio-leave-calculation/.gitignore"
+  ".gitignore"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sentio-leave-calculation/exploration/gorbachev.yaml"
+  "gorbachev.yaml"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  65
+  '(42 nil)
   nil
   nil
   '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (886166 886166 70 886166 1 886166 1 6042 1 826397 1 826396 886166 1 3639 1))))
+  '((mark-ring (42 13))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/report/report.tex"
+  "report.tex"
+  'latex-mode
+  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  1315
+  '(1619 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (TeX-master . t))
+  '((mark-ring (614 1619 744 32))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/report/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/report/methods.rnw"
+  "methods.rnw"
+  'fundamental-mode
+  '(ess-noweb-font-lock-mode ess-noweb-mode auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode reftex-mode buffer-face-mode)
+  34
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/report/context.r"
+  "context.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  385
+  '(38 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
 
 (desktop-create-buffer 208
   "/home/yvan/.tmux.conf"
   ".tmux.conf"
   'conf-space-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  3967
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  3324
   '(1015 nil)
   nil
   nil
   '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1 5534 4047 4448 4475 4046 5534 5534))))
+  '((mark-ring (1 5534 4047 4448 4475 4046 5534 5534 3748 3324))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/docker.tridentsystems.co.nz/ubuntu/jags-stan/Dockerfile"
-  "Dockerfile"
-  'fundamental-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  129
-  '(112 nil)
+  "/home/yvan/dragonfly/bibliography/mfish.bib"
+  "mfish.bib"
+  'bibtex-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  452470
+  '(451560 nil)
   nil
   nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring (89 160 160))))
+  '((buffer-file-coding-system . utf-8-unix) (TeX-master . t))
+  '((mark-ring (94625 94603 33 26 223 1 21572 21550 470619 470607 470627 470662 254 250 664 668))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/data/makefile"
+  "/home/yvan/dragonfly/docker.dragonfly.co.nz/makefile"
   "makefile"
   'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  302
-  '(246 nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (246 774 774 1))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/get-areas.r"
-  "get-areas.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  1121
-  '(1108 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (875 503 116 1))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/data/trawl_all.sql"
-  "trawl_all.sql"
-  'sql-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  151
-  '(1 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/estimation-2015-16/seabirds/models-20170622/data/sll.sql"
-  "sll.sql"
-  'sql-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  98
-  '(98 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring (264))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/yr-r-package-and-config/myfunctions.r"
-  "myfunctions.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  134748
-  '(70793 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (70513 75545 74833 74838 74251 72767 72761 71043 71016 70930 70847 70613 70596 70581 70569 134748))))
-
-(desktop-create-buffer 208
-  "/slow/yvan/psc-creds.r"
-  "psc-creds.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
   1
   '(nil nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/dragonfly-latex-templates/README.md"
-  "README.md"
-  'markdown-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  4519
-  '(4765 nil)
-  nil
-  nil
-  '((tab-width . 4) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (4765))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/docker.tridentsystems.co.nz/ubuntu/gorbachev-base/Dockerfile"
+  "/home/yvan/dragonfly/docker.dragonfly.co.nz/dragonfly-tidyverse/Dockerfile"
   "Dockerfile"
-  'fundamental-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  229
+  'dockerfile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  417
   '(1 nil)
   nil
   nil
@@ -1146,70 +2310,94 @@
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/.gtkrc-2.0"
-  ".gtkrc-2.0"
-  'fundamental-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  30
-  '(1 nil)
+  "/home/yvan/dragonfly/docker.dragonfly.co.nz/dragonfly-reports/Dockerfile"
+  "Dockerfile"
+  'dockerfile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1443
+  '(1443 nil)
   nil
   nil
-  '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (1))))
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/.gtkrc"
-  ".gtkrc"
-  'conf-unix-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  30
-  '(1 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (30))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/docker.tridentsystems.co.nz/Makefile"
-  "Makefile"
-  'makefile-gmake-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  253
-  '(808 nil)
-  nil
-  nil
-  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (808 791 167))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mpi-latex-templates/mpi.dtx"
-  "mpi.dtx"
-  'doctex-mode
-  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode reftex-mode)
-  14580
-  '(14529 nil)
+  "/home/yvan/dragonfly/sra-southern-hemisphere/report/plots/maps/get-gis-elements.r"
+  "get-gis-elements.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  976
+  '(723 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (14579 14580))))
+  '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/slow/yvan/dragonfly/seabirds-2011/report/makefile"
+  "/slow/yvan/github_repos/life-events/myapp/makefile"
   "makefile"
   'makefile-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  458
-  '(458 t)
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  38
+  '(7 nil)
   nil
   nil
   '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (938 1 458))))
+  '((mark-ring (1))))
+
+(desktop-create-buffer 208
+  "/home/yvan/.bashrc"
+  ".bashrc"
+  'sh-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  6061
+  '(3008 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1 4115 3969 3236 3235 3163 3221 3163 3221 3969 4029 3163 3114 3072 3072 3655))))
+
+(desktop-create-buffer 208
+  "/home/yvan/.gitignore"
+  ".gitignore"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  55
+  '(3 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1 324 297 292 313 288 282 276 173 250 186 324))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/r-ludicio/.gitignore"
+  ".gitignore"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  282
+  '(1 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (282 73 1 1))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/.gitignore"
+  ".gitignore"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  763
+  '(641 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (821 540 540 1 750))))
 
 (desktop-create-buffer 208
   "/home/yvan/dragonfly/yr-r-package-and-config/makefile"
   "makefile"
   'fundamental-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
   1267
   '(1212 nil)
   nil
@@ -1218,180 +2406,180 @@
   '((mark-ring (1232 1212))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/sra-2012/report/report.tex"
-  "report.tex"
-  'latex-mode
-  '(auto-fill-mode abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode reftex-mode)
-  1696
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (TeX-master . t))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/.config/gmusicproxy.cfg"
-  "gmusicproxy.cfg"
-  'conf-unix-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  83
-  '(55 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (38 55 1 38 55 83))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/kable/test-spin.r"
-  "test-spin.r"
+  "/home/yvan/dragonfly/sra-southern-hemisphere/report/plots/maps/species-distributions.r"
+  "species-distributions.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  973
-  '(2 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  6016
+  '(4859 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (4855 5946 5892 5686 4481 3011 2333 2006 1 2798 1191 960 471 270 470 6016))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/report/tables/apf/apf.r"
+  "apf.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2541
+  '(1906 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1906 2789 1138 2789))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/tracking/assets/maps.r"
+  "maps.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  3954
+  '(3954 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
+  '((mark-ring (3954 3953 2495 3953 2896 2896 2896 3634 3634 2935 2535 2495 2896 3706 2896 3954))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/tracking/remove-pts-by-colonies.r"
+  "remove-pts-by-colonies.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  768
+  '(768 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (1 644 735 692 8 718 692 942 590 590 692 506 484 264 925 925))))
+  '((mark-ring (570 611 578 556 766 768 481 83 285 159 284 385 284 396 284 768))))
 
 (desktop-create-buffer 208
-  "/slow/yvan/dragonfly/whio-benthic-analysis/analysis/vegan.r"
-  "vegan.r"
+  "/home/yvan/dragonfly/sra-example-creation/tracking/groom-pts.r"
+  "groom-pts.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  1397
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/whio-benthic-analysis/analysis/analysis.r"
-  "analysis.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  20374
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/.config/mopidy/mopidy.conf"
-  "mopidy.conf"
-  'conf-unix-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  492
-  '(143 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring (897 850 847 863 813 693 1292 1 1292 676 596 850 143 492))))
-
-(desktop-create-buffer 208
-  "/home/yvan/share/dragonfly/shinyapps/credentials.txt"
-  "credentials.txt"
-  'text-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  146
-  '(1 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (146))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/check-file-changes.r"
-  "check-file-changes.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  645
-  '(1836 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (645 52 1 645 645 646 645 645))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/file-changes.org"
-  "file-changes.org"
-  'org-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode org-indent-mode TeX-PDF-mode)
-  34426
-  '(34425 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (truncate-lines . t))
-  '((mark-ring (34426))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/eq-r/eq-r.r"
-  "eq-r.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  384
-  '(204 nil)
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2249
+  '(2226 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (192 22 909 414 411 455 1010 455 590 591 590 455 591 2313 1997 308))))
+  '((mark-ring (2249 1 2404 2029 1660 1701 1674 1701 1674 1582 1582 2372 2372 2372 2372 2249))))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/kable/test.Rmd"
-  "test.Rmd"
-  'markdown-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode poly-markdown+r-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  1
-  '(157 nil)
-  nil
-  nil
-  '((tab-width . 4) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (33 1 157 1))))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/estimation-2014/report/psc-pages/get-all-strata.r"
-  "get-all-strata.r"
+  "/home/yvan/dragonfly/sra-example-creation/tracking/get-data.r"
+  "get-data.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  32
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  354
+  '(52 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (155 716 361 1894 1913 1902 1917 1608 552 496 494 493 483 1 1917 354))))
+
+(desktop-create-buffer 208
+  "/home/yvan/.selected_editor"
+  ".selected_editor"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  68
   '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/slow/yvan/dragonfly/estimation-2014/report/build-seabird-pages.r"
-  "build-seabird-pages.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode auto-revert-mode TeX-PDF-mode)
-  1
-  '(208 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/mopidy.conf"
-  "mopidy.conf"
-  'conf-unix-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  1942
-  '(1 nil)
   nil
   nil
   '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring (2284 1 1942))))
+  '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/slow/yvan/dragonfly/estimation-2014/report/pull-latex-files.pl"
-  "pull-latex-files.pl"
-  'perl-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  405
+  "/home/yvan/.profile"
+  ".profile"
+  'sh-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  69
   '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/tracking/make-spatial.r"
+  "make-spatial.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1097
+  '(1095 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1097 257 651 257 257 257 82 34 257 257 257 257 257 257 257 1097))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/tracking/resample-tracks.r"
+  "resample-tracks.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  4020
+  '(2308 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1709 556 832 4427 4427 4020 992 832 832 832 832 832 832 1598 1313 1275))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/tracking/density-maps.r"
+  "density-maps.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  728
+  '(727 t)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (251 971 970 971 987 1073 971 1073 191 1 136 136 252 1251 971 971))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/tracking/compare-with-birdlife.r"
+  "compare-with-birdlife.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  159
+  '(22 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (41 1 97 134 105 159))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/mmra-2013/risk/model-hectors-20161215/hectors-fishery-family-cross-species-cross/model.bug"
+  "model.bug"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  4184
+  '(4242 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (3285 4143 3694 3541 3265 3161 3296 1686 2308 3159 3189 4037 4114 5645 2369 3295))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/report/tables/model-parameters/model-parameters.r"
+  "model-parameters.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/model/model.bug"
+  "model.bug"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2036
+  '(2036 nil)
   nil
   nil
   '((buffer-file-coding-system . undecided-unix))
@@ -1401,19 +2589,163 @@
   "/slow/yvan/dragonfly/bycatch.dragonfly.co.nz/summary/explore/urls.py"
   "urls.py"
   'python-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
-  1905
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1883
   '(619 nil)
   nil
   nil
   '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (2774 1883))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/species-tree.r"
+  "species-tree.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  374
+  '(374 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (345 417 324 290 586 290 290 298 290 106 290 290 199 199 290 41))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/libraries.r"
+  "libraries.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  528
+  '(528 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (220 261 220 325 527 468 261 220 325 325 325 325 325 528 325 528))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-example-creation/overlap-captures/parameters.r"
+  "parameters.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(1 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/mmra-2013/risk/model-hectors-20161215/hectors-fishery-family-cross-species-cross/jags.cmd"
+  "jags.cmd"
+  'bat-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/model/prepare-model.r"
+  "prepare-model.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2661
+  '(2512 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (2505 2209 2201 2209 2177 1891 2177 1919 2177 126 531 376 1 6064 6049 2661))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/species/prepare_estimates.r"
+  "prepare_estimates.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(14117 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/species/populations.r"
+  "populations.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1260
+  '(2013 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (1 2013 173 257 237 2013 672 982 853))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/species/functions.r"
+  "functions.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  2693
+  '(2693 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/species/create_samples.r"
+  "create_samples.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(7478 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (204 5600 5600))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/species/breeder-ratio.r"
+  "breeder-ratio.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/overlap/effort.sql"
+  "effort.sql"
+  'sql-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  9
+  '(283 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (907 907 1086 1095 1086 283))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-southern-hemisphere/data/species/breeding-season.r"
+  "breeding-season.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
   "/slow/yvan/dragonfly/bycatch.dragonfly.co.nz/summary/explore/selectmodel.py"
   "selectmodel.py"
   'python-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode flyspell-mode auto-revert-mode TeX-PDF-mode)
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
   6254
   '(nil nil)
   nil
@@ -1422,119 +2754,35 @@
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/von-bertalanffy-2.r"
-  "von-bertalanffy-2.r"
+  "/home/yvan/dragonfly/sra-southern-hemisphere/model/apf-calc.r"
+  "apf-calc.r"
   'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  494
-  '(586 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (99 99 99 99 99 505 145 99 99 145 3279 1961 1997 1 1734 10))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/von-bertalanffy.r"
-  "von-bertalanffy.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  666
-  '(631 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (1 1 3964 1 1096))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/JAGSmodel.txt"
-  "JAGSmodel.txt"
-  'text-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  1522
-  '(2158 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring (1522))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/runjags.r"
-  "runjags.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  361
-  '(451 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (1))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/subplots-on-ggmap.r"
-  "subplots-on-ggmap.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/rbokeh.r"
-  "rbokeh.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  3267
-  '(3233 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
-  '((mark-ring (4295 4295 5272 5272 5140 4388 4388 4403 5272 5141 5272 5272 3594 3593 3594 2136))))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/find-duplicated-block.r"
-  "find-duplicated-block.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  85
-  '(348 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (395 299 346 246 215 185 1 1 213 185 126 95 75 39 1 95))))
-
-(desktop-create-buffer 208
-  "/home/yvan/Dropbox/customisations/yas-snippets/ess-mode/save"
-  "save"
-  'snippet-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  49
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/yvan/dragonfly/mytests/ggplot-tooltip.r"
-  "ggplot-tooltip.r"
-  'ess-mode
-  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  3232
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  728
   '(1 nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (1456 1 1029 830 3625 1 1 3625 1 1 1 1 1 3625 834 1492))))
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (728))))
 
 (desktop-create-buffer 208
-  "/home/yvan/Dropbox/customisations/yas-snippets/latex-mode/aas"
-  "aas"
-  'snippet-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  47
+  "/home/yvan/.emacs.d/org-mind-map.el"
+  "org-mind-map.el"
+  'emacs-lisp-mode
+  '(abbrev-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  1
+  '(13359 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . prefer-utf-8-unix))
+  '((mark-ring (1))))
+
+(desktop-create-buffer 208
+  "/home/yvan/Documents/*helm*"
+  "*helm*"
+  'fundamental-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode company-mode TeX-PDF-mode buffer-face-mode)
+  2
   '(nil nil)
   nil
   nil
@@ -1542,26 +2790,110 @@
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/yvan/Dropbox/customisations/yas-snippets/ess-mode/psql"
-  "psql"
-  'snippet-mode
-  '(auto-fill-mode abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode flyspell-mode TeX-PDF-mode)
-  76
-  '(76 nil)
+  "/home/yvan/dragonfly/r-ludicio/ludicio.r"
+  "ludicio.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  5066
+  '(9018 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (15131 2888 2440 1886 5818 5774 1904 2536 2520 2956 2676 6031 2557 5174 2617 5234))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/oreo/model/seabirds_bll.sql"
+  "seabirds_bll.sql"
+  'sql-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  8215
+  '(153 nil)
   nil
   nil
   '((buffer-file-coding-system . undecided-unix))
-  '((mark-ring (94 84))))
+  '((mark-ring (153 153 153 8215))))
 
 (desktop-create-buffer 208
-  "/slow/yvan/Dropbox/customisations/yas-snippets/latex-mode/sexp_s"
-  "sexp_s"
-  'fundamental-mode
-  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode override-global-mode company-mode TeX-PDF-mode)
-  1
+  "/slow/yvan/dragonfly/oreo/model/initial.sql"
+  "initial.sql"
+  'sql-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  1177
   '(nil nil)
   nil
   nil
   '((buffer-file-coding-system . undecided-unix))
   '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/ludicio/ludicio/commands.py"
+  "commands.py"
+  'python-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  4209
+  '(4692 nil)
+  nil
+  nil
+  '((tab-width . 8) (indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (7023 3305 4581 4548 1277 6237 7325 1208 545 1221 1317 1154 1208 1835 4654 4450))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/ludicio/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  96
+  '(86 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/oreo/tests/cases/test_otr_observer_effort.sql"
+  "test_otr_observer_effort.sql"
+  'sql-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  14317
+  '(11206 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (14207 10108 9844 12292 626 10861 10862 5321 626 697 9844 14207 14211 14246 14288 11206))))
+
+(desktop-create-buffer 208
+  "/slow/yvan/dragonfly/oreo/initial/functions.sql"
+  "functions.sql"
+  'sql-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  11619
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/model/model-report.Rmd"
+  "model-report.Rmd[poly-head-tail][poly-head-tail][poly-head-tail][poly-head-tail][poly-head-tail]"
+  'poly-head-tail-mode
+  '(abbrev-mode helm-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode poly-markdown+r-mode company-mode auto-revert-mode flyspell-mode TeX-PDF-mode buffer-face-mode)
+  5942
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/seabird-risk-assessment/model/model-report.Rmd"
+  "model-report.Rmd[poly-head-tail][poly-head-tail][poly-head-tail][poly-head-tail][r]"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode poly-markdown+r-mode company-mode auto-revert-mode TeX-PDF-mode buffer-face-mode)
+  5054
+  '(5054 t)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (overwrite-mode) (truncate-lines))
+  '((mark-ring (4358 4173))))
 

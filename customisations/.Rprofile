@@ -6,7 +6,7 @@
 ## see help(Startup) for documentation on ~/.Rprofile and Rprofile.site
 
 #### Example of .Rprofile
-options(width=110)
+options(width=115)
 ## options(width=65, digits=5)
 ## options(show.signif.stars=FALSE)
 ## setHook(packageEvent("grDevices", "onLoad"),
@@ -41,7 +41,7 @@ options(error = function() traceback(2))
 local({
     old <- getOption("defaultPackages")
     r <- getOption("repos")
-    r["CRAN"] <- "http://cran.stat.auckland.ac.nz"
+    r["CRAN"] <- "https://cran.stat.auckland.ac.nz"
     r["INLA"] <- "http://www.math.ntnu.no/inla/R/testing"
     options(defaultPackages        = c(old, "yrpkg"),
             repos                  = r,
