@@ -69,7 +69,7 @@
  '(font-latex-fontify-sectioning 1.05)
  '(helm-adaptive-mode t nil (helm-adaptive))
  '(helm-ag-use-grep-ignore-list t)
- '(helm-always-two-windows nil)
+ '(helm-always-two-windows t)
  '(helm-autoresize-mode t)
  '(helm-completing-read-handlers-alist
    (quote
@@ -92,6 +92,9 @@
  '(helm-mode-fuzzy-match t)
  '(helm-split-window-inside-p t)
  '(helm-swoop-speed-or-color t)
+ '(helm-swoop-split-direction (quote split-window-vertically))
+ '(helm-swoop-split-with-multiple-windows t)
+ '(helm-swoop-use-line-number-face t)
  '(hl-sexp-background-color "#201520")
  '(ibuffer-filter-group-name-face (quote compilation-info))
  '(inhibit-startup-screen t)
@@ -338,10 +341,11 @@ there's a region, all lines that region covers will be duplicated."
  '(helm-buffer-file ((t nil)))
  '(helm-ff-directory ((t (:inherit diredp-dir-priv))))
  '(helm-selection ((t (:background "#550000" :distant-foreground "black" :weight bold))))
- '(helm-swoop-target-line-face ((t (:background "#000000"))))
+ '(helm-swoop-target-line-block-face ((t (:background "#444400"))))
+ '(helm-swoop-target-line-face ((t (:background "#444444"))))
  '(hi-yellow ((t (:background "yellow1" :foreground "red"))))
  '(highlight ((t (:background "#552222"))))
- '(highlight-indentation-face ((t (:inherit fringe :background "gray11"))))
+ '(highlight-indentation-face ((t (:inherit fringe :background "gray30"))))
  '(italic ((t (:height 0.7))))
  '(link ((t (:foreground "#CCDDFF" :underline "#110011"))))
  '(markdown-header-face-2 ((t (:inherit markdown-header-face :foreground "spring green" :height 1.0))))
@@ -1383,6 +1387,7 @@ prompt the user for a coding system."
 ;; * helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (global-set-key (kbd "C-c h") 'helm-mini)
+
 (require 'helm)
 (require 'helm-config)
 (helm-mode 1)
@@ -1755,8 +1760,8 @@ With C-u C-u: insert date and time"
 (define-key dumb-jump-mode-map (kbd "C-M-q") nil)
 (define-key dumb-jump-mode-map (kbd "C-M-j") 'dumb-jump-quick-look)
 
-;; (global-set-key (kbd "C-s") 'helm-swoop)
-(global-set-key (kbd "C-s") 'helm-occur)
+(global-set-key (kbd "C-s") 'helm-swoop)
+;; (global-set-key (kbd "C-s") 'helm-occur)
 
 
 (when (window-system)
@@ -1799,3 +1804,5 @@ With C-u C-u: insert date and time"
                       (buffer-face-set '(:background "#212121"))))))
   (buffer-face-set 'default))
 (add-hook 'buffer-list-update-hook 'highlight-selected-window)
+
+
