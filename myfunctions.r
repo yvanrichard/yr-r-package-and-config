@@ -911,10 +911,12 @@ makeuniquefilename <- function(x) {
 
 ## Open data frame in oocalc
 localc <- function(df, row.names=T, newl.at=100, ...) {
+    library(data.table)
+    df <- as.data.table(df)
     f <- tempfile(fileext = '.csv')
     if (!is.na(newl.at)) { ## insert return line when field is too long
-        nch = lapply(df, function(x) max(na.omit(nchar(as.character(x)))))
-        toolongcols = names(nch[nch>newl.at])
+        nch <- lapply(df, function(x) max(na.omit(nchar(as.character(x)))))
+        toolongcols <- names(nch[nch>newl.at])
         for (c in toolongcols) {
             df[[c]] <- as.character(df[[c]])
             toolongvals = nchar(df[[c]]) > newl.at
@@ -929,7 +931,9 @@ localc <- function(df, row.names=T, newl.at=100, ...) {
                                         })
         }
     }
-    write.csv(as.data.frame(df), f, row.names=row.names, ...)
+    lstcols <- sapply(df, is.list)
+    df[, names(lstcols[lstcols==T]) := NULL]
+    fwrite(df, f, row.names=row.names, ...)
     res <- system(sprintf('localc %s', f), wait=F)
 }
 
@@ -4042,3 +4046,112 @@ replace_nas <- function(DT) {
             set(DT, which(is.na(DT[[j]])), j, 0)
     }
 }
+
+
+
+## ## Function to fill in missing pixels with mean of non-missing cells in the 4-cell neighbourhood
+## library(inline)
+## src1 <- '
+##     Rcpp::NumericMatrix Am(A);
+##     int na = Rcpp::as<int>(missval);
+##     NumericMatrix Bm = Am;
+##     int nrows = Am.nrow();
+##     int ncolumns = Am.ncol();
+##     int n = 0;
+##     float sum = 0;
+##     for (int i = 1; i < (ncolumns-1); i++) {
+##         for (int j = 1; j < (nrows-1); j++) {
+##             if (Am(j,i)==na && (Am(j+1,i) != na || Am(j-1,i) != na || Am(j,i+1) != na || Am(j,i-1) != na)) {
+##                n = 0;
+##                sum = 0;
+##                if (Am(j+1,i) != na) {
+##                  n = n+1;
+##                  sum = sum + Am(j+1,i);
+##                }
+##                if (Am(j-1,i) != na) {
+##                  n = n+1;
+##                  sum = sum + Am(j-1,i);
+##                }
+##                if (Am(j,i+1) != na) {
+##                  n = n+1;
+##                  sum = sum + Am(j,i+1);
+##                }
+##                if (Am(j,i-1) != na) {
+##                  n = n+1;
+##                  sum = sum + Am(j,i-1);
+##                }
+##                Bm(j,i) = sum/n;
+##             }
+##         }
+##     }
+##     return Bm;
+## '
+## fillincoastline_forward <- cxxfunction(signature(A = "numeric", missval = "integer"),
+##                                       body = src1, plugin="Rcpp")
+
+## src2 <- '
+##     Rcpp::NumericMatrix Am(A);
+##     int na = Rcpp::as<int>(missval);
+##     NumericMatrix Bm = Am;
+##     int nrows = Am.nrow();
+##     int ncolumns = Am.ncol();
+##     int n = 0;
+##     float sum = 0;
+##     for (int j = (nrows-1); j > 1; j--) {
+##         for (int i = 1; i < (ncolumns-1); i++) {
+##             if (Am(j,i)==na && (Am(j+1,i) != na || Am(j-1,i) != na || Am(j,i+1) != na || Am(j,i-1) != na)) {
+##                n = 0;
+##                sum = 0;
+##                if (Am(j+1,i) != na) {
+##                  n = n+1;
+##                  sum = sum + Am(j+1,i);
+##                }
+##                if (Am(j-1,i) != na) {
+##                  n = n+1;
+##                  sum = sum + Am(j-1,i);
+##                }
+##                if (Am(j,i+1) != na) {
+##                  n = n+1;
+##                  sum = sum + Am(j,i+1);
+##                }
+##                if (Am(j,i-1) != na) {
+##                  n = n+1;
+##                  sum = sum + Am(j,i-1);
+##                }
+##                Bm(j,i) = sum/n;
+##             }
+##         }
+##     }
+##     return Bm;
+## '
+## fillincoastline_backward <- cxxfunction(signature(A = "numeric", missval = "integer"),
+##                                        body = src2, plugin="Rcpp")
+
+
+## clean_raster <- function(r, missval=-9999, naval=NA, show.progress=F) {
+##     r1 <- r2 <- r
+##     ## ** Forward
+##     r1[r1[] %in% naval] <- missval
+##     prevvals <- rep(0, length(r1[]))
+##     while (!identical(prevvals, r1[])) {
+##         if (show.progress) cat('.')
+##         prevvals <- r1[]
+##         m <- fillincoastline_forward(as.matrix(r1), missval)
+##         r1 <- setValues(r1, m)
+##     }
+##     if (show.progress) cat('\n')
+##     r1[r1[] == missval] <- naval
+##     ## ** Backward
+##     r2[r2[] %in% naval] <- missval
+##     prevvals <- rep(0, length(r2[]))
+##     while (!identical(prevvals, r2[])) {
+##         if (show.progress) cat('.')
+##         prevvals <- r2[]
+##         m <- fillincoastline_backward(as.matrix(r2), missval)
+##         r2 <- setValues(r2, m)
+##     }
+##     if (show.progress) cat('\n')
+##     r2[r2[] == missval] <- naval
+##     ## ** Mean
+##     return(r1 + r2 / 2)
+## }

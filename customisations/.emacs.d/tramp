@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <18/02/16 13:12:15 /home/yvan/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <18/04/03 09:29:29 /home/yvan/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -125,7 +125,7 @@
   ("git" "\\git")
   ("trash" nil))
  (["sudo" "root" "huia" nil nil]
-  ("uname" "Linux 4.4.0-112-generic")
+  ("uname" "Linux 4.4.0-116-generic")
   ("locale" "LC_ALL=en_US.utf8")
   ("test" "test")
   ("remote-path"

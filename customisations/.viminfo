@@ -21,7 +21,7 @@ $dragonfly
 
 # Command Line History (newest to oldest):
 :wq
-|2,0,1512692382,,"wq"
+|2,0,1523539112,,"wq"
 :q
 |2,0,1511746145,,"q"
 :ls
@@ -273,34 +273,148 @@ $dragonfly
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
 |4,76,20,45,0,"~/dragonfly/sra-foundations/report/research_progress/methods.rnw"
-'0  1  0  ~/Downloads/PanoplyJ/panoply.sh
-|4,48,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
-'1  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,49,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
-'2  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,50,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
-'3  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,51,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
-'4  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,52,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
-'5  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,53,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
-'6  183  31  /slow/yvan/dragonfly/NMS/src/utilities.r
-|4,54,183,31,1511746005,"/slow/yvan/dragonfly/NMS/src/utilities.r"
-'7  2  0  /tmp/user/15002/psql.edit.29719.sql
-|4,55,2,0,1511745895,"/tmp/user/15002/psql.edit.29719.sql"
-'8  15  12  /tmp/user/15002/psql.edit.29719.sql
-|4,56,15,12,1511745780,"/tmp/user/15002/psql.edit.29719.sql"
-'9  15  12  /tmp/user/15002/psql.edit.29719.sql
-|4,57,15,12,1511745780,"/tmp/user/15002/psql.edit.29719.sql"
+'0  3  10  ~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r
+|4,48,3,10,1523539112,"~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r"
+'1  1  0  ~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG
+|4,49,1,0,1523422732,"~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG"
+'2  1  0  ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
+|4,50,1,0,1519159558,"~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG"
+'3  1  0  ~/Downloads/PanoplyJ/panoply.sh
+|4,51,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
+'4  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,52,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+'5  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,53,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+'6  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,54,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+'7  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,55,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+'8  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
+|4,56,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
+'9  183  31  /slow/yvan/dragonfly/NMS/src/utilities.r
+|4,57,183,31,1511746005,"/slow/yvan/dragonfly/NMS/src/utilities.r"
 
 # Jumplist (newest first):
+-'  3  10  ~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r
+|4,39,3,10,1523539112,"~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r"
+-'  1  0  ~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r
+|4,39,1,0,1523539096,"~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r"
+-'  1  0  ~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG
+|4,39,1,0,1523422732,"~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG"
+-'  1  0  ~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG
+|4,39,1,0,1523422732,"~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG"
+-'  1  0  ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
+|4,39,1,0,1519159558,"~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG"
+-'  1  0  ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
+|4,39,1,0,1519159558,"~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG"
+-'  1  0  ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
+|4,39,1,0,1519159558,"~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG"
+-'  1  0  ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
+|4,39,1,0,1519159558,"~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG"
+-'  1  0  ~/Downloads/PanoplyJ/panoply.sh
+|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
+-'  1  0  ~/Downloads/PanoplyJ/panoply.sh
+|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
+-'  1  0  ~/Downloads/PanoplyJ/panoply.sh
+|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
+-'  1  0  ~/Downloads/PanoplyJ/panoply.sh
+|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
+-'  1  0  ~/Downloads/PanoplyJ/panoply.sh
+|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
+-'  1  0  ~/Downloads/PanoplyJ/panoply.sh
+|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
+-'  1  0  ~/Downloads/PanoplyJ/panoply.sh
+|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
 -'  1  0  ~/Downloads/PanoplyJ/panoply.sh
 |4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
 -'  1  0  /tmp/user/15002/psql.edit.10119.sql
 |4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
 -'  1  0  /tmp/user/15002/psql.edit.10119.sql
 |4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.10119.sql
+|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
+-'  1  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
 -'  1  0  /tmp/user/15002/psql.edit.11528.sql
 |4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
 -'  1  0  /tmp/user/15002/psql.edit.11528.sql
@@ -325,178 +439,79 @@ $dragonfly
 |4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
 -'  12  0  /tmp/user/15002/psql.edit.11528.sql
 |4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507639,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507639,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507639,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507639,"/tmp/user/15002/psql.edit.11528.sql"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  80  38  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,80,38,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  74  44  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,74,44,1511746029,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  38  33  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,38,33,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  19  30  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,19,30,1511746028,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
--'  89  62  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,39,89,62,1511746027,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  12  0  /tmp/user/15002/psql.edit.11528.sql
+|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
 
 # History of marks within files (newest to oldest):
+
+> ~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r
+	*	1523539110	0
+	"	3	10
+	^	3	11
+	.	3	11
+	+	3	11
+
+> ~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG
+	*	1523422728	0
+	"	1	0
+
+> ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
+	*	1519159557	0
+	"	1	0
 
 > ~/Downloads/PanoplyJ/panoply.sh
 	*	1515639115	0
@@ -1158,44 +1173,3 @@ $dragonfly
 
 > ~/mydeck/index.Rmd
 	"	1	0
-
-> /tmp/psql.edit.8530
-	"	10	1
-	^	10	0
-	.	2	1
-	+	1	15
-	+	11	0
-	+	2	110
-	+	1	14
-	+	2	1
-	+	2	117
-	+	5	1
-	+	5	114
-	+	6	40
-	+	4	4
-	+	6	41
-	+	2	1
-	+	6	41
-	+	7	9
-	+	8	113
-	+	7	3
-	+	9	5
-	+	2	3
-	+	5	0
-	+	2	1
-	+	5	1
-	+	6	3
-	+	8	0
-	+	9	29
-	+	11	0
-	+	2	1
-
-> /usr/share/themes/Ambiance/gtk-3.0/gtk-widgets.css
-	"	1308	0
-
-> ~/.config/gtk-3.0/gtk.css
-	"	4	0
-	^	4	1
-	.	2	0
-	+	1	0
-	+	2	0

@@ -8,6 +8,7 @@
 	backward-sexp
 	electric-newline-and-maybe-indent
 	end-of-buffer
+	ess-smart-S-assign
 	ess-smart-comma
 	ess-yank
 	forward-sexp

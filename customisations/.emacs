@@ -97,6 +97,7 @@
  '(helm-swoop-use-line-number-face t)
  '(hl-sexp-background-color "#201520")
  '(ibuffer-filter-group-name-face (quote compilation-info))
+ '(ido-ignore-extensions nil)
  '(inhibit-startup-screen t)
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(ispell-local-dictionary "en_GB")
@@ -331,7 +332,7 @@ there's a region, all lines that region covers will be duplicated."
  '(font-latex-warning-face ((t (:foreground "orange red"))))
  '(font-lock-builtin-face ((t (:foreground "PeachPuff"))))
  '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
- '(font-lock-comment-face ((t (:foreground "#666666"))))
+ '(font-lock-comment-face ((t (:foreground "#707070"))))
  '(font-lock-constant-face ((t (:inherit default :foreground "#55AA55"))))
  '(font-lock-function-name-face ((t (:foreground "light blue"))))
  '(font-lock-keyword-face ((t (:foreground "#88DD88"))))
@@ -588,6 +589,7 @@ prompt the user for a coding system."
 	 ("SRA 2014" (filename . "sra-2014"))
 	 ("SRA 2016" (filename . "sra-2016"))
 	 ("SRA foundations" (filename . "sra-foundations"))
+	 ("Whaleshark" (filename "whaleshark-interactions"))
 	 ("Estimation 2014-15" (filename . "estimation-2014-15"))
 	 ("Estimation 2014" (filename . "estimation-2014"))
 	 ("Estimation 2015" (filename . "estimation-2015"))
@@ -607,6 +609,7 @@ prompt the user for a coding system."
 			   (filename . "BlueAbs")))
 	 ("Cadmium" (filename . "cadmium"))
 	 ("My tests" (filename . "mytests"))
+	 ("SENTIO" (filename . "sentio-leave-calculation"))
 	 ("NZ elections" (filename . "nz-elections"))
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")
@@ -614,7 +617,8 @@ prompt the user for a coding system."
       	 ("SRA global" (or (filename . "sra-southern-hemisphere")
 			   (filename . "seabird-risk-assessment")
 			   (filename . "sra-example-creation")
-			   (filename . "wanderers-at-sea-distribution")))
+			   (filename . "wanderers-at-sea-distribution")
+			   (filename . "southern-hemisphere-sra")))
 )))
 (add-hook 'ibuffer-mode-hook 
 	  '(lambda ()
@@ -670,7 +674,7 @@ prompt the user for a coding system."
 (setq ess-use-auto-complete 'script-only)
 ;; (require 'ess-site)
 
-(setq ess-eval-visibly-p nil) ;otherwise C-c C-r (eval region) takes forever
+(setq ess-eval-visibly-p t) ;otherwise C-c C-r (eval region) takes forever
 (setq ess-ask-for-ess-directory nil) ;otherwise you are prompted each time you start
 
 ;; (setq ess-local-process-name "R")
@@ -1391,7 +1395,7 @@ prompt the user for a coding system."
 (require 'helm)
 (require 'helm-config)
 (helm-mode 1)
-(global-set-key (kbd "C-c g") 'helm-do-grep)
+;; (global-set-key (kbd "C-c g") 'helm-do-grep)
 ;; (eval-after-load 'helm-grep
 ;;   '(setq helm-grep-default-command helm-grep-default-recurse-command))
 (global-set-key (kbd "C-x C-f") 'helm-find-files)

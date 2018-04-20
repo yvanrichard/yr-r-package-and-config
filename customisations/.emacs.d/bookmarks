@@ -2,7 +2,17 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("scrape-fb.r2"
+(("b"
+ (filename . "~/dragonfly/sentio-leave-calculation/data/7-day-subpatterns.r")
+ (front-context-string . "days_worked_cycl")
+ (rear-context-string . "[, fixed_seq := ")
+ (position . 16762))
+("f"
+ (filename . "~/dragonfly/sentio-leave-calculation/data/7-day-subpatterns.r")
+ (front-context-string . "days_worked_cycl")
+ (rear-context-string . "eturn(FALSE)\n}\n\n")
+ (position . 2470))
+("scrape-fb.r2"
  (filename . "~/dragonfly/mytests/chrisyeabsley/scrape-fb.r")
  (front-context-string . "0701, 947\n201607")
  (rear-context-string . "160630, 949\n2016")
