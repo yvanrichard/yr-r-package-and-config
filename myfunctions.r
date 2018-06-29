@@ -910,7 +910,41 @@ makeuniquefilename <- function(x) {
 }
 
 ## Open data frame in oocalc
-localc <- function(df, row.names=T, newl.at=100, ...) {
+localc <- function(df, row.names=F, newl.at=NA, na.col.rm=T, ...) {
+    library(data.table)
+    df <- as.data.table(df)
+    f <- tempfile(fileext = '.csv')
+    if (!is.na(newl.at)) { ## insert return line when field is too long
+        nch <- lapply(df, function(x) max(na.omit(nchar(as.character(x)))))
+        toolongcols <- names(nch[nch>newl.at])
+        for (c in toolongcols) {
+            df[[c]] <- as.character(df[[c]])
+            toolongvals = nchar(df[[c]]) > newl.at
+            df[[c]][toolongvals] <- sapply(df[[c]][toolongvals], function(x) {
+                                            s = strsplit(x,'')[[1]]
+                                            s1 = grep('[[:blank:]]',s)
+                                            s0 = c(seq(1, nchar(x), newl.at), nchar(x))
+                                            i = findInterval(s1, s0, rightmost.closed=T)
+                                            s2 = s1[ (i[-length(i)]-i[-1]) == -1]
+                                            s[s2] <- '\n'
+                                            return(paste(s, collapse=''))
+                                        })
+        }
+    }
+    lstcols <- sapply(df, is.list)
+    if (any(lstcols))
+        df[, names(lstcols[lstcols==T]) := NULL]
+    if (na.col.rm) {
+        df <- df[, sapply(df, function(x) all(is.na(x))) == F, with=F]
+    }
+    fwrite(df, f, row.names=row.names, ...)
+    ## res <- system(sprintf('localc %s', f), wait=F)
+    res <- system(sprintf('tad %s', f), wait=F)
+    ## res <- system(sprintf('gnumeric %s', f), wait=F)
+    ## res <- system(sprintf('gnumeric %s', f), wait=F)
+}
+
+focalc <- function(df, row.names=T, newl.at=100, ...) {
     library(data.table)
     df <- as.data.table(df)
     f <- tempfile(fileext = '.csv')
@@ -934,7 +968,7 @@ localc <- function(df, row.names=T, newl.at=100, ...) {
     lstcols <- sapply(df, is.list)
     df[, names(lstcols[lstcols==T]) := NULL]
     fwrite(df, f, row.names=row.names, ...)
-    res <- system(sprintf('localc %s', f), wait=F)
+    res <- system(sprintf('planmaker18free %s', f), wait=F)
 }
 
 
@@ -3105,7 +3139,7 @@ replicateFileStruct <- function(fold = '.', outdir = '~/test', overwrite = F, re
 
 ## Display occurrences of a term in a graph (using tags), with tooltip about context in code
 ## TODO: open file at correct line using "emacsclient +4 <file>" when clicked on occurrence to open at line 4.
-plottag <- function(word = 'observer_species', tagfile='~/dragonfly/oreo/tags', agent = 'dot', tooltip_len = 10) {
+plottag <- function(word = 'observer_species', tagfile='/slow/yvan/dragonfly/oreo/tags', agent = 'dot', tooltip_len = 10) {
     op <- options('useFancyQuotes')
     options('useFancyQuotes'=F)
     tags <- read.table(tagfile, sep ='\t', as.is=T)
@@ -4155,3 +4189,93 @@ replace_nas <- function(DT) {
 ##     ## ** Mean
 ##     return(r1 + r2 / 2)
 ## }
+
+
+
+approximate_left_join <- function(left, right, on.col = 'datetime', take='nearest', nomatch=NA,
+                          id.col.left = NULL, id.col.right = NULL) {
+    ## * Find nearest, closest lower, or closest higher value
+    library(data.table)
+    if (!is.data.table(left))  left  <- as.data.table(left)
+    if (!is.data.table(right)) right <- as.data.table(right)
+    ## ** Prepare
+    if (!(take %in% c('nearest', 'lower', 'higher')))
+        stop('`take` needs to be one of `nearest`, `lower`, `higher`')
+    roll <- switch(take, lower = Inf, higher = -Inf, 'nearest')
+    if (is.null(id.col.left)) {
+        left[,  id.left  := seq_len(.N)]
+    } else left[, id.left := get(id.col.left)]
+    if (is.null(id.col.right)) {
+        right[,  id.right  := seq_len(.N)]
+    } else right[, id.right := get(id.col.right)]
+    left[, oncol := get(on.col)]
+    right[, oncol := get(on.col)]
+    j <- right[left, on = 'oncol', roll = roll, nomatch=nomatch]
+    ## ** Join
+    j[right, value.joined := i.oncol, on = 'id.right']
+    ## ** Cleanup
+    left[ , id.left  := NULL]
+    right[, id.right := NULL]
+    j <- j[, .(id.left, oncol, id.right, value.joined)]
+    setnames(j, 'id.left', ifelse(is.null(id.col.left), 'id'))
+    setnames(j, 'id.right', ifelse(is.null(id.col.right), 'id.joined'))
+    setnames(j, c('oncol', 'value.joined'),
+             c(on.col, paste0(on.col, '_joined')))
+    return(j)
+}
+
+
+
+distance2target <- function(rast, target_value, na_value=-99999, use_input_nodata = T) {
+    ## * Raster: Calculate distance to cells of target value
+    rast[is.na(rast)] <- na_value
+    tmp <- tempfile()
+    writeRaster(rast, tmp, 'GTiff')
+    system(sprintf('gdal_proximity.py %1$s.tif %1$s_out.tif -values %2$s -nodata %3$f -use_input_nodata %4$s',
+                   tmp, target_value, na_value, ifelse(use_input_nodata, 'YES', 'NO')))
+    r <- raster(sprintf('%s_out.tif', tmp))
+    r[r[] == na_value] <- NA
+    return(r)
+}
+
+
+longest_common_substring <- function(a, b) {
+    library(stringi)
+    if (!is.na(a) & !is.na(b)) {
+        nc <- nchar(b)
+        is <- CJ(seq_len(nc), seq_len(nc))[V2 >= V1]
+        sb <- stri_sub(b, is$V1, is$V2)
+        sstr <- na.omit(stri_extract_all_coll(a, sb, simplify=TRUE))
+        res <- sstr[which.max(nchar(sstr))]
+        if (length(res)) {
+            return(res)
+        } else return(NA)
+    } else return(NA)
+}
+
+
+convert_files_to_txt <- function(filepaths, mc.cores = 6) {
+    conv.fun <- c(rtf  = "unrtf --text --nopict \"%s\" | tail -n+5 > \"%s\"",
+                  docx = "unzip -p \"%s\" word/document.xml | sed -e 's/<\\/w:p>/\\n/g; s/<[^>]\\{1,\\}>//g; s/[^[:print:]\\n]\\{1,\\}//g' > \"%s\"",
+                  pdf  = "pdftotext \"%s\" \"%s\"",
+                  odt  = "unoconv -f txt --stdout \"%s\" > \"%s\"")
+    ext <- tolower(sub('.*\\.([a-zA-Z0-9-]+)$', '\\1', filepaths))
+    ext[ext %in% 'pdf-1'] <- 'pdf'
+    outfiles <- paste0(filepaths, '.txt')
+    res <- mclapply(seq_along(filepaths), function(i) {
+        f <- filepaths[i]
+        convf <- conv.fun[ext[i]]
+        if (!is.na(convf)) {
+            cmd <- sprintf(convf, f, outfiles[i])
+            tryCatch(system(cmd, intern=T),
+                     warning = function(w) {
+                         cat('Warning with ', f, '\n')
+                     },
+                     error = function(e) {
+                         cat('Error with ', f, '\n')
+                     })
+        } else {
+            warning(sprintf('No converter found for %s. Skipped.', f))
+        }
+    }, mc.cores = mc.cores)
+}
