@@ -99,14 +99,19 @@ lower1st <- function(x) {
     return(x)
 }
 
-upper1st <- function(x) {
-    if (is.factor(x))
-        x0 <- levels(x) else x0 <- as.character(x)
+upper1st <- function (x, prelower = T) {
+    if (is.factor(x)) 
+        x0 <- levels(x)
+    else x0 <- as.character(x)
+    if (prelower) x0 <- tolower(x0)
     nc <- nchar(x0)
-    x0[nc > 1] <- sprintf('%s%s', toupper(substr(x0[nc > 1], 1, 1)), substr(x0[nc > 1], 2, nchar(x0[nc > 1])))
+    nc[is.na(nc)] <- 0
+    x0[nc > 1] <- sprintf("%s%s", toupper(substr(x0[nc > 1], 1, 1)),
+                          substr(x0[nc > 1], 2, nchar(x0[nc > 1])))
     x0[nc == 1] <- toupper(x0[nc == 1])
-    if (is.factor(x))
-        levels(x) <- x0 else x <- x0
+    if (is.factor(x)) 
+        levels(x) <- x0
+    else x <- x0
     return(x)
 }
 
@@ -910,7 +915,7 @@ makeuniquefilename <- function(x) {
 }
 
 ## Open data frame in oocalc
-localc <- function(df, row.names=F, newl.at=NA, na.col.rm=T, ...) {
+localc <- function(df, row.names=F, newl.at=NA, na.col.rm=T, openwith='localc', ...) {
     library(data.table)
     df <- as.data.table(df)
     f <- tempfile(fileext = '.csv')
@@ -939,7 +944,7 @@ localc <- function(df, row.names=F, newl.at=NA, na.col.rm=T, ...) {
     }
     fwrite(df, f, row.names=row.names, ...)
     ## res <- system(sprintf('localc %s', f), wait=F)
-    res <- system(sprintf('tad %s', f), wait=F)
+    res <- system(sprintf('%s %s', openwith, f), wait=F)
     ## res <- system(sprintf('gnumeric %s', f), wait=F)
     ## res <- system(sprintf('gnumeric %s', f), wait=F)
 }
@@ -1448,7 +1453,8 @@ check_cited_labels <- function(reportfile='report.tex', ignore=c('sec','subsec',
 ##makefile <- '~/dragonfly/sra-foundations/modelling/bh-dd-k50/makefile'
 ## makefile <- '~/dragonfly/sra-foundations/report/notes/makefile'
 graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranksep=0.2, ratio=0.8, margin=1,
-                   ignore.clusters=F, ignore.utils=F, expand.vars=F, filter='dot') {
+                           ignore.clusters=F, ignore.utils=F, expand.vars=F, filter='dot') {
+
     opt <- options("useFancyQuotes")
     options(useFancyQuotes = FALSE)
 
@@ -1550,20 +1556,20 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     sm <- strsplit(m, ':')
 
     all <- sapply(sm, function(x) {
-                      targs <- x[1]
-                      other <- sapply(x[-1], function(y) strsplit(y, '\t')[[1]], USE.NAMES=F, simplify=F)[[1]]
-                      if (!grepl('^ *$', other[1])) {                           # with deps
-                          deps <- gsub('  +', ' ', trim(other[1]))
-                          deps <- strsplit(deps, ' ')[[1]]
-                          acts <- other[-1]
-                          if (!length(other[-1]))
-                              acts <- NA
-                      } else  {
-                          deps <- NA
-                          acts <- other[-1]
-                      }
-                      return(list(targs=trim(targs), deps=trim(deps), acts=trim(acts)))
-                  }, simplify=F)
+        targs <- x[1]
+        other <- sapply(x[-1], function(y) strsplit(y, '\t')[[1]], USE.NAMES=F, simplify=F)[[1]]
+        if (!grepl('^ *$', other[1])) {                           # with deps
+            deps <- gsub('  +', ' ', trim(other[1]))
+            deps <- strsplit(deps, ' ')[[1]]
+            acts <- other[-1]
+            if (!length(other[-1]))
+                acts <- NA
+        } else  {
+            deps <- NA
+            acts <- other[-1]
+        }
+        return(list(targs=trim(targs), deps=trim(deps), acts=trim(acts)))
+    }, simplify=F)
 
     all <- rapply(all, function(x) {
         x <- gsub('\'|\"', '', x)
@@ -1595,14 +1601,14 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     all2 <- all
     ## Turn actions into single nodes
     all2 <- sapply(all2, function(x) {
-                       y <- x$acts
-                       y <- gsub('\"', '', y)
-                       y <- unlist(strsplit(y, ' *&& *'))
-                       if (!any(is.na(y)))
-                           y <- paste(y, collapse='\\n')
-                       x$acts <- y
-                       return(x)
-                   }, simplify=F)
+        y <- x$acts
+        y <- gsub('\"', '', y)
+        y <- unlist(strsplit(y, ' *&& *'))
+        if (!any(is.na(y)))
+            y <- paste(y, collapse='\\n')
+        x$acts <- y
+        return(x)
+    }, simplify=F)
     all2 <- rapply(all2, function(x) return(ifelse(is.na(x), NA, dQuote(x))), how='replace')
     
     gf <- sprintf('digraph G {
@@ -1626,7 +1632,7 @@ rankdir=%s; nodesep=%f; ranksep=%f; ratio=%f; margin=%f;
             els <- gettype(td)
             gf <- c(gf, sprintf('subgraph cluster%1$i {
 label=%2$s; style="rounded,filled"; color=gray50; fillcolor=%3$s; fontcolor=red; fontsize=20; nojustify=true;',
-                                i, dQuote(names(ps)[i]), colc))
+i, dQuote(names(ps)[i]), colc))
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colu, els$u))
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colp, els$p))
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', cold, els$d))
@@ -1689,6 +1695,7 @@ label=%2$s; style="rounded,filled"; color=gray50; fillcolor=%3$s; fontcolor=red;
     system(sprintf('%s -Tpdf %s -o %s', filter, dotfile, pdffile))
     ## system(sprintf('xdg-open %s', pdffile), wait=F)
     system(sprintf('xdot %s --filter %s', dotfile, filter), wait=F)
+
 }
 
 
@@ -2989,7 +2996,9 @@ zoom1 <- function(spobj, new=T, ...) {
 str2org <- function(what, tmpfile = tempfile('str_output_'), open = T) {
 ## Return the output of str() as an org file (open in emacs) for better visibility and collapsible levels
     orgfile <- paste0(tmpfile, '.org')
-    capture.output(str(what, list.len = 199), file=tmpfile)
+    tryCatch({
+        capture.output(str(what, list.len = 199), file=tmpfile)
+        }, error = function(e) e, finally = warning('Some error occurred'))
     strout <- readLines(tmpfile)
     strout <- gsub('^([[:blank:].]*)\\.\\.\\$', '\\1.. .. $', strout)
     strout <- gsub('^([[:blank:].]*)\\.\\.\\-', '\\1.. .. -', strout)
@@ -4278,4 +4287,71 @@ convert_files_to_txt <- function(filepaths, mc.cores = 6) {
             warning(sprintf('No converter found for %s. Skipped.', f))
         }
     }, mc.cores = mc.cores)
+}
+
+
+get_latex_paths <- function(dir=getwd(), extensions=c('rnw', 'tex', 'Rnw'),
+                            exclude=c('diff.tex', 'cover.tex'), no.time=T) {
+    cmd <- sprintf('find %s -maxdepth 1 \\( %s \\) | xargs grep -E "%s"',
+                   dir,
+                   paste(sprintf('-name "*.%s"', extensions), collapse=' -o '),
+                   '^[^#%].*[-a-zA-Z0-9_]+/[-a-zA-Z0-9_]+')
+    res <- system(cmd, intern=T)
+    split <- strsplit(res, ':')
+    res <- data.table(source = sapply(split, '[', 1),
+                      content = sapply(split, function(x) paste(x[2:length(x)], collapse='')))
+    res <- res[!(basename(source) %in% exclude)]
+    res[, content := sub('.*[^-a-zA-Z0-9._/]+([-a-zA-Z0-9._/]+/[-a-zA-Z0-9._/]+)[^-a-zA-Z0-9._/]*.*', '\\1', content)]
+    res[, mdate := file.mtime(content)]
+    setorder(res, mdate)
+    if (no.time) res[, mdate := format(mdate, '%Y-%m-%d')]
+    return(res)
+    
+}
+
+
+dfly_pal <- function(what=NULL) {
+    pal <- c(blue   = '#43A1C9',
+             grey   = '#565659',
+             cream  = '#E5DECC',
+             green  = '#50AD85',
+             orange = '#EB7A59',
+             red    = '#CF4547',
+             purple = '#5B3456',
+             mint   = '#9DC4A9')
+
+    if (is.null(what)) {
+        return(pal)
+    }
+    if (is.character(what)) {
+        if (what %in% names(pal)) {
+            return(pal[what])
+        } else stop('Colour not in palette')
+    } else if (is.numeric(what)) {
+        return(pal[what])
+    }
+}
+
+mean_colour <- function(twocols=c('#fff3e1', '#fcb045')) {
+    if (length(twocols) != 2) stop('A vector of two colors is needed')
+    return(colorRampPalette(twocols)(3)[2])
+}
+
+
+push_msg <- function(title = 'Automatic msg', body = 'Test', url = NULL,
+                     devices = 0, debug=F, verbose=F) {
+    library(RPushbullet)
+    if (is.null(getOption("rpushbullet.key"))) {
+        stop('Pushbullet key not set. Please run `pbSetup()`.')
+    }
+    if (is.null(url)) {
+        pbPost(type='note', title=title, body=body, verbose=verbose, debug=debug,
+               recipients = devices)
+    } else if (grepl('//', url)) {
+        pbPost(type='link', title=title, body=body, url=url, verbose=verbose, debug=debug,
+               recipients = devices)
+    } else {
+        pbPost(type='file', url=url, verbose=verbose, debug=debug,
+               recipients = devices)
+    }
 }
