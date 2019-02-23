@@ -42,7 +42,7 @@ local({
     old <- getOption("defaultPackages")
     r <- getOption("repos")
     r["CRAN"] <- "https://cran.stat.auckland.ac.nz"
-    r["INLA"] <- "http://www.math.ntnu.no/inla/R/testing"
+    ## r["INLA"] <- "http://www.math.ntnu.no/inla/R/testing"
     options(defaultPackages        = c(old, "yrpkg"),
             repos                  = r,
             Ncpus                  = 6,
@@ -50,7 +50,8 @@ local({
             warnPartialMatchDollar = T,
             scipen                 = 100,
             error                  = NULL,
-            datatable.print.nrows  = 57)
+            datatable.print.nrows  = 57,
+            menu.graphics = F)
     ## options(error = function() traceback(2))
     ## "%nin%" <- function(x, y) return(!(x %in% y))
 })

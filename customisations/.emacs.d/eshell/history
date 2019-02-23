@@ -86,3 +86,5 @@ cd ..
 make -B
 sudo apt list --installed
 update-alternatives --get-selections
+sudo R --vanilla
+docker run -it -v $PWD:/code -w /code/report-monthly docker.dragonfly.co.nz/fanz/cadmium-database:v6616f38 bash

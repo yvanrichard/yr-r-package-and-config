@@ -13,6 +13,7 @@
 '(("ELPA" . "http://tromey.com/elpa/")
   ("gnu" . "http://elpa.gnu.org/packages/")
   ("melpa" . "http://melpa.org/packages/")
+  ("melpa2" . "http://melpa.milkbox.net/packages/")
   ("marmalade" . "http://marmalade-repo.org/packages/")))
 ;; ("melpa" . "http://stable.melpa.org/packages/")))
 
@@ -41,7 +42,7 @@
  '(custom-enabled-themes (quote (smart-mode-line-dark)))
  '(custom-safe-themes
    (quote
-    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "6c9ddb5e2ac58afb32358def7c68b6211f30dec8a92e44d2b9552141f76891b3" "a655f17225ad0a7190c79602593563191b7640ddebbb8c8fbd80c9d82faff1c6" "8d6fb24169d94df45422617a1dfabf15ca42a97d594d28b3584dc6db711e0e0b" "08efabe5a8f3827508634a3ceed33fa06b9daeef9c70a24218b70494acdf7855" "49eea2857afb24808915643b1b5bd093eefb35424c758f502e98a03d0d3df4b1" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
  '(delete-by-moving-to-trash t)
  '(diredp-hide-details-initially-flag nil)
  '(doc-view-resolution 200)
@@ -49,24 +50,14 @@
  '(dumb-jump-prefer-searcher (quote ag))
  '(dumb-jump-selector (quote helm))
  '(ediff-split-window-function (quote split-window-horizontally))
- '(ess-R-font-lock-keywords
-   (quote
-    ((ess-R-fl-keyword:modifiers . t)
-     (ess-R-fl-keyword:fun-defs . t)
-     (ess-R-fl-keyword:keywords . t)
-     (ess-R-fl-keyword:assign-ops . t)
-     (ess-R-fl-keyword:constants . t)
-     (ess-fl-keyword:fun-calls . t)
-     (ess-fl-keyword:numbers . t)
-     (ess-fl-keyword:operators . t)
-     (ess-fl-keyword:delimiters . t)
-     (ess-fl-keyword:= . t)
-     (ess-R-fl-keyword:F&T . t))))
  '(ess-pdf-viewer-pref "okular")
+ '(ess-r-args-electric-paren t)
  '(fci-rule-color "#873b81")
+ '(fill-column 110)
  '(fill-prefix nil)
  '(flyspell-default-dictionary "en_GB")
  '(font-latex-fontify-sectioning 1.05)
+ '(global-prettify-symbols-mode t)
  '(helm-adaptive-mode t nil (helm-adaptive))
  '(helm-ag-use-grep-ignore-list t)
  '(helm-always-two-windows t)
@@ -94,7 +85,7 @@
  '(helm-swoop-speed-or-color t)
  '(helm-swoop-split-direction (quote split-window-vertically))
  '(helm-swoop-split-with-multiple-windows t)
- '(helm-swoop-use-line-number-face t)
+ '(helm-swoop-use-line-number-face nil)
  '(hl-sexp-background-color "#201520")
  '(ibuffer-filter-group-name-face (quote compilation-info))
  '(ido-ignore-extensions nil)
@@ -112,7 +103,7 @@
     ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
  '(package-selected-packages
    (quote
-    (eacl help-fns+ helm-projectile docker dockerfile-mode dumb-jump helm-navi navi-mode stan-mode stan-snippets dired-quick-sort ztree wakatime-mode expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode simplenote2 rainbow-delimiters r-autoyas python-django powerline polymode pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag helm-R haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine ggtags flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
+    (wakatime-mode auto-dim-other-buffers psession flymd poly-R poly-markdown polymode powerthesaurus latex-preview-pane rainbow-mode helm-descbinds helm-flx eacl help-fns+ helm-projectile docker dockerfile-mode dumb-jump helm-navi navi-mode stan-mode stan-snippets dired-quick-sort ztree expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode simplenote2 rainbow-delimiters r-autoyas python-django powerline pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine ggtags flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
  '(projectile-tags-command "ctags-exuberant -Re -f \"%s\" %s")
  '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
@@ -142,6 +133,7 @@
      ("^~/dragonfly/" ":DFLY:")
      ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
  '(sml/shorten-directory t)
+ '(tags-table-list (quote ("/home/yvan/Documents/TAGS")))
  '(tramp-default-method "ssh")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -165,12 +157,13 @@
      (340 . "#f0c674")
      (360 . "#b5bd68"))))
  '(vc-annotate-very-old-color nil)
- '(wakatime-api-key "0ff58d48-ac18-40ee-be06-f0e1c5985c86")
- '(wakatime-cli-path "/usr/local/bin/wakatime")
- '(yank-pop-change-selection t))
+ '(yank-pop-change-selection t)
+ '(yas-also-auto-indent-first-line t))
 
  ;; '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
 (defvar outline-minor-mode-prefix "\M-#")
+
+;; (custom-set-variables '(wakatime-api-key "b5cc2771-2403-44ea-821f-46709e5cbb38"))
 
 
 (require 'ess-site)
@@ -252,8 +245,8 @@ Ignores CHAR at point."
 
 (setq doc-view-continuous t)
 
-;; use autofill on text modes
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+;; ;; use autofill on text modes
+;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 (setq max-lisp-eval-depth 10000)
 
@@ -297,7 +290,8 @@ there's a region, all lines that region covers will be duplicated."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#151515" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "SRC" :family "Hack"))))
+ '(default ((t (:inherit nil :stipple nil :background "#202020" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "SRC" :family "Hack"))))
+ '(auto-dim-other-buffers-face ((t (:background "#000" :foreground "gray"))))
  '(comint-highlight-input ((t (:foreground "#66BB66"))))
  '(comint-highlight-prompt ((t (:inherit minibuffer-prompt :foreground "#009900"))))
  '(compilation-info ((t (:inherit success :foreground "SpringGreen3"))))
@@ -359,7 +353,7 @@ there's a region, all lines that region covers will be duplicated."
  '(org-level-3 ((t (:foreground "#C6DBEF"))))
  '(org-level-4 ((t (:foreground "#CCEBC5"))))
  '(org-special-keyword ((t (:foreground "#66FFFF"))))
- '(outline-1 ((t (:background "#151515" :foreground "#FF2A17" :box (:line-width 1 :color "grey35") :slant italic :weight normal))))
+ '(outline-1 ((t (:background "#181818" :foreground "#FF2A17" :box (:line-width 1 :color "grey35") :slant italic :weight normal))))
  '(outline-2 ((t (:background "#191919" :foreground "#FF794A" :box (:line-width 1 :color "grey30") :slant italic))))
  '(outline-3 ((t (:background "#191919" :foreground "#FFB67D" :box (:line-width 1 :color "grey20") :slant italic))))
  '(outline-4 ((t (:inherit font-lock-comment-face :background "#191919" :foreground "RosyBrown1" :slant italic))))
@@ -376,29 +370,29 @@ there's a region, all lines that region covers will be duplicated."
 
 (global-wakatime-mode)
 
-;;;;;;;;;;;;;;;;
-;; * eshell   ;;
-;;;;;;;;;;;;;;;;
-(setenv "PAGER" "cat")
-(add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
+;; ;;;;;;;;;;;;;;;;
+;; ;; * eshell   ;;
+;; ;;;;;;;;;;;;;;;;
+;; (setenv "PAGER" "cat")
+;; (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * Latex, Sweave, etc.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq reftex-cite-format 'natbib)
+;; (setq reftex-cite-format 'natbib)
 ;; (setq-default TeX-master nil)
 (setq TeX-PDF-mode t)
 (setq latex-run-command "xelatex")
 
-(autoload 'reftex-mode "reftex" "RefTeX Minor Mode" t)
-(autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
-(autoload 'reftex-citation "reftex-cite" "Make citation" nil)
-(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
-(add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq reftex-plug-into-AUCTeX t)
+;; (autoload 'reftex-mode "reftex" "RefTeX Minor Mode" t)
+;; (autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
+;; (autoload 'reftex-citation "reftex-cite" "Make citation" nil)
+;; (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
+;; (add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+;; (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+;; (setq reftex-plug-into-AUCTeX t)
 
 
 ;; (add-hook 'LaTeX-mode-hook
@@ -414,30 +408,30 @@ there's a region, all lines that region covers will be duplicated."
 ;;;;;;;;;;;;;;;;;;;
 
 ;; enable on-the-fly spell checking
-(add-hook 'emacs-startup-hook
-          (lambda()
-            (add-hook 'text-mode-hook
-                      (lambda ()
-                        (flyspell-mode 1)))
-            ;; prevent flyspell from finding mistakes in the code
-            (add-hook 'prog-mode-hook
-                      (lambda ()
-                        ;; `ispell-comments-and-strings'
-                        (flyspell-prog-mode)))))
+;; (add-hook 'emacs-startup-hook
+;;           (lambda()
+;;             (add-hook 'text-mode-hook
+;;                       (lambda ()
+;;                         (flyspell-mode 1)))
+;;             ;; prevent flyspell from finding mistakes in the code
+;;             (add-hook 'prog-mode-hook
+;;                       (lambda ()
+;;                         ;; `ispell-comments-and-strings'
+;;                         (flyspell-prog-mode)))))
 
-;; ispell should not check code blocks in org mode
-(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
-(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
-(add-to-list 'ispell-skip-region-alist '("#\\+begin_src" . "#\\+end_src"))
-(add-to-list 'ispell-skip-region-alist '("^#\\+begin_example " . "#\\+end_example$"))
-(add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXAMPLE " . "#\\+END_EXAMPLE$"))
+;; ;; ispell should not check code blocks in org mode
+;; (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+;; (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
+;; (add-to-list 'ispell-skip-region-alist '("#\\+begin_src" . "#\\+end_src"))
+;; (add-to-list 'ispell-skip-region-alist '("^#\\+begin_example " . "#\\+end_example$"))
+;; (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXAMPLE " . "#\\+END_EXAMPLE$"))
 
-(add-to-list 'ispell-skip-region-alist '("^<<" . "@$"))
+;; (add-to-list 'ispell-skip-region-alist '("^<<" . "@$"))
 
 
 ;; (require 'latex-frame-mode)
 
-(setq reftex-default-bibliography '("/home/yvan/dragonfly/bibliography/mfish.bib"))
+;; (setq reftex-default-bibliography '("/home/yvan/dragonfly/bibliography/mfish.bib"))
 
 
 
@@ -445,11 +439,11 @@ there's a region, all lines that region covers will be duplicated."
 ;; * markdown
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;; (autoload 'markdown-mode "markdown-mode"
+;;    "Major mode for editing Markdown files" t)
+;; (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * r-markdown
@@ -588,11 +582,14 @@ prompt the user for a coding system."
 	 ("SRA 2012" (filename . "sra-2012"))
 	 ("SRA 2014" (filename . "sra-2014"))
 	 ("SRA 2016" (filename . "sra-2016"))
+	 ("SRA Chile" (filename . "sra-chile"))
 	 ("SRA foundations" (filename . "sra-foundations"))
-	 ("Whaleshark" (filename "whaleshark-interactions"))
+	 ("SRA Kruger" (filename . "sra-kruger"))
+	 ("Whaleshark" (filename . "whaleshark-interactions"))
 	 ("Estimation 2014-15" (filename . "estimation-2014-15"))
 	 ("Estimation 2014" (filename . "estimation-2014"))
 	 ("Estimation 2015" (filename . "estimation-2015"))
+	 ("Estimation 2016-17" (filename . "estimation-2016-17"))
 	 ("Ludicio" (filename . "ludicio/"))
 	 ("NMS - MfE" (or (filename . "NMS")
 			  (filename . "NMS-QC")
@@ -619,6 +616,11 @@ prompt the user for a coding system."
 			   (filename . "sra-example-creation")
 			   (filename . "wanderers-at-sea-distribution")
 			   (filename . "southern-hemisphere-sra")))
+	 ("SRA korea" (filename . "korea-south-africa-sra"))
+	 ("EOLC Bill" (filename . "ofc-data-support"))
+	 ("YEP" (filename . "yellow-eyed-penguin-overlap"))
+	 ("Kakapo" (filename . "kakapo"))
+	 ("Paua" (filename . "paua"))
 )))
 (add-hook 'ibuffer-mode-hook 
 	  '(lambda ()
@@ -665,23 +667,24 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;; (require 'ess-jags-d)
-;; (autoload 'ess-jags-mode "ess-jags-mode"
-;;    "Major mode for editing JAGS files" t)
-(add-to-list 'auto-mode-alist '("\\.jags\\'" . ess-jags-mode))
+;; ;; (require 'ess-jags-d)
+;; ;; (autoload 'ess-jags-mode "ess-jags-mode"
+;; ;;    "Major mode for editing JAGS files" t)
+;; (add-to-list 'auto-mode-alist '("\\.jags\\'" . ess-jags-mode))
 
-;; (require 'ess-eldoc) ;to show function arguments while you are typing them
-(setq ess-use-auto-complete 'script-only)
-;; (require 'ess-site)
 
-(setq ess-eval-visibly-p t) ;otherwise C-c C-r (eval region) takes forever
+;; ;; (require 'ess-eldoc) ;to show function arguments while you are typing them
+;; (setq ess-use-auto-complete 'script-only)
+;; ;; (require 'ess-site)
+
+;; (setq ess-eval-visibly-p t) ;otherwise C-c C-r (eval region) takes forever
 (setq ess-ask-for-ess-directory nil) ;otherwise you are prompted each time you start
 
-;; (setq ess-local-process-name "R")
-(setq ansi-color-for-comint-mode 'filter)
-(setq comint-scroll-to-bottom-on-input t)
-(setq comint-scroll-to-bottom-on-output t)
-(setq comint-move-point-for-output t)
+;; ;; (setq ess-local-process-name "R")
+;; (setq ansi-color-for-comint-mode 'filter)
+;; (setq comint-scroll-to-bottom-on-input t)
+;; (setq comint-scroll-to-bottom-on-output t)
+;; (setq comint-move-point-for-output t)
 
 ;; (defun my-ess-start-R ()
 ;;   (interactive)
@@ -700,22 +703,22 @@ prompt the user for a coding system."
 ;;   (if (and transient-mark-mode mark-active)
 ;;       (call-interactively 'ess-eval-region)
 ;;     (call-interactively 'ess-eval-line-and-step)))
-(add-hook 'ess-mode-hook
-	  '(lambda()
-	     ;; (local-set-key [(shift return)] 'my-ess-eval)
-	     (local-set-key [(backtab)] 'ess-indent-or-complete)))
-(add-hook 'inferior-ess-mode-hook
-	  '(lambda()
-	     (local-set-key [C-up] 'comint-previous-input)
-	     (local-set-key [C-down] 'comint-next-input)))
+
+;; (add-hook 'ess-mode-hook
+;; 	  '(lambda()
+;; 	     ;; (local-set-key [(shift return)] 'my-ess-eval)
+;; 	     (local-set-key [(backtab)] 'ess-indent-or-complete)))
+;; (add-hook 'inferior-ess-mode-hook
+;; 	  '(lambda()
+;; 	     (local-set-key [C-up] 'comint-previous-input)
+;; 	     (local-set-key [C-down] 'comint-next-input)))
 
 ;; (ess-toggle-underscore nil)
 ;; (setq ess-S-assign-key (kbd "C-="))
 ;; (ess-toggle-S-assign-key t)
 ;; (ess-auto-newline t)
-(setq ess-smart-S-assign-key ":")
-(ess-toggle-S-assign nil)
-(ess-toggle-S-assign nil)
+;; (ess-toggle-S-assign nil)
+;; (ess-toggle-S-assign nil)
 
 
 (defun comint-interrupt-subjob-other ()
@@ -787,16 +790,16 @@ prompt the user for a coding system."
 ;; * Desktop
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Automatically save and restore sessions
-(setq desktop-dirname             "~/.emacs.d/desktop/"
-      desktop-base-file-name      "emacs.desktop"
-      desktop-base-lock-name      "desktoplock"
-      desktop-path                (list desktop-dirname)
-      desktop-save                t
-      )
-(desktop-save-mode 1)
-(add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
-;; (desktop-read)
+;; ;; Automatically save and restore sessions
+;; (setq desktop-dirname             "~/.emacs.d/desktop/"
+;;       desktop-base-file-name      "emacs.desktop"
+;;       desktop-base-lock-name      "desktoplock"
+;;       desktop-path                (list desktop-dirname)
+;;       desktop-save                t
+;;       )
+;; (desktop-save-mode 1)
+;; (add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
+;; ;; (desktop-read)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * Copy buffer file path to clipboad
@@ -818,7 +821,7 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * Wrap region  (https://github.com/rejeep/wrap-region.el)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(wrap-region-mode t)
+;; (wrap-region-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * Ace jump mode
@@ -831,6 +834,8 @@ prompt the user for a coding system."
 (global-set-key (kbd "C-:") 'avy-goto-char)
 (global-set-key (kbd "C-M-;") 'avy-goto-char-2)
 (global-set-key (kbd "M-g M-g") 'avy-goto-line)
+(global-set-key (kbd "C-0") 'avy-pop-mark)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * expand-region
@@ -838,25 +843,25 @@ prompt the user for a coding system."
 (require 'expand-region) 
 (global-set-key (kbd "C-'") 'er/expand-region)
 
-(defun er/mark-r-assignment ()
-  "Mark R assignment such as 'var <- something'."
-  (interactive)
-  (when (or (looking-at "\\(\\s_\\|\\sw\\)* <- ")
-            (er/looking-back-exact "<-"))
-    (search-backward "<-")
-    (back-to-indentation)
-    (set-mark (point))
-    (search-forward "<-")
-    (forward-sexp 1)
-    (exchange-point-and-mark)))
+;; (defun er/mark-r-assignment ()
+;;   "Mark R assignment such as 'var <- something'."
+;;   (interactive)
+;;   (when (or (looking-at "\\(\\s_\\|\\sw\\)* <- ")
+;;             (er/looking-back-exact "<-"))
+;;     (search-backward "<-")
+;;     (back-to-indentation)
+;;     (set-mark (point))
+;;     (search-forward "<-")
+;;     (forward-sexp 1)
+;;     (exchange-point-and-mark)))
 
-(defun er/add-r-mode-expansions ()
-  "Adds R-specific expansions for buffers in html-mode"
-  (set (make-local-variable 'er/try-expand-list) (append
-                                                  er/try-expand-list
-                                                  '(er/mark-r-assignment))))
+;; (defun er/add-r-mode-expansions ()
+;;   "Adds R-specific expansions for buffers in html-mode"
+;;   (set (make-local-variable 'er/try-expand-list) (append
+;;                                                   er/try-expand-list
+;;                                                   '(er/mark-r-assignment))))
 
-(er/enable-mode-expansions 'r-mode 'er/add-r-mode-expansions)
+;; (er/enable-mode-expansions 'r-mode 'er/add-r-mode-expansions)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -884,7 +889,7 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * Highlight sexp
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-highlight-sexp-mode t)
+;; (global-highlight-sexp-mode t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1022,9 +1027,9 @@ prompt the user for a coding system."
 
 
 
-;; Macro to reformat curly brackets (to fix my old style)
-(fset 'reparens
-   [?\S-\C-\M-s ?^ ?\[ ?\[ ?: ?b ?l ?a ?n ?k ?: ?\] ?\] ?* ?\{ return ?\C-b ?\M-^ ?\C-\M-q ?\C-e])
+;; ;; Macro to reformat curly brackets (to fix my old style)
+;; (fset 'reparens
+;;    [?\S-\C-\M-s ?^ ?\[ ?\[ ?: ?b ?l ?a ?n ?k ?: ?\] ?\] ?* ?\{ return ?\C-b ?\M-^ ?\C-\M-q ?\C-e])
 
 ;; ;; Macro to insert a space on both sides of equal signs
 ;; (fset 'eqspacing
@@ -1062,40 +1067,40 @@ prompt the user for a coding system."
 (global-set-key [remap kill-whole-line] 'smart-kill-whole-line)
 
 
-(put 'erase-buffer 'disabled nil)
 
-;; Change order of positions with recentering cursor with C+l
-(setq recenter-positions '(top middle bottom))
+;; ;; Change order of positions with recentering cursor with C+l
+;; (setq recenter-positions '(top middle bottom))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * Pretty mode - Display symbols as symbols
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (global-pretty-mode 1)
-(add-hook 'ess-mode-hook
-            (lambda ()
-              (push '("function" . ?ƒ) prettify-symbols-alist)
-	      (push '("sum" . ?Σ) prettify-symbols-alist)
-	      (push '("<=" . ?≤) prettify-symbols-alist)
-	      (push '(">=" . ?≥) prettify-symbols-alist)
-	      (push '("sqrt" . ?√) prettify-symbols-alist)
-	      (push '("..." . ?…) prettify-symbols-alist)
-	      (push '("pi" . ?𝜋) prettify-symbols-alist)
-	      (push '("alpha" . ?𝛼) prettify-symbols-alist)
-	      (push '("beta" . ?𝛽) prettify-symbols-alist)
-	      (push '("gamma" . ?ɣ) prettify-symbols-alist)
-	      (push '("mu" . ?μ) prettify-symbols-alist)
-	      (push '("theta" . ?θ) prettify-symbols-alist)
-	      (push '("eps" . ?ε) prettify-symbols-alist)
-	      (push '("!=" . ?≠) prettify-symbols-alist)
-	      (push '("<-" . ?⇽) prettify-symbols-alist)
-	      (push '("<<-" . ?⇐) prettify-symbols-alist)))
+;; ;; (global-pretty-mode 1)
+;; (add-hook 'ess-mode-hook
+;;             (lambda ()
+;;               (push '("function" . ?ƒ) prettify-symbols-alist)
+;; 	      (push '("sum" . ?Σ) prettify-symbols-alist)
+;; 	      (push '("<=" . ?≤) prettify-symbols-alist)
+;; 	      (push '(">=" . ?≥) prettify-symbols-alist)
+;; 	      (push '("sqrt" . ?√) prettify-symbols-alist)
+;; 	      (push '("..." . ?…) prettify-symbols-alist)
+;; 	      (push '("pi" . ?𝜋) prettify-symbols-alist)
+;; 	      (push '("alpha" . ?𝛼) prettify-symbols-alist)
+;; 	      (push '("beta" . ?𝛽) prettify-symbols-alist)
+;; 	      (push '("gamma" . ?ɣ) prettify-symbols-alist)
+;; 	      (push '("mu" . ?μ) prettify-symbols-alist)
+;; 	      (push '("theta" . ?θ) prettify-symbols-alist)
+;; 	      (push '("eps" . ?ε) prettify-symbols-alist)
+;; 	      (push '("!=" . ?≠) prettify-symbols-alist)
+;; 	      (push '("<-" . ?⇽) prettify-symbols-alist)
+;; 	      (push '("<<-" . ?⇐) prettify-symbols-alist)))
 
-(global-prettify-symbols-mode +1)  ;; only works in >24.4
 
-;; specify font for all unicode characters
-;; (when (member "Symbola" (font-family-list))
-(set-fontset-font t 'unicode "Ubuntu Mono" nil 'prepend)
+;; ;; specify font for all unicode characters
+;; ;; (when (member "Symbola" (font-family-list))
+;; ;; (set-fontset-font t 'unicode "Ubuntu Mono" nil 'prepend)
+;; (set-fontset-font "fontset-default" nil 
+;;                   (font-spec :size 20 :name "Ubuntu Mono"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * Wrap region - Select region then " to enclose it
@@ -1126,46 +1131,47 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * Replace open-line (C-o) to keep identation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun open-previous-line (arg)
-  "Open a new line before the current one. 
-     See also `newline-and-indent'."
-  (interactive "p")
-  (beginning-of-line)
-  (open-line arg)
-  (when newline-and-indent
-    (indent-according-to-mode)))
-(global-set-key (kbd "C-S-o") 'open-previous-line)
 
-(defun open-next-line (arg)
-  "Move to the next line and then opens a line.
-    See also `newline-and-indent'."
-  (interactive "p")
-  (push-mark)
-  (end-of-line)
-  (open-line arg)
-  (next-line 1)
-  (when newline-and-indent
-    (indent-according-to-mode))
-  (exchange-point-and-mark))
-(global-set-key (kbd "C-o") 'open-next-line)
+;; (defun open-previous-line (arg)
+;;   "Open a new line before the current one. 
+;;      See also `newline-and-indent'."
+;;   (interactive "p")
+;;   (beginning-of-line)
+;;   (open-line arg)
+;;   (when newline-and-indent
+;;     (indent-according-to-mode)))
+;; (global-set-key (kbd "C-S-o") 'open-previous-line)
 
-;; Autoindent open-*-lines
-(defvar newline-and-indent t
-  "Modify the behavior of the open-*-line functions to cause them to autoindent.")
+;; (defun open-next-line (arg)
+;;   "Move to the next line and then opens a line.
+;;     See also `newline-and-indent'."
+;;   (interactive "p")
+;;   (push-mark)
+;;   (end-of-line)
+;;   (open-line arg)
+;;   (next-line 1)
+;;   (when newline-and-indent
+;;     (indent-according-to-mode))
+;;   (exchange-point-and-mark))
+;; (global-set-key (kbd "C-o") 'open-next-line)
+
+;; ;; ;; Autoindent open-*-lines
+;; ;; (defvar newline-and-indent t
+;; ;;   "Modify the behavior of the open-*-line functions to cause them to autoindent.")
 
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; * rtags and visit file
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun rtags (arg)
-  "Execute R rtags function and visit tag file."
-  (interactive "p")
-  (shell-command "Rscript -e \"rtags(ofile='TAGS', recursive=T)\"")
-  (visit-tags-table "TAGS"))
-;; (add-hook 'ess-mode-hook 
-;; 	  '(lambda ()
-;; 	     (local-set-key (kbd "C-c t") 'rtags)))
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; * rtags and visit file
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (defun rtags (arg)
+;;   "Execute R rtags function and visit tag file."
+;;   (interactive "p")
+;;   (shell-command "Rscript -e \"rtags(ofile='TAGS', recursive=T)\"")
+;;   (visit-tags-table "TAGS"))
+;; ;; (add-hook 'ess-mode-hook 
+;; ;; 	  '(lambda ()
+;; ;; 	     (local-set-key (kbd "C-c t") 'rtags)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * evaluate R function arguments
@@ -1245,7 +1251,7 @@ prompt the user for a coding system."
 	     (local-set-key (kbd "C-c q") 'quote-words)))
 
 
-(setq magit-last-seen-setup-instructions "1.4.0")
+;; (setq magit-last-seen-setup-instructions "1.4.0")
 (setenv "EDITOR" "emacsclient")
 
 (global-set-key (kbd "C-c m") 'magit-status)
@@ -1324,18 +1330,17 @@ prompt the user for a coding system."
   "Dired tmp files extensions")
 (dired-rainbow-define tmp "#444444" dired-tmp-files-extensions)
 
-(defconst dired-dot-files-extensions
-  '"\\..*"
-  "Dired dot files extensions")
-(dired-rainbow-define dot (:inherit default
-				    :italic t
-				    :foreground "#666666") dired-dot-files-extensions)
+;; (defconst dired-dot-files-extensions
+;;   '"\\..*"
+;;   "Dired dot files extensions")
+;; (dired-rainbow-define dot (:inherit default
+;; 				    :italic t
+;; 				    :foreground "#666666") dired-dot-files-extensions)
 
 (require 'dired+)
 ;; (setq dired-dwim-target t)
 
 
-(server-start)
 
 (add-to-list 'auto-mode-alist '("\\.env\\'" . makefile-mode))
 (add-to-list 'auto-mode-alist '("\\.env0\\'" . makefile-mode))
@@ -1343,24 +1348,24 @@ prompt the user for a coding system."
 (add-to-list 'auto-mode-alist '("png\\'" . image-mode))
 
 
-(make-face 'font-lock-r-df-face) ;; Create a new face
-(set-face-foreground 'font-lock-r-df-face "#BBBB99") ;; Set the colour
-(make-face 'font-lock-r-dollar-face) ;; Create a new face
-(set-face-foreground 'font-lock-r-dollar-face "#666666") ;; Set the colour
-(make-face 'font-lock-r-special-face) ;; Create a new face
-(set-face-foreground 'font-lock-r-special-face "#444444") ;; Set the colour
-(add-hook 'ess-mode-hook (lambda ()
-			   (font-lock-add-keywords nil
-						   '(("\\([a-zA-Z0-9_.]+\\)\\$" 1  'font-lock-r-df-face prepend)
-						     ("\\([a-zA-Z0-9_.]+\\)\\[\\[" 1  'font-lock-r-df-face prepend)
-						     ("\\(\\$\\)" 1  'font-lock-r-dollar-face prepend)
-						     ("\\(,\\)" 1  'font-lock-r-dollar-face prepend)
-						     ;; ("\\(\\[\\[\\)" 1  'font-lock-r-dollar-face prepend)
-						     ("\\(\\[\\)\\[" 1  'font-lock-r-dollar-face prepend)
-						     ("\\[\\(\\[\\)" 1  'font-lock-r-special-face prepend)
-						     ("\\(\\]\\)\\]" 1  'font-lock-r-special-face prepend)
-						     ("\\]\\(\\]\\)" 1  'font-lock-r-dollar-face prepend)
-						     ("\\([0-9.]+e[\\-0-9]+\\)" 1  'ess-numbers-face prepend)))))
+;; (make-face 'font-lock-r-df-face) ;; Create a new face
+;; (set-face-foreground 'font-lock-r-df-face "#BBBB99") ;; Set the colour
+;; (make-face 'font-lock-r-dollar-face) ;; Create a new face
+;; (set-face-foreground 'font-lock-r-dollar-face "#666666") ;; Set the colour
+;; (make-face 'font-lock-r-special-face) ;; Create a new face
+;; (set-face-foreground 'font-lock-r-special-face "#444444") ;; Set the colour
+;; (add-hook 'ess-mode-hook (lambda ()
+;; 			   (font-lock-add-keywords nil
+;; 						   '(("\\([a-zA-Z0-9_.]+\\)\\$" 1  'font-lock-r-df-face prepend)
+;; 						     ("\\([a-zA-Z0-9_.]+\\)\\[\\[" 1  'font-lock-r-df-face prepend)
+;; 						     ("\\(\\$\\)" 1  'font-lock-r-dollar-face prepend)
+;; 						     ("\\(,\\)" 1  'font-lock-r-dollar-face prepend)
+;; 						     ;; ("\\(\\[\\[\\)" 1  'font-lock-r-dollar-face prepend)
+;; 						     ("\\(\\[\\)\\[" 1  'font-lock-r-dollar-face prepend)
+;; 						     ("\\[\\(\\[\\)" 1  'font-lock-r-special-face prepend)
+;; 						     ("\\(\\]\\)\\]" 1  'font-lock-r-special-face prepend)
+;; 						     ("\\]\\(\\]\\)" 1  'font-lock-r-dollar-face prepend)
+;; 						     ("\\([0-9.]+e[\\-0-9]+\\)" 1  'ess-numbers-face prepend)))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1380,9 +1385,9 @@ prompt the user for a coding system."
 ;; (setq show-paren-delay 0)
 ;; (show-paren-mode 1)
 
-(require 'highlight-indentation)
-;; (add-hook 'ess-mode-hook 'highlight-indentation-mode) 
-(add-hook 'lisp-mode-hook 'highlight-indentation-mode)
+;; (require 'highlight-indentation)
+;; ;; (add-hook 'ess-mode-hook 'highlight-indentation-mode) 
+;; (add-hook 'lisp-mode-hook 'highlight-indentation-mode)
 
 
 
@@ -1418,31 +1423,31 @@ prompt the user for a coding system."
 (setq helm-swoop-pre-input-function (lambda () ""))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; * projectile
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; * projectile
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; from http://endlessparentheses.com/improving-projectile-with-extra-commands.html
-(projectile-global-mode)
-(setq projectile-keymap-prefix (kbd "C-x p"))
-(setq projectile-switch-project-action
-      #'projectile-commander)
-(def-projectile-commander-method ?s
-  "Open a *shell* buffer for the project."
-  (shell (get-buffer-create
-          (format "*shell %s*"
-                  (projectile-project-name)))))
+;; ;; from http://endlessparentheses.com/improving-projectile-with-extra-commands.html
+;; (projectile-global-mode)
+;; (setq projectile-keymap-prefix (kbd "C-x p"))
+;; (setq projectile-switch-project-action
+;;       #'projectile-commander)
+;; (def-projectile-commander-method ?s
+;;   "Open a *shell* buffer for the project."
+;;   (shell (get-buffer-create
+;;           (format "*shell %s*"
+;;                   (projectile-project-name)))))
 
-(def-projectile-commander-method ?c
-  "Run `compile' in the project."
-  (call-interactively #'compile))
-(def-projectile-commander-method ?\C-?
-  "Go back to project selection."
-  (projectile-switch-project))
+;; (def-projectile-commander-method ?c
+;;   "Run `compile' in the project."
+;;   (call-interactively #'compile))
+;; (def-projectile-commander-method ?\C-?
+;;   "Go back to project selection."
+;;   (projectile-switch-project))
 
-(setq projectile-enable-caching t)
-(setq projectile-completion-system 'helm)
-;; (helm-projectile-on)
+;; (setq projectile-enable-caching t)
+;; (setq projectile-completion-system 'helm)
+;; ;; (helm-projectile-on)
 
 
 
@@ -1452,17 +1457,17 @@ prompt the user for a coding system."
 
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; * Popping marks faster ;;
-;;;;;;;==;;;;;;;;;;;;;;;;;;;
-;; From: http://endlessparentheses.com/faster-pop-to-mark-command.html
-;; When popping the mark, continue popping until the cursor
-;; actually moves
-(defadvice pop-to-mark-command (around ensure-new-position activate)
-  (let ((p (point)))
-    (dotimes (i 10)
-      (when (= p (point)) ad-do-it))))
-(setq set-mark-command-repeat-pop t)
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; * Popping marks faster ;;
+;; ;;;;;;;==;;;;;;;;;;;;;;;;;;;
+;; ;; From: http://endlessparentheses.com/faster-pop-to-mark-command.html
+;; ;; When popping the mark, continue popping until the cursor
+;; ;; actually moves
+;; (defadvice pop-to-mark-command (around ensure-new-position activate)
+;;   (let ((p (point)))
+;;     (dotimes (i 10)
+;;       (when (= p (point)) ad-do-it))))
+;; (setq set-mark-command-repeat-pop t)
 
 
 
@@ -1472,98 +1477,98 @@ prompt the user for a coding system."
 
 
 
-(defun rmarkdown-to-html ()
-  (interactive)
-  "Run knitr::knit2html on the current file"
-  "https://gist.github.com/kohske/9128031"
-  (shell-command
-   (format "Rscript -e \"rmarkdown::render('%s')\""
-	   (shell-quote-argument (buffer-file-name)))))
+;; (defun rmarkdown-to-html ()
+;;   (interactive)
+;;   "Run knitr::knit2html on the current file"
+;;   "https://gist.github.com/kohske/9128031"
+;;   (shell-command
+;;    (format "Rscript -e \"rmarkdown::render('%s')\""
+;; 	   (shell-quote-argument (buffer-file-name)))))
  
-;; do this in R process
-;; library (rmarkdown); render ("file_name.Rmd")
+;; ;; do this in R process
+;; ;; library (rmarkdown); render ("file_name.Rmd")
  
-(defun ess-rmarkdown ()
-  (interactive)
-  "Compile R markdown (.Rmd). Should work for any output type."
-  "http://roughtheory.com/posts/ess-rmarkdown.html"
-  ; Check if attached R-session
-  (condition-case nil
-      (ess-get-process)
-    (error
-     (ess-switch-process)))
-  (let* ((rmd-buf (current-buffer)))
-    (save-excursion
-      (let* ((sprocess (ess-get-process ess-current-process-name))
-         (sbuffer (process-buffer sprocess))
-         (buf-coding (symbol-name buffer-file-coding-system))
-         (R-cmd
-          (format "library (rmarkdown); rmarkdown::render (\"%s\")"
-              buffer-file-name)))
-    (message "Running rmarkdown on %s" buffer-file-name)
-    (ess-execute R-cmd 'buffer nil nil)
-    (switch-to-buffer rmd-buf)
-    (ess-show-buffer (buffer-name sbuffer) nil)))))
+;; (defun ess-rmarkdown ()
+;;   (interactive)
+;;   "Compile R markdown (.Rmd). Should work for any output type."
+;;   "http://roughtheory.com/posts/ess-rmarkdown.html"
+;;   ; Check if attached R-session
+;;   (condition-case nil
+;;       (ess-get-process)
+;;     (error
+;;      (ess-switch-process)))
+;;   (let* ((rmd-buf (current-buffer)))
+;;     (save-excursion
+;;       (let* ((sprocess (ess-get-process ess-current-process-name))
+;;          (sbuffer (process-buffer sprocess))
+;;          (buf-coding (symbol-name buffer-file-coding-system))
+;;          (R-cmd
+;;           (format "library (rmarkdown); rmarkdown::render (\"%s\")"
+;;               buffer-file-name)))
+;;     (message "Running rmarkdown on %s" buffer-file-name)
+;;     (ess-execute R-cmd 'buffer nil nil)
+;;     (switch-to-buffer rmd-buf)
+;;     (ess-show-buffer (buffer-name sbuffer) nil)))))
  
 ;; (define-key polymode-mode-map "\M-ns" 'ess-rmarkdown)
 
 
-(setq elfeed-feeds
-      '("http://avxhome.in/ebooks/science_books/rss.xml"
-	"http://avxhome.in/ebooks/programming_development/rss.xml"
-	"http://avxhome.in/ebooks/software/rss.xml"
-	"http://avxhome.in/ebooks/music/rss.xml"
-	"http://avxhome.in/ebooks/animals/rss.xml"))
+;; (setq elfeed-feeds
+;;       '("http://avxhome.in/ebooks/science_books/rss.xml"
+;; 	"http://avxhome.in/ebooks/programming_development/rss.xml"
+;; 	"http://avxhome.in/ebooks/software/rss.xml"
+;; 	"http://avxhome.in/ebooks/music/rss.xml"
+;; 	"http://avxhome.in/ebooks/animals/rss.xml"))
 
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; * Auto-correct with C-x C-i ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; add correction automatically to abbrev list for future automatic correction
-;; From http://endlessparentheses.com/ispell-and-abbrev-the-perfect-auto-correct.html
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; * Auto-correct with C-x C-i ;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; add correction automatically to abbrev list for future automatic correction
+;; ;; From http://endlessparentheses.com/ispell-and-abbrev-the-perfect-auto-correct.html
 
-(define-key ctl-x-map "\C-i"
-  #'endless/ispell-word-then-abbrev)
+;; (define-key ctl-x-map "\C-i"
+;;   #'endless/ispell-word-then-abbrev)
 
-(defun endless/ispell-word-then-abbrev (p)
-  "Call `ispell-word', then create an abbrev for it.
-With prefix P, create local abbrev. Otherwise it will
-be global.
-If there's nothing wrong with the word at point, keep
-looking for a typo until the beginning of buffer. You can
-skip typos you don't want to fix with `SPC', and you can
-abort completely with `C-g'."
-  (interactive "P")
-  (let (bef aft)
-    (save-excursion
-      (while (if (setq bef (thing-at-point 'word))
-                 ;; Word was corrected or used quit.
-                 (if (ispell-word nil 'quiet)
-                     nil ; End the loop.
-                   ;; Also end if we reach `bob'.
-                   (not (bobp)))
-               ;; If there's no word at point, keep looking
-               ;; until `bob'.
-               (not (bobp)))
-        (backward-word))
-      (setq aft (thing-at-point 'word)))
-    (if (and aft bef (not (equal aft bef)))
-        (let ((aft (downcase aft))
-              (bef (downcase bef)))
-          (define-abbrev
-            (if p local-abbrev-table global-abbrev-table)
-            bef aft)
-          (message "\"%s\" now expands to \"%s\" %sally"
-                   bef aft (if p "loc" "glob")))
-      (user-error "No typo at or before point"))))
+;; (defun endless/ispell-word-then-abbrev (p)
+;;   "Call `ispell-word', then create an abbrev for it.
+;; With prefix P, create local abbrev. Otherwise it will
+;; be global.
+;; If there's nothing wrong with the word at point, keep
+;; looking for a typo until the beginning of buffer. You can
+;; skip typos you don't want to fix with `SPC', and you can
+;; abort completely with `C-g'."
+;;   (interactive "P")
+;;   (let (bef aft)
+;;     (save-excursion
+;;       (while (if (setq bef (thing-at-point 'word))
+;;                  ;; Word was corrected or used quit.
+;;                  (if (ispell-word nil 'quiet)
+;;                      nil ; End the loop.
+;;                    ;; Also end if we reach `bob'.
+;;                    (not (bobp)))
+;;                ;; If there's no word at point, keep looking
+;;                ;; until `bob'.
+;;                (not (bobp)))
+;;         (backward-word))
+;;       (setq aft (thing-at-point 'word)))
+;;     (if (and aft bef (not (equal aft bef)))
+;;         (let ((aft (downcase aft))
+;;               (bef (downcase bef)))
+;;           (define-abbrev
+;;             (if p local-abbrev-table global-abbrev-table)
+;;             bef aft)
+;;           (message "\"%s\" now expands to \"%s\" %sally"
+;;                    bef aft (if p "loc" "glob")))
+;;       (user-error "No typo at or before point"))))
 
-(setq save-abbrevs 'silently)
-(setq-default abbrev-mode t)
+;; (setq save-abbrevs 'silently)
+;; (setq-default abbrev-mode t)
 
 
 
-(require 'ess-view)
+;; (require 'ess-view)
 
 
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -1574,13 +1579,13 @@ abort completely with `C-g'."
 ;; * TAGS ;;
 ;;;;;;;;;;;;
 
-(setq path-to-ctags "/usr/bin/ctags-exuberant")
-(defun create-tags (dir-name)
-  "Create tags file."
-  (interactive "DDirectory: ")
-  (shell-command
-   (format "ctags -f %s -e -R %s" path-to-ctags (directory-file-name dir-name)))
-  )
+;; (setq path-to-ctags "/usr/bin/ctags-exuberant")
+;; (defun create-tags (dir-name)
+;;   "Create tags file."
+;;   (interactive "DDirectory: ")
+;;   (shell-command
+;;    (format "ctags -f %s -e -R %s" path-to-ctags (directory-file-name dir-name)))
+;;   )
 
 
 (global-set-key (kbd "C-c l") 'align-regexp)
@@ -1601,7 +1606,7 @@ abort completely with `C-g'."
 ;; (setq x-select-enable-primary nil)
 ;; (setq x-select-enable-clipboard t)
 
-(setq x-selection-timeout 10)
+;; (setq x-selection-timeout 10)
 
 
 (defun endless/fill-or-unfill ()
@@ -1620,51 +1625,51 @@ abort completely with `C-g'."
 ;;; Sending input to compilation buffer
 ;; http://endlessparentheses.com/provide-input-to-the-compilation-buffer.html
 
-(defun endless/send-input (input &optional nl)
-  "Send INPUT to the current process.
-Interactively also sends a terminating newline."
-  (interactive "MInput: \nd")
-  (let ((string (concat input (if nl "\n"))))
-    ;; This is just for visual feedback.
-    (let ((inhibit-read-only t))
-      (insert-before-markers string))
-    ;; This is the important part.
-    (process-send-string
-     (get-buffer-process (current-buffer))
-     string)))
+;; (defun endless/send-input (input &optional nl)
+;;   "Send INPUT to the current process.
+;; Interactively also sends a terminating newline."
+;;   (interactive "MInput: \nd")
+;;   (let ((string (concat input (if nl "\n"))))
+;;     ;; This is just for visual feedback.
+;;     (let ((inhibit-read-only t))
+;;       (insert-before-markers string))
+;;     ;; This is the important part.
+;;     (process-send-string
+;;      (get-buffer-process (current-buffer))
+;;      string)))
 
-(defun endless/send-self ()
-  "Send the pressed key to the current process."
-  (interactive)
-  (endless/send-input
-   (apply #'string
-          (append (this-command-keys-vector) nil))))
+;; (defun endless/send-self ()
+;;   "Send the pressed key to the current process."
+;;   (interactive)
+;;   (endless/send-input
+;;    (apply #'string
+;;           (append (this-command-keys-vector) nil))))
 
-(define-key compilation-mode-map (kbd "C-c i")
-  #'endless/send-input)
+;; (define-key compilation-mode-map (kbd "C-c i")
+;;   #'endless/send-input)
 
-(dolist (key '("\C-d" "\C-j" "y" "n"))
-  (define-key compilation-mode-map key
-    #'endless/send-self))
+;; (dolist (key '("\C-d" "\C-j" "y" "n"))
+;;   (define-key compilation-mode-map key
+;;     #'endless/send-self))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; * Polymode for RMarkdown ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; * Polymode for RMarkdown ;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; Markdown mode
-(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
-(setq auto-mode-alist (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.ronn?" . markdown-mode) auto-mode-alist))
+;; ;;; Markdown mode
+;; (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+;; (setq auto-mode-alist (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
+;; (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
+;; (setq auto-mode-alist (cons '("\\.ronn?" . markdown-mode) auto-mode-alist))
 
-;;; Polymode
-;; (setq load-path (append '("/home/sbonner/.emacs.d/polymode/" "/home/sbonner/.emacs.d/polymode/modes") load-path))
+;; ;;; Polymode
+;; ;; (setq load-path (append '("/home/sbonner/.emacs.d/polymode/" "/home/sbonner/.emacs.d/polymode/modes") load-path))
 
-(require 'poly-R)
-(require 'poly-markdown)
-(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
-(add-to-list 'auto-mode-alist '("\\.rmd" . poly-markdown+r-mode))
+;; (require 'poly-R)
+;; (require 'poly-markdown)
+;; (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+;; (add-to-list 'auto-mode-alist '("\\.rmd" . poly-markdown+r-mode))
 
 
 ;; Insert date, time, or both
@@ -1695,18 +1700,18 @@ With C-u C-u: insert date and time"
 
 ;;;;;;;;;;;;;;;
 ;; * Folding ;;
-;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;
 
-(defun aj-toggle-fold () 
-  "Toggle fold all lines larger than indentation on current line" 
-  (interactive) 
-  (let ((col 1)) 
-    (save-excursion 
-      (back-to-indentation) 
-      (setq col (+ 1 (current-column))) 
-      (set-selective-display 
-       (if selective-display nil (or col 1))))))
-(global-set-key (kbd "C-x M-f") 'aj-toggle-fold)
+;; (defun aj-toggle-fold () 
+;;   "Toggle fold all lines larger than indentation on current line" 
+;;   (interactive) 
+;;   (let ((col 1)) 
+;;     (save-excursion 
+;;       (back-to-indentation) 
+;;       (setq col (+ 1 (current-column))) 
+;;       (set-selective-display 
+;;        (if selective-display nil (or col 1))))))
+;; (global-set-key (kbd "C-x M-f") 'aj-toggle-fold)
 
 ;; No confirmation on buffer kill
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
@@ -1723,18 +1728,18 @@ With C-u C-u: insert date and time"
 (require 'ztree)
 
 
-;;; Reclaim digits for shortcut keys
-;;;  (http://pragmaticemacs.com/emacs/use-your-digits-and-a-personal-key-map-for-super-shortcuts/)
-;; unset C- and M- digit keys
-(dotimes (n 10)
-  (global-unset-key (kbd (format "C-%d" n)))
-  (global-unset-key (kbd (format "M-%d" n)))
-  )
-;; ;; set up my own map
-;; (define-prefix-command 'bjm-map)
-;; (global-set-key (kbd "C-1") 'bjm-map)
-;; (define-key bjm-map (kbd "m") 'mu4e)
-(global-set-key (kbd "C-1") 'avy-goto-char-timer)
+;; ;;; Reclaim digits for shortcut keys
+;; ;;;  (http://pragmaticemacs.com/emacs/use-your-digits-and-a-personal-key-map-for-super-shortcuts/)
+;; ;; unset C- and M- digit keys
+;; (dotimes (n 10)
+;;   (global-unset-key (kbd (format "C-%d" n)))
+;;   (global-unset-key (kbd (format "M-%d" n)))
+;;   )
+;; ;; ;; set up my own map
+;; ;; (define-prefix-command 'bjm-map)
+;; ;; (global-set-key (kbd "C-1") 'bjm-map)
+;; ;; (define-key bjm-map (kbd "m") 'mu4e)
+;; (global-set-key (kbd "C-1") 'avy-goto-char-timer)
 
 
 ;;; dired quick sort - press S in dired for sorting options
@@ -1743,11 +1748,14 @@ With C-u C-u: insert date and time"
 
 ;;; Easy navigation
 ;; (require 'outshine)
-(add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+;; (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+(add-hook 'prog-mode-hook 'outshine-mode)
+;; (require 'outshine-mode)
 (require 'navi-mode)
 (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
 (add-hook 'ess-mode-hook 'outline-minor-mode)
 (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
+(add-hook 'c++-mode-hook 'outline-minor-mode)
 (add-hook 'message-mode-hook 'outline-minor-mode)
 (defvar outline-minor-mode-prefix "\M-#")
 
@@ -1763,16 +1771,19 @@ With C-u C-u: insert date and time"
 ;;   )
 (define-key dumb-jump-mode-map (kbd "C-M-q") nil)
 (define-key dumb-jump-mode-map (kbd "C-M-j") 'dumb-jump-quick-look)
+(setq dumb-jump-selector 'helm)
+(setq dumb-jump-prefer-searcher 'ag)
 
 (global-set-key (kbd "C-s") 'helm-swoop)
 ;; (global-set-key (kbd "C-s") 'helm-occur)
 
 
-(when (window-system)
-  (set-default-font "Ubuntu Mono"))
+;; (when (window-system)
+;;   (set-default-font "Ubuntu Mono"))
 
-(add-hook 'makefile-mode-hook 'turn-off-flyspell t)
-(add-hook 'emacs-lisp-mode-hook 'turn-off-flyspell t)
+;; (add-hook 'makefile-mode-hook 'turn-off-flyspell t)
+;; (add-hook 'emacs-lisp-mode-hook 'turn-off-flyspell t)
+;; (add-hook 'ess-mode-hook 'turn-off-flyspell t)
 
 
 (global-set-key (kbd "C-x M-a") 'helm-do-ag)
@@ -1784,11 +1795,11 @@ With C-u C-u: insert date and time"
     (org-redisplay-inline-images)))
 (add-hook 'org-babel-after-execute-hook 'my/fix-inline-images)
 
-(load "~/.emacs.d/org-mind-map.el")
+;; (load "~/.emacs.d/org-mind-map.el")
 
 
-(require 'helm-projectile)
-(helm-projectile-on)
+;; (require 'helm-projectile)
+;; (helm-projectile-on)
 
 
 
@@ -1800,13 +1811,206 @@ With C-u C-u: insert date and time"
 
 
 
-(defun highlight-selected-window ()
-  "Highlight selected window with a different background color."
-  (walk-windows (lambda (w)
-                  (unless (eq w (selected-window))
-                    (with-current-buffer (window-buffer w)
-                      (buffer-face-set '(:background "#212121"))))))
-  (buffer-face-set 'default))
-(add-hook 'buffer-list-update-hook 'highlight-selected-window)
+;; (defun highlight-selected-window ()
+;;   "Highlight selected window with a different background color."
+;;   (walk-windows (lambda (w)
+;;                   (unless (eq w (selected-window))
+;;                     (with-current-buffer (window-buffer w)
+;;                       (buffer-face-set '(:background "#313131"))))))
+;;   (buffer-face-set 'default))
+;; (add-hook 'buffer-list-update-hook 'highlight-selected-window)
 
 
+;; (put 'scroll-left 'disabled nil)
+
+
+;; (latex-preview-pane-enable)
+(setq-default TeX-engine 'xetex)
+
+(global-set-key (kbd "s-P") 'powerthesaurus-lookup-word-dwim)
+
+
+;; ;; ADMB mode
+;; (add-to-list 'load-path "~/.emacs.d/admb")
+;; (autoload 'admb-mode "admb" "Edit ADMB code." t)
+;; (add-to-list 'auto-mode-alist '("\\.tpl$" . admb-mode))
+
+(setq ess-smart-S-assign-key nil)
+(define-key ess-mode-map (kbd ";") 'ess-insert-assign)
+(define-key inferior-ess-mode-map (kbd ";") 'ess-insert-assign)
+
+
+;; (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+R-mode))
+;; (add-to-list 'auto-mode-alist '("\\.rmd" . poly-markdown+r-mode))
+;; (require 'poly-R)
+;; (require 'poly-markdown)
+;; (require 'R-mode)
+
+(server-start)
+
+;; (defun rmd-mode ()
+;;   "ESS Markdown mode for rmd files"
+;;   (interactive)
+;;   ;; (setq load-path 
+;;   ;;   (append (list "path/to/polymode/" "path/to/polymode/modes/")
+;;   ;;       load-path))
+;;   (require 'poly-R)
+;;   (require 'poly-markdown)     
+;;   (poly-markdown+r-mode))
+;; ;; (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+;; (add-to-list 'auto-mode-alist '("\\.Rmd" . rmd-mode))
+
+
+(put 'erase-buffer 'disabled nil)
+
+
+;; * Psession - alternative to desktop-mode to save buffers
+(psession-mode 1)
+(psession-autosave-mode 1)
+
+
+(defun basename (fname)
+  (if (or (file-directory-p fname)
+          (string-match "/$" fname))
+      (let ((dirname (directory-file-name fname))) 
+        (file-name-nondirectory dirname))
+      (file-name-nondirectory fname)))
+
+(defun er-copy-file-name-to-clipboard ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      (basename default-directory)
+                    (file-name-nondirectory buffer-file-name))))
+    (when filename
+      (kill-new (file-name-nondirectory filename))
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
+(global-set-key (kbd "C-c p") 'er-copy-file-name-to-clipboard)
+
+
+
+;;; Markdown mode
+(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+(setq auto-mode-alist (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.ronn?" . markdown-mode) auto-mode-alist))
+
+;; Polymode and co
+(require 'poly-R)
+(require 'poly-markdown)
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+(defun ess-rmarkdown ()
+  "Compile R markdown (.Rmd). Should work for any output type."
+  (interactive)
+  ;; Check if attached R-session
+  (condition-case nil
+      (ess-get-process)
+    (error
+     (ess-switch-process)))
+  (let* ((rmd-buf (current-buffer)))
+    (save-excursion
+      (let* ((sprocess (ess-get-process ess-current-process-name))
+             (sbuffer (process-buffer sprocess))
+             (buf-coding (symbol-name buffer-file-coding-system))
+             (R-cmd
+	      (format "library(rmarkdown); rmarkdown::render(\"%s\")"
+		      buffer-file-name)))
+	(message "Running rmarkdown on %s" buffer-file-name)
+        (ess-execute R-cmd 'buffer nil nil)
+        (switch-to-buffer rmd-buf)
+        (ess-show-buffer (buffer-name sbuffer) nil)))))
+
+
+(add-hook 'after-init-hook (lambda ()
+  (when (fboundp 'auto-dim-other-buffers-mode)
+    (auto-dim-other-buffers-mode t))))
+
+
+;; ;; * from https://with-emacs.com/
+
+;; (autoload 'View-scroll-half-page-forward "view")
+;; (autoload 'View-scroll-half-page-backward "view")
+;; (global-set-key (kbd "C-v") 'View-scroll-half-page-forward)
+;; (global-set-key (kbd "M-v") 'View-scroll-half-page-backward)
+
+;; (global-set-key (kbd "C-M-v")
+;;   'my-View-scroll-half-page-forward-other-window)
+;; (global-set-key (kbd "C-M-S-v")
+;;   'my-View-scroll-half-page-backward-other-window)
+
+;; (defun my-View-scroll-half-page-forward-other-window ()
+;;   (interactive)
+;;   (with-selected-window (next-window)
+;;     (call-interactively 'View-scroll-half-page-forward)))
+
+;; (defun my-View-scroll-half-page-backward-other-window ()
+;;   (interactive)
+;;   (with-selected-window (next-window)
+;;     (call-interactively 'View-scroll-half-page-backward)))
+
+;; (setq scroll-preserve-screen-position 'always)
+
+;; (advice-add #'View-scroll-half-page-forward :around
+;;             #'my-indicate-scroll-forward)
+
+;; (advice-add #'View-scroll-half-page-backward :around
+;;             #'my-indicate-scroll-backward)
+
+;; (defun my-indicate-scroll-get-line (pos)
+;;   (save-excursion
+;;     (goto-char pos)
+;;     (string-to-number (format-mode-line "%l"))))
+
+;; (defun my-indicate-scroll (linep f args)
+;;   (let ((linen (my-indicate-scroll-get-line linep))
+;;         (pulse-delay 0.1))
+;;     (save-excursion
+;;       (goto-line linen)
+;;       (pulse-momentary-highlight-one-line (point) 'highlight))
+;;     (sit-for 0.1)
+;;     (apply f args)))
+
+;; (defun my-indicate-scroll-forward (f &rest args)
+;;   (my-indicate-scroll (1- (window-end)) f args))
+
+;; (defun my-indicate-scroll-backward (f &rest args)
+;;   (my-indicate-scroll (window-start) f args))
+
+
+;; * Move line/region up or down with M-S up/down
+(defun move-text-internal (arg)
+   (cond
+    ((and mark-active transient-mark-mode)
+     (if (> (point) (mark))
+            (exchange-point-and-mark))
+     (let ((column (current-column))
+              (text (delete-and-extract-region (point) (mark))))
+       (forward-line arg)
+       (move-to-column column t)
+       (set-mark (point))
+       (insert text)
+       (exchange-point-and-mark)
+       (setq deactivate-mark nil)))
+    (t
+     (beginning-of-line)
+     (when (or (> arg 0) (not (bobp)))
+       (forward-line)
+       (when (or (< arg 0) (not (eobp)))
+            (transpose-lines arg))
+       (forward-line -1)))))
+
+(defun move-text-down (arg)
+   "Move region (transient-mark-mode active) or current line
+  arg lines down."
+   (interactive "*p")
+   (move-text-internal arg))
+
+(defun move-text-up (arg)
+   "Move region (transient-mark-mode active) or current line
+  arg lines up."
+   (interactive "*p")
+   (move-text-internal (- arg)))
+
+(global-set-key [\M-\S-up] 'move-text-up)
+(global-set-key [\M-\S-down] 'move-text-down)

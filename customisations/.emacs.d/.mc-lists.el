@@ -4,6 +4,8 @@
 (setq mc/cmds-to-run-for-all
       '(
 	TeX-insert-backslash
+	TeX-insert-dollar
+	TeX-insert-sub-or-superscript
 	back-to-indentation-or-beginning
 	backward-sexp
 	electric-newline-and-maybe-indent
@@ -13,6 +15,8 @@
 	ess-yank
 	forward-sexp
 	helm-M-x
+	helm-show-kill-ring
+	helm-swoop
 	indent-for-tab-command
 	keyboard-quit
 	kill-region
@@ -27,6 +31,7 @@
       '(
 	LaTeX-babel-insert-hyphen
 	dired-unmark-backward
+	ess-eval-region-or-function-or-paragraph-and-step
 	magit-status
 	mouse-set-region
 	previous-buffer

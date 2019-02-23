@@ -21,9 +21,15 @@ $dragonfly
 
 # Command Line History (newest to oldest):
 :wq
-|2,0,1523539112,,"wq"
+|2,0,1548818963,,"wq"
 :q
-|2,0,1511746145,,"q"
+|2,0,1538433696,,"q"
+:weq
+|2,0,1538109917,,"weq"
+:e sra_fishing_group_previous.sql.tmpl
+|2,0,1531695531,,"e sra_fishing_group_previous.sql.tmpl"
+:q!
+|2,0,1529558113,,"q!"
 :ls
 |2,0,1511746037,,"ls"
 :w
@@ -34,10 +40,6 @@ $dragonfly
 |2,0,0,,"'<,'>q"
 :17
 |2,0,0,,"17"
-:q!
-|2,0,0,,"q!"
-:weq
-|2,0,0,,"weq"
 :b3
 |2,0,0,,"b3"
 :b1
@@ -118,10 +120,10 @@ $dragonfly
 |2,0,0,,"set nospel"
 :'<,'>set no
 |2,0,0,,"'<,'>set no"
-:'<,'>s/^/%
-|2,0,0,,"'<,'>s/^/%"
 
 # Search String History (newest to oldest):
+?/usr/bin/Rscript
+|2,1,1531952555,47,"usr/bin/Rscript"
 ?/file_row
 |2,1,1511746012,47,"file_row"
 ?/sheet_cell
@@ -220,8 +222,6 @@ $dragonfly
 |2,1,0,47,"n"
 ?/include
 |2,1,0,47,"include"
-?/Petroica
-|2,1,0,47,"Petroica"
 
 # Expression History (newest to oldest):
 
@@ -230,36 +230,37 @@ $dragonfly
 # Debug Line History (newest to oldest):
 
 # Registers:
-"0	LINE	0
-	select * from load.field limit 10;
-|3,0,0,1,1,0,1512507644,"select * from load.field limit 10;"
-""1	LINE	0
-	
-|3,1,1,1,1,0,1512507651,""
+""0	CHAR	0
+	 
+|3,1,0,0,1,0,1548815960," "
+"1	LINE	0
+	*/2 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/webcam/download.r
+|3,0,1,1,1,0,1539551168,"*/2 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/webcam/download.r"
 "2	LINE	0
-	select * from load.field limit 10;
-|3,0,2,1,1,0,1512507647,"select * from load.field limit 10;"
+	# m h  dom mon dow   command
+	*/2 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/webcam/download.r
+|3,0,2,1,2,0,1539551150,"# m h  dom mon dow   command","*/2 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/webcam/download.r"
 "3	LINE	0
-		(cd $(MODDIR)  &&  Rscript get-results.r)
-|3,0,3,1,1,0,1481663140,"	(cd $(MODDIR)  &&  Rscript get-results.r)"
+	*/10 * * * * make -C /home/yvan/dragonfly/mytests/birdoftheyear_2018
+|3,0,3,1,1,0,1539551147,"*/10 * * * * make -C /home/yvan/dragonfly/mytests/birdoftheyear_2018"
 "4	LINE	0
-		url = git@github.com:dragonfly-science/bibliography.git
-|3,0,4,1,1,0,0,"	url = git@github.com:dragonfly-science/bibliography.git"
+	*/1 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/birdoftheyear_2018/test-pushbullet.r
+|3,0,4,1,1,0,1539551146,"*/1 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/birdoftheyear_2018/test-pushbullet.r"
 "5	LINE	0
-	[submodule "capture-grooming-summary/bibliography"]
-|3,0,5,1,1,0,0,"[submodule \"capture-grooming-summary/bibliography\"]"
+	;
+|3,0,5,1,1,0,1533081213,";"
 "6	LINE	0
-	MPD_PASSWORD
-|3,0,6,1,1,0,0,"MPD_PASSWORD"
+	USING (species_code)
+|3,0,6,1,1,0,1533081213,"USING (species_code)"
 "7	LINE	0
-	MPD_PASSWORD
-|3,0,7,1,1,0,0,"MPD_PASSWORD"
+	JOIN demography.breeder_ratio s
+|3,0,7,1,1,0,1533081212,"JOIN demography.breeder_ratio s"
 "8	LINE	0
-	
-|3,0,8,1,1,0,0,""
+	USING (grid_id, species_code, taxa, geom)
+|3,0,8,1,1,0,1533081212,"USING (grid_id, species_code, taxa, geom)"
 "9	LINE	0
-	=|J8EHc98YY4lX4mF0x+Gq28hrmPs= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLVZZPvyqBG9hrunyT+fXm2ElDhkRcNOONM3icF4jWET5F/hvosKIJ7kTTfmDizl/XHmyJCYLTW45NXoRsWOcXE=
-|3,0,9,1,1,0,0,"=|J8EHc98YY4lX4mF0x+Gq28hrmPs= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLVZZPvyqBG9hrunyT+fXm2ElDhkRcNOONM3icF4jWET5F/hvosKIJ7kTTfmDizl/XHmyJCYLTW45NXoRsWOcXE="
+	    WHERE stage = 'nonbreeder' and taxa = 'Diomedea antipodensis') n
+|3,0,9,1,1,0,1533081212,"    WHERE stage = 'nonbreeder' and taxa = 'Diomedea antipodensis') n"
 "q	CHAR	0
 	
 |3,0,26,0,1,0,1510807470,""
@@ -267,236 +268,471 @@ $dragonfly
 	lrr
 |3,0,30,0,1,0,0,"lrr"
 "-	CHAR	0
-	 
-|3,0,36,0,1,0,1511745873," "
+	0
+|3,0,36,0,1,0,1538104952,"0"
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
 |4,76,20,45,0,"~/dragonfly/sra-foundations/report/research_progress/methods.rnw"
-'0  3  10  ~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r
-|4,48,3,10,1523539112,"~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r"
-'1  1  0  ~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG
-|4,49,1,0,1523422732,"~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG"
-'2  1  0  ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
-|4,50,1,0,1519159558,"~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG"
-'3  1  0  ~/Downloads/PanoplyJ/panoply.sh
-|4,51,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
-'4  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,52,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
-'5  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,53,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
-'6  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,54,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
-'7  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,55,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
-'8  116  0  /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-|4,56,116,0,1511746145,"/slow/yvan/dragonfly/NMS/src/create/make_nescs.r"
-'9  183  31  /slow/yvan/dragonfly/NMS/src/utilities.r
-|4,57,183,31,1511746005,"/slow/yvan/dragonfly/NMS/src/utilities.r"
+'0  2  0  ~/dragonfly/wanderers-at-sea-distribution/report/report.tex
+|4,48,2,0,1550452399,"~/dragonfly/wanderers-at-sea-distribution/report/report.tex"
+'1  23  3  /tmp/crontab.I9tqKY/crontab
+|4,49,23,3,1548818963,"/tmp/crontab.I9tqKY/crontab"
+'2  23  76  /tmp/crontab.49EK0B/crontab
+|4,50,23,76,1548815981,"/tmp/crontab.49EK0B/crontab"
+'3  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
+|4,51,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
+'4  22  0  /tmp/crontab.JG32A3/crontab
+|4,52,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+'5  23  0  /tmp/crontab.6mRWJY/crontab
+|4,53,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+'6  25  54  /tmp/crontab.kAcsXq/crontab
+|4,54,25,54,1538433668,"/tmp/crontab.kAcsXq/crontab"
+'7  1  0  /slow/yvan/dragonfly/mytests/birdoftheyear_2018/makefile
+|4,55,1,0,1538425169,"/slow/yvan/dragonfly/mytests/birdoftheyear_2018/makefile"
+'8  2  0  /slow/yvan/dragonfly/mytests/birdoftheyear_2018/dashboard.Rmd
+|4,56,2,0,1538367426,"/slow/yvan/dragonfly/mytests/birdoftheyear_2018/dashboard.Rmd"
+'9  1  0  /tmp/crontab.6FtTOM/crontab
+|4,57,1,0,1538110812,"/tmp/crontab.6FtTOM/crontab"
 
 # Jumplist (newest first):
--'  3  10  ~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r
-|4,39,3,10,1523539112,"~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r"
--'  1  0  ~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r
-|4,39,1,0,1523539096,"~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r"
--'  1  0  ~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG
-|4,39,1,0,1523422732,"~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG"
--'  1  0  ~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG
-|4,39,1,0,1523422732,"~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG"
--'  1  0  ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
-|4,39,1,0,1519159558,"~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG"
--'  1  0  ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
-|4,39,1,0,1519159558,"~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG"
--'  1  0  ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
-|4,39,1,0,1519159558,"~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG"
--'  1  0  ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
-|4,39,1,0,1519159558,"~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG"
--'  1  0  ~/Downloads/PanoplyJ/panoply.sh
-|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
--'  1  0  ~/Downloads/PanoplyJ/panoply.sh
-|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
--'  1  0  ~/Downloads/PanoplyJ/panoply.sh
-|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
--'  1  0  ~/Downloads/PanoplyJ/panoply.sh
-|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
--'  1  0  ~/Downloads/PanoplyJ/panoply.sh
-|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
--'  1  0  ~/Downloads/PanoplyJ/panoply.sh
-|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
--'  1  0  ~/Downloads/PanoplyJ/panoply.sh
-|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
--'  1  0  ~/Downloads/PanoplyJ/panoply.sh
-|4,39,1,0,1515639117,"~/Downloads/PanoplyJ/panoply.sh"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.10119.sql
-|4,39,1,0,1512692382,"/tmp/user/15002/psql.edit.10119.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  1  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,1,0,1512507668,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
--'  12  0  /tmp/user/15002/psql.edit.11528.sql
-|4,39,12,0,1512507659,"/tmp/user/15002/psql.edit.11528.sql"
+-'  2  0  ~/dragonfly/wanderers-at-sea-distribution/report/report.tex
+|4,39,2,0,1550452399,"~/dragonfly/wanderers-at-sea-distribution/report/report.tex"
+-'  1  0  ~/dragonfly/wanderers-at-sea-distribution/report/report.tex
+|4,39,1,0,1550452396,"~/dragonfly/wanderers-at-sea-distribution/report/report.tex"
+-'  23  3  /tmp/crontab.I9tqKY/crontab
+|4,39,23,3,1548818963,"/tmp/crontab.I9tqKY/crontab"
+-'  23  3  /tmp/crontab.I9tqKY/crontab
+|4,39,23,3,1548818963,"/tmp/crontab.I9tqKY/crontab"
+-'  1  0  /tmp/crontab.I9tqKY/crontab
+|4,39,1,0,1548818951,"/tmp/crontab.I9tqKY/crontab"
+-'  1  0  /tmp/crontab.I9tqKY/crontab
+|4,39,1,0,1548818951,"/tmp/crontab.I9tqKY/crontab"
+-'  23  76  /tmp/crontab.49EK0B/crontab
+|4,39,23,76,1548815981,"/tmp/crontab.49EK0B/crontab"
+-'  23  76  /tmp/crontab.49EK0B/crontab
+|4,39,23,76,1548815981,"/tmp/crontab.49EK0B/crontab"
+-'  23  76  /tmp/crontab.49EK0B/crontab
+|4,39,23,76,1548815981,"/tmp/crontab.49EK0B/crontab"
+-'  23  76  /tmp/crontab.49EK0B/crontab
+|4,39,23,76,1548815981,"/tmp/crontab.49EK0B/crontab"
+-'  1  0  /tmp/crontab.49EK0B/crontab
+|4,39,1,0,1548815932,"/tmp/crontab.49EK0B/crontab"
+-'  1  0  /tmp/crontab.49EK0B/crontab
+|4,39,1,0,1548815932,"/tmp/crontab.49EK0B/crontab"
+-'  1  0  /tmp/crontab.49EK0B/crontab
+|4,39,1,0,1548815932,"/tmp/crontab.49EK0B/crontab"
+-'  1  0  /tmp/crontab.49EK0B/crontab
+|4,39,1,0,1548815932,"/tmp/crontab.49EK0B/crontab"
+-'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
+|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
+-'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
+|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
+-'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
+|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
+-'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
+|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
+-'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
+|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
+-'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
+|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
+-'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
+|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
+-'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
+|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  22  0  /tmp/crontab.JG32A3/crontab
+|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  21  0  /tmp/crontab.JG32A3/crontab
+|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  1  0  /tmp/crontab.JG32A3/crontab
+|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  23  0  /tmp/crontab.6mRWJY/crontab
+|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
 
 # History of marks within files (newest to oldest):
+
+> ~/dragonfly/wanderers-at-sea-distribution/report/report.tex
+	*	1550452398	0
+	"	2	0
+
+> /tmp/crontab.I9tqKY/crontab
+	*	1548818962	0
+	"	23	3
+	^	23	4
+	.	23	4
+	+	23	4
+
+> /tmp/crontab.49EK0B/crontab
+	*	1548815980	0
+	"	23	76
+	^	23	77
+	.	23	76
+	+	23	76
+
+> ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
+	*	1547757832	0
+	"	1	0
+
+> /tmp/crontab.JG32A3/crontab
+	*	1539551168	0
+	"	22	0
+	.	23	0
+	+	23	0
+	+	22	0
+	+	23	0
+
+> /tmp/crontab.6mRWJY/crontab
+	*	1538433695	0
+	"	23	0
+
+> /tmp/crontab.kAcsXq/crontab
+	*	1538433666	0
+	"	25	54
+
+> /slow/yvan/dragonfly/mytests/birdoftheyear_2018/makefile
+	*	1538425150	0
+	"	1	0
+
+> /slow/yvan/dragonfly/mytests/birdoftheyear_2018/dashboard.Rmd
+	*	1538367425	0
+	"	2	0
+
+> /tmp/crontab.6FtTOM/crontab
+	*	1538110653	0
+	"	1	0
+
+> /tmp/crontab.vIO02m/crontab
+	*	1538110343	0
+	"	1	0
+
+> /tmp/crontab.gBZho0/crontab
+	*	1538110278	0
+	"	1	0
+
+> /tmp/crontab.soM952/crontab
+	*	1538109917	0
+	"	25	93
+	^	25	94
+	.	25	93
+	+	25	93
+
+> /tmp/crontab.axmjyN/crontab
+	*	1538106203	0
+	"	24	3
+	^	24	4
+	.	24	4
+	+	24	4
+
+> /tmp/crontab.mXt8kZ/crontab
+	*	1538104969	0
+	"	24	66
+	^	24	67
+	.	24	67
+	+	24	67
+	a	24	12
+
+> /tmp/crontab.zJXxCj/crontab
+	*	1538101618	0
+	"	24	86
+	^	24	87
+	.	24	86
+	+	24	86
+
+> /tmp/crontab.7vvQiy/crontab
+	*	1538101231	0
+	"	24	58
+	^	24	59
+	.	24	59
+	+	24	59
+
+> /tmp/crontab.0J3tIh/crontab
+	*	1538098945	0
+	"	1	0
+
+> /tmp/crontab.D4kWis/crontab
+	*	1538098708	0
+	"	24	3
+	^	24	4
+	.	24	4
+	+	24	4
+
+> /tmp/crontab.e3H79r/crontab
+	*	1538097794	0
+	"	24	32
+	^	24	33
+	.	24	32
+	+	24	32
+
+> /tmp/crontab.U5mz0r/crontab
+	*	1538097267	0
+	"	24	98
+	^	24	99
+	.	24	98
+	+	24	98
+
+> ~/dragonfly/yellow-eyed-penguin-overlap/exploration/test/content/post/2015-07-23-r-rmarkdown.Rmd
+	*	1535515671	0
+	"	1	0
+
+> /tmp/user/15002/psql.edit.20543.sql
+	*	1533081258	0
+	"	19	72
+	^	19	73
+	.	19	72
+	+	1	64
+	+	1	0
+	+	1	29
+	+	19	52
+	+	1	0
+	+	11	97
+	+	15	113
+	+	19	72
+
+> ~/dragonfly/estimation-2016-17/.git/MERGE_MSG
+	*	1532410020	0
+	"	1	0
+
+> /tmp/crontab.g7yT5O/crontab
+	*	1531952715	0
+	"	23	24
+
+> /tmp/crontab.Se9aAs/crontab
+	*	1531952564	0
+	"	23	27
+	^	23	28
+	.	23	28
+	+	23	28
+
+> /tmp/crontab.4WmbsB/crontab
+	*	1531952392	0
+	"	23	19
+	^	23	20
+	.	23	19
+	+	23	19
+
+> ~/dragonfly/sra-2016-17/re-run/20180717-same-years-as-before-stan/makefile
+	*	1531777289	0
+	"	1	0
+
+> ~/dragonfly/sra-2016-17/re-run/data_extract/sra_fishing_group_previous.sql.tmpl
+	*	1531705886	0
+	"	12	61
+
+> ~/dragonfly/sra-2016-17/re-run/data_extract/make_fishing_group_updated_sql.py
+	*	1531695573	0
+	"	47	0
+
+> ~/dragonfly/sra-2016-17/README.md
+	*	1531695349	0
+	"	1	0
+
+> ~/Downloads/Cytoscape_3_6_1_unix.sh
+	*	1531348736	0
+	"	690	0
+
+> /slow/yvan/dragonfly/moana-shiny-sim/app-sims-init/makefile
+	*	1529558289	0
+	"	5	40
+	^	5	41
+	.	5	41
+	+	5	41
+
+> ~/dragonfly/sentio-leave-calculation/C1/shiny/makefile
+	*	1529558132	0
+	"	14	41
+	^	14	42
+	.	14	41
+	+	15	0
+	+	14	41
+
+> /etc/rygel.conf
+	*	1529554912	0
+	"	156	11
+	^	156	12
+	.	156	12
+	+	156	12
+
+> /etc/mopidy/mopidy.conf
+	*	1529277139	0
+	"	147	13
+	^	147	14
+	.	147	13
+	+	6	0
+	+	1	7
+	+	5	0
+	+	6	0
+	+	2	7
+	+	6	0
+	+	6	42
+	+	15	0
+	+	7	14
+	+	8	0
+	+	6	0
+	+	15	0
+	+	8	15
+	+	10	19
+	+	35	13
+	+	25	13
+	+	27	0
+	+	28	28
+	+	147	13
+	i	1	0
+
+> ~/.config/monitors.xml.bk
+	*	1527457685	0
+	"	68	0
+
+> ~/.config/monitors.xml
+	*	1527456849	0
+	"	1	0
 
 > ~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r
 	*	1523539110	0
@@ -712,30 +948,6 @@ $dragonfly
 	+	1	27
 	+	4	29
 
-> /etc/mopidy/mopidy.conf
-	"	29	0
-	^	29	0
-	.	28	28
-	+	6	0
-	+	1	7
-	+	5	0
-	+	6	0
-	+	2	7
-	+	6	0
-	+	6	42
-	+	15	0
-	+	7	14
-	+	8	0
-	+	6	0
-	+	15	0
-	+	8	15
-	+	10	19
-	+	35	13
-	+	25	13
-	+	27	0
-	+	28	28
-	i	1	0
-
 > ~/dragonfly/npoa-observer-optimisation/.git/MERGE_MSG
 	"	1	0
 	^	1	0
@@ -876,300 +1088,4 @@ $dragonfly
 	"	1	0
 
 > ~/dragonfly/estimation-2014/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/doc-cryptic-mortality-2014/.git/MERGE_MSG
-	"	1	0
-	^	1	0
-	.	1	0
-	+	1	0
-
-> ~/dragonfly/black-petrel-distribution/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/bycatch.dragonfly.co.nz/.git/MERGE_MSG
-	"	1	0
-
-> /etc/postgresql/9.3/main/pg_hba.conf
-	"	94	50
-	^	94	51
-	.	94	50
-	+	86	69
-	+	91	1
-	+	94	0
-	+	94	0
-	+	93	69
-	+	94	50
-
-> /etc/postgresql/9.3/main/postgresql.conf
-	"	59	52
-	^	59	53
-	.	59	52
-	+	59	52
-
-> ~/dragonfly/whio-benthic-analysis/.git/MERGE_MSG
-	"	1	0
-	^	1	0
-	.	1	0
-	+	1	0
-
-> ~/dragonfly/doc-sll-mitigation-2012/.git/MERGE_MSG
-	"	1	0
-	.	1	0
-	+	1	0
-
-> ~/dragonfly/mammals-2014/.git/MERGE_MSG
-	"	1	0
-	^	1	0
-	.	1	0
-	+	1	0
-
-> /etc/ssh/sshd_config
-	"	23	0
-	^	89	9
-	.	89	7
-	+	89	7
-
-> /etc/ssh/ssh_config
-	"	50	0
-
-> ~/dragonfly/mammals-2014/report/sweave/r_functions.r
-	"	251	57
-
-> /tmp/psql.edit.32535.sql
-	"	1	21
-	^	1	22
-	.	1	21
-	+	6	0
-	+	1	27
-	+	3	0
-	+	1	32
-	+	2	33
-	+	1	21
-
-> /etc/hosts
-	"	3	38
-	^	3	39
-	.	3	38
-	+	3	38
-
-> ~/dragonfly/mammals-may-13/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/encounter-kaikoura/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/ludicio/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/toheroa-2014/.git/MERGE_MSG
-	"	1	0
-
-> /etc/apt/sources.list
-	"	1	0
-	^	72	43
-	.	69	0
-	+	71	0
-	+	69	0
-
-> /etc/mpd.conf
-	"	4	0
-	^	4	1
-	.	4	1
-	+	5	0
-	+	1	14
-	+	4	1
-
-> ~/.emacs
-	"	256	0
-	^	269	23
-	.	269	23
-	+	1	0
-	+	10	0
-	+	10	0
-	+	1	0
-	+	1	30
-	+	1	18
-	+	10	0
-	+	10	0
-	+	10	36
-	+	10	0
-	+	1	24
-	+	10	0
-	+	10	62
-	+	10	30
-	+	10	0
-	+	10	0
-	+	59	0
-	+	10	0
-	+	59	0
-	+	10	0
-	+	2	1
-	+	10	0
-	+	2	21
-	+	1	9
-	+	2	0
-	+	10	0
-	+	2	0
-	+	2	26
-	+	10	0
-	+	2	28
-	+	2	27
-	+	10	18
-	+	44	0
-	+	57	0
-	+	10	57
-	+	11	47
-	+	12	49
-	+	13	0
-	+	16	0
-	+	13	45
-	+	15	43
-	+	13	44
-	+	15	43
-	+	13	44
-	+	15	45
-	+	10	57
-	+	15	44
-	+	13	46
-	+	16	0
-	+	29	0
-	+	23	18
-	+	19	0
-	+	27	0
-	+	30	0
-	+	33	29
-	+	34	0
-	+	35	0
-	+	3	26
-	+	3	0
-	+	5	0
-	+	3	0
-	+	20	0
-	+	5	0
-	+	6	0
-	+	7	2
-	+	20	0
-	+	22	0
-	+	20	0
-	+	21	0
-	+	70	270
-	+	71	0
-	+	72	23
-	+	73	20
-	+	74	28
-	+	9	17
-	+	74	30
-	+	77	0
-	+	79	0
-	+	77	42
-	+	78	15
-	+	1	1
-	+	2	1
-	+	1	1
-	+	74	0
-	+	72	21
-	+	1	0
-	+	20	0
-	+	21	0
-	+	255	31
-	+	257	0
-	+	257	0
-	+	254	0
-	+	255	27
-	+	40	0
-	+	41	0
-	+	12	0
-	+	13	0
-	+	12	0
-	+	259	0
-	+	269	23
-
-> ~/dragonfly/black-petrel-distribution/report/makefile
-	"	16	0
-	^	16	1
-	.	17	0
-	+	4	34
-	+	6	25
-	+	4	37
-	+	16	18
-	+	20	0
-	+	16	0
-	+	17	0
-	+	18	0
-	+	19	0
-	+	17	0
-
-> ~/dragonfly/black-petrel-distribution/report/report.tex
-	"	16	21
-	^	16	22
-	.	16	21
-	+	2	21
-	+	16	21
-
-> ~/dragonfly/maui-may-2012/.git/config
-	"	8	36
-	^	8	37
-	.	8	36
-	+	8	36
-
-> /etc/ld.so.conf
-	"	1	0
-	.	2	0
-	+	2	0
-
-> /usr/share/texmf/web2c/texmf.cnf
-	"	650	14
-	^	650	15
-	.	650	15
-	+	650	15
-
-> /tmp/india-map.tex
-	"	55	64
-
-> /tmp/3994.prj
-	"	1	57
-
-> /etc/sysctl.conf
-	"	63	24
-	^	62	15
-	.	62	0
-	+	63	19
-	+	62	0
-
-> /etc/security/limits.conf
-	"	37	0
-
-> /tmp/54004.prj
-	"	1	0
-
-> /tmp/3395.prj
-	"	1	0
-
-> /etc/samba/smb.conf
-	"	337	0
-	.	338	0
-	+	337	0
-	+	338	20
-	+	338	0
-
-> /etc/texmf/texmf.cnf
-	"	722	8
-
-> ~/dragonfly/seabirds-2013/report/makefile
-	"	30	31
-	.	30	31
-	+	30	31
-
-> ~/dragonfly/seabirds-2013/.git/COMMIT_EDITMSG
-	"	1	0
-	^	1	0
-
-> ~/dragonfly/seabirds-2013/.gitignore
-	"	37	35
-	^	37	36
-	.	37	35
-	+	37	35
-
-> ~/mydeck/index.Rmd
 	"	1	0

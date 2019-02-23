@@ -2,18 +2,162 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Fri Mar  6 10:13:35 2015
-;; Desktop file format version 206
-;; Emacs version 24.4.1
+;; Created Fri Oct  5 13:58:22 2018
+;; Desktop file format version 208
+;; Emacs version 25.3.2
 
 ;; Global section:
-(setq desktop-saved-frameset [frameset 1 (21752 50943 725475 777000) (desktop . "206") "yvan@robin" nil nil ((((font-backend xft x) (font . "-adobe-Source Code Pro-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1") (font-parameter) (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (foreground-color . "#f6f3e8") (background-color . "#242424") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (scroll-bar-foreground) (scroll-bar-background . "grey75") (menu-bar-lines . 1) (tool-bar-lines . 1) (title) (wait-for-wm . t) (fullscreen) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 16) (alpha) (horizontal-scroll-bars . t) (display-type . color) (background-mode . dark) (cursor-color . "white") (sticky) (environment) (frameset--id . "368B-0752-6ABC-9A16") (frameset--mini t . t) (height . 50) (width . 210) (modeline . t) (minibuffer . t) (unsplittable) (left . 100) (top . 30) (icon-name) (visibility . t) (display . ":0") (explicit-name)) ((min-height . 4) (min-width . 20) (min-height-ignore . 3) (min-width-ignore . 12) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 76) (min-pixel-width . 160) (min-pixel-height-ignore . 57) (min-pixel-width-ignore . 96) (min-pixel-height-safe . 19) (min-pixel-width-safe . 32)) hc (pixel-width . 1712) (pixel-height . 931) (total-width . 214) (total-height . 49) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 856) (pixel-height . 931) (total-width . 107) (total-height . 49) (normal-height . 1.0) (normal-width . 0.5) (buffer "*Packages*" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars 16 2 t nil) (vscroll . 0) (dedicated) (point . 85930) (start . 82179))) (leaf (last . t) (pixel-width . 856) (pixel-height . 931) (total-width . 107) (total-height . 49) (normal-height . 1.0) (normal-width . 0.5) (buffer "*Compile-Log*" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars 16 2 t nil) (vscroll . 0) (dedicated) (point . 8158) (start . 7226)))))])
+(setq desktop-saved-frameset [frameset 1 (23478 46894 762168 96000) (desktop . "208") "yvan@huia" nil nil ((((font-backend xft x) (font . "-DAMA-Ubuntu Mono-normal-normal-normal-*-39-*-*-*-m-0-iso10646-1") (font-parameter . "Ubuntu Mono") (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars) (foreground-color . "#f6f3e8") (background-color . "#202020") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 1) (tool-bar-lines . 1) (title) (wait-for-wm . t) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 10) (scroll-bar-height . 0) (alpha) (fullscreen . maximized) (display-type . color) (background-mode . dark) (cursor-color . "white") (sticky) (environment) (frameset--id . "D77E-7206-1CD8-50AF") (frameset--mini t . t) (height . 50) (width . 185) (modeline . t) (minibuffer . t) (unsplittable) (left . 106) (top . 39) (icon-name) (visibility . t) (display . "localhost:10.0") (explicit-name)) ((min-height . 4) (min-width . 20) (min-height-ignore . 2) (min-width-ignore . 8) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 156) (min-pixel-width . 400) (min-pixel-height-ignore . 78) (min-pixel-width-ignore . 160) (min-pixel-height-safe . 39) (min-pixel-width-safe . 80)) hc (pixel-width . 3734) (pixel-height . 1949) (total-width . 187) (total-height . 50) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 1864) (pixel-height . 1949) (total-width . 93) (total-height . 50) (normal-height . 1.0) (normal-width . 0.5001330140994945) (buffer "makefile|sra-chile" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 1 t nil 0 t) (vscroll . 0) (dedicated) (point . 575) (start . 1))) (leaf (last . t) (pixel-width . 1870) (pixel-height . 1949) (total-width . 94) (total-height . 50) (normal-height . 1.0) (normal-width . 0.49986698590050543) (buffer "*help[R](IP_country)*" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 1 t nil 0 t) (vscroll . 0) (dedicated) (point . 1) (start . 1)))))])
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
-(setq search-ring '("markdown"))
+(setq search-ring '("'"))
 (setq regexp-search-ring nil)
 (setq register-alist nil)
-(setq file-name-history '("/home/yvan/.emacs.d"))
+(setq file-name-history '("~/dragonfly/mytests/birdoftheyear_2018/country.r" "~/.bashrc" "~/dragonfly/sra-chile/makefile" "~/dragonfly/sra-chile/grooming/groom.r" "~/dragonfly/sra-chile/exploration/exploration.Rmd" "~/dragonfly/sra-chile/with-abc-distributions/makefile" "~/dragonfly/sra-chile/journal.org" "~/dragonfly/sra-chile/notes.org" "~/dragonfly/sra-chile/functions.r" "~/dragonfly/sra-chile/grooming/#groom.r#"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/mytests/birdoftheyear_2018/country.r"
+  "country.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode TeX-PDF-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode buffer-face-mode company-mode)
+  364
+  '(364 t)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring (365 154 285 378 364))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-chile/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode TeX-PDF-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode buffer-face-mode company-mode auto-revert-mode magit-file-mode)
+  575
+  '(30 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (483 455 623 605 603 485 29 6 353 330 414 355 60 299 294 182))))
+
+(desktop-create-buffer 208
+  "/home/yvan/.bashrc"
+  ".bashrc"
+  'sh-mode
+  '(abbrev-mode helm-mode TeX-PDF-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode buffer-face-mode company-mode flyspell-mode)
+  3014
+  '(3072 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix))
+  '((mark-ring (3446 3446 2597 3014))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-chile/grooming/groom.r"
+  "groom.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode TeX-PDF-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode buffer-face-mode company-mode magit-file-mode)
+  1438
+  '(2271 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (2197 1814 2456 2452 644 78 2420 2455 1800 2291 2031 2016 2062 1859 2306 1438))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-chile/grooming/get-effort.r"
+  "get-effort.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode TeX-PDF-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode buffer-face-mode company-mode magit-file-mode)
+  261
+  '(22 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1 261 261))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-chile/exploration/exploration.Rmd"
+  "exploration.Rmd"
+  'markdown-mode
+  '(auto-fill-mode abbrev-mode helm-mode TeX-PDF-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode buffer-face-mode company-mode flyspell-mode magit-file-mode)
+  85
+  '(396 nil)
+  nil
+  nil
+  '((tab-width . 4) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (700))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-chile/with-abc-distributions/makefile"
+  "makefile"
+  'makefile-mode
+  '(abbrev-mode helm-mode TeX-PDF-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode buffer-face-mode company-mode auto-revert-mode magit-file-mode)
+  3939
+  '(3528 nil)
+  nil
+  nil
+  '((indent-tabs-mode . t) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-chile/journal.org"
+  "journal.org"
+  'org-mode
+  '(auto-fill-mode abbrev-mode helm-mode TeX-PDF-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode buffer-face-mode company-mode flyspell-mode org-indent-mode auto-revert-mode magit-file-mode)
+  349
+  '(105 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (truncate-lines . t))
+  '((mark-ring (150 349 349 349))))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-chile/notes.org"
+  "notes.org"
+  'org-mode
+  '(auto-fill-mode abbrev-mode helm-mode TeX-PDF-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode buffer-face-mode company-mode flyspell-mode org-indent-mode auto-revert-mode magit-file-mode)
+  74
+  '(307 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (truncate-lines . t))
+  '((mark-ring (110 1))))
+
+(desktop-create-buffer 208
+  nil
+  "sra-chile"
+  'dired-mode
+  '(abbrev-mode helm-mode TeX-PDF-mode wakatime-mode yas-minor-mode highlight-sexp-mode projectile-mode buffer-face-mode company-mode)
+  886
+  '(nil nil)
+  t
+  '("/home/yvan/dragonfly/sra-chile/")
+  nil
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-chile/functions.r"
+  "functions.r"
+  'ess-mode
+  '(abbrev-mode eldoc-mode helm-mode outline-minor-mode TeX-PDF-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode rainbow-delimiters-mode projectile-mode buffer-face-mode company-mode auto-revert-mode magit-file-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/yvan/dragonfly/sra-cj"
+  "sra-cj"
+  'fundamental-mode
+  '(abbrev-mode helm-mode TeX-PDF-mode wakatime-mode wrap-region-mode yas-minor-mode highlight-sexp-mode projectile-mode buffer-face-mode company-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  nil
+  '((mark-ring nil)))
+

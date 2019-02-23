@@ -124,10 +124,14 @@ capwords <- function(s, strict = FALSE) {
 }
 
 ## Returns string of comma-separated values, with quotes (or not)
-Pprint <- function(x, sep=',', use.quotes=T) {
-    if (use.quotes)
-        cat(paste(sprintf('\'%s\'', x), collapse=sep),'\n') else
-    cat(paste(sprintf('%s', x), collapse=sep),'\n')
+Pprint <- function(x, sep=',', quotes="\"") {
+    if (!is.null(quotes)) {
+        out <- paste(sprintf('%1$s%2$s%1$s', quotes, x), collapse=sep)
+    } else {
+        out <- paste(sprintf('%s', x), collapse=sep)
+    }
+    cat(out, sep='\n')
+    return(out)
 }
 
 ## Function to return a number in scientific notation
@@ -2168,7 +2172,9 @@ check.latex.deps <- function(fold='.',
               fs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', c1)
             c2 <- r[grepl('\\bread\\.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
               fs2 <- sub('.*read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
-            fs <- c(fs1, fs2)
+            c3 <- r[grepl('\\bfread\\(', r) & !grepl('^[[:blank:]]*#', r)]
+              fs3 <- sub('.*fread\\([\'\"]+(.*)[\'\"]+.*', '\\1', c3)
+            fs <- c(fs1, fs2, fs3)
             ## Replace global variables in .mk files by their value
             c <- grepl('load\\([a-zA-Z]+', fs)
             alldeps1 <- sub('.*load\\((.*).*\\).*', '\\1', fs[c])
@@ -2255,6 +2261,8 @@ check.latex.deps <- function(fold='.',
         cat(paste(unique(alldeps$dep[alldeps$valid %in% F]), collapse='\n'))
         cat('\n')
     }
+
+    invisible(alldeps)
 }
 
 
@@ -3256,25 +3264,32 @@ ghelp <- function(topic, ext='R', in_cran=ifelse(ext=='R', TRUE, FALSE)) {
 }
 
 
-webtab <- function(d, rownames = T, fontsize = '10px') {
+webtab <- function(d, rownames = T, fontsize = '10px', rounding = 5) {
+    dd <- copy(d)
+    for (x in names(dd)) {
+        if (is.numeric(dd[[x]])) {
+            dd[, eval(x) := round(get(x), rounding)]
+        }
+    }
     library(DT)
-    headstyle <- '<span style="color:DarkSlateBlue;font-size:small">%s</span>'
-    rowstyle <- '<span style="color:DarkSlateBlue;font-size:small">%s</span>'
-    d <- as.data.frame(d)
-    ## if ('data.table' %in% class(d)) {
-    ##     d <- copy(d)
-    ##     setnames(d, names(d), sprintf(style, names(d)))
+    ## headstyle <- '<span style="color:DarkSlateBlue;font-size:small">%s</span>'
+    ## rowstyle <- '<span style="color:DarkSlateBlue;font-size:small">%s</span>'
+    dd <- as.data.frame(dd)
+    ## if ('data.table' %in% class(dd)) {
+    ##     dd <- copy(dd)
+    ##     setnames(dd, names(dd), sprintf(style, names(dd)))
     ## } else
-    names(d) <- sprintf(headstyle, names(d))
-    rownames(d) <- sprintf(rowstyle, rownames(d))
-    datatable(d, escape = F,
+    ## names(dd) <- sprintf(headstyle, names(dd))
+    ## rownames(dd) <- sprintf(rowstyle, rownames(dd))
+    datatable(dd, escape = F,
+              extensions = c('Buttons'),
               options = list(autoWidth = FALSE, paging = FALSE,
-                             searching = TRUE, info   = TRUE),
+                             searching = TRUE, info   = TRUE,
+                             dom = 'Bfrtip', buttons = I('colvis')),
               rownames = rownames,
-              filter = 'bottom',
-              class = 'stripe order-column hover compact',
-              extensions = c('FixedHeader') # 'TableTools',
-              ) %>% formatStyle(1:ncol(d), `font-size` = fontsize)
+              filter = 'top',
+              class = 'stripe order-column hover compact'
+              ) # %>% formatStyle(1:ncol(dd), `font-size` = fontsize)
 }
 
 
@@ -4355,3 +4370,64 @@ push_msg <- function(title = 'Automatic msg', body = 'Test', url = NULL,
                recipients = devices)
     }
 }
+
+
+dt_to_multiline <- function(dt, coords, byvars, crs=sf::NA_crs_) {
+    ## * Convert a data.table to SF lines, by group
+    library(data.table)
+    library(sf)
+    st_as_sf(as.data.table(st_as_sf(dt, coords = coords))[
+      , .(geometry = list(st_cast(do.call(c, geometry), 'LINESTRING')))
+      , byvars])
+}
+
+
+
+getroot <- function(target='.git') {
+    path <- getwd()
+    atroot <- file.exists(file.path(path, target))
+    i <- 0
+    while(!atroot & path != '/') {
+        i <- i + 1
+        path <- dirname(path)
+        atroot <- file.exists(file.path(path, target))
+    }
+    if (!atroot & path == '/') {
+        warning('Root path not found')
+        return(character(0))
+    } else return(normalizePath(path))
+}
+
+
+ensuresomematching <- function(x, outfun=warning) {
+    condtxt <- deparse(substitute(x))
+    if (class(x) == 'logical') {
+        if (!any(x)) {
+            outfun(sQuote(condtxt), ' does not match any record')
+        }
+    } else {
+        if (!length(x)) {
+            outfun(sQuote(condtxt), ' does not match any record')
+        }
+    }
+    return(x)
+}
+
+## palettes <- function(n = 10, pal.type = 'sequential') {
+##     library(ggplot2)
+##     library(paletteer)
+##     library(data.table)
+##     pals <- data.table(palettes_c_names)[type == pal.type]
+    
+##     rbindlist(lapply(seq_len(nrow(palettes_c_names)), function(i) {
+##         pak <- pals[i, package]
+##         pal <- pals[i, palette]
+
+##         pale <- paletteer_c(eval(pak, parent.frame()), eval(pal, parent.frame()), n)
+        
+##         pale <- paletteer_c(eval(substitute(pak)), eval(substitute(pal)), n)
+
+##         pal <- paletteer_c(get(pak), get(pal), n)
+        
+##     }
+## }

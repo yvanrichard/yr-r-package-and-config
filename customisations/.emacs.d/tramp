@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <18/04/03 09:29:29 /home/yvan/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <19/02/21 12:15:27 /home/yvan/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -125,7 +125,7 @@
   ("git" "\\git")
   ("trash" nil))
  (["sudo" "root" "huia" nil nil]
-  ("uname" "Linux 4.4.0-116-generic")
+  ("uname" "Linux 4.4.0-139-generic")
   ("locale" "LC_ALL=en_US.utf8")
   ("test" "test")
   ("remote-path"
@@ -142,10 +142,11 @@
   ("gid-string" "root")
   ("readlink" "\\readlink")
   ("uid-integer" 0)
-  ("git" "\\git")
   ("tmpdir" "/tmp")
   ("touch-t" t)
-  ("touch" "\\touch"))
+  ("touch" "\\touch")
+  ("bzr" nil)
+  ("git" "\\git"))
  (["ssh" "admin" "moa" nil nil]
   ("uname" "Linux 3.10.35")
   ("locale" "LC_ALL=en_US.utf8")
@@ -241,4 +242,49 @@
   ("readlink" "\\readlink")
   ("git" "\\git")
   ("ls" "/bin/ls --color=never")
-  ("ls-dired" t)))
+  ("ls-dired" t))
+ (["ssh" nil "huia" nil nil]
+  ("uname" "Linux 4.4.0-135-generic")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("~" "/home/yvan")
+  ("file-exists" "test -e")
+  ("stat" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 14000)
+  ("gid-string" "dragonfly")
+  ("readlink" "\\readlink")
+  ("uid-integer" 15002)
+  ("git" "\\git")
+  ("env-u-option" t))
+ (["ssh" nil "kahu" nil nil]
+  ("uname" "Linux 4.4.0-142-generic")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("~" "/home/yvan")
+  ("file-exists" "test -e")
+  ("stat" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 14000)
+  ("gid-string" "dragonfly")
+  ("readlink" "\\readlink")
+  ("bzr" nil)
+  ("git" "\\git")
+  ("hg" nil)
+  ("uid-integer" 15002)
+  ("tmpdir" "/tmp")
+  ("touch-t" t)
+  ("touch" "\\touch")
+  ("env-u-option" t)))

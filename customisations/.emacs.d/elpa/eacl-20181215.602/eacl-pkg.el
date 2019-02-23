@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "eacl" "20181215.602" "Auto-complete line(s) by grepping project" '((emacs "24.3") (ivy "0.9.1")) :commit "1e217d53ae59d6eddb0d8a149e673158672616eb" :keywords '("abbrev" "convenience" "matching") :authors '(("Chen Bin <chenbin DOT sh AT gmail DOT com>")) :maintainer '("Chen Bin <chenbin DOT sh AT gmail DOT com>") :url "http://github.com/redguardtoo/eacl")
