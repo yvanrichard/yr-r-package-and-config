@@ -83,6 +83,10 @@ alias eremake='env $(find . -maxdepth 1 -name "*.env" -exec sed -e "/^#/d" -e "s
 alias e='env $(find . -maxdepth 1 -name "*.env" -exec sed -e "/^#/d" -e "s/[[:space:]]\+=[[:space:]]\+/=/g" {} \;)'
 alias memacs='emacs -q -l ~/.emacs_mini &'
 
+alias makedflyreport="rsync -avz --exclude generated --exclude '*~' /home/yvan/Dropbox/templates/dfly-report/ ."
+alias makeshiny="rsync -avz --exclude '*~' /home/yvan/Dropbox/templates/shiny-app/ ."
+alias makedocker="rsync -avz --exclude '*~' /home/yvan/Dropbox/templates/docker/ ."
+
 alias rgm='Rscript -e "graph_makefile()"'
 alias tmux='tmux -2 '
 # alias emacs='GDK_NATIVE_WINDOWS=1 emacs '

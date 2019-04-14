@@ -18,14 +18,14 @@ options(width=115)
 ##}
 ##
 .First <- function() {
-    cat(as.character(Sys.time()),' -- R session started.\n\n',sep='')
+    cat(as.character(Sys.time()),' -- R session started  {{{\n\n',sep='')
     MarkViewer <- "gvim"
 }
 .Last <- function()  {
     w <- warnings()
     if (length(w))
         print(w)
-    cat('\n',as.character(Sys.time()),' -- R session finished.\n\n',sep='')
+    cat('\n',as.character(Sys.time()),' -- R session finished }}}\n\n',sep='')
 }
 options(error = function() traceback(2))
 

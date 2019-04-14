@@ -585,6 +585,8 @@ prompt the user for a coding system."
 	 ("SRA Chile" (filename . "sra-chile"))
 	 ("SRA foundations" (filename . "sra-foundations"))
 	 ("SRA Kruger" (filename . "sra-kruger"))
+	 ("SRA CCSBT" (filename . "ccsbt"))
+	 ("Seabird distributions" (filename . "seabird-distributions"))
 	 ("Whaleshark" (filename . "whaleshark-interactions"))
 	 ("Estimation 2014-15" (filename . "estimation-2014-15"))
 	 ("Estimation 2014" (filename . "estimation-2014"))
@@ -621,6 +623,7 @@ prompt the user for a coding system."
 	 ("YEP" (filename . "yellow-eyed-penguin-overlap"))
 	 ("Kakapo" (filename . "kakapo"))
 	 ("Paua" (filename . "paua"))
+	 ("Fact Benchmark" (filename . "reality-reliability"))
 )))
 (add-hook 'ibuffer-mode-hook 
 	  '(lambda ()

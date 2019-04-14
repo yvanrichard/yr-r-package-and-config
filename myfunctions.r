@@ -749,6 +749,37 @@ sprect <- function(xmin, xmax, ymin, ymax, p4s="", ids=NULL, aslist=F) {
 }
 
 
+## Static base map using ggmap, making sure that all x and y are within the map
+get_basemap <- function(x=NULL, y=NULL, xcent=NULL, ycent=NULL, zoom=NULL,
+                        maptype='roadmap', filename='basemap',
+                        style=c(feature='all', element='labels', visibility='off'),
+                        color = 'bw') {
+    library(ggmap)
+    if (is.null(xcent) & is.null(ycent)) {
+        if (is.null(x) | is.null(y)) stop('Need x and y to calculate missing centre x and y')
+        xcent <- mean(range(x), na.rm=T)
+        ycent <- mean(range(y), na.rm=T)
+    }
+    if (is.null(zoom)) {
+        if (is.null(x) | is.null(y)) stop('Need x and y to calculate zoom')
+        zoom <- calc_zoom(extendrange(x), extendrange(y))
+    }
+    gm <- get_googlemap(c(xcent, ycent),
+                        zoom = zoom, maptype = 'roadmap', filename = 'roadmap',
+                        style=c(feature='all', element='labels', visibility='off'),
+                        color = 'bw')
+    bb <- unlist(attr(gm, 'bb'))
+    while (any(x < bb[['ll.lon']] | x > bb[['ur.lon']] | y < bb[['ll.lat']] | y > bb[['ur.lat']])) {
+        zoom <- zoom - 1
+        gm <- get_googlemap(c(xcent, ycent),
+                            zoom = zoom, maptype = maptype, filename = filename,
+                            style = style, color = color)
+        bb <- unlist(attr(gm, 'bb'))
+    }
+    cat(sprintf('Basemap with zoom = %i, X center = %f, Y center = %f\n', zoom, xcent, ycent))
+    return(gm)
+}
+
 
 ###############################################################################
 ###  CALCULATIONS
@@ -946,7 +977,7 @@ localc <- function(df, row.names=F, newl.at=NA, na.col.rm=T, openwith='localc', 
     if (na.col.rm) {
         df <- df[, sapply(df, function(x) all(is.na(x))) == F, with=F]
     }
-    fwrite(df, f, row.names=row.names, ...)
+    fwrite(df, f, quote=T, dateTimeAs = 'write.csv', row.names=row.names, ...)
     ## res <- system(sprintf('localc %s', f), wait=F)
     res <- system(sprintf('%s %s', openwith, f), wait=F)
     ## res <- system(sprintf('gnumeric %s', f), wait=F)
@@ -1389,6 +1420,27 @@ nodesep=1; ranksep=1; ratio="compress"; size="100,100"; spline=true;
     ## system(sprintf('xdg-open %s', pdffile), wait=F)
 }
 
+
+get_r_libraries <- function(fold = '.') {
+    library(data.table)
+
+    cmd1 <- sprintf('grep -r --include="*.r" --include="*.R" "library(" %s', fold)
+    res1 <- suppressWarnings(system(cmd1, intern=T))
+    cmd2 <- sprintf('grep -r --include="*.r" --include="*.R" "require(" %s', fold)
+    res2 <- suppressWarnings(system(cmd2, intern=T))
+    res <- c(res1, res2)
+    res <- as.data.table(do.call(rbind, strsplit(res, ':')))
+    setnames(res, c('file', 'library'))
+    res <- res[!grepl('^[[:blank:]]*#', library)]
+    res[, library := trimws(library)]
+    res[, library := sub('.*library\\((.*)\\).*', '\\1', library)]
+    res[, library := sub('.*require\\((.*)\\).*', '\\1', library)]
+    summ <- res[, .N, library]
+    summ[, lib := tolower(library)]
+    setorder(summ, lib)
+    print(summ[, -'lib', with=F])
+    return(summ[, library])
+}
 
 ## "%nin%" <- function(x,y) !(x %in% y)
 
@@ -3622,12 +3674,20 @@ rmall <- function() {
 }
 
 
-estBetaParams <- function(mu, var) {
-    ## Estimate alpha and beta of beta distribution from mean and variance
-    ## from http://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance
-    alpha <- ((1 - mu) / var - 1 / mu) * mu ^ 2
-    beta <- alpha * (1 / mu - 1)
-    return(params = list(alpha = alpha, beta = beta))
+estBetaParams <- function(mu=NULL, var=NULL, alpha=NULL, beta=NULL) {
+    ## ** mu & var -> alpha & beta
+    if (is.null(alpha) & is.null(beta)) {
+        ## Estimate alpha and beta of beta distribution from mean and variance
+        ## from http://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance
+        alpha <- ((1 - mu) / var - 1 / mu) * mu ^ 2
+        beta <- alpha * (1 / mu - 1)
+        return(list(alpha = alpha, beta = beta))
+    } else if (is.null(mu) & is.null(var)) {
+    ## ** alpha & beta -> mu & var
+        mu <- alpha / (alpha + beta)
+        var <- (alpha * beta) / ((alpha * beta)^2 * (alpha + beta + 1))
+        return(list(mu = mu, var = var))
+    } else stop('Either `alpha` and `beta` or `mu` and `var` should be NULL')
 }
 
 
@@ -4378,7 +4438,7 @@ dt_to_multiline <- function(dt, coords, byvars, crs=sf::NA_crs_) {
     library(sf)
     st_as_sf(as.data.table(st_as_sf(dt, coords = coords))[
       , .(geometry = list(st_cast(do.call(c, geometry), 'LINESTRING')))
-      , byvars])
+      , byvars], crs=crs)
 }
 
 

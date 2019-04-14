@@ -21,9 +21,9 @@ $dragonfly
 
 # Command Line History (newest to oldest):
 :wq
-|2,0,1548818963,,"wq"
+|2,0,1552020922,,"wq"
 :q
-|2,0,1538433696,,"q"
+|2,0,1551834026,,"q"
 :weq
 |2,0,1538109917,,"weq"
 :e sra_fishing_group_previous.sql.tmpl
@@ -230,9 +230,9 @@ $dragonfly
 # Debug Line History (newest to oldest):
 
 # Registers:
-""0	CHAR	0
+"0	CHAR	0
 	 
-|3,1,0,0,1,0,1548815960," "
+|3,0,0,0,1,0,1548815960," "
 "1	LINE	0
 	*/2 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/webcam/download.r
 |3,0,1,1,1,0,1539551168,"*/2 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/webcam/download.r"
@@ -267,237 +267,305 @@ $dragonfly
 "u	CHAR	0
 	lrr
 |3,0,30,0,1,0,0,"lrr"
-"-	CHAR	0
-	0
-|3,0,36,0,1,0,1538104952,"0"
+""-	CHAR	0
+	#
+|3,1,36,0,1,0,1551834649,"#"
 
 # File marks:
 'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
 |4,76,20,45,0,"~/dragonfly/sra-foundations/report/research_progress/methods.rnw"
-'0  2  0  ~/dragonfly/wanderers-at-sea-distribution/report/report.tex
-|4,48,2,0,1550452399,"~/dragonfly/wanderers-at-sea-distribution/report/report.tex"
-'1  23  3  /tmp/crontab.I9tqKY/crontab
-|4,49,23,3,1548818963,"/tmp/crontab.I9tqKY/crontab"
-'2  23  76  /tmp/crontab.49EK0B/crontab
-|4,50,23,76,1548815981,"/tmp/crontab.49EK0B/crontab"
-'3  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
-|4,51,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
-'4  22  0  /tmp/crontab.JG32A3/crontab
-|4,52,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
-'5  23  0  /tmp/crontab.6mRWJY/crontab
-|4,53,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
-'6  25  54  /tmp/crontab.kAcsXq/crontab
-|4,54,25,54,1538433668,"/tmp/crontab.kAcsXq/crontab"
-'7  1  0  /slow/yvan/dragonfly/mytests/birdoftheyear_2018/makefile
-|4,55,1,0,1538425169,"/slow/yvan/dragonfly/mytests/birdoftheyear_2018/makefile"
-'8  2  0  /slow/yvan/dragonfly/mytests/birdoftheyear_2018/dashboard.Rmd
-|4,56,2,0,1538367426,"/slow/yvan/dragonfly/mytests/birdoftheyear_2018/dashboard.Rmd"
-'9  1  0  /tmp/crontab.6FtTOM/crontab
-|4,57,1,0,1538110812,"/tmp/crontab.6FtTOM/crontab"
+'0  19  0  ~/Downloads/cover.tex
+|4,48,19,0,1554352929,"~/Downloads/cover.tex"
+'1  1  0  /tmp/crontab.nHNFYK/crontab
+|4,49,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
+'2  24  2  /tmp/crontab.z8jbb9/crontab
+|4,50,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
+'3  24  7  /tmp/crontab.QoZNq6/crontab
+|4,51,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
+'4  24  4  /tmp/crontab.7FFAC6/crontab
+|4,52,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+'5  24  88  /tmp/crontab.8ncLWE/crontab
+|4,53,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+'6  24  97  /tmp/crontab.yFyeQx/crontab
+|4,54,24,97,1551834665,"/tmp/crontab.yFyeQx/crontab"
+'7  1  0  /tmp/crontab.Ebn5PA/crontab
+|4,55,1,0,1551834026,"/tmp/crontab.Ebn5PA/crontab"
+'8  24  85  /tmp/crontab.FGRdge/crontab
+|4,56,24,85,1551834009,"/tmp/crontab.FGRdge/crontab"
+'9  24  2  /tmp/crontab.IvOnvD/crontab
+|4,57,24,2,1551833044,"/tmp/crontab.IvOnvD/crontab"
 
 # Jumplist (newest first):
--'  2  0  ~/dragonfly/wanderers-at-sea-distribution/report/report.tex
-|4,39,2,0,1550452399,"~/dragonfly/wanderers-at-sea-distribution/report/report.tex"
--'  1  0  ~/dragonfly/wanderers-at-sea-distribution/report/report.tex
-|4,39,1,0,1550452396,"~/dragonfly/wanderers-at-sea-distribution/report/report.tex"
--'  23  3  /tmp/crontab.I9tqKY/crontab
-|4,39,23,3,1548818963,"/tmp/crontab.I9tqKY/crontab"
--'  23  3  /tmp/crontab.I9tqKY/crontab
-|4,39,23,3,1548818963,"/tmp/crontab.I9tqKY/crontab"
--'  1  0  /tmp/crontab.I9tqKY/crontab
-|4,39,1,0,1548818951,"/tmp/crontab.I9tqKY/crontab"
--'  1  0  /tmp/crontab.I9tqKY/crontab
-|4,39,1,0,1548818951,"/tmp/crontab.I9tqKY/crontab"
--'  23  76  /tmp/crontab.49EK0B/crontab
-|4,39,23,76,1548815981,"/tmp/crontab.49EK0B/crontab"
--'  23  76  /tmp/crontab.49EK0B/crontab
-|4,39,23,76,1548815981,"/tmp/crontab.49EK0B/crontab"
--'  23  76  /tmp/crontab.49EK0B/crontab
-|4,39,23,76,1548815981,"/tmp/crontab.49EK0B/crontab"
--'  23  76  /tmp/crontab.49EK0B/crontab
-|4,39,23,76,1548815981,"/tmp/crontab.49EK0B/crontab"
--'  1  0  /tmp/crontab.49EK0B/crontab
-|4,39,1,0,1548815932,"/tmp/crontab.49EK0B/crontab"
--'  1  0  /tmp/crontab.49EK0B/crontab
-|4,39,1,0,1548815932,"/tmp/crontab.49EK0B/crontab"
--'  1  0  /tmp/crontab.49EK0B/crontab
-|4,39,1,0,1548815932,"/tmp/crontab.49EK0B/crontab"
--'  1  0  /tmp/crontab.49EK0B/crontab
-|4,39,1,0,1548815932,"/tmp/crontab.49EK0B/crontab"
--'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
-|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
--'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
-|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
--'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
-|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
--'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
-|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
--'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
-|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
--'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
-|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
--'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
-|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
--'  1  0  ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
-|4,39,1,0,1547757833,"~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  22  0  /tmp/crontab.JG32A3/crontab
-|4,39,22,0,1539551170,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  21  0  /tmp/crontab.JG32A3/crontab
-|4,39,21,0,1539551164,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  1  0  /tmp/crontab.JG32A3/crontab
-|4,39,1,0,1539551138,"/tmp/crontab.JG32A3/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
--'  23  0  /tmp/crontab.6mRWJY/crontab
-|4,39,23,0,1538433696,"/tmp/crontab.6mRWJY/crontab"
+-'  19  0  ~/Downloads/cover.tex
+|4,39,19,0,1554352929,"~/Downloads/cover.tex"
+-'  1  0  ~/Downloads/cover.tex
+|4,39,1,0,1554352919,"~/Downloads/cover.tex"
+-'  1  0  /tmp/crontab.nHNFYK/crontab
+|4,39,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
+-'  1  0  /tmp/crontab.nHNFYK/crontab
+|4,39,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
+-'  24  2  /tmp/crontab.z8jbb9/crontab
+|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
+-'  24  2  /tmp/crontab.z8jbb9/crontab
+|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
+-'  24  2  /tmp/crontab.z8jbb9/crontab
+|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
+-'  24  2  /tmp/crontab.z8jbb9/crontab
+|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
+-'  1  0  /tmp/crontab.z8jbb9/crontab
+|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
+-'  1  0  /tmp/crontab.z8jbb9/crontab
+|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
+-'  1  0  /tmp/crontab.z8jbb9/crontab
+|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
+-'  1  0  /tmp/crontab.z8jbb9/crontab
+|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
+-'  24  7  /tmp/crontab.QoZNq6/crontab
+|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
+-'  24  7  /tmp/crontab.QoZNq6/crontab
+|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
+-'  24  7  /tmp/crontab.QoZNq6/crontab
+|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
+-'  24  7  /tmp/crontab.QoZNq6/crontab
+|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
+-'  24  7  /tmp/crontab.QoZNq6/crontab
+|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
+-'  24  7  /tmp/crontab.QoZNq6/crontab
+|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
+-'  24  7  /tmp/crontab.QoZNq6/crontab
+|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
+-'  24  7  /tmp/crontab.QoZNq6/crontab
+|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
+-'  1  0  /tmp/crontab.QoZNq6/crontab
+|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
+-'  1  0  /tmp/crontab.QoZNq6/crontab
+|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
+-'  1  0  /tmp/crontab.QoZNq6/crontab
+|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
+-'  1  0  /tmp/crontab.QoZNq6/crontab
+|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
+-'  1  0  /tmp/crontab.QoZNq6/crontab
+|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
+-'  1  0  /tmp/crontab.QoZNq6/crontab
+|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
+-'  1  0  /tmp/crontab.QoZNq6/crontab
+|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
+-'  1  0  /tmp/crontab.QoZNq6/crontab
+|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  24  4  /tmp/crontab.7FFAC6/crontab
+|4,39,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  1  0  /tmp/crontab.7FFAC6/crontab
+|4,39,1,0,1551835269,"/tmp/crontab.7FFAC6/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  24  88  /tmp/crontab.8ncLWE/crontab
+|4,39,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
+-'  1  0  /tmp/crontab.8ncLWE/crontab
+|4,39,1,0,1551834910,"/tmp/crontab.8ncLWE/crontab"
+-'  1  0  /tmp/crontab.8ncLWE/crontab
+|4,39,1,0,1551834910,"/tmp/crontab.8ncLWE/crontab"
+-'  1  0  /tmp/crontab.8ncLWE/crontab
+|4,39,1,0,1551834910,"/tmp/crontab.8ncLWE/crontab"
+-'  1  0  /tmp/crontab.8ncLWE/crontab
+|4,39,1,0,1551834910,"/tmp/crontab.8ncLWE/crontab"
+-'  1  0  /tmp/crontab.8ncLWE/crontab
+|4,39,1,0,1551834910,"/tmp/crontab.8ncLWE/crontab"
+-'  1  0  /tmp/crontab.8ncLWE/crontab
+|4,39,1,0,1551834910,"/tmp/crontab.8ncLWE/crontab"
+-'  1  0  /tmp/crontab.8ncLWE/crontab
+|4,39,1,0,1551834910,"/tmp/crontab.8ncLWE/crontab"
+-'  1  0  /tmp/crontab.8ncLWE/crontab
+|4,39,1,0,1551834910,"/tmp/crontab.8ncLWE/crontab"
 
 # History of marks within files (newest to oldest):
+
+> ~/Downloads/cover.tex
+	*	1554352928	0
+	"	19	0
+
+> /tmp/crontab.nHNFYK/crontab
+	*	1552020921	0
+	"	1	0
+
+> /tmp/crontab.z8jbb9/crontab
+	*	1551844153	0
+	"	24	2
+	^	24	3
+	.	24	3
+	+	24	3
+
+> /tmp/crontab.QoZNq6/crontab
+	*	1551838947	0
+	"	24	7
+	^	24	8
+	.	24	8
+	+	24	8
+
+> /tmp/crontab.7FFAC6/crontab
+	*	1551835280	0
+	"	24	4
+	^	24	5
+	.	24	5
+	+	24	5
+
+> /tmp/crontab.8ncLWE/crontab
+	*	1551834949	0
+	"	24	88
+	^	24	89
+	.	24	89
+	+	24	89
+
+> /tmp/crontab.yFyeQx/crontab
+	*	1551834664	0
+	"	24	97
+	^	24	98
+	.	24	97
+	+	22	0
+	+	24	97
+
+> /tmp/crontab.Ebn5PA/crontab
+	*	1551834026	0
+	"	1	0
+
+> /tmp/crontab.FGRdge/crontab
+	*	1551834009	0
+	"	24	85
+
+> /tmp/crontab.IvOnvD/crontab
+	*	1551833044	0
+	"	24	2
+	^	24	3
+	.	24	3
+	+	24	3
+
+> /tmp/crontab.SriFCM/crontab
+	*	1551833004	0
+	"	24	4
+	^	24	5
+	.	24	5
+	+	23	1
+	+	24	88
+	+	24	5
 
 > ~/dragonfly/wanderers-at-sea-distribution/report/report.tex
 	*	1550452398	0
@@ -1037,55 +1105,3 @@ $dragonfly
 	^	1	0
 	.	1	0
 	+	1	0
-
-> ~/dragonfly/bibliography/.git/COMMIT_EDITMSG
-	"	1	0
-
-> ~/~/.local/share/applications/emacs.desktop
-	"	8	9
-	^	8	10
-	.	8	10
-	+	8	10
-
-> ~/dragonfly/rear-2015-assets/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/seabirds-2014/.git/MERGE_MSG
-	"	1	0
-
-> /tmp/psql.edit.18031.sql
-	"	10	55
-	^	10	56
-	.	10	55
-	+	1	14
-	+	10	54
-	+	1	15
-	+	10	55
-
-> /tmp/bash-fc-915318062537
-	"	1	0
-
-> ~/dragonfly/bycatch.dragonfly.co.nz/.git/COMMIT_EDITMSG
-	"	1	34
-	^	1	35
-	.	1	34
-	+	1	34
-
-> ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/latex.py
-	"	226	84
-	^	226	85
-	.	226	84
-	+	227	0
-	+	225	31
-	+	226	84
-
-> ~/dragonfly/bycatch.dragonfly.co.nz/summary/templates/explore/page.tex
-	"	5	0
-	.	5	116
-	+	5	116
-
-> ~/dragonfly/bycatch.dragonfly.co.nz/summary/explore/views.py
-	"	1	0
-
-> ~/dragonfly/estimation-2014/.git/MERGE_MSG
-	"	1	0
