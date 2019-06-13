@@ -465,6 +465,10 @@ pal.ex <- function(cols, cex=1.3) {
         rect(2, i, 3, i+1, col=cols2[i], border=NA)
 }
 
+color.gradient <- function(x, colors=c("red","yellow","green"), colsteps=100) {
+    return( colorRampPalette(colors) (colsteps) [ findInterval(x, seq(min(x),max(x), length.out=colsteps)) ] )
+}
+
 pickcolor <- function(brewer=T, echo=T) {
     darken <- function (col, c = 0.3) {
         rgbs <- col2rgb(col, alpha = T)
@@ -2226,7 +2230,9 @@ check.latex.deps <- function(fold='.',
               fs2 <- sub('.*read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
             c3 <- r[grepl('\\bfread\\(', r) & !grepl('^[[:blank:]]*#', r)]
               fs3 <- sub('.*fread\\([\'\"]+(.*)[\'\"]+.*', '\\1', c3)
-            fs <- c(fs1, fs2, fs3)
+            c4 <- r[grepl('\\breadRDS\\(', r) & !grepl('^[[:blank:]]*#', r)]
+              fs4 <- sub('.*readRDS\\([\'\"]+(.*)[\'\"]+.*', '\\1', c3)
+            fs <- c(fs1, fs2, fs3, fs4)
             ## Replace global variables in .mk files by their value
             c <- grepl('load\\([a-zA-Z]+', fs)
             alldeps1 <- sub('.*load\\((.*).*\\).*', '\\1', fs[c])
@@ -2352,7 +2358,11 @@ check.latex.sources <- function(fold = normalizePath('.'),
               fs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', c1)
             c2 <- r[grepl('\\bread\\.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
               fs2 <- sub('.*read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
-            fs <- c(fs1, fs2)
+            c3 <- r[grepl('\\bfread\\(', r) & !grepl('^[[:blank:]]*#', r)]
+              fs3 <- sub('.*fread\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
+            c4 <- r[grepl('\\breadRDS\\(', r) & !grepl('^[[:blank:]]*#', r)]
+              fs4 <- sub('.*readRDS\\([\'\"]+(.*)[\'\"]+.*', '\\1', c2)
+            fs <- c(fs1, fs2, fs3, fs4)
             ## Replace global variables in .mk files by their value
             c <- grepl('load\\([a-zA-Z]+', fs)
             alldeps1 <- sub('.*load\\((.*).*\\).*', '\\1', fs[c])
@@ -3316,7 +3326,7 @@ ghelp <- function(topic, ext='R', in_cran=ifelse(ext=='R', TRUE, FALSE)) {
 }
 
 
-webtab <- function(d, rownames = T, fontsize = '10px', rounding = 5) {
+webtab <- function(d, rownames = T, fontsize = '10px', rounding = 5, serverside=F) {
     dd <- copy(d)
     for (x in names(dd)) {
         if (is.numeric(dd[[x]])) {
@@ -4441,7 +4451,13 @@ dt_to_multiline <- function(dt, coords, byvars, crs=sf::NA_crs_) {
       , byvars], crs=crs)
 }
 
-
+st_rectangle <- function(xmin, ymin, xmax, ymax, crs=4326) {
+    library(sf)
+    rect <- st_polygon(list(matrix(c(xmin, ymin, xmin, ymax, xmax, ymax, xmax, ymin, xmin, ymin), ncol=2, byrow=T)))
+    rect <- st_geometry(rect)
+    st_crs(rect) <- crs
+    return(rect)
+}
 
 getroot <- function(target='.git') {
     path <- getwd()
@@ -4491,3 +4507,357 @@ ensuresomematching <- function(x, outfun=warning) {
         
 ##     }
 ## }
+
+paletteers <- function() {
+    library(paletteer)
+
+    allpals <- rbind(
+        ## x=names(palettes_d)[1]
+        rbindlist(lapply(names(palettes_d), function(x) {
+            ## y=names(palettes_d[[x]])[1]
+            rbindlist(lapply(names(palettes_d[[x]]), function(y) {
+                data.table(source = 'palettes_d', pkg = x, pal = y, n = 0, col = palettes_d[[x]][[y]])
+            }))
+        })),
+        ## x=names(palettes_dynamic)[1]
+        rbindlist(lapply(names(palettes_dynamic), function(x) {
+            ## y=names(palettes_dynamic[[x]])[1]
+            rbindlist(lapply(names(palettes_dynamic[[x]]), function(y) {
+                ## z=5
+                rbindlist(lapply(seq_along(palettes_dynamic[[x]][[y]]), function(z) {
+                    data.table(source = 'palettes_dynamic', pkg = x, pal = y, n = z, col = palettes_dynamic[[x]][[y]][[z]])
+                }))
+            }))
+        }))
+    )
+    allpals[, lab := sprintf('%s | %s | %s | %s', source, pkg, pal, n)]
+    allpals[, lab := factor(lab, levels = unique(lab))]
+
+    allpals[, y := as.numeric(lab)]
+    allpals[, x := as.numeric(rowid(lab))]
+    allpals[, xtop := max(x), lab]
+    allpals[, xmin := scales::rescale(x, to = c(0, 1), from = c(1, xtop+1)), by = 1:nrow(allpals)]
+    allpals[, xmax := scales::rescale(x+1, to = c(0, 1), from = c(1, xtop+1)), by = 1:nrow(allpals)]
+    allpals[, x := 0]
+
+    offset <- 1.3
+    allpals[y >= max(y)/2, `:=`(xmin = xmin + offset, xmax = xmax + offset, x = x + offset, y = y - max(y)/2 + 1)]
+
+    g <- ggplot(allpals, aes(x = x, xmin = xmin, xmax = xmax, y = y, ymin = y - 0.4, ymax = y + 0.4, fill = col,
+                        label = lab)) +
+        geom_rect() +
+        geom_text(hjust = 1, size = 0.6) +
+        scale_fill_identity() +
+        scale_x_continuous(expand = c(0.1, 0.1)) +
+        theme_void()
+    
+    tmpfile <- tempfile(fileext='.pdf')
+    ggsave(tmpfile, g, width = 7, height = 50, limitsize = F)
+    system(sprintf('xdg-open %s', tmpfile))
+
+}
+
+
+make_0_360 <- function(polyg, split_lon = 0, namefield='code') {
+    library(sf)
+
+    shp           <- tempfile(fileext='.shp')
+    shp_p1        <- tempfile(fileext='.shp')
+    shp_p2        <- tempfile(fileext='.shp')
+    shp_p1_s      <- tempfile(fileext='.shp')
+    shp_out_raw   <- tempfile(fileext='.shp')
+    shp_out_split <- tempfile(fileext='.shp')
+    shp_out       <- tempfile(fileext='.shp')
+
+    write_sf(polyg, shp)
+
+    cmd <- sprintf(
+        '
+ogr2ogr %2$s %1$s -clipsrc -180 -90 %11$f 90
+ogr2ogr %3$s %1$s -clipsrc %11$f -90 180 90
+ogr2ogr %4$s %2$s -dialect sqlite -sql "SELECT ShiftCoords(geometry,360,0), %12$s FROM %5$s"
+ogr2ogr %6$s %3$s
+ogr2ogr -update -append %6$s %4$s -nln %7$s
+ogr2ogr %8$s %6$s -dialect sqlite -sql "SELECT ST_Union(Geometry), %12$s FROM \"%7$s\" GROUP BY %12$s"
+ogr2ogr %9$s %8$s -dialect sqlite -sql "SELECT %12$s, ST_Union(ST_Buffer(Geometry, 0.000001)) as geometry FROM \"%10$s\" GROUP BY %12$s"
+',
+shp,  shp_p1,  shp_p2,  shp_p1_s,  sub('\\.shp', '', basename(shp_p1)),
+shp_out_raw,  sub('\\.shp', '', basename(shp_out_raw)),
+shp_out_split, shp_out, sub('\\.shp', '', basename(shp_out_split)),
+split_lon, namefield
+)
+
+    system(cmd)
+    
+    polyg_out <- read_sf(shp_out)
+
+    return(polyg_out)
+
+}
+
+namap <- function(dt, alpha.trans='sqrt') {
+    namap <- as.data.table(lapply(dt, is.na))
+    namap <- namap[, .N, names(namap)][order(-N)]
+    na_n <- namap$N
+    namap[, row := seq_len(.N)]
+    namap <- melt(namap, id.vars = c('row', 'N'), measure.vars = setdiff(names(namap), c('row', 'N')))
+    namap[, h := log(N+1)]
+    namapfile <- file.path(tmpfold, 'na-map.png')
+    g <- ggplot(namap, aes(x = variable, y = row, fill=value)) +
+        geom_tile(aes(alpha = N), size=0.1, colour = 'white') +
+        scale_fill_manual(name = 'is NA?', values=c('TRUE' = "#E41A1C", 'FALSE' = "#A6CEE3")) +
+        scale_y_continuous(breaks = 1:max(namap$row), labels = na_n, expand=c(0,0), trans='reverse') +
+        scale_x_discrete(position='top') +
+        scale_alpha_continuous(trans = alpha.trans, guide = 'none') +
+        theme(axis.text.x.top   = element_text(angle = 90, hjust = 0, vjust = 0.5),
+              panel.grid   = element_blank()) +
+        labs(x = NULL, y = 'No. rows')
+    return(g)
+}
+
+
+datareport <- function(dt, tmpfold=tempdir(), rmdfile=file.path(tmpfold, 'data-summary.Rmd'),
+                       htmlfile=file.path(tmpfold, 'data-summary.html'), ignore.cols = character(0)) {
+
+    library(data.table)
+    library(knitr)
+    library(ggplot2)
+
+    n <- nrow(dt)
+
+    rmd <- sprintf('---
+title: Summary of %s
+author: datareport()
+date: "%s"
+output:
+  rmdformats::readthedown:
+    mathjax: null
+    use_bookdown: false
+    lightbox: true
+    thumbnails: false
+    css: ~/Dropbox/templates/report-html/custom.css
+    gallery: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scoll: true
+mode: selfcontained
+---
+\n', as.character(substitute(dt)), Sys.time())
+    cat(rmd, file=rmdfile)
+
+    cat('# General summary\n', file = rmdfile, append=T)
+
+    cat(n, 'rows\n\n', file = rmdfile, append=T)
+
+    cat(kable(head(dt, 5), format='html', caption = 'First 5 rows', padding=1), file = rmdfile, append=T)
+    cat(kable(tail(dt, 5), format='html', caption =  'Last 5 rows', padding=1), file = rmdfile, append=T)
+
+    cat('# Map of missing values\n', file = rmdfile, append=T)
+    
+    g <- namap(dt)
+    ggsave(namapfile, g, width = 9, height = 6)
+    cat(sprintf('<td><img src="%1$s" alt="%1$s" height="600" width="900"></td></tr>\n', namapfile), file = rmdfile, append=T)
+
+    cat('# Fields summary\n', file = rmdfile, append=T)
+
+    colno <- 1
+    for (z in names(dt)) {
+        
+        if (!(z %in% ignore.cols)) {
+            cat(z, '\n')
+            
+            cat('\n##', colno, '-', z, '\n\n', file = rmdfile, append=T)
+
+            dt[, zevalue := get(z)]
+            
+            x <- dt[[z]]
+
+            cat('<table><tr><td><table><tr><td>\n', file = rmdfile, append=T)
+            
+            un <- uniqueN(x)
+            pun <- 100 * un/n
+            nas <- sum(is.na(x))
+            pnas <- 100 * nas/n
+            
+            cat(sprintf('Class: `%s`\n\nUnique values: `%i` (%0.2f%%)\n\nNAs: `%i` (%0.2f%%)\n\n',
+                        class(x), un, pun, nas, pnas),
+                file = rmdfile, append=T)
+            cat('</td></tr>', file=rmdfile, append=T)
+
+
+            zz <- gsub('[^a-zA-Z0-9_-]', '', gsub('[[:blank:]]+', '_', tolower(z)))
+            
+            densfile <- file.path(tmpfold, sprintf('density-%s.png', zz))
+            
+            if (is.numeric(x)) {
+
+                cat('<tr><td>', file=rmdfile, append=T)
+                
+                ## ** Summary of values
+                t <- kable(data.table(min = min(x, na.rm=T), lcl = quantile(x, 0.025, na.rm=T, names=F),
+                                      mean = mean(x, na.rm=T), med = median(x, na.rm=T),
+                                      ucl = quantile(x, 0.975, na.rm=T, names = F), max = max(x, na.rm=T)),
+                           format = 'html')
+                cat(t, file = rmdfile, append=T)
+                cat('</td></tr></table></td>', file=rmdfile, append=T)
+                
+                ## ** Density plot
+                g <- ggplot(dt, aes(zevalue)) +
+                    geom_density(fill = "#43A1C9AA", colour = "#225165") +
+                    scale_x_continuous(expand = c(0,0)) +
+                    scale_y_continuous(expand = c(0,0)) +
+                    labs(x = z)
+                ggsave(densfile, g, width = 6, height = 4)
+                cat(sprintf('<td><img src="%1$s" alt="%1$s" height="400" width="700"></td></tr>\n', densfile), file = rmdfile, append=T)
+                
+            } else if (is.factor(x) | is.character(x)) {
+
+                if (is.factor(x)) {
+                    y <- as.character(x)
+                } else y <- x
+
+                suppressWarnings(ynum <- as.numeric(y))
+                couldbenum <- ifelse(all(is.na(ynum)) | any(is.na(ynum) & !is.na(y)), F, T)
+                
+                cat(sprintf('<tr><td>Could be numeric: `%s`</td></tr>', couldbenum),
+                    file = rmdfile, append=T)
+                
+                cat('<tr><td>', file=rmdfile, append=T)
+                
+                ## ** Summary of the number of characters
+                t <- kable(data.table(min = min(nchar(y), na.rm=T), 
+                                      mean = mean(nchar(y), na.rm=T), med = median(nchar(y), na.rm=T),
+                                      max = max(nchar(y), na.rm=T)),
+                           caption = 'Number of characters', format = 'html')
+                cat(t, file = rmdfile, append=T)
+                cat('</td></tr>', file=rmdfile, append=T)
+                
+                if (couldbenum & !is.factor(x)) {
+                    dt[, zevalue := round(as.numeric(zevalue), 7)]
+                    dt[, zevalue := factor(zevalue)]
+                }
+
+                if (is.factor(x) | pun < 0.05 | un <= 20) {
+
+                    cat('<tr><td>', file=rmdfile, append=T)
+                    
+                    ## ** Table of values
+                    t <- kable(dt[, .N, zevalue][order(-N)], col.names = c(z, 'N'), format = 'html',
+                               caption = 'Frequency of all values')
+                    cat(t, file = rmdfile, append=T)
+                    cat('</td></tr></table></td>', file=rmdfile, append=T)
+                    
+                    ## ** Bar plot
+                    g <- ggplot(dt, aes(zevalue)) +
+                        geom_bar(fill = "#43A1C9AA", colour = "#225165") +
+                        labs(x = z)
+                    ggsave(densfile, g, width = 6, height = 4)
+                    cat(sprintf('<td><img src="%1$s" alt="%1$s" height="400" width="700"></td></tr>\n', densfile),
+                        file = rmdfile, append=T)
+                    
+                } else {
+                    cat('</table></td><td>', file=rmdfile, append=T)
+                    ## ** 15 Most common values
+                    t <- kable(dt[, .N, zevalue][order(-N)][1:pmin(.N, 15)], col.names = c(z, 'N'), format = 'html',
+                               caption = '15 most common values')
+                    cat(t, file = rmdfile, append=T)
+                    cat('</td><td>', file=rmdfile, append=T)
+                    ## ** 15 Least common values
+                    t <- kable(dt[, .N, zevalue][order(N)][1:pmin(.N, 15)], col.names = c(z, 'N'), format = 'html',
+                               caption = '15 least common values')
+                    cat(t, file = rmdfile, append=T)
+                    cat('</td></tr>', file=rmdfile, append=T)
+                }
+                
+            } else  {
+                
+            }
+            cat('</table>\n', file = rmdfile, append=T)
+
+        }
+        
+        colno <- colno + 1
+    }
+
+    ## ** Correlations
+    numcols <- sapply(dt, is.numeric)
+    numcols <- names(numcols)[numcols==T]
+    if (length(numcols) > 1) {
+        
+    }
+    
+    rmarkdown::render(input=rmdfile, output_file = htmlfile, clean=T)
+    system(sprintf('xdg-open %s', htmlfile), wait=F)
+    dt[, zevalue := NULL]
+    ## cat(readLines(rmdfile), sep='\n')
+    return(htmlfile)
+}
+
+
+make_filename <- function(x) {
+    gsub('[^-_a-zA-Z0-9]', '', gsub('[[:blank:]]+', '_', x))
+}
+
+check_txt_num <- function(d, details=F, maxn = 10) {
+    
+    check1 <- function(x, maxn=10) {
+
+        if (details==T & is.numeric(x))  cat('ALREADY NUMERIC!\n')
+        xnum <- suppressWarnings(as.numeric(as.character(x)))
+        xint <- as.integer(xnum)
+        couldbenum <- !(is.na(xnum) & !is.na(x))
+        couldbeint <- couldbenum & (is.na(xnum) | as.numeric(xint) == xnum)
+        ngoodnum <- sum(couldbenum, na.rm=T)
+        ngoodint <- sum(couldbeint, na.rm=T)
+        n <- length(x)
+        numbutnotint <- !is.na(couldbeint) & !couldbeint & couldbenum
+        notgood <- sort(table(x[!couldbenum]), decr=T)
+        notint  <- sort(table(x[numbutnotint]), decr=T)
+        if (details) {
+            cat(sprintf('%i values (%0.2f%%) can be converted to numeric\n',
+                        ngoodnum, 100*ngoodnum/n))
+            cat(sprintf('%i values (%0.2f%%) can be converted to integer\n\n',
+                        ngoodint, 100*ngoodint/n))
+            if (any(!couldbenum)) {
+                if (details) {
+                    cat(sprintf('%i values (%0.2f%%) cannot be converted to numeric\n',
+                                n-ngoodnum, 100*(n-ngoodnum)/n))
+                }
+                if (length(notgood) <= 20) {
+                    cat('\n* All values not convertible to numeric:\n\n')
+                    print(notgood)
+                } else {
+                    cat(sprintf('\n* First %i most common values not convertible to numeric:\n', maxn))
+                    print(head(notgood, maxn))
+                }
+            }
+            if (any(numbutnotint)) {
+                if (length(notint) <= 20) {
+                    cat('\n* All numericable values not convertible to integer:\n\n')
+                    print(notint)
+                } else {
+                    cat(sprintf('\n* First %i most common numericable values not convertible to integer:\n', maxn))
+                    print(head(notint, maxn))
+                }
+            }
+        }
+        exnotnum <- names(notgood)[1]
+        if (length(exnotnum) == 0 | is.na(c(exnotnum, NA))[1]) exnotnum <- ''
+        if (nchar(exnotnum) > 15) exnotnum <- paste0(substr(exnotnum, 1, 15), '...')
+        if (any(couldbenum)) {
+            exnotint <- names(notint)[1]
+            if (length(exnotint) == 0 | is.na(c(exnotint, NA))[1]) exnotint <- ''
+            if (nchar(exnotint) > 8) exnotint <- paste0(substr(exnotint, 1, 8), '...')
+        } else exnotint <- ''
+        return(data.table(perc_na = round(100*mean(is.na(x)),1),
+                          isnum = all(couldbenum), isint = all(couldbeint), exnotnum = exnotnum, exnotint = exnotint))
+    }
+
+    if ('data.frame' %in% class(d)) {
+        return(rbindlist(lapply(names(d), function(m) {
+            if (details) cat('\n\n===', m, '\n\n')
+            cbind(column=m, class=paste(class(d[[m]]), collapse=','), check1(d[[m]]))
+        }), fill=T))
+    } else check1(d)
+}

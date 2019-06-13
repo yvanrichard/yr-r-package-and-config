@@ -53,7 +53,7 @@
  '(ess-pdf-viewer-pref "okular")
  '(ess-r-args-electric-paren t)
  '(fci-rule-color "#873b81")
- '(fill-column 110)
+ '(fill-column 90)
  '(fill-prefix nil)
  '(flyspell-default-dictionary "en_GB")
  '(font-latex-fontify-sectioning 1.05)
@@ -103,7 +103,7 @@
     ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
  '(package-selected-packages
    (quote
-    (wakatime-mode auto-dim-other-buffers psession flymd poly-R poly-markdown polymode powerthesaurus latex-preview-pane rainbow-mode helm-descbinds helm-flx eacl help-fns+ helm-projectile docker dockerfile-mode dumb-jump helm-navi navi-mode stan-mode stan-snippets dired-quick-sort ztree expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode simplenote2 rainbow-delimiters r-autoyas python-django powerline pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine ggtags flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
+    (folding wakatime-mode auto-dim-other-buffers psession flymd poly-R poly-markdown polymode powerthesaurus latex-preview-pane rainbow-mode helm-descbinds helm-flx eacl help-fns+ helm-projectile docker dockerfile-mode dumb-jump helm-navi navi-mode stan-mode stan-snippets dired-quick-sort ztree expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode simplenote2 rainbow-delimiters r-autoyas python-django powerline pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine ggtags flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
  '(projectile-tags-command "ctags-exuberant -Re -f \"%s\" %s")
  '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
@@ -1705,16 +1705,16 @@ With C-u C-u: insert date and time"
 ;; * Folding ;;
 ;; ;;;;;;;;;;;;;;;
 
-;; (defun aj-toggle-fold () 
-;;   "Toggle fold all lines larger than indentation on current line" 
-;;   (interactive) 
-;;   (let ((col 1)) 
-;;     (save-excursion 
-;;       (back-to-indentation) 
-;;       (setq col (+ 1 (current-column))) 
-;;       (set-selective-display 
-;;        (if selective-display nil (or col 1))))))
-;; (global-set-key (kbd "C-x M-f") 'aj-toggle-fold)
+(defun aj-toggle-fold () 
+  "Toggle fold all lines larger than indentation on current line" 
+  (interactive) 
+  (let ((col 1)) 
+    (save-excursion 
+      (back-to-indentation) 
+      (setq col (+ 1 (current-column))) 
+      (set-selective-display 
+       (if selective-display nil (or col 1))))))
+(global-set-key (kbd "C-x M-f") 'aj-toggle-fold)
 
 ;; No confirmation on buffer kill
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
@@ -2017,3 +2017,8 @@ With C-u C-u: insert date and time"
 
 (global-set-key [\M-\S-up] 'move-text-up)
 (global-set-key [\M-\S-down] 'move-text-down)
+
+
+;; Make bash reach .bashrc
+(setq shell-command-switch "-ic")
+

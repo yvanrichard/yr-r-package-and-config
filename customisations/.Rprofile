@@ -12,21 +12,17 @@ options(width=115)
 ## setHook(packageEvent("grDevices", "onLoad"),
 ##         function(...) grDevices::ps.options(horizontal=FALSE))
 ## set.seed(1234)
-##.First <- function()
-##{
-##source('/home/yvan/dragonfly/mytests/myfunctions.r')
-##}
-##
-.First <- function() {
-    cat(as.character(Sys.time()),' -- R session started  {{{\n\n',sep='')
-    MarkViewer <- "gvim"
-}
-.Last <- function()  {
-    w <- warnings()
-    if (length(w))
-        print(w)
-    cat('\n',as.character(Sys.time()),' -- R session finished }}}\n\n',sep='')
-}
+
+## .First <- function() {
+##     cat(as.character(Sys.time()),' -- R session started  {{{\n\n',sep='')
+##     MarkViewer <- "gvim"
+## }
+## .Last <- function()  {
+##     w <- warnings()
+##     if (length(w))
+##         print(w)
+##     cat('\n',as.character(Sys.time()),' -- R session finished }}}\n\n',sep='')
+## }
 options(error = function() traceback(2))
 
 
