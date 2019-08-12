@@ -4596,15 +4596,15 @@ split_lon, namefield
 }
 
 namap <- function(dt, alpha.trans='sqrt') {
-    namap <- as.data.table(lapply(dt, is.na))
-    namap <- namap[, .N, names(namap)][order(-N)]
-    na_n <- namap$N
-    namap[, row := seq_len(.N)]
-    namap <- melt(namap, id.vars = c('row', 'N'), measure.vars = setdiff(names(namap), c('row', 'N')))
+    namap0 <- as.data.table(lapply(dt, is.na))
+    namap0 <- namap0[, .N, names(namap0)][order(-N)]
+    na_n <- namap0$N
+    namap0[, row := seq_len(.N)]
+    namap <- melt(namap0, id.vars = c('row', 'N'), measure.vars = setdiff(names(namap0), c('row', 'N')))
     namap[, h := log(N+1)]
-    namapfile <- file.path(tmpfold, 'na-map.png')
+
     g <- ggplot(namap, aes(x = variable, y = row, fill=value)) +
-        geom_tile(aes(alpha = N), size=0.1, colour = 'white') +
+        geom_tile(aes(alpha = N), size=0, colour = 'white') +
         scale_fill_manual(name = 'is NA?', values=c('TRUE' = "#E41A1C", 'FALSE' = "#A6CEE3")) +
         scale_y_continuous(breaks = 1:max(namap$row), labels = na_n, expand=c(0,0), trans='reverse') +
         scale_x_discrete(position='top') +
@@ -4612,7 +4612,8 @@ namap <- function(dt, alpha.trans='sqrt') {
         theme(axis.text.x.top   = element_text(angle = 90, hjust = 0, vjust = 0.5),
               panel.grid   = element_blank()) +
         labs(x = NULL, y = 'No. rows')
-    return(g)
+
+    return(list(plot=g, h_w_ratio = nrow(namap0)/ncol(dt)))
 }
 
 
@@ -4643,7 +4644,7 @@ output:
       smooth_scoll: true
 mode: selfcontained
 ---
-\n', as.character(substitute(dt)), Sys.time())
+\n', deparse(substitute(dt)), Sys.time())
     cat(rmd, file=rmdfile)
 
     cat('# General summary\n', file = rmdfile, append=T)
@@ -4655,9 +4656,13 @@ mode: selfcontained
 
     cat('# Map of missing values\n', file = rmdfile, append=T)
     
-    g <- namap(dt)
-    ggsave(namapfile, g, width = 9, height = 6)
-    cat(sprintf('<td><img src="%1$s" alt="%1$s" height="600" width="900"></td></tr>\n', namapfile), file = rmdfile, append=T)
+    nam <- namap(dt)
+    namapfile <- file.path(tmpfold, 'na-map.png')
+    W <- 9
+    H <- pmax(7, pmin(W * nam$h_w_ratio, 60))
+    ggsave(namapfile, nam$plot, width = W, height = H, limitsize = F)
+    cat(sprintf('<td><img src="%1$s" alt="%1$s" height="%2$0.2f" width="900"></td></tr>\n',
+                namapfile, 900*H/W), file = rmdfile, append=T)
 
     cat('# Fields summary\n', file = rmdfile, append=T)
 
@@ -4711,9 +4716,9 @@ mode: selfcontained
                 ggsave(densfile, g, width = 6, height = 4)
                 cat(sprintf('<td><img src="%1$s" alt="%1$s" height="400" width="700"></td></tr>\n', densfile), file = rmdfile, append=T)
                 
-            } else if (is.factor(x) | is.character(x)) {
+            } else if (is.factor(x) | is.character(x) | lubridate::is.Date(x)) {
 
-                if (is.factor(x)) {
+                if (is.factor(x) | lubridate::is.Date(x)) {
                     y <- as.character(x)
                 } else y <- x
 
@@ -4738,7 +4743,7 @@ mode: selfcontained
                     dt[, zevalue := factor(zevalue)]
                 }
 
-                if (is.factor(x) | pun < 0.05 | un <= 20) {
+                if (is.factor(x) | un <= 20) {
 
                     cat('<tr><td>', file=rmdfile, append=T)
                     
@@ -4751,7 +4756,8 @@ mode: selfcontained
                     ## ** Bar plot
                     g <- ggplot(dt, aes(zevalue)) +
                         geom_bar(fill = "#43A1C9AA", colour = "#225165") +
-                        labs(x = z)
+                        labs(x = z) +
+                        theme(axis.text.x.bottom   = element_text(angle = 45, hjust=1))
                     ggsave(densfile, g, width = 6, height = 4)
                     cat(sprintf('<td><img src="%1$s" alt="%1$s" height="400" width="700"></td></tr>\n', densfile),
                         file = rmdfile, append=T)
@@ -4771,7 +4777,7 @@ mode: selfcontained
                 }
                 
             } else  {
-                
+                cat('</table></td><td>', file=rmdfile, append=T)
             }
             cat('</table>\n', file = rmdfile, append=T)
 
@@ -4791,7 +4797,7 @@ mode: selfcontained
     system(sprintf('xdg-open %s', htmlfile), wait=F)
     dt[, zevalue := NULL]
     ## cat(readLines(rmdfile), sep='\n')
-    return(htmlfile)
+    return(invisible(htmlfile))
 }
 
 
