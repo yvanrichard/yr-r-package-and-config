@@ -5,19 +5,24 @@
 ###  VECTOR/MATRIX MANIPULATION
 ###############################################################################
 
-myreplace <- function(what, lookup, verbose=T, warn=T) {
+myreplace <- function(what, lookup, warn.not.in.data=T, warn.not.in.lookup=T, verbose=T) {
     ## replace values in a vector by corresponding ones using a lookup table
     ## ex: lookup <- c(
     ## oldval1, newval1,
     ## oldval2, newval2) 
     w <- what
     lkup <- matrix(lookup, ncol=2, byrow=T)
-    c <- w %in% lkup[,1]
-    if (warn) {
+    if (warn.not.in.lookup) {
         cond <- !(lkup[,1] %in% what)
-        if (sum(cond))
+        if (any(cond))
             warning(sum(cond),' value(s) in lookup vector not in original data')
     }
+    if (warn.not.in.data) {
+        cond <- !(w %in% lkup[,1])
+        if (any(cond))
+            warning(round(100*mean(cond), 2), '% of data not in lookup vector')
+    }
+    c <- w %in% lkup[,1]
     w[c] <- lkup[match(w[c], lkup[,1]), 2]
     s <- sum(w != what, na.rm=T)
     if (verbose)
@@ -188,6 +193,7 @@ numlitt <- function(x, cap=F) {
     if (cap)  res <- upper1st(res)
     return(res)
 }
+
 
 
 
@@ -986,6 +992,10 @@ localc <- function(df, row.names=F, newl.at=NA, na.col.rm=T, openwith='localc', 
     res <- system(sprintf('%s %s', openwith, f), wait=F)
     ## res <- system(sprintf('gnumeric %s', f), wait=F)
     ## res <- system(sprintf('gnumeric %s', f), wait=F)
+}
+
+tad <- function(df, ...) {
+    localc(df, openwith='tad', ...)
 }
 
 focalc <- function(df, row.names=T, newl.at=100, ...) {
@@ -2074,7 +2084,7 @@ check.latex.deps.flat <- function(report_path = './report.tex',
                      paths.ignore=c('^/usr/|^/var/lib|^/etc/tex|sweave/|^/dragonfly|/share/|submitted/|/dev/'),
                      ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
                                     'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx'),
-                     only=c('/'), recursive=F, save_deps=T, use.xelatex=T, ignore.rnw=F) {
+                     only=c('/'), recursive=T, save_deps=T, use.xelatex=T, ignore.rnw=F) {
     library(data.table)
     
     extension <- function(x) {
@@ -2463,6 +2473,73 @@ check.latex.sources <- function(fold = normalizePath('.'),
         write.csv(src, out, row.names=F)
     }
     return(src)
+}
+
+
+latex.deps <- function(depfile    = 'report.dep',
+                       root_dir   = '.',
+                       git.add    = T,
+                       ctime      = F,
+                       save       = T,
+                       ext.ignore = c('sty', 'def', 'lbx', 'fd', 'tfm', 'cfg', 'bbx', 'cbx', 'cnf',
+                                      'clo', 'fmt', 'cls', 'map', 'ldf', 'dbx', 'bbl', 'out', 'eps')) {
+    if (!file.exists(depfile))
+        stop('File `', depfile, '` does not exist. Make sure `\\RequirePackage{snapshot}` is in the tex file above `\\documentclass`')
+    if (dirname(depfile) != '.')
+        stop('`depfile` needs to be in current directory')
+    
+    ## ** LaTeX dependencies 
+    log <- readLines(depfile)
+    log <- log[2L:(length(log)-1)]
+    deps <- data.table(type    = sub('^[^{]+\\{([^{]+)\\}.*', '\\1', log),
+                       file    = sub('^[^{]+\\{[^{]+\\}[[:blank:]]*\\{([^{]+)\\}.*', '\\1', log),
+                       version = sub('^[^{]+\\{[^{]+\\}[[:blank:]]*\\{[^{]+\\}[[:blank:]]*\\{([^{]+)\\}.*', '\\1', log))
+    deps[grep('[^.]+\\.', file), ext := sub('.*[^.]+\\.([^.]+)$', '\\1', file)]
+
+    deps[, exists := file.exists(file)]
+    deps <- deps[exists & grepl('v0.0', version, fixed=T) & !(ext %in% c(NA, ext.ignore))]
+    deps <- deps[, .(source = sub('.dep', '.tex', depfile, fixed=T), file)]
+
+    ## ** Other files (used in Sweave)
+    rdatas <- system(sprintf('cd %s  &&  grep -i -R "\\.rdata" .', root_dir), intern=T)
+    csvs <- system(sprintf('cd %s  &&  grep -i -R "\\.csv" .', root_dir), intern=T)
+    rdss <- system(sprintf('cd %s  &&  grep -i -R "\\.rds" .', root_dir), intern=T)
+    txts <- system(sprintf('cd %s  &&  grep -i -R "\\.txt" .', root_dir), intern=T)
+    oth <- c(rdatas, csvs, rdss, txts)
+    others <- data.table(match = c(rdatas, csvs, rdss, txts))
+    others[, source := sub('^\\./', '', sub('^([^:]+):.*', '\\1', match))]
+    others[grep('[^.]+\\.', source), ext := sub('.*[^.]+\\.([^.]+)$', '\\1', source)]
+    others <- others[ext %in% c('tex', 'Rnw', 'rnw')]
+    others[grep('\\.rdata', match, ignore.case = T), file := sub('.*[\'"]([-a-zA-Z0-9_/.]+)[\'"].*', '\\1', match)]
+    others[grep('\\.csv', match, ignore.case = T), file := sub('.*[\'"]([-a-zA-Z0-9_/.]+)[\'"].*', '\\1', match)]
+    others[grep('\\.rds', match, ignore.case = T), file := sub('.*[\'"]([-a-zA-Z0-9_/.]+)[\'"].*', '\\1', match)]
+    others[grep('\\.txt', match, ignore.case = T), file := sub('.*[\'"]([-a-zA-Z0-9_/.]+)[\'"].*', '\\1', match)]
+    others[, file := sprintf('%s/%s', root_dir, sub('^\\./', '', file))]
+    others[, source := sprintf('%s/%s', root_dir, source)]
+    others <- others[, .(source, file)]
+    deps <- rbind(others, deps)
+    
+    ## ** File info
+    deps[, ctime := file.info(file)$ctime]
+    deps[, mtime := file.info(file)$mtime]
+    deps[, tracked := sapply(file, is.git.tracked)]
+    setorder(deps, -mtime)
+
+    if (save) {
+        fwrite(deps, 'list-dependencies.csv')
+    }
+    
+    cat('\n\n=== External files, sorted by mtime:\n\n')
+    if (ctime) {
+        print(deps[, .(source, file, ctime, mtime, tracked)])
+    } else {
+        print(deps[, .(source, file, mtime, tracked)])
+    }
+    
+    if (git.add) {
+        cat('\nGit command to add untracked files:\n```\ngit add -f',
+            deps[tracked == F, paste(file, collapse=' ')], '\n```\n')
+    }
 }
 
 
@@ -4596,15 +4673,16 @@ split_lon, namefield
 }
 
 namap <- function(dt, alpha.trans='sqrt') {
-    namap <- as.data.table(lapply(dt, is.na))
-    namap <- namap[, .N, names(namap)][order(-N)]
-    na_n <- namap$N
-    namap[, row := seq_len(.N)]
-    namap <- melt(namap, id.vars = c('row', 'N'), measure.vars = setdiff(names(namap), c('row', 'N')))
-    namap[, h := log(N+1)]
-    namapfile <- file.path(tmpfold, 'na-map.png')
+    namap0 <- as.data.table(lapply(dt, is.na))
+    namap0 <- namap0[, .N, names(namap0)][order(-N)]
+    na_n <- namap0$N
+    namap0[, row := seq_len(.N)]
+    namap0[, h := log(N+1)]
+    namap0[, p := N / sum(N)]
+    namap <- melt(namap0, id.vars = c('row', 'N', 'h', 'p'), measure.vars = setdiff(names(namap0), c('row', 'N', 'h', 'p')))
+
     g <- ggplot(namap, aes(x = variable, y = row, fill=value)) +
-        geom_tile(aes(alpha = N), size=0.1, colour = 'white') +
+        geom_tile(aes(alpha = N), size=0, colour = 'white') +
         scale_fill_manual(name = 'is NA?', values=c('TRUE' = "#E41A1C", 'FALSE' = "#A6CEE3")) +
         scale_y_continuous(breaks = 1:max(namap$row), labels = na_n, expand=c(0,0), trans='reverse') +
         scale_x_discrete(position='top') +
@@ -4612,7 +4690,8 @@ namap <- function(dt, alpha.trans='sqrt') {
         theme(axis.text.x.top   = element_text(angle = 90, hjust = 0, vjust = 0.5),
               panel.grid   = element_blank()) +
         labs(x = NULL, y = 'No. rows')
-    return(g)
+
+    return(list(plot=g, h_w_ratio = nrow(namap0)/ncol(dt), data = namap0))
 }
 
 
@@ -4643,7 +4722,7 @@ output:
       smooth_scoll: true
 mode: selfcontained
 ---
-\n', as.character(substitute(dt)), Sys.time())
+\n', deparse(substitute(dt)), Sys.time())
     cat(rmd, file=rmdfile)
 
     cat('# General summary\n', file = rmdfile, append=T)
@@ -4655,9 +4734,13 @@ mode: selfcontained
 
     cat('# Map of missing values\n', file = rmdfile, append=T)
     
-    g <- namap(dt)
-    ggsave(namapfile, g, width = 9, height = 6)
-    cat(sprintf('<td><img src="%1$s" alt="%1$s" height="600" width="900"></td></tr>\n', namapfile), file = rmdfile, append=T)
+    nam <- namap(dt)
+    namapfile <- file.path(tmpfold, 'na-map.png')
+    W <- 9
+    H <- pmax(7, pmin(W * nam$h_w_ratio, 60))
+    ggsave(namapfile, nam$plot, width = W, height = H, limitsize = F)
+    cat(sprintf('<td><img src="%1$s" alt="%1$s" height="%2$0.2f" width="900"></td></tr>\n',
+                namapfile, 900*H/W), file = rmdfile, append=T)
 
     cat('# Fields summary\n', file = rmdfile, append=T)
 
@@ -4711,9 +4794,9 @@ mode: selfcontained
                 ggsave(densfile, g, width = 6, height = 4)
                 cat(sprintf('<td><img src="%1$s" alt="%1$s" height="400" width="700"></td></tr>\n', densfile), file = rmdfile, append=T)
                 
-            } else if (is.factor(x) | is.character(x)) {
+            } else if (is.factor(x) | is.character(x) | lubridate::is.Date(x)) {
 
-                if (is.factor(x)) {
+                if (is.factor(x) | lubridate::is.Date(x)) {
                     y <- as.character(x)
                 } else y <- x
 
@@ -4738,7 +4821,7 @@ mode: selfcontained
                     dt[, zevalue := factor(zevalue)]
                 }
 
-                if (is.factor(x) | pun < 0.05 | un <= 20) {
+                if (is.factor(x) | un <= 20) {
 
                     cat('<tr><td>', file=rmdfile, append=T)
                     
@@ -4751,7 +4834,8 @@ mode: selfcontained
                     ## ** Bar plot
                     g <- ggplot(dt, aes(zevalue)) +
                         geom_bar(fill = "#43A1C9AA", colour = "#225165") +
-                        labs(x = z)
+                        labs(x = z) +
+                        theme(axis.text.x.bottom   = element_text(angle = 45, hjust=1))
                     ggsave(densfile, g, width = 6, height = 4)
                     cat(sprintf('<td><img src="%1$s" alt="%1$s" height="400" width="700"></td></tr>\n', densfile),
                         file = rmdfile, append=T)
@@ -4771,7 +4855,7 @@ mode: selfcontained
                 }
                 
             } else  {
-                
+                cat('</table></td><td>', file=rmdfile, append=T)
             }
             cat('</table>\n', file = rmdfile, append=T)
 
@@ -4791,7 +4875,7 @@ mode: selfcontained
     system(sprintf('xdg-open %s', htmlfile), wait=F)
     dt[, zevalue := NULL]
     ## cat(readLines(rmdfile), sep='\n')
-    return(htmlfile)
+    return(invisible(htmlfile))
 }
 
 
@@ -4860,4 +4944,164 @@ check_txt_num <- function(d, details=F, maxn = 10) {
             cbind(column=m, class=paste(class(d[[m]]), collapse=','), check1(d[[m]]))
         }), fill=T))
     } else check1(d)
+}
+
+
+
+cut2 <- function(x, breaks) {
+    ## * Better cut, with better labels when outside range of breaks ('< 1', '1 - 2', '≥ 2')
+    if (is.integer(x)) {
+        mids <- sprintf('%i - %i', breaks, data.table::shift(breaks, 1, type='lead')-1)[-length(breaks)]
+    } else {
+        mids <- sprintf('[%i,%i)', breaks, data.table::shift(breaks, 1, type='lead'))[-length(breaks)]
+    }
+    labels <- c(paste0('< ', breaks[1]), mids, paste0('≥ ', tail(breaks, 1)))
+    factor(labels[findInterval(x, breaks)+1], levels = labels)
+}
+
+rev_levels <- function(x) {
+    if (is.factor(x)) {
+        return(factor(as.character(x), levels = rev(levels(x))))
+    } else warning(sQuote(eval(substitute(x))), ' is not a factor. Not reversing levels')
+}
+
+
+## * Cohen's kappa from a confusion matrix
+## ** See my answer https://stats.stackexchange.com/a/433704/105160
+cohens_kappa <- function(TP, FN, FP, TN) {
+  return(2 * (TP * TN - FN * FP) / (TP * FN + TP * FP + 2 * TP * TN + FN^2 + FN * TN + FP^2 + FP * TN))
+}
+
+data.report <- function(dt) {
+    library(data.table)
+    library(inspectdf)
+    library(magrittr)
+
+    rmdfile <- tempfile(fileext = '.rmd')
+    tmpfile <- tempfile(fileext='.rds')
+    saveRDS(dt, tmpfile)
+    dtname <- deparse(substitute(dt))
+    Sys.setenv(DF_TMPFILE = tmpfile)
+    Sys.setenv(DF_NAME = dtname)
+
+    ## inspect_types(dt) %>% show_plot()
+    ## sapply(names(dt), function(x) {
+    ##     typeof(dt[[x]])
+    ## })
+
+    cat('---
+title: Data report for `r Sys.getenv("DF_NAME")`
+author: 
+  - name: "Y Richard"
+    affiliation: "http://www.dragonfly.co.nz"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::readthedown:
+    mathjax: null
+    use_bookdown: false
+    lightbox: true
+    thumbnails: false
+    gallery: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scoll: true
+mode: selfcontained
+---
+
+```{r, echo=F}
+library(rmarkdown)
+library(knitr)
+library(DT)
+library(data.table)
+library(kableExtra)
+library(inspectdf)
+
+opts_chunk$set(message = FALSE, echo = FALSE, warning = FALSE, error = FALSE, tidy = FALSE, cache = FALSE)
+
+dat <- readRDS(Sys.getenv("DF_TMPFILE"))
+
+```
+
+# Summary
+
+```{r, echo=F}
+summary(dat)
+```
+
+## Head
+
+```{r, echo=F}
+head(dat)
+```
+
+## Random sample
+
+```{r, echo=F}
+sample_df(dat)
+```
+
+## Tail
+
+```{r, echo=F}
+tail(dat)
+```
+
+<!-- ```{r, echo=F, cache=F} -->
+<!-- x <- kable(ocapt_summ,  -->
+<!-- 	digits = c(NA, rep(0, 7)), booktabs = T, align = "lrrrrrrr", format = "html", -->
+<!-- 		   format.args=list(big.mark = " ")) %>% -->
+<!--     kable_styling(bootstrap_options = c("condensed", "hover"), full_width=F, font_size = 4) -->
+<!-- x <- add_header_above(x, c(" ", " ", "Trawl" = 4, "Longline" = 2)) -->
+<!-- x <- gsub("#ddd", "#bbb", x) -->
+<!-- x <- scroll_box(x, height = "550px") -->
+<!-- print(x) -->
+<!-- ``` -->
+
+# Types
+
+```{r}
+inspect_types(dat) %>% show_plot()
+```
+
+# Memory and rows
+
+```{r}
+inspect_mem(dat) %>% show_plot()
+```
+
+# Missing values
+
+```{r}
+inspect_na(dat) %>% show_plot()
+```
+
+# Numeric values
+
+```{r}
+inspect_num(dat) %>% show_plot()
+```
+
+# Categorical values
+
+```{r}
+inspect_imb(dat) %>% show_plot()
+```
+
+```{r}
+inspect_cat(dat) %>% show_plot()
+```
+
+# Correlations
+
+```{r}
+inspect_cor(dat) %>% show_plot()
+```
+
+', file = rmdfile)
+
+    out <- rmarkdown::render(rmdfile)
+    browseURL(out)
+    
+    
 }
