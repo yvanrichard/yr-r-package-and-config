@@ -1,9 +1,12 @@
 ;;; names-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
+
+(add-to-list 'load-path (directory-file-name
+                         (or (file-name-directory #$) (car load-path))))
+
 
-;;;### (autoloads nil "names" "names.el" (23697 27880 464208 507000))
+;;;### (autoloads nil "names" "names.el" (0 0 0 0))
 ;;; Generated autoloads from names.el
 
 (defvar names--inside-make-autoload nil "\
@@ -77,10 +80,18 @@ Make sure `make-autoload' understands `define-namespace'.
 Use the `names--inside-make-autoload' variable to indicate to
 `define-namespace' that we're generating autoloads." (require (quote names)) (if (null (eq (car-safe form) (quote define-namespace))) ad-do-it (setq names--inside-make-autoload t) (setq form (macroexpand form)) (setq names--inside-make-autoload nil) (if (version< emacs-version "24.3") (setq ad-return-value (cons (quote progn) (mapcar (lambda (x) (names--make-autoload-compat x file)) (cdr form)))) (ad-set-arg 2 (quote expansion)) (ad-set-arg 0 form) ad-do-it)))
 
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "names" '("names-")))
+
 ;;;***
 
-;;;### (autoloads nil nil ("names-dev.el" "names-pkg.el") (23697
-;;;;;;  27880 460208 432000))
+;;;### (autoloads nil "names-dev" "names-dev.el" (0 0 0 0))
+;;; Generated autoloads from names-dev.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "names-dev" '("names-" "find-function-read")))
+
+;;;***
+
+;;;### (autoloads nil nil ("names-pkg.el") (0 0 0 0))
 
 ;;;***
 
@@ -88,5 +99,6 @@ Use the `names--inside-make-autoload' variable to indicate to
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
+;; coding: utf-8
 ;; End:
 ;;; names-autoloads.el ends here

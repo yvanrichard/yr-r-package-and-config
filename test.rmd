@@ -1,0 +1,57 @@
+---
+title: Data report for `r Sys.getenv("DF_NAME")`
+author: 
+  - name: "Y Richard"
+    affiliation: "http://www.dragonfly.co.nz"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::readthedown:
+    mathjax: null
+    use_bookdown: false
+    lightbox: true
+    thumbnails: false
+    css: custom.css
+    gallery: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scoll: true
+mode: selfcontained
+---
+
+```{r, echo=F}
+library(rmarkdown)
+library(knitr)
+library(DT)
+library(data.table)
+library(kableExtra)
+library(inspectdf)
+
+opts_chunk$set(message = FALSE, warning = FALSE, error = FALSE, tidy = FALSE, cache = FALSE,results = "asis")
+
+dat <- readRDS(Sys.getenv("DF_TMPFILE"))
+
+```
+
+# Summary
+
+```{r}
+summary(dat)
+```
+
+<!-- ```{r, echo=F, cache=F} -->
+<!-- x <- kable(ocapt_summ,  -->
+<!-- 	digits = c(NA, rep(0, 7)), booktabs = T, align = 'lrrrrrrr', format = 'html', -->
+<!-- 		   format.args=list(big.mark = ' ')) %>% -->
+<!--     kable_styling(bootstrap_options = c("condensed", "hover"), full_width=F, font_size = 4) -->
+<!-- x <- add_header_above(x, c(" ", " ", "Trawl" = 4, "Longline" = 2)) -->
+<!-- x <- gsub('#ddd', '#bbb', x) -->
+<!-- x <- scroll_box(x, height = "550px") -->
+<!-- print(x) -->
+<!-- ``` -->
+
+# Types
+
+```{r}
+inspect_types(datt) %>% show_plot()
+```

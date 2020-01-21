@@ -164,3 +164,4 @@ if [[ $TERMINIX_ID ]]; then
 fi
 
 export UBUNTU_MENU_PROXY=emacs
+export PATH="$PATH:$HOME/miniconda/bin"

@@ -6,6 +6,7 @@
 	TeX-insert-backslash
 	TeX-insert-dollar
 	TeX-insert-sub-or-superscript
+	abbrev-prefix-mark
 	back-to-indentation-or-beginning
 	backward-sexp
 	electric-newline-and-maybe-indent
@@ -22,6 +23,7 @@
 	kill-region
 	mc/mark-all-in-region-regexp
 	next-buffer
+	outshine-kbd-TAB
 	outshine-self-insert-command
 	query-replace
 	wdired-abort-changes

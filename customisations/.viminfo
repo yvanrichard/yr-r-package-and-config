@@ -11,217 +11,21 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/file_row
-
-# Last Substitute Search Pattern:
-~MSle0&yvan-r-pkg
-
-# Last Substitute String:
-$dragonfly
+~MSle0~/listen
 
 # Command Line History (newest to oldest):
 :wq
-|2,0,1558995405,,"wq"
-:ew
-|2,0,1558995402,,"ew"
+|2,0,1576467639,,"wq"
 :q
-|2,0,1551834026,,"q"
-:weq
-|2,0,1538109917,,"weq"
-:e sra_fishing_group_previous.sql.tmpl
-|2,0,1531695531,,"e sra_fishing_group_previous.sql.tmpl"
-:q!
-|2,0,1529558113,,"q!"
-:ls
-|2,0,1511746037,,"ls"
-:w
-|2,0,1487814358,,"w"
-:'<,'>q
-|2,0,0,,"'<,'>q"
-:17
-|2,0,0,,"17"
-:b3
-|2,0,0,,"b3"
-:b1
-|2,0,0,,"b1"
-:e summary/explore/latex.py
-|2,0,0,,"e summary/explore/latex.py"
-:e summary/explore/views.py
-|2,0,0,,"e summary/explore/views.py"
-:b2
-|2,0,0,,"b2"
-:e templates/explore/page.tex
-|2,0,0,,"e templates/explore/page.tex"
-:set nu
-|2,0,0,,"set nu"
-:set no
-|2,0,0,,"set no"
-:9
-|2,0,0,,"9"
-:1
-|2,0,0,,"1"
-:15
-|2,0,0,,"15"
-:x
-|2,0,0,,"x"
-:set noexpandtab
-|2,0,0,,"set noexpandtab"
-:set invlist
-|2,0,0,,"set invlist"
-:'<,'>s/'~/dragonfly/yr-r-package-and-config/'//g
-|2,0,0,,"'<,'>s/'~/dragonfly/yr-r-package-and-config/'//g"
-:'<,'>s/yvan-r-pkg/yr-r-package-and-config/g
-|2,0,0,,"'<,'>s/yvan-r-pkg/yr-r-package-and-config/g"
-:s/yvan-r-pkg/yr-r-package-and-config/g
-|2,0,0,,"s/yvan-r-pkg/yr-r-package-and-config/g"
-:Q
-|2,0,0,,"Q"
-:8
-|2,0,0,,"8"
-:7
-|2,0,0,,"7"
-:23
-|2,0,0,,"23"
-:help hicolors
-|2,0,0,,"help hicolors"
-:colorscheme desert256
-|2,0,0,,"colorscheme desert256"
-:colorscheme desert
-|2,0,0,,"colorscheme desert"
-:e ~/dragonfly/yr-r-package-and-config/myfunctions.r
-|2,0,0,,"e ~/dragonfly/yr-r-package-and-config/myfunctions.r"
-:colorscheme vilight
-|2,0,0,,"colorscheme vilight"
-:colorscheme symfony
-|2,0,0,,"colorscheme symfony"
-:colorscheme ir_black
-|2,0,0,,"colorscheme ir_black"
-:colorscheme
-|2,0,0,,"colorscheme"
-:setcolorscheme symfony
-|2,0,0,,"setcolorscheme symfony"
-:e ~/.vimrc
-|2,0,0,,"e ~/.vimrc"
-:W
-|2,0,0,,"W"
-:'<,'>
-|2,0,0,,"'<,'>"
-:60
-|2,0,0,,"60"
-:set nospell
-|2,0,0,,"set nospell"
-:s/samples\/all/samples/all-results/all/g
-|2,0,0,,"s/samples\\/all/samples/all-results/all/g"
-:s\samples/all\samples/all-results/all\g
-|2,0,0,,"s\\samples/all\\samples/all-results/all\\g"
-:s/samples\/all/samples\/all-results\/all/g
-|2,0,0,,"s/samples\\/all/samples\\/all-results\\/all/g"
-:set nospel
-|2,0,0,,"set nospel"
-:'<,'>set no
-|2,0,0,,"'<,'>set no"
+|2,0,1576467371,,"q"
+:ew
+|2,0,1567576286,,"ew"
 
 # Search String History (newest to oldest):
-?/usr/bin/Rscript
-|2,1,1531952555,47,"usr/bin/Rscript"
-?/file_row
-|2,1,1511746012,47,"file_row"
-?/sheet_cell
-|2,1,1511745980,47,"sheet_cell"
-?/swap
-|2,1,0,47,"swap"
-?/emacs
-|2,1,0,47,"emacs"
-?/all birds
-|2,1,0,47,"all birds"
-?/page.tex
-|2,1,0,47,"page.tex"
-?/vessels
-|2,1,0,47,"vessels"
-?/small
-|2,1,0,47,"small"
-? \<pagetitle\>
-|2,1,0,,"\\<pagetitle\\>"
-?/pagetitle
-|2,1,0,47,"pagetitle"
-?/ubuntugi
-|2,1,0,47,"ubuntugi"
-?/AUC
-|2,1,0,47,"AUC"
-?/auc
-|2,1,0,47,"auc"
-?/gwe
-|2,1,0,47,"gwe"
-?/tex
-|2,1,0,47,"tex"
-?/main
-|2,1,0,47,"main"
-?/300
-|2,1,0,47,"300"
-?/gis
-|2,1,0,47,"gis"
-?/max_print
-|2,1,0,47,"max_print"
-?/part
-|2,1,0,47,"part"
-?/.notebook tab
-|2,1,0,47,".notebook tab"
-?/.noteb
-|2,1,0,47,".noteb"
-?/===
-|2,1,0,47,"==="
-? yvan-r-pkg
-|2,1,0,,"yvan-r-pkg"
-? samples\/all
-|2,1,0,,"samples\\/all"
-?/emph
-|2,1,0,47,"emph"
-?/(add-hook
-|2,1,0,47,"(add-hook"
-?/(add-hool
-|2,1,0,47,"(add-hool"
-?/caswell
-|2,1,0,47,"caswell"
-?/Book
-|2,1,0,47,"Book"
-?/book
-|2,1,0,47,"book"
-?/pdf
-|2,1,0,47,"pdf"
-?/rar
-|2,1,0,47,"rar"
-? ^
-|2,1,0,,"^"
-? 
-|2,1,0,,""
-?/<=
-|2,1,0,47,"<="
-?/murray
-|2,1,0,47,"murray"
-?/weim
-|2,1,0,47,"weim"
-?/BOOK
-|2,1,0,47,"BOOK"
-?/niel
-|2,1,0,47,"niel"
-?/gilb
-|2,1,0,47,"gilb"
-?/karpouzi
-|2,1,0,47,"karpouzi"
-?/richard
-|2,1,0,47,"richard"
-?/lastpage
-|2,1,0,47,"lastpage"
-?/SEA
-|2,1,0,47,"SEA"
-?/PIG
-|2,1,0,47,"PIG"
-?/shared
-|2,1,0,47,"shared"
-?/n
-|2,1,0,47,"n"
-?/include
-|2,1,0,47,"include"
+?/listen
+|2,1,1576467385,47,"listen"
+? \<dev\>
+|2,1,1567576275,,"\\<dev\\>"
 
 # Expression History (newest to oldest):
 
@@ -230,878 +34,262 @@ $dragonfly
 # Debug Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	 
-|3,0,0,0,1,0,1548815960," "
-"1	LINE	0
-	*/2 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/webcam/download.r
-|3,0,1,1,1,0,1539551168,"*/2 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/webcam/download.r"
-"2	LINE	0
-	# m h  dom mon dow   command
-	*/2 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/webcam/download.r
-|3,0,2,1,2,0,1539551150,"# m h  dom mon dow   command","*/2 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/webcam/download.r"
-"3	LINE	0
-	*/10 * * * * make -C /home/yvan/dragonfly/mytests/birdoftheyear_2018
-|3,0,3,1,1,0,1539551147,"*/10 * * * * make -C /home/yvan/dragonfly/mytests/birdoftheyear_2018"
-"4	LINE	0
-	*/1 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/birdoftheyear_2018/test-pushbullet.r
-|3,0,4,1,1,0,1539551146,"*/1 * * * * /usr/bin/Rscript /home/yvan/dragonfly/mytests/birdoftheyear_2018/test-pushbullet.r"
-"5	LINE	0
-	;
-|3,0,5,1,1,0,1533081213,";"
-"6	LINE	0
-	USING (species_code)
-|3,0,6,1,1,0,1533081213,"USING (species_code)"
-"7	LINE	0
-	JOIN demography.breeder_ratio s
-|3,0,7,1,1,0,1533081212,"JOIN demography.breeder_ratio s"
-"8	LINE	0
-	USING (grid_id, species_code, taxa, geom)
-|3,0,8,1,1,0,1533081212,"USING (grid_id, species_code, taxa, geom)"
-"9	LINE	0
-	    WHERE stage = 'nonbreeder' and taxa = 'Diomedea antipodensis') n
-|3,0,9,1,1,0,1533081212,"    WHERE stage = 'nonbreeder' and taxa = 'Diomedea antipodensis') n"
-"q	CHAR	0
-	
-|3,0,26,0,1,0,1510807470,""
-"u	CHAR	0
-	lrr
-|3,0,30,0,1,0,0,"lrr"
-""-	CHAR	0
-	#
-|3,1,36,0,1,0,1551834649,"#"
+""1	LINE	0
+	createuser -U dba seabird-counts-website
+|3,1,1,1,1,0,1576467571,"createuser -U dba seabird-counts-website"
 
 # File marks:
-'L  20  45  ~/dragonfly/sra-foundations/report/research_progress/methods.rnw
-|4,76,20,45,0,"~/dragonfly/sra-foundations/report/research_progress/methods.rnw"
-'0  1  0  ~/Downloads/PanoplyJ (2)/panoply.sh
-|4,48,1,0,1559107384,"~/Downloads/PanoplyJ (2)/panoply.sh"
-'1  166  29  ~/.bashrc
-|4,49,166,29,1558995405,"~/.bashrc"
-'2  19  0  ~/Downloads/cover.tex
-|4,50,19,0,1554352929,"~/Downloads/cover.tex"
-'3  1  0  /tmp/crontab.nHNFYK/crontab
-|4,51,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
-'4  24  2  /tmp/crontab.z8jbb9/crontab
-|4,52,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
-'5  24  7  /tmp/crontab.QoZNq6/crontab
-|4,53,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
-'6  24  4  /tmp/crontab.7FFAC6/crontab
-|4,54,24,4,1551835281,"/tmp/crontab.7FFAC6/crontab"
-'7  24  88  /tmp/crontab.8ncLWE/crontab
-|4,55,24,88,1551834953,"/tmp/crontab.8ncLWE/crontab"
-'8  24  97  /tmp/crontab.yFyeQx/crontab
-|4,56,24,97,1551834665,"/tmp/crontab.yFyeQx/crontab"
-'9  1  0  /tmp/crontab.Ebn5PA/crontab
-|4,57,1,0,1551834026,"/tmp/crontab.Ebn5PA/crontab"
+'0  101  72  /etc/postgresql/10/main/pg_hba.conf
+|4,48,101,72,1576467639,"/etc/postgresql/10/main/pg_hba.conf"
+'1  59  20  /etc/postgresql/10/main/postgresql.conf
+|4,49,59,20,1576467403,"/etc/postgresql/10/main/postgresql.conf"
+'2  67  0  /etc/postgresql/10/main/pg_hba.conf
+|4,50,67,0,1576467371,"/etc/postgresql/10/main/pg_hba.conf"
+'3  67  0  /etc/postgresql/10/main/pg_hba.conf
+|4,51,67,0,1576467371,"/etc/postgresql/10/main/pg_hba.conf"
+'4  67  0  /etc/postgresql/10/main/pg_hba.conf
+|4,52,67,0,1576467339,"/etc/postgresql/10/main/pg_hba.conf"
+'5  67  0  /etc/postgresql/10/main/pg_hba.conf
+|4,53,67,0,1576467339,"/etc/postgresql/10/main/pg_hba.conf"
+'6  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,54,1,0,1576467206,"/etc/postgresql/10/main/pg_hba.conf"
+'7  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,55,1,0,1576467206,"/etc/postgresql/10/main/pg_hba.conf"
+'8  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,56,1,0,1576467206,"/etc/postgresql/10/main/pg_hba.conf"
+'9  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,57,1,0,1576467206,"/etc/postgresql/10/main/pg_hba.conf"
 
 # Jumplist (newest first):
--'  1  0  ~/Downloads/PanoplyJ (2)/panoply.sh
-|4,39,1,0,1559107384,"~/Downloads/PanoplyJ (2)/panoply.sh"
--'  166  29  ~/.bashrc
-|4,39,166,29,1558995405,"~/.bashrc"
--'  166  29  ~/.bashrc
-|4,39,166,29,1558995405,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1558995379,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1558995379,"~/.bashrc"
--'  19  0  ~/Downloads/cover.tex
-|4,39,19,0,1554352929,"~/Downloads/cover.tex"
--'  19  0  ~/Downloads/cover.tex
-|4,39,19,0,1554352929,"~/Downloads/cover.tex"
--'  19  0  ~/Downloads/cover.tex
-|4,39,19,0,1554352929,"~/Downloads/cover.tex"
--'  19  0  ~/Downloads/cover.tex
-|4,39,19,0,1554352929,"~/Downloads/cover.tex"
--'  1  0  ~/Downloads/cover.tex
-|4,39,1,0,1554352919,"~/Downloads/cover.tex"
--'  1  0  ~/Downloads/cover.tex
-|4,39,1,0,1554352919,"~/Downloads/cover.tex"
--'  1  0  ~/Downloads/cover.tex
-|4,39,1,0,1554352919,"~/Downloads/cover.tex"
--'  1  0  ~/Downloads/cover.tex
-|4,39,1,0,1554352919,"~/Downloads/cover.tex"
--'  1  0  /tmp/crontab.nHNFYK/crontab
-|4,39,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
--'  1  0  /tmp/crontab.nHNFYK/crontab
-|4,39,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
--'  1  0  /tmp/crontab.nHNFYK/crontab
-|4,39,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
--'  1  0  /tmp/crontab.nHNFYK/crontab
-|4,39,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
--'  1  0  /tmp/crontab.nHNFYK/crontab
-|4,39,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
--'  1  0  /tmp/crontab.nHNFYK/crontab
-|4,39,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
--'  1  0  /tmp/crontab.nHNFYK/crontab
-|4,39,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
--'  1  0  /tmp/crontab.nHNFYK/crontab
-|4,39,1,0,1552020922,"/tmp/crontab.nHNFYK/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  24  2  /tmp/crontab.z8jbb9/crontab
-|4,39,24,2,1551844154,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  1  0  /tmp/crontab.z8jbb9/crontab
-|4,39,1,0,1551844141,"/tmp/crontab.z8jbb9/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  24  7  /tmp/crontab.QoZNq6/crontab
-|4,39,24,7,1551838948,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
--'  1  0  /tmp/crontab.QoZNq6/crontab
-|4,39,1,0,1551838886,"/tmp/crontab.QoZNq6/crontab"
+-'  101  72  /etc/postgresql/10/main/pg_hba.conf
+|4,39,101,72,1576467639,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,1,0,1576467473,"/etc/postgresql/10/main/pg_hba.conf"
+-'  59  20  /etc/postgresql/10/main/postgresql.conf
+|4,39,59,20,1576467403,"/etc/postgresql/10/main/postgresql.conf"
+-'  59  20  /etc/postgresql/10/main/postgresql.conf
+|4,39,59,20,1576467403,"/etc/postgresql/10/main/postgresql.conf"
+-'  1  0  /etc/postgresql/10/main/postgresql.conf
+|4,39,1,0,1576467385,"/etc/postgresql/10/main/postgresql.conf"
+-'  1  0  /etc/postgresql/10/main/postgresql.conf
+|4,39,1,0,1576467385,"/etc/postgresql/10/main/postgresql.conf"
+-'  67  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,67,0,1576467371,"/etc/postgresql/10/main/pg_hba.conf"
+-'  67  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,67,0,1576467371,"/etc/postgresql/10/main/pg_hba.conf"
+-'  67  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,67,0,1576467371,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,1,0,1576467364,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,1,0,1576467364,"/etc/postgresql/10/main/pg_hba.conf"
+-'  67  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,67,0,1576467339,"/etc/postgresql/10/main/pg_hba.conf"
+-'  67  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,67,0,1576467339,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,1,0,1576467242,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,1,0,1576467242,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,1,0,1576467206,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,1,0,1576467206,"/etc/postgresql/10/main/pg_hba.conf"
+-'  90  1  /etc/postgresql/10/main/pg_hba.conf
+|4,39,90,1,1576467198,"/etc/postgresql/10/main/pg_hba.conf"
+-'  90  1  /etc/postgresql/10/main/pg_hba.conf
+|4,39,90,1,1576467198,"/etc/postgresql/10/main/pg_hba.conf"
+-'  90  1  /etc/postgresql/10/main/pg_hba.conf
+|4,39,90,1,1576467198,"/etc/postgresql/10/main/pg_hba.conf"
+-'  90  1  /etc/postgresql/10/main/pg_hba.conf
+|4,39,90,1,1576467198,"/etc/postgresql/10/main/pg_hba.conf"
+-'  90  1  /etc/postgresql/10/main/pg_hba.conf
+|4,39,90,1,1576467198,"/etc/postgresql/10/main/pg_hba.conf"
+-'  90  1  /etc/postgresql/10/main/pg_hba.conf
+|4,39,90,1,1576467198,"/etc/postgresql/10/main/pg_hba.conf"
+-'  90  1  /etc/postgresql/10/main/pg_hba.conf
+|4,39,90,1,1576467198,"/etc/postgresql/10/main/pg_hba.conf"
+-'  90  1  /etc/postgresql/10/main/pg_hba.conf
+|4,39,90,1,1576467198,"/etc/postgresql/10/main/pg_hba.conf"
+-'  90  1  /etc/postgresql/10/main/pg_hba.conf
+|4,39,90,1,1576467198,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,1,0,1576467179,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,1,0,1576467179,"/etc/postgresql/10/main/pg_hba.conf"
+-'  92  68  /etc/postgresql/10/main/pg_hba.conf
+|4,39,92,68,1576467150,"/etc/postgresql/10/main/pg_hba.conf"
+-'  92  68  /etc/postgresql/10/main/pg_hba.conf
+|4,39,92,68,1576467150,"/etc/postgresql/10/main/pg_hba.conf"
+-'  92  68  /etc/postgresql/10/main/pg_hba.conf
+|4,39,92,68,1576467150,"/etc/postgresql/10/main/pg_hba.conf"
+-'  92  68  /etc/postgresql/10/main/pg_hba.conf
+|4,39,92,68,1576467150,"/etc/postgresql/10/main/pg_hba.conf"
+-'  92  68  /etc/postgresql/10/main/pg_hba.conf
+|4,39,92,68,1576467150,"/etc/postgresql/10/main/pg_hba.conf"
+-'  92  68  /etc/postgresql/10/main/pg_hba.conf
+|4,39,92,68,1576467150,"/etc/postgresql/10/main/pg_hba.conf"
+-'  92  68  /etc/postgresql/10/main/pg_hba.conf
+|4,39,92,68,1576467150,"/etc/postgresql/10/main/pg_hba.conf"
+-'  92  68  /etc/postgresql/10/main/pg_hba.conf
+|4,39,92,68,1576467150,"/etc/postgresql/10/main/pg_hba.conf"
+-'  92  68  /etc/postgresql/10/main/pg_hba.conf
+|4,39,92,68,1576467150,"/etc/postgresql/10/main/pg_hba.conf"
+-'  92  68  /etc/postgresql/10/main/pg_hba.conf
+|4,39,92,68,1576467150,"/etc/postgresql/10/main/pg_hba.conf"
+-'  92  68  /etc/postgresql/10/main/pg_hba.conf
+|4,39,92,68,1576467150,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,1,0,1576467097,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  /etc/postgresql/10/main/pg_hba.conf
+|4,39,1,0,1576467097,"/etc/postgresql/10/main/pg_hba.conf"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
+-'  1  0  ~/.bash_profile
+|4,39,1,0,1568154494,"~/.bash_profile"
 
 # History of marks within files (newest to oldest):
 
-> ~/Downloads/PanoplyJ (2)/panoply.sh
-	*	1559107381	0
+> /etc/postgresql/10/main/pg_hba.conf
+	*	1576467637	0
+	"	101	72
+	^	101	73
+	.	101	72
+	+	101	0
+	+	92	68
+	+	85	0
+	+	90	68
+	+	101	0
+	+	101	72
+
+> /etc/postgresql/10/main/postgresql.conf
+	*	1576467403	0
+	"	59	20
+	^	59	21
+	.	59	21
+	+	59	21
+
+> ~/.bash_profile
+	*	1568154494	0
 	"	1	0
-
-> ~/.bashrc
-	*	1558995402	0
-	"	166	29
-	^	166	30
-	.	166	29
-	+	39	0
-	+	88	1
-	+	113	1
-	+	114	1
-	+	166	29
-
-> ~/Downloads/cover.tex
-	*	1554352928	0
-	"	19	0
-
-> /tmp/crontab.nHNFYK/crontab
-	*	1552020921	0
-	"	1	0
-
-> /tmp/crontab.z8jbb9/crontab
-	*	1551844153	0
-	"	24	2
-	^	24	3
-	.	24	3
-	+	24	3
-
-> /tmp/crontab.QoZNq6/crontab
-	*	1551838947	0
-	"	24	7
-	^	24	8
-	.	24	8
-	+	24	8
-
-> /tmp/crontab.7FFAC6/crontab
-	*	1551835280	0
-	"	24	4
-	^	24	5
-	.	24	5
-	+	24	5
-
-> /tmp/crontab.8ncLWE/crontab
-	*	1551834949	0
-	"	24	88
-	^	24	89
-	.	24	89
-	+	24	89
-
-> /tmp/crontab.yFyeQx/crontab
-	*	1551834664	0
-	"	24	97
-	^	24	98
-	.	24	97
-	+	22	0
-	+	24	97
-
-> /tmp/crontab.Ebn5PA/crontab
-	*	1551834026	0
-	"	1	0
-
-> /tmp/crontab.FGRdge/crontab
-	*	1551834009	0
-	"	24	85
-
-> /tmp/crontab.IvOnvD/crontab
-	*	1551833044	0
-	"	24	2
-	^	24	3
-	.	24	3
-	+	24	3
-
-> /tmp/crontab.SriFCM/crontab
-	*	1551833004	0
-	"	24	4
-	^	24	5
-	.	24	5
-	+	23	1
-	+	24	88
-	+	24	5
-
-> ~/dragonfly/wanderers-at-sea-distribution/report/report.tex
-	*	1550452398	0
-	"	2	0
-
-> /tmp/crontab.I9tqKY/crontab
-	*	1548818962	0
-	"	23	3
-	^	23	4
-	.	23	4
-	+	23	4
-
-> /tmp/crontab.49EK0B/crontab
-	*	1548815980	0
-	"	23	76
-	^	23	77
-	.	23	76
-	+	23	76
-
-> ~/dragonfly/kakapo-conservation/.git/COMMIT_EDITMSG
-	*	1547757832	0
-	"	1	0
-
-> /tmp/crontab.JG32A3/crontab
-	*	1539551168	0
-	"	22	0
-	.	23	0
-	+	23	0
-	+	22	0
-	+	23	0
-
-> /tmp/crontab.6mRWJY/crontab
-	*	1538433695	0
-	"	23	0
-
-> /tmp/crontab.kAcsXq/crontab
-	*	1538433666	0
-	"	25	54
-
-> /slow/yvan/dragonfly/mytests/birdoftheyear_2018/makefile
-	*	1538425150	0
-	"	1	0
-
-> /slow/yvan/dragonfly/mytests/birdoftheyear_2018/dashboard.Rmd
-	*	1538367425	0
-	"	2	0
-
-> /tmp/crontab.6FtTOM/crontab
-	*	1538110653	0
-	"	1	0
-
-> /tmp/crontab.vIO02m/crontab
-	*	1538110343	0
-	"	1	0
-
-> /tmp/crontab.gBZho0/crontab
-	*	1538110278	0
-	"	1	0
-
-> /tmp/crontab.soM952/crontab
-	*	1538109917	0
-	"	25	93
-	^	25	94
-	.	25	93
-	+	25	93
-
-> /tmp/crontab.axmjyN/crontab
-	*	1538106203	0
-	"	24	3
-	^	24	4
-	.	24	4
-	+	24	4
-
-> /tmp/crontab.mXt8kZ/crontab
-	*	1538104969	0
-	"	24	66
-	^	24	67
-	.	24	67
-	+	24	67
-	a	24	12
-
-> /tmp/crontab.zJXxCj/crontab
-	*	1538101618	0
-	"	24	86
-	^	24	87
-	.	24	86
-	+	24	86
-
-> /tmp/crontab.7vvQiy/crontab
-	*	1538101231	0
-	"	24	58
-	^	24	59
-	.	24	59
-	+	24	59
-
-> /tmp/crontab.0J3tIh/crontab
-	*	1538098945	0
-	"	1	0
-
-> /tmp/crontab.D4kWis/crontab
-	*	1538098708	0
-	"	24	3
-	^	24	4
-	.	24	4
-	+	24	4
-
-> /tmp/crontab.e3H79r/crontab
-	*	1538097794	0
-	"	24	32
-	^	24	33
-	.	24	32
-	+	24	32
-
-> /tmp/crontab.U5mz0r/crontab
-	*	1538097267	0
-	"	24	98
-	^	24	99
-	.	24	98
-	+	24	98
-
-> ~/dragonfly/yellow-eyed-penguin-overlap/exploration/test/content/post/2015-07-23-r-rmarkdown.Rmd
-	*	1535515671	0
-	"	1	0
-
-> /tmp/user/15002/psql.edit.20543.sql
-	*	1533081258	0
-	"	19	72
-	^	19	73
-	.	19	72
-	+	1	64
-	+	1	0
-	+	1	29
-	+	19	52
-	+	1	0
-	+	11	97
-	+	15	113
-	+	19	72
-
-> ~/dragonfly/estimation-2016-17/.git/MERGE_MSG
-	*	1532410020	0
-	"	1	0
-
-> /tmp/crontab.g7yT5O/crontab
-	*	1531952715	0
-	"	23	24
-
-> /tmp/crontab.Se9aAs/crontab
-	*	1531952564	0
-	"	23	27
-	^	23	28
-	.	23	28
-	+	23	28
-
-> /tmp/crontab.4WmbsB/crontab
-	*	1531952392	0
-	"	23	19
-	^	23	20
-	.	23	19
-	+	23	19
-
-> ~/dragonfly/sra-2016-17/re-run/20180717-same-years-as-before-stan/makefile
-	*	1531777289	0
-	"	1	0
-
-> ~/dragonfly/sra-2016-17/re-run/data_extract/sra_fishing_group_previous.sql.tmpl
-	*	1531705886	0
-	"	12	61
-
-> ~/dragonfly/sra-2016-17/re-run/data_extract/make_fishing_group_updated_sql.py
-	*	1531695573	0
-	"	47	0
-
-> ~/dragonfly/sra-2016-17/README.md
-	*	1531695349	0
-	"	1	0
-
-> ~/Downloads/Cytoscape_3_6_1_unix.sh
-	*	1531348736	0
-	"	690	0
-
-> /slow/yvan/dragonfly/moana-shiny-sim/app-sims-init/makefile
-	*	1529558289	0
-	"	5	40
-	^	5	41
-	.	5	41
-	+	5	41
-
-> ~/dragonfly/sentio-leave-calculation/C1/shiny/makefile
-	*	1529558132	0
-	"	14	41
-	^	14	42
-	.	14	41
-	+	15	0
-	+	14	41
-
-> /etc/rygel.conf
-	*	1529554912	0
-	"	156	11
-	^	156	12
-	.	156	12
-	+	156	12
-
-> /etc/mopidy/mopidy.conf
-	*	1529277139	0
-	"	147	13
-	^	147	14
-	.	147	13
-	+	6	0
-	+	1	7
-	+	5	0
-	+	6	0
-	+	2	7
-	+	6	0
-	+	6	42
-	+	15	0
-	+	7	14
-	+	8	0
-	+	6	0
-	+	15	0
-	+	8	15
-	+	10	19
-	+	35	13
-	+	25	13
-	+	27	0
-	+	28	28
-	+	147	13
-	i	1	0
-
-> ~/.config/monitors.xml.bk
-	*	1527457685	0
-	"	68	0
-
-> ~/.config/monitors.xml
-	*	1527456849	0
-	"	1	0
-
-> ~/dragonfly/sentio-leave-calculation/process-slice-kronos-noshiftsplit-each/split-data.r
-	*	1523539110	0
-	"	3	10
-	^	3	11
-	.	3	11
-	+	3	11
-
-> ~/dragonfly/southern-hemisphere-sra/.git/MERGE_MSG
-	*	1523422728	0
-	"	1	0
-
-> ~/dragonfly/seabird-risk-assessment/.git/MERGE_MSG
-	*	1519159557	0
-	"	1	0
-
-> ~/Downloads/PanoplyJ/panoply.sh
-	*	1515639115	0
-	"	1	0
-
-> /tmp/user/15002/psql.edit.10119.sql
-	*	1512692381	0
-	"	1	0
-
-> /tmp/user/15002/psql.edit.11528.sql
-	*	1512507667	0
-	"	1	0
-	^	1	1
-	.	1	0
-	+	12	0
-	+	1	0
-
-> /slow/yvan/dragonfly/NMS/src/create/make_nescs.r
-	*	1511746145	0
-	"	116	0
-
-> /slow/yvan/dragonfly/NMS/src/utilities.r
-	*	1511746004	0
-	"	183	31
-
-> /tmp/user/15002/psql.edit.29719.sql
-	*	1511745895	0
-	"	2	0
-	^	2	0
-	.	1	162
-	+	11	68
-	+	10	42
-	+	12	0
-	+	8	17
-	+	2	6
-	+	1	10
-	+	15	26
-	+	8	16
-	+	3	96
-	+	13	49
-	+	15	12
-	+	1	26
-	+	1	162
-
-> /tmp/crontab.iu5S8E/crontab
-	*	1511321315	0
-	"	1	0
-
-> /tmp/user/15002/psql.edit.1305.sql
-	*	1510807470	0
-	"	1	0
-
-> /slow/yvan/dragonfly/estimation-2015/.git/config
-	*	1497410230	0
-	"	7	57
-	^	7	58
-	.	7	58
-	+	7	58
-
-> /slow/yvan/dragonfly/NMS-notes/makefile
-	*	1487814358	0
-	"	13	73
-	^	13	74
-	.	13	73
-	+	2	53
-	+	13	73
-
-> ~/dragonfly/sra-2016/re-run/20161213-upd-chg28-upddem-fixed-a/makefile
-	*	1481663148	0
-	"	24	1
-	.	24	0
-	+	24	0
-
-> ~/dragonfly/spc-delphi-turtles/.git/MERGE_MSG
-	"	1	0
-	^	1	0
-	.	1	0
-	+	1	0
-
-> ~/dragonfly/NMS/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/mmra-2013/.git/MERGE_MSG
-	"	1	0
-	^	1	0
-	.	1	0
-	+	1	0
-
-> ~/dragonfly/NMS/makefile
-	"	3	52
-	^	3	53
-	.	3	53
-	+	10	43
-	+	10	82
-	+	10	43
-	+	1	0
-	+	10	158
-	+	10	160
-	+	11	0
-	+	10	159
-	+	10	48
-	+	3	53
-
-> ~/dragonfly/NMS/gorbachev.yaml
-	"	1	43
-	^	1	44
-	.	1	44
-	+	1	44
-
-> ~/dragonfly/NMS/r_requirements.r
-	"	10	20
-	^	10	21
-	.	10	20
-	+	9	22
-	+	10	20
-
-> ~/dragonfly/NMS/make
-	"	1	0
-
-> ~/dragonfly/NMS/build.sh
-	"	1	0
-
-> ~/dragonfly/yr-r-package-and-config/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/freshwater-triage/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/estimation-2014-15/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/estimation-2014-15/.gitmodules
-	"	1	0
-
-> ~/dragonfly/estimation-2014-15/.git/config
-	"	11	1
-	.	12	0
-	+	12	0
-
-> ~/dragonfly/sra-2016/.git/MERGE_MSG
-	"	1	0
-	^	1	0
-	.	1	0
-	+	1	0
-
-> ~/dragonfly/bibliography/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/estimation-2015/.git/MERGE_MSG
-	"	1	0
-	^	1	0
-	.	1	0
-	+	1	0
-
-> ~/dragonfly/oreo/.git/MERGE_MSG
-	"	1	0
-
-> ~/test.txt
-	"	1	3
-	^	1	4
-	.	1	3
-	+	1	3
-
-> ~/dragonfly/paua-mp/shiny/app/server.r
-	"	691	63
-	^	691	64
-	.	469	63
-	+	12	8
-	+	15	15
-	+	19	20
-	+	20	27
-	+	19	20
-	+	20	27
-	+	21	19
-	+	22	24
-	+	23	20
-	+	469	63
-
-> ~/dragonfly/paua-mp/shiny/app/ui.r
-	"	88	0
-
-> ~/dragonfly/paua-mp/.git/MERGE_MSG
-	"	1	0
-
-> ~/dragonfly/seabird-threat-framework/.git/MERGE_MSG
-	"	1	0
-
-> /etc/pulse/daemon.conf
-	"	23	0
-
-> ~/.config/mopidy/settings.py
-	"	4	29
-	^	4	30
-	.	4	29
-	+	5	0
-	+	7	0
-	+	6	0
-	+	1	27
-	+	4	29
-
-> ~/dragonfly/npoa-observer-optimisation/.git/MERGE_MSG
-	"	1	0
-	^	1	0
-	.	1	0
-	+	1	0
-
-> ~/.ssh/known_hosts
-	"	42	0
-	.	42	0
-	+	17	0
-	+	6	0
-	+	7	0
-	+	13	0
-	+	1	0
-	+	9	0
-	+	42	0
 
 > /etc/fstab
-	"	11	25
-	^	11	2
-	.	11	1
-	+	12	0
-	+	11	1
-
-> /etc/cron.hourly/birdoftheyear_votes.sh
-	"	3	0
-	^	3	0
-	.	3	0
-	+	3	0
-
-> ~/dragonfly/encounter-kaikoura/analysis/jags/diagnose.r
-	"	64	0
-
-> ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/bll-small/.screenrc.split7
-	"	36	0
-	^	36	0
-	.	35	24
-	+	37	16
-	+	35	20
-	+	37	0
-	+	35	24
-
-> ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/bll-small/makefile
-	"	1	0
-
-> ~/share/mpi/estimation-2015/seabirds/models/theta-intercept-cloud/makefile
-	"	1	0
-
-> ~/dragonfly/yr-r-package-and-config/makefile
-	"	23	57
-	^	23	58
-	.	23	57
-	+	2	0
-	+	1	11
-	+	3	0
-	+	5	38
-	+	17	0
-	+	17	15
-	+	18	13
-	+	19	11
-	+	20	15
-	+	21	13
-	+	22	16
-	+	24	14
-	+	25	16
-	+	9	0
-	+	25	0
-	+	23	57
-
-> /usr/share/applications/emacs24.desktop
-	"	1	0
-
-> /tmp/psql.edit.27505.sql
-	"	1	0
+	*	1567576286	0
+	"	13	1
+	^	13	2
+	.	13	1
+	+	13	1

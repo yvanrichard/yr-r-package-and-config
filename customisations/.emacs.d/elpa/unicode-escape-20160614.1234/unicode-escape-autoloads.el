@@ -1,10 +1,13 @@
 ;;; unicode-escape-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
+
+(add-to-list 'load-path (directory-file-name
+                         (or (file-name-directory #$) (car load-path))))
+
 
-;;;### (autoloads nil "unicode-escape" "unicode-escape.el" (23697
-;;;;;;  27881 396226 95000))
+;;;### (autoloads nil "unicode-escape" "unicode-escape.el" (0 0 0
+;;;;;;  0))
 ;;; Generated autoloads from unicode-escape.el
 
 (autoload 'unicode-escape "unicode-escape" nil nil nil)
@@ -25,5 +28,6 @@
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
+;; coding: utf-8
 ;; End:
 ;;; unicode-escape-autoloads.el ends here

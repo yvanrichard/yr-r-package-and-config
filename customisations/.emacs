@@ -103,7 +103,7 @@
     ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
  '(package-selected-packages
    (quote
-    (folding wakatime-mode auto-dim-other-buffers psession flymd poly-R poly-markdown polymode powerthesaurus latex-preview-pane rainbow-mode helm-descbinds helm-flx eacl help-fns+ helm-projectile docker dockerfile-mode dumb-jump helm-navi navi-mode stan-mode stan-snippets dired-quick-sort ztree expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode simplenote2 rainbow-delimiters r-autoyas python-django powerline pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine ggtags flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
+    (company-tabnine folding wakatime-mode auto-dim-other-buffers psession flymd poly-R poly-markdown polymode powerthesaurus latex-preview-pane rainbow-mode helm-descbinds helm-flx eacl help-fns+ helm-projectile docker dockerfile-mode dumb-jump helm-navi navi-mode stan-mode stan-snippets dired-quick-sort ztree expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode rainbow-delimiters r-autoyas python-django pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
  '(projectile-tags-command "ctags-exuberant -Re -f \"%s\" %s")
  '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
@@ -214,7 +214,7 @@ Ignores CHAR at point."
 (global-set-key "\C-c\C-w" 'kill-other-window)
 
 ;; key to switch between windows
-(global-set-key (kbd "s-`") 'other-window)
+(global-set-key (kbd "C-`") 'other-window)
 
 ;; highlight brackets
 (require 'paren)
@@ -341,7 +341,7 @@ there's a region, all lines that region covers will be duplicated."
  '(hi-yellow ((t (:background "yellow1" :foreground "red"))))
  '(highlight ((t (:background "#552222"))))
  '(highlight-indentation-face ((t (:inherit fringe :background "gray30"))))
- '(italic ((t (:height 0.7))))
+ '(italic ((t (:slant italic :height 1.0))))
  '(link ((t (:foreground "#CCDDFF" :underline "#110011"))))
  '(markdown-header-face-2 ((t (:inherit markdown-header-face :foreground "spring green" :height 1.0))))
  '(match ((t (:background "#224477"))))
@@ -592,6 +592,7 @@ prompt the user for a coding system."
 	 ("Estimation 2014" (filename . "estimation-2014"))
 	 ("Estimation 2015" (filename . "estimation-2015"))
 	 ("Estimation 2016-17" (filename . "estimation-2016-17"))
+	 ("Estimation 2017-18" (filename . "estimation-2017-18"))
 	 ("Ludicio" (filename . "ludicio/"))
 	 ("NMS - MfE" (or (filename . "NMS")
 			  (filename . "NMS-QC")
@@ -624,6 +625,7 @@ prompt the user for a coding system."
 	 ("Kakapo" (filename . "kakapo"))
 	 ("Paua" (filename . "paua"))
 	 ("Fact Benchmark" (filename . "reality-reliability"))
+	 ("ES" (filename . "es-ecological-significance"))
 )))
 (add-hook 'ibuffer-mode-hook 
 	  '(lambda ()
@@ -804,21 +806,21 @@ prompt the user for a coding system."
 ;; (add-hook 'auto-save-hook (lambda () (desktop-save-in-desktop-dir)))
 ;; ;; (desktop-read)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; * Copy buffer file path to clipboad
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun my-put-file-name-on-clipboard ()
-  "Put the current file name on the clipboard"
-  (interactive)
-  (let ((filename (if (equal major-mode 'dired-mode)
-                      default-directory
-                    (buffer-file-name))))
-    (when filename
-      (with-temp-buffer
-        (insert filename)
-        (clipboard-kill-region (point-min) (point-max)))
-      (message filename))))
-(global-set-key (kbd "C-c P") 'my-put-file-name-on-clipboard)
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;; * Copy buffer file path to clipboad
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (defun my-put-file-name-on-clipboard ()
+;;   "Put the current file name on the clipboard"
+;;   (interactive)
+;;   (let ((filename (if (equal major-mode 'dired-mode)
+;;                       default-directory
+;;                     (buffer-file-name))))
+;;     (when filename
+;;       (with-temp-buffer
+;;         (insert filename)
+;;         (clipboard-kill-region (point-min) (point-max)))
+;;       (message filename))))
+;; (global-set-key (kbd "C-c P") 'my-put-file-name-on-clipboard)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -970,7 +972,24 @@ prompt the user for a coding system."
 ;; * Company (an auto-complete package)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'after-init-hook 'global-company-mode)
+(require 'company-tabnine)
+(add-to-list 'company-backends #'company-tabnine)
 
+;; from https://emacs.stackexchange.com/a/14512/19199
+;; prevents display of candidates for numbers, with non-ANSII characters, and too long
+(push (apply-partially #'cl-remove-if
+                       (lambda (c)
+                         (or (string-match-p "[^\x00-\x7F]+" c)
+                             (string-match-p "[0-9]+" c)
+                             (if (equal major-mode "org")
+                                 (>= (length c) 20)))))
+      company-transformers)
+
+;; Trigger completion immediately.
+(setq company-idle-delay 0)
+
+;; Number the candidates (use M-1, M-2 etc to select completions).
+(setq company-show-numbers t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * Auto-complete
@@ -1255,7 +1274,7 @@ prompt the user for a coding system."
 
 
 ;; (setq magit-last-seen-setup-instructions "1.4.0")
-(setenv "EDITOR" "emacsclient")
+;; (setenv "EDITOR" "emacsclient")
 
 (global-set-key (kbd "C-c m") 'magit-status)
 
@@ -1417,10 +1436,10 @@ prompt the user for a coding system."
 ;; (define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-helm)
 
 
-;; To search ignoring whitespaces
-(setq isearch-lax-whitespace t)
-(setq isearch-regexp-lax-whitespace t)
-(setq search-whitespace-regexp "[ \t\r\n]+")
+;; ;; To search ignoring whitespaces
+;; (setq isearch-lax-whitespace t)
+;; (setq isearch-regexp-lax-whitespace t)
+;; (setq search-whitespace-regexp "[ \t\r\n]+")
 
 ;; Do not use word at point by default for helm-swoop
 (setq helm-swoop-pre-input-function (lambda () ""))
@@ -1594,17 +1613,17 @@ prompt the user for a coding system."
 (global-set-key (kbd "C-c l") 'align-regexp)
 
 
-;; ANSI-colors in the compilation buffer output
-;; http://endlessparentheses.com/ansi-colors-in-the-compilation-buffer-output.html
-(require 'ansi-color)
-(defun endless/colorize-compilation ()
-  "Colorize from `compilation-filter-start' to `point'."
-  (let ((inhibit-read-only t))
-    (ansi-color-apply-on-region
-     compilation-filter-start (point))))
+;; ;; ANSI-colors in the compilation buffer output
+;; ;; http://endlessparentheses.com/ansi-colors-in-the-compilation-buffer-output.html
+;; (require 'ansi-color)
+;; (defun endless/colorize-compilation ()
+;;   "Colorize from `compilation-filter-start' to `point'."
+;;   (let ((inhibit-read-only t))
+;;     (ansi-color-apply-on-region
+;;      compilation-filter-start (point))))
 
-(add-hook 'compilation-filter-hook
-	  'endless/colorize-compilation)
+;; (add-hook 'compilation-filter-hook
+;; 	  'endless/colorize-compilation)
 
 ;; (setq x-select-enable-primary nil)
 ;; (setq x-select-enable-clipboard t)
@@ -1675,17 +1694,17 @@ prompt the user for a coding system."
 ;; (add-to-list 'auto-mode-alist '("\\.rmd" . poly-markdown+r-mode))
 
 
-;; Insert date, time, or both
-(defun jcs-datetime (arg)
-  "Without argument: insert date as yyyy-mm-dd
-With C-u: insert time
-With C-u C-u: insert date and time"
-  (interactive "P")
-  (cond ((equal arg '(4)) (insert (format-time-string "%T")))
-        ((equal arg '(16)) (insert (format-time-string "%Y-%m-%d %T")))
-        (t (insert (format-time-string "%Y-%m-%d")))))
+;; ;; Insert date, time, or both
+;; (defun jcs-datetime (arg)
+;;   "Without argument: insert date as yyyy-mm-dd
+;; With C-u: insert time
+;; With C-u C-u: insert date and time"
+;;   (interactive "P")
+;;   (cond ((equal arg '(4)) (insert (format-time-string "%T")))
+;;         ((equal arg '(16)) (insert (format-time-string "%Y-%m-%d %T")))
+;;         (t (insert (format-time-string "%Y-%m-%d")))))
 
-(global-set-key (kbd "C-c D") 'jcs-datetime)
+;; (global-set-key (kbd "C-c D") 'jcs-datetime)
 
 
 
@@ -1720,15 +1739,15 @@ With C-u C-u: insert date and time"
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
 
-;; Save whatever’s in the current (system) clipboard before
-;; replacing it with the Emacs’ text.
-;; https://github.com/dakrone/eos/blob/master/eos.org
-(setq save-interprogram-paste-before-kill t)
+;; ;; Save whatever’s in the current (system) clipboard before
+;; ;; replacing it with the Emacs’ text.
+;; ;; https://github.com/dakrone/eos/blob/master/eos.org
+;; (setq save-interprogram-paste-before-kill t)
 
 
-;; ZTREE: compare folders
-(push (substitute-in-file-name "path-to-ztree-directory") load-path)
-(require 'ztree)
+;; ;; ZTREE: compare folders
+;; (push (substitute-in-file-name "path-to-ztree-directory") load-path)
+;; (require 'ztree)
 
 
 ;; ;;; Reclaim digits for shortcut keys
@@ -2022,3 +2041,4 @@ With C-u C-u: insert date and time"
 ;; Make bash reach .bashrc
 (setq shell-command-switch "-ic")
 
+(setq helm-buffer-max-length nil)

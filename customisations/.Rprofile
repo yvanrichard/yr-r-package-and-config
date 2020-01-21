@@ -63,3 +63,4 @@ local({
 
 
 options(RDocs.override = TRUE)
+options(spacy_condaenv = "spacy_condaenv")
