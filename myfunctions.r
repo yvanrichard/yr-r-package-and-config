@@ -1101,13 +1101,18 @@ Dim <- function(dat) {
 
 ## Progress bar. Draw first line and return indices when a symbol should be drawn.
 ## ex: if (i %in% ids) cat('.')
-progressbar <- function(n, length=50) {
-    if (length>n) length=n
-    cat(sprintf('|%s|\n', paste(rep('-',length-2), collapse='')))
-    s <- 1:n
+progressbar <- function(n, length = 50L) {
+    if (length > n) 
+        length <- n
+    if (length >=3L) {
+        cat(sprintf("|%s|\n", paste(rep("-", length - 2L), collapse = "")))
+    } else {
+        cat(paste(c(rep('|', length), '\n'), collapse=''))
+    }
+    s <- seq_len(n)
     sp <- s/n * length
-    target <- 1:length
-    ids <- sapply(target, function(x) which.min(abs(sp-x)))
+    target <- seq_len(length)
+    ids <- sapply(target, function(x) which.min(abs(sp - x)))
     return(ids)
 }
 
@@ -4965,6 +4970,20 @@ rev_levels <- function(x) {
     } else warning(sQuote(eval(substitute(x))), ' is not a factor. Not reversing levels')
 }
 
+confusionmat <- function(actual, pred) {
+
+    actual <- ifelse(actual == 'y', 1L, 0L)
+    pred   <- ifelse(pred   == 'y', 1L, 0L)
+    TP <- sum(actual == 1L & pred == 1L)
+    FP <- sum(actual == 0L & pred == 1L)
+    TN <- sum(actual == 0L & pred == 0L)
+    FN <- sum(actual == 1L & pred == 0L)
+    ccr       <- (TP + TN) / (TP + TN + FP + FN)
+    precision <- TP / (TP + FP)
+    recall    <- TP / (TP + FN)
+    kappa <- cohens_kappa(TP, FN, FP, TN)
+    list(TP=TP, FP=FP, TN=TN, FN=FN, ccr=ccr, precision=precision, recall=recall, kappa=kappa)
+}
 
 ## * Cohen's kappa from a confusion matrix
 ## ** See my answer https://stats.stackexchange.com/a/433704/105160
