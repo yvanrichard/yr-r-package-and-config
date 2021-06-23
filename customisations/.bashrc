@@ -49,26 +49,82 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+# if [ "$color_prompt" = yes ]; then
+#     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# else
+#     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+# fi
+# unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)} \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# # If this is an xterm set the title to user@host:dir
+# case "$TERM" in
+# xterm*|rxvt*)
+#     PS1="\[\e]0;${debian_chroot:+($debian_chroot)} \w\a\]$PS1"
+#     ;;
+# *)
+#     ;;
+# esac
+
+## ------------------------------------------------------------------------------------------------
+## After using https://ezprompt.net/:
+
+# get current branch in git repo
+function parse_git_branch() {
+	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	if [ ! "${BRANCH}" == "" ]
+	then
+		# STAT=`parse_git_dirty`
+		# echo "[${BRANCH}${STAT}]"
+		echo "(${BRANCH})"
+	else
+		echo ""
+	fi
+}
+
+# # get current status of git repo
+# function parse_git_dirty {
+# 	status=`git status 2>&1 | tee`
+# 	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+# 	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+# 	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+# 	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+# 	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+# 	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+# 	bits=''
+# 	if [ "${renamed}" == "0" ]; then
+# 		bits=">${bits}"
+# 	fi
+# 	if [ "${ahead}" == "0" ]; then
+# 		bits="*${bits}"
+# 	fi
+# 	if [ "${newfile}" == "0" ]; then
+# 		bits="+${bits}"
+# 	fi
+# 	if [ "${untracked}" == "0" ]; then
+# 		bits="?${bits}"
+# 	fi
+# 	if [ "${deleted}" == "0" ]; then
+# 		bits="x${bits}"
+# 	fi
+# 	if [ "${dirty}" == "0" ]; then
+# 		bits="!${bits}"
+# 	fi
+# 	if [ ! "${bits}" == "" ]; then
+# 		echo " ${bits}"
+# 	else
+# 		echo ""
+# 	fi
+# }
+
+export PS1="\[\e[0m\]\`parse_git_branch\`\[\033[01;30m\]|\[\033[01;34m\]\D{%Y-%m-%d} \[\033[01;34m\]\t\[\033[\033[01;30m\]|\[\033[\033[01;32m\]\u@\[\033[01;32m\]\h\[\033[01;30m\]|\[\033[01;33m\]\W\[\e[0m\]$ "
+
+## ------------------------------------------------------------------------------------------------
+
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls -l --color=auto'
+    # alias ls='ls -l --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -76,6 +132,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+alias ls='exa -l --git --group --header'
+alias tree='exa --tree --long --git --group --header'
 
 # Custom aliases
 alias emake='env $(find . -maxdepth 1 -name "*.env" -exec sed -e "/^#/d" -e "s/[[:space:]]\+=[[:space:]]\+/=/g" {} \;) make'
@@ -132,20 +191,21 @@ export LS_COLORS=$LS_COLORS:"di=1;36;40":"*.r=00;93":"ln=1;35":"*.mk=5;34":"*tex
 # A git aware bash prompt for ubuntu, that shows what branch you are on, and whether you have anything to commit.
 # Add to your .bashrc file.
 # Works with git version 1.7.9.5.
-# Based on http://www.intridea.com/blog/2009/2/2/git-status-in-your-prompt
-function parse_git_dirty {
-[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
-}
-function parse_git_branch {
-git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
-}
-# export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(parse_git_branch)$ '
 
-if [ $HOSTNAME = "huia" ] ; then 
-    export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)$ ';
-else
-    export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ '
-fi
+# # Based on http://www.intridea.com/blog/2009/2/2/git-status-in-your-prompt
+# function parse_git_dirty {
+# [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+# }
+# function parse_git_branch {
+# git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+# }
+# # export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(parse_git_branch)$ '
+
+# if [ $HOSTNAME = "huia" ] ; then 
+#     export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)$ ';
+# else
+#     export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ '
+# fi
 
 # export PS1='${debian_chroot:+($debian_chroot)}[\t]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)$ '
 
@@ -162,6 +222,34 @@ export EDC_HOME=/home/yvan/EDC
 if [[ $TERMINIX_ID ]]; then
         source /etc/profile.d/vte.sh
 fi
+# if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+#         source /etc/profile.d/vte.sh
+# fi
 
 export UBUNTU_MENU_PROXY=emacs
-export PATH="$PATH:$HOME/miniconda/bin"
+
+# export PATH="$PATH:$HOME/miniconda/bin"
+
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/yvan/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/yvan/miniconda/etc/profile.d/conda.sh" ]; then
+#         . "/home/yvan/miniconda/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/yvan/miniconda/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+
+# export PATH="$PATH:$HOME/miniconda/bin"
+
+export PATH="$PATH:$HOME/.local/bin"
+
+export EDITOR=/usr/bin/vim.basic
+
+alias vi=vim
+

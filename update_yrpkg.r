@@ -59,14 +59,12 @@ writeLines(d, 'DESCRIPTION', sep='\n')
 setwd(basedir)
 out <- system('R CMD build yrpkg 2>&1', intern=T)
 print(out)
-if (!length(grep('ERROR',out)))
-    {
+if (!length(grep('ERROR',out))) {
     out <- system('R CMD check yrpkg 2>&1', intern=T)
     print(out)
     }
 
-if (!length(grep('ERROR',out)))
-    {
-    system('sudo R CMD INSTALL yrpkg --byte-compile 2>&1', intern=T)
+if (!length(grep('ERROR',out))) {
+    system('sudo R CMD INSTALL yrpkg --vanilla --byte-compile 2>&1', intern=T)
     print(out)
     }

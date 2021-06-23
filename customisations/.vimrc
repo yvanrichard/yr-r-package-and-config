@@ -18,7 +18,7 @@ set nomodeline
 set mouse=a
 set printoptions=paper:a4
 set ruler
-set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim72,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
+set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set termencoding=utf-8
 set window=35
@@ -28,7 +28,7 @@ set autoindent
 set expandtab
 "set t_AB=^[[48;5;%dm
 "set t_AF=^[[38;5;%dm
-colorscheme desert256
+colorscheme delek
 "symfony
 "source $VIMRUNTIME/mswin.vim
 set nospell
@@ -43,3 +43,4 @@ highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 " vim: set ft=vim :
+syntax on

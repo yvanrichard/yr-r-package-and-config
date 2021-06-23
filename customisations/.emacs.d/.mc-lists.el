@@ -27,6 +27,7 @@
 	outshine-self-insert-command
 	query-replace
 	wdired-abort-changes
+	zap-up-to-char
 	))
 
 (setq mc/cmds-to-run-once

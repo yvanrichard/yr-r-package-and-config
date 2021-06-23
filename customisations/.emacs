@@ -5,7 +5,7 @@
 ;; * Load
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (add-to-list 'load-path "~/.emacs.d/extra-manual")
+(add-to-list 'load-path "~/.emacs.d/extra-manual")
 
 (require 'package)
 (package-initialize)
@@ -13,8 +13,10 @@
 '(("ELPA" . "http://tromey.com/elpa/")
   ("gnu" . "http://elpa.gnu.org/packages/")
   ("melpa" . "http://melpa.org/packages/")
-  ("melpa2" . "http://melpa.milkbox.net/packages/")
-  ("marmalade" . "http://marmalade-repo.org/packages/")))
+  ;; ("melpa2" . "http://melpa.milkbox.net/packages/")
+  ;; ("marmalade" . "http://marmalade-repo.org/packages/")
+  )
+)
 ;; ("melpa" . "http://stable.melpa.org/packages/")))
 
 (custom-set-variables
@@ -35,21 +37,33 @@
  '(comint-prompt-read-only nil)
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
- '(comment-style (quote indent))
+ '(comment-style 'indent)
  '(completion-ignored-extensions
-   (quote
-    (".hi" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".lof" ".glo" ".idx" ".lot" ".svn/" ".hg/" ".git/" ".bzr/" "CVS/" "_darcs/" "_MTN/" ".fmt" ".tfm" ".class" ".fas" ".lib" ".mem" ".x86f" ".sparcf" ".dfsl" ".pfsl" ".d64fsl" ".p64fsl" ".lx64fsl" ".lx32fsl" ".dx64fsl" ".dx32fsl" ".fx64fsl" ".fx32fsl" ".sx64fsl" ".sx32fsl" ".wx64fsl" ".wx32fsl" ".fasl" ".ufsl" ".fsl" ".dxl" ".lo" ".la" ".gmo" ".mo" ".toc" ".aux" ".cp" ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs" ".tps" ".vrs" ".pyc" ".pyo" ".r~")))
- '(custom-enabled-themes (quote (smart-mode-line-dark)))
+   '(".hi" ".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".lof" ".glo" ".idx" ".lot" ".svn/" ".hg/" ".git/" ".bzr/" "CVS/" "_darcs/" "_MTN/" ".fmt" ".tfm" ".class" ".fas" ".lib" ".mem" ".x86f" ".sparcf" ".dfsl" ".pfsl" ".d64fsl" ".p64fsl" ".lx64fsl" ".lx32fsl" ".dx64fsl" ".dx32fsl" ".fx64fsl" ".fx32fsl" ".sx64fsl" ".sx32fsl" ".wx64fsl" ".wx32fsl" ".fasl" ".ufsl" ".fsl" ".dxl" ".lo" ".la" ".gmo" ".mo" ".toc" ".aux" ".cp" ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs" ".tps" ".vrs" ".pyc" ".pyo" ".r~"))
+ '(custom-enabled-themes '(smart-mode-line-dark))
  '(custom-safe-themes
-   (quote
-    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
+   '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default))
  '(delete-by-moving-to-trash t)
  '(diredp-hide-details-initially-flag nil)
  '(doc-view-resolution 200)
  '(dumb-jump-mode t)
- '(dumb-jump-prefer-searcher (quote ag))
- '(dumb-jump-selector (quote helm))
- '(ediff-split-window-function (quote split-window-horizontally))
+ '(dumb-jump-prefer-searcher 'ag)
+ '(dumb-jump-selector 'helm)
+ '(ediff-split-window-function 'split-window-horizontally)
+ '(ess-R-font-lock-keywords
+   '((ess-R-fl-keyword:keywords . t)
+     (ess-R-fl-keyword:constants . t)
+     (ess-R-fl-keyword:modifiers . t)
+     (ess-R-fl-keyword:fun-defs . t)
+     (ess-R-fl-keyword:assign-ops . t)
+     (ess-R-fl-keyword:%op% . t)
+     (ess-fl-keyword:fun-calls . t)
+     (ess-fl-keyword:numbers . t)
+     (ess-fl-keyword:operators . t)
+     (ess-fl-keyword:delimiters)
+     (ess-fl-keyword:= . t)
+     (ess-R-fl-keyword:F&T . t)))
+ '(ess-eval-visibly nil)
  '(ess-pdf-viewer-pref "okular")
  '(ess-r-args-electric-paren t)
  '(fci-rule-color "#873b81")
@@ -63,8 +77,7 @@
  '(helm-always-two-windows t)
  '(helm-autoresize-mode t)
  '(helm-completing-read-handlers-alist
-   (quote
-    ((describe-function . helm-completing-read-symbols)
+   '((describe-function . helm-completing-read-symbols)
      (describe-variable . helm-completing-read-symbols)
      (describe-symbol . helm-completing-read-symbols)
      (debug-on-entry . helm-completing-read-symbols)
@@ -77,48 +90,47 @@
      (ffap-alternate-file)
      (tmm-menubar)
      (find-file)
-     (execute-extended-command))))
+     (execute-extended-command)))
  '(helm-ff-skip-boring-files t)
  '(helm-mode nil)
  '(helm-mode-fuzzy-match t)
  '(helm-split-window-inside-p t)
  '(helm-swoop-speed-or-color t)
- '(helm-swoop-split-direction (quote split-window-vertically))
+ '(helm-swoop-split-direction 'split-window-vertically)
  '(helm-swoop-split-with-multiple-windows t)
  '(helm-swoop-use-line-number-face nil)
  '(hl-sexp-background-color "#201520")
- '(ibuffer-filter-group-name-face (quote compilation-info))
+ '(ibuffer-filter-group-name-face 'compilation-info)
  '(ido-ignore-extensions nil)
  '(inhibit-startup-screen t)
- '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(initial-frame-alist '((fullscreen . maximized)))
  '(ispell-local-dictionary "en_GB")
- '(magit-repository-directories (quote ("~/dragonfly")))
+ '(magit-repository-directories '("~/dragonfly"))
  '(markdown-command "pandoc --smart -f markdown -t html")
  '(org-babel-R-command "R --vanilla --slave --no-save")
- '(org-babel-load-languages (quote ((latex . t) (R . t) (dot . t) (lisp . t))))
+ '(org-babel-load-languages '((latex . t) (R . t) (dot . t) (lisp . t)))
  '(org-confirm-babel-evaluate nil)
  '(org-html-use-infojs t)
  '(org-latex-pdf-process
-   (quote
-    ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
+   '("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f"))
+ '(outshine-fontify-whole-heading-line nil)
+ '(outshine-preserve-delimiter-whitespace nil)
+ '(outshine-startup-folded-p nil)
  '(package-selected-packages
-   (quote
-    (company-tabnine folding wakatime-mode auto-dim-other-buffers psession flymd poly-R poly-markdown polymode powerthesaurus latex-preview-pane rainbow-mode helm-descbinds helm-flx eacl help-fns+ helm-projectile docker dockerfile-mode dumb-jump helm-navi navi-mode stan-mode stan-snippets dired-quick-sort ztree expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode rainbow-delimiters r-autoyas python-django pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow dired+ csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files)))
+   '(so-long exwm outline-magic company-stan eldoc-stan flycheck-stan stan-mode doom-modeline fira-code-mode vterm wakatime-mode dired-subtree helm-ls-git helm-posframe helm-tramp dired-du company-tabnine folding auto-dim-other-buffers psession flymd poly-R poly-markdown polymode powerthesaurus latex-preview-pane rainbow-mode helm-descbinds helm-flx eacl help-fns+ helm-projectile docker dockerfile-mode dumb-jump helm-navi navi-mode stan-snippets dired-quick-sort ztree expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode rainbow-delimiters r-autoyas python-django pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files))
  '(projectile-tags-command "ctags-exuberant -Re -f \"%s\" %s")
  '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
-   (quote
-    ((TeX-master . \./report\.tex)
+   '((TeX-master . \./report\.tex)
      (TeX-master . t)
      (TeX-master . "report.tex")
      (whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)
      (TeX-master . "report")
      (TeX-master . report\.tex)
-     (require-final-newline))))
+     (require-final-newline)))
  '(search-whitespace-regexp "[ \\t\\r\\n]+")
  '(sml/replacer-regexp-list
-   (quote
-    (("^~/org" ":Org:")
+   '(("^~/org" ":Org:")
      ("^~/\\.emacs\\.d/" ":ED:")
      ("^/sudo:.*:" ":SU:")
      ("^~/Documents/" ":Doc:")
@@ -131,14 +143,14 @@
      ("^~/dragonfly/sra-2014/" ":SRA14:")
      ("^~/dragonfly/sra-2016/" ":SRA16:")
      ("^~/dragonfly/" ":DFLY:")
-     ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:"))))
+     ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")))
  '(sml/shorten-directory t)
- '(tags-table-list (quote ("/home/yvan/Documents/TAGS")))
+ '(tags-table-list '("/home/yvan/Documents/TAGS"))
+ '(tool-bar-mode nil)
  '(tramp-default-method "ssh")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
-   (quote
-    ((20 . "#cc6666")
+   '((20 . "#cc6666")
      (40 . "#de935f")
      (60 . "#f0c674")
      (80 . "#b5bd68")
@@ -155,15 +167,17 @@
      (300 . "#cc6666")
      (320 . "#de935f")
      (340 . "#f0c674")
-     (360 . "#b5bd68"))))
+     (360 . "#b5bd68")))
  '(vc-annotate-very-old-color nil)
+ '(wakatime-api-key "f0473578-ab9e-489f-a2e0-f55e7e9ff5ed")
+ '(wakatime-cli-path "/usr/local/bin/wakatime")
  '(yank-pop-change-selection t)
  '(yas-also-auto-indent-first-line t))
 
  ;; '(wakatime-cli-path "/home/yvan/wakatime/wakatime-cli.py")
 (defvar outline-minor-mode-prefix "\M-#")
 
-;; (custom-set-variables '(wakatime-api-key "b5cc2771-2403-44ea-821f-46709e5cbb38"))
+
 
 
 (require 'ess-site)
@@ -215,6 +229,8 @@ Ignores CHAR at point."
 
 ;; key to switch between windows
 (global-set-key (kbd "C-`") 'other-window)
+(global-set-key (kbd "<menu>") 'other-window)
+(global-set-key (kbd "<f9>") 'other-window)
 
 ;; highlight brackets
 (require 'paren)
@@ -255,6 +271,7 @@ Ignores CHAR at point."
 (global-set-key (kbd "<XF86Send>") 'compile)
 (global-set-key (kbd "<XF86HomePage>") 'compile)
 (global-set-key [f8] (lambda () (interactive) (ess-switch-to-ESS "R")))
+(global-set-key [f5] 'compile)
 
 (setq scroll-preserve-screen-position t)
 
@@ -290,7 +307,7 @@ there's a region, all lines that region covers will be duplicated."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#202020" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "SRC" :family "Hack"))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#202020" :foreground "#ffffff" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "JB" :family "JetBrains Mono"))))
  '(auto-dim-other-buffers-face ((t (:background "#000" :foreground "gray"))))
  '(comint-highlight-input ((t (:foreground "#66BB66"))))
  '(comint-highlight-prompt ((t (:inherit minibuffer-prompt :foreground "#009900"))))
@@ -314,9 +331,14 @@ there's a region, all lines that region covers will be duplicated."
  '(ediff-even-diff-B ((t (:background "tomato4"))))
  '(ediff-odd-diff-A ((t (:background "sienna4"))))
  '(ediff-odd-diff-B ((t (:background "sienna"))))
- '(ess-numbers-face ((t (:foreground "#FFFF88" :weight normal))))
+ '(ess-assignment-face ((t (:inherit font-lock-constant-face :foreground "#FFFF55"))))
+ '(ess-modifiers-face ((t (:inherit font-lock-constant-face))))
+ '(ess-numbers-face ((t (:foreground "#DDAADD" :weight normal))))
+ '(ess-operator-face ((t (:inherit font-lock-constant-face))))
+ '(ess-r-control-flow-keyword-face ((t (:inherit ess-keyword-face))))
  '(eww-form-submit ((t (:background "#444444" :foreground "#EEEEEE" :box (:line-width 2 :style released-button)))))
  '(eww-form-textarea ((t (:background "#C0C0C0" :foreground "black" :box 1))))
+ '(fixed-pitch ((t (:height 1.01 :family "JetBrains Mono Medium"))))
  '(flx-highlight-face ((t (:inherit font-lock-variable-name-face :underline "#666666" :weight bold))))
  '(flyspell-duplicate ((t (:foreground "indian red" :underline nil))))
  '(font-latex-sectioning-2-face ((t (:foreground "yellow" :weight bold :height 1.3 :family "ubuntu-mono"))))
@@ -327,10 +349,10 @@ there's a region, all lines that region covers will be duplicated."
  '(font-lock-builtin-face ((t (:foreground "PeachPuff"))))
  '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
  '(font-lock-comment-face ((t (:foreground "#707070"))))
- '(font-lock-constant-face ((t (:inherit default :foreground "#55AA55"))))
- '(font-lock-function-name-face ((t (:foreground "light blue"))))
+ '(font-lock-constant-face ((t (:inherit default :foreground "#77DD88"))))
+ '(font-lock-function-name-face ((t (:foreground "#DDEEFF"))))
  '(font-lock-keyword-face ((t (:foreground "#88DD88"))))
- '(font-lock-string-face ((t (:foreground "DarkSeaGreen2"))))
+ '(font-lock-string-face ((t (:foreground "#CCEECC"))))
  '(font-lock-type-face ((t (:foreground "yellow green"))))
  '(font-lock-warning-face ((t (:background "yellow" :foreground "red" :weight semi-bold))))
  '(helm-buffer-file ((t nil)))
@@ -343,7 +365,9 @@ there's a region, all lines that region covers will be duplicated."
  '(highlight-indentation-face ((t (:inherit fringe :background "gray30"))))
  '(italic ((t (:slant italic :height 1.0))))
  '(link ((t (:foreground "#CCDDFF" :underline "#110011"))))
- '(markdown-header-face-2 ((t (:inherit markdown-header-face :foreground "spring green" :height 1.0))))
+ '(markdown-header-face ((t (:inherit outline-1 :weight bold))))
+ '(markdown-header-face-2 ((t (:inherit outline-2 :height 1.0))))
+ '(markdown-header-face-3 ((t (:inherit outline-3))))
  '(match ((t (:background "#224477"))))
  '(org-block ((t (:inherit shadow :foreground "#AAFFAA"))))
  '(org-code ((t (:inherit shadow :foreground "#AAFFAA"))))
@@ -353,18 +377,22 @@ there's a region, all lines that region covers will be duplicated."
  '(org-level-3 ((t (:foreground "#C6DBEF"))))
  '(org-level-4 ((t (:foreground "#CCEBC5"))))
  '(org-special-keyword ((t (:foreground "#66FFFF"))))
- '(outline-1 ((t (:background "#181818" :foreground "#FF2A17" :box (:line-width 1 :color "grey35") :slant italic :weight normal))))
- '(outline-2 ((t (:background "#191919" :foreground "#FF794A" :box (:line-width 1 :color "grey30") :slant italic))))
- '(outline-3 ((t (:background "#191919" :foreground "#FFB67D" :box (:line-width 1 :color "grey20") :slant italic))))
- '(outline-4 ((t (:inherit font-lock-comment-face :background "#191919" :foreground "RosyBrown1" :slant italic))))
- '(outline-5 ((t (:background "#191919" :foreground "#FFF1CC" :slant italic))))
+ '(outline-1 ((t (:background "#000" :foreground "#FF8266" :box (:line-width 1 :color "#444") :slant italic :weight normal))))
+ '(outline-2 ((t (:background "#090909" :foreground "#F7A06B" :box (:line-width 1 :color "grey20") :slant italic))))
+ '(outline-3 ((t (:background "#191919" :foreground "#EEB96F" :box (:line-width 1 :color "grey20") :slant italic))))
+ '(outline-4 ((t (:inherit font-lock-comment-face :background "#191919" :foreground "#E6CC73" :slant italic))))
+ '(outline-5 ((t (:background "#191919" :foreground "#DDDB76" :slant italic))))
+ '(outline-6 ((t (:background "#191919" :foreground "#C4D578" :slant italic))))
+ '(outline-7 ((t (:background "#191919" :foreground "#ADCC7A" :slant italic))))
  '(popup-scroll-bar-foreground-face ((t (:background "red"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#ff7777"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "#e69333"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "#ffff88"))))
  '(rainbow-delimiters-depth-4-face ((t (:foreground "#66ff66"))))
  '(region ((t (:background "grey20"))))
+ '(term-color-blue ((t (:background "deep sky blue" :foreground "deep sky blue"))))
  '(underline ((t (:underline "#666666"))))
+ '(variable-pitch ((t (:height 1.01 :family "ETBembo, BoldLF"))))
  '(widget-button ((t (:foreground "deep sky blue" :weight bold)))))
 
 
@@ -386,21 +414,21 @@ there's a region, all lines that region covers will be duplicated."
 (setq TeX-PDF-mode t)
 (setq latex-run-command "xelatex")
 
-;; (autoload 'reftex-mode "reftex" "RefTeX Minor Mode" t)
-;; (autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
-;; (autoload 'reftex-citation "reftex-cite" "Make citation" nil)
-;; (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
-;; (add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
-;; (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-;; (setq reftex-plug-into-AUCTeX t)
+(autoload 'reftex-mode "reftex" "RefTeX Minor Mode" t)
+(autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
+(autoload 'reftex-citation "reftex-cite" "Make citation" nil)
+(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
+(add-hook 'latex-mode-hook 'turn-on-reftex) ; with Emacs latex mode
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
 
 
-;; (add-hook 'LaTeX-mode-hook
-;; 	  '(lambda()
-;; 	     (local-set-key [(tab)] 'hippie-expand)))
-;; (add-hook 'latex-mode-hook
-;; 	  '(lambda()
-;; 	     (local-set-key [(tab)] 'hippie-expand)))
+(add-hook 'LaTeX-mode-hook
+	  '(lambda()
+	     (local-set-key [(tab)] 'hippie-expand)))
+(add-hook 'latex-mode-hook
+	  '(lambda()
+	     (local-set-key [(tab)] 'hippie-expand)))
 
 
 ;;;;;;;;;;;;;;;;;;;
@@ -570,7 +598,8 @@ prompt the user for a coding system."
 	 ("Seabirds 2014" (filename . "seabirds-2014"))
 	 ("Cryptic mortality" (filename . "doc-cryptic"))
 	 ("Bycatch www" (filename . "bycatch.dragonfly"))
-	 ("Seabird counts" (filename . "abundance/"))
+	 ("Seabird counts" (or (filename . "abundance/")
+			       (filename . "seabird-counts")))
 	 ("Maui's dolphins" (filename . "maui"))
 	 ("Seabird counts website" (filename . "seabird-counts-website"))
 	 ("XBP distribution 2016" (filename . "black-petrel-distribution-2016"))
@@ -626,6 +655,10 @@ prompt the user for a coding system."
 	 ("Paua" (filename . "paua"))
 	 ("Fact Benchmark" (filename . "reality-reliability"))
 	 ("ES" (filename . "es-ecological-significance"))
+	 ("NEFD" (filename . "nefd"))
+	 ("GISAID" (or (filename . "tree-server")
+		       (filename . "gisaid")))
+	 ("Antipodean albatross" (filename . "antipodean-albatross-ipm"))
 )))
 (add-hook 'ibuffer-mode-hook 
 	  '(lambda ()
@@ -746,11 +779,17 @@ prompt the user for a coding system."
 
 (setq ess-indent-level 4)
 
-;; (add-to-list 'auto-mode-alist '("\\.Rnw" . Rnw-mode))
-;; (add-to-list 'auto-mode-alist '("\\.rnw" . Rnw-mode))
+;; (add-to-list 'auto-mode-alist '("\\.Rnw" . reftex-mode))
+;; (add-to-list 'auto-mode-alist '("\\.rnw" . reftex-mode))
+;; (add-to-list 'auto-mode-alist '("\\.r" . rainbow-mode))
 
 ;; (add-to-list 'auto-mode-alist '("\\.1" . R-mode))
 ;; (add-to-list 'auto-mode-alist '("makefile\\.1" . makefile-mode))
+
+;; (add-to-list 'auto-mode-alist '("\\*R:" . R-mode))
+;; (add-to-list 'auto-mode-alist '("\\*R:" . rainbow-mode))
+(add-hook 'prog-mode-hook 'rainbow-mode)
+;; (add-hook 'polymode-minor-mode-hook 'reftex-mode)
 
 
 
@@ -769,6 +808,60 @@ prompt the user for a coding system."
 (setq org-support-shift-select t)
 
 (setq org-ellipsis "⤵")
+
+;; (setq org-hide-emphasis-markers t)
+(font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+;; (use-package org-bullets
+;;     :config
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+;; (let* ((variable-tuple
+;;           (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
+;;                 ((x-list-fonts "JetBrains Mono Medium") '(:font "JetBrains Mono Medium"))
+;;                 ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
+;;                 ((x-list-fonts "Verdana")         '(:font "Verdana"))
+;;                 ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
+;;                 (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
+;;                 (base-font-color     (face-foreground 'default nil 'default))
+;;                 (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
+
+;;   (custom-theme-set-faces
+;;    'user
+;;    `(org-level-8 ((t (,@headline ,@variable-tuple))))
+;;    `(org-level-7 ((t (,@headline ,@variable-tuple))))
+;;    `(org-level-6 ((t (,@headline ,@variable-tuple))))
+;;    `(org-level-5 ((t (,@headline ,@variable-tuple))))
+;;    `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
+;;    `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
+;;    `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
+;;    `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
+;;    `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
+
+;; (custom-theme-set-faces
+;;    'user
+;;    '(variable-pitch ((t (:family "ETBembo" :height 130 :weight medium))))
+;;    '(fixed-pitch ((t ( :family "JetBrains Mono Medium" :height 95)))))
+
+;; (add-hook 'org-mode-hook 'variable-pitch-mode)
+(add-hook 'org-mode-hook 'visual-line-mode)
+
+;; (custom-theme-set-faces
+;;  'user
+;;  '(org-block ((t (:inherit fixed-pitch))))
+;;  '(org-code ((t (:inherit (shadow fixed-pitch)))))
+;;  '(org-document-info ((t (:foreground "dark orange"))))
+;;  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+;;  '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+;;  '(org-link ((t (:foreground "royal blue" :underline t))))
+;;  '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+;;  '(org-property-value ((t (:inherit fixed-pitch))) t)
+;;  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+;;  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+;;  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+;;  '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
+
 
 ;; (org-babel-do-load-languages
 ;;  'org-babel-load-languages
@@ -888,8 +981,10 @@ prompt the user for a coding system."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * smart-mode-line (better bottom line)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(sml/setup)
-(sml/apply-theme 'dark)
+;; (sml/setup)
+;; (sml/apply-theme 'dark)
+(require 'doom-modeline)
+(doom-modeline-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; * Highlight sexp
@@ -1078,7 +1173,7 @@ prompt the user for a coding system."
   (gnome-open-file (dired-get-file-for-visit)))
 (add-hook 'dired-mode-hook (lambda () (local-set-key "E" 'dired-gnome-open-file)))
 
-(diredp-toggle-find-file-reuse-dir 1)
+;; (diredp-toggle-find-file-reuse-dir 1)
 
 ;; Erase whole line and move to identation
 (defun smart-kill-whole-line (&optional arg)
@@ -1499,13 +1594,14 @@ prompt the user for a coding system."
 
 
 
-;; (defun rmarkdown-to-html ()
-;;   (interactive)
-;;   "Run knitr::knit2html on the current file"
-;;   "https://gist.github.com/kohske/9128031"
-;;   (shell-command
-;;    (format "Rscript -e \"rmarkdown::render('%s')\""
-;; 	   (shell-quote-argument (buffer-file-name)))))
+(defun rmarkdown-to-html ()
+  (interactive)
+  "Run knitr::knit2html on the current file"
+  "https://gist.github.com/kohske/9128031"
+  (shell-command
+   (format "Rscript -e \"rmarkdown::render('%s')\"  &&  xdg-open %s.html"
+	   (shell-quote-argument (buffer-file-name))
+	   (file-name-sans-extension (buffer-file-name)))))
  
 ;; ;; do this in R process
 ;; ;; library (rmarkdown); render ("file_name.Rmd")
@@ -1791,10 +1887,13 @@ prompt the user for a coding system."
 ;; 	 ("M-g z" . dumb-jump-go-prefer-external-other-window))
 ;;   :config (setq dumb-jump-selector 'helm)
 ;;   )
-(define-key dumb-jump-mode-map (kbd "C-M-q") nil)
-(define-key dumb-jump-mode-map (kbd "C-M-j") 'dumb-jump-quick-look)
+;; (define-key dumb-jump-mode-map (kbd "C-M-q") nil)
+;; (define-key dumb-jump-mode-map (kbd "C-M-j") 'dumb-jump-quick-look)
 (setq dumb-jump-selector 'helm)
 (setq dumb-jump-prefer-searcher 'ag)
+;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+(setq xref-backend-functions (remq 'etags--xref-backend xref-backend-functions))
+(add-to-list 'xref-backend-functions #'dumb-jump-xref-activate t)
 
 (global-set-key (kbd "C-s") 'helm-swoop)
 ;; (global-set-key (kbd "C-s") 'helm-occur)
@@ -1909,7 +2008,7 @@ prompt the user for a coding system."
       (kill-new (file-name-nondirectory filename))
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 (global-set-key (kbd "C-c p") 'er-copy-file-name-to-clipboard)
-
+;; * Easier: in dired buffer, on the file: `0 w` for full file path, or `C-0 w` for base name
 
 
 ;;; Markdown mode
@@ -2034,11 +2133,81 @@ prompt the user for a coding system."
    (interactive "*p")
    (move-text-internal (- arg)))
 
-(global-set-key [\M-\S-up] 'move-text-up)
 (global-set-key [\M-\S-down] 'move-text-down)
+(global-set-key [\M-\S-up] 'move-text-up)
 
+(global-set-key (kbd "C-x f") 'helm-projectile-find-file-dwim)
 
-;; Make bash reach .bashrc
-(setq shell-command-switch "-ic")
+;; ;; Make bash reach .bashrc
+;; (setq shell-command-switch "-ic")
 
 (setq helm-buffer-max-length nil)
+
+(require 'helm-ls-git)
+
+(fset 'r-exec-until-comma
+   [?\C-  ?\M-x ?s ?e ?a ?r ?c ?h ?- ?f ?o ?r ?w ?r backspace ?a ?r ?d return ?, return ?\C-b C-return ?\C-f])
+
+(define-key dired-mode-map (kbd "i") 'dired-subtree-insert)
+(define-key dired-mode-map (kbd ";") 'dired-subtree-remove)
+
+(defun r-docker-session ()
+  (interactive)
+  (setq bpath (file-name-directory buffer-file-name))
+  (print bpath)
+  (other-window 1)
+  (ansi-term "/bin/bash")
+  (rename-buffer "R-term")
+  (comint-send-string "R-term" (format "cd %s\n" bpath))
+  (comint-send-string "R-term" "cd $(git rev-parse --show-toplevel)\n")
+  (comint-send-string "R-term" "make local\n")
+  (comint-send-string "R-term" "R\n")
+  (fundamental-mode)
+  (read-only-mode -1)
+  (ess-remote nil "R")
+  (other-window 1)
+  (ess-switch-process)
+  ;; (run-with-timer .2 nil 'insert "R-term")
+  (run-with-timer .3 nil 'execute-kbd-macro (kbd "RET"))
+  )
+
+
+;; (defadvice toggle-read-only (around invoke-debugger activate)
+;;   "invoke debugger to see the call stack"
+;;   (debug ""))
+
+;; (setq auto-mode-alist (cons '("\\.[rR]$" . xref-etags-mode) auto-mode-alist))
+
+(setq lpr-command "gtklp")
+(setq ps-lpr-command "gtklp")
+
+(add-hook 'ess-mode-hook
+      '(lambda()
+         (font-lock-add-keywords
+          nil
+          '(
+        ("\\(:=\\)" 1 ess-assignment-face)
+        ))
+         ))
+
+(require 'eldoc-stan)
+(add-hook 'stan-mode-hook 'eldoc-stan-setup)
+
+
+
+
+;; (add-hook 'outline-minor-mode-hook
+;;           (lambda ()
+;;             (define-key outline-minor-mode-map (kbd "<tab>") 'outline-cycle)
+;;             (define-key outline-minor-mode-map (kbd "S-<iso-lefttab>")
+;;               '(lambda()
+;;                  (interactive)
+;;                  (save-excursion
+;;                    (goto-char (point-min))
+;;                    (outline-show-all)
+;;                    (outline-hide-leaves))))))
+
+
+;; (require 'explain-pause-mode)
+;; (explain-pause-log-to-socket "/home/yvan/testlog.txt")
+;; (explain-pause-mode t)

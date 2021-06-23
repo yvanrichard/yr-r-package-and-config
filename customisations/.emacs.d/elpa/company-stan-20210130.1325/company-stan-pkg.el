@@ -1,0 +1,2 @@
+;;; Generated package description from /home/yvan/.emacs.d/elpa/company-stan-20210130.1325/company-stan.el  -*- no-byte-compile: t -*-
+(define-package "company-stan" "20210130.1325" "A company-mode completion backend for stan" '((emacs "24.3") (company "0.9.10") (stan-mode "10.2.1")) :commit "9bb858b9f1314dcf1a5df23e39f9af522098276b" :authors '(("Kazuki Yoshida" . "kazukiyoshida@mail.harvard.edu")) :maintainer '("Kazuki Yoshida" . "kazukiyoshida@mail.harvard.edu") :keywords '("languages") :url "https://github.com/stan-dev/stan-mode/tree/master/company-stan")

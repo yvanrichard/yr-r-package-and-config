@@ -88,3 +88,17 @@ sudo apt list --installed
 update-alternatives --get-selections
 sudo R --vanilla
 docker run -it -v $PWD:/code -w /code/report-monthly docker.dragonfly.co.nz/fanz/cadmium-database:v6616f38 bash
+ls
+make rsession
+cat make
+cat makef
+cat makefile
+ls
+ssh kahu -A
+cd /
+ls
+cd home/
+ls
+ssh kahu -A
+ls
+R

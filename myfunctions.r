@@ -105,18 +105,18 @@ lower1st <- function(x) {
 }
 
 upper1st <- function (x, prelower = T) {
-    if (is.factor(x)) 
+    if (is.factor(x)) {
         x0 <- levels(x)
-    else x0 <- as.character(x)
+    } else x0 <- as.character(x)
     if (prelower) x0 <- tolower(x0)
     nc <- nchar(x0)
     nc[is.na(nc)] <- 0
     x0[nc > 1] <- sprintf("%s%s", toupper(substr(x0[nc > 1], 1, 1)),
                           substr(x0[nc > 1], 2, nchar(x0[nc > 1])))
     x0[nc == 1] <- toupper(x0[nc == 1])
-    if (is.factor(x)) 
+    if (is.factor(x)) {
         levels(x) <- x0
-    else x <- x0
+    } else x <- x0
     return(x)
 }
 
@@ -136,7 +136,7 @@ Pprint <- function(x, sep=',', quotes="\"") {
         out <- paste(sprintf('%s', x), collapse=sep)
     }
     cat(out, sep='\n')
-    return(out)
+    return(invisible(out))
 }
 
 ## Function to return a number in scientific notation
@@ -470,6 +470,41 @@ pal.ex <- function(cols, cex=1.3) {
     for (i in 1:ncols)
         rect(2, i, 3, i+1, col=cols2[i], border=NA)
 }
+
+
+hier.pal <- function(category, subcategory, spread.within = 0.3,
+                     chroma = 110, luminance = 70, alpha = 1) {
+
+    ## ** Create a sequence of similar colors within a category, but different across categories
+    ## ex: data.table(cat = rep(letters[1:4], each = 5))[, subcat := paste0(cat, rowid(cat))][, pal.ex(hier.pal(cat, subcat))]
+    cols0 <- data.table(id1 = category, id2 = subcategory)
+    cols0[, i := .I]
+    setkey(cols0, id1, id2)
+
+    cols <- cols0[, .N, .(id1, id2)]
+
+    ncats <- uniqueN(cols$id1)
+    steps <- seq(0, 360, length.out = ncats + 1)
+    diff <- steps[2]-steps[1]
+    steps <- steps + diff / 2
+    
+    steps <- head(steps, ncats)
+    names(steps) <- unique(cols$id1)
+    cols[, step := steps[id1]]
+
+    spread <- diff * spread.within / 2
+    cols[, offset := seq(-spread, spread, length.out = .N), id1]
+    cols[, hue := step + offset]
+    
+    cols[, c := chroma + offset]
+    cols[, l := luminance + offset]
+
+    cols[, col := hcl(h = hue, c = c, l = l, alpha = alpha)]
+
+    setorder(cols0, i)
+    return(cols[cols0, col, on = c('id1', 'id2')])
+}
+
 
 color.gradient <- function(x, colors=c("red","yellow","green"), colsteps=100) {
     return( colorRampPalette(colors) (colsteps) [ findInterval(x, seq(min(x),max(x), length.out=colsteps)) ] )
@@ -960,7 +995,7 @@ makeuniquefilename <- function(x) {
 }
 
 ## Open data frame in oocalc
-localc <- function(df, row.names=F, newl.at=NA, na.col.rm=T, openwith='localc', ...) {
+localc <- function(df, row.names=F, newl.at=NA, na.col.rm=T, openwith='gnumeric', ...) {
     library(data.table)
     df <- as.data.table(df)
     f <- tempfile(fileext = '.csv')
@@ -1273,36 +1308,63 @@ collapseseq <- function(x, with.attr=F) {
     }
 }
 
+parcount <- function(x, type = 'round') {
+    if (type == 'round') {
+        chars <- c('(', ')')
+    } else if (type == 'square') {
+        chars <- c('[', ']')
+        } else if (type == 'curly') {
+            chars <- c('{', '}')
+        } else stop('`type` needs to be one of `round`, `square`, or `curly`')
+    xx <- strsplit(x, character(0), fixed = T)
+    sapply(xx, function(z) {
+        inc <- cumsum(z == chars[1])
+        dec <- cumsum(z == chars[2])
+        tail(inc - dec, 1)
+    })
+}
+
 ## fold <- getwd()
-get_in_out_from_scripts <- function(fold='.', returnlist=F, recursive=F) {
-    fls <- dir(fold, pattern='*.r$', full.names=T, recursive=recursive)
+get_in_out_from_scripts <- function(fold='.', recursive=T, verbose=F, shorten.paths=T) {
+    
+    fls <- dir(fold, pattern='\\.[rR]$|\\.[Rr]md$|\\.[Rr]nw', full.names=T, recursive=recursive)
 
     ## filter only text files
     istxt <- NULL
-    for (i in 1:length(fls)) {
+    for (i in seq_along(fls)) {
         a <- system(sprintf('file %s', fls[i]), intern=T)
         istxt <- c(istxt, ifelse(length(grep('text', a)), T, F))
     }
     fls <- fls[istxt]
     
-    f=fls[1]
+    ## f=fls[5]
     outlist <- NULL
     for (f in fls) {
-        if (!returnlist) {
+        if (verbose) {
             cat('\n')
             cat(f,':\n')
             cat(paste(rep('-', nchar(f)), collapse=''),'\n')
         }
+
         sc <- readLines(f)
-        sc <- sc[!grepl('^ *#', sc) & sc!=''] #
-          ## INPUTS
-          ins <- NULL
-        rcsv <- grep('read.csv', sc, val=T)
+
+        sc <- unwrap_cmds(sc)        
+        
+        ## ** INPUTS
+        ins <- NULL
+        rcsv <- grep('read\\.csv', sc, val=T)
         if (length(rcsv)) {
             withsq <- grepl("\'.*\'", rcsv)
             ins <- c(ins, gsub(".*\'(.*)\'.*", '\\1', rcsv[withsq]))
             withdq <- grepl("\".*\"", rcsv)
             ins <- c(ins, gsub(".*\"(.*)\".*", '\\1', rcsv[withdq]))
+        }
+        fcsv <- grep('fread\\(', sc, val=T)
+        if (length(fcsv)) {
+            withsq <- grepl("\'.*\'", fcsv)
+            ins <- c(ins, gsub(".*\'(.*)\'.*", '\\1', fcsv[withsq]))
+            withdq <- grepl("\".*\"", fcsv)
+            ins <- c(ins, gsub(".*\"(.*)\".*", '\\1', fcsv[withdq]))
         }
         lds <- grep('load\\(', sc, value=T)
         if (length(lds)) {
@@ -1311,14 +1373,38 @@ get_in_out_from_scripts <- function(fold='.', returnlist=F, recursive=F) {
             withdq <- grepl("\".*\"", lds)
             ins <- c(ins, gsub(".*\"(.*)\".*", '\\1', lds[withdq]))
         }
-        ## OUTPUTS
+        rds <- grep('readRDS', sc, value = T)
+        if (length(rds)) {
+            withsq <- grepl("\'.*\'", rds)
+            ins <- c(ins, gsub(".*\'(.*)\'.*", '\\1', rds[withsq]))
+            withdq <- grepl("\".*\"", rds)
+            ins <- c(ins, gsub(".*\"(.*)\".*", '\\1', rds[withdq]))
+        }
+        sources <- grep('source\\(', sc, value = T)
+        if (length(sources)) {
+            withsq <- grepl("\'.*\'", sources)
+            ins <- c(ins, gsub(".*\'(.*)\'.*", '\\1', sources[withsq]))
+            withdq <- grepl("\".*\"", sources)
+            ins <- c(ins, gsub(".*\"(.*)\".*", '\\1', sources[withdq]))
+        }
+
+        if (is.null(ins)) ins <- character(0)
+        
+        ## ** OUTPUTS
         outs <- NULL
-        rcsv <- grep('write.csv', sc, val=T)
+        rcsv <- grep('write\\.csv', sc, val=T)
         if (length(rcsv)) {
             withsq <- grepl("\'.*\'", rcsv)
             outs <- c(outs, gsub(".*\'(.*)\'.*", '\\1', rcsv[withsq]))
             withdq <- grepl("\".*\"", rcsv)
             outs <- c(outs, gsub(".*\"(.*)\".*", '\\1', rcsv[withdq]))
+        }
+        fcsv <- grep('fwrite', sc, val=T)
+        if (length(fcsv)) {
+            withsq <- grepl("\'.*\'", fcsv)
+            outs <- c(outs, gsub(".*\'(.*)\'.*", '\\1', fcsv[withsq]))
+            withdq <- grepl("\".*\"", fcsv)
+            outs <- c(outs, gsub(".*\"(.*)\".*", '\\1', fcsv[withdq]))
         }
         lds <- grep('save\\(', sc, value=T)
         if (length(lds)) {
@@ -1327,18 +1413,118 @@ get_in_out_from_scripts <- function(fold='.', returnlist=F, recursive=F) {
             withdq <- grepl("\".*\"", lds)
             outs <- c(outs, gsub(".*\"(.*)\".*", '\\1', lds[withdq]))
         }
+        rds <- grep('saveRDS\\(', sc, value=T)
+        if (length(rds)) {
+            withsq <- grepl("\'.*\'", rds)
+            outs <- c(outs, gsub(".*\'(.*)\'.*", '\\1', rds[withsq]))
+            withdq <- grepl("\".*\"", rds)
+            outs <- c(outs, gsub(".*\"(.*)\".*", '\\1', rds[withdq]))
+        }
+        ims <- grep('save\\.image\\(', sc, value=T)
+        if (length(ims)) {
+            withsq <- grepl("\'.*\'", ims)
+            outs <- c(outs, gsub(".*\'(.*)\'.*", '\\1', ims[withsq]))
+            withdq <- grepl("\".*\"", ims)
+            outs <- c(outs, gsub(".*\"(.*)\".*", '\\1', ims[withdq]))
+        }
+        if (is.null(outs)) outs <- character(0)
         ## cat('\n')
         ## if (length(c(ins, outs)))
         outlist[[f]] <- list(ins=ins, outs=outs)
-        if (!returnlist & length(c(ins, outs))) {
+        if (verbose & length(c(ins, outs))) {
             cat('INPUTS:\n')
             print(ins)
             cat('OUTPUTS:\n')
             print(outs)
         } 
     }
-    if (returnlist)
-        return(outlist)
+
+    inouts <- outlist
+    
+    dt <- rbindlist(lapply(names(inouts), function(r) {
+        inputs <- inouts[[r]]$ins
+        d <- as.data.table(rbind(stack(inouts[[r]]['ins']),
+                                 stack(inouts[[r]]['outs'])))
+        d[, script := r]
+        d
+        ## data.table(script = r, type = 'input', file = inputs)
+        ## outlist[[r]]
+    }))
+    dt[, script := normalizePath(script)]
+    dt[, fold   := dirname(script)]
+    dt[, dep    := file.path(fold, values)]
+    dt[, exists := file.exists(dep)]
+    dt[exists == T, dep := normalizePath(dep)]
+
+    dt[, from := fifelse(ind == 'ins', dep, script)]
+    dt[, to := fifelse(ind == 'outs', dep, script)]
+
+    if (shorten.paths) {
+        paths <- dt[, tstrsplit(dep, '/')]
+        ncommon <- which(apply(paths, 2, function(x) uniqueN(x) == 1) == F)[1]-1
+        if (ncommon > 0) {
+            basedir <- paste0(do.call(file.path, paths[1, .SD, .SDcols = names(paths)[seq_len(ncommon)]]), '/')
+        } else basedir <- '/'
+    } else basedir <- '/'
+    
+    dt[, from := sub(basedir, '', from, fixed = T)]
+    dt[, to := sub(basedir, '', to, fixed = T)]
+
+    dt[, direction := fifelse(ind == 'ins', 'input', 'output')]
+    dt <- dt[, .(direction, from, to, exists)]
+
+    setattr(dt, 'basedir', basedir)
+    
+    return(dt)
+}
+
+
+
+r_inouts_network <- function(fold='.', recursive=T, verbose=F) {
+    
+    inouts <- get_in_out_from_scripts(fold, recursive=recursive, verbose=verbose)
+    basedir <- attr(inouts, 'basedir')
+    
+    nodes <- data.table(title = sort(unique(c(dt$from, dt$to))))
+    nodes[, type := fifelse(grepl('\\.[rR]$', title), 'script',
+                            fifelse(grepl('\\.[Rr]md$|\\.[Rr]nw$', title), 'report',
+                                    fifelse(grepl('\\.png$|\\.pdf$', title), 'output', 'data')))]
+
+    ncols <- c(script = "#4DAF4A", report = "#984EA3", output = "#377EB8", data = "#FF7F00")
+    nshps <- c(script = "square", report = "star", output = "diamond", data = "triangle")
+    
+    nodes[, id := sprintf('s%0.3i', seq_len(.N))]
+    nodes[, exists := file.exists(file.path(basedir, title))]
+    nodes[, shape := nshps[type]]
+    nodes[, shadow := !exists]
+    nodes[, color := ncols[type]]
+    nodes[exists == F, color := "#E41A1C"]
+    nodes[, group := dirname(title)]
+    nodes[, label := basename(title)]
+    
+    nmasses <- c(script = 1, report = 10, output = 1, data = 5)
+    nodes[, mass := nmasses[type]]
+
+    ecols <- c(input = 'blue', output = 'red')
+
+    edges <- dt[, .(from_lab = from, to_lab = to, type = direction)]
+    edges[nodes, from := id, on = c('from_lab' = 'title')]
+    edges[nodes, to := id, on = c('to_lab' = 'title')]
+    edges[, color := ecols[type]]
+
+    library(visNetwork)
+    visNetwork(nodes, edges, width="100%", height="800px",
+               main = 'Inputs/outputs in R scripts and documents',
+               submain = paste0('File paths relative to ', basedir)) %>%
+        visEdges(arrows = 'to', physics = T) %>% #, scaling = list(min = 2, max = 2)) %>%
+        ## visClusteringByGroup(groups = 'group', label = 'group', force = T) %>%
+        visOptions(highlightNearest = list(enabled = T, degree = 1),
+                   selectedBy = 'type') %>%
+        ## visPhysics(solver = 'forceAtlas2Based') %>%
+        ## visHierarchicalLayout() %>%
+        ## visLayout(hierarchical = T) %>%
+        visIgraphLayout(physics = T, smooth = F, type = 'square', layout = 'layout_with_mds')
+    
 }
 
 
@@ -1393,7 +1579,7 @@ graph_r_scripts <- function(fold='.', recursive=T) {
     opt <- options("useFancyQuotes")
     options(useFancyQuotes = FALSE)
 
-    inout <- get_in_out_from_scripts(fold, returnlist=T, recursive=recursive)
+    inout <- get_in_out_from_scripts(fold, recursive=recursive)
 
     scripts <- names(inout)
     ins <- sapply(inout, function(x) x$ins)
@@ -1546,7 +1732,7 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
     colc <- 'grey95'                    # colour of clusters fills
 
     progtypes <- '\\.r\"|\\.py\"|\\.bug\"|\\.cmd\"|\\.sh\"'
-    datatypes <- '\\.rdata\"|\\.csv\"|\\.Rdata\"'
+    datatypes <- '\\.rdata\"|\\.csv\"|\\.Rdata\"|\\.rds\"'
     graphtypes <- '\\.pdf\"|\\.png\"'
     gettype <- function(z) {
         pp <- grep(progtypes, z, value=T)
@@ -1671,6 +1857,9 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
         ps <- ps[-which(names(ps) == names(utilclust))]
         all <- all[-which(sapply(all, '[[', 'targs') %in% utilclust[[1]])]
     }
+
+    names(all) <- sprintf('node_%0.3i', seq_along(all))
+    
     ##=== Create dot file ===##
 
     all2 <- all
@@ -1685,6 +1874,13 @@ graph_makefile <- function(makefile='makefile', rankdir='BT', nodesep=0.1, ranks
         return(x)
     }, simplify=F)
     all2 <- rapply(all2, function(x) return(ifelse(is.na(x), NA, dQuote(x))), how='replace')
+
+    ## De-duplicate acts
+    actlabs <- unlist(sapply(all2, '[', 'acts'))
+    for (i in seq_along(all2)) {
+        all2[[i]]$acts <- sprintf('"%s"', names(actlabs)[i])
+    }
+    names(actlabs) <- sprintf('"%s"', names(actlabs))
     
     gf <- sprintf('digraph G {
 rankdir=%s; nodesep=%f; ranksep=%f; ratio=%f; margin=%f;
@@ -1713,7 +1909,8 @@ i, dQuote(names(ps)[i]), colc))
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', cold, els$d))
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colg, els$g))
             gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colf, els$f))
-            gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;\n}\n', cola, paste(ac, collapse=' ')))
+            gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%s, shape=rectangle, label=%s] %s;', cola, actlabs[ac], ac))    
+            gf <- c(gf, '}\n\n')
         }
     }
     
@@ -1731,17 +1928,18 @@ i, dQuote(names(ps)[i]), colc))
     
     acts <- unique(unlist(sapply(a, function(x) return(na.omit(x$acts)))))
     acts <- acts[!(acts %in% nodesinclust)]
-
+    acts <- acts[!(actlabs %in% c('NA', NA))]
+    
     td <- unique(unlist(sapply(a, function(x) return(na.omit(c(x$targs, x$deps))))))
-    ac <- unique(unlist(sapply(a, function(x) return(na.omit(x$acts)))))
+    ac <- acts #unique(unlist(sapply(a, function(x) return(na.omit(x$acts)))))
     els <- gettype(td)
     gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colu, els$u))
     gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colp, els$p))
     gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', cold, els$d))
     gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colg, els$g))
     gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', colf, els$f))
-    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%1$s, shape=rectangle] %2$s;', cola, paste(ac, collapse=' ')))
-
+    gf <- c(gf, sprintf('node [fontsize=16, height=.3, style="rounded,filled", fillcolor=%s, shape=rectangle, label=%s] %s;', cola, actlabs[ac], ac))    
+    gf <- c(gf, '\n\n')
     
     ##--- Edges ---##
 
@@ -2246,8 +2444,22 @@ check.latex.deps <- function(fold='.',
             c3 <- r[grepl('\\bfread\\(', r) & !grepl('^[[:blank:]]*#', r)]
               fs3 <- sub('.*fread\\([\'\"]+(.*)[\'\"]+.*', '\\1', c3)
             c4 <- r[grepl('\\breadRDS\\(', r) & !grepl('^[[:blank:]]*#', r)]
-              fs4 <- sub('.*readRDS\\([\'\"]+(.*)[\'\"]+.*', '\\1', c3)
-            fs <- c(fs1, fs2, fs3, fs4)
+            fs4 <- sub('.*readRDS\\([\'\"]+(.*)[\'\"]+.*', '\\1', c4)
+            sources <- r[grepl('\\bsource\\(', r)]
+            fsources <- sub('.*source\\([\'\"]+(.*)[\'\"]+.*', '\\1', sources)
+            fss <- unlist(lapply(fsources, function(f) {
+                r <- readLines(f, warn=F)
+                cc1 <- r[grepl('\\bload\\(', r) & !grepl('^[[:blank:]]*#', r)]
+                cfs1 <- sub('load\\([\'\"]+(.*)[\'\"]+.*', '\\1', cc1)
+                cc2 <- r[grepl('\\bread\\.csv\\(', r) & !grepl('^[[:blank:]]*#', r)]
+                cfs2 <- sub('.*read.csv\\([\'\"]+(.*)[\'\"]+.*', '\\1', cc2)
+                cc3 <- r[grepl('\\bfread\\(', r) & !grepl('^[[:blank:]]*#', r)]
+                cfs3 <- sub('.*fread\\([\'\"]+(.*)[\'\"]+.*', '\\1', cc3)
+                cc4 <- r[grepl('\\breadRDS\\(', r) & !grepl('^[[:blank:]]*#', r)]
+                cfs4 <- sub('.*readRDS\\([\'\"]+(.*)[\'\"]+.*', '\\1', cc4)
+                return(c(cfs1, cfs2, cfs3, cfs4))
+            }))
+            fs <- c(fs1, fs2, fs3, fs4, fss)
             ## Replace global variables in .mk files by their value
             c <- grepl('load\\([a-zA-Z]+', fs)
             alldeps1 <- sub('.*load\\((.*).*\\).*', '\\1', fs[c])
@@ -2271,7 +2483,7 @@ check.latex.deps <- function(fold='.',
     tex <- dir('.', '*.tex$', recursive=recursive)
     tex <- tex[!(tex %in% 'aebr.tex')]
     basedir <- getwd()
-    t=tex[3]
+    ## t=tex[3]
     for (t in tex) {
         cat('\n************  ', t, '  ************\n')
         tdir <- dirname(t)
@@ -2306,7 +2518,7 @@ check.latex.deps <- function(fold='.',
     
     cat('\n\n')
     alldeps <- alldeps[!grepl('^[[:blank:]]*\\%', dep)]
-    alldeps[, dep := strtrim(dep)]
+    alldeps[, dep := gsub('  +', ' ', strtrim(dep))]
     ## Apply ignore rules
     alldeps[, ignored := ifelse( extension(dep) %in% ext.ignore  | grepl(paths.ignore, dep) | is.na(dep), T, F)]
     ## Detect dependencies that are not file names
@@ -3149,20 +3361,31 @@ str2org <- function(what, tmpfile = tempfile('str_output_'), open = T) {
 ## Return the output of str() as an org file (open in emacs) for better visibility and collapsible levels
     orgfile <- paste0(tmpfile, '.org')
     tryCatch({
-        capture.output(str(what, list.len = 199), file=tmpfile)
-        }, error = function(e) e, finally = warning('Some error occurred'))
+        capture.output(str(what, list.len = 499), file=tmpfile)
+    }, error = function(e) warning('Errors! ', as.character(e)))
+
     strout <- readLines(tmpfile)
     strout <- gsub('^([[:blank:].]*)\\.\\.\\$', '\\1.. .. $', strout)
     strout <- gsub('^([[:blank:].]*)\\.\\.\\-', '\\1.. .. -', strout)
     strout <- gsub('^[[:blank:]]*\\$', '.. $', strout)
     strout <- gsub('^([[:blank:].]*)\\[', '\\1.. [', strout)
-    while (length(grep('\\.\\. \\.', strout))) {
+    while (any(grepl('\\.\\. \\.', strout))) {
         strout <- gsub('[[:blank:]*]*\\.\\.([[:blank:]@$-]*[^.])', '* \\1', strout)
     }
-    while( length(grep('\\*[[:blank:]]+\\*', strout)) ) {
+    strout <- sub(' - attr\\(\\*, ', '* (Attribute: ', strout)
+    while( any(grepl('\\*[[:blank:]]+\\*', strout)) ) {
         strout <- gsub('\\*[[:blank:]]+\\*', '**', strout)
     }
+
+    ## if (any(grepl('^ - attr', strout))) {
+    ##     attstart <- min(grep('^ - attr', strout))
+    ##     strout <- c(strout[1:attstart], '* Attributes:', strout[attstart:length(strout)])
+    ## }
     strout <- gsub('\\*[[:blank:]]+([$-])', '* \\1', strout)
+    strout <- strout[!grepl('internal\\.selfref', strout)]
+    strout <- strout[!grepl('__dim', strout)]
+    strout <- strout[!grepl('Attribute.*index', strout)]
+    
     strout <- c(strout, "* org conf", "#+STARTUP: indent", "#+STARTUP: showstars", "#+STARTUP: showall",
                "#+INFOJS_OPT: view:info toc:true view:content tdepth:2",
                "#+SETUPFILE: ~/.emacs.d/github_projects/org-html-themes/setup/theme-readtheorg.setup")
@@ -4505,23 +4728,31 @@ mean_colour <- function(twocols=c('#fff3e1', '#fcb045')) {
 }
 
 
-push_msg <- function(title = 'Automatic msg', body = 'Test', url = NULL,
-                     devices = 0, debug=F, verbose=F) {
-    library(RPushbullet)
-    if (is.null(getOption("rpushbullet.key"))) {
-        stop('Pushbullet key not set. Please run `pbSetup()`.')
-    }
-    if (is.null(url)) {
-        pbPost(type='note', title=title, body=body, verbose=verbose, debug=debug,
-               recipients = devices)
-    } else if (grepl('//', url)) {
-        pbPost(type='link', title=title, body=body, url=url, verbose=verbose, debug=debug,
-               recipients = devices)
-    } else {
-        pbPost(type='file', url=url, verbose=verbose, debug=debug,
-               recipients = devices)
-    }
+notif <- function(title='default title', text='defaut message',
+                  apptoken = jsonlite::fromJSON('/home/yvan/.pushover')$apptoken,
+                  usertoken = jsonlite::fromJSON('/home/yvan/.pushover')$usertoken ) {
+    if (text == '') text <- '[no message]'
+    system(sprintf('curl -s --form-string "token=%s" --form-string "user=%s" --form-string "title=%s" --form-string "message=%s" https://api.pushover.net/1/messages.json', apptoken, usertoken, title, text))
+    system(sprintf('notify-send "%s" "%s"', title, text))
 }
+
+## push_msg <- function(title = 'Automatic msg', body = 'Test', url = NULL,
+##                      devices = 0, debug=F, verbose=F) {
+##     library(RPushbullet)
+##     if (is.null(getOption("rpushbullet.key"))) {
+##         stop('Pushbullet key not set. Please run `pbSetup()`.')
+##     }
+##     if (is.null(url)) {
+##         pbPost(type='note', title=title, body=body, verbose=verbose, debug=debug,
+##                recipients = devices)
+##     } else if (grepl('//', url)) {
+##         pbPost(type='link', title=title, body=body, url=url, verbose=verbose, debug=debug,
+##                recipients = devices)
+##     } else {
+##         pbPost(type='file', url=url, verbose=verbose, debug=debug,
+##                recipients = devices)
+##     }
+## }
 
 
 dt_to_multiline <- function(dt, coords, byvars, crs=sf::NA_crs_) {
@@ -4638,6 +4869,7 @@ paletteers <- function() {
     system(sprintf('xdg-open %s', tmpfile))
 
 }
+
 
 
 make_0_360 <- function(polyg, split_lon = 0, namefield='code') {
@@ -4954,13 +5186,13 @@ check_txt_num <- function(d, details=F, maxn = 10) {
 
 
 cut2 <- function(x, breaks) {
-    ## * Better cut, with better labels when outside range of breaks ('< 1', '1 - 2', '≥ 2')
+    ## * Better cut, with better labels when outside range of breaks ('< 1', '1 - 2', '>= 2')
     if (is.integer(x)) {
         mids <- sprintf('%i - %i', breaks, data.table::shift(breaks, 1, type='lead')-1)[-length(breaks)]
     } else {
         mids <- sprintf('[%i,%i)', breaks, data.table::shift(breaks, 1, type='lead'))[-length(breaks)]
     }
-    labels <- c(paste0('< ', breaks[1]), mids, paste0('≥ ', tail(breaks, 1)))
+    labels <- c(paste0('< ', breaks[1]), mids, paste0('>= ', tail(breaks, 1)))
     factor(labels[findInterval(x, breaks)+1], levels = labels)
 }
 
@@ -5123,4 +5355,478 @@ inspect_cor(dat) %>% show_plot()
     browseURL(out)
     
     
+}
+
+
+pick <- function(x, n=1, among_unique=T) {
+    if (among_unique) {
+        x %in% sample(unique(x), n)
+    } else {
+        x %in% sample(x, n)
+    }
+}
+
+gain <- function(from, to, initval = 1) {
+    ((to/from) - 1) * initval
+}
+
+minshareval <- function(shares, wantedval) {
+    wantedval / shares
+}
+
+
+## na.interpolate <- function(dt, takefrom, vars2fill, byvars = NULL, timevar) {
+    
+## }
+
+
+mynafill <- function(x, ...) {
+    ## Fill in NAs. Adapted as data.table::nafill() only takes numeric values
+    if (is.factor(x)) {
+        lkup <- data.table(x = levels(x))
+        lkup[, id := .I]
+        initvec <- data.table(x = x)
+        initvec[lkup, id := i.id, on = 'x']
+        initvec[, id := nafill(id, ...)]
+        initvec[lkup, out := i.x, on = 'id']
+        return(initvec$out)
+    } else if (is.character(x)) {
+        lkup <- data.table(x = unique(x))
+        lkup <- lkup[!is.na(x)]
+        lkup[, id := .I]
+        initvec <- data.table(x = x)
+        initvec[lkup, id := i.id, on = 'x']
+        initvec[, id := nafill(id, ...)]
+        initvec[lkup, out := i.x, on = 'id']
+        return(initvec$out)
+    } else if (is.numeric(x)) {
+        return(nafill(x, ...))
+    } else stop('`x` needs to be either of type `character`, `factor`, or `numeric`')
+}
+
+nacolrm <- function(x) {
+    if (!('data.table' %in% class(x))) {
+        x <- as.data.table(x)
+    }
+    x[, !sapply(x, function(y) all(is.na(y))), with = F]
+}
+
+search_inside <- function(l, what, simplify = T, fixed = T) {
+    library(parallel)
+    res <- lapply(seq_along(l), function(i) {
+        cat('\n==============================\n', names(l)[i], '\n')
+        x <- l[[i]]
+        if (is.function(x)) return()
+        if (!is.list(x)) {
+            return(grep(what, x, fixed = fixed, val = T))
+        } else if (length(dim(x)) > 0) {
+            if (is.data.frame(x)) {
+                xl <- as.list(x)
+            } else {
+                xl <- apply(x, 2, I)
+            }
+            r <- mclapply(xl, function(x1) {
+                grep(what, x1, fixed = fixed)
+            }, mc.cores = detectCores() - 1)
+            r <- unlist(r)
+            z <- nacolrm(x[r,])
+            return(z)
+        } else return(search_inside(x, what))
+    })
+    names(res) <- names(l)
+    if (simplify)
+        res <- res[sapply(res, length) > 0]
+    return(res)
+}
+
+## lst <- list(recovery=recovery, a = 'test', b = list(what))
+## res <- search_lst(lst, what)
+
+## rm(lst)
+## lst <- sapply(ls(.GlobalEnv), get)
+## res <- search_lst(lst, what)
+## names(lst)[6]
+
+
+clean <- function(d, reason, cond, expr = NULL,
+                  verbose = getOption('datachanges.verbose', 0),
+                  intern = getOption('datachanges.internal', T),
+                  idvars = getOption('datachanges.idvars', NULL)) {
+    
+    ## ** Function to save each data change
+    ## Usage for updates:  groom(dat, 'Bumping up carbs', cyl == 6, carb := carb + 999)
+    ## Usage for deletion: groom(dat, 'Removing high MPG', mpg > 20, NULL)
+
+    library(data.table)
+
+    if (!(is.data.table(d)))
+        d <- as.data.table(d, keep.rownames = T)
+    
+    if (!('.rowid' %in% names(d))) { # create row id if necessary
+        d[, .rowid := seq_len(.N)]
+    }
+
+    if (!is.null(attr(d, 'n_actions'))) {
+        action_no <- attr(d, 'n_actions') + 1
+    } else action_no <- 1
+    
+    if (intern) {
+        .changed <- attr(d, 'datachanges')
+    } else {
+        if (!exists('.datachanges', envir = .GlobalEnv)) { # create global table of changes if necessary
+            assign('.datachanges', NULL, envir = .GlobalEnv)
+            .changed <- NULL
+        } else {
+            .changed <- .datachanges
+        }
+        .Last <<- function() {
+            fwrite(.datachanges, tempfile('datachanges-', tmpdir = getwd(), '.csv'))
+        }
+    }
+    
+    cl <- match.call() # get arguments
+
+    now <- Sys.time()
+    
+    if (verbose > 1) {
+        cat('\ncl:\n')
+        str(cl)
+        print(names(cl))
+        cat('\n')
+    }
+    outl <- list() # container of changes
+
+    outl$datetime <- now
+    outl$table <- deparse(substitute(d))              # table where changes are made
+    outl$reason <- reason # reason for change
+    outl$cond <- as.character(as.expression(cl$cond)) # condition for change
+    
+    if (verbose > 1) cat(sprintf('\n`cond`: %s\n', outl$cond), '\n')
+
+    if (!is.null(cl$expr)) {
+
+        ## *** Value update
+        if (verbose > 1) cat('... Replacing\n')
+
+        if (!('.changed' %in% names(d))) { # create row id if necessary
+            d[, .changed := '']
+        }
+
+        l <- as.list(cl$expr)
+        if (verbose > 1) {cat('`cl$expr`:\n'); str(l)}
+        if (as.character(l[[1]]) != ':=')
+            stop('Expression is not an assignment with `:=` nor a deletion with `!`')
+
+        outl$action <- 'Update'
+
+        if (is.symbol(l[[2]])) { # Update of single variable
+            
+            outl$field <- as.character(l[[2]]) # parameter to change
+
+            if (verbose > 1) print(outl$field)
+            if (verbose > 1) print(d[eval(cl$cond)])
+            outl$expr <- as.character(as.expression(l[[3]]))
+            
+            outl$.rowid <- d[eval(cl$cond), .rowid]          # ids of changed rows
+            ## outl$idvars <- d[eval(substitute(cond)), ..idvars]
+            outl$preval <- d[eval(cl$cond), eval(l[[2]])] # values before change
+            if (verbose > 1) print(outl$preval)
+            
+            invisible(d[eval(cl$cond), eval(substitute(expr))]) # execute change
+            d[eval(cl$cond), .changed := '*']
+            outl$postval <- d[eval(cl$cond), eval(l[[2]])] # values after change
+            if (verbose > 1) print(outl$postval)
+
+            outdt <- as.data.table(outl)
+            outdt <- cbind(outdt, d[eval(cl$cond), ..idvars])
+            
+            outdt <- outdt[ # only keep where value actually changed
+                is.na(preval) & !is.na(postval) |
+                !is.na(preval) &  is.na(postval) |
+                preval != postval
+            ]
+            if (verbose > 1) print(outdt)
+            if (verbose >= 1) {
+                if (nrow(outdt) > 0) { # report on changes
+                    cat(sprintf('Cleaning #%i (%s when `%s`): %i changes to `%s`\n',
+                                action_no, reason, outl$cond, nrow(outdt), outl$field))
+                } else {
+                    cat(sprintf('Cleaning #%i (%s when `%s`): No change made to `%s`\n',
+                                action_no, reason, outl$cond, outl$field))
+                }
+            }
+            
+        } else { # Update of multiple variables
+
+            outdt <- rbindlist(lapply(2L:length(l), function(i) {
+                
+                v <- names(l)[i]
+                if (verbose > 1) cat(v, '\n')
+                
+                outl1 <- copy(outl)
+                
+                outl1$field <- v # parameter to change
+
+                if (verbose > 1) print(outl1$field)
+
+                if (verbose > 1) print(d[eval(cl$cond)])
+                
+                outl1$.rowid <- d[eval(cl$cond), .rowid]          # ids of changed rows
+                outl1$preval <- d[eval(cl$cond), get(v)] # values before change
+                outl1$expr <- as.character(as.expression(l[[i]]))
+
+                if (verbose > 1) print(outl1$preval)
+                
+                invisible(d[eval(cl$cond), eval(v) := eval(l[[i]])]) # execute change
+                d[eval(cl$cond), .changed := '*']
+                outl1$postval <- d[eval(cl$cond), get(v)] # values after change
+                if (verbose > 1) print(outl1$postval)
+
+                outdt <- as.data.table(outl1)
+                outdt <- cbind(outdt, d[eval(cl$cond), ..idvars])
+                setattr(outdt, 'idvars', idvars)
+                
+                outdt <- outdt[ # only keep where value actually changed
+                    is.na(preval) & !is.na(postval) |
+                    !is.na(preval) &  is.na(postval) |
+                    preval != postval
+                ]
+                if (verbose > 1) print(outdt)
+                if (verbose >= 1) {
+                    if (nrow(outdt) > 0) { # report on changes
+                        cat(sprintf('Cleaning #%i (%s when `%s`): %i changes to `%s`\n',
+                                    action_no, reason, outl1$cond, nrow(outdt), outl1$field))
+                    } else {
+                        cat(sprintf('Cleaning #%i (%s when `%s`): No change made to `%s`\n',
+                                    action_no, reason, outl1$cond, outl1$field))
+                    }
+                }
+                outdt
+            }))
+            
+        }
+
+    } else {
+        
+        ## *** Row deletion
+        if (verbose > 1) cat('... Deleting\n')
+        outl$action <- 'Deletion'
+        outl$.rowid <- d[eval(cl$cond), .rowid]
+        ## outl$idvars <- d[eval(substitute(cond)), ..idvars]
+
+        outdt <- as.data.table(outl)
+        outdt <- cbind(outdt, d[eval(cl$cond), ..idvars])
+        
+        if (verbose > 1) print(outdt)
+        if (nrow(outdt) > 0) {
+            if (verbose > 1) {
+                print(as.character(as.expression(cl$d)))
+                print(d[!(eval(cl$cond))])
+            }
+            if (verbose >= 1)
+                cat(sprintf('Cleaning #%i (%s when `%s`): %i rows removed\n',
+                            action_no, reason, outl$cond, nrow(outdt)))
+            assign(as.character(as.expression(cl$d)), d[!(eval(cl$cond))], envir = .GlobalEnv)
+        } else if (verbose >= 1) {
+            cat(sprintf('Cleaning #%i (%s when `%s`): No rows removed\n',
+                        action_no, reason, outl$cond, nrow(outdt)))
+        }
+    }
+
+    setattr(d, 'n_actions', action_no)
+    if (nrow(outdt)>0) {
+        outdt[, change_id := action_no]
+        previdvars <- attr(.changed, 'idvars')
+        .changed <- rbind(.changed, outdt, fill = T)
+        setattr(.changed, 'idvars', unique(c(previdvars, idvars)))
+
+        if (intern == T) {
+            setattr(eval(cl$d), 'datachanges', .changed)
+        } else {
+            assign('.datachanges', .changed, envir = .GlobalEnv)
+        }
+    }
+
+}
+
+
+## ** List changes made to the data
+
+getcleaning <- function(d, by = 'record', rows = NULL, open = T, use.idvars = T, format='html') {
+    library(knitr)
+    library(kableExtra)
+    
+    grooms <- copy(attr(d, 'datachanges')) # get table of changes
+    
+    if (!is.null(grooms)) {
+
+        suppressWarnings(grooms[, step := rleid(table, reason, action, datetime)])
+
+        if (!is.null(rows)) { # selection of rows if specified
+            grooms <- grooms[.rowid %in% rows]
+        }
+
+        if (by == 'record') {
+            
+            ## *** Reporting by record
+            
+            selidvars <- attr(grooms, 'idvars')
+            if (!is.null(selidvars)) {
+                selidvars2 <- c(selidvars, '.rowid')
+                rowlabs <- apply(grooms[, ..selidvars2], 1, function(x) paste(x, collapse = '; '))
+                grooms[, rowlab := rowlabs]
+            } else grooms[, rowlab := sprintf('Row %i', .rowid)]
+            setorder(grooms, table, rowlab, change_id, field)
+
+            ## **** Group by record
+            options(knitr.kable.NA = '')
+            t <- kable(grooms[, .(action, reason, cond, field, expr, preval, postval)],
+                       col.names = c('Type', 'Reason', 'Condition', 'Field', 'Action', 'From', 'To'),
+                       format = format) %>%
+                kable_styling(bootstrap_options = c("striped", "hover", "condensed"), fixed_thead = T)
+            for (gl in unique(grooms$rowlab)) {
+                t <- t %>%
+                    group_rows(gl, grooms[, min(which(rowlab == gl))],
+                               grooms[, max(which(rowlab == gl))])
+            }
+
+        } else if (by == 'action') {
+            
+            ## *** Reporting by action
+            
+            grooms[, groomlab :=
+                         fifelse(action == 'Update',
+                                 sprintf('%i - UPDATE - %s: Do `%s` - when `%s` (%s)',
+                                         change_id, reason, expr, cond, datetime),
+                                 sprintf('%i - DELETION - %s - when `%s` (%s)',
+                                         change_id, reason, cond, datetime))]
+            selidvars <- attr(grooms, 'idvars')
+            if (!is.null(selidvars) & use.idvars == T) {
+                selidvars2 <- c(selidvars, '.rowid')
+                rowlabs <- apply(grooms[, ..selidvars2], 1, function(x) paste(x, collapse = '; '))
+                grooms[, rowlab := rowlabs]
+            } else grooms[, rowlab := sprintf('Row %i', .rowid)]
+            setorder(grooms, table, change_id, groomlab, field)
+
+            ## **** Group by action
+            options(knitr.kable.NA = '')
+            t <- kable(grooms[, .(rowlab, field, preval, postval)], col.names = c('Row', 'Field', 'From', 'To'),
+                       format = format) %>%
+                kable_styling(bootstrap_options = c("striped", "hover", "condensed"), fixed_thead = T)
+            for (gl in unique(grooms$groomlab)) {
+                t <- t %>%
+                    group_rows(gl, grooms[, min(which(groomlab == gl))],
+                               grooms[, max(which(groomlab == gl))])
+            }
+
+        }
+            
+        if (open) {
+            outhtml <- tempfile(, fileext = '.html')
+            save_kable(t, outhtml)
+            browseURL(outhtml)
+        }
+        return(t)
+    } else cat('No datachanges applied yet')
+
+}
+
+
+groomplot <- function(d, ids = NULL, plotly=F) {
+    
+    ## * Plot changes by record and field
+    
+    library(ggplot2)
+
+    grooms <- attr(d, 'grooming')
+    if (is.null(ids)) ids <- grooms[, sort(unique(.rowid))]
+    if (!is.null(grooms)) {
+        grooms <- grooms[.rowid %in% ids]
+        grooms[, step := rleid(table, reason, action, datetime)]
+
+        ## ** Add deletion of whole rows at the end of each field history when applicable
+        dels <- grooms[action == 'Deletion']
+        adddels <- grooms[, .N, .(table, .rowid, par)][dels, on = c('table', '.rowid')]
+        adddels[, nopar := all(is.na(par)), .(table, .rowid)]
+        adddels <- adddels[!(is.na(par) & nopar == F)]
+        adddels <- adddels[, .(datetime, table, .rowid, reason, cond, action, par, step)]
+        grooms <- rbind(grooms[action != 'Deletion'], adddels, fill = T)
+        setorder(grooms, table, .rowid, par, step)
+        grooms[is.na(par), par := 'all']
+
+        grooms[, pch := fifelse(action == 'Update', 16, 4)]
+        grooms[, col := fifelse(action == 'Update', "#377EB8", "#E41A1C")]
+        grooms[, lab := fifelse(action == 'Update',
+                                sprintf('Reason: %s\nFor: %s\nChanged from: %s to %s\nat %s',
+                                        reason, cond, preval, postval, datetime),
+                                sprintf('Reason: %s\nFor: %s\nDeleted\nat %s',
+                                        reason, cond, datetime))]
+
+        g <- ggplot() +
+            geom_line(data = grooms, aes(x = step, y = par, text = lab), colour = "#377EB8", size = 1) +
+            geom_point(data = grooms, aes(x = step, y = par, shape = pch, colour = col, text = lab),
+                       size = 5, stroke = 2) +
+            scale_shape_identity() +
+            scale_color_identity() +
+            ## scale_y_discrete(breaks = function(y) rev(rev(y))) +
+            facet_wrap(~ .rowid, ncol = 1, scales = 'free_y', strip.position = 'right',
+                       dir = 'v') +
+            labs(x = 'Grooming step', y = 'Field') +
+            theme_light() +
+            theme(legend.position = 'none',
+                  strip.text.y = element_text(angle = 0, colour = 'black'),
+                  strip.background.y = element_rect(colour = 'grey50', fill = 'grey95'))
+        if (plotly) {
+            plotly::ggplotly(g)
+        } else return(g)
+    }
+}
+
+deck.scatterplot <- function(dt, xvar, yvar, colvar = NULL, tooltipvar = NULL, zoom = NULL,
+                             width = 1000, height = 800, opacity = 0.8) {
+    ## xvar = 'umap_v1'; yvar = 'umap_v2'; tooltipvar = 'label'; colvar = 'col'
+    d <- copy(dt)
+
+    d[, deckx := get(xvar)]
+    d[, decky := get(yvar)]
+    d[, deckcol := get(colvar)]
+    d[, decktip := get(tooltipvar)]
+    d <- d[, .(deckx, decky, deckcol, decktip)]
+    
+    library(deckgl)
+    properties <- list(
+        getPosition  = get_position('deckx', 'decky')
+    )
+    if (!is.null(colvar)) {
+        properties[['getColor']] <- get_color_to_rgb_array('deckcol')
+        properties[['getFillColor']] <- get_color_to_rgb_array('deckcol')
+    }
+    if (!is.null(tooltipvar)) {
+        properties[['getTooltip']] <- JS("object =>`${object.decktip}`")
+    }
+    
+    xm <- d[, median(deckx, na.rm=T)]
+    ym <- d[, median(decky, na.rm=T)]
+
+    deck <- deckgl(latitude = ym, longitude = xm, width=width, height=height,
+                   style = list(background = "white")) %>%
+        add_scatterplot_layer(data = d,
+                              properties = properties,
+                              getRadius = 500,
+                              radiusScale = 18,
+                              radiusMinPixels = 3,
+                              radiusMaxPixels = 10,
+                              opacity = opacity
+                              )
+
+}
+
+seq01 <- function(range, n=6) {
+    ## for circular hues between 0 and 1 for example
+    x <- seq(range[1], range[2], length.out = n)
+    while(any(x<0 | x>1)) {
+        x[x>1] <- x[x>1] - 1
+        x[x<0] <- x[x<0] + 1
+    }
+    x
 }
