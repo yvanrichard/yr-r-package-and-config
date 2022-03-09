@@ -245,11 +245,11 @@ export UBUNTU_MENU_PROXY=emacs
 # unset __conda_setup
 # # <<< conda initialize <<<
 
-# export PATH="$PATH:$HOME/miniconda/bin"
-
+export PATH="$PATH:$HOME/miniconda3/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
 export EDITOR=/usr/bin/vim.basic
 
 alias vi=vim
 
+alias mymonit='inotifywait -m -e modify,create,delete --timefmt "%F %T" --format "%T,%w%f,%e" --exclude ".*(#|\.git|~ )" -r /home/yvan/dragonfly/ >> /home/yvan/Documents/dragonfly-activity.log'

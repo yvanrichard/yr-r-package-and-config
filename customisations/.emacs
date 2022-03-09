@@ -91,9 +91,14 @@
      (tmm-menubar)
      (find-file)
      (execute-extended-command)))
+ ;; '(helm-ff-DEL-up-one-level-maybe nil)
+ '(helm-ff-auto-update-initial-value nil)
+ ;; '(helm-ff-guess-ffap-filenames nil)
  '(helm-ff-skip-boring-files t)
+ '(helm-findutils-search-full-path t)
  '(helm-mode nil)
- '(helm-mode-fuzzy-match t)
+ ;; '(helm-mode-fuzzy-match t)
+ ;; '(helm-recentf-fuzzy-match t)
  '(helm-split-window-inside-p t)
  '(helm-swoop-speed-or-color t)
  '(helm-swoop-split-direction 'split-window-vertically)
@@ -117,7 +122,7 @@
  '(outshine-preserve-delimiter-whitespace nil)
  '(outshine-startup-folded-p nil)
  '(package-selected-packages
-   '(so-long exwm outline-magic company-stan eldoc-stan flycheck-stan stan-mode doom-modeline fira-code-mode vterm wakatime-mode dired-subtree helm-ls-git helm-posframe helm-tramp dired-du company-tabnine folding auto-dim-other-buffers psession flymd poly-R poly-markdown polymode powerthesaurus latex-preview-pane rainbow-mode helm-descbinds helm-flx eacl help-fns+ helm-projectile docker dockerfile-mode dumb-jump helm-navi navi-mode stan-snippets dired-quick-sort ztree expand-region yascroll wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode rainbow-delimiters r-autoyas python-django pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode magit latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files))
+   '(treemacs-icons-dired treemacs treemacs-all-the-icons treemacs-magit treemacs-projectile so-long exwm outline-magic company-stan eldoc-stan flycheck-stan stan-mode vterm wakatime-mode dired-subtree helm-ls-git helm-posframe helm-tramp dired-du company-tabnine folding auto-dim-other-buffers psession flymd poly-R poly-markdown polymode powerthesaurus latex-preview-pane rainbow-mode helm-descbinds helm-flx eacl help-fns+ helm-projectile docker dockerfile-mode dumb-jump helm-navi navi-mode stan-snippets dired-quick-sort ztree expand-region wrap-region web-mode undo-tree swiper smex smartparens smart-mode-line skewer-mode rainbow-delimiters r-autoyas python-django pg pdf-tools pastels-on-dark-theme org-bullets org multiple-cursors markdown-mode latex-pretty-symbols impatient-mode ido-ubiquitous ibuffer-projectile highlight-sexp highlight-indentation helm-swoop helm-make helm-dired-recent-dirs helm-bibtex helm-ag haskell-mode gruber-darker-theme graphviz-dot-mode google-this git-timemachine flx-ido floobits f3 esup ess-view emacsql elfeed edit-server edbi-minor-mode ebib dired-rainbow csv-mode company-ess company-auctex color-theme-sanityinc-tomorrow color-theme avy auto-complete-auctex android-mode anchored-transpose ample-theme ag ace-jump-mode Save-visited-files))
  '(projectile-tags-command "ctags-exuberant -Re -f \"%s\" %s")
  '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
@@ -659,6 +664,15 @@ prompt the user for a coding system."
 	 ("GISAID" (or (filename . "tree-server")
 		       (filename . "gisaid")))
 	 ("Antipodean albatross" (filename . "antipodean-albatross-ipm"))
+	 ("SYL" (filename . "syl-"))
+	 ("RSI" (filename . "rsi-dashboard"))
+	 ("My tests" (or (filename . "my-tests")
+			 (filename . "my-musings")
+			 (filename . "mytests")))
+	 ("Croissant" (filename . "croissant"))
+	 ("Fish IBI" (filename . "fish-ibi"))
+	 ("DFLY website" (filename . "dragonfly-website"))
+	 ("Rec bycatch" (filename . "rec-bycatch"))
 )))
 (add-hook 'ibuffer-mode-hook 
 	  '(lambda ()
@@ -759,14 +773,20 @@ prompt the user for a coding system."
 ;; (ess-toggle-S-assign nil)
 
 
-(defun comint-interrupt-subjob-other ()
-  "Interrupt process in the other pane."
+;; (defun comint-interrupt-subjob-other ()
+;;   "Interrupt process in the other pane."
+;;   (interactive)
+;;   (other-window 1)
+;;   (comint-interrupt-subjob)
+;;   (other-window -1)
+;;   )
+;; (global-set-key "\C-c\C-q" 'comint-interrupt-subjob-other)
+
+(defun ess-abort ()
   (interactive)
-  (other-window 1)
-  (comint-interrupt-subjob)
-  (other-window -1)
-  )
-(global-set-key "\C-c\C-q" 'comint-interrupt-subjob-other)
+  (interrupt-process (ess-get-process)))
+(define-key ess-mode-map (kbd "C-c C-q") 'ess-abort)
+(define-key inferior-ess-mode-map (kbd "C-c C-q") 'ess-abort)
 
 (defun interupt-job-other-window ()
   "Interupt job in other pane."
@@ -1037,7 +1057,8 @@ prompt the user for a coding system."
     ("0sra2t" "\citet{richard_risk_2013}")
     ("0sra2p" "\citep{richard_risk_2013}")
     ("0sra" "seabird risk assessment")    
-    ))
+    ("0ka" "k{\-a}k{\-a}p{\-o}"))
+  )
 
 ;; stop asking whether to save newly added abbrev when quitting emacs
 (setq save-abbrevs nil)
@@ -1081,7 +1102,7 @@ prompt the user for a coding system."
       company-transformers)
 
 ;; Trigger completion immediately.
-(setq company-idle-delay 0)
+(setq company-idle-delay 0.5)
 
 ;; Number the candidates (use M-1, M-2 etc to select completions).
 (setq company-show-numbers t)
@@ -2193,7 +2214,7 @@ prompt the user for a coding system."
 (require 'eldoc-stan)
 (add-hook 'stan-mode-hook 'eldoc-stan-setup)
 
-
+(setq ess-use-flymake nil)
 
 
 ;; (add-hook 'outline-minor-mode-hook
@@ -2211,3 +2232,5 @@ prompt the user for a coding system."
 ;; (require 'explain-pause-mode)
 ;; (explain-pause-log-to-socket "/home/yvan/testlog.txt")
 ;; (explain-pause-mode t)
+
+(global-set-key (kbd "<f4>") 'project-find-file)

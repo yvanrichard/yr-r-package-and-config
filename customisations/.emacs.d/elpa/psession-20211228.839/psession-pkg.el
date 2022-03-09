@@ -1,0 +1,2 @@
+;;; Generated package description from /home/yvan/.emacs.d/elpa/psession-20211228.839/psession.el  -*- no-byte-compile: t -*-
+(define-package "psession" "20211228.839" "Persistent save of elisp objects." '((emacs "24") (cl-lib "0.5") (async "1.9.3")) :commit "97f6fb308fcb007e53c7277fb4603a6faef99c79" :authors '(("Thierry Volpiatto" . "thierry.volpiatto@gmail.com")) :maintainer '("Thierry Volpiatto" . "thierry.volpiatto@gmail.com") :url "https://github.com/thierryvolpiatto/psession")

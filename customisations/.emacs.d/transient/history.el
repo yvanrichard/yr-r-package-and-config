@@ -1,4 +1,6 @@
 ((docker nil)
+ (magit-blame
+  ("-w"))
  (magit-branch nil)
  (magit-commit nil)
  (magit-diff
@@ -10,4 +12,5 @@
  (magit-revert
   ("--edit"))
  (magit-show-refs nil)
+ (magit-stash nil)
  (magit-worktree nil))

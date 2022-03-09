@@ -4449,7 +4449,7 @@ shinypal <- function(...) {
 }
 
 
-find_root_folder <- function (from = getwd()) {
+find_root_folder <- function (from = getwd(), nullreturn=character(0)) {
     fold <- from
     atroot <- file.exists(sprintf("%s/.git", fold))
     while (!atroot & fold != "/") {
@@ -4458,7 +4458,7 @@ find_root_folder <- function (from = getwd()) {
     }
     if (atroot) {
         return(fold)
-    } else return(character(0))
+    } else return(nullreturn)
 }
 
 settoroot <- function() {
@@ -4766,9 +4766,7 @@ dt_to_multiline <- function(dt, coords, byvars, crs=sf::NA_crs_) {
 
 st_rectangle <- function(xmin, ymin, xmax, ymax, crs=4326) {
     library(sf)
-    rect <- st_polygon(list(matrix(c(xmin, ymin, xmin, ymax, xmax, ymax, xmax, ymin, xmin, ymin), ncol=2, byrow=T)))
-    rect <- st_geometry(rect)
-    st_crs(rect) <- crs
+    rect <- st_sfc(st_polygon(list(rbind(c(xmax,ymin), c(xmax,ymax), c(xmin,ymax), c(xmin, ymin), c(xmax,ymin)))), crs = crs)
     return(rect)
 }
 
@@ -5380,28 +5378,44 @@ minshareval <- function(shares, wantedval) {
 ## }
 
 
+## mynafill <- function(x, ...) {
+##     ## Fill in NAs. Adapted as data.table::nafill() only takes numeric values
+##     if (is.factor(x)) {
+##         lkup <- data.table(x = levels(x))
+##         lkup[, id := .I]
+##         initvec <- data.table(x = x)
+##         initvec[lkup, id := i.id, on = 'x']
+##         initvec[, id := nafill(id, ...)]
+##         initvec[lkup, out := i.x, on = 'id']
+##         return(initvec$out)
+##     } else if (is.character(x)) {
+##         lkup <- data.table(x = unique(x))
+##         lkup <- lkup[!is.na(x)]
+##         lkup[, id := .I]
+##         initvec <- data.table(x = x)
+##         initvec[lkup, id := i.id, on = 'x']
+##         initvec[, id := nafill(id, ...)]
+##         initvec[lkup, out := i.x, on = 'id']
+##         return(initvec$out)
+##     } else if (is.numeric(x)) {
+##         return(nafill(x, ...))
+##     } else stop('`x` needs to be either of type `character`, `factor`, or `numeric`')
+## }
 mynafill <- function(x, ...) {
-    ## Fill in NAs. Adapted as data.table::nafill() only takes numeric values
-    if (is.factor(x)) {
-        lkup <- data.table(x = levels(x))
-        lkup[, id := .I]
-        initvec <- data.table(x = x)
-        initvec[lkup, id := i.id, on = 'x']
-        initvec[, id := nafill(id, ...)]
-        initvec[lkup, out := i.x, on = 'id']
-        return(initvec$out)
-    } else if (is.character(x)) {
-        lkup <- data.table(x = unique(x))
-        lkup <- lkup[!is.na(x)]
-        lkup[, id := .I]
-        initvec <- data.table(x = x)
-        initvec[lkup, id := i.id, on = 'x']
-        initvec[, id := nafill(id, ...)]
-        initvec[lkup, out := i.x, on = 'id']
-        return(initvec$out)
-    } else if (is.numeric(x)) {
-        return(nafill(x, ...))
-    } else stop('`x` needs to be either of type `character`, `factor`, or `numeric`')
+    if (!is.numeric(x)) {
+        if (is.character(x)) {
+            y <- factor(x)
+            lvls <- levels(y)
+        } else {
+            y <- x
+            lvls <- levels(x)
+        }
+        z <- nafill(as.integer(y), ...)
+        z <- lvls[z]
+    } else {
+        z <- nafill(x, ...)
+    }
+    return(z)
 }
 
 nacolrm <- function(x) {
@@ -5828,5 +5842,27 @@ seq01 <- function(range, n=6) {
         x[x>1] <- x[x>1] - 1
         x[x<0] <- x[x<0] + 1
     }
+    x
+}
+
+list.special.chars <- function(txt, ok.chars = '-\na-zA-ZāēīōūĀĒĪŌŪï0-9 _,;.:@&%$?!=+()\'"/') {
+    g <- regexpr(sprintf('[^%s]', ok.chars), txt)
+    r <- regmatches(txt, g)
+    d <- data.table(char = r)
+    d <- d[, .N, char][order(-N)]
+    d[, ch_std := stringi::stri_escape_unicode(char)]
+    return(d)
+}
+
+browsetable <- function(dt, nowrap=F, ...) {
+    DT::datatable(dt, filter='top',
+                  class = sprintf('stripe %s hover compact', fifelse(nowrap==T, 'nowrap', '')),
+                  ...)
+}
+
+concat <- function(x, y, sep = '|') {
+    ## Concatenation of grooming rules, if x is empty, remove the first separator
+    x <- paste0(x, paste0(sep, y))
+    x <- sub(paste0('^[:', sep, ':]'), '', x)
     x
 }
