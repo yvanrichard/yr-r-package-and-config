@@ -1,10 +1,12 @@
 ;;; google-this-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
+
+(add-to-list 'load-path (directory-file-name
+                         (or (file-name-directory #$) (car load-path))))
+
 
-;;;### (autoloads nil "google-this" "google-this.el" (23402 6164
-;;;;;;  166378 545000))
+;;;### (autoloads nil "google-this" "google-this.el" (0 0 0 0))
 ;;; Generated autoloads from google-this.el
 
 (autoload 'google-this-search "google-this" "\
@@ -116,9 +118,7 @@ Uses replacements in `google-this-error-regexp' and stops at the first match.
 \(fn S)" t nil)
 
 (autoload 'google-this-cpp-reference "google-this" "\
-Visit the most probable cppreference.com page for this word.
-
-\(fn)" t nil)
+Visit the most probable cppreference.com page for this word." t nil)
 
 (autoload 'google-this-forecast "google-this" "\
 Search google for \"weather\".
@@ -135,12 +135,17 @@ for a description of this minor mode.")
 
 (autoload 'google-this-mode "google-this" "\
 Toggle Google-This mode on or off.
-With a prefix argument ARG, enable Google-This mode if ARG is
-positive, and disable it otherwise.  If called from Lisp, enable
-the mode if ARG is omitted or nil, and toggle it if ARG is `toggle'.
+
+If called interactively, enable Google-This mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called
+from Lisp, also enable the mode if ARG is omitted or nil, and
+toggle it if ARG is `toggle'; disable the mode otherwise.
+
 \\{google-this-mode-map}
 
 \(fn &optional ARG)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "google-this" '("google-this-")))
 
 ;;;***
 
@@ -148,5 +153,6 @@ the mode if ARG is omitted or nil, and toggle it if ARG is `toggle'.
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
+;; coding: utf-8
 ;; End:
 ;;; google-this-autoloads.el ends here

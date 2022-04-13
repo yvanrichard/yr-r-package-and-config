@@ -116,7 +116,6 @@ function parse_git_branch() {
 # 	fi
 # }
 
-export PS1="\[\e[0m\]\`parse_git_branch\`\[\033[01;30m\]|\[\033[01;34m\]\D{%Y-%m-%d} \[\033[01;34m\]\t\[\033[\033[01;30m\]|\[\033[\033[01;32m\]\u@\[\033[01;32m\]\h\[\033[01;30m\]|\[\033[01;33m\]\W\[\e[0m\]$ "
 
 ## ------------------------------------------------------------------------------------------------
 
@@ -253,3 +252,31 @@ export EDITOR=/usr/bin/vim.basic
 alias vi=vim
 
 alias mymonit='inotifywait -m -e modify,create,delete --timefmt "%F %T" --format "%T,%w%f,%e" --exclude ".*(#|\.git|~ )" -r /home/yvan/dragonfly/ >> /home/yvan/Documents/dragonfly-activity.log'
+
+
+export PS1="\[\e[0m\]\`parse_git_branch\`\[\033[01;30m\]|\[\033[01;34m\]\D{%Y-%m-%d} \[\033[01;34m\]\t\[\033[\033[01;30m\]|\[\033[\033[01;32m\]\u@\[\033[01;32m\]\h\[\033[01;30m\]|\[\033[01;33m\]\W\[\e[0m\]$ "
+
+# vterm_printf(){
+#     if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
+#         # Tell tmux to pass the escape sequences through
+#         printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+#     elif [ "${TERM%%-*}" = "screen" ]; then
+#         # GNU screen (screen, screen-256color, screen-256color-bce)
+#         printf "\eP\e]%s\007\e\\" "$1"
+#     else
+#         printf "\e]%s\e\\" "$1"
+#     fi
+# }
+# vterm_prompt_end(){
+#     vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+# }
+# PS1=$PS1'\[$(vterm_prompt_end)\]'
+# PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }"'echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
+
+
+alias fd='fdfind'
+alias bat='batcat'
+
+eval "$(starship init bash)"
+
+export PATH="$PATH:$HOME/.cargo/bin"

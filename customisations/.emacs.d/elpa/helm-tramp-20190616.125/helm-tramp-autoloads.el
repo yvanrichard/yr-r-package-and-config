@@ -11,9 +11,7 @@
 
 (autoload 'helm-tramp "helm-tramp" "\
 Open your ~/.ssh/config with helm interface.
-You can connect your server with tramp
-
-\(fn)" t nil)
+You can connect your server with tramp" t nil)
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-tramp" '("helm-tramp-")))
 

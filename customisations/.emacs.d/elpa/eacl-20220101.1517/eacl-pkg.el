@@ -1,2 +1,0 @@
-;;; Generated package description from /home/yvan/.emacs.d/elpa/eacl-20220101.1517/eacl.el  -*- no-byte-compile: t -*-
-(define-package "eacl" "20220101.1517" "Auto-complete lines by grepping project" '((emacs "25.1")) :commit "4d9d42fa05e550dbac71a2c93e1da71c48af9449" :authors '(("Chen Bin <chenbin DOT sh AT gmail DOT com>")) :maintainer '("Chen Bin <chenbin DOT sh AT gmail DOT com>") :keywords '("abbrev" "convenience" "matching") :url "http://github.com/redguardtoo/eacl")

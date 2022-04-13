@@ -21,7 +21,6 @@ y:
 updatepkg:
 	rm customisations/.emacs.d -fr
 	rsync -avz --exclude '.git*' ~/.emacs.d customisations/
-	cp ~/.emacs customisations/
 	rsync -avz --exclude '.git*' ~/.vim customisations/ -r
 	rsync -avz --exclude '.git*' ~/.viminfo customisations/
 	rsync -avz --exclude '.git*' ~/.vimrc customisations/
@@ -37,6 +36,7 @@ updatepkg:
 	rsync -avz --exclude '.git*' ~/.wakatime.cfg customisations/
 	rsync -avz --exclude '.git*' ~/.tmux.conf customisations/
 	rsync -avz --exclude '.git*' ~/.tmux customisations/
+	rsync -avz --exclude '.git*' ~/.config/starship.toml customisations/
 
 getpackagelist:
 	Rscript -e 'libs<-sort(library()$$results[,"Package"]); save(libs, file="r-packages_libs.rdata")'
