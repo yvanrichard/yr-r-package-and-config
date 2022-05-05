@@ -5899,3 +5899,37 @@ spread.labs <- function(x, mindiff = 0.01 * diff(range(x)), maxiter=1000, stepsi
     }
     x[unsort]
 }
+
+
+
+addissue <- function(dt, cond, comment, issuecol = getOption('issues.colname', 'issues')) {
+  ## * Keep track of issues (create column or concatenate if necessary)
+  ## Usage e.g. ```dt |> addissue(height < 0, 'negative height')```
+  if (!(issuecol %in% names(dt)))
+    dt[, eval(issuecol) := '']
+  dt[eval(substitute(cond), dt), eval(issuecol) := paste0(get(issuecol), '|', comment)]
+  dt[, eval(issuecol) := sub('^\\|', '', get(issuecol))]
+  setattr(dt, 'issue.colname', issuecol)
+}
+
+listissues <- function(dt, idcol = 'bird_id', compact = T, print = T) {
+  ## * List issues (one issue per row, not just record)
+  issuecol <- attr(dt, 'issue.colname')
+  if (is.null(issuecol) || !(issuecol %in% names(dt))) {
+    cat('No issues column, so no issues to report from...\n')
+    return()
+  }
+  tab <- dt[
+  , .(issue = unlist(strsplit(get(issuecol), '|', fixed=T)))
+  , .(id = get(idcol), row = seq_len(nrow(dt)))]
+  tab <- tab[issue != '']
+  w <- getOption('width')
+  if (compact == T) {
+    tab1 <- tab[, .(nrows = .N, n_ids = uniqueN(id), rows = list(row), ids = list(unique(id)))
+                  , issue]
+  } else tab1 <- tab
+  if (print) print(tab1)
+  options(width = w)
+  return(invisible(tab))
+}
+

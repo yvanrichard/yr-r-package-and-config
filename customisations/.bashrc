@@ -146,6 +146,8 @@ alias makereporthtml="rsync -avz --exclude generated --exclude '*~' /home/yvan/D
 alias makereportaebr="rsync -avz --exclude generated --exclude '*~' /home/yvan/Dropbox/templates/report-aebr/ ."
 alias makeshiny="rsync -avz --exclude '*~' /home/yvan/Dropbox/templates/shiny-app/ ."
 alias makedocker="rsync -avz --exclude '*~' /home/yvan/Dropbox/templates/docker/ ."
+alias makequartopres="rsync -avz --exclude '*~' /home/yvan/Dropbox/templates/quarto-presentation/ ."
+alias makequartohtml="rsync -avz --exclude '*~' /home/yvan/Dropbox/templates/quarto-html/ ."
 
 alias rgm='Rscript -e "graph_makefile()" &'
 alias tmux='tmux -2 '
@@ -251,7 +253,7 @@ export EDITOR=/usr/bin/vim.basic
 
 alias vi=vim
 
-alias mymonit='inotifywait -m -e modify,create,delete --timefmt "%F %T" --format "%T,%w%f,%e" --exclude ".*(#|\.git|~ )" -r /home/yvan/dragonfly/ >> /home/yvan/Documents/dragonfly-activity.log'
+alias mymonit='inotifywait -m -e modify,create,delete --timefmt "%F %T" --format "%T,%w%f,%e" --exclude ".*(#|\.git|\.quarto|~ )" -r /home/yvan/dragonfly/ >> /home/yvan/Documents/dragonfly-activity.log'
 
 
 export PS1="\[\e[0m\]\`parse_git_branch\`\[\033[01;30m\]|\[\033[01;34m\]\D{%Y-%m-%d} \[\033[01;34m\]\t\[\033[\033[01;30m\]|\[\033[\033[01;32m\]\u@\[\033[01;32m\]\h\[\033[01;30m\]|\[\033[01;33m\]\W\[\e[0m\]$ "
@@ -280,3 +282,42 @@ alias bat='batcat'
 eval "$(starship init bash)"
 
 export PATH="$PATH:$HOME/.cargo/bin"
+
+## * FZF (helm for shell)
+source /usr/share/doc/fzf/examples/key-bindings.bash
+source /usr/share/doc/fzf/examples/completion.bash
+
+export FZF_DEFAULT_OPTS='--layout=reverse --border'
+
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER='++'
+
+# # Options to fzf command
+# export FZF_COMPLETION_OPTS='--border --info=inline'
+
+# # Setting fd as the default source for fzf
+# export FZF_DEFAULT_COMMAND='fd --type f'
+
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+## * Integration of ripgrep-all and FZF
+rgafzf() {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
+}

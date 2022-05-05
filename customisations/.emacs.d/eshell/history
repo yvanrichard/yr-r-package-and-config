@@ -2,3 +2,6 @@ cd analysis/
 make local
 radian
 bash
+cd ..
+make local
+make local

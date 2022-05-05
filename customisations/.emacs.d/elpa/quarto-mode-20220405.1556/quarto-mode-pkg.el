@@ -1,0 +1,2 @@
+;;; Generated package description from quarto-mode.el  -*- no-byte-compile: t -*-
+(define-package "quarto-mode" "20220405.1556" "A (poly)mode for https://quarto.org" '((emacs "25.1") (polymode "0.2.2") (poly-markdown "0.2.2") (markdown-mode "2.3") (request "0.3.2")) :commit "2a199735866dc34126a061c6f2990378b381e687" :authors '(("Carlos Scheidegger")) :maintainer '("Carlos Scheidegger") :keywords '("languages" "multi-modes") :url "https://github.com/quarto-dev/quarto-emacs")

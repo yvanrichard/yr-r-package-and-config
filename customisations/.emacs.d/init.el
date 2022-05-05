@@ -74,6 +74,7 @@
 	 (ess-fl-keyword:= . t)
 	 (ess-R-fl-keyword:F&T . t)))
  '(ess-eval-visibly nil)
+ '(ess-gen-proc-buffer-name-function 'ess-gen-proc-buffer-name:project-or-directory)
  '(ess-pdf-viewer-pref "okular")
  '(ess-r-args-electric-paren t)
  '(fci-rule-color "#873b81")
@@ -129,7 +130,7 @@
  '(outshine-preserve-delimiter-whitespace nil)
  '(outshine-startup-folded-p nil)
  '(package-selected-packages
-   '(helm-rg vterm anchored-transpose helm-swoop helm-ag helm helm-tramp projectile helm-projectile helm-navi git-timemachine hl-block-mode dimmer highlight-sexp rainbow-mode google-this yasnippet-snippets helpful which-key dired+ highlight-parentheses navi-mode yasnippet avy expand-region rainbow-delimiters ess doom-modeline psession magit stan-mode poly-R markdown-mode validate use-package))
+   '(xterm-color quarto-mode helm-rg vterm anchored-transpose helm-swoop helm-ag helm helm-tramp projectile helm-projectile helm-navi git-timemachine hl-block-mode dimmer highlight-sexp rainbow-mode google-this yasnippet-snippets helpful which-key dired+ highlight-parentheses navi-mode yasnippet avy expand-region rainbow-delimiters ess doom-modeline psession magit stan-mode poly-R markdown-mode validate use-package))
  '(projectile-tags-command "ctags-exuberant -Re -f \"%s\" %s")
  '(protect-buffer-bury-p nil)
  '(safe-local-variable-values
@@ -427,6 +428,7 @@
   :config
   (use-package ess-r-mode
     :load-path "elpa/ess/")
+  ;; (add-hook 'ess-r-post-run-hook (lambda () (ess-load-file "/home/yvan/dragonfly/essRstart.r")))
   (validate-setq
    ring-bell-function #'ignore
    ess-ask-for-ess-directory nil
@@ -438,7 +440,7 @@
    comint-scroll-to-bottom-on-output t
    comint-move-point-for-output t
    ;; ess-smart-S-assign-key nil
-   ess-default-style 'RStudio
+   ess-style 'RStudio
    ;; ess-r-backend 'lsp
    ess-eval-visibly 'nowait
    )         ; rstudio indentation style
@@ -694,6 +696,7 @@
 
 (use-package projectile
   :ensure t
+  ;; :bind (("C-c C-f" . projectile-find-file))
 )
 
 ;; * HELM
@@ -727,23 +730,29 @@
 (use-package helm-ag
   :ensure t
   :bind (
-  ("C-x M-a" . helm-do-ag)
-  ;; ("C-c M-m" . helm-ag-buffers)
-  )
+		 ("C-x M-a" . helm-do-ag)
+		 ;; ("C-c M-m" . helm-ag-buffers)
+		 )
+  :config
+  (validate-setq
+   helm-ag-base-command "rg -S --no-heading"
+   )   
   )
 
-(use-package helm-rg
-  :ensure t
-  :bind (
-  ("C-x M-a" . helm-rg)
-  ;; ("C-c M-m" . helm-ag-buffers)
-  )
-  )
+;; (use-package helm-rg
+;;   :ensure t
+;;   :bind (
+;;   ("C-x M-a" . helm-rg)
+;;   ;; ("C-c M-m" . helm-ag-buffers)
+;;   )
+;;   )
 
 
 ;; (use-package helm-config
 ;;   :ensure t
 ;; )
+
+(global-set-key "\C-c\M-m" 'helm-ag-buffers)
 
 (use-package helm-swoop
   :ensure t
@@ -1339,3 +1348,38 @@ there's a region, all lines that region covers will be duplicated."
 
 (use-package vterm
     :ensure t)
+
+(use-package quarto-mode
+  :ensure t)
+
+(use-package xterm-color
+  :ensure t)
+
+ (eval-after-load "comint"
+   '(progn
+      (define-key comint-mode-map [up]
+        'comint-previous-matching-input-from-input)
+      (define-key comint-mode-map [down]
+        'comint-next-matching-input-from-input)
+
+      ;; also recommended for ESS use --
+      (setq comint-move-point-for-output 'others)
+      ;; somewhat extreme, almost disabling writing in *R*, *shell* buffers above prompt:
+      (setq comint-scroll-to-bottom-on-input 'this)
+      ))
+
+;; (defun my-ansi-color (&optional beg end)
+;;   "Interpret ANSI color esacape sequence by colorifying cotent.
+;; Operate on selected region on whole buffer."
+;;   (interactive
+;;    (if (use-region-p)
+;;        (list (region-beginning) (region-end))
+;;      (list (point-min) (point-max))))
+;;   (ansi-color-apply-on-region beg end))
+
+;; (ignore-errors
+;;   (require 'ansi-color)
+;;   (defun my-colorize-compilation-buffer ()
+;;     (when (eq major-mode 'compilation-mode)
+;;       (ansi-color-apply-on-region compilation-filter-start (point-max))))
+;;   (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))

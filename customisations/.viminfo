@@ -14,10 +14,10 @@
 ~Msle0~/\<180\>
 
 # Command Line History (newest to oldest):
+:q
+|2,0,1650923995,,"q"
 :q!
 |2,0,1649822322,,"q!"
-:q
-|2,0,1649822319,,"q"
 :wq
 |2,0,1647308273,,"wq"
 :'<,'>q
@@ -80,230 +80,254 @@
 |3,1,36,0,1,0,1648161973,"'"
 
 # File marks:
-'0  34  0  /usr/bin/tldr
-|4,48,34,0,1649822322,"/usr/bin/tldr"
-'1  40  6  ~/.emacs.prev
-|4,49,40,6,1648161978,"~/.emacs.prev"
-'2  31  1  /tmp/crontab.IWK81L/crontab
-|4,50,31,1,1647308273,"/tmp/crontab.IWK81L/crontab"
-'3  31  1  /tmp/crontab.4Yqsfz/crontab
-|4,51,31,1,1647308131,"/tmp/crontab.4Yqsfz/crontab"
-'4  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,52,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
-'5  28  256  /tmp/crontab.sRUUPp/crontab
-|4,53,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
-'6  31  0  /tmp/crontab.ApsYM8/crontab
-|4,54,31,0,1643749741,"/tmp/crontab.ApsYM8/crontab"
-'7  29  85  /tmp/crontab.TXA3Dc/crontab
-|4,55,29,85,1643235931,"/tmp/crontab.TXA3Dc/crontab"
-'8  28  6  /tmp/crontab.ZVBI3K/crontab
-|4,56,28,6,1643169449,"/tmp/crontab.ZVBI3K/crontab"
-'9  28  59  /tmp/crontab.Mnz3Jf/crontab
-|4,57,28,59,1643168898,"/tmp/crontab.Mnz3Jf/crontab"
+'0  22  0  /tmp/crontab.lX5NjD/crontab
+|4,48,22,0,1650923995,"/tmp/crontab.lX5NjD/crontab"
+'1  30  8  /tmp/crontab.9V9Dpv/crontab
+|4,49,30,8,1650578460,"/tmp/crontab.9V9Dpv/crontab"
+'2  122  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv
+|4,50,122,0,1649892642,"~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv"
+'3  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv
+|4,51,1,0,1649892629,"~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv"
+'4  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,52,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+'5  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,53,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+'6  34  0  /usr/bin/tldr
+|4,54,34,0,1649822322,"/usr/bin/tldr"
+'7  40  6  ~/.emacs.prev
+|4,55,40,6,1648161978,"~/.emacs.prev"
+'8  31  1  /tmp/crontab.IWK81L/crontab
+|4,56,31,1,1647308273,"/tmp/crontab.IWK81L/crontab"
+'9  31  1  /tmp/crontab.4Yqsfz/crontab
+|4,57,31,1,1647308131,"/tmp/crontab.4Yqsfz/crontab"
 
 # Jumplist (newest first):
+-'  22  0  /tmp/crontab.lX5NjD/crontab
+|4,39,22,0,1650923995,"/tmp/crontab.lX5NjD/crontab"
+-'  1  0  /tmp/crontab.lX5NjD/crontab
+|4,39,1,0,1650923235,"/tmp/crontab.lX5NjD/crontab"
+-'  30  8  /tmp/crontab.9V9Dpv/crontab
+|4,39,30,8,1650578460,"/tmp/crontab.9V9Dpv/crontab"
+-'  30  8  /tmp/crontab.9V9Dpv/crontab
+|4,39,30,8,1650578460,"/tmp/crontab.9V9Dpv/crontab"
+-'  1  0  /tmp/crontab.9V9Dpv/crontab
+|4,39,1,0,1650410494,"/tmp/crontab.9V9Dpv/crontab"
+-'  1  0  /tmp/crontab.9V9Dpv/crontab
+|4,39,1,0,1650410494,"/tmp/crontab.9V9Dpv/crontab"
+-'  122  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv
+|4,39,122,0,1649892642,"~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv"
+-'  122  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv
+|4,39,122,0,1649892642,"~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv"
+-'  122  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv
+|4,39,122,0,1649892642,"~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv"
+-'  122  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv
+|4,39,122,0,1649892642,"~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv
+|4,39,1,0,1649892637,"~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv
+|4,39,1,0,1649892637,"~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv
+|4,39,1,0,1649892637,"~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv
+|4,39,1,0,1649892637,"~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv
+|4,39,1,0,1649892629,"~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv
+|4,39,1,0,1649892629,"~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv
+|4,39,1,0,1649892629,"~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv
+|4,39,1,0,1649892629,"~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv
+|4,39,1,0,1649892629,"~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv
+|4,39,1,0,1649892629,"~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv
+|4,39,1,0,1649892629,"~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv
+|4,39,1,0,1649892629,"~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+|4,39,1,0,1649892558,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
+-'  1  0  ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+|4,39,1,0,1649892488,"~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png"
 -'  34  0  /usr/bin/tldr
 |4,39,34,0,1649822322,"/usr/bin/tldr"
--'  1  0  /usr/bin/tldr
-|4,39,1,0,1649822306,"/usr/bin/tldr"
--'  40  6  ~/.emacs.prev
-|4,39,40,6,1648161978,"~/.emacs.prev"
--'  40  6  ~/.emacs.prev
-|4,39,40,6,1648161978,"~/.emacs.prev"
--'  1  0  ~/.emacs.prev
-|4,39,1,0,1648161394,"~/.emacs.prev"
--'  1  0  ~/.emacs.prev
-|4,39,1,0,1648161394,"~/.emacs.prev"
--'  31  1  /tmp/crontab.IWK81L/crontab
-|4,39,31,1,1647308273,"/tmp/crontab.IWK81L/crontab"
--'  31  1  /tmp/crontab.IWK81L/crontab
-|4,39,31,1,1647308273,"/tmp/crontab.IWK81L/crontab"
--'  31  1  /tmp/crontab.IWK81L/crontab
-|4,39,31,1,1647308273,"/tmp/crontab.IWK81L/crontab"
--'  31  1  /tmp/crontab.IWK81L/crontab
-|4,39,31,1,1647308273,"/tmp/crontab.IWK81L/crontab"
--'  1  0  /tmp/crontab.IWK81L/crontab
-|4,39,1,0,1647308257,"/tmp/crontab.IWK81L/crontab"
--'  1  0  /tmp/crontab.IWK81L/crontab
-|4,39,1,0,1647308257,"/tmp/crontab.IWK81L/crontab"
--'  1  0  /tmp/crontab.IWK81L/crontab
-|4,39,1,0,1647308257,"/tmp/crontab.IWK81L/crontab"
--'  1  0  /tmp/crontab.IWK81L/crontab
-|4,39,1,0,1647308257,"/tmp/crontab.IWK81L/crontab"
--'  31  1  /tmp/crontab.4Yqsfz/crontab
-|4,39,31,1,1647308131,"/tmp/crontab.4Yqsfz/crontab"
--'  31  1  /tmp/crontab.4Yqsfz/crontab
-|4,39,31,1,1647308131,"/tmp/crontab.4Yqsfz/crontab"
--'  31  1  /tmp/crontab.4Yqsfz/crontab
-|4,39,31,1,1647308131,"/tmp/crontab.4Yqsfz/crontab"
--'  31  1  /tmp/crontab.4Yqsfz/crontab
-|4,39,31,1,1647308131,"/tmp/crontab.4Yqsfz/crontab"
--'  31  1  /tmp/crontab.4Yqsfz/crontab
-|4,39,31,1,1647308131,"/tmp/crontab.4Yqsfz/crontab"
--'  31  1  /tmp/crontab.4Yqsfz/crontab
-|4,39,31,1,1647308131,"/tmp/crontab.4Yqsfz/crontab"
--'  31  1  /tmp/crontab.4Yqsfz/crontab
-|4,39,31,1,1647308131,"/tmp/crontab.4Yqsfz/crontab"
--'  31  1  /tmp/crontab.4Yqsfz/crontab
-|4,39,31,1,1647308131,"/tmp/crontab.4Yqsfz/crontab"
--'  1  0  /tmp/crontab.4Yqsfz/crontab
-|4,39,1,0,1647308106,"/tmp/crontab.4Yqsfz/crontab"
--'  1  0  /tmp/crontab.4Yqsfz/crontab
-|4,39,1,0,1647308106,"/tmp/crontab.4Yqsfz/crontab"
--'  1  0  /tmp/crontab.4Yqsfz/crontab
-|4,39,1,0,1647308106,"/tmp/crontab.4Yqsfz/crontab"
--'  1  0  /tmp/crontab.4Yqsfz/crontab
-|4,39,1,0,1647308106,"/tmp/crontab.4Yqsfz/crontab"
--'  1  0  /tmp/crontab.4Yqsfz/crontab
-|4,39,1,0,1647308106,"/tmp/crontab.4Yqsfz/crontab"
--'  1  0  /tmp/crontab.4Yqsfz/crontab
-|4,39,1,0,1647308106,"/tmp/crontab.4Yqsfz/crontab"
--'  1  0  /tmp/crontab.4Yqsfz/crontab
-|4,39,1,0,1647308106,"/tmp/crontab.4Yqsfz/crontab"
--'  1  0  /tmp/crontab.4Yqsfz/crontab
-|4,39,1,0,1647308106,"/tmp/crontab.4Yqsfz/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  31  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,31,4,1647307991,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  1  4  /tmp/crontab.Qf0Sp8/crontab
-|4,39,1,4,1647307869,"/tmp/crontab.Qf0Sp8/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  28  256  /tmp/crontab.sRUUPp/crontab
-|4,39,28,256,1643749753,"/tmp/crontab.sRUUPp/crontab"
--'  31  0  /tmp/crontab.ApsYM8/crontab
-|4,39,31,0,1643749741,"/tmp/crontab.ApsYM8/crontab"
--'  31  0  /tmp/crontab.ApsYM8/crontab
-|4,39,31,0,1643749741,"/tmp/crontab.ApsYM8/crontab"
--'  31  0  /tmp/crontab.ApsYM8/crontab
-|4,39,31,0,1643749741,"/tmp/crontab.ApsYM8/crontab"
--'  31  0  /tmp/crontab.ApsYM8/crontab
-|4,39,31,0,1643749741,"/tmp/crontab.ApsYM8/crontab"
--'  31  0  /tmp/crontab.ApsYM8/crontab
-|4,39,31,0,1643749741,"/tmp/crontab.ApsYM8/crontab"
--'  31  0  /tmp/crontab.ApsYM8/crontab
-|4,39,31,0,1643749741,"/tmp/crontab.ApsYM8/crontab"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
+-'  34  0  /usr/bin/tldr
+|4,39,34,0,1649822322,"/usr/bin/tldr"
 
 # History of marks within files (newest to oldest):
+
+> /tmp/crontab.lX5NjD/crontab
+	*	1650923236	0
+	"	22	0
+
+> /tmp/crontab.9V9Dpv/crontab
+	*	1650410506	0
+	"	30	8
+
+> ~/dragonfly/antipodean-albatross-risk-assessment/output/removed-effort-no-coords.csv
+	*	1649892638	0
+	"	122	0
+
+> ~/dragonfly/antipodean-albatross-risk-assessment/output/nz-total-effort.csv
+	*	1649892628	0
+	"	1	0
+
+> ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-02-29.png
+	*	1649892555	0
+	"	1	0
+
+> ~/dragonfly/antipodean-albatross-risk-assessment/daily-eff-frames/daily-eff-2020-05-15.png
+	*	1649892486	0
+	"	1	0
 
 > /usr/bin/tldr
 	*	1649822319	0
